@@ -1,11 +1,6 @@
 import "../../styles/global";
-
 import "../../styles/styled.d.ts";
-//import * as Hm from './styled';
-//import {useState} from 'react';
 import Switch from "react-switch";
-//import light from "../../styles/themes/light.ts";
-//import dark from "../../styles/themes/dark.ts";
 
 import { ContentHeaderImgSys } from "./ContentHeaderImgSys";
 import { ContentHearderItens } from "./ContentHearderItens";
@@ -14,25 +9,14 @@ import { ContentHeaderTitle } from "./ContentHeaderTitle";
 import { ContentHearderRight } from "./ContentHearderRight";
 import { ContentHearderItensBar } from "./ContentHearderItensBar";
 
-
-
-
-
-
 type PropsHearderHome ={
   img?: string;
   onclick?: () => void;
   title?: string;
-  toggleTheme(): void;
-  // checked?: boolean;
+  onchange: () => void;
+  ischeck?: boolean;
 }
-export const HearderHome = ({img, onclick, title, toggleTheme }:PropsHearderHome) => {
-
-  // const [theme,setTheme] = useState(dark);
-
-  // const ToggleTheme = () => {
-  //   setTheme(theme.name === 'dark' ? light : dark);  
-  // };
+export const HearderHome = ({img, onclick, title, onchange, ischeck }:PropsHearderHome) => {
 
   return (
     <ContentHearderMain>
@@ -44,9 +28,9 @@ export const HearderHome = ({img, onclick, title, toggleTheme }:PropsHearderHome
       </ContentHearderItens>
       <ContentHearderRight>
         <ContentHearderItensBar>
-          <Switch 
-            onChange={toggleTheme}
-            checked={false}
+          <Switch
+            onChange={onchange}
+            checked={ ( ischeck === true ? false : true) }
             checkedIcon={false}
             uncheckedIcon={false}
             height={15}
@@ -56,7 +40,6 @@ export const HearderHome = ({img, onclick, title, toggleTheme }:PropsHearderHome
             offHandleColor="#fa140c"
             onColor="#b4b5b4"
             offColor="#b0b0b0"
-          
           />
         </ContentHearderItensBar>
       </ContentHearderRight>

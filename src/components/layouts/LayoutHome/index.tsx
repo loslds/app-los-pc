@@ -7,12 +7,13 @@ type PropsLayoutHome = {
   onclick?: () => void;
   title?:string;
   children?: ReactNode | JSX.Element;
-  toggleTheme(): void;
+  onchange: () => void;
+  ischeck: boolean;
 }
-export const LayoutHome = ({img, onclick, title, children, toggleTheme}:PropsLayoutHome) => {
+export const LayoutHome = ({img, onclick, title, children, onchange, ischeck}:PropsLayoutHome) => {
   return (
     <ContentPages>
-      <HearderHome img={img} onclick={onclick} title={title} toggleTheme={toggleTheme}/>
+      <HearderHome img={img} onclick={onclick} title={title} onchange={onchange} ischeck={ischeck}/>
       <Hm.DivisionPgHztal />
       
       <Hm.ContainerBody>
