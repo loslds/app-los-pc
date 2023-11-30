@@ -1,14 +1,14 @@
-import { ReactNode } from 'react';
-import * as Hm from './styled';
 
+import { ReactNode } from 'react';
+import * as Pag from "./styled";
 
 type PropsHeardMain = {
   children?: ReactNode | JSX.Element;
 }
 export const ContentHearderMain = ({children}:PropsHeardMain) => {
   return (
-    <Hm.ContainerHearder>
+    <Pag.ContainerHearder>
       { children }
-    </Hm.ContainerHearder>
+    </Pag.ContainerHearder>
   );
 }

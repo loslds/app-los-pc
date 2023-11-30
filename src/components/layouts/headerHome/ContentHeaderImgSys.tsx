@@ -1,6 +1,5 @@
 
-import * as Hm from './styled';
-
+import * as Hm from '../styled';
 
 type PropsHeaderImg = {
   img?:string;

@@ -2,6 +2,9 @@ import * as Hm from '../styled';
 import { ContentPages } from '../ContentPages';
 import { HearderHome } from '../HearderHome';
 import { ReactNode } from 'react';
+import { FooterHome } from '../FooterHome';
+
+
 type PropsLayoutHome = {
   img?:string;
   onclick?: () => void;
@@ -22,10 +25,9 @@ export const LayoutHome = ({img, onclick, title, children, onchange, ischeck}:Pr
         </Hm.ContainerPage>
       </Hm.ContainerBody>
       <Hm.DivisionPgHztal />
-
-      <Hm.ContainerFooter>
-        Footer1
-      </Hm.ContainerFooter>
+      
+      <FooterHome />
+      
     </ContentPages>
   );
 }

@@ -1,16 +1,15 @@
 import { ReactNode } from 'react';
-import * as Hm from './styled';
-
+import * as Pag from "./styled";
 
 type PropsPages = {
   children?: ReactNode | JSX.Element;
 }
 export const ContentPages = ({children}:PropsPages) => {
   return (
-    <Hm.Container>
-      <Hm.ContainerFlex>
+    <Pag.ContainerPg>
+      <Pag.ContainerFlexPg>
         { children }
-      </Hm.ContainerFlex>
-    </Hm.Container>
+      </Pag.ContainerFlexPg>
+    </Pag.ContainerPg>
   );
 }

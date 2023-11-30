@@ -1,13 +1,16 @@
 import "../../styles/global";
 import "../../styles/styled.d.ts";
+import * as Pg from './styled.ts'
+
 import Switch from "react-switch";
 
-import { ContentHeaderImgSys } from "./ContentHeaderImgSys";
-import { ContentHearderItens } from "./ContentHearderItens";
-import { ContentHearderMain } from "./ContentHearderMain";
-import { ContentHeaderTitle } from "./ContentHeaderTitle";
-import { ContentHearderRight } from "./ContentHearderRight";
-import { ContentHearderItensBar } from "./ContentHearderItensBar";
+import { ContentHeaderImgSys } from "./headerHome/ContentHeaderImgSys.tsx";
+import { ContentHearderItens } from "./headerHome/ContentHearderItens.tsx";
+import { ContentHearderMain } from "./ContentHearderMain.tsx";
+import { ContentHeaderTitle } from "./headerHome/ContentHeaderTitle.tsx";
+import { ContentHearderRight } from "./headerHome/ContentHearderRight.tsx";
+import { ContentHearderItensBar } from "./headerHome/ContentHearderItensBar.tsx";
+import ContentPagesButton from "./ContentPagesButton.tsx"
 
 type PropsHearderHome ={
   img?: string;
@@ -28,19 +31,24 @@ export const HearderHome = ({img, onclick, title, onchange, ischeck }:PropsHeard
       </ContentHearderItens>
       <ContentHearderRight>
         <ContentHearderItensBar>
-          <Switch
-            onChange={onchange}
-            checked={ ( ischeck === true ? false : true) }
-            checkedIcon={false}
-            uncheckedIcon={false}
-            height={15}
-            width={50}
-            handleDiameter={25}
-            onHandleColor="#21ba02"
-            offHandleColor="#fa140c"
-            onColor="#b4b5b4"
-            offColor="#b0b0b0"
-          />
+         <ContentPagesButton titbtn={"BTN-1"} />
+         <ContentPagesButton titbtn={"BTN-2"} />
+         <Pg.ContainerPagesButton>
+            <Switch
+              onChange={onchange}
+              checked={ ( ischeck === true ? false : true) }
+              checkedIcon={false}
+              uncheckedIcon={false}
+              height={15}
+              width={50}
+              handleDiameter={25}
+              onHandleColor="#21ba02"
+              offHandleColor="#fa140c"
+              onColor="#b4b5b4"
+              offColor="#b0b0b0"
+              borderRadius={10}
+            />
+          </Pg.ContainerPagesButton>
         </ContentHearderItensBar>
       </ContentHearderRight>
     </ContentHearderMain>

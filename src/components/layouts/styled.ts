@@ -3,7 +3,7 @@ import styled from "styled-components";
 import semimg from '../../assets/svgs/semimg.svg';
 ////////////////////////////////
 /////////// maim header ////////////
-export const Container = styled.div`
+export const ContainerPg = styled.div`
   border: 5px #d2d2d0 double;
   top: 0px;
   left: 0px;
@@ -18,7 +18,7 @@ export const Container = styled.div`
   background: ${props => props.theme.colors.backgroundColor};
 `;
 /** quota da flexão do corpo  sem Borda */
-export const ContainerFlex = styled.div`
+export const ContainerFlexPg = styled.div`
   border: 1px dashed red;
   margin: 0px 5px 0px 5px;
   padding: 0px 0px 0px 0px;
@@ -29,10 +29,10 @@ export const ContainerFlex = styled.div`
   align-content: center;
   background-color: transparent;
 `;
-//////////////////////////////////////
+///////////// HEADER /////////////////////////
 export const ContainerHearder = styled.div`
   top: 0px;
-  border: nome; /*1px dashed orange;*/
+  border: none; 
   padding: 5px 5px 5px 5px;
   margin: 5px 5px 5px 5px;
   width: 100%;
@@ -42,6 +42,20 @@ export const ContainerHearder = styled.div`
   justify-content: space-between;
   align-content: center;
 `;
+///////////// FOOTER /////////////////////////
+export const ContainerFooter = styled.div`
+  bottom: calc(100vh - 80px);
+  border: 1px dashed green;
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+`;
+
 // content imagem Sys
 export const ContainerHeaderItens = styled.div`
   padding: 0px;
@@ -71,7 +85,7 @@ export const ContainerHeaderRight = styled.div`
 `;
 
 export const ContainerHearderRightFlex = styled.div`
-  border: 1px dashed mediumpurple;
+  border: none; /*1px dashed mediumpurple;*/
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -83,7 +97,7 @@ export const ContainerHearderRightFlex = styled.div`
 `;
 ///////////////////////////////////
 export const ContainerHeaderItensBar = styled.div`
-  border: 1px dashed white;
+  border: none;
   padding: 5px 5px 5px 5px;
   margin: 5px 5px 5px 5px;
   max-width: 100%;
@@ -94,9 +108,6 @@ export const ContainerHeaderItensBar = styled.div`
   align-content: center;
   background: transparent;
 `;
-
-
-
 
 type PropsImgSys = {
   img?: string;
@@ -133,7 +144,7 @@ export const ContainerTitleHeader = styled.div`
   align-items: center;
   align-content: center;
 `;
-
+/////////////////////////////////////////////
 
 
 
@@ -163,15 +174,6 @@ export const ContainerPage = styled.div`
   display: flex;
 `;
 
-export const ContainerFooter = styled.div`
-  bottom: 0px;
-  border: 1px dashed violet;
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  max-width: 100%;
-  display: flex;
-`;
-
 export const DivisionPgHztal = styled.div`
   border: 0px;
   padding: 0px 0px 0px 0px;
@@ -181,3 +183,48 @@ export const DivisionPgHztal = styled.div`
   display: flex;
   background-color: #9c9c9c;
 `;
+
+// botoes das paginas
+export const ContainerPagesButton = styled.div`
+  border: 2px red;
+  border-color: #ffffff;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  background: transparent;
+  min-height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+  //background: ${props => props.theme.colors.backgroundColor};
+  // color: #000;
+  &:hover {
+    background-color: #e4e4e4;
+   }
+`;
+
+export const ButtonPagesImg = styled.button<{ img?: string }>`
+  border: none;
+  margin: 2px 5px 2px 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  min-height: 45px;
+  width: 45px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+

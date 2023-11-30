@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import * as Hm from './styled';
 
+import { ReactNode } from 'react';
+import * as Hm from '../styled';
 
 type PropsHearderItensBar = {
   children?: ReactNode | JSX.Element;

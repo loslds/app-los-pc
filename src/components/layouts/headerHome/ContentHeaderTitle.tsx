@@ -1,4 +1,5 @@
-import * as Hm from './styled';
+
+import * as Hm from '../styled';
 
 type PropsHeaderTitle = {
   title?:string;

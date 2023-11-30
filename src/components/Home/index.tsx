@@ -9,9 +9,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LayoutHome } from "../layouts/LayoutHome";
 
-
 export const Home = () => {
-  
+ 
   const [theme,setTheme] = useState(dark);
   const [ischeck,setIscheck] = useState(false);
   const ToggleTheme = () => {
@@ -22,10 +21,7 @@ export const Home = () => {
       setTheme(dark);
       setIscheck(false);    
     }
-    // setTheme(theme.name === 'dark' ? light : dark);
-    // setIscheck  
   };
-
 
   const navigate = useNavigate();
   const goto = (path: string) => {
@@ -42,18 +38,3 @@ export const Home = () => {
     </ThemeProvider>
   );
 };
-
-{/* <ContentPages>
-<ContentHearderMain>
-<ContentHearderItens>
-    <ContentHeaderImgSys img={logosys} onclick={ goto('/about') }/>
-  </ContentHearderItens>
-//   <ContentHearderItens>
-//     <ContentHeaderTitle title="Sistema J.R." />
-//   </ContentHearderItens>
-//   <ContentHearderRight>
-//   <h1>Botoes</h1>
-//     <h1>Opa</h1>
-//   </ContentHearderRight>
-// </ContentHearderMain>  
-// </ContentPages>*/}
