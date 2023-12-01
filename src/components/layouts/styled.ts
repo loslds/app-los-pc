@@ -16,10 +16,11 @@ export const ContainerPg = styled.div`
   align-content: center;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
+  
 `;
 /** quota da flexão do corpo  sem Borda */
 export const ContainerFlexPg = styled.div`
-  border: 1px dashed red;
+  border: none;
   margin: 0px 5px 0px 5px;
   padding: 0px 0px 0px 0px;
   width: 980px;
@@ -69,7 +70,7 @@ export const ContainerHeaderItens = styled.div`
   align-items: center;
   align-content: center;
 `;
-////////////////////////////////
+///////////container do swith/////////////////////
 export const ContainerHeaderRight = styled.div`
   border: 2px double;
   border-radius: 8px;
@@ -83,9 +84,8 @@ export const ContainerHeaderRight = styled.div`
   align-items: center;
   align-content: center;
 `;
-
 export const ContainerHearderRightFlex = styled.div`
-  border: none; /*1px dashed mediumpurple;*/
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -133,7 +133,7 @@ export const ContainerImgSys = styled.div<PropsImgSys>`
 `;
 
 export const ContainerTitleHeader = styled.div`
-  border: nome; /*1px dashed red;*/
+  border: none; /*1px dashed red;*/
   padding: 0px 0px 0px 0px;
   margin: 5px;
   min-height: 60px;

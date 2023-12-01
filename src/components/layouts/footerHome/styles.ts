@@ -47,3 +47,23 @@ export const ContainerTitleFooter = styled.div`
   align-items: center;
   align-content: center;
 `;
+export const ContainerLabelFooter = styled.div`
+  border: none;
+  //border: 1px dashed red;
+  padding: 0px 0px 0px 0px;
+  margin: 0px;
+  max-width: 100%;
+  background: transparent;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  label {
+    padding: 0px 10px 0px 10px;
+    line-height: 16px;
+    font-size: 16px;
+    text-decoration: none;
+    ;
+  }
+`;
