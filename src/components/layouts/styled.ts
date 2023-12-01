@@ -44,12 +44,12 @@ export const ContainerHearder = styled.div`
 `;
 ///////////// FOOTER /////////////////////////
 export const ContainerFooter = styled.div`
-  bottom: calc(100vh - 80px);
-  border: 1px dashed green;
+  /* top: calc(100vh - 80px); */
+  border: none; /*1px dashed green;*/
   padding: 5px 5px 5px 5px;
   margin: 5px 5px 5px 5px;
   width: 100%;
-  min-height: 80px;
+  min-height: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
