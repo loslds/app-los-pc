@@ -149,11 +149,12 @@ export const ContainerTitleHeader = styled.div`
 
 
 export const ContainerBody = styled.div`
-  border: 1px dashed green;
+  border: 1px dashed red;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  max-width: 100%;
+  min-height: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
 `;
@@ -167,11 +168,15 @@ export const ContainerMenu = styled.div`
 `;
 
 export const ContainerPage = styled.div`
-  border: 1px dashed rosybrown;
+  border: 1px dashed grey;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  max-width: 100%;
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
+  
+  //justify-content: space-between;
+  //align-content: center;
 `;
 
 export const DivisionPgHztal = styled.div`
@@ -222,6 +227,55 @@ export const ButtonPagesImg = styled.button<{ img?: string }>`
   outline: none;
   min-height: 45px;
   width: 45px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+////////////////////////////////////////////////
+
+export const ContainerCustonButton = styled.div<{ pxheight : string;}>`
+  border: 1px red;
+  border-color: #ffffff;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  background: transparent;
+  min-height: ${({ pxheight }) => pxheight || '50px'};
+  display: flex;
+  flex-wrap: wrap;
+  //justify-content: center;
+  //align-items: center;
+  //align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+  &:hover {
+    background-color: #e4e4e4;
+   }
+`;
+
+
+
+type Propsbtncuston ={
+  pheight?: string;
+  pwidth?: string;
+  img?: string;
+}
+export const ButtonCustonImg = styled.button<Propsbtncuston>`
+  border: none;
+  margin: 2px 5px 2px 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  min-height: ${({ pheight }) => pheight || '45px'};
+  width: ${({ pwidth }) => pwidth || '45px'};
   display: flex;
   flex-flow: nowrap;
   justify-content: center;

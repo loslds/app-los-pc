@@ -7,7 +7,7 @@ import Global from './styles/global';
 
 import { Home } from './components/Home';
 import { About } from './components/About';
-
+import { Login } from './components/Login';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
@@ -17,8 +17,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
       <Global />
       
       <Routes>
-        <Route path="/" element={ <Home /> } />
+        <Route path="/" element={<Home /> } />
         <Route path="/about" element={ <About /> } />
+        <Route path="/login" element={ <Login /> } />
       </Routes>
 
     </BrowserRouter>

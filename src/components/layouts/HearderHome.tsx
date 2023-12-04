@@ -18,8 +18,9 @@ type PropsHearderHome ={
   title?: string;
   onchange: () => void;
   ischeck?: boolean;
+  onLogin?: () => void;
 }
-export const HearderHome = ({img, onclick, title, onchange, ischeck }:PropsHearderHome) => {
+export const HearderHome = ({img, onclick, title, onchange, ischeck, onLogin }:PropsHearderHome) => {
 
   return (
     <ContentHearderMain>
@@ -31,7 +32,7 @@ export const HearderHome = ({img, onclick, title, onchange, ischeck }:PropsHeard
       </ContentHearderItens>
       <ContentHearderRight>
         <ContentHearderItensBar>
-         <ContentPagesButton titbtn={"BTN-1"} />
+         <ContentPagesButton titbtn={"Logar..."} onClick={onLogin} />
          <ContentPagesButton titbtn={"BTN-2"} />
          <Pg.ContainerPagesButton>
             <Switch
