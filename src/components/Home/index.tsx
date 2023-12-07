@@ -45,9 +45,8 @@ export const Home = () => {
  
   return (
     <ThemeProvider theme={theme}>
-      <LayoutHome img = {logosys} onclick = {goto('/about')} title = {"Sistema J.R."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
+      <LayoutHome img = {logosys} onclick = {goto('/')} title = {"Sistema J.R."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
         <ContentItensBody>
-       
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={recepcao} titlebtn={'Recepção.'}/>
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={design} titlebtn={'Designs.'}/>
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={producao} titlebtn={'Produção.'}/>
