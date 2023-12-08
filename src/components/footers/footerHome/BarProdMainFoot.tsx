@@ -1,5 +1,5 @@
 import React from "react";
-import * as F from "./stylesfoot";
+import * as F from "../stylesfoot";
 
 type PropsAreaContainer = {
   children?: React.ReactNode | JSX.Element;

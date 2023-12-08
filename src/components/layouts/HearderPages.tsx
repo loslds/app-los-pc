@@ -2,10 +2,10 @@
 import { ReactNode } from 'react';
 import * as Pag from "./styled";
 
-type PropsHeardMain = {
+type PropsHeardPages = {
   children?: ReactNode | JSX.Element;
 }
-export const ContentHearderMain = ({children}:PropsHeardMain) => {
+export const HearderPages = ({children}:PropsHeardPages) => {
   return (
     <Pag.ContainerHearder>
       { children }

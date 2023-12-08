@@ -1,14 +1,14 @@
 import React from "react";
 import * as Pag from "./styled";
 
-type PropsContentFooterMain = {
+type PropsContentFooterPages = {
   children?: React.ReactNode | JSX.Element;
 };
-const ContentFooterMain = ({ children }: PropsContentFooterMain) => {
+export const FooterPages = ({ children }: PropsContentFooterPages) => {
   return (
     <Pag.ContainerFooter>
       {children}    
     </Pag.ContainerFooter>
   );
 };
-export default ContentFooterMain;
+

@@ -1,4 +1,4 @@
-import * as F from "./stylesfoot";
+import * as F from "../stylesfoot";
 
 type PropsAgaFoot = {
   children?: React.ReactNode | JSX.Element;

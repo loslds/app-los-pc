@@ -1,5 +1,5 @@
 import React from 'react';
-import * as F from './stylesfoot';
+import * as F from '../stylesfoot';
 
 type PropsDivImgFoot = {
   img?: string;

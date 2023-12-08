@@ -1,16 +1,16 @@
-import "../../styles/global";
-import "../../styles/styled.d.ts";
-import * as Pg from './styled.ts'
+import "../../../styles/global.ts";
+import "../../../styles/styled";
+import * as Pg from '../../layouts/styled.ts'
 
 import Switch from "react-switch";
 
-import { ContentHeaderImgSys } from "./headerHome/ContentHeaderImgSys.tsx";
-import { ContentHearderItens } from "./headerHome/ContentHearderItens.tsx";
-import { ContentHearderMain } from "./ContentHearderMain.tsx";
-import { ContentHeaderTitle } from "./headerHome/ContentHeaderTitle.tsx";
-import { ContentHearderRight } from "./headerHome/ContentHearderRight.tsx";
-import { ContentHearderItensBar } from "./headerHome/ContentHearderItensBar.tsx";
-import ContentPagesButton from "./ContentPagesButton.tsx"
+import { ContentHeaderImgSys } from "../ContentHeaderImgSys.tsx";
+import { ContentHearderItens } from "../ContentHearderItens.tsx";
+import { ContentHearderMain } from "../ContentHearderMain.tsx";
+import { ContentHeaderTitle } from "../ContentHeaderTitle.tsx";
+import { ContentHearderRight } from "../ContentHearderRight.tsx";
+import { ContentHearderItensBar } from "../ContentHearderItensBar.tsx";
+import ContentPagesButton from "../../layouts/ContentPagesButton.tsx"
 
 type PropsHearderHome ={
   img?: string;

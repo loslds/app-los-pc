@@ -1,6 +1,6 @@
 
 import { ReactNode } from 'react';
-import * as Hm from '../styled';
+import * as Hm from '../layouts/styled';
 
 type PropsHearderRight = {
   children?: ReactNode | JSX.Element;

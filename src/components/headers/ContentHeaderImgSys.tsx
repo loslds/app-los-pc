@@ -1,5 +1,5 @@
 
-import * as Hm from '../styled';
+import * as Hm from '../layouts/styled';
 
 type PropsHeaderImg = {
   img?:string;

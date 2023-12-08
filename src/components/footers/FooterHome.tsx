@@ -21,11 +21,11 @@ import telegram from "../../assets/svgs/telegram.svg";
 import internet from "../../assets/svgs/internet.svg";
 
 import ContentFooterMain from "./ContentFootMain";
-import ContentPagesButton from "./ContentPagesButton";
-import ContentFooterColluns from "./footerHome/ContentFooterColluns";
-import { ContentFooterTitle } from "./footerHome/ContentFooterTitle";
-import { ContentFooterLabel } from "./footerHome/ContentFooterLabel";
-import { DivisionPgHztal } from "./styled";
+import ContentPagesButton from "../layouts/ContentPagesButton";
+import ContentFooterColluns from "./ContentFooterColluns";
+import { ContentFooterTitle } from "./ContentFooterTitle";
+import { ContentFooterLabel } from "./ContentFooterLabel";
+import { DivisionPgHztal } from "../layouts/styled";
 
 //type PropsFooterHome ={
 //   img?: string;
