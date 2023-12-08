@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import semimg from '../assets/svgs/semimg.svg';
+import semimg from '../../assets/svgs/semimg.svg';
 ////////////////////////////////
 /////////// maim header ////////////
 export const ContainerPg = styled.div`

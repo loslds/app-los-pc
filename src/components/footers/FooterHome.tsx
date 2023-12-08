@@ -70,16 +70,3 @@ export const FooterHome = () => {
     </ContentFooterMain>
   );
 }
-
-{/* <ContentHearderMain>
-<ContentHearderItens>
-  <ContentHeaderImgSys img={img} onclick={onclick}/>
-</ContentHearderItens>
-<ContentHearderItens>
-  <ContentHeaderTitle title={title}/>
-</ContentHearderItens>
-<ContentHearderRight>
-  <ContentHearderItensBar>
-  </ContentHearderItensBar>
-</ContentHearderRight>
-</ContentHearderMain> */}

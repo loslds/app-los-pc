@@ -8,7 +8,7 @@ import { FooterPages } from "./FooterPages";
 type PropsLayout = {
   children?: ReactNode | JSX.Element;
 }
-export const LayoutHome = ({children}: PropsLayout) => {
+export const LayoutPages = ({children}: PropsLayout) => {
   return (
     <ContentPages>
       <HearderPages />

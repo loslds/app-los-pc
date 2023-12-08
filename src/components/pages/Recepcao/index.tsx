@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import light from "../../../styles/themes/light.ts";
 import dark from "../../../styles/themes/dark.ts";
 
-import logosys from '../../assets/pngs/logosys.png';
+import logosys from '../../../assets/pngs/logosys.png';
 
 // import recepcao from '../../assets/svgs/clientes.svg';
 // import design from '../../assets/svgs/design.svg';
