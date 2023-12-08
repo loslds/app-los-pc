@@ -1,5 +1,5 @@
 import "../../../styles/global.ts";
-import "../../../styles/styled";
+import "../../layouts/styled.ts";
 import * as Pg from '../../layouts/styled.ts'
 
 import Switch from "react-switch";

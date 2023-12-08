@@ -6,14 +6,14 @@ import dark from "../../../styles/themes/dark.ts";
 
 import logosys from '../../../assets/pngs/logosys.png';
 
-import recepcao from '../../assets/svgs/clientes.svg';
-import design from '../../assets/svgs/design.svg';
-import producao from '../../assets/svgs/producao.svg';
-import acabamento from '../../assets/svgs/acabamento.svg';
-import expedicao from '../../assets/svgs/expedicao.svg';
-import administra from '../../assets/svgs/administra.svg';
-import master from '../../assets/svgs/master.svg';
-import config from '../../assets/svgs/config.svg';
+import recepcao from '../../../assets/svgs/clientes.svg';
+import design from '../../../assets/svgs/design.svg';
+import producao from '../../../assets/svgs/producao.svg';
+import acabamento from '../../../assets/svgs/acabamento.svg';
+import expedicao from '../../../assets/svgs/expedicao.svg';
+import administra from '../../../assets/svgs/administra.svg';
+import master from '../../../assets/svgs/master.svg';
+import config from '../../../assets/svgs/config.svg';
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

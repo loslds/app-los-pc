@@ -1,7 +1,7 @@
 
 import styled from "styled-components";
 
-import semimg from '../../assets/svgs/semimg.svg';
+import semimg from '../../../assets/svgs/semimg.svg';
 
 export const ContainerBodyItemPg = styled.div`
   top:0px;
