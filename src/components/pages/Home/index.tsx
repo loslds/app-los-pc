@@ -48,13 +48,13 @@ export const Home = () => {
       <LayoutPage img = {logosys} onclick = {goto('/')} title = {"Sistema J.R."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
         <ContentItensBody>
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={recepcao} titlebtn={'Recepção.'} onclick={goto('/recepcao')}/>
-          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={design} titlebtn={'Designs.'}/>
-          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={producao} titlebtn={'Produção.'}/>
-          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={acabamento} titlebtn={'Acabamento.'}/>
-          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={expedicao} titlebtn={'Expedição.'}/>
-          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={administra} titlebtn={'Adiministração.'}/>
-          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={master} titlebtn={'Master.'}/>
-          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={config} titlebtn={'Config.'} onclick={goto('/about')}/>
+          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={design} titlebtn={'Designs.'} onclick={goto('/design')}/>
+          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={producao} titlebtn={'Produção.'} onclick={goto('/producao')}/>
+          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={acabamento} titlebtn={'Acabamento.'} onclick={goto('/acabamento')}/>
+          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={expedicao} titlebtn={'Expedição.'} onclick={goto('/expedicao')}/>
+          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={administra} titlebtn={'Administração.'} onclick={goto('/administracao')}/>
+          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={master} titlebtn={'Master.'} onclick={goto('/master')}/>
+          <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={config} titlebtn={'Config.'} onclick={goto('/config')}/>
         </ContentItensBody>
       </LayoutPage>
     </ThemeProvider>

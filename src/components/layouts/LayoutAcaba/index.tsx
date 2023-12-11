@@ -24,7 +24,7 @@ export const LayoutAcaba = ({img, onclick, title, children, onchange, ischeck, o
         <Pg.ContainerPage>
           {children}
         </Pg.ContainerPage>
-      </Pg.ContainerBody>-
+      </Pg.ContainerBody>
       <Pg.DivisionPgHztal />
       <h1>Footer Acabamento</h1>
     </ContentPages>

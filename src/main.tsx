@@ -13,6 +13,8 @@ import { Producao } from './components/pages/Producao';
 import { Acabamento } from './components/pages/Acabamento';
 import { Expedicao } from './components/pages/Expedicao';
 import { Administracao } from './components/pages/Administracao';
+import { Master } from './components/pages/Master';
+import { Config } from './components/pages/Config';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
@@ -28,6 +30,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
         <Route path="/acabamento" element={ <Acabamento /> } />
         <Route path="/expedicao" element={ <Expedicao /> } />
         <Route path="/administracao" element={ <Administracao /> } />
+        <Route path="/master" element={ <Master /> } />
+        <Route path="/config" element={ <Config /> } />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

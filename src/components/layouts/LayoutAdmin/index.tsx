@@ -22,7 +22,7 @@ export const LayoutAdmin = ({img, onclick, title, children, onchange, ischeck, o
         <Pg.ContainerPage>
           {children}
         </Pg.ContainerPage>
-      </Pg.ContainerBody>-
+      </Pg.ContainerBody>
       <Pg.DivisionPgHztal />
       <h1>Footer Administração</h1>
     </ContentPages>
