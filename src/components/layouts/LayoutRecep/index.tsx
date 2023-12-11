@@ -5,7 +5,7 @@ import { ReactNode } from 'react';
 //import { FooterHome } from '../../footers/FooterHome';
 
 
-type PropsLayoutPage = {
+type PropsLayoutRecep = {
   img?:string;
   onclick?: () => void;
   title?:string;
@@ -14,7 +14,7 @@ type PropsLayoutPage = {
   ischeck: boolean;
   onLogin?:  () => void;
 }
-export const LayoutRecep = ({img, onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutPage) => {
+export const LayoutRecep = ({img, onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutRecep) => {
   return (
     <ContentPages>
       <HearderPage img={img} onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>

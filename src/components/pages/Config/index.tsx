@@ -1,4 +1,4 @@
-//import "../../../styles/global.ts";
+// import "../../../styles/global.ts";
 
 import { ThemeProvider } from "styled-components";
 import light from "../../../styles/themes/light.ts";
@@ -8,11 +8,11 @@ import logosys from '../../../assets/pngs/logosys.png';
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LayoutAcaba } from '../../layouts/LayoutAcaba';
+import { LayoutConfi } from '../../layouts/LayoutConfi/index.tsx';
 import { ContentItensBody } from "../ContentItensBody.tsx";
 
 
-export const Acabamento = () => {
+export const Config = () => {
  
   const [theme,setTheme] = useState(dark);
   const [ischeck,setIscheck] = useState(false);
@@ -35,11 +35,11 @@ export const Acabamento = () => {
  
   return (
     <ThemeProvider theme={theme}>
-      <LayoutAcaba img = {logosys} onclick = {goto('/')} title = {"Acabamento."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
+      <LayoutConfi img = {logosys} onclick = {goto('/')} title = {"Config."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
       <ContentItensBody>
-      <h1>Conteudo da Pagina</h1>
+      <h1>Conteudo da Config</h1>
       </ContentItensBody>
-      </LayoutAcaba>
+      </LayoutConfi>
     </ThemeProvider>
   );
 };

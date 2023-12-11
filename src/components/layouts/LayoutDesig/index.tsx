@@ -2,8 +2,6 @@ import * as Pg from '../styled';
 import { ContentPages } from '../ContentPages';
 import { HearderPage } from '../../headers/headerPage/HearderPages';
 import { ReactNode } from 'react';
-//import { FooterHome } from '../../footers/FooterHome';
-
 
 type PropsLayoutDesig = {
   img?:string;
