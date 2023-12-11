@@ -1,10 +1,11 @@
-import * as Hm from '../styled';
+import * as Pg from '../styled';
 import { ContentPages } from '../ContentPages';
 import { HearderPage } from '../../headers/headerPage/HearderPages';
 import { ReactNode } from 'react';
-import { FooterHome } from '../../footers/FooterHome';
+//import { FooterHome } from '../../footers/FooterHome';
 
-type PropsLayoutHome = {
+
+type PropsLayoutAdmin = {
   img?:string;
   onclick?: () => void;
   title?:string;
@@ -13,18 +14,19 @@ type PropsLayoutHome = {
   ischeck: boolean;
   onLogin?:  () => void;
 }
-export const LayoutHome = ({img, onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutHome) => {
+export const LayoutAdmin = ({img, onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutAdmin) => {
   return (
     <ContentPages>
       <HearderPage img={img} onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
-      <Hm.DivisionPgHztal />
-      <Hm.ContainerBody>
-        <Hm.ContainerPage>
+      <Pg.DivisionPgHztal />
+      <Pg.ContainerBody>
+        <h1>Menu Administração </h1>
+        <Pg.ContainerPage>
           {children}
-        </Hm.ContainerPage>
-      </Hm.ContainerBody>-
-      <Hm.DivisionPgHztal />
-      <FooterHome />
+        </Pg.ContainerPage>
+      </Pg.ContainerBody>-
+      <Pg.DivisionPgHztal />
+      <h1>Footer Administração</h1>
     </ContentPages>
   );
 }

@@ -1,4 +1,4 @@
-import "../../../styles/global.ts";
+//import "../../../styles/global.ts";
 
 import { ThemeProvider } from "styled-components";
 import light from "../../../styles/themes/light.ts";
@@ -17,9 +17,9 @@ import config from '../../../assets/svgs/config.svg';
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LayoutHome } from "../../layouts/LayoutHome/index.tsx";
-import { ContentItensBody } from "./ContentItensBody.tsx";
-import { ContentCustonImg } from "./ContentCustonImg.tsx";
+import { LayoutPage } from "../../layouts/LayoutPage/index.tsx";
+import { ContentItensBody } from "../ContentItensBody.tsx";
+import { ContentCustonImg } from "../ContentCustonImg.tsx";
 
 
 export const Home = () => {
@@ -45,7 +45,7 @@ export const Home = () => {
  
   return (
     <ThemeProvider theme={theme}>
-      <LayoutHome img = {logosys} onclick = {goto('/')} title = {"Sistema J.R."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
+      <LayoutPage img = {logosys} onclick = {goto('/')} title = {"Sistema J.R."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
         <ContentItensBody>
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={recepcao} titlebtn={'Recepção.'} onclick={goto('/recepcao')}/>
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={design} titlebtn={'Designs.'}/>
@@ -56,7 +56,7 @@ export const Home = () => {
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={master} titlebtn={'Master.'}/>
           <ContentCustonImg pxheight={'165px'} pheight={'165px'} pwidth={'165px'} img={config} titlebtn={'Config.'} onclick={goto('/about')}/>
         </ContentItensBody>
-      </LayoutHome>
+      </LayoutPage>
     </ThemeProvider>
   );
 };

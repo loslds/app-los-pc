@@ -1,4 +1,4 @@
-import * as Hm from "./style";
+import * as Hm from "./Home/style";
 
 type PropsCustonImg = {
   pxheight?: string;

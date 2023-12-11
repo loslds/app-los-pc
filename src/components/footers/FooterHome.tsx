@@ -27,13 +27,6 @@ import { ContentFooterTitle } from "./ContentFooterTitle";
 import { ContentFooterLabel } from "./ContentFooterLabel";
 import { DivisionPgHztal } from "../layouts/styled";
 
-//type PropsFooterHome ={
-//   img?: string;
-//onClick?: () => void;
-//   title?: string;
-//   onchange: () => void;
-//   ischeck?: boolean;
-//}
 export const FooterHome = () => {
   return (
     <ContentFooterMain>
