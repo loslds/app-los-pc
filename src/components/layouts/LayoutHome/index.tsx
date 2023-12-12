@@ -22,7 +22,7 @@ export const LayoutHome = ({img, onclick, title, children, onchange, ischeck, on
         <Hm.ContainerPage>
           {children}
         </Hm.ContainerPage>
-      </Hm.ContainerBody>-
+      </Hm.ContainerBody>
       <Hm.DivisionPgHztal />
       <FooterHome />
     </ContentPages>

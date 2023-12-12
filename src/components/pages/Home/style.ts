@@ -28,7 +28,7 @@ export const ContainerBodyItensBar = styled.div`
   min-height: 60px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-content: center;
   align-items: center;
   background: transparent;
@@ -74,7 +74,7 @@ type Propsbtncuston ={
   pheight?: string;
   pwidth?: string;
   img?: string;
-  titlebtn?: string;
+  title?: string;
 }
 export const ButtonCustonImg = styled.button<Propsbtncuston>`
   border: none;

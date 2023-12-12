@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LayoutRecep } from "../../layouts/LayoutRecep/index.tsx";
 import { ContentItensBody } from "../ContentItensBody.tsx";
-
+import { MenuRecep }  from "../../menus/MenuMain.tsx";
 
 export const Recepcao = () => {
  
@@ -37,7 +37,10 @@ export const Recepcao = () => {
     <ThemeProvider theme={theme}>
       <LayoutRecep img = {logosys} onclick = {goto('/')} title = {"Recepção."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
       <ContentItensBody>
-      <h1>Conteudo da Pagina</h1>
+        <MenuRecep>
+          Menu
+        </MenuRecep>
+        <h1>Conteudo da Pagina</h1>
       </ContentItensBody>
       </LayoutRecep>
     </ThemeProvider>

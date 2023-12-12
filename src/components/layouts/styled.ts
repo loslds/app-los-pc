@@ -109,27 +109,42 @@ export const ContainerHeaderItensBar = styled.div`
   background: transparent;
 `;
 
-type PropsImgSys = {
-  img?: string;
-  onClick?: () => void;
-};
-export const ContainerImgSys = styled.div<PropsImgSys>`
+// type PropsImgSys = {
+//   img?: string;
+//   onClick?: () => void;
+// };
+export const ContainerImgSys = styled.div`
   border: none;
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
-  margin: 5px 5px 5px 5px;
-  background: white;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url(${({ img }) => img || semimg});
-  cursor: pointer;
-  width: 135px; /*150px;*/
-  height: 55px;/*55px;*/
+  margin: 3px 8px 3px 8px;
+  background: #fff;
   display: flex;
   justify-content: left;
   align-items: center;
   align-content: center;
+`;
+
+export const ButtonPagesImgSys = styled.button<{ img?: string }>`
+  border: none;
+  margin: 2px 2px 2px 2px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  width: 140px; /*150px;*/
+  height: 55px;/*55px;*/
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ContainerTitleHeader = styled.div`
@@ -152,11 +167,11 @@ export const ContainerBody = styled.div`
   border: 1px dashed red;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  min-height: 100%;
+  min-height: 60px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: center;
+  //flex-wrap: wrap;
+  //justify-content: space-between;
+  //align-content: center;
 `;
 
 export const ContainerMenu = styled.div`

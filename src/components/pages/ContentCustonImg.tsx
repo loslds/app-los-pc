@@ -11,7 +11,7 @@ type PropsCustonImg = {
 export const ContentCustonImg = ({pxheight, pheight, pwidth, img, onclick, titlebtn }:PropsCustonImg) => {
   return (
     <Hm.ContainerCustonButton pxheight={pxheight}>
-      <Hm.ButtonCustonImg pheight={pheight} pwidth={pwidth} img={img} onClick={onclick} titlebtn={titlebtn} />
+      <Hm.ButtonCustonImg pheight={pheight} pwidth={pwidth} img={img} onClick={onclick} title={titlebtn} />
     </Hm.ContainerCustonButton>
   );
 };

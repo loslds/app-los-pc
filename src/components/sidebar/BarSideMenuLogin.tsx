@@ -15,8 +15,8 @@ import ButtonSideBar from "./ButtonSideBar";
 import ContainerItensMenu from "./ContainerItensMenu";
 import React from "react";
 
-import CardMdRecep from "../modalhelp/CardMdRecep";
-import PageModal from "../modal/PageModal";
+////import CardMdRecep from "../modalhelp/CardMdRecep";
+//import PageModal from "../modal/PageModal";
 
 // type PropsHeader = {
 //   loginonoff?: boolean;
