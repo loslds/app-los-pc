@@ -25,5 +25,4 @@ ul {
     list-style: none;
     gap: 30px;
 }
-
 `;

@@ -7,7 +7,9 @@ type PropsItnsMd = {
 
 const ContainerItensMenu = ({ onoff, children }: PropsItnsMd) => {
   return (
-    <S.ContainerItensModulo open={onoff}>{children}</S.ContainerItensModulo>
+    <S.ContainerItensModulo open={onoff}>
+      {children}
+    </S.ContainerItensModulo>
   );
 };
 

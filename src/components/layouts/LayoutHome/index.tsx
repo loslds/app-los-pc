@@ -3,9 +3,10 @@ import { ContentPages } from '../ContentPages';
 import { HearderPage } from '../../headers/headerPage/HearderPages';
 import { ReactNode } from 'react';
 import { FooterHome } from '../../footers/FooterHome';
+import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
+
 
 type PropsLayoutHome = {
-  img?:string;
   onclick?: () => void;
   title?:string;
   children?: ReactNode | JSX.Element;
@@ -13,13 +14,15 @@ type PropsLayoutHome = {
   ischeck: boolean;
   onLogin?:  () => void;
 }
-export const LayoutHome = ({img, onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutHome) => {
+export const LayoutHome = ({onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutHome) => {
   return (
     <ContentPages>
-      <HearderPage img={img} onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
+      <HearderPage onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
       <Hm.DivisionPgHztal />
       <Hm.ContainerBody>
         <Hm.ContainerPage>
+          <BarSideMenuHome />
+          <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>
       </Hm.ContainerBody>

@@ -4,13 +4,14 @@ import { ThemeProvider } from "styled-components";
 import light from "../../../styles/themes/light.ts";
 import dark from "../../../styles/themes/dark.ts";
 
-import logosys from '../../../assets/pngs/logosys.png';
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LayoutRecep } from "../../layouts/LayoutRecep/index.tsx";
-import { ContentItensBody } from "../ContentItensBody.tsx";
-import { MenuRecep }  from "../../menus/MenuMain.tsx";
+import { ThemeRecep } from "../../modulos/themes/ThemeRecep";
+//import { LayoutRecep } from "../../layouts/LayoutRecep/index.tsx";
+//import { ContentItensBody } from "../ContentItensBody.tsx";
+//import { DivisionPgHztal } from "../../layouts/styled.ts";
+//import { MenuRecep }  from "../../menus/MenuMain.tsx";
+
 
 export const Recepcao = () => {
  
@@ -35,14 +36,14 @@ export const Recepcao = () => {
  
   return (
     <ThemeProvider theme={theme}>
-      <LayoutRecep img = {logosys} onclick = {goto('/')} title = {"Recepção."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
-      <ContentItensBody>
-        <MenuRecep>
-          Menu
-        </MenuRecep>
-        <h1>Conteudo da Pagina</h1>
-      </ContentItensBody>
-      </LayoutRecep>
+      <ThemeRecep onclick = {goto('/')} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
+      </ThemeRecep>
     </ThemeProvider>
   );
 };
+
+{/* <LayoutRecep onclick = {goto('/')} title = {"Recepção."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
+{/* <ContentItensBody> */}
+  // <h1>Conteudo da Pagina</h1>
+{/* </ContentItensBody> */}
+// </LayoutRecep> 

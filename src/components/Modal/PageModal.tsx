@@ -4,7 +4,7 @@ import CardButtonsModal from '../Modal/CardButtonsModal';
 import CardModal from '../Modal/CardModal';
 import * as MD from '../Modal/styles';
 import TitleModal from '../Modal/TitleModal';
-import closevrm from '../../assets/images/closevrm.png';
+import xvrm from '../../assets/pngs/xvrm.png';
 
 type PropsModalHlp = {
     id?: string;
@@ -20,18 +20,18 @@ type PropsModalHlp = {
     onClose?: () => void;
   };
 const PageModal: React.FC<PropsModalHlp> = ({ispx, ptop, pwidth, pheight, titulo, children, onClose }) => {
-    return (
-        <MD.Content>
-            <MD.ContainerModal ispx={ispx} ptop={ptop} pwidth={pwidth} pheight={pheight}>
-                <CardModal>
-                    <TitleModal titulo={titulo} />
-                    <CardButtonsModal>
-                        <ButtonModal img={closevrm} onClick={onClose}/>
-                    </CardButtonsModal>
-                </CardModal>
-                {children}
-            </MD.ContainerModal>
-        </MD.Content>
-        );
-    };
+  return (
+    <MD.Content>
+      <MD.ContainerModal ispx={ispx} ptop={ptop} pwidth={pwidth} pheight={pheight}>
+      <CardModal>
+        <TitleModal titulo={titulo} />
+        <CardButtonsModal>
+          <ButtonModal img={xvrm} onClick={onClose}/>
+        </CardButtonsModal>
+      </CardModal>
+      {children}
+      </MD.ContainerModal>
+    </MD.Content>
+  );
+};
 export default PageModal;

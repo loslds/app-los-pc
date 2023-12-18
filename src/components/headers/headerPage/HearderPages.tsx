@@ -5,6 +5,7 @@ import * as Pg from '../../layouts/styled.ts'
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
 
+import React from 'react';
 import Switch from "react-switch";
 
 import { ContentHeaderButtonSys } from "../ContentHeaderButtonSys.tsx";
@@ -13,7 +14,10 @@ import { ContentHearderMain } from "../ContentHearderMain.tsx";
 import { ContentHeaderTitle } from "../ContentHeaderTitle.tsx";
 import { ContentHearderRight } from "../ContentHearderRight.tsx";
 import { ContentHearderItensBar } from "../ContentHearderItensBar.tsx";
-import ContentPagesButton from "../../layouts/ContentPagesButton.tsx"
+import ContentPagesButton from "../../layouts/ContentPagesButton.tsx";
+
+import PageModal from "../../Modal/PageModal.tsx";
+import { CardAcessoSistema }  from '../../contentHelp/CardAcessoSistema.tsx';
 
 type PropsHearderPage ={
   onclick?: () => void;
@@ -21,9 +25,14 @@ type PropsHearderPage ={
   onchange: () => void;
   ischeck?: boolean;
   onLogin?: () => void;
-  onHelp?: () => void;
 }
-export const HearderPage = ({onclick, title, onchange, ischeck, onHelp, onLogin }:PropsHearderPage) => {
+export const HearderPage = ({onclick, title, onchange, ischeck, onLogin }:PropsHearderPage) => {
+  
+  const [isonhelp, setIsOnHelp] = React.useState(false);
+
+  const handlerOnHelp = React.useCallback(() => {
+    setIsOnHelp((oldState) => !oldState);
+  }, []);
 
   return (
     <ContentHearderMain>
@@ -35,7 +44,7 @@ export const HearderPage = ({onclick, title, onchange, ischeck, onHelp, onLogin 
       </ContentHearderItens>
       <ContentHearderRight>
         <ContentHearderItensBar>
-        <ContentPagesButton img={help} titbtn={"Ajuda..."} onClick={onHelp} />
+        <ContentPagesButton img={help} titbtn={"Ajuda..."} onClick={handlerOnHelp} />
         <ContentPagesButton titbtn={"Logar..."} onClick={onLogin} />
         <Pg.ContainerPagesButton>
           <Switch
@@ -54,6 +63,19 @@ export const HearderPage = ({onclick, title, onchange, ischeck, onHelp, onLogin 
           />
         </Pg.ContainerPagesButton>
         </ContentHearderItensBar>
+        {isonhelp ? (
+          <PageModal
+            ispx={true}
+            ptop={"1%"}
+            pwidth={"65%"}
+            pheight={"50%"}
+            titulo={'Acesso Sistema.'}
+            onClose={() => setIsOnHelp(false)}
+            >
+            <CardAcessoSistema />
+          </PageModal>
+          ) : null
+        }
       </ContentHearderRight>
     </ContentHearderMain>
   );

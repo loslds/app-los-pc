@@ -2,8 +2,18 @@
 
 import styled from 'styled-components';
 
-import semimg from '../../assets/images/svgs/semimg.svg';
+import semimg from '../../assets/svgs/semimg.svg';
 
+
+export const DivPanel = styled.div`
+  border: 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 1px 0px 1px 0px;
+  height: 3px;
+  width: 100%;
+  display: flex;
+  background-color: #9c9c9c;
+`;
 /////////////// inicio MainModal
 
 export const Content = styled.div`
@@ -66,6 +76,10 @@ export const ContainerModal = styled.div<PropsMain>`
   position: fixed;
   width: ${({ pwidth }) => pwidth || '66.3%'};
   // height: ${({ pheight }) => pheight || '87%'};
+
+  min-height: auto;
+  overflow-y: auto;
+
   display: flex row;
   flex-wrap: nowrap;
   flex-direction: center;
@@ -102,8 +116,11 @@ export const ContentTextoModulos = styled.div<{ isscroll? : boolean }>`
   padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
   height: ${props => ( props.isscroll ? '500px' : 'auto')};
-  overflow-y: ${props => ( props.isscroll ? 'scroll' : 'auto')};
+  //overflow-y: ${props => ( props.isscroll ? 'scroll' : 'auto')};
   width: 98%;
+
+  overflow-y: auto;
+
   display: flex row;
   flex-wrap: wrap;
   flex-direction: center;
@@ -119,9 +136,13 @@ export const ContentTextoModulos = styled.div<{ isscroll? : boolean }>`
 
 export const ContainerModalTexto = styled.div`
   border: 0px;
-  padding: 0px 0px 0px 0px;
-  margin: 2px 10px 2px 20px;
+  padding: 0px 5px 0px 0px;
+  margin: 2px 10px 2px 10px;
   width: 100%;
+
+  min-height: auto;
+  overflow-y: auto;
+
   display: flex row;
   flex-wrap: wrap;
   flex-direction: center;
@@ -216,7 +237,7 @@ export const ContainerModalTitle = styled.div`
   border: 0px; /*1px green dashed;*/
   padding: 0px auto;
   margin: 0px auto;
-  min-width: 80%;
+  min-height: 40px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;

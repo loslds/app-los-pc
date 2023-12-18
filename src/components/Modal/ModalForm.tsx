@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ImgClose from '../../assets/images/close.png';
+import close from '../../assets/svgs/close.svg';
 
 import  ButtonModal from '../Modal/ButtonModal';
 
@@ -31,7 +31,7 @@ export const ModalForm: React.FC<Props> = ({
       <CardModal id={'idmodal2'}>
         <TitleModal titulo={titulo} />
         <CardButtonsModal>
-          <ButtonModal img={ImgClose} onClick={onClose} />
+          <ButtonModal img={close} onClick={onClose} />
         </CardButtonsModal>
       </CardModal>
       {form}

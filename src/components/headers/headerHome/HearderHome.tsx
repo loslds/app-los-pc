@@ -4,7 +4,7 @@ import * as Pg from '../../layouts/styled.ts'
 
 import Switch from "react-switch";
 
-import { ContentHeaderImgSys } from "../ContentHeaderImgSys.tsx";
+import { ContentHeaderButtonSys } from "../ContentHeaderButtonSys.tsx";
 import { ContentHearderItens } from "../ContentHearderItens.tsx";
 import { ContentHearderMain } from "../ContentHearderMain.tsx";
 import { ContentHeaderTitle } from "../ContentHeaderTitle.tsx";
@@ -13,19 +13,18 @@ import { ContentHearderItensBar } from "../ContentHearderItensBar.tsx";
 import ContentPagesButton from "../../layouts/ContentPagesButton.tsx"
 
 type PropsHearderHome ={
-  img?: string;
   onclick?: () => void;
   title?: string;
   onchange: () => void;
   ischeck?: boolean;
   onLogin?: () => void;
 }
-export const HearderHome = ({img, onclick, title, onchange, ischeck, onLogin }:PropsHearderHome) => {
+export const HearderHome = ({onclick, title, onchange, ischeck, onLogin }:PropsHearderHome) => {
 
   return (
     <ContentHearderMain>
       <ContentHearderItens>
-        <ContentHeaderImgSys img={img} onclick={onclick}/>
+        <ContentHeaderButtonSys onClick={onclick} />
       </ContentHearderItens>
       <ContentHearderItens>
         <ContentHeaderTitle title={title}/>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import  MainModal  from './MainModal';
 
-import ImgClose from '../../assets/images/close.png';
+import close from '../../assets/svgs/close.svg';
 
 import ButtonModal from './ButtonModal';
 import CardButtonsModal from './CardButtonsModal';
@@ -46,7 +46,7 @@ const Modal: React.FC<Props> = ({
           <TitleModal titulo={titulo} />
           <CardButtonsModal>
             <ButtonModal
-              img={ImgClose}
+              img={close}
             />
           </CardButtonsModal>
         </CardModal>
@@ -55,7 +55,7 @@ const Modal: React.FC<Props> = ({
         <CardModal>
           <CardButtonsModal>
             <ButtonModal
-              img={ImgClose}
+              img={close}
             />
           </CardButtonsModal>
         </CardModal>
@@ -63,7 +63,7 @@ const Modal: React.FC<Props> = ({
       {!iscard && !istitle && isbtof ? (
         <CardButtonsModal>
           <ButtonModal
-            img={ImgClose}
+            img={close}
           />
         </CardButtonsModal>
       ) : null}

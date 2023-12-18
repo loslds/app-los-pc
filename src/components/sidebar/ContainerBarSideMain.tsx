@@ -4,8 +4,8 @@ type PropsSideBar = {
   children?: React.ReactNode | JSX.Element;
 };
 
-const ContainerBarSideMain = ({ children }: PropsSideBar) => {
+export const ContainerBarSideMain = ({ children }: PropsSideBar) => {
   return <S.ContainerSPanelMain>{children}</S.ContainerSPanelMain>;
 };
 
-export default ContainerBarSideMain;
+

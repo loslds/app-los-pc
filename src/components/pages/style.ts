@@ -1,7 +1,7 @@
 
 import styled from "styled-components";
 
-import semimg from '../../../assets/svgs/semimg.svg';
+import semimg from '../../assets/svgs/semimg.svg';
 
 export const ContainerBodyItemPg = styled.div`
   top:0px;
@@ -18,6 +18,8 @@ export const ContainerBodyItemPg = styled.div`
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
 `;
+
+
 ////////////////////////////////////////////
 export const ContainerBodyItensBar = styled.div`
   top: 0px;

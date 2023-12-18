@@ -164,7 +164,7 @@ export const ContainerTitleHeader = styled.div`
 
 
 export const ContainerBody = styled.div`
-  border: 1px dashed red;
+  border: none; /* 1px dashed red;*/
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-height: 60px;
@@ -183,7 +183,7 @@ export const ContainerMenu = styled.div`
 `;
 
 export const ContainerPage = styled.div`
-  border: 1px dashed grey;
+  border: none; /* dashed grey;*/
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;

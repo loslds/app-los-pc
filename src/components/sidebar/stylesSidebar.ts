@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import semimg from '../../../assets/svgs/semimg.svg';
+import semimg from "../../assets/svgs/semimg.svg"
 
 // ContainerBarSideMain
 export const ContainerSPanelMain = styled.div`
-  margin: 2px 0px 2px 0px;
+  margin: 2px 0px 2px 8px;
   padding: 0px 0px 0px 0px;
   min-height: 50px;
   display: flex;
@@ -44,9 +44,10 @@ type PropsItensModulo = {
   open?: boolean;
 };
 export const ContainerItensModulo = styled.div<PropsItensModulo>`
-  border: 3px solid red;
+  border: 1px solid red;
+  border-radius: 5px;
   padding: 0px 0px 0px 0px;
-  margin: 2px 5px 2px 5px;
+  margin: 2px 5px 2px 10px;
   background: transparent;
   max-height: fit-content;
   display: ${props => (props.open ? 'flex' : 'none')};

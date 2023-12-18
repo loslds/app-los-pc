@@ -15,6 +15,7 @@ import { Expedicao } from './components/pages/Expedicao';
 import { Administracao } from './components/pages/Administracao';
 import { Master } from './components/pages/Master';
 import { Config } from './components/pages/Config';
+import { TabPrc } from './components/pages/TabPrc';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
       <Routes>
         <Route path="/login" element={ <Login /> } />
         <Route path="/" element={ <Home /> } />
+        <Route path='/tabprc' element={ <TabPrc />} />
         <Route path="/recepcao" element={ <Recepcao /> } />
         <Route path="/design" element={ <Design /> } />
         <Route path="/producao" element={ <Producao /> } />
