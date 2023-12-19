@@ -99,4 +99,14 @@ export const ButtonCustonImg = styled.button<Propsbtncuston>`
   justify-content: center;
   align-items: center;
 `;
+
+export const DivisionPgHztal = styled.div`
+  border: 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 1px 0px 1px 0px;
+  height: 3px;
+  width: 100%;
+  display: flex;
+  background-color: #9c9c9c;
+`;
 ///////////////////////////////////////////

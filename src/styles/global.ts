@@ -25,4 +25,17 @@ ul {
     list-style: none;
     gap: 30px;
 }
+
+label {
+  display: flex;
+  margin: 0px 10px 0px 10px;
+  font-size: large;
+  line-height: normal;
+}
+input {
+  display: flex;
+  margin: 0px 10px 0px 10px;
+  font-size: large;
+  line-height: normal;
+}
 `;

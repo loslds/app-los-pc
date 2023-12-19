@@ -1,21 +1,25 @@
-
+// import "../../../styles/global.ts";
 import { ReactNode } from 'react';
+// import { ThemeProvider } from "styled-components";
+// import light from "../../../../styles/themes/light.ts";
+// import dark from "../../../../styles/themes/dark.ts";
+//import { useState } from "react";
+//import { useNavigate } from "react-router-dom";
+import { LayoutLogin } from "../../../layouts/LayoutLogin/index.tsx";
 
-import { LayoutRecep } from "../../../layouts/LayoutRecep/index.tsx";
-
-type PropsThemeRecep = {
+type PropsThemeLogin = {
   onclick?: () => void;
   children?: ReactNode | JSX.Element;
   onchange: () => void;
   ischeck: boolean;
   onLogin?:  () => void;
 }
-export const ThemeRecep = ({children, onclick, onchange, ischeck, onLogin }:PropsThemeRecep) => {
+export const ThemeLogin = ({children, onclick, onchange, ischeck, onLogin }:PropsThemeLogin) => {
 
   return (
-    <LayoutRecep onclick = {onclick} title = {"Recepção."} onchange = {onchange} ischeck={ischeck} onLogin={onLogin} >
+    <LayoutLogin onclick = {onclick} title = {"Acesso Sistema."} onchange = {onchange} ischeck={ischeck} onLogin={onLogin} >
       {children}
-    </LayoutRecep>
+    </LayoutLogin>
   );
 };
 

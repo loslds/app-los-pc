@@ -9,7 +9,7 @@ type PropsLayoutLogin = {
   children?: ReactNode | JSX.Element;
   onchange: () => void;
   ischeck: boolean;
-  //onLogin?:  () => void;
+  onLogin?:  () => void;
 }
 export const LayoutLogin = ({onclick, title, children, onchange, ischeck}:PropsLayoutLogin) => {
   return (
@@ -21,6 +21,8 @@ export const LayoutLogin = ({onclick, title, children, onchange, ischeck}:PropsL
           {children}
         </Hm.ContainerPage>
       </Hm.ContainerBody>
+      {/* <Hm.DivisionPgHztal />
+      <FooterLogin /> */}
       <Hm.DivisionPgHztal />
     </ContentPages>
   );
