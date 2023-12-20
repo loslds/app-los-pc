@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerLogin = styled.div`
-  border: 2px dashed yellow;
-  /* border: none; */
+  border: none;/* 2px dashed yellow;*/
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -10,7 +9,6 @@ export const ContainerLogin = styled.div`
   min-height: 50px;
   flex-wrap: wrap;
   justify-content: center;
-  //align-content: center;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
 `;
@@ -21,7 +19,6 @@ export const ContainerLoginFlex = styled.div<{pwidth? : string}>`
   padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
   width: ${({ pwidth }) => pwidth || '65%'};
-  //min-height: 60px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -47,7 +44,7 @@ export const ContainerTitleLogin = styled.div`
 export const ContainerMainLogin = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 5px;
-  border: 2px dashed red;
+  border: none;/* 2px dashed red;*/
   width: 100%;
   min-height: 60px;
   display: flex;
@@ -63,15 +60,13 @@ type Props = {
   height?: string;
 }
 export const ContainerLoginCollunsOpc = styled.div<Props>`
-  border: 2px dashed blue;
+  border: none;/* 2px dashed blue;*/
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
-
   width: ${({ pwidth }) => pwidth || '200px'};
   min-height: ${({ height }) => height || '150px'};
-  
   display: flex;
   flex-wrap: nowrap;
   flex-flow: row;
@@ -87,15 +82,13 @@ type PropsCenter = {
   isopen?: boolean;
 }
 export const ContainerLoginCollunsOpcCenter = styled.div<PropsCenter>`
-  border: 2px dashed blue;
+  border: none;/* 2px dashed blue;*/
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
-
   width: ${({ pwidth }) => pwidth || '200px'};
   min-height: ${({ height }) => height || '150px'};
-  
   display: ${props => (props.isopen ? 'flex' : 'none')};
   flex-wrap: nowrap;
   flex-flow: row;
@@ -104,8 +97,6 @@ export const ContainerLoginCollunsOpcCenter = styled.div<PropsCenter>`
   align-items: center;
   align-content: center;
 `;
-
-
 ////////////////////////////////////
 // opções
 export const ContainerLoginOpc = styled.div<{pwidth? : string}>`
@@ -115,12 +106,10 @@ export const ContainerLoginOpc = styled.div<{pwidth? : string}>`
   min-width: ${({ pwidth }) => pwidth || '32%'};
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
-
   display: flex;
   min-height: 50px;
   flex-wrap: wrap;
   justify-content: center;
-  //align-content: center;
 `;
 export const ContainerLoginFlexOpc = styled.div`
   border: 3px double;
@@ -153,7 +142,7 @@ export const ContainerTitleLoginOpc = styled.div`
 `;
 /////////////////////////////////
 export const ContainerInput = styled.div`
-  border: 1px solid green;
+  border: none;/* 1px solid green;*/
   padding: 2px 2px 2px 2px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -164,7 +153,7 @@ export const ContainerInput = styled.div`
   align-content: center;
 `;
 export const InputCenter = styled.div`
-  border: 1px dashed green;
+  border: none;/* 1px dashed green;*/
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
   width: 100%;
