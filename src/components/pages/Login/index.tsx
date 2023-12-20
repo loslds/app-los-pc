@@ -29,6 +29,10 @@ import { FormEmailPas } from "./forms/FormEmailPas.tsx";
 import { FormEmailPin } from "./forms/FormEmailPin.tsx";
 import { FormNamePas } from "./forms/FormNamelPas.tsx";
 import { FormNamePin } from "./forms/FormNamelPin.tsx";
+import { FormEmail } from "./forms/FormEmail.tsx";
+import { FormCelular } from "./forms/FormCelular.tsx";
+import { FormCodSeguro } from "./forms/FormCodSeguro.tsx";
+import { FormCadastro } from "./forms/FormCadastro.tsx";
 
 export const Login = () => {
  
@@ -104,6 +108,22 @@ export const Login = () => {
                       <FormNamePin onchange={() => alert('estou Nome/Pin')}/>
                       ) : null 
                     }
+                    { mdlogin === 5 ? (
+                      <FormEmail />
+                      ) : null 
+                    }
+                    { mdlogin === 6 ? (
+                      <FormCelular />
+                      ) : null 
+                    }
+                    { mdlogin === 7 ? (
+                      <FormCodSeguro />
+                      ) : null 
+                    }
+                    { mdlogin === 8 ? (
+                      <FormCadastro />
+                      ) : null 
+                    }
                   </ContentInput>
                 </ContentLoginOpc>
               </ContentLoginCollunsCenter>
@@ -124,7 +144,14 @@ export const Login = () => {
 
           {/* </Lg.ContainerMainLogin> */}
           <Pg.DivisionPgHztal />
-           <h4>criar botãoes aqui</h4>
+            <form>
+              <div>
+                <button>Refresca.</button>
+              </div>
+              <div>
+                <button>Enviar.</button>
+              </div>
+            </form>
             {/* <FooterLogin /> */}
           
         </ContentLoginPg>
