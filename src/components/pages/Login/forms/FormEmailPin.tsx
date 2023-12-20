@@ -3,38 +3,32 @@ import * as Lg from '../styled';
 
 
 type PropsEmailPin = {
-  onclick?: () => void;
+  onchange?: () => void;
 }
-export const FormEmailPin = ({onclick}:PropsEmailPin) => {
+export const FormEmailPin = ({onchange}:PropsEmailPin) => {
   return (
-    <Lg.ContainerLogin>
-      <Lg.ContainerLoginFlex>
-      <form name="emailpin">
-        <div>
-          <label>E-Mail</label>
-          <input 
-            type="email"
-            id="email"
-            name="email"
-            placeholder="email@email.com(.br)"
-          />
-        </div>
+    <form name="emailpin">
+      <Lg.InputCenter>
+        <label>E-Mail</label>
+        <input 
+          type="email"
+          id="email"
+          name="email"
+          placeholder="email@email.com(.br)"
+          onChange={onchange}
+        />
+      </Lg.InputCenter>
 
-        <div>
-          <label>PIN</label>
-          <input 
-            type="text"
-            id="pin"
-            name="pin"
-            placeholder="****"
-          />
-        </div>
-
-        <div>
-          <label> Deseja <button onClick={onclick}>Acessar com PIN</button></label>
-        </div>
-        </form>       
-      </Lg.ContainerLoginFlex>
-    </Lg.ContainerLogin>
+      <Lg.InputCenter>
+        <label>PIN....</label>
+        <input 
+          type="text"
+          id="pin"
+          name="pin"
+          placeholder="****"
+          onChange={onchange}
+        />
+      </Lg.InputCenter>
+    </form>       
   );
 }

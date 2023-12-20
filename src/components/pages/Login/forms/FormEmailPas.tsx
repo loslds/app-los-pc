@@ -1,40 +1,35 @@
 
 import * as Lg from '../styled';
 
+
+
 type PropsEmailPas = {
-  onclick?: () => void;
+  onchange?: () => void;
 }
-export const FormEmailPas = ({onclick}:PropsEmailPas) => {
+export const FormEmailPas = ({onchange}:PropsEmailPas) => {
 
   return (
-    <Lg.ContainerLogin>
-      <Lg.ContainerLoginFlex>
-      <form name="emailpas">
-        <div>
-          <label>E-Mail</label>
-          <input 
-            type="email"
-            id="email"
-            name="email"
-            placeholder="email@email.com(.br)"
-          />
-        </div>
-
-        <div>
-          <label>Password</label>
-          <input 
-            type="password"
-            id="password"
-            name="password"
-            placeholder="**********"
-          />
-        </div>
-
-        <div>
-          <label> Deseja <button onClick={onclick}>Acessar com PIN</button></label>
-        </div>
-      </form>
-      </Lg.ContainerLoginFlex>
-    </Lg.ContainerLogin>
+    <form name="emailpas">
+      <Lg.InputCenter>
+        <label>E-Mail</label>
+        <input 
+          type="email"
+          id="email"
+          name="email"
+          placeholder="email@email.com(.br)"
+          onChange={onchange}
+        />
+      </Lg.InputCenter>
+      <Lg.InputCenter>
+        <label>Pass..</label>
+        <input 
+          type="password"
+          id="password"
+          name="password"
+          placeholder="**********"
+          onChange={()=>{}}
+        />
+      </Lg.InputCenter>
+    </form>
   );
 }

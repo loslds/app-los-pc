@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const ContainerLogin = styled.div`
-  border: none;
+  border: 2px dashed yellow;
+  /* border: none; */
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -19,7 +20,7 @@ export const ContainerLoginFlex = styled.div<{pwidth? : string}>`
   border-color: ${props => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
-  width: ${({ pwidth }) => pwidth || '50%'};
+  width: ${({ pwidth }) => pwidth || '65%'};
   //min-height: 60px;
   display: flex;
   flex-wrap: wrap;
@@ -46,16 +47,64 @@ export const ContainerTitleLogin = styled.div`
 export const ContainerMainLogin = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 5px;
-  border: none;/* dashed red;*/
-  min-height: 50px;
+  border: 2px dashed red;
   width: 100%;
+  min-height: 60px;
   display: flex;
   flex-wrap: wrap;
+//  flex-flow: row;
+  justify-content: space-between;
+  align-content: center;
+//  align-items: center;
+`;
+
+type Props = {
+  pwidth? : string;
+  height?: string;
+}
+export const ContainerLoginCollunsOpc = styled.div<Props>`
+  border: 2px dashed blue;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+
+  width: ${({ pwidth }) => pwidth || '200px'};
+  min-height: ${({ height }) => height || '150px'};
+  
+  display: flex;
+  flex-wrap: nowrap;
   flex-flow: row;
   justify-content: left;
+  justify-content: center;
   align-items: center;
   align-content: center;
 `;
+
+type PropsCenter = {
+  pwidth? : string;
+  height?: string;
+  isopen?: boolean;
+}
+export const ContainerLoginCollunsOpcCenter = styled.div<PropsCenter>`
+  border: 2px dashed blue;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+
+  width: ${({ pwidth }) => pwidth || '200px'};
+  min-height: ${({ height }) => height || '150px'};
+  
+  display: ${props => (props.isopen ? 'flex' : 'none')};
+  flex-wrap: nowrap;
+  flex-flow: row;
+  justify-content: left;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+
 
 ////////////////////////////////////
 // opções
@@ -63,14 +112,15 @@ export const ContainerLoginOpc = styled.div<{pwidth? : string}>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  width: ${({ pwidth }) => pwidth || '30%'};
+  min-width: ${({ pwidth }) => pwidth || '32%'};
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+
   display: flex;
   min-height: 50px;
   flex-wrap: wrap;
   justify-content: center;
   //align-content: center;
-  color:  ${props => props.theme.colors.textColor};
-  background: ${props => props.theme.colors.backgroundColor};
 `;
 export const ContainerLoginFlexOpc = styled.div`
   border: 3px double;
@@ -79,8 +129,8 @@ export const ContainerLoginFlexOpc = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
   width: 100%;
-  //min-height: 60px;
-  display: flex;
+  min-height: 60px;
+  display: flex row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
@@ -88,32 +138,30 @@ export const ContainerLoginFlexOpc = styled.div`
 export const ContainerTitleLoginOpc = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
+  background: #bbbbbb;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   border-bottom: 3px double #dfdfdf;
   min-height: 20px;
-  width: 100%;
+  min-width: 100%;
   display: flex;
   flex-wrap: wrap;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  background: #bbbbbb;
+  align-content: center; 
 `;
 /////////////////////////////////
 export const ContainerInput = styled.div`
-  border: none; /* solid red;*/
+  border: 1px solid green;
   padding: 2px 2px 2px 2px;
   margin: 0px 0px 0px 0px;
-  width: 99%;
+  width: 100%;
   display: flex;
   flex-flow: wrap;
-
-  
-  /* flex-direction: column;
   justify-content: left;
-  align-content: center; */
+  align-items: center;
+  align-content: center;
 `;
 export const InputCenter = styled.div`
   border: 1px dashed green;
@@ -124,8 +172,8 @@ export const InputCenter = styled.div`
   flex-flow: row;
   flex-wrap: nowrap;
   justify-content: left;
-  //align-content: center;
-  //align-items: center;
+  align-content: center;
+  align-items: center;
 `;
 
 export const InputPage = styled.input`

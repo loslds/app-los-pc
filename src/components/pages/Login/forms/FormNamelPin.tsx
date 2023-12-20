@@ -1,42 +1,33 @@
 
 import * as Lg from '../styled';
 
-
 type PropsNamePin = {
-  onclick?: () => void;
+  onchange?: () => void;
 }
-export const FormNamePin = ({onclick}:PropsNamePin) => {
+export const FormNamePin = ({onchange}:PropsNamePin) => {
   return (
-    <Lg.ContainerLogin>
-      <Lg.ContainerLoginFlex>
-      <form name="namepin">
-        <div>
-          <label>Pseudônimo</label>
-          <input 
-            type="text"
-            id="text"
-            name="text"
-            placeholder="Seu pseudônimo."
-          />
-        </div>
+    <form name="namepin">
+      <Lg.InputCenter>
+        <label>Pseud.</label>
+        <input 
+          type="text"
+          id="text"
+          name="text"
+          placeholder="Seu pseudônimo."
+          onChange={onchange}
+        />
+      </Lg.InputCenter>
 
-        <div>
-          <label>PIN</label>
-          <input 
-            type="text"
-            id="pin"
-            name="pin"
-            placeholder="****"
-          />
-        </div>
-
-        <div>
-          <label> Deseja <button onClick={onclick}>Acessar com PIN</button></label>
-        </div>
-
-      </form>
-
-      </Lg.ContainerLoginFlex>
-    </Lg.ContainerLogin>
+      <Lg.InputCenter>
+        <label>PIN.....</label>
+        <input 
+          type="text"
+          id="pin"
+          name="pin"
+          placeholder="****"
+          onChange={onchange}
+        />
+      </Lg.InputCenter>
+    </form>
   );
 }
