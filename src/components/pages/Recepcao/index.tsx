@@ -12,7 +12,6 @@ import { ThemeRecep } from "../../modulos/themes/ThemeRecep";
 //import { DivisionPgHztal } from "../../layouts/styled.ts";
 //import { MenuRecep }  from "../../menus/MenuMain.tsx";
 
-
 export const Recepcao = () => {
  
   const [theme,setTheme] = useState(dark);
@@ -34,9 +33,14 @@ export const Recepcao = () => {
     };
   };
  
+
+  
+
   return (
+
     <ThemeProvider theme={theme}>
       <ThemeRecep onclick = {goto('/')} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
+        {}
       </ThemeRecep>
     </ThemeProvider>
   );
