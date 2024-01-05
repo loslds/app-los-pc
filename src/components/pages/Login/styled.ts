@@ -177,3 +177,52 @@ export const InputPage = styled.input`
   size: 18px;
   line-height: 20px;
 `;
+/////////////////////////////////
+// panel dos botões do formulário
+/////////////////////////////////
+export const ContainerMainButtonsLogin = styled.div<{pwidth? : string}>`
+  border: 1px solid red;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  min-width: ${({ pwidth }) => pwidth || '32%'};
+  min-height: 45px;
+
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+  display: flex;
+  flex: content;
+  flex-wrap: wrap row;
+  justify-content: center;
+  align-content: center;
+  align-items: center ;
+`;
+export const ContainerMainButtonsLoginFlex = styled.div`
+  border: 3px double;
+  border-radius: 10px;
+  border-color: ${props => props.theme.colors.textColor};
+  padding: 0px 10px 0px 10px;
+  margin: 5px 10px 5px 10px;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center ;
+`;
+
+// botão
+
+export const ContainerBtnLoginSRigth = styled.div`
+  padding: 0px 0px 0px 0px;
+  margin: 2px 5px 2px 5px;
+  background: transparent;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: right;
+  align-items: center;
+  align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+`;
+
+

@@ -40,7 +40,7 @@ export const Recepcao = () => {
 
     <ThemeProvider theme={theme}>
       <ThemeRecep onclick = {goto('/')} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
-        {}
+        <h1>aaa</h1>
       </ThemeRecep>
     </ThemeProvider>
   );
