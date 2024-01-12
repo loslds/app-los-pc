@@ -1,5 +1,6 @@
-import "../../../styles/global.ts"; 
+//import "../../../styles/global.ts"; 
 
+import React from "react";
 import * as Lg from "./styled.ts";
 import * as Pg from "../style.ts"
 
@@ -34,6 +35,7 @@ import { FormCelular } from "./forms/FormCelular.tsx";
 import { FormCodSeguro } from "./forms/FormCodSeguro.tsx";
 import { FormCadastro } from "./forms/FormCadastro.tsx";
 import { ContentMainButtonsLogin } from "./ContentMainButtonsLogin.tsx";
+import { ContentButtonTitleLogin } from "./ContentButtonTitleLogin.tsx";
 
 export const Login = () => {
  
@@ -87,6 +89,11 @@ export const Login = () => {
 
   };
 
+  const handlerResgate = React.useCallback(() => {
+    setResgates((oldState) => !oldState);
+  }, []);
+
+
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick = {goto('/')} onchange = {ToggleTheme} ischeck={ischeck}>
@@ -94,6 +101,7 @@ export const Login = () => {
           <ContentTitleLogin modotitle={nmlogin}/>
             <Lg.ContainerMainLogin>
 
+            {ismdlogins  ? (
               <ContentLoginColluns >
                 <ContentLoginOpc>
                   <ContentTitleLoginOpc  titleopc="Acesso:"/>
@@ -105,8 +113,9 @@ export const Login = () => {
                   </ContentInput>
                 </ContentLoginOpc>
               </ContentLoginColluns>
+              ) : null }
 
-              { ismdlogins ?(
+              {/* { ismdlogins ?(
               <ContentLoginColluns >
                 <ContentLoginOpc>
                   <ContentTitleLoginOpc titleopc="Resgates:"/>
@@ -118,7 +127,7 @@ export const Login = () => {
                     </ContentInput>
                   </ContentLoginOpc>
                 </ContentLoginColluns>
-              ) : null }
+              ) : null } */}
                 
             
 
@@ -143,6 +152,7 @@ export const Login = () => {
                       <FormNamePin onchange={() => alert('estou Nome/Pin')}/>
                       ) : null 
                     }
+                    
                     { mdlogin === 5 ? (
                       <FormEmail />
                       ) : null 
@@ -165,11 +175,34 @@ export const Login = () => {
 
             </Lg.ContainerMainLogin>
           <Pg.DivisionPgHztal />
-            <ContentMainButtonsLogin>
-              
-                  <button>Refresca.</button>
+          <ContentMainButtonsLogin>
+              <ContentButtonTitleLogin title="Limpar."/>
+              <ContentButtonTitleLogin title="Resgatar." onclick={handlerResgate}/>
+              <ContentButtonTitleLogin title="Solicitar."/>
+              {isresgates ? (
+                <ContentLoginColluns >                
+                <ContentLoginColluns >
+                  <ContentLoginOpc>
+                    <ContentTitleLoginOpc titleopc="Resgates:"/>
+                      <ContentInput>
+                        <ContentRadioOpc id="E-Mail" name={'opcao'} value= {1} titulo="E-Mail" onclick={()=> setModo(5)}/>
+                        <ContentRadioOpc id="S.M.S" name={'opcao'} value={2} titulo="Celular(SMS)" onclick={()=> setModo(6)}/>
+                        <ContentRadioOpc id="Pseud/Pass" name={'opcao'} value={3} titulo="Cód. Seguro." onclick={()=> setModo(7)}/>
+                        <ContentRadioOpc id="Pseud/PIN" name={'opcao'} value={3} titulo="Cadastro." onclick={()=> setModo(8)}/>
+                      </ContentInput>
+                    </ContentLoginOpc>
+                  </ContentLoginColluns>
+                  </ContentLoginColluns>
+
+  
+
+
+              ): null
+              }
+
+                  {/* <button>Refresca.</button>
                 
-                  <button>Enviar.</button>
+                  <button>Enviar.</button> */}
                 
             </ContentMainButtonsLogin>
             {/* <FooterLogin /> */}  

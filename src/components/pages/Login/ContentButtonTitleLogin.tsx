@@ -1,7 +1,7 @@
-//import * as S from "./stylesSidebar";
+import * as S from "../../sidebar/stylesSidebar";
 import * as Lg from "./styled";
-import left from "../../assets/svgs/left.svg";
-import higth from "../../assets/svgs/higth.svg";
+import left from "../../../assets/svgs/left.svg";
+import higth from "../../../assets/svgs/higth.svg";
 
 type BntTitleLg ={
   title?: string;
