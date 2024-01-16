@@ -61,32 +61,29 @@ export const Login = () => {
   const [mdlogin,setMdLogin] = useState(0);
   const [ismdlogins,setMdLogins] = useState(true);
   const [isresgates,setResgates] = useState(true);
+  
+  
   const [nmlogin,setNmLogin] = useState('Selecione uma Opção.')
   const DescrOpc = ['Selecione uma Opção.', 'E-Mail / PassWord.', 'E-Mail / PIN.', 'Pseudônino / PassWord.','Pseudônino / PIN.'];
+  
   const [isopen,setIsOpen] = useState(false);
+  
   const setModo = (level: number) => {
-    if (level > 0) {
-      setIsOpen(true);
-    }
-    else {
-      setIsOpen(false);
-    }
     setMdLogin(level);
     setNmLogin(DescrOpc[level]);
-    if (level === 0) {
-      setMdLogins(true);
-      setResgates(true);
-    } else if (level === 1 || level === 2) {
+    if (level > 0) {
+      setIsOpen(true);
+
+    } else {
+      setIsOpen(false);
+    }
+    if (level <= 3) {
       setMdLogins(true);
       setResgates(false);
-    } else if (level === 3 || level === 4) {
-      setResgates(true);
-      setMdLogins(false);
     } else {
-      setMdLogins(true);
+      setMdLogins(false);
       setResgates(true);
     }
-
   };
 
   const handlerResgate = React.useCallback(() => {
@@ -98,40 +95,35 @@ export const Login = () => {
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick = {goto('/')} onchange = {ToggleTheme} ischeck={ischeck}>
         <ContentLoginPg >
+
           <ContentTitleLogin modotitle={nmlogin}/>
             <Lg.ContainerMainLogin>
-
-            {ismdlogins  ? (
               <ContentLoginColluns >
-                <ContentLoginOpc>
-                  <ContentTitleLoginOpc  titleopc="Acesso:"/>
-                  <ContentInput>
-                    <ContentRadioOpc id="E-Mail/Pass" name={'opcao'} value={1} titulo="E-Mail/Pass" onclick={()=> setModo(1)}/>
-                    <ContentRadioOpc  id="E-Mail/PIN" name={'opcao'} value={2} titulo="E-Mail/PIN" onclick={()=> setModo(2)}/>
-                    <ContentRadioOpc  id="Pseud/Pass" name={'opcao'} value={3} titulo="Pseudô/Pass" onclick={()=> setModo(3)}/>
-                    <ContentRadioOpc  id="Pseud/PIN" name={'opcao'} value={3} titulo="Pseudô/PIN" onclick={()=> setModo(4)}/>
-                  </ContentInput>
-                </ContentLoginOpc>
-              </ContentLoginColluns>
-              ) : null }
-
-              {/* { ismdlogins ?(
-              <ContentLoginColluns >
-                <ContentLoginOpc>
-                  <ContentTitleLoginOpc titleopc="Resgates:"/>
+                {ismdlogins? (
+                  <ContentLoginOpc open={ismdlogins}>
+                    <ContentTitleLoginOpc  titleopc="Acesso:"/>
                     <ContentInput>
-                      <ContentRadioOpc id="E-Mail" name={'opcao'} value= {1} titulo="E-Mail" onclick={()=> setModo(5)}/>
-                      <ContentRadioOpc id="S.M.S" name={'opcao'} value={2} titulo="Celular(SMS)" onclick={()=> setModo(6)}/>
-                      <ContentRadioOpc id="Pseud/Pass" name={'opcao'} value={3} titulo="Cód. Seguro." onclick={()=> setModo(7)}/>
-                      <ContentRadioOpc id="Pseud/PIN" name={'opcao'} value={3} titulo="Cadastro." onclick={()=> setModo(8)}/>
+                      <ContentRadioOpc id="E-Mail/Pass" name={'opcao'} value= {1} titulo="E-Mail/Pass" onclick={()=> setModo(1)}/>
+                      <ContentRadioOpc  id="E-Mail/PIN" name={'opcao'} value={2} titulo="E-Mail/PIN" onclick={()=> setModo(2)}/>
+                      <ContentRadioOpc  id="Pseud/Pass" name={'opcao'} value={3} titulo="Pseudô/Pass" onclick={()=> setModo(3)}/>
+                      <ContentRadioOpc  id="Pseud/PIN" name={'opcao'} value={4} titulo="Pseudô/PIN" onclick={()=> setModo(4)}/>
                     </ContentInput>
                   </ContentLoginOpc>
-                </ContentLoginColluns>
-              ) : null } */}
-                
-            
-
-
+                ): null 
+                }
+                {isresgates? (
+                  <ContentLoginOpc open={isresgates}>
+                    <ContentTitleLoginOpc titleopc="Resgates:"/>
+                    <ContentInput>
+                      <ContentRadioOpc id="E-Mail" name={'opcao'} value= {5} titulo="E-Mail" onclick={()=> setModo(5)}/>
+                      <ContentRadioOpc id="S.M.S" name={'opcao'} value={6} titulo="Celular(SMS)" onclick={()=> setModo(6)}/>
+                      <ContentRadioOpc id="CódSeguro" name={'opcao'} value={7} titulo="Cód. Seguro." onclick={()=> setModo(7)}/>
+                      <ContentRadioOpc id="Cadastro" name={'opcao'} value={8} titulo="Cadastro." onclick={()=> setModo(8)}/>
+                    </ContentInput>
+                  </ContentLoginOpc>
+                ): null 
+                }
+              </ContentLoginColluns>
               <ContentLoginCollunsCenter pwidth={'300px'} isopen={isopen}>
                 <ContentLoginOpc pwidth="100%">
                   <ContentTitleLoginOpc titleopc="Aplicação :"/>
@@ -176,34 +168,9 @@ export const Login = () => {
             </Lg.ContainerMainLogin>
           <Pg.DivisionPgHztal />
           <ContentMainButtonsLogin>
-              <ContentButtonTitleLogin title="Limpar."/>
+              <ContentButtonTitleLogin title="Limpar." onclick={()=> alert('Limpar....')}/>
               <ContentButtonTitleLogin title="Resgatar." onclick={handlerResgate}/>
-              <ContentButtonTitleLogin title="Solicitar."/>
-              {isresgates ? (
-                <ContentLoginColluns >                
-                <ContentLoginColluns >
-                  <ContentLoginOpc>
-                    <ContentTitleLoginOpc titleopc="Resgates:"/>
-                      <ContentInput>
-                        <ContentRadioOpc id="E-Mail" name={'opcao'} value= {1} titulo="E-Mail" onclick={()=> setModo(5)}/>
-                        <ContentRadioOpc id="S.M.S" name={'opcao'} value={2} titulo="Celular(SMS)" onclick={()=> setModo(6)}/>
-                        <ContentRadioOpc id="Pseud/Pass" name={'opcao'} value={3} titulo="Cód. Seguro." onclick={()=> setModo(7)}/>
-                        <ContentRadioOpc id="Pseud/PIN" name={'opcao'} value={3} titulo="Cadastro." onclick={()=> setModo(8)}/>
-                      </ContentInput>
-                    </ContentLoginOpc>
-                  </ContentLoginColluns>
-                  </ContentLoginColluns>
-
-  
-
-
-              ): null
-              }
-
-                  {/* <button>Refresca.</button>
-                
-                  <button>Enviar.</button> */}
-                
+              <ContentButtonTitleLogin title="Solicitar."onclick={()=> alert('Solicitar....')}/>
             </ContentMainButtonsLogin>
             {/* <FooterLogin /> */}  
         </ContentLoginPg>

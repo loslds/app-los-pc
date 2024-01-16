@@ -99,14 +99,18 @@ export const ContainerLoginCollunsOpcCenter = styled.div<PropsCenter>`
 `;
 ////////////////////////////////////
 // opções
-export const ContainerLoginOpc = styled.div<{pwidth? : string}>`
+type PropsLoginOpc = {
+  pwidth? : string;
+  open?: boolean;
+}
+export const ContainerLoginOpc = styled.div<PropsLoginOpc>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-width: ${({ pwidth }) => pwidth || '32%'};
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
-  display: flex;
+  display: ${props => (props.open ? 'flex' : 'none')};
   min-height: 50px;
   flex-wrap: wrap;
   justify-content: center;

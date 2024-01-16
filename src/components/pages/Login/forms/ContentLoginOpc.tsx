@@ -4,10 +4,11 @@ import * as Lg from '../styled';
 type PropsLoginOpc = {
   pwidth?: string;
   children?: ReactNode | JSX.Element;
+  open?: boolean;
 }
-export const ContentLoginOpc = ({pwidth, children}:PropsLoginOpc) => {
+export const ContentLoginOpc = ({open, pwidth, children}:PropsLoginOpc) => {
   return (
-    <Lg.ContainerLoginOpc pwidth={pwidth}>
+    <Lg.ContainerLoginOpc open={open} pwidth={pwidth}>
       <Lg.ContainerLoginFlexOpc>
         { children }
       </Lg.ContainerLoginFlexOpc>
