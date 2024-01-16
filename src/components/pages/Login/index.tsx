@@ -80,7 +80,7 @@ export const Login = () => {
     if (level <= 3) {
       setMdLogins(true);
       setResgates(false);
-    } else {
+    } else if (level >= 4){
       setMdLogins(false);
       setResgates(true);
     }
@@ -99,7 +99,7 @@ export const Login = () => {
           <ContentTitleLogin modotitle={nmlogin}/>
             <Lg.ContainerMainLogin>
               <ContentLoginColluns >
-                {ismdlogins? (
+                { (ismdlogins && mdlogin <=3) ? (
                   <ContentLoginOpc open={ismdlogins}>
                     <ContentTitleLoginOpc  titleopc="Acesso:"/>
                     <ContentInput>
@@ -109,9 +109,9 @@ export const Login = () => {
                       <ContentRadioOpc  id="Pseud/PIN" name={'opcao'} value={4} titulo="Pseudô/PIN" onclick={()=> setModo(4)}/>
                     </ContentInput>
                   </ContentLoginOpc>
-                ): null 
+                  ): null 
                 }
-                {isresgates? (
+                { (isresgates && mdlogin >=4 ) ? (
                   <ContentLoginOpc open={isresgates}>
                     <ContentTitleLoginOpc titleopc="Resgates:"/>
                     <ContentInput>
@@ -124,47 +124,59 @@ export const Login = () => {
                 ): null 
                 }
               </ContentLoginColluns>
-              <ContentLoginCollunsCenter pwidth={'300px'} isopen={isopen}>
-                <ContentLoginOpc pwidth="100%">
-                  <ContentTitleLoginOpc titleopc="Aplicação :"/>
-                  <ContentInput>
-                    { mdlogin === 1 ? (
-                      <FormEmailPas onchange={() => alert('estou Email/Pass')} />
-                      ) : null 
-                    }  
-                    { mdlogin === 2 ? (
-                      <FormEmailPin  onchange={() => alert('estou Email/Pin')} />
-                      ) : null 
-                    }
-                    { mdlogin === 3 ? (
-                      <FormNamePas onchange={() => alert('estou Nome/Pas')}/>
-                      ) : null 
-                    } 
-                    { mdlogin === 4 ? (
-                      <FormNamePin onchange={() => alert('estou Nome/Pin')}/>
-                      ) : null 
-                    }
-                    
-                    { mdlogin === 5 ? (
-                      <FormEmail />
-                      ) : null 
-                    }
-                    { mdlogin === 6 ? (
-                      <FormCelular />
-                      ) : null 
-                    }
-                    { mdlogin === 7 ? (
-                      <FormCodSeguro />
-                      ) : null 
-                    }
-                    { mdlogin === 8 ? (
-                      <FormCadastro />
-                      ) : null 
-                    }
-                  </ContentInput>
-                </ContentLoginOpc>
-              </ContentLoginCollunsCenter>
 
+              {ismdlogins? (
+                <ContentLoginCollunsCenter pwidth={'300px'} isopen={isopen}>
+                  <ContentLoginOpc pwidth="100%">
+                    <ContentTitleLoginOpc titleopc="Aplicação :"/>
+                    <ContentInput>
+                      { mdlogin === 1 ? (
+                        <FormEmailPas onchange={() => alert('estou Email/Pass')} />
+                        ) : null 
+                      }  
+                      { mdlogin === 2 ? (
+                        <FormEmailPin  onchange={() => alert('estou Email/Pin')} />
+                        ) : null 
+                      }
+                      { mdlogin === 3 ? (
+                        <FormNamePas onchange={() => alert('estou Nome/Pas')}/>
+                        ) : null 
+                      } 
+                      { mdlogin === 4 ? (
+                        <FormNamePin onchange={() => alert('estou Nome/Pin')}/>
+                        ) : null 
+                      }
+                    </ContentInput>
+                  </ContentLoginOpc>
+                </ContentLoginCollunsCenter>
+                ): null 
+              }
+              {isresgates? (
+                <ContentLoginCollunsCenter pwidth={'300px'} isopen={isopen}>
+                  <ContentLoginOpc pwidth="100%">
+                    <ContentTitleLoginOpc titleopc="Aplicação :"/>
+                    <ContentInput>
+                      { mdlogin === 5 ? (
+                        <FormEmail />
+                        ) : null 
+                      }
+                      { mdlogin === 6 ? (
+                        <FormCelular />
+                        ) : null 
+                      }
+                      { mdlogin === 7 ? (
+                        <FormCodSeguro />
+                        ) : null 
+                      }
+                      { mdlogin === 8 ? (
+                        <FormCadastro />
+                        ) : null 
+                      }
+                    </ContentInput>
+                  </ContentLoginOpc>
+                </ContentLoginCollunsCenter>
+                ): null 
+              }
             </Lg.ContainerMainLogin>
           <Pg.DivisionPgHztal />
           <ContentMainButtonsLogin>
