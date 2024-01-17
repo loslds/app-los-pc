@@ -54,13 +54,36 @@ export const ContainerMainLogin = styled.div`
   align-content: center;
 //  align-items: center;
 `;
+////////////////////////////////////////
+type PropsCollFormCenter = {
+  pwidth? : string;
+  height?: string;
+  isopen?: boolean;
+}
+export const ContainerCollFormCenter = styled.div<PropsCollFormCenter>`
+  border: 2px dashed white;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+  min-width: ${({ pwidth }) => pwidth || '200px'};
+  // min-height: ${({ height }) => height || '150px'};
+  display: ${props => (props.isopen ? 'flex' : 'none')};
+  flex-wrap: nowrap;
+  flex-flow: row;
+  //justify-content: left;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+//////////////////////////////////////
 
 type Props = {
   pwidth? : string;
   height?: string;
 }
 export const ContainerLoginCollunsOpc = styled.div<Props>`
-  border: none;/* 2px dashed blue;*/
+  border: 2px dashed blue;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
@@ -76,19 +99,19 @@ export const ContainerLoginCollunsOpc = styled.div<Props>`
   align-content: center;
 `;
 
-type PropsCenter = {
+type PropsCollOpcCenter = {
   pwidth? : string;
   height?: string;
   isopen?: boolean;
 }
-export const ContainerLoginCollunsOpcCenter = styled.div<PropsCenter>`
-  border: none;/* 2px dashed blue;*/
+export const ContainerLoginCollunsOpcCenter = styled.div<PropsCollOpcCenter>`
+  border: 2px dashed greenyellow;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
-  width: ${({ pwidth }) => pwidth || '200px'};
-  min-height: ${({ height }) => height || '150px'};
+  min-width: ${({ pwidth }) => pwidth || '200px'};
+  //min-height: ${({ height }) => height || '150px'};
   display: ${props => (props.isopen ? 'flex' : 'none')};
   flex-wrap: nowrap;
   flex-flow: row;
