@@ -57,33 +57,35 @@ export const Login = () => {
   };
 
   
-//  const [ismdlogin,setIsMdLogin] = useState(true);
-//  const [isresgate,setIsResgate] = useState(true);
+
+
   //const [isform,setIsForm] = useState(true);
   
-  //const [isopen,setIsOpen] = useState(false);
+  const [isopen,setIsOpen] = useState(true);
+  //const [isacesso,setIsAcesso] = useState(false);
+  //const [isresgate,setIsResgate] = useState(false);
   const [mdlogin,setMdLogin] = useState(0);
   const [nmlogin,setNmLogin] = useState('Selecione uma Opção.')
   
-  const DescrOpc = ['Selecione uma Opção.', 'E-Mail / PassWord.', 'E-Mail / PIN.', 'Pseudônino / PassWord.','Pseudônino / PIN.'];
+  const DescrOpc = [
+   'Selecione uma Opção.',
+   'E-Mail / PassWord.', 
+   'E-Mail / PIN.', 
+   'Pseudônino / PassWord.',
+   'Pseudônino / PIN.',
+   'Resgate com E-Mail.',
+   'Resgate com SMS.',
+   'Resgate com Segurança.',
+   'Resgate Alteração de Dados.'
+   ];
   const setModo = (level: number) => {
     setMdLogin(level);
     setNmLogin(DescrOpc[level]);
-
-    // if (level > 0) {
-    //   setIsOpen(true);
-    // } else {
-    //   setIsOpen(false);
-    // }
-    // if (level <= 3) {
-    //   setIsMdLogin(true);
-    //   setIsOpen(true);
-    //   setIsResgate(false);
-    // } else if (level >= 4){
-    //   setIsMdLogin(false);
-    //   setIsOpen(false);
-    //   setIsResgate(true);
-    // }
+    if (level >= 0) {
+      setIsOpen(false);
+    }
+  
+   
   };
 
   //const handlerForms = React.useCallback(() => {
@@ -97,23 +99,31 @@ export const Login = () => {
         <ContentLoginPg >
           <ContentTitleLogin modotitle={nmlogin}/>
             <Lg.ContainerMainLogin>
-              <ContentFormCollunsCenter pwidth={"100%"} isopen={true}/>
-              
-              <ContentLoginColluns >
-                <ContentLoginOpc open={true}>
-                  <ContentTitleLoginOpc  titleopc="Acesso:"/>
-                  <ContentInput>
-                    <ContentRadioOpc id="E-Mail/Pass" name={'opcao'} value= {1} titulo="E-Mail/Pass" onclick={()=> setModo(1)}/>
-                    <ContentRadioOpc  id="E-Mail/PIN" name={'opcao'} value={2} titulo="E-Mail/PIN" onclick={()=> setModo(2)}/>
-                    <ContentRadioOpc  id="Pseud/Pass" name={'opcao'} value={3} titulo="Pseudô/Pass" onclick={()=> setModo(3)}/>
-                    <ContentRadioOpc  id="Pseud/PIN" name={'opcao'} value={4} titulo="Pseudô/PIN" onclick={()=> setModo(4)}/>
-                  </ContentInput>
-                </ContentLoginOpc>
-              </ContentLoginColluns>
 
+              <ContentFormCollunsCenter pwidth={"100%"} isopen={true}>
+                <ContentLoginOpc pwidth="100%" open={true}>
+                  { mdlogin === 5 ? (<FormEmail /> ) : null }
+                  { mdlogin === 6 ? (<FormCelular /> ) : null }
+                  { mdlogin === 7 ? (<FormCodSeguro /> ) : null }
+                  { mdlogin === 8 ? (<FormCadastro /> ) : null }
+                </ContentLoginOpc>
+              </ContentFormCollunsCenter>
+
+              <ContentLoginColluns >
+                <ContentLoginOpc open={isopen}>
+                  <ContentTitleLoginOpc  titleopc="Acesso:"/>
+                    <ContentInput>
+                      <ContentRadioOpc id="E-Mail/Pass" name={'opcao'} value=   {1} titulo="E-Mail/Pass" onclick={()=> setModo(1)}/>
+                      <ContentRadioOpc  id="E-Mail/PIN" name={'opcao'} value={2} titulo="E-Mail/PIN" onclick={()=> setModo(2)}/>
+                      <ContentRadioOpc  id="Pseud/Pass" name={'opcao'} value={3} titulo="Pseudô/Pass" onclick={()=> setModo(3)}/>
+                      <ContentRadioOpc  id="Pseud/PIN" name={'opcao'} value={4} titulo="Pseudô/PIN" onclick={()=> setModo(4)}/>
+                    </ContentInput>
+                  </ContentLoginOpc>
+                </ContentLoginColluns>
               <ContentLoginColluns>
-                <ContentLoginOpc open={true}>
-                  <ContentTitleLoginOpc titleopc="Resgates:"/>
+
+              <ContentLoginOpc open={true}>
+                <ContentTitleLoginOpc titleopc="Resgates:"/>
                   <ContentInput>
                     <ContentRadioOpc id="E-Mail" name={'opcao'} value= {5} titulo="E-Mail" onclick={()=> setModo(5)}/>
                     <ContentRadioOpc id="S.M.S" name={'opcao'} value={6} titulo="Celular(SMS)" onclick={()=> setModo(6)}/>
@@ -123,47 +133,41 @@ export const Login = () => {
                 </ContentLoginOpc>
               </ContentLoginColluns>
 
-              <ContentLoginCollunsCenter pwidth={'300px'} isopen={true}>
-                  <ContentLoginOpc pwidth="100%">
-                    <ContentTitleLoginOpc titleopc="Aplicação :"/>
-                    <ContentInput>
-                      { mdlogin === 1 ? (
-                        <FormEmailPas onchange={() => alert('estou Email/Pass')} />
-                        ) : null 
-                      }  
-                      { mdlogin === 2 ? (
-                        <FormEmailPin  onchange={() => alert('estou Email/Pin')} />
-                        ) : null 
-                      }
-                      { mdlogin === 3 ? (
-                        <FormNamePas onchange={() => alert('estou Nome/Pas')}/>
-                        ) : null 
-                      } 
-                      { mdlogin === 4 ? (
-                        <FormNamePin onchange={() => alert('estou Nome/Pin')}/>
-                        ) : null 
-                      }
-                      { mdlogin === 5 ? (
-                        <FormEmail />         
-                        ) : null 
-                      }
-                      { mdlogin === 6 ? (
-                        <FormCelular />
-                        ) : null 
-                      }
-                      { mdlogin === 7 ? (
-                        <FormCodSeguro />
-                        ) : null 
-                      }
-                      { mdlogin === 8 ? (
-                        <FormCadastro />
-                        ) : null 
-                      }
-                    </ContentInput>
-                  </ContentLoginOpc>
-                </ContentLoginCollunsCenter>
+            <ContentLoginCollunsCenter pwidth={'300px'} isopen={true}>
+              <ContentLoginOpc pwidth="100%" open={true} >
+                <ContentTitleLoginOpc titleopc="Aplicação :"/>
+                <ContentInput>
+                  { mdlogin === 1 ? (
+                    <FormEmailPas onchange={() => alert('estou Email/Pass')} />
+                    ) : null 
+                  }  
+                  { mdlogin === 2 ? (
+                    <FormEmailPin  onchange={() => alert('estou Email/Pin')} />
+                    ) : null 
+                  }
+                  { mdlogin === 3 ? (
+                    <FormNamePas onchange={() => alert('estou Nome/Pas')}/>
+                    ) : null 
+                  } 
+                  { mdlogin === 4 ? (
+                    <FormNamePin onchange={() => alert('estou Nome/Pin')}/>
+                    ) : null 
+                  }
+                </ContentInput>
+              </ContentLoginOpc>
+            </ContentLoginCollunsCenter>
 
-
+            {/* <ContentFormCollunsCenter pwidth={'300px'} isopen={true}>
+              <ContentLoginOpc pwidth="100%">
+                <ContentTitleLoginOpc titleopc="Resgate :"/>
+                <ContentInput>
+                  { mdlogin === 5 ? (<FormEmail /> ) : null }
+                  { mdlogin === 6 ? (<FormCelular /> ) : null }
+                  { mdlogin === 7 ? (<FormCodSeguro /> ) : null }
+                  { mdlogin === 8 ? (<FormCadastro /> ) : null }
+                </ContentInput>
+              </ContentLoginOpc>
+            </ContentFormCollunsCenter> */}
 
             </Lg.ContainerMainLogin>
           <Pg.DivisionPgHztal />
