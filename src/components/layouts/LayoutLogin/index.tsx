@@ -1,7 +1,9 @@
 import * as Hm from '../styled';
 import { ContentPages } from '../ContentPages';
 import { HearderLogin } from '../../headers/headesLogin/HeadesLogin';
+//import { FooterLogin } from '../../footers/FooterLogin';
 import { ReactNode } from 'react';
+
 
 type PropsLayoutLogin = {
   onclick?: () => void;
@@ -22,8 +24,8 @@ export const LayoutLogin = ({onclick, title, children, onchange, ischeck}:PropsL
         </Hm.ContainerPage>
       </Hm.ContainerBody>
       {/* <Hm.DivisionPgHztal />
-      <FooterLogin /> */}
-      <Hm.DivisionPgHztal />
+      <FooterLogin /> 
+      <Hm.DivisionPgHztal />*/}
     </ContentPages>
   );
 }

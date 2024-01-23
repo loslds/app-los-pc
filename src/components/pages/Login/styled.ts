@@ -61,7 +61,7 @@ type PropsCollFormCenter = {
   isopen?: boolean;
 }
 export const ContainerCollFormCenter = styled.div<PropsCollFormCenter>`
-  border: 2px dashed white;
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
@@ -83,7 +83,7 @@ type Props = {
   height?: string;
 }
 export const ContainerLoginCollunsOpc = styled.div<Props>`
-  border: 2px dashed blue;
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
@@ -178,6 +178,7 @@ export const ContainerInput = styled.div`
   justify-content: left;
   align-items: center;
   align-content: center;
+
 `;
 export const InputCenter = styled.div`
   border: none;/* 1px dashed green;*/
@@ -208,7 +209,7 @@ export const InputPage = styled.input`
 // panel dos botões do formulário
 /////////////////////////////////
 export const ContainerMainButtonsLogin = styled.div<{pwidth? : string}>`
-  border: 1px solid red;
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-width: ${({ pwidth }) => pwidth || '32%'};

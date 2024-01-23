@@ -24,8 +24,8 @@ export const CardAcessoSistema = () => {
         <h5>Modo:</h5>
         <p>&emsp; - Determinando: Empresa, ID(apelido) e Senha(password).</p>
         <p>&emsp; - Determinando: Empresa, ID(apelido) e PIN.</p>
-        <p>&emsp; - Determinando: E-Mail, ID(apelido) e Senha(password).</p>
-        <p>&emsp; - Determinando: E-Mail, ID(apelido) e PIN.</p>
+        <p>&emsp; - Determinando: Empresa, E-Mail, e Senha(password).</p>
+        <p>&emsp; - Determinando: Empresa, E-Mail, e PIN.</p>
         <p>Somente após isso feito poderá realizar o Login.</p>
         <br/>  
         <h5>Obs. do Caso Recuperação do Acesso:</h5>
@@ -34,8 +34,8 @@ export const CardAcessoSistema = () => {
         <br/>
         <h5>Obs. do Caso Ateração Cadastrais do Acesso:</h5>
         <p>&emsp; - Para isso é necessário estar logado e seguir instruções conforme Opção.</p>
-        <h5>Ao Enviar o seu Acesso em Formulário:</h5>
         <br/>
+        <h5>Ao Enviar o seu Acesso em Formulário:</h5>
         <p> Assim que for detectado sua Chave de Acesso, O Sistema irá redirecionar voce para o Setor da liberdade do Acesso ao Sistema.</p>
       </MD.ContentTextoModulos>
     </CardModalTexto>

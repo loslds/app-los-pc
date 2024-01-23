@@ -26,16 +26,24 @@ ul {
     gap: 30px;
 }
 
-label {
+label,
+input,
+select
+{
   display: flex;
   margin: 0px 10px 0px 10px;
+  padding: 0px 10px 0px 10px;
   font-size: large;
   line-height: normal;
 }
-input {
-  display: flex;
-  margin: 0px 10px 0px 10px;
-  font-size: large;
-  line-height: normal;
+select {
+  width: 100%;
 }
+option:hover,
+option:focus,
+option.selected.focus {
+  font-weight: bold;
+  color: #fb0000;
+}
+
 `;
