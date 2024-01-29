@@ -10,7 +10,7 @@ type AuthProviderType = {
 export const AuthProvider = ({ children}: AuthProviderType) => {
   
   const [user, setUser] = useState<User | null>(null);
-  const api = useApi();
+  const api = useApi;
 
   const signin = async(email: string, password: string ) => {
     const data = await api(signin(email,password));

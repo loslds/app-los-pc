@@ -4,9 +4,13 @@ import * as Lg from '../styled';
 
 
 type PropsEmailPas = {
+  
   onchange?: () => void;
 }
 export const FormEmailPas = ({onchange}:PropsEmailPas) => {
+
+
+
 
   return (
     <form name="emailpas">
