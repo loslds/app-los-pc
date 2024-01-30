@@ -307,7 +307,7 @@ export const Login = () => {
                         <label>PIN....</label>
                         <input
                           type="text"
-                          id="pin1"-+-+
+                          id="pin1"
                           name="pin1"
                           value={strpsw}
                           placeholder="****"
