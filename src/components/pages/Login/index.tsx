@@ -369,11 +369,18 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {isresgate && mdlogin === 5 ? <div> aqui</div> : null}
-                  {isresgate && mdlogin === 6 ? <FormCelular /> : null}
-                  {isresgate && mdlogin === 7 ? <FormCodSeguro /> : null}
-
-                  {mdlogin === 8 ? <FormCadastro /> : null}
+                  {isresgate && mdlogin === 5 ? (
+                    <div> mdlogin === 5</div>
+                  ) : null}
+                  {isresgate && mdlogin === 6 ? (
+                    <div> mdlogin === 6</div>
+                  ) : null}
+                  {isresgate && mdlogin === 7 ? (
+                    <div> mdlogin === 7</div>
+                  ) : null}
+                  {isresgate && mdlogin === 8 ? (
+                    <div> mdlogin === 8</div>
+                  ) : null}
                 </ContentInput>
               </ContentLoginOpc>
             </ContentFormCollunsCenter>
