@@ -22,14 +22,6 @@ import { ContentTitleLoginOpc } from './ContentTitleLoginOpc.tsx';
 import { ContentInput } from './forms/ContentInput.tsx';
 import { ContentRadioOpc } from './forms/ContentRadioOpc.tsx';
 import { ContentFormCollunsCenter } from './forms/ContentFormCollunsCenter.tsx';
-// import { FormEmailPas } from './forms/FormEmailPas.tsx';
-import { FormEmailPin } from './forms/FormEmailPin.tsx';
-import { FormNamePas } from './forms/FormNamelPas.tsx';
-import { FormNamePin } from './forms/FormNamelPin.tsx';
-import { FormEmail } from './forms/FormEmail.tsx';
-import { FormCelular } from './forms/FormCelular.tsx';
-import { FormCodSeguro } from './forms/FormCodSeguro.tsx';
-import { FormCadastro } from './forms/FormCadastro.tsx';
 
 //import { ListEmps } from "../../../books/ListEmps.tsx";
 
