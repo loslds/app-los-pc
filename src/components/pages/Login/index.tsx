@@ -307,7 +307,7 @@ export const Login = () => {
                         <label>PIN....</label>
                         <input
                           type="text"
-                          id="pin1"
+                          id="pin1"-+-+
                           name="pin1"
                           value={strpsw}
                           placeholder="****"
@@ -348,7 +348,7 @@ export const Login = () => {
                       <Lg.InputCenter>
                         <label>Pseud.</label>
                         <input
-                          type="pseud"
+                          type="text"
                           id="pseud2"
                           name="pseud2"
                           value={strid}
