@@ -253,4 +253,18 @@ export const ContainerBtnLoginSRigth = styled.div`
   color:  ${props => props.theme.colors.textColor};
 `;
 
+export const ContainerAreaText = styled.div`
+  border: 1px dashed red;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  
+  size: 16px;
+  line-height: 16px;
 
+  display: flex row;
+  flex-wrap: wrap;
+  flex-flow: column;
+  justify-content: left;
+  align-content: center;
+  align-items: left;
+ `;

@@ -1,6 +1,7 @@
 import React from 'react';
 
 type StateAcesso = {
+  currentstep: number;
   idacesso: number;
   idemp: number;
   nmfant: string;
@@ -26,7 +27,7 @@ type StateAcesso = {
   nmMaster: string;
   mdMaster: boolean;
   nmConfig: string;
-  mdConfig: boolean,
+  mdConfig: boolean;
   pinAdm: number;
   page: string;
   logado: boolean;
@@ -36,6 +37,7 @@ type StateAcesso = {
 };
 
 export const initialData: StateAcesso = {
+  currentstep: 0,
   idacesso: 0,
   idemp: 0,
   nmfant: '',
@@ -70,7 +72,8 @@ export const initialData: StateAcesso = {
   tempo: ''
 };
 
-export enum AcessoActions {
+export enum AcessoUseActions {
+  setCurrentStep,
   setIdAces,
   setIdEmp,
   setNmFant,
@@ -103,10 +106,10 @@ export enum AcessoActions {
   setDtIni,
   setDtFim,
   setTmp
-};
+}
 
 type AcessoAction = {
-  type: AcessoActions;
+  type: AcessoUseActions;
   payload: any;
 };
 
@@ -117,48 +120,83 @@ type AcessoContextType = {
 
 const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
   switch (action.type) {
-    case AcessoActions.setIdAces: return { ...state, idacesso: action.payload };
-    case AcessoActions.setIdEmp: return { ...state, idemp: action.payload };
-    case AcessoActions.setNmFant: return { ...state, nmfant: action.payload };
-    case AcessoActions.setIdUser: return { ...state, iduser: action.payload };
-    case AcessoActions.setIdNmUser: return { ...state, idnmuser: action.payload };
-    case AcessoActions.setPswUser: return { ...state, pswuser: action.payload };
-    case AcessoActions.setPin: return { ...state, pin: action.payload };
-    case AcessoActions.setMail: return { ...state, mail: action.payload };
-    case AcessoActions.setFoneC: return { ...state, fonec: action.payload };
-    case AcessoActions.setLvMod: return { ...state, lvMod: action.payload };
-    case AcessoActions.setMdRecep: return { ...state, ndrecep: action.payload };
-    case AcessoActions.setNmRecep: return { ...state, nmrecep: action.payload };
-    case AcessoActions.setMdDesig: return { ...state, mddesig: action.payload };
-    case AcessoActions.setNmDesig: return { ...state, nmdesig: action.payload };
-    case AcessoActions.setMdProdu: return { ...state, mdprodu: action.payload };
-    case AcessoActions.setNmProdu: return { ...state, nmprodu: action.payload };
-    case AcessoActions.setMdAcaba: return { ...state, mdacaba: action.payload };
-    case AcessoActions.setNmAcaba: return { ...state, nmacaba: action.payload };
-    case AcessoActions.setMdExped: return { ...state, mdexped: action.payload };
-    case AcessoActions.setNmExped: return { ...state, nmexped: action.payload };
-    case AcessoActions.setMdAdmin: return { ...state, mdadmin: action.payload };
-    case AcessoActions.setNmAdmin: return { ...state, nmadmin: action.payload };
-    case AcessoActions.setMdMaster: return { ...state, mdmaster: action.payload };
-    case AcessoActions.setNmMaster: return { ...state, nmmaster: action.payload };
-    case AcessoActions.setMdConfig: return { ...state, mdconfig: action.payload };
-    case AcessoActions.setNmConfig: return { ...state, nmconfig: action.payload };
-    case AcessoActions.setPinAdm: return { ...state, pinadm: action.payload };
-    case AcessoActions.setPage: return { ...state, page: action.payload };
-    case AcessoActions.setLogado: return { ...state, logado: action.payload };
-    case AcessoActions.setDtIni: return { ...state, datetimei: action.payload };
-    case AcessoActions.setDtFim: return { ...state, datetimef: action.payload };
-    case AcessoActions.setTmp: return { ...state, tempo: action.payload };
-    default: return state;
-    }
-  };
+    case AcessoUseActions.setCurrentStep:
+      return { ...state, currentstep: action.payload };
+    case AcessoUseActions.setIdAces:
+      return { ...state, idacesso: action.payload };
+    case AcessoUseActions.setIdEmp:
+      return { ...state, idemp: action.payload };
+    case AcessoUseActions.setNmFant:
+      return { ...state, nmfant: action.payload };
+    case AcessoUseActions.setIdUser:
+      return { ...state, iduser: action.payload };
+    case AcessoUseActions.setIdNmUser:
+      return { ...state, idnmuser: action.payload };
+    case AcessoUseActions.setPswUser:
+      return { ...state, pswuser: action.payload };
+    case AcessoUseActions.setPin:
+      return { ...state, pin: action.payload };
+    case AcessoUseActions.setMail:
+      return { ...state, mail: action.payload };
+    case AcessoUseActions.setFoneC:
+      return { ...state, fonec: action.payload };
+    case AcessoUseActions.setLvMod:
+      return { ...state, lvMod: action.payload };
+    case AcessoUseActions.setMdRecep:
+      return { ...state, ndrecep: action.payload };
+    case AcessoUseActions.setNmRecep:
+      return { ...state, nmrecep: action.payload };
+    case AcessoUseActions.setMdDesig:
+      return { ...state, mddesig: action.payload };
+    case AcessoUseActions.setNmDesig:
+      return { ...state, nmdesig: action.payload };
+    case AcessoUseActions.setMdProdu:
+      return { ...state, mdprodu: action.payload };
+    case AcessoUseActions.setNmProdu:
+      return { ...state, nmprodu: action.payload };
+    case AcessoUseActions.setMdAcaba:
+      return { ...state, mdacaba: action.payload };
+    case AcessoUseActions.setNmAcaba:
+      return { ...state, nmacaba: action.payload };
+    case AcessoUseActions.setMdExped:
+      return { ...state, mdexped: action.payload };
+    case AcessoUseActions.setNmExped:
+      return { ...state, nmexped: action.payload };
+    case AcessoUseActions.setMdAdmin:
+      return { ...state, mdadmin: action.payload };
+    case AcessoUseActions.setNmAdmin:
+      return { ...state, nmadmin: action.payload };
+    case AcessoUseActions.setMdMaster:
+      return { ...state, mdmaster: action.payload };
+    case AcessoUseActions.setNmMaster:
+      return { ...state, nmmaster: action.payload };
+    case AcessoUseActions.setMdConfig:
+      return { ...state, mdconfig: action.payload };
+    case AcessoUseActions.setNmConfig:
+      return { ...state, nmconfig: action.payload };
+    case AcessoUseActions.setPinAdm:
+      return { ...state, pinadm: action.payload };
+    case AcessoUseActions.setPage:
+      return { ...state, page: action.payload };
+    case AcessoUseActions.setLogado:
+      return { ...state, logado: action.payload };
+    case AcessoUseActions.setDtIni:
+      return { ...state, datetimei: action.payload };
+    case AcessoUseActions.setDtFim:
+      return { ...state, datetimef: action.payload };
+    case AcessoUseActions.setTmp:
+      return { ...state, tempo: action.payload };
+    default:
+      return state;
+  }
+};
 
 const AcessoContext = React.createContext<AcessoContextType | undefined>(
   undefined
 );
 
 type AcessoProviderProps = {
-  children: React.ReactNode;
+  children: React.ReactNode | JSX.Element;
 };
 export const AcessoProvider = ({ children }: AcessoProviderProps) => {
   const [state, dispatch] = React.useReducer(AcessoReducer, initialData);
@@ -168,7 +206,6 @@ export const AcessoProvider = ({ children }: AcessoProviderProps) => {
   );
 };
 
-
 export const AcessoUseForm = () => {
   const context = React.useContext(AcessoContext);
   if (context === undefined) {
@@ -176,6 +213,5 @@ export const AcessoUseForm = () => {
   }
   return context;
 };
-
 
 export default AcessoContext;
