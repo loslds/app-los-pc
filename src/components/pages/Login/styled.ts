@@ -268,3 +268,19 @@ export const ContainerAreaText = styled.div`
   align-content: center;
   align-items: left;
  `;
+
+
+export const ContainerFormCenter = styled.div<{pwidth? : string}>`
+  border: 3px double;
+  border-color: red;
+  border-radius: 10px;
+  //border-color: ${props => props.theme.colors.textColor};
+  padding: 5px 5px 5px 5px;
+  margin: 5px 5px 5px 5px;
+  width: ${({ pwidth }) => pwidth || '65%'};
+  display: flex;
+  //flex-flow: column;
+  //flex-wrap: wrap;
+  //justify-content: center;
+  //align-content: center;
+`;

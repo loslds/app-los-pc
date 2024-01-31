@@ -296,7 +296,7 @@ export const Login = () => {
                       </Lg.InputCenter>
 
                       <Lg.InputCenter>
-                        <label>PIN....</label>
+                        <label>PIN....:</label>
                         <input
                           type="text"
                           id="pin1"
@@ -311,7 +311,7 @@ export const Login = () => {
                   {mdlogin === 3 ? (
                     <form name="namepas">
                       <Lg.InputCenter>
-                        <label>Pseud.</label>
+                        <label>Pseud.:</label>
                         <input
                           type="text"
                           id="pseud1"
@@ -323,7 +323,7 @@ export const Login = () => {
                       </Lg.InputCenter>
 
                       <Lg.InputCenter>
-                        <label>Pass...</label>
+                        <label>Pass...:</label>
                         <input
                           type="password"
                           id="password2"
@@ -338,7 +338,7 @@ export const Login = () => {
                   {mdlogin === 4 ? (
                     <form name="namepin">
                       <Lg.InputCenter>
-                        <label>Pseud.</label>
+                        <label>Pseud.:</label>
                         <input
                           type="text"
                           id="pseud2"
@@ -350,7 +350,7 @@ export const Login = () => {
                       </Lg.InputCenter>
 
                       <Lg.InputCenter>
-                        <label>PIN.....</label>
+                        <label>PIN.....:</label>
                         <input
                           type="text"
                           id="pin2"
@@ -362,7 +362,26 @@ export const Login = () => {
                     </form>
                   ) : null}
                   {isresgate && mdlogin === 5 ? (
-                    <div> mdlogin === 5</div>
+                    <Lg.ContainerLogin>
+                      <Lg.ContainerFormCenter>
+                        <Lg.InputCenter>
+                          <label>E-Mail :</label>
+                          <input
+                            type="email"
+                            id="email3"
+                            name="email3"
+                            value={strid}
+                            placeholder="email@email.com(.br)"
+                            onChange={(e) => setStrId(e.target.value)}
+                          />
+                        </Lg.InputCenter>
+                      </Lg.ContainerFormCenter>
+
+                      <label>
+                        Determine o seu Email cadastrado para o "ENVIO" do
+                        resgate.
+                      </label>
+                    </Lg.ContainerLogin>
                   ) : null}
                   {isresgate && mdlogin === 6 ? (
                     <div> mdlogin === 6</div>
