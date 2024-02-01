@@ -32,6 +32,7 @@ export const HearderHome = ({onclick, title, onchange, ischeck, onLogin }:PropsH
       <ContentHearderRight>
         <ContentHearderItensBar>
          <ContentPagesButton titbtn={"Logar..."} onClick={onLogin} />
+         
          <ContentPagesButton titbtn={"BTN-2"} />
          <Pg.ContainerPagesButton>
             <Switch

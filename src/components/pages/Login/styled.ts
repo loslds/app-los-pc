@@ -253,9 +253,9 @@ export const ContainerBtnLoginSRigth = styled.div`
   color:  ${props => props.theme.colors.textColor};
 `;
 
-export const ContainerAreaText = styled.div`
+export const ContainerAreaText = styled.div<{onoff: boolean}>`
   border: 1px dashed red;
-  margin: 0px 0px 0px 0px;
+  margin: 0px 10px 0px 10px;
   padding: 0px 0px 0px 0px;
   
   size: 16px;
@@ -272,15 +272,15 @@ export const ContainerAreaText = styled.div`
 
 export const ContainerFormCenter = styled.div<{pwidth? : string}>`
   border: 3px double;
-  border-color: red;
+  border-color: greenyellow;
   border-radius: 10px;
   //border-color: ${props => props.theme.colors.textColor};
   padding: 5px 5px 5px 5px;
   margin: 5px 5px 5px 5px;
   width: ${({ pwidth }) => pwidth || '65%'};
-  display: flex;
-  //flex-flow: column;
+  display: flex ;
+  //flex-flow: wrap;
   //flex-wrap: wrap;
-  //justify-content: center;
+  justify-content: space-between;
   //align-content: center;
 `;
