@@ -103,7 +103,7 @@ export const Login = () => {
   //  const handlerChangeNmEmp = (e: React.ChangeEvent<HTMLSelectElement>) => {
   //    setSelectNmEmp(e.target.value);
   //  };
-  const { dispatch } = AcessoUseForm();
+  const { state, dispatch } = AcessoUseForm();
 
   React.useEffect(() => {
     dispatch({
@@ -132,22 +132,13 @@ export const Login = () => {
     'Resgate com E-Mail.',
     'Resgate com SMS.',
     'Resgate com Segurança.',
-    'Alteração de Dados.'
+    'Cadastro Acesso.'
   ];
 
   const setModo = (level: number) => {
     setMdLogin(level);
     setNmLogin(DescrOpc[level]);
   };
-
-  // const handleresgatar = (rst: number) => {
-  //   if (rst > 0) {
-  //     setSolicitar(Rtrue);
-  //     setResgatar(0);
-  //   } else {
-  //     setSolicitarR(false);
-  //   }
-  // };
 
   React.useEffect(() => {
     if (mdlogin === 0) {
@@ -167,10 +158,6 @@ export const Login = () => {
     if (mdlogin >= 5) {
       setSolicitar(false);
       setResgatar(true);
-    }
-    if (mdresgate >= 5) {
-      setSolicitar(true);
-      setResgatar(false);
     }
   }, [mdlogin, mdresgate]);
 
@@ -200,7 +187,7 @@ export const Login = () => {
       alert('solicita mdlogin = 8');
     }
   }, [mdsolicitar]);
-  
+
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
@@ -302,7 +289,7 @@ export const Login = () => {
               <ContentLoginOpc pwidth={'100%'} open={isopcao}>
                 <ContentTitleLoginOpc titleopc="Aplicação :" />
                 <ContentInput>
-                  {solicitar && mdlogin === 1 ? (
+                  {solicitar && mdlogin == 1 ? (
                     <form name="emailpas">
                       <Lg.InputCenter>
                         <label>E-Mail</label>
@@ -328,7 +315,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {solicitar && mdlogin === 2 ? (
+                  {solicitar && mdlogin == 2 ? (
                     <form name="emailpin">
                       <Lg.InputCenter>
                         <label>E-Mail</label>
@@ -355,7 +342,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {solicitar && mdlogin === 3 ? (
+                  {solicitar && mdlogin == 3 ? (
                     <form name="namepas">
                       <Lg.InputCenter>
                         <label>Pseud.:</label>
@@ -382,7 +369,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {solicitar && mdlogin === 4 ? (
+                  {solicitar && mdlogin == 4 ? (
                     <form name="namepin">
                       <Lg.InputCenter>
                         <label>Pseud.:</label>
@@ -408,14 +395,10 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {resgatar && mdlogin === 5 ? (
-                    <p>solicitar && mdresgate === 5</p>
-                  ) : null}
-                  {/* ///////////////////////////////////////////////////////////// */}
-
-                  {resgatar && mdlogin >= 5 ? (
+                  {/* ////////////////////////////////// */}
+                  {resgatar && mdlogin == 5 ? (
                     <Lg.ContainerAreaText onoff={true}>
-                      <form name="resgmail">
+                      <form name="resgmail3">
                         <Lg.InputCenter>
                           <h3>Mail : </h3>
                           <input
@@ -440,11 +423,42 @@ export const Login = () => {
                       </form>
                     </Lg.ContainerAreaText>
                   ) : null}
+                  {resgatar && mdlogin == 6 ? (
+                    <Lg.ContainerAreaText onoff={true}>
+                      <form name="resgfonec">
+                        <Lg.InputCenter>
+                          <h3>Fone : </h3>
 
-                  {resgatar && mdlogin >= 6 ? <div> mdlogin === 6</div> : null}
-                  {resgatar && mdlogin >= 6 ? <div> mdlogin === 7</div> : null}
-                  {resgatar && mdlogin == 8 ? <div> mdlogin === 8</div> : null}
+                          <input
+                            type="text"
+                            id="fonc"
+                            name="fonc"
+                            value={strid}
+                            placeholder="99 9 9999 9999"
+                            onChange={(e) => setStrId(e.target.value)}
+                          />
+                        </Lg.InputCenter>
+                        <br />
+                        <p>
+                          Determine o seu Celular cadastrado para o "ENVIO" do
+                          resgate.
+                        </p>
+                        <p>Só edite numeros DDD Número...</p>
+                        <br />
+                      </form>
+                    </Lg.ContainerAreaText>
+                  ) : null}
+
+                  {resgatar && mdlogin == 7 ? <div> mdresgate == 7</div> : null}
+                  {resgatar && mdlogin == 8 ? <div> mdresgate == 8</div> : null}
+
+                  {resgatar && mdsolicitar == 5 ? <p> mdsolicitar == 5</p> : null}
+                  {mdsolicitar == 6 ? <p> mdsolicitar == 6</p> : null}
+                  {mdsolicitar == 7 ? <p> mdsolicitar == 7</p> : null}
+                  {mdsolicitar == 8 ? <p> mdsolicitar == 8</p> : null}
                 </ContentInput>
+
+                {/* ////////////////////////////////// */}
               </ContentLoginOpc>
             </ContentFormCollunsCenter>
 
@@ -452,20 +466,20 @@ export const Login = () => {
             <ContentMainButtonsLogin>
               <ContentButtonTitleImg title="Voltar." onClick={goto('/')} />
 
-              {solicitar && mdlogin >= 1 ? (
+              {solicitar && mdlogin >= 1 && mdlogin <= 4 ? (
                 <ContentButtonTitleImg
                   title="Solicitar."
                   onClick={() => setMdSolicitar(mdlogin)}
                 />
               ) : null}
 
-              {resgatar && mdlogin >= 5 && mdresgate === 0 ? (
+              {mdlogin >= 5 ? (
                 <ContentButtonTitleImg
                   title="Resgatar."
-                  onClick={() => setMdResgate(mdlogin)}
+                  onClick={() => setMdSolicitar(mdlogin)}
                 />
               ) : null}
-              {resgatar && mdresgate >= 5 ? (
+              {mdsolicitar >= 5 ? (
                 <ContentButtonTitleImg
                   title="Solicitar."
                   onClick={() => alert('solicitar resgate....')}
@@ -482,6 +496,8 @@ export const Login = () => {
                 <p>
                   modlogin : {mdlogin}...nmlogin : {nmlogin}...
                 </p>
+                <p>currentstep : {state.currentstep}</p>
+
                 {mdlogin === 1 ? (
                   <p>
                     nmlogin : {nmlogin}...E-Mail : {strid}...PassW : {strpsw}
@@ -500,9 +516,34 @@ export const Login = () => {
                     ...
                   </p>
                 ) : null}
-                {mdlogin === 3 ? (
+                {mdlogin === 4 ? (
                   <p>
                     nmlogin : {nmlogin}...Apelido : {strid}...PIN : {strpsw}
+                    ...
+                  </p>
+                ) : null}
+                {/* ////////////////////////////////////////////  */}
+                {mdresgate === 5 ? (
+                  <p>
+                    nmlogin : {nmlogin}...E-Mail : {strid}
+                    ...
+                  </p>
+                ) : null}
+                {mdresgate === 6 ? (
+                  <p>
+                    nmlogin : {nmlogin}...FoneC : {strid}
+                    ...
+                  </p>
+                ) : null}
+                {mdresgate === 7 ? (
+                  <p>
+                    nmlogin : {nmlogin}...Codigo Seguro : {strid}
+                    ...
+                  </p>
+                ) : null}
+                {mdresgate === 8 ? (
+                  <p>
+                    nmlogin : {nmlogin}...Cadastro : {strid}
                     ...
                   </p>
                 ) : null}
