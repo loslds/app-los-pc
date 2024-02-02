@@ -76,10 +76,11 @@ export const Login = () => {
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
 
-  const [isresgate, setIsResgate] = React.useState(false);
-  const [solicitar, setSolicitar] = React.useState(false);
   const [resgatar, setResgatar] = React.useState(false);
-  const [resgate5, setResgate5] = React.useState(false);
+  const [mdresgate, setMdResgate] = React.useState(0);
+
+  const [solicitar, setSolicitar] = React.useState(false);
+  const [mdsolicitar, setMdSolicitar] = React.useState(0);
 
   // const [mailusuario, setMailUsuario] = React.useState('');
   // const [pswusuario, setPswUsuario] = React.useState('');
@@ -139,20 +140,67 @@ export const Login = () => {
     setNmLogin(DescrOpc[level]);
   };
 
+  // const handleresgatar = (rst: number) => {
+  //   if (rst > 0) {
+  //     setSolicitar(Rtrue);
+  //     setResgatar(0);
+  //   } else {
+  //     setSolicitarR(false);
+  //   }
+  // };
+
   React.useEffect(() => {
     if (mdlogin === 0) {
       setIsOpcao(false);
+      setSolicitar(false);
+      setMdSolicitar(0);
+      setResgatar(false);
+      setMdResgate(0);
     } else if (mdlogin > 0) {
       setIsOpcao(true);
     }
 
-    if (mdlogin > 4) {
-      setIsResgate(true);
-    } else {
-      setIsResgate(false);
+    if (mdlogin <= 4) {
+      setSolicitar(true);
+      setResgatar(false);
     }
-  }, [mdlogin]);
+    if (mdlogin >= 5) {
+      setSolicitar(false);
+      setResgatar(true);
+    }
+    if (mdresgate >= 5) {
+      setSolicitar(true);
+      setResgatar(false);
+    }
+  }, [mdlogin, mdresgate]);
 
+  React.useEffect(() => {
+    if (mdsolicitar === 1) {
+      alert('solicita mdlogin = 1');
+    }
+    if (mdsolicitar === 2) {
+      alert('solicita mdlogin = 2');
+    }
+    if (mdsolicitar === 3) {
+      alert('solicita mdlogin = 3');
+    }
+    if (mdsolicitar === 4) {
+      alert('solicita mdsolicitar = 4');
+    }
+    if (mdsolicitar === 5) {
+      alert('solicita mdlogin = 5');
+    }
+    if (mdsolicitar === 6) {
+      alert('solicita mdlogin = 6');
+    }
+    if (mdsolicitar === 7) {
+      alert('solicita mdlogin = 7');
+    }
+    if (mdsolicitar === 8) {
+      alert('solicita mdlogin = 8');
+    }
+  }, [mdsolicitar]);
+  
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
@@ -254,7 +302,7 @@ export const Login = () => {
               <ContentLoginOpc pwidth={'100%'} open={isopcao}>
                 <ContentTitleLoginOpc titleopc="Aplicação :" />
                 <ContentInput>
-                  {mdlogin  === 1 ? (
+                  {solicitar && mdlogin === 1 ? (
                     <form name="emailpas">
                       <Lg.InputCenter>
                         <label>E-Mail</label>
@@ -280,7 +328,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {mdlogin === 2 ? (
+                  {solicitar && mdlogin === 2 ? (
                     <form name="emailpin">
                       <Lg.InputCenter>
                         <label>E-Mail</label>
@@ -307,7 +355,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {mdlogin === 3 ? (
+                  {solicitar && mdlogin === 3 ? (
                     <form name="namepas">
                       <Lg.InputCenter>
                         <label>Pseud.:</label>
@@ -334,7 +382,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {mdlogin === 4 ? (
+                  {solicitar && mdlogin === 4 ? (
                     <form name="namepin">
                       <Lg.InputCenter>
                         <label>Pseud.:</label>
@@ -360,10 +408,13 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
- {/* ///////////////////////////////////////////////////////////// */}
+                  {resgatar && mdlogin === 5 ? (
+                    <p>solicitar && mdresgate === 5</p>
+                  ) : null}
+                  {/* ///////////////////////////////////////////////////////////// */}
 
-                  {isresgate && mdlogin === 5 ? (
-                    <Lg.ContainerAreaText onoff={resgate5}>
+                  {resgatar && mdlogin >= 5 ? (
+                    <Lg.ContainerAreaText onoff={true}>
                       <form name="resgmail">
                         <Lg.InputCenter>
                           <h3>Mail : </h3>
@@ -376,7 +427,7 @@ export const Login = () => {
                             onChange={(e) => setStrId(e.target.value)}
                           />
                         </Lg.InputCenter>
-                        <br/>
+                        <br />
                         <p>
                           Determine o seu Email cadastrado para o "ENVIO" do
                           resgate.
@@ -385,19 +436,14 @@ export const Login = () => {
                           Caso não emcontre na sua caixa de Entrada do email,
                           procure na caixa SPAN...
                         </p>
-                        <br/>
+                        <br />
                       </form>
                     </Lg.ContainerAreaText>
                   ) : null}
-                  {isresgate && mdlogin === 6 ? (
-                    <div> mdlogin === 6</div>
-                  ) : null}
-                  {isresgate && mdlogin === 7 ? (
-                    <div> mdlogin === 7</div>
-                  ) : null}
-                  {isresgate && mdlogin === 8 ? (
-                    <div> mdlogin === 8</div>
-                  ) : null}
+
+                  {resgatar && mdlogin >= 6 ? <div> mdlogin === 6</div> : null}
+                  {resgatar && mdlogin >= 6 ? <div> mdlogin === 7</div> : null}
+                  {resgatar && mdlogin == 8 ? <div> mdlogin === 8</div> : null}
                 </ContentInput>
               </ContentLoginOpc>
             </ContentFormCollunsCenter>
@@ -405,27 +451,31 @@ export const Login = () => {
             {mdlogin > 0 ? <Pg.DivisionPgHztal /> : null}
             <ContentMainButtonsLogin>
               <ContentButtonTitleImg title="Voltar." onClick={goto('/')} />
-              
-              {mdlogin <= 3 ? (
+
+              {solicitar && mdlogin >= 1 ? (
                 <ContentButtonTitleImg
                   title="Solicitar."
-                  onClick={() => alert('solicitar....')}
+                  onClick={() => setMdSolicitar(mdlogin)}
                 />
               ) : null}
 
-              {mdlogin > 3 ? (
+              {resgatar && mdlogin >= 5 && mdresgate === 0 ? (
                 <ContentButtonTitleImg
                   title="Resgatar."
-                  onClick={() => alert('resgatar....')}
+                  onClick={() => setMdResgate(mdlogin)}
                 />
               ) : null}
-       
+              {resgatar && mdresgate >= 5 ? (
+                <ContentButtonTitleImg
+                  title="Solicitar."
+                  onClick={() => alert('solicitar resgate....')}
+                />
+              ) : null}
             </ContentMainButtonsLogin>
 
             <ContentMainButtonsLogin>
               <ContentTitleLoginOpc titleopc="respostas das ações :" />
               <Lg.ContainerAreaText onoff={true}>
-                
                 <p>
                   idempresa : {idempresa}...fantempresa : {fantempresa}...
                 </p>
