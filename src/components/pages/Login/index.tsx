@@ -154,11 +154,11 @@ export const Login = () => {
     if (mdlogin === 0) {
       setIsOpen(false);
       setSolicitar(false);
-      setMdSolicitar(0)
+      setMdSolicitar(0);
       setResgatar(false);
-      setMdResgatar(0)
+      setMdResgatar(0);
       setEnviar(false);
-      setMdEnviar(0)
+      setMdEnviar(0);
       setIsOpcao(false);
       setNrOpcao(0);
     } else {
@@ -225,6 +225,8 @@ export const Login = () => {
         alert('mdlogin :' + mdlogin);
       } else if (mdlogin == 3) {
         alert('mdlogin :' + mdlogin);
+      } else if (mdlogin == 4) {
+        alert('nropcao :' + mdlogin);
       } else if (mdlogin == 5) {
         alert('nropcao :' + mdlogin);
       } else if (mdlogin == 6) {
@@ -365,7 +367,6 @@ export const Login = () => {
             <Pg.DivisionPgHztal />
 
             <ContentFormCollunsCenter pwidth={'100%'} isopen={isopen}>
-              
               <ContentLoginOpc pwidth={'100%'} open={isopen}>
                 <ContentTitleLoginOpc titleopc="Aplicação :" />
 
@@ -584,7 +585,7 @@ export const Login = () => {
                     <p>
                       mdlogin : {mdlogin}...nmlogin : {nmlogin}
                     </p>
-                    <p>mdisopçao : {nropcao}...</p>
+                    <p>nropçao : {nropcao}...</p>
                     <Lg.ContainerBtnLoginSRigth>
                       <ContentButtonConfimation
                         title={'SIM'}
@@ -601,9 +602,9 @@ export const Login = () => {
                     </Lg.ContainerBtnLoginSRigth>
                   </Lg.ContainerAreaText>
                 ) : null}
-
               </ContentLoginOpc>
             </ContentFormCollunsCenter>
+
             {mdlogin > 0 ? <Pg.DivisionPgHztal /> : null}
 
             <ContentMainButtonsLogin>
@@ -627,9 +628,8 @@ export const Login = () => {
               ) : null}
             </ContentMainButtonsLogin>
 
-
-              <Pg.DivisionPgHztal />
-              <ContentMainButtonsLogin>
+            <Pg.DivisionPgHztal />
+            <ContentMainButtonsLogin>
               <ContentTitleLoginOpc titleopc="respostas das ações :" />
               <Lg.ContainerAreaText onoff={true}>
                 <p>
@@ -704,10 +704,8 @@ export const Login = () => {
                     nmlogin: {nmlogin};.Cadastro: {strid}, mdenviar: {mdenviar}
                   </p>
                 ) : null}
-
               </Lg.ContainerAreaText>
-            </ContentMainButtonsLogin> 
-
+            </ContentMainButtonsLogin>
           </Lg.ContainerMainLogin>
         </ContentLoginPg>
       </ThemeLogin>
