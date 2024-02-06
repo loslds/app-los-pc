@@ -5,6 +5,7 @@ import dark from '../../../styles/themes/dark.ts';
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
 import React from 'react';
 
+import not from '../../../assets/svgs/proibido.svg';
 import { useNavigate } from 'react-router-dom';
 import {
   AcessoUseForm,
@@ -22,6 +23,8 @@ import { ContentTitleLoginOpc } from './ContentTitleLoginOpc.tsx';
 import { ContentInput } from './forms/ContentInput.tsx';
 import { ContentRadioOpc } from './forms/ContentRadioOpc.tsx';
 import { ContentFormCollunsCenter } from './forms/ContentFormCollunsCenter.tsx';
+import { ContentTitlePanel } from './ContentTitlePanel.tsx';
+import { ContentButtonConfimation } from './ContentButtonConfimation.tsx';
 
 //import { ListEmps } from "../../../books/ListEmps.tsx";
 
@@ -65,6 +68,7 @@ export const Login = () => {
     };
   };
 
+  const [isopen, setIsOpen] = React.useState(false);
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções:');
 
@@ -79,7 +83,7 @@ export const Login = () => {
   const [nropcao, setNrOpcao] = React.useState(0);
 
   const [solicitar, setSolicitar] = React.useState(false);
-  const [mdsolicitar, setMdsolicitar] = React.useState(0);
+  const [mdsolicitar, setMdSolicitar] = React.useState(0);
 
   const [resgatar, setResgatar] = React.useState(false);
   const [mdresgatar, setMdResgatar] = React.useState(0);
@@ -148,36 +152,43 @@ export const Login = () => {
 
   React.useEffect(() => {
     if (mdlogin === 0) {
+      setIsOpen(false);
       setSolicitar(false);
+      setMdSolicitar(0)
       setResgatar(false);
+      setMdResgatar(0)
       setEnviar(false);
+      setMdEnviar(0)
       setIsOpcao(false);
       setNrOpcao(0);
     } else {
-      setNrOpcao(mdlogin);
+      setIsOpen(true);
       if (mdlogin >= 1 && mdlogin <= 4) {
         setSolicitar(true);
         setResgatar(false);
         setEnviar(false);
+        setIsOpcao(false);
       }
       if (mdlogin >= 5 && mdlogin <= 8 && !resgatar && !enviar) {
         setSolicitar(false);
         setResgatar(true);
         setEnviar(false);
+        setIsOpcao(false);
       } else if (mdlogin >= 5 && mdlogin <= 8 && resgatar && !enviar) {
         setSolicitar(false);
         setResgatar(false);
         setEnviar(true);
+        setIsOpcao(false);
       } else if (mdlogin >= 5 && mdlogin <= 8 && !resgatar && enviar) {
         setSolicitar(false);
         setResgatar(false);
         setEnviar(false);
+        setIsOpcao(true);
       }
     }
-  }, [mdlogin]);
+  }, [mdlogin, nropcao]);
 
   const handlesolicitar = React.useCallback(() => {
-    setNrOpcao(mdlogin);
     if (solicitar) {
       setSolicitar(false);
     }
@@ -190,50 +201,71 @@ export const Login = () => {
     if (resgatar) {
       setResgatar(false);
     }
-    setEnviar(true);
-  }, [resgatar]);
+    if (!enviar) {
+      setEnviar(true);
+    }
+  }, [resgatar, enviar]);
 
   const handleenviar = React.useCallback(() => {
     if (enviar) {
       setEnviar(false);
     }
-    setIsOpcao(true);
-    setNrOpcao(mdlogin);
-  }, [enviar]);
+    if (!isopcao) {
+      setIsOpcao(true);
+    }
+  }, [enviar, isopcao]);
 
   const handlernropcao = React.useCallback(() => {
     if (isopcao) {
-      if (nropcao >= 1 && nropcao <= 4) {
-        if (nropcao == 1) {
-          alert('nropcao :' + mdsolicitar);
-        } else if (nropcao == 1) {
-          alert('nropcao :' + mdsolicitar);
-        } else if (nropcao == 1) {
-          alert('nropcao :' + mdsolicitar);
-        } else if (nropcao == 1) {
-          alert('nropcao :' + mdsolicitar);
-        }
-      } else if (nropcao >= 4 && nropcao <= 8) {
-        if (nropcao == 5) {
-          alert('nropcao :' + nropcao);
-        } else if (nropcao == 6) {
-          alert('nropcao :' + nropcao);
-        } else if (nropcao == 7) {
-          alert('nropcao :' + nropcao);
-        } else if (nropcao == 8) {
-          alert('nropcao :' + nropcao);
-        }
+      if (mdlogin == 1) {
+        alert('mdlogin :' + mdlogin);
+      } else if (mdlogin == 1) {
+        alert('mdlogin :' + mdlogin);
+      } else if (mdlogin == 2) {
+        alert('mdlogin :' + mdlogin);
+      } else if (mdlogin == 3) {
+        alert('mdlogin :' + mdlogin);
+      } else if (mdlogin == 5) {
+        alert('nropcao :' + mdlogin);
+      } else if (mdlogin == 6) {
+        alert('nropcao :' + mdlogin);
+      } else if (mdlogin == 7) {
+        alert('mdlogin :' + mdlogin);
+      } else if (mdlogin == 8) {
+        alert('mdlogin :' + mdlogin);
+      }
+      if (nropcao != mdlogin) {
+        setNrOpcao(mdlogin);
       }
     }
   }, [isopcao, nropcao]);
 
   React.useEffect(() => {
+    if (mdlogin >= 1 && mdlogin <= 4) {
+      if (mdsolicitar != mdlogin) {
+        setMdSolicitar(mdlogin);
+        setNrOpcao(mdlogin);
+      }
+    }
+    if (mdlogin >= 5 && mdlogin <= 8 && !resgatar && !enviar) {
+      if (mdresgatar != mdlogin) {
+        setMdResgatar(mdlogin);
+      }
+    }
+    if (mdlogin >= 5 && mdlogin <= 8 && resgatar && !enviar) {
+      if (mdenviar != mdlogin) {
+        setMdEnviar(mdlogin);
+      }
+    }
+    if (mdlogin >= 5 && mdlogin <= 8 && !resgatar && enviar) {
+      if (mdenviar != mdlogin) {
+        setNrOpcao(mdlogin);
+      }
+    }
     if (logado) {
       alert('mostra mensagem Logado.');
-    } else {
-      alert('volta para o inicio.');
     }
-  }, [logado]);
+  }, [mdlogin, mdsolicitar, mdresgatar, mdenviar, nropcao, logado]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -332,11 +364,14 @@ export const Login = () => {
 
             <Pg.DivisionPgHztal />
 
-            <ContentFormCollunsCenter pwidth={'100%'} isopen={isopcao}>
-              <ContentLoginOpc pwidth={'100%'} open={isopcao}>
+            <ContentFormCollunsCenter pwidth={'100%'} isopen={isopen}>
+              
+              <ContentLoginOpc pwidth={'100%'} open={isopen}>
                 <ContentTitleLoginOpc titleopc="Aplicação :" />
+
                 <ContentInput>
-                  {solicitar && mdlogin == 1 ? (
+                  {/* MODO SOLICITAR */}
+                  {solicitar && mdsolicitar == 1 ? (
                     <form name="emailpas">
                       <Lg.InputCenter>
                         <label>E-Mail</label>
@@ -362,7 +397,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {solicitar && mdlogin == 2 ? (
+                  {solicitar && mdsolicitar == 2 ? (
                     <form name="emailpin">
                       <Lg.InputCenter>
                         <label>E-Mail</label>
@@ -389,7 +424,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {solicitar && mdlogin == 3 ? (
+                  {solicitar && mdsolicitar == 3 ? (
                     <form name="namepas">
                       <Lg.InputCenter>
                         <label>Pseud.:</label>
@@ -416,7 +451,7 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {solicitar && mdlogin == 4 ? (
+                  {solicitar && mdsolicitar == 4 ? (
                     <form name="namepin">
                       <Lg.InputCenter>
                         <label>Pseud.:</label>
@@ -442,8 +477,9 @@ export const Login = () => {
                       </Lg.InputCenter>
                     </form>
                   ) : null}
-                  {/* ////////////////////////////////// */}
-                  {resgatar && mdlogin == 5 ? (
+
+                  {/* MODO RESGATAR */}
+                  {resgatar && mdresgatar == 5 ? (
                     <Lg.ContainerAreaText onoff={true}>
                       <form name="resgmail">
                         <Lg.InputCenter>
@@ -470,7 +506,7 @@ export const Login = () => {
                       </form>
                     </Lg.ContainerAreaText>
                   ) : null}
-                  {resgatar && mdlogin == 6 ? (
+                  {resgatar && mdresgatar == 6 ? (
                     <Lg.ContainerAreaText onoff={true}>
                       <form name="resgfonec">
                         <Lg.InputCenter>
@@ -494,73 +530,106 @@ export const Login = () => {
                       </form>
                     </Lg.ContainerAreaText>
                   ) : null}
-                  {resgatar && mdlogin == 7 ? (
-                    <div>
+                  {resgatar && mdresgatar == 7 ? (
+                    <Lg.ContainerAreaText onoff={true}>
                       <p>
                         mdresgate={mdresgatar},mdenviar={mdenviar}
                       </p>
-                    </div>
+                    </Lg.ContainerAreaText>
                   ) : null}
-                  {resgatar && mdlogin == 8 ? (
-                    <div>
+                  {resgatar && mdresgatar == 8 ? (
+                    <Lg.ContainerAreaText onoff={true}>
                       <p>
                         mdresgate={mdresgatar},mdenviar={mdenviar}
                       </p>
-                    </div>
+                    </Lg.ContainerAreaText>
                   ) : null}
 
-                  {enviar ? <p>verdadeiro</p> : <p>falso</p>}
-                  {/* ////////////////////////////////// */}
-                  {enviar && mdlogin == 5 ? (
+                  {/* MODO ENVIAR */}
+                  {enviar && mdenviar == 5 ? (
                     <Lg.ContainerAreaText onoff={true}>
                       <h2>recebe o codigo do email</h2>
                     </Lg.ContainerAreaText>
                   ) : null}
-                  {enviar && mdlogin == 6 ? (
+                  {enviar && mdenviar == 6 ? (
                     <Lg.ContainerAreaText onoff={true}>
                       <h2>recebe o codigo do SMS</h2>
                     </Lg.ContainerAreaText>
                   ) : null}
-                  {enviar && mdlogin == 7 ? (
-                    <h2>
-                      se imagem for verdadeira, solicita nova senha de acesso e
-                      altera cadastro.
-                    </h2>
+                  {enviar && mdenviar == 7 ? (
+                    <Lg.ContainerAreaText onoff={true}>
+                      <h2>
+                        se imagem for verdadeira, solicita nova senha de acesso
+                        e altera cadastro.
+                      </h2>
+                    </Lg.ContainerAreaText>
                   ) : null}
-                  {enviar && mdlogin == 8 ? (
-                    <h2>
-                      solicita edição dos dados necessarios para entrar apos
-                      busca não existente.
-                    </h2>
+                  {enviar && mdenviar == 8 ? (
+                    <Lg.ContainerAreaText onoff={true}>
+                      <h2>
+                        solicita edição dos dados necessarios para entrar apos
+                        busca não existente.
+                      </h2>
+                    </Lg.ContainerAreaText>
                   ) : null}
                 </ContentInput>
-                {/* ////////////////////////////////// */}
+
+                {/* MODO OPCAO */}
+                {isopcao && nropcao >= 1 ? (
+                  <Lg.ContainerAreaText onoff={isopen}>
+                    <ContentTitlePanel title={' " CONFIRMA DADOS...? " '} />
+                    <p>
+                      idempresa : {idempresa}...fa-ntempresa : {fantempresa}
+                    </p>
+                    <p>
+                      mdlogin : {mdlogin}...nmlogin : {nmlogin}
+                    </p>
+                    <p>mdisopçao : {nropcao}...</p>
+                    <Lg.ContainerBtnLoginSRigth>
+                      <ContentButtonConfimation
+                        title={'SIM'}
+                        img={not}
+                        titlebtn="Aceitar..."
+                        onClick={handlernropcao}
+                      />
+                      <ContentButtonConfimation
+                        title={'NÃO'}
+                        img={not}
+                        titlebtn="Retornar..."
+                        onClick={goto('/')}
+                      />
+                    </Lg.ContainerBtnLoginSRigth>
+                  </Lg.ContainerAreaText>
+                ) : null}
+
               </ContentLoginOpc>
             </ContentFormCollunsCenter>
-
             {mdlogin > 0 ? <Pg.DivisionPgHztal /> : null}
+
             <ContentMainButtonsLogin>
               <ContentButtonTitleImg title="Voltar." onClick={goto('/')} />
 
-              {solicitar ? (
+              {solicitar && isopen ? (
                 <ContentButtonTitleImg
                   title="Solicitar."
                   onClick={handlesolicitar}
                 />
               ) : null}
 
-              {resgatar ? (
+              {resgatar && isopen ? (
                 <ContentButtonTitleImg
                   title="Resgatar."
                   onClick={handleresgatar}
                 />
               ) : null}
-              {enviar ? (
+              {enviar && isopen ? (
                 <ContentButtonTitleImg title="Enviar." onClick={handleenviar} />
               ) : null}
             </ContentMainButtonsLogin>
 
-            <ContentMainButtonsLogin>
+
+              <Pg.DivisionPgHztal />
+              <ContentMainButtonsLogin>
               <ContentTitleLoginOpc titleopc="respostas das ações :" />
               <Lg.ContainerAreaText onoff={true}>
                 <p>
@@ -591,59 +660,54 @@ export const Login = () => {
                     nmlogin : {nmlogin}...Apelido : {strid}...PIN : {strpsw}
                   </p>
                 ) : null}
-                {/* ////////////////////////////////////////////  */}
                 {mdlogin === 5 && resgatar ? (
                   <p>
                     {' '}
-                    nmlogin: {nmlogin};.E-Mail: {strid},. mdresgatar:{' '}
+                    nmlogin: {nmlogin};.E-Mail: {strid}, mdresgatar:{' '}
                     {mdresgatar}.
                   </p>
                 ) : null}
                 {mdlogin === 6 && resgatar ? (
                   <p>
-                    nmlogin: {nmlogin};.FoneC: {strid},. mdresgatar:{' '}
-                    {mdresgatar}.
+                    nmlogin: {nmlogin};.FoneC: {strid}, mdresgatar: {mdresgatar}
                   </p>
                 ) : null}
                 {mdlogin === 7 && resgatar ? (
                   <p>
-                    nmlogin: {nmlogin};.Cod.Seg: {strid},. mdresgatar:{' '}
-                    {mdresgatar}.
+                    nmlogin: {nmlogin};.Cod.Seg: {strid}, mdresgatar:{' '}
+                    {mdresgatar}
                   </p>
                 ) : null}
                 {mdlogin === 8 && resgatar ? (
                   <p>
-                    nmlogin: {nmlogin};.Cadastro: {strid},. mdresgatar:
-                    {mdresgatar}.
+                    nmlogin: {nmlogin};.Cadastro: {strid}, mdresgatar:
+                    {mdresgatar}
                   </p>
                 ) : null}
-                {/* ////////////////////////////////////////////  */}
                 {mdlogin === 5 && enviar ? (
                   <p>
-                    {' '}
-                    nmlogin: {nmlogin};.E-Mail: {strid},. mdenviar: {mdenviar}.
+                    nmlogin: {nmlogin};.E-Mail: {strid}, mdenviar: {mdenviar}
                   </p>
                 ) : null}
                 {mdlogin === 6 && enviar ? (
                   <p>
-                    nmlogin: {nmlogin};.FoneC: {strid},. mdenviar: {mdenviar}.
+                    nmlogin: {nmlogin};.FoneC: {strid}, mdenviar: {mdenviar}
                   </p>
                 ) : null}
                 {mdlogin === 7 && enviar ? (
                   <p>
-                    nmlogin: {nmlogin};.Cod.Seg: {strid},. mdenviar: {mdenviar}.
+                    nmlogin: {nmlogin};.Cod.Seg: {strid}, mdenviar: {mdenviar}
                   </p>
                 ) : null}
                 {mdlogin === 8 && enviar ? (
                   <p>
-                    nmlogin: {nmlogin};.Cadastro: {strid},. mdenviar: {mdenviar}
-                    .
+                    nmlogin: {nmlogin};.Cadastro: {strid}, mdenviar: {mdenviar}
                   </p>
                 ) : null}
 
-                {/* ////////////////////////////////////////////  */}
               </Lg.ContainerAreaText>
-            </ContentMainButtonsLogin>
+            </ContentMainButtonsLogin> 
+
           </Lg.ContainerMainLogin>
         </ContentLoginPg>
       </ThemeLogin>

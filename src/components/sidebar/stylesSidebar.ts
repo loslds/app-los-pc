@@ -158,7 +158,6 @@ export const ContainerSideOnOffButton = styled.div`
 `;
 export const ButtonOnOffImg = styled.button<{ img?: string }>`
   border: 2px; 
-  
   border-radius: 3px;
   margin: 2px 5px 2px 5px;
   color:  ${props => props.theme.colors.textColor};
@@ -173,7 +172,7 @@ export const ButtonOnOffImg = styled.button<{ img?: string }>`
   cursor: pointer;
   outline: none;
   height: 30px;
-  width: 30px;
+  min-width: 30px;
   display: flex;
   flex-flow: nowrap;
   justify-content: center;

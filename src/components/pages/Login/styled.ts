@@ -24,6 +24,20 @@ export const ContainerLoginFlex = styled.div<{pwidth? : string}>`
   justify-content: space-between;
   align-content: center;
 `;
+export const ContainerTitlePanel = styled.div`
+  border: none; /*1px dashed red;*/
+  padding: 0px 0px 0px 0px;
+  margin: 5px, 5px;
+  min-height: 60px;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+
 export const ContainerTitleLogin = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
@@ -254,7 +268,7 @@ export const ContainerBtnLoginSRigth = styled.div`
 `;
 
 export const ContainerAreaText = styled.div<{onoff: boolean}>`
-  border: 1px dashed red;
+  border: none;
   margin: 0px 10px 0px 10px;
   padding: 0px 0px 0px 0px;
   
