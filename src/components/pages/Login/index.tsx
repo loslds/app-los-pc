@@ -194,62 +194,46 @@ export const Login = () => {
   }, [resgatar]);
 
   const handleenviar = React.useCallback(() => {
-    if (!enviar) {
-      setSolicitar(false);
-    }
-    if (resgatar) {
-      setResgatar(false);
-    }
     if (enviar) {
-      setResgatar(true);
+      setEnviar(false);
     }
+    setIsOpcao(true);
     setNrOpcao(mdlogin);
   }, [enviar]);
 
-  React.useEffect(() => {
-    if (solicitar) {
-    }
-  }, []);
-
   const handlernropcao = React.useCallback(() => {
-    if (enviar && mdlogin >= 5) {
-      if (mdenviar == 5) {
-        alert(
-          'mdenviar :' +
-            mdenviar +
-            ', Verifica se existe Email e solicita o envio Email .'
-        );
-      }
-      if (mdenviar == 6) {
-        alert(
-          'mdenviar :' +
-            mdenviar +
-            ', Verifica se existe o Celular e soplicita o envio por SMS.'
-        );
-      }
-      if (mdenviar == 7) {
-        alert(
-          'mdenviar :' +
-            mdenviar +
-            ', Solicita a imagem correta e Envia acesso pelo email e SMS.'
-        );
-      }
-      if (mdenviar == 8) {
-        alert(
-          'mdenviar :' +
-            mdenviar +
-            ', Verifica se existe dados e Grava novo Acesso.'
-        );
+    if (isopcao) {
+      if (nropcao >= 1 && nropcao <= 4) {
+        if (nropcao == 1) {
+          alert('nropcao :' + mdsolicitar);
+        } else if (nropcao == 1) {
+          alert('nropcao :' + mdsolicitar);
+        } else if (nropcao == 1) {
+          alert('nropcao :' + mdsolicitar);
+        } else if (nropcao == 1) {
+          alert('nropcao :' + mdsolicitar);
+        }
+      } else if (nropcao >= 4 && nropcao <= 8) {
+        if (nropcao == 5) {
+          alert('nropcao :' + nropcao);
+        } else if (nropcao == 6) {
+          alert('nropcao :' + nropcao);
+        } else if (nropcao == 7) {
+          alert('nropcao :' + nropcao);
+        } else if (nropcao == 8) {
+          alert('nropcao :' + nropcao);
+        }
       }
     }
-  }, [enviar]);
+  }, [isopcao, nropcao]);
 
   React.useEffect(() => {
-    if (resgatar && mdenviar >= 5) {
-      setEnviar(true);
-      alert('envia mdenviar :' + mdenviar);
+    if (logado) {
+      alert('mostra mensagem Logado.');
+    } else {
+      alert('volta para o inicio.');
     }
-  }, [mdenviar]);
+  }, [logado]);
 
   return (
     <ThemeProvider theme={theme}>
