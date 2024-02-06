@@ -6,7 +6,8 @@ import higth from "../../../assets/svgs/higth.svg";
 type BntTitleLg ={
   title?: string;
   isimg?: boolean;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => void; 
+  //React.MouseEventHandler<HTMLButtonElement>;
 }
 const ContentButtonTitleImg = ({title, isimg, onClick }:BntTitleLg) => {
   return (
