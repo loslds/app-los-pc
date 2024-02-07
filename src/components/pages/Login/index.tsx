@@ -34,38 +34,6 @@ import { ContentButtonConfimationOff } from './ContentButtonConfimationOff.tsx';
 import * as Lg from './styled.ts';
 import * as Pg from '../style.ts';
 
-export function GetStrLoginPsw(modo: number) {
-  /**5 retornar chave de enviar para email */
-  var rtnPsw = '';
-  var tamanho = 0;
-  /**5 retornar chave de enviar para email */
-  if (modo === 5) {
-    tamanho = 8;
-  }
-  /**6 retornar chave de enviar para sms */
-  if (modo === 6) {
-    tamanho = 6;
-  }
-  /**7 retornar chave de enviar para Codigo Seguro */
-  if ((modo = 7)) {
-    tamanho = 62;
-  }
-
-  const tmnh = tamanho;
-  if (tmnh == 0 || null || undefined) {
-    return rtnPsw;
-  }
-  var caracteres =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (const i = 0; i <= tmnh; i + 1) {
-    rtnPsw += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-  }
-
-  console.log('txt :', rtnPsw);
-
-  return rtnPsw;
-}
-
 export const Login = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -96,10 +64,6 @@ export const Login = () => {
 
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
-
-  const [resgatepswmail, setResgatePswMail] = React.useState('');
-  const [resgatepswsms, setResgatePswSms] = React.useState('');
-  const [resgatepswcseg, setResgatePswCSeg] = React.useState('');
 
   const [isopcao, setIsOpcao] = React.useState(false);
   const [nropcao, setNrOpcao] = React.useState(0);
@@ -137,32 +101,8 @@ export const Login = () => {
   //  };
   const { state, dispatch } = AcessoUseForm();
 
-  var str = '';
-  var caracteres =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  for (var i = 0; i < 8; i++) {
-    str += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-  }
-  setResgatePswMail(str);
-  console.log(str);
-  console.log(resgatepswmail);
-  //////////////////////////////
-
-  for (const i = 0; i <= 6; i + 1) {
-    str += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-  }
-  setResgatePswSms(str);
-  console.log(str);
-  console.log(resgatepswsms);
-
-  //////////////////////////////
-  for (const i = 0; i <= 3; i + 1) {
-    str += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-  }
-  setResgatePswCSeg(str);
-  console.log(str);
-  console.log(resgatepswcseg);
-
+  ///////////////////////////////
+  setLogado(false);
   ///////////////////////////////
 
   React.useEffect(() => {
@@ -272,32 +212,11 @@ export const Login = () => {
       }
 
       if (mdlogin === 5) {
-        alert(
-          'handlernropcao mdlogin :' +
-            mdlogin +
-            ' e nropcao :' +
-            mdlogin +
-            'ResgateMail :' +
-            resgatepswmail
-        );
+        alert('handlernropcao mdlogin :' + mdlogin + ' e nropcao :' + mdlogin);
       } else if (mdlogin === 6) {
-        alert(
-          'handlernropcao mdlogin :' +
-            mdlogin +
-            ' e nropcao :' +
-            mdlogin +
-            'ResgateSMS :' +
-            resgatepswsms
-        );
+        alert('handlernropcao mdlogin :' + mdlogin + ' e nropcao :' + mdlogin);
       } else if (mdlogin === 7) {
-        alert(
-          'handlernropcao mdlogin :' +
-            mdlogin +
-            ' e nropcao :' +
-            mdlogin +
-            'ResgateCSeg :' +
-            resgatepswcseg
-        );
+        alert('handlernropcao mdlogin :' + mdlogin + ' e nropcao :' + mdlogin);
       } else {
         alert('handlernropcao mdlogin :' + mdlogin + ' e nropcao :' + mdlogin);
       }
@@ -636,7 +555,7 @@ export const Login = () => {
                       />
                       <h2>recebe o codigo do email</h2>
                       <p>Codigo para envio:</p>
-                      <p>{resgatepswmail}</p>
+
                       <br />
                     </Lg.ContainerAreaText>
                   ) : null}
@@ -644,7 +563,6 @@ export const Login = () => {
                     <Lg.ContainerAreaText onoff={true}>
                       <h2>recebe o codigo do SMS</h2>
                       <p>Codigo para envio:</p>
-                      <p>{resgatepswsms}</p>
                     </Lg.ContainerAreaText>
                   ) : null}
                   {enviar && mdenviar == 7 ? (
@@ -654,7 +572,6 @@ export const Login = () => {
                         e altera cadastro.
                       </h2>
                       <p>Codigo para envio:</p>
-                      <p>{resgatepswcseg}</p>
                     </Lg.ContainerAreaText>
                   ) : null}
                   {enviar && mdenviar == 8 ? (
