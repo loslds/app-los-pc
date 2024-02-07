@@ -1,4 +1,4 @@
-import * as S from '../../sidebar/stylesSidebar';
+
 import * as Lg from './styled';
 
 type BntConfirmation = {
@@ -8,7 +8,7 @@ type BntConfirmation = {
   onClick?: () => void;
   //React.MouseEventHandler<HTMLButtonElement>;
 };
-export const ContentButtonConfimation = ({
+export const ContentButtonConfimationOn = ({
   title,
   img,
   titlebtn,
@@ -17,9 +17,9 @@ export const ContentButtonConfimation = ({
   return (
     <Lg.ContainerBtnLoginSRigth>
       <label>{title}</label>
-      <S.ContainerSideOnOffButton>
-        <S.ButtonOnOffImg img={img} title={titlebtn} onClick={onClick} />
-      </S.ContainerSideOnOffButton>
+      <Lg.ContainerButtonOnImg>
+        <Lg.ButtonOnOffImg img={img} title={titlebtn} onClick={onClick} />
+      </Lg.ContainerButtonOnImg>
     </Lg.ContainerBtnLoginSRigth>
   );
 };
