@@ -118,9 +118,7 @@ export const ContentTextoModulos = styled.div<{ isscroll? : boolean }>`
   height: ${props => ( props.isscroll ? '500px' : 'auto')};
   //overflow-y: ${props => ( props.isscroll ? 'scroll' : 'auto')};
   width: 98%;
-
   overflow-y: auto;
-
   display: flex row;
   flex-wrap: wrap;
   flex-direction: center;

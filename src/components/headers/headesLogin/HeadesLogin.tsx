@@ -2,6 +2,7 @@ import * as Pg from '../../layouts/styled.ts'
 
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
+import esclamacao from '../../../assets/svgs/esclamacao.svg';
 
 import React from 'react';
 import Switch from "react-switch";
@@ -15,6 +16,7 @@ import { ContentHearderItensBar } from "../ContentHearderItensBar.tsx";
 import ContentPagesButton from "../../layouts/ContentPagesButton.tsx";
 
 import PageModal from "../../Modal/PageModal.tsx";
+import { CardInfoLogin } from 'components/contentHelp/CardInfoLogin.tsx';
 import { CardAcessoSistema }  from '../../contentHelp/CardAcessoSistema.tsx';
 
 type PropsHearderLogin ={
@@ -25,7 +27,12 @@ type PropsHearderLogin ={
 }
 export const HearderLogin = ({onclick, title, onchange, ischeck }:PropsHearderLogin) => {
   
+  const [isonpanel, setIsOnPanel] = React.useState(false);
   const [isonhelp, setIsOnHelp] = React.useState(false);
+
+  const handlerOnPanel = React.useCallback(() => {
+    setIsOnPanel((oldState) => !oldState);
+  }, []);
 
   const handlerOnHelp = React.useCallback(() => {
     setIsOnHelp((oldState) => !oldState);
@@ -41,6 +48,7 @@ export const HearderLogin = ({onclick, title, onchange, ischeck }:PropsHearderLo
       </ContentHearderItens>
       <ContentHearderRight>
         <ContentHearderItensBar>
+        <ContentPagesButton img={esclamacao} titbtn={"Panel..."} onClick={handlerOnPanel} />
         <ContentPagesButton img={help} titbtn={"Ajuda..."} onClick={handlerOnHelp} />
         {/* <ContentPagesButton titbtn={"Logar..."} onClick={onLogin} /> */}
         <Pg.ContainerPagesButton>
@@ -73,6 +81,22 @@ export const HearderLogin = ({onclick, title, onchange, ischeck }:PropsHearderLo
           </PageModal>
           ) : null
         }
+
+        {isonpanel ? (
+          <PageModal
+            ispx={true}
+            ptop={"1%"}
+            pwidth={"65%"}
+            pheight={"50%"}
+            titulo={'DADOS ambiente Login.'}
+            onClose={() => setIsOnPanel(false)}
+            >
+            <CardInfoLogin />
+          </PageModal>
+          ) : null
+        }
+
+
       </ContentHearderRight>
     </ContentHearderMain>
   );

@@ -110,3 +110,40 @@ export const DivisionPgHztal = styled.div`
   background-color: #9c9c9c;
 `;
 ///////////////////////////////////////////
+
+export const ContainerImagem = styled.div`
+  border: 1px solid yellow;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 3px 8px 3px 8px;
+  max-width: 100%;
+  background: ${props => props.theme.colors.backgroundColor};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  size: 16px;
+  line-height: 16px;
+  color: ${props => props.theme.colors.textColor};
+  &:hover {
+    background-color: #e4e4e4;
+   }
+`;
+
+export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
+  border: 1px red;
+  border-color: #ffffff;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  background: ${props => props.theme.colors.backgroundColor};
+  color: ${props => props.theme.colors.textColor};
+  min-height: ${({ pxheight }) => pxheight || '50px'};
+  display: flex;
+  //flex-wrap: wrap;
+  //flex-flow: row;
+  //justify-content: center;
+  //align-items: center;
+  //align-content: center;
+`;
+

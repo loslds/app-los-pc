@@ -328,15 +328,12 @@ export const ButtonOnOffImg = styled.button<{ img?: string  }>`
   align-items: center;
 `;
 
-
 export const ContainerAreaText = styled.div<{onoff: boolean}>`
   border: none;
   margin: 0px 10px 0px 10px;
   padding: 0px 0px 0px 0px;
-  
   size: 16px;
   line-height: 16px;
-
   display: flex row;
   flex-wrap: wrap;
   flex-flow: column;
@@ -344,7 +341,6 @@ export const ContainerAreaText = styled.div<{onoff: boolean}>`
   align-content: center;
   align-items: left;
  `;
-
 
 export const ContainerFormCenter = styled.div<{pwidth? : string}>`
   border: 3px double;
@@ -355,8 +351,8 @@ export const ContainerFormCenter = styled.div<{pwidth? : string}>`
   margin: 5px 5px 5px 5px;
   width: ${({ pwidth }) => pwidth || '65%'};
   display: flex ;
-  //flex-flow: wrap;
-  //flex-wrap: wrap;
   justify-content: space-between;
-  //align-content: center;
 `;
+
+
+

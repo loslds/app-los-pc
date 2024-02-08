@@ -156,6 +156,7 @@ export const ContainerSideOnOffButton = styled.div`
     background-color: #e4e4e4;
    }
 `;
+
 export const ButtonOnOffImg = styled.button<{ img?: string }>`
   border: 2px; 
   border-radius: 3px;

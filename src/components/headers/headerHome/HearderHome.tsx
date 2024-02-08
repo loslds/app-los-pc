@@ -1,7 +1,13 @@
 import "../../../styles/global.ts";
 import "../../layouts/styled.ts";
+
+import logosys from '../../../assets/pngs/logosys.png';
+import help from '../../../assets/svgs/help.svg';
+import esclamacao from '../../../assets/svgs/esclamacao.svg';
+
 import * as Pg from '../../layouts/styled.ts'
 
+import React from "react";
 import Switch from "react-switch";
 
 import { ContentHeaderButtonSys } from "../ContentHeaderButtonSys.tsx";
@@ -12,26 +18,38 @@ import { ContentHearderRight } from "../ContentHearderRight.tsx";
 import { ContentHearderItensBar } from "../ContentHearderItensBar.tsx";
 import ContentPagesButton from "../../layouts/ContentPagesButton.tsx"
 
+import PageModal from "../../Modal/PageModal.tsx";
+
+import { CardAcessoSistema }  from '../../contentHelp/CardAcessoSistema.tsx';
+
 type PropsHearderHome ={
   onclick?: () => void;
   title?: string;
   onchange: () => void;
   ischeck?: boolean;
   onLogin?: () => void;
+  
 }
 export const HearderHome = ({onclick, title, onchange, ischeck, onLogin }:PropsHearderHome) => {
+
+  const [isonpanel, setIsOnPanel] = React.useState(false);
+
+  const handlerOnPanel = React.useCallback(() => {
+    setIsOnPanel((oldState) => !oldState);
+  }, []);
 
   return (
     <ContentHearderMain>
       <ContentHearderItens>
-        <ContentHeaderButtonSys onClick={onclick} />
+        <ContentHeaderButtonSys img={logosys} onClick={onclick} />
       </ContentHearderItens>
       <ContentHearderItens>
         <ContentHeaderTitle title={title}/>
       </ContentHearderItens>
       <ContentHearderRight>
         <ContentHearderItensBar>
-         <ContentPagesButton titbtn={"Logar..."} onClick={onLogin} />
+         <ContentPagesButton img={esclamacao} titbtn={"Painel..."} onClick={handlerOnPanel} />
+         <ContentPagesButton img={help} titbtn={"Logar..."} onClick={onLogin} />
          
          <ContentPagesButton titbtn={"BTN-2"} />
          <Pg.ContainerPagesButton>
@@ -51,6 +69,20 @@ export const HearderHome = ({onclick, title, onchange, ischeck, onLogin }:PropsH
             />
           </Pg.ContainerPagesButton>
         </ContentHearderItensBar>
+
+        {isonpanel ? (
+          <PageModal
+            ispx={true}
+            ptop={"1%"}
+            pwidth={"65%"}
+            pheight={"50%"}
+            titulo={'Painel de Dados para Acesso ao Sistema.'}
+            onClose={() => setIsOnPanel(false)}
+            >
+            <CardAcessoSistema />
+          </PageModal>
+          ) : null
+        }
       </ContentHearderRight>
     </ContentHearderMain>
   );

@@ -9,7 +9,7 @@ type BntTitleLg ={
   onClick?: () => void; 
   //React.MouseEventHandler<HTMLButtonElement>;
 }
-const ContentButtonTitleImg = ({title, isimg, onClick }:BntTitleLg) => {
+export const ContentButtonTitleImg = ({title, isimg, onClick }:BntTitleLg) => {
   return (
     <Lg.ContainerBtnLoginSRigth>
       <label>{title}</label>
@@ -24,7 +24,7 @@ const ContentButtonTitleImg = ({title, isimg, onClick }:BntTitleLg) => {
     </Lg.ContainerBtnLoginSRigth>
   );
 }
-export default ContentButtonTitleImg
+// export default ContentButtonTitleImg
 // type PropsBtPg = {
 //   img?: string;
 //   titbtn?: string;

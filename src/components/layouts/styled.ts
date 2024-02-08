@@ -113,6 +113,7 @@ export const ContainerHeaderItensBar = styled.div`
 //   img?: string;
 //   onClick?: () => void;
 // };
+
 export const ContainerImgSys = styled.div`
   border: none;
   border-radius: 5px;
@@ -248,6 +249,8 @@ export const ButtonPagesImg = styled.button<{ img?: string }>`
   align-items: center;
 `;
 ////////////////////////////////////////////////
+
+
 
 export const ContainerCustonButton = styled.div<{ pxheight : string;}>`
   border: 1px red;
