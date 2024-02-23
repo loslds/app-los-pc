@@ -1,13 +1,12 @@
-
-import * as Lg from './styled';
+import * as Lg from '../../../styles/styledLogin';
 
 type PropsLoginTitle = {
   modotitle?: string;
-}
-export const ContentTitleLogin = ({modotitle}:PropsLoginTitle) => {
+};
+export const ContentTitleLogin = ({ modotitle }: PropsLoginTitle) => {
   return (
     <Lg.ContainerTitleLogin>
-      <h2>{ modotitle }</h2>
+      <h2>{modotitle}</h2>
     </Lg.ContainerTitleLogin>
   );
-}
+};

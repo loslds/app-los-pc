@@ -1,28 +1,26 @@
-import "../../../styles/global.ts";
+import '../../../styles/global.ts';
 
-import { ThemeProvider } from "styled-components";
-import light from "../../../styles/themes/light.ts";
-import dark from "../../../styles/themes/dark.ts";
+import { ThemeProvider } from 'styled-components';
+import light from '../../../styles/themes/light.ts';
+import dark from '../../../styles/themes/dark.ts';
 
 import logosys from '../../../assets/pngs/logosys.png';
 
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { LayoutMaste } from "../../layouts/LayoutMaste/index.tsx";
-import { ContentItensBody } from "../ContentItensBody.tsx";
-
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { LayoutMaste } from '../../layouts/LayoutMaste/index.tsx';
+import { ContentItensBody } from '../ContentItensBody.tsx';
 
 export const Master = () => {
- 
-  const [theme,setTheme] = useState(dark);
-  const [ischeck,setIscheck] = useState(false);
+  const [theme, setTheme] = useState(dark);
+  const [ischeck, setIscheck] = useState(false);
   const ToggleTheme = () => {
-    if (theme.name === 'dark'){
+    if (theme.name === 'dark') {
       setTheme(light);
-      setIscheck(true);    
+      setIscheck(true);
     } else {
       setTheme(dark);
-      setIscheck(false);    
+      setIscheck(false);
     }
   };
 
@@ -32,13 +30,20 @@ export const Master = () => {
       navigate(path);
     };
   };
- 
+
   return (
     <ThemeProvider theme={theme}>
-      <LayoutMaste img = {logosys} onclick = {goto('/')} title = {"Master."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
-      <ContentItensBody>
-      <h1>Conteudo da Pagina</h1>
-      </ContentItensBody>
+      <LayoutMaste
+        img={logosys}
+        onclick={goto('/')}
+        title={'Master.'}
+        onchange={ToggleTheme}
+        ischeck={ischeck}
+        onLogin={goto('/login')}
+      >
+        <ContentItensBody>
+          <h1>Conteudo da Pagina</h1>
+        </ContentItensBody>
       </LayoutMaste>
     </ThemeProvider>
   );

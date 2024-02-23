@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import semimg from '../../../assets/svgs/semimg.svg';
+import semimg from '../assets/svgs/semimg.svg';
 
 export const ContainerLogin = styled.div`
   border: none;/* 2px dashed yellow;*/
@@ -60,15 +60,15 @@ export const ContainerTitleLogin = styled.div`
 export const ContainerMainLogin = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 5px;
-  border: none;/* 2px dashed red;*/
+  border: none;
   width: 100%;
   min-height: 60px;
   display: flex;
   flex-wrap: wrap;
-//  flex-flow: row;
-  justify-content: space-between;
+  flex-flow: row;
+  justify-content: center;
   align-content: center;
-//  align-items: center;
+  align-items: center;
 `;
 ////////////////////////////////////////
 type PropsCollFormCenter = {
@@ -95,33 +95,54 @@ export const ContainerCollFormCenter = styled.div<PropsCollFormCenter>`
 //////////////////////////////////////
 
 type Props = {
+  pheight? : string;
   pwidth? : string;
   height?: string;
 }
 export const ContainerLoginCollunsOpc = styled.div<Props>`
-  border: none;
+  border: 1px dashed yellow;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   width: ${({ pwidth }) => pwidth || '200px'};
-  min-height: ${({ height }) => height || '150px'};
+  min-height: ${({ pheight }) => pheight || '150px'};
   display: flex;
   flex-wrap: nowrap;
-  flex-flow: row;
-  justify-content: left;
+  //flex-flow: c;
   justify-content: center;
   align-items: center;
   align-content: center;
 `;
+///////////////////////////////////////
+export const DivisionPgHztal = styled.div`
+  border: 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 1px 0px 1px 0px;
+  height: 3px;
+  width: 100%;
+  display: flex;
+  background-color: #9c9c9c;
+`;
 
+export const DivisionPgHztalOnOff = styled.div<{isopen?: boolean}>`
+  border: 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 1px 0px 1px 0px;
+  height: 3px;
+  width: 100%;
+  display: ${props => (props.isopen ? 'flex' : 'none')};
+  background-color: #9c9c9c;
+`;
+
+//////////////////////////////////////
 type PropsCollOpcCenter = {
   pwidth? : string;
   height?: string;
   isopen?: boolean;
 }
 export const ContainerLoginCollunsOpcCenter = styled.div<PropsCollOpcCenter>`
-  border: 2px dashed greenyellow;
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
@@ -129,12 +150,11 @@ export const ContainerLoginCollunsOpcCenter = styled.div<PropsCollOpcCenter>`
   min-width: ${({ pwidth }) => pwidth || '200px'};
   //min-height: ${({ height }) => height || '150px'};
   display: ${props => (props.isopen ? 'flex' : 'none')};
-  flex-wrap: nowrap;
-  flex-flow: row;
-  justify-content: left;
+  //flex-wrap: nowrap;
+  //flex-flow: row;
   justify-content: center;
-  align-items: center;
-  align-content: center;
+  //align-items: center;
+  //align-content: center;
 `;
 ////////////////////////////////////
 // opções
@@ -210,7 +230,7 @@ export const InputCenter = styled.div`
 `;
 
 export const InputPage = styled.input`
-  border: 1px dashed red;
+  border: none;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
   display: flex;

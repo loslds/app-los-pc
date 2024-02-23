@@ -1,4 +1,4 @@
-import * as Lg from './styled';
+import * as Lg from '../../../styles/styledLogin';
 
 type PropsLoginTitle = {
   title?: string;

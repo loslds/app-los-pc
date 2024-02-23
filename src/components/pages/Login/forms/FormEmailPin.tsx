@@ -1,16 +1,14 @@
-
-import * as Lg from '../styled';
-
+import * as Lg from '../../../../styles/styledLogin';
 
 type PropsEmailPin = {
   onchange?: () => void;
-}
-export const FormEmailPin = ({onchange}:PropsEmailPin) => {
+};
+export const FormEmailPin = ({ onchange }: PropsEmailPin) => {
   return (
     <form name="emailpin">
       <Lg.InputCenter>
         <label>E-Mail</label>
-        <input 
+        <input
           type="email"
           id="email"
           name="email"
@@ -21,7 +19,7 @@ export const FormEmailPin = ({onchange}:PropsEmailPin) => {
 
       <Lg.InputCenter>
         <label>PIN....</label>
-        <input 
+        <input
           type="text"
           id="pin"
           name="pin"
@@ -29,6 +27,6 @@ export const FormEmailPin = ({onchange}:PropsEmailPin) => {
           onChange={onchange}
         />
       </Lg.InputCenter>
-    </form>       
+    </form>
   );
-}
+};

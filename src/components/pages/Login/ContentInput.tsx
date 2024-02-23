@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import * as Fr from '../styled';
+import * as Fr from '../../../styles/styledLogin';
 
 type PropsAreaInput = {
   children?: ReactNode;

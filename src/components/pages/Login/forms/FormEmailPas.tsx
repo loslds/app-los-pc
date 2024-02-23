@@ -1,29 +1,27 @@
 import { useState, useEffect } from 'react';
 
-import * as Lg from '../styled';
+import * as Lg from '../../../../styles/styledLogin';
 
 export const FormEmailPas = () => {
   const [strmail, setStrMail] = useState('');
   const [strpass, setStrPass] = useState('');
   const [ismailpass, setIsMailPass] = useState(false);
-  
-  useEffect(() => {
-    if (strmail === '' || null){ 
-      setIsMailPass(false);
-    }
-    else if (strpass === '' || null){
-      setIsMailPass(false);
-    }
-    if (strmail !== '' && strpass === ''){ 
-      setIsMailPass(false);
-    }
-    if (strmail === '' && strpass !== ''){ 
-      setIsMailPass(false);
-    }
-    else { setIsMailPass(true); }
-  },[strmail,strpass,ismailpass]);
 
-  
+  useEffect(() => {
+    if (strmail === '' || null) {
+      setIsMailPass(false);
+    } else if (strpass === '' || null) {
+      setIsMailPass(false);
+    }
+    if (strmail !== '' && strpass === '') {
+      setIsMailPass(false);
+    }
+    if (strmail === '' && strpass !== '') {
+      setIsMailPass(false);
+    } else {
+      setIsMailPass(true);
+    }
+  }, [strmail, strpass, ismailpass]);
 
   return (
     <form name="emailpas">

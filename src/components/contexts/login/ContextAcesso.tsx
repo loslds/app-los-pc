@@ -2,16 +2,23 @@ import React from 'react';
 
 type StateAcesso = {
   currentstep: number;
+
   idacesso: number;
+  pinAdm: number;
+  page: string;
+
   idemp: number;
   nmfant: string;
   iduser: number;
   idnmuser: string;
   pswuser: string;
+  mdLogin: number;
+  nmLogin: string;
+
+
   pin: string;
   mail: string;
   fonec: string;
-  lvMod: number;
   nmRecep: string;
   mdRecep: boolean;
   nmDesig: string;
@@ -28,8 +35,8 @@ type StateAcesso = {
   mdMaster: boolean;
   nmConfig: string;
   mdConfig: boolean;
-  pinAdm: number;
-  page: string;
+  modulo: string;
+  aplicacao: string;
   logado: boolean;
   datetimei: string;
   datetimef: string;
@@ -39,15 +46,19 @@ type StateAcesso = {
 export const initialData: StateAcesso = {
   currentstep: 0,
   idacesso: 0,
+  pinAdm: 9999,
+  page: '',
+
   idemp: 0,
   nmfant: '',
-  iduser: 0,
   idnmuser: '',
   pswuser: '',
+  mdLogin: 0,
+  nmLogin: '',
+
   pin: '',
   mail: '',
   fonec: '',
-  lvMod: 0,
   nmRecep: 'Recepção',
   mdRecep: false,
   nmDesig: 'Design',
@@ -64,8 +75,11 @@ export const initialData: StateAcesso = {
   mdMaster: false,
   nmConfig: 'Config',
   mdConfig: false,
-  pinAdm: 9999,
-  page: '',
+
+  iduser: 0,
+
+  modulo: '',
+  aplicacao: '',
   logado: false,
   datetimei: '',
   datetimef: '',
@@ -75,15 +89,19 @@ export const initialData: StateAcesso = {
 export enum AcessoUseActions {
   setCurrentStep,
   setIdAces,
+  setPinAdm,
+  setPage,
   setIdEmp,
   setNmFant,
-  setIdUser,
   setIdNmUser,
   setPswUser,
+  setMdLogin,
+  setNmLogin,
+
+
   setPin,
   setMail,
   setFoneC,
-  setLvMod,
   setMdRecep,
   setNmRecep,
   setMdDesig,
@@ -100,8 +118,11 @@ export enum AcessoUseActions {
   setNmMaster,
   setMdConfig,
   setNmConfig,
-  setPinAdm,
-  setPage,
+
+  setIdUser,
+  
+  setModulo,
+  setAplicacao,
   setLogado,
   setDtIni,
   setDtFim,
@@ -124,24 +145,31 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, currentstep: action.payload };
     case AcessoUseActions.setIdAces:
       return { ...state, idacesso: action.payload };
+    case AcessoUseActions.setPinAdm:
+      return { ...state, pinadm: action.payload };
+    case AcessoUseActions.setPage:
+      return { ...state, page: action.payload };
+
     case AcessoUseActions.setIdEmp:
       return { ...state, idemp: action.payload };
     case AcessoUseActions.setNmFant:
       return { ...state, nmfant: action.payload };
-    case AcessoUseActions.setIdUser:
-      return { ...state, iduser: action.payload };
     case AcessoUseActions.setIdNmUser:
       return { ...state, idnmuser: action.payload };
     case AcessoUseActions.setPswUser:
       return { ...state, pswuser: action.payload };
+    case AcessoUseActions.setMdLogin:
+      return { ...state, mdlogin: action.payload };
+    case AcessoUseActions.setNmLogin:
+      return { ...state, nmlogin: action.payload };
+    
+
     case AcessoUseActions.setPin:
       return { ...state, pin: action.payload };
     case AcessoUseActions.setMail:
       return { ...state, mail: action.payload };
     case AcessoUseActions.setFoneC:
       return { ...state, fonec: action.payload };
-    case AcessoUseActions.setLvMod:
-      return { ...state, lvMod: action.payload };
     case AcessoUseActions.setMdRecep:
       return { ...state, ndrecep: action.payload };
     case AcessoUseActions.setNmRecep:
@@ -174,10 +202,10 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, mdconfig: action.payload };
     case AcessoUseActions.setNmConfig:
       return { ...state, nmconfig: action.payload };
-    case AcessoUseActions.setPinAdm:
-      return { ...state, pinadm: action.payload };
-    case AcessoUseActions.setPage:
-      return { ...state, page: action.payload };
+    case AcessoUseActions.setModulo:
+      return { ...state, modulo: action.payload };
+    case AcessoUseActions.setAplicacao:
+      return { ...state, aplicacaoo: action.payload };
     case AcessoUseActions.setLogado:
       return { ...state, logado: action.payload };
     case AcessoUseActions.setDtIni:
@@ -186,6 +214,10 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, datetimef: action.payload };
     case AcessoUseActions.setTmp:
       return { ...state, tempo: action.payload };
+
+    case AcessoUseActions.setIdUser:
+      return { ...state, iduser: action.payload };
+  
     default:
       return state;
   }

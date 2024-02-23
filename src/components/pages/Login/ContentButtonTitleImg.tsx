@@ -1,29 +1,32 @@
-import * as S from "../../sidebar/stylesSidebar";
-import * as Lg from "./styled";
-import left from "../../../assets/svgs/left.svg";
-import higth from "../../../assets/svgs/higth.svg";
+import * as S from '../../sidebar/stylesSidebar';
+import * as Lg from '../../../styles/styledLogin';
+import left from '../../../assets/svgs/left.svg';
+import higth from '../../../assets/svgs/higth.svg';
 
-type BntTitleLg ={
+type BntTitleLg = {
   title?: string;
   isimg?: boolean;
-  onClick?: () => void; 
+  onClick?: () => void;
   //React.MouseEventHandler<HTMLButtonElement>;
-}
-export const ContentButtonTitleImg = ({title, isimg, onClick }:BntTitleLg) => {
+};
+export const ContentButtonTitleImg = ({
+  title,
+  isimg,
+  onClick
+}: BntTitleLg) => {
   return (
     <Lg.ContainerBtnLoginSRigth>
       <label>{title}</label>
       <S.ContainerSideOnOffButton>
         {isimg ? (
-          <S.ButtonOnOffImg img={left} title={'FECHA...'} onClick={onClick}/>
-          ):(
-          <S.ButtonOnOffImg img={higth} title={'ABRE...'} onClick={onClick}/>
-          )
-        }
+          <S.ButtonOnOffImg img={left} title={'FECHA...'} onClick={onClick} />
+        ) : (
+          <S.ButtonOnOffImg img={higth} title={'ABRE...'} onClick={onClick} />
+        )}
       </S.ContainerSideOnOffButton>
     </Lg.ContainerBtnLoginSRigth>
   );
-}
+};
 // export default ContentButtonTitleImg
 // type PropsBtPg = {
 //   img?: string;

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import * as Lg from './styled';
+import * as Lg from '../../../styles/styledLogin';
 
 type PropsBntConfimation = {
   children?: ReactNode | JSX.Element;

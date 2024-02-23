@@ -1,18 +1,22 @@
-
-
 import { ContentInput } from './ContentInput';
-
 
 type PropsConttInputOpc = {
   disabled?: boolean;
-  id?:string;
+  id?: string;
   name?: string;
   value?: number;
   onclick?: () => void;
   titulo?: string;
-}
+};
 
-export const ContentRadioOpc = ({disabled, id, name, value, onclick, titulo}:PropsConttInputOpc) => {
+export const ContentRadioOpc = ({
+  disabled,
+  id,
+  name,
+  value,
+  onclick,
+  titulo
+}: PropsConttInputOpc) => {
   return (
     <ContentInput>
       <input
@@ -26,4 +30,4 @@ export const ContentRadioOpc = ({disabled, id, name, value, onclick, titulo}:Pro
       <label>{titulo}</label>
     </ContentInput>
   );
-}
+};

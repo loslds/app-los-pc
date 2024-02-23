@@ -75,7 +75,7 @@ export const ContainerModal = styled.div<PropsMain>`
   top: ${({ ptop }) => ptop || '62px'};
   position: fixed;
   width: ${({ pwidth }) => pwidth || '66.3%'};
-  // height: ${({ pheight }) => pheight || '87%'};
+  //height: ${({ pheight }) => pheight || '90%'};
 
   min-height: auto;
   overflow-y: auto;
@@ -130,8 +130,6 @@ export const ContentTextoModulos = styled.div<{ isscroll? : boolean }>`
   font-style: normal;
 `;
 ///////////////////////////////////////////////////
-
-
 export const ContainerModalTexto = styled.div`
   border: 0px;
   padding: 0px 5px 0px 0px;
@@ -638,4 +636,160 @@ export const ButtonItemDivModalMenu = styled.button`
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   background-color: transparent;
+`;
+
+
+
+///////////////////////////////////// erros
+export const ContentInfoErro = styled.div`
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  border: 0px;
+  top: 0px;
+  left: 0px;
+  z-index: 1000;
+  color: white;
+  background-color: rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: normal;
+  font-family: 'Courier New', Courier, monospace;
+`;
+
+type PropsIEModal = {
+  ptop?: string;
+  pheight?: string;
+  pwidth?: string;
+  onClick?: () => void;
+};
+export const ContainerInfoErroModal = styled.div<PropsIEModal>`
+  border: 5px double;
+  border-color: #e30005;
+  border-radius: 15px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 10px 0px 10px;
+  background-color: #efef94;
+  color: #0000ff;
+
+  top: ${({ ptop }) => ptop || '62px'};
+  position: fixed;
+  max-width: ${({ pwidth }) => pwidth || '66.3%'};
+  height: ${({ pheight }) => pheight || '90%'};
+  overflow-y: auto;
+
+  display: flex row;
+  flex-wrap: nowrap;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+`;
+//////////////////////////
+
+export const ContainerCardInfoModalHeader = styled.div`
+  top: 0;
+  border-bottom: 5px double;
+  border-color: #e30005;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  min-height: 30px;
+  
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: #040404;
+`;
+
+export const ContainerCardInfoModalFooter = styled.div`
+  bottom: 0;
+  border-top: 5px double;
+  border-color: #e30005;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  min-height: 30px;
+  
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: #040404;
+`;
+
+export const ContainerCardInfoModalFlex = styled.div`
+  border: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  background-color: transparent; //* black;*/
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center; /*space-around;*/
+  align-content: center;
+  align-items: center;
+
+  color: #000000;
+  font-size: 16px;
+  font-style: normal;
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 0px 5px 0px 5px;
+    padding: 0px 0px 0px 5px;
+    color: #fff;
+    font-style: normal;
+    text-decoration-color: #727272;
+  }
+  h1 {
+    font-size: 20px;
+    line-height: 20px;
+    text-decoration: 3px underline;
+  }
+  h2 {
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: 2px underline;
+  }
+  h3 {
+    font-size: 16px;
+    line-height: 16px;
+    text-decoration: 1.5px underline;
+  }
+  h4 {
+    font-size: 14px;
+    line-height: 14px;
+    text-decoration: 1px underline;
+  }
+  h5 {
+    font-size: 12px;
+    line-height: 12px;
+    text-decoration: 0.5px underline;
+  }
+`;
+
+
+///////////////// inicio TitleModal
+export const ContainerInfoErroModalTitle = styled.div`
+  border: 0px; 
+  padding: 0px auto;
+  margin: 0px auto;
+  min-height: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #000000;
 `;

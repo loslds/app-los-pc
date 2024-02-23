@@ -1,15 +1,14 @@
-
-import * as Lg from '../styled';
+import * as Lg from '../../../../styles/styledLogin';
 
 type PropsNamePas = {
   onchange?: () => void;
-}
-export const FormNamePas = ({onchange}:PropsNamePas) => {
+};
+export const FormNamePas = ({ onchange }: PropsNamePas) => {
   return (
     <form name="namepas">
       <Lg.InputCenter>
         <label>Pseud.</label>
-        <input 
+        <input
           type="text"
           id="text"
           name="text"
@@ -20,14 +19,14 @@ export const FormNamePas = ({onchange}:PropsNamePas) => {
 
       <Lg.InputCenter>
         <label>Pass...</label>
-        <input 
+        <input
           type="password"
           id="password"
           name="password"
           placeholder="**********"
           onChange={onchange}
         />
-      </Lg.InputCenter>      
+      </Lg.InputCenter>
     </form>
   );
-}
+};

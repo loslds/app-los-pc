@@ -20,7 +20,7 @@ export type Emps = {
 
 export const ListEmps = [
   {
-    id: '1',
+    id: 1,
     fant: 'JR-Bordados.',
     name: 'Junior Bordados Ltda.',
     cnpj: '010.157.662/0001-23',
@@ -39,7 +39,7 @@ export const ListEmps = [
     uf: 'Ceará'
   },
   {
-    id: '2',
+    id: 2,
     fant: 'RB-Serviços.',
     name: 'Roberta Bastos Ltda.',
     cnpj: '002.494.780/0001-07',

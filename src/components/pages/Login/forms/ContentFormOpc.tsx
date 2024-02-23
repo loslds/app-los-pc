@@ -1,17 +1,15 @@
 import { ReactNode } from 'react';
-import * as Lg from '../styled';
+import * as Lg from '../../../../styles/styledLogin';
 
 type PropsFormOpc = {
   pwidth?: string;
   children?: ReactNode | JSX.Element;
   open?: boolean;
-}
-export const ContentFormOpc = ({open, pwidth, children}:PropsFormOpc) => {
+};
+export const ContentFormOpc = ({ open, pwidth, children }: PropsFormOpc) => {
   return (
     <Lg.ContainerLoginOpc open={open} pwidth={pwidth}>
-      <Lg.ContainerLoginFlexOpc>
-        { children }
-      </Lg.ContainerLoginFlexOpc>
+      <Lg.ContainerLoginFlexOpc>{children}</Lg.ContainerLoginFlexOpc>
     </Lg.ContainerLoginOpc>
   );
-}
+};

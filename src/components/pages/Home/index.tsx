@@ -1,9 +1,9 @@
 //import "../../../styles/global.ts";
-import React from 'react';
-import {
-  AcessoUseForm,
-  AcessoUseActions
-} from '../../contexts/login/ContextAcesso.tsx';
+// import React from 'react';
+// import {
+//   AcessoUseForm,
+//   AcessoUseActions
+// } from '../../contexts/login/ContextAcesso.tsx';
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
@@ -24,38 +24,38 @@ import { ContentItensBody } from '../ContentItensBody.tsx';
 import { ContentCustonImg } from '../ContentCustonImg.tsx';
 
 export const Home = () => {
-  const { dispatch } = AcessoUseForm();
+  //const { dispatch } = AcessoUseForm();
 
-  React.useEffect(() => {
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
-    dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-    dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
-    dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setPin, payload: '' });
-    dispatch({ type: AcessoUseActions.setMail, payload: '' });
-    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-    //dispatch({ type: AcessoUseActions.setNmRecep, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
-    //dispatch({ type: AcessoUseActions.setNmDesig, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
-    //dispatch({ type: AcessoUseActions.setNmProdu, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdProdu, payload: false });
-    //dispatch({ type: AcessoUseActions.setNmAcaba, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdAcaba, payload: false });
-    //dispatch({ type: AcessoUseActions.setNmExped, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdExped, payload: false });
-    //dispatch({ type: AcessoUseActions.setNmAdmin, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdAdmin, payload: false });
-    //dispatch({ type: AcessoUseActions.setNmMaster, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
-    //dispatch({ type: AcessoUseActions.setNmConfig, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
-    dispatch({ type: AcessoUseActions.setPage, payload: '' });
-    dispatch({ type: AcessoUseActions.setLogado, payload: '' });
-  }, [dispatch]);
+  // React.useEffect(() => {
+  //   dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
+  //   dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
+  //   dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
+  //   dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+  //   dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setPin, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMail, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+  //   //dispatch({ type: AcessoUseActions.setNmRecep, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
+  //   //dispatch({ type: AcessoUseActions.setNmDesig, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
+  //   //dispatch({ type: AcessoUseActions.setNmProdu, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdProdu, payload: false });
+  //   //dispatch({ type: AcessoUseActions.setNmAcaba, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdAcaba, payload: false });
+  //   //dispatch({ type: AcessoUseActions.setNmExped, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdExped, payload: false });
+  //   //dispatch({ type: AcessoUseActions.setNmAdmin, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdAdmin, payload: false });
+  //   //dispatch({ type: AcessoUseActions.setNmMaster, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
+  //   //dispatch({ type: AcessoUseActions.setNmConfig, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
+  //   dispatch({ type: AcessoUseActions.setPage, payload: '' });
+  //   dispatch({ type: AcessoUseActions.setLogado, payload: '' });
+  // }, [dispatch]);
 
   const [theme, setTheme] = useState(dark);
   const [ischeck, setIscheck] = useState(false);

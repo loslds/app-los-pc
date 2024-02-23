@@ -1477,6 +1477,11 @@ mime-types@^2.1.12:
   dependencies:
     mime-db "1.52.0"
 
+mini-helper@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/mini-helper/-/mini-helper-1.0.7.tgz#7c71c551599f1dbade4a89a0cb1bdd23d1696616"
+  integrity sha512-wRKUh5VqHiT8i3M7TkYtSvhcC1jTVr2t0YHBEe3HxJ9nkHdUUWOQ1MSX1wodLmNpnWeN0whWpkGjV8XkAp0/2g==
+
 minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"

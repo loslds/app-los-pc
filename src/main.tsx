@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Global from './styles/global';
 import { Home } from './components/pages/Home';
 import { Login } from './components/pages/Login';
+import { Login1 } from './components/pages/Login1';
 
 import { Recepcao } from './components/pages/Recepcao';
 import { Design } from './components/pages/Design';
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/login1" element={<Login1 />} />
 
           <Route path="/tabprc" element={<TabPrc />} />
           <Route path="/recepcao" element={<Recepcao />} />

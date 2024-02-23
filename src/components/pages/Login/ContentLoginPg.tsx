@@ -1,16 +1,14 @@
 import { ReactNode } from 'react';
-import * as Lg from './styled';
+import * as Lg from '../../../styles/styledLogin';
 
 type PropsLogin = {
-  pwidth? : string;
+  pwidth?: string;
   children?: ReactNode | JSX.Element;
-}
-export const ContentLoginPg = ({pwidth, children}:PropsLogin) => {
+};
+export const ContentLoginPg = ({ pwidth, children }: PropsLogin) => {
   return (
     <Lg.ContainerLogin>
-      <Lg.ContainerLoginFlex pwidth={pwidth}>
-        { children }
-      </Lg.ContainerLoginFlex>
+      <Lg.ContainerLoginFlex pwidth={pwidth}>{children}</Lg.ContainerLoginFlex>
     </Lg.ContainerLogin>
   );
-}
+};

@@ -1,15 +1,14 @@
-
-import * as Lg from '../styled';
+import * as Lg from '../../../../styles/styledLogin';
 
 type PropsNamePin = {
   onchange?: () => void;
-}
-export const FormNamePin = ({onchange}:PropsNamePin) => {
+};
+export const FormNamePin = ({ onchange }: PropsNamePin) => {
   return (
     <form name="namepin">
       <Lg.InputCenter>
         <label>Pseud.</label>
-        <input 
+        <input
           type="text"
           id="text"
           name="text"
@@ -20,7 +19,7 @@ export const FormNamePin = ({onchange}:PropsNamePin) => {
 
       <Lg.InputCenter>
         <label>PIN.....</label>
-        <input 
+        <input
           type="text"
           id="pin"
           name="pin"
@@ -30,4 +29,4 @@ export const FormNamePin = ({onchange}:PropsNamePin) => {
       </Lg.InputCenter>
     </form>
   );
-}
+};
