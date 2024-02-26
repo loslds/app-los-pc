@@ -66,7 +66,7 @@ export const HearderLogin = ({
             titbtn={'Ajuda...'}
             onClick={handlerOnHelp}
           />
-          {/* <ContentPagesButton titbtn={"Logar..."} onClick={onLogin} /> */}
+          
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}

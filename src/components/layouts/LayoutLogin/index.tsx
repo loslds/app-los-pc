@@ -1,6 +1,6 @@
 import * as Hm from '../styled';
 import { ContentPages } from '../ContentPages';
-import { HearderLogin } from '../../headers/headesLogin/HeadesLogin';
+import { HearderLogin } from '../../headers/headesLogin/HearderLogin';
 //import { FooterLogin } from '../../footers/FooterLogin';
 import { ReactNode } from 'react';
 

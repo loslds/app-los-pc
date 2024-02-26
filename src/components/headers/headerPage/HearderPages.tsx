@@ -4,6 +4,7 @@ import * as Pg from '../../layouts/styled.ts'
 
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
+import avatar from '../../../assets/svgs/avatar.svg';
 
 import React from 'react';
 import Switch from "react-switch";
@@ -39,13 +40,15 @@ export const HearderPage = ({onclick, title, onchange, ischeck, onLogin }:PropsH
       <ContentHearderItens>
         <ContentHeaderButtonSys img={logosys} title={'Home...'} onClick={onclick}/>
       </ContentHearderItens>
+
       <ContentHearderItens>
         <ContentHeaderTitle title={title}/>
       </ContentHearderItens>
+
       <ContentHearderRight>
         <ContentHearderItensBar>
         <ContentPagesButton img={help} titbtn={"Ajuda..."} onClick={handlerOnHelp} />
-        <ContentPagesButton titbtn={"Logar..."} onClick={onLogin} />
+        <ContentPagesButton img={avatar} titbtn={"Logar..."} onClick={onLogin} />
         <Pg.ContainerPagesButton>
           <Switch
             onChange={onchange}
@@ -63,13 +66,14 @@ export const HearderPage = ({onclick, title, onchange, ischeck, onLogin }:PropsH
           />
         </Pg.ContainerPagesButton>
         </ContentHearderItensBar>
+
         {isonhelp ? (
           <PageModal
             ispx={true}
             ptop={"1%"}
             pwidth={"65%"}
             pheight={"50%"}
-            titulo={'Acesso Sistema.'}
+            titulo={'Help do Acesso Sistema.'}
             onClose={() => setIsOnHelp(false)}
             >
             <CardAcessoSistema />

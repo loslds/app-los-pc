@@ -128,7 +128,6 @@ export const Login = () => {
           <Lg.DivisionPgHztal />
           <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
             <ContentMainButtonsLogin>
-              {/* <h3>idempresa : {idempresa}</h3> */}
               <ContentButtonTitleImg title="Voltar." onClick={goto('/')} />
               {continua && idempresa > 0 ? (
                 <ContentButtonTitleImg

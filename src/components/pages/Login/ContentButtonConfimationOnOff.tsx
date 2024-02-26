@@ -7,7 +7,7 @@ type BntConfirmation = {
   onClick?: () => void;
   //React.MouseEventHandler<HTMLButtonElement>;
 };
-export const ContentButtonConfimationOn = ({
+export const ContentButtonConfimationOnOff = ({
   title,
   img,
   titlebtn,

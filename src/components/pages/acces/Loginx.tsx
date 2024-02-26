@@ -30,7 +30,7 @@ import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
 import { ContentFormCollunsCenter } from '../Login/ContentFormCollunsCenter.tsx';
 import { ContentTitlePanel } from '../Login/ContentTitlePanel.tsx';
 import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
-import { ContentButtonConfimationOn } from '../Login/ContentButtonConfimationOn.tsx';
+import { ContentButtonConfimationOn } from '../Login/ContentButtonConfimationOnOff.tsx';
 import { ContentButtonConfimationOff } from '../Login/ContentButtonConfimationOff.tsx';
 //import { ContentImagem } from '../ContentImagem.tsx';
 //import { ContentCustonImagem } from '../ContentCustonImagem.tsx';

@@ -348,7 +348,7 @@ export const ButtonOnOffImg = styled.button<{ img?: string  }>`
   align-items: center;
 `;
 
-export const ContainerAreaText = styled.div<{onoff: boolean}>`
+export const ContainerAreaText = styled.div`
   border: none;
   margin: 0px 10px 0px 10px;
   padding: 0px 0px 0px 0px;
