@@ -10,7 +10,7 @@ import portifolios from "../../assets/svgs/portifolios.svg";
 /////////// contatos ...............
 import local from "../../assets/svgs/local.svg";
 import fone from "../../assets/svgs/telefone.svg";
-import celular from "../../assets/svgs/Celular.svg";
+import celular from '../../assets/svgs/celular.svg';
 import email from "../../assets/svgs/email.svg";
 import watszapp from "../../assets/svgs/watszapp.svg";
 import facebook from "../../assets/svgs/facebook.svg";

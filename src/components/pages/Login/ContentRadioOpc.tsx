@@ -1,10 +1,10 @@
 import { ContentInput } from './ContentInput';
 
-type PropsConttInputOpc = {
+type PropsConttRadioOpc = {
   disabled?: boolean;
   id?: string;
   name?: string;
-  value?: number;
+  value?: number ;
   onclick?: () => void;
   titulo?: string;
 };
@@ -16,7 +16,7 @@ export const ContentRadioOpc = ({
   value,
   onclick,
   titulo
-}: PropsConttInputOpc) => {
+}: PropsConttRadioOpc) => {
   return (
     <ContentInput>
       <input

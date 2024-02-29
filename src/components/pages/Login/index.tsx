@@ -5,9 +5,11 @@ import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
+
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
+
 import {
   AcessoUseForm,
   AcessoUseActions
@@ -23,8 +25,9 @@ import { ContentLoginColluns } from './ContentLoginColluns.tsx';
 import { ContentMainButtonsLogin } from './ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from './ContentButtonTitleImg.tsx';
 
-export const Login = () => {
-  const [isemp] = React.useState(true);
+// export const Login = () => {
+const Login = () => {  
+  const [isopen, setIsOpen] = React.useState(false);
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
 
@@ -52,10 +55,7 @@ export const Login = () => {
   const { dispatch } = AcessoUseForm();
 
   React.useEffect(() => {
-    dispatch({
-      type: AcessoUseActions.setCurrentStep,
-      payload: 1
-    });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 1 });
     dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
     dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
@@ -83,6 +83,7 @@ export const Login = () => {
     dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login' });
     dispatch({ type: AcessoUseActions.setLogado, payload: '' });
+    setIsOpen(true);
   }, [dispatch]);
 
   React.useEffect(() => {
@@ -108,8 +109,8 @@ export const Login = () => {
         <ContentLoginPg>
           <ContentTitleLogin modotitle={'Selecione uma Empresa.'} />
           <Lg.ContainerMainLogin>
-            <ContentLoginCollunsCenter isopen={isemp}>
-              <ContentLoginOpc pwidth="200px" open={isemp}>
+            <ContentLoginCollunsCenter isopen={isopen}>
+              <ContentLoginOpc pwidth="200px" open={isopen}>
                 <ContentTitleLoginOpc titleopc="Empresa:" />
                 <ContentInput>
                   <select
@@ -142,3 +143,5 @@ export const Login = () => {
     </ThemeProvider>
   );
 };
+
+export default Login;

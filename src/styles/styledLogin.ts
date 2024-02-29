@@ -60,7 +60,7 @@ export const ContainerTitleLogin = styled.div`
 export const ContainerMainLogin = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 5px 5px;
-  border: none;
+  border: 1px dashed greenyellow;
   width: 100%;
   min-height: 60px;
   display: flex;
@@ -126,7 +126,7 @@ export const DivisionPgHztal = styled.div`
 `;
 
 export const DivisionPgHztalOnOff = styled.div<{isopen?: boolean}>`
-  border: 0px;
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 1px 0px 1px 0px;
   height: 3px;
@@ -217,7 +217,7 @@ export const ContainerInput = styled.div`
 
 `;
 export const InputCenter = styled.div`
-  border: none;/* 1px dashed green;*/
+  border: none;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
   width: 100%;
