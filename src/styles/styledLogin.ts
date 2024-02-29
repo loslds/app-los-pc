@@ -14,7 +14,10 @@ export const ContainerLogin = styled.div`
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
 `;
-export const ContainerLoginFlex = styled.div<{pwidth? : string}>`
+type ContainerLoginFlexType = {
+  pwidth? : string;
+};
+export const ContainerLoginFlex = styled.div<ContainerLoginFlexType>`
   border: 3px double;
   border-radius: 10px;
   border-color: ${props => props.theme.colors.textColor};
@@ -56,14 +59,16 @@ export const ContainerTitleLogin = styled.div`
   align-content: center;
   background: #bbbbbb;
 `;
-
-export const ContainerMainLogin = styled.div`
+type ContainerMainLoginType = {
+  isopen?: boolean;
+};
+export const ContainerMainLogin = styled.div<ContainerMainLoginType>`
   padding: 0px 0px 0px 0px;
   margin: 5px 5px;
   border: 1px dashed greenyellow;
   width: 100%;
   min-height: 60px;
-  display: flex;
+  display: ${props => (props.isopen ? 'flex' : 'none')};
   flex-wrap: wrap;
   flex-flow: row;
   justify-content: center;
@@ -71,19 +76,17 @@ export const ContainerMainLogin = styled.div`
   align-items: center;
 `;
 ////////////////////////////////////////
-type PropsCollFormCenter = {
+type ContainerCollFormCenterType = {
   pwidth? : string;
-  height?: string;
   isopen?: boolean;
-}
-export const ContainerCollFormCenter = styled.div<PropsCollFormCenter>`
+};
+export const ContainerCollFormCenter = styled.div<ContainerCollFormCenterType>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   min-width: ${({ pwidth }) => pwidth || '200px'};
-  // min-height: ${({ height }) => height || '150px'};
   display: ${props => (props.isopen ? 'flex' : 'none')};
   flex-wrap: nowrap;
   flex-flow: row;
@@ -94,19 +97,19 @@ export const ContainerCollFormCenter = styled.div<PropsCollFormCenter>`
 `;
 //////////////////////////////////////
 
-type Props = {
+type ContainerLoginCollunsOpcType = {
   pheight? : string;
   pwidth? : string;
   height?: string;
-}
-export const ContainerLoginCollunsOpc = styled.div<Props>`
+};
+export const ContainerLoginCollunsOpc = styled.div<ContainerLoginCollunsOpcType>`
   border: 1px dashed yellow;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   width: ${({ pwidth }) => pwidth || '200px'};
-  min-height: ${({ pheight }) => pheight || '150px'};
+  min-height: ${({ pheight }) => pheight || '155px'};
   display: flex;
   flex-wrap: nowrap;
   //flex-flow: c;
@@ -125,7 +128,10 @@ export const DivisionPgHztal = styled.div`
   background-color: #9c9c9c;
 `;
 
-export const DivisionPgHztalOnOff = styled.div<{isopen?: boolean}>`
+type DivisionPgHztalOnOffType ={
+  isopen?: boolean;
+};
+export const DivisionPgHztalOnOff = styled.div<DivisionPgHztalOnOffType>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 1px 0px 1px 0px;
@@ -134,21 +140,18 @@ export const DivisionPgHztalOnOff = styled.div<{isopen?: boolean}>`
   display: ${props => (props.isopen ? 'flex' : 'none')};
   background-color: #9c9c9c;
 `;
-
 //////////////////////////////////////
-type PropsCollOpcCenter = {
+type ContainerLoginCollunsOpcCenterType = {
   pwidth? : string;
-  height?: string;
   isopen?: boolean;
 }
-export const ContainerLoginCollunsOpcCenter = styled.div<PropsCollOpcCenter>`
+export const ContainerLoginCollunsOpcCenter = styled.div<ContainerLoginCollunsOpcCenterType>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   min-width: ${({ pwidth }) => pwidth || '200px'};
-  //min-height: ${({ height }) => height || '150px'};
   display: ${props => (props.isopen ? 'flex' : 'none')};
   //flex-wrap: nowrap;
   //flex-flow: row;
@@ -158,11 +161,11 @@ export const ContainerLoginCollunsOpcCenter = styled.div<PropsCollOpcCenter>`
 `;
 ////////////////////////////////////
 // opções
-type PropsLoginOpc = {
+type ContainerLoginOpcType = {
   pwidth? : string;
   open?: boolean;
 }
-export const ContainerLoginOpc = styled.div<PropsLoginOpc>`
+export const ContainerLoginOpc = styled.div<ContainerLoginOpcType>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
@@ -244,13 +247,16 @@ export const InputPage = styled.input`
 /////////////////////////////////
 // panel dos botões do formulário
 /////////////////////////////////
-export const ContainerMainButtonsLogin = styled.div<{pwidth? : string}>`
+
+type ContainerMainButtonsLoginType = {
+  pwidth? : string;
+};
+export const ContainerMainButtonsLogin  = styled.div<ContainerMainButtonsLoginType>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-width: ${({ pwidth }) => pwidth || '32%'};
   min-height: 45px;
-
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   display: flex;
@@ -260,6 +266,7 @@ export const ContainerMainButtonsLogin = styled.div<{pwidth? : string}>`
   align-content: center;
   align-items: center ;
 `;
+
 export const ContainerMainButtonsLoginFlex = styled.div`
   border: 3px double;
   border-radius: 10px;
@@ -324,8 +331,10 @@ export const ContainerButtonOffImg = styled.div`
     background: #ff3737;
    }
 `;
-
-export const ButtonOnOffImg = styled.button<{ img?: string  }>`
+type ButtonOnOffImgType = {
+  img?: string;
+};
+export const ButtonOnOffImg = styled.button<ButtonOnOffImgType>`
   border: 2px; 
   border-radius: 3px;
   margin: 2px 5px 2px 5px;
@@ -362,7 +371,10 @@ export const ContainerAreaText = styled.div`
   align-items: left;
  `;
 
-export const ContainerFormCenter = styled.div<{pwidth? : string}>`
+type ContainerFormCenterType = {
+  pwidth?: string;
+};
+export const ContainerFormCenter = styled.div<ContainerFormCenterType>`
   border: 3px double;
   border-color: greenyellow;
   border-radius: 10px;

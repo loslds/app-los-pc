@@ -14,7 +14,8 @@ type StateAcesso = {
   pswuser: string;
   mdLogin: number;
   nmLogin: string;
-
+  nrcont: number;
+  nmcont: string;
 
   pin: string;
   mail: string;
@@ -55,6 +56,8 @@ export const initialData: StateAcesso = {
   pswuser: '',
   mdLogin: 0,
   nmLogin: '',
+  nrcont: 0,
+  nmcont: '',
 
   pin: '',
   mail: '',
@@ -97,6 +100,8 @@ export enum AcessoUseActions {
   setPswUser,
   setMdLogin,
   setNmLogin,
+  setNrCont,
+  setNmCont,
 
 
   setPin,
@@ -158,11 +163,16 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, idnmuser: action.payload };
     case AcessoUseActions.setPswUser:
       return { ...state, pswuser: action.payload };
+
     case AcessoUseActions.setMdLogin:
       return { ...state, mdlogin: action.payload };
     case AcessoUseActions.setNmLogin:
       return { ...state, nmlogin: action.payload };
-    
+    case AcessoUseActions.setNrCont:
+      return { ...state, nrcont: action.payload };
+    case AcessoUseActions.setNmCont:
+      return { ...state, nmcont: action.payload };
+  
 
     case AcessoUseActions.setPin:
       return { ...state, pin: action.payload };

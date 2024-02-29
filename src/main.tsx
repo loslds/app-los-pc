@@ -6,7 +6,7 @@ import Global from './styles/global';
 import { Home } from './components/pages/Home';
 
 import Login from './components/pages/Login';
-import { Login1 } from './components/pages/Login1';
+import Login1 from './components/pages/Login1';
 // import { Login2 } from './components/pages/Login2';
 // import { Login3 } from './components/pages/Login3';
 

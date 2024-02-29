@@ -62,6 +62,12 @@ const Login = () => {
     dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+
     dispatch({ type: AcessoUseActions.setPin, payload: '' });
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
@@ -106,9 +112,10 @@ const Login = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+        
         <ContentLoginPg>
           <ContentTitleLogin modotitle={'Selecione uma Empresa.'} />
-          <Lg.ContainerMainLogin>
+          <Lg.ContainerMainLogin isopen={isopen}>
             <ContentLoginCollunsCenter isopen={isopen}>
               <ContentLoginOpc pwidth="200px" open={isopen}>
                 <ContentTitleLoginOpc titleopc="Empresa:" />
@@ -127,6 +134,7 @@ const Login = () => {
             </ContentLoginCollunsCenter>
           </Lg.ContainerMainLogin>
           <Lg.DivisionPgHztal />
+          
           <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
             <ContentMainButtonsLogin>
               <ContentButtonTitleImg title="Voltar." onClick={goto('/')} />
@@ -138,6 +146,7 @@ const Login = () => {
               ) : null}
             </ContentMainButtonsLogin>
           </ContentLoginColluns>
+
         </ContentLoginPg>
       </ThemeLogin>
     </ThemeProvider>

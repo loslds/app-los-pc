@@ -1,8 +1,5 @@
 import * as Lg from '../../../styles/styledLogin.ts';
 
-//import enviaon from '../../../assets/svgs/enviaron.svg';
-//import enviaoff from '../../../assets/svgs/enviaroff.svg';
-
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
@@ -19,62 +16,36 @@ import {
 import { ContentLoginPg } from '../Login/ContentLoginPg.tsx';
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
+import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
-
 import { ContentInput } from '../Login/ContentInput.tsx';
-import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
 import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
-import { ContentInputOpc } from '../Login/ContentInputOpc.tsx';
-
 import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
-import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
-import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
-import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
-import { ContentButtonConfimationOnOff } from '../Login/ContentButtonConfimationOnOff.tsx';
-
-//import { ListAcessos } from '../../../books/ListAcessos.tsx';
 
 /////////////////////////////////
-export function TestaInput(stri: string, strp: string) {
-  // testa o id
-  let nrleni = stri.length;
-  let nrlenp = strp.length;
+//export function TestaInput(stri: string, strp: string) {
+// testa o id
+//  let nrleni = stri.length;
+//  let nrlenp = strp.length;
 
-  if (nrleni === 0 && nrlenp === 0) {
-    return 1;
-  } else if (nrleni === 0) {
-    return 2;
-  } else if (nrlenp === 0) {
-    return 3;
-  } else if (nrlenp > 0 && nrlenp < 4) {
-    return 4;
-  } else {
-    return 0;
-  }
-}
-export const Login1 = () => {
-  const [mdlogin, setMdLogin] = React.useState(0);
-  const [nmlogin, setNmLogin] = React.useState('Opções:');
+//  if (nrleni === 0 && nrlenp === 0) {
+//    return 1;
+//  } else if (nrleni === 0) {
+//    return 2;
+//  } else if (nrlenp === 0) {
+//    return 3;
+//  } else if (nrlenp > 0 && nrlenp < 4) {
+//    return 4;
+//  } else {
+//    return 0;
+//  }
+//}
 
-  const [panelselect, setPanelSelect] = React.useState(false);
-  const [panelinputselecao, setPanelInputSelecao] = React.useState(false);
-  const [btncontinua, setBtnContinua] = React.useState(false);
-
-  const [cont] = React.useState(0);
-  const [strid, setStrId] = React.useState('');
-  const [strpsw, setStrPsw] = React.useState('');
-
-  //const [iserrologin, setIsErroLogin] = React.useState(false);
-  //const [nmrerrologin, setNmErroLogin] = React.useState('');
-
-  //const [iscontinua, setIsContinua] = React.useState(false);
-  //const [ismostraInput, setIsMostraInput] = React.useState(false);
-  //const [isconfirmainput, setIsConfirmaInput] = React.useState(false);
-
-  //const [isresgatar, setIsResgatar] = React.useState(false);
-  //const [isconfirmaresgatar, setIsConfirmaResgatar] = React.useState(false);
+const Login1 = () => {
+  //  const [panelselect, setPanelSelect] = React.useState(false);
+  //  const [inputselecao, setInputSelecao] = React.useState(false);
 
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -95,12 +66,18 @@ export const Login1 = () => {
       navigate(path);
     };
   };
-  const { dispatch } = AcessoUseForm();
-
+  const { state, dispatch } = AcessoUseForm();
+  const [isopen, setIsOpen] = React.useState(false);
+  const [mdlogin, setMdLogin] = React.useState(0);
+  const [nmlogin, setNmLogin] = React.useState('Opções:');
+  const [btncontinua, setBtnContinua] = React.useState(false);
+  const [tentativa, setTentativa] = React.useState(0);
+  const [nrerro, setNrErro] = React.useState(0);
+  const [strrerro, setStrErro] = React.useState('');
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login1' });
-    setPanelSelect(true);
+    setIsOpen(true);
   }, [dispatch]);
 
   const DescrOpc = [
@@ -114,40 +91,26 @@ export const Login1 = () => {
   const setModo = (level: number) => {
     setMdLogin(level);
     setNmLogin(DescrOpc[level]);
-
-    if (mdlogin === 0) {
-      setPanelInputSelecao(false);
-      setBtnContinua(false);
-      console.log('A :', 2);
-    }
-
-    // if (mdlogin > 0 && mdlogin <= 4) {
-    //   setPanelInputSelecao(true);
-    //   setBtnContinua(true);
-    //   console.log('B :',1);
-    // }
-    console.log('C :', 3);
   };
 
   React.useEffect(() => {
-    if (mdlogin > 0 && mdlogin <= 4) {
-      setPanelInputSelecao(true);
+    if (mdlogin >= 1 && mdlogin <= 4) {
       setBtnContinua(true);
-      console.log('B :', 1);
+    } else if (mdlogin === 0) {
+      setBtnContinua(false);
     }
     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-    console.log('mdl :', mdlogin);
   }, [mdlogin, dispatch]);
 
-  const handlerOnChangerStrId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStrId(e.currentTarget.value);
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
-  };
-  const handlerOnChangerStrPsw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setStrPsw(e.currentTarget.value);
-    dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
-  };
+  // const handlerOnChangerStrId = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setStrId(e.currentTarget.value);
+  //   dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
+  // };
+  // const handlerOnChangerStrPsw = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setStrPsw(e.currentTarget.value);
+  //   dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
+  // };
 
   // const handlerContinuar = React.useCallback(() => {
   //   setNmErroLogin('');
@@ -226,13 +189,11 @@ export const Login1 = () => {
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
         <ContentLoginPg>
-          <ContentTitleLogin modotitle={'Determine o seu Acesso.'} />
-
-          {/** Painel Select */}
-          <Lg.ContainerMainLogin>
-            <ContentLoginCollunsCenter isopen={panelselect}>
+          <ContentTitleLogin modotitle={'Determine a Maneira do seu Acesso.'} />
+          <Lg.ContainerMainLogin isopen={isopen}>
+            <ContentLoginCollunsCenter isopen={isopen}>
               <ContentLoginColluns>
-                <ContentLoginOpc pwidth="200px" open={panelselect}>
+                <ContentLoginOpc pwidth="200px" open={isopen}>
                   <ContentTitleLoginOpc titleopc={nmlogin} />
                   <ContentInput>
                     <ContentRadioOpc
@@ -268,35 +229,87 @@ export const Login1 = () => {
               </ContentLoginColluns>
             </ContentLoginCollunsCenter>
           </Lg.ContainerMainLogin>
+          <Lg.DivisionPgHztal />
 
-          {/** mostra Painel Input Select */}
+          <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
+            <ContentMainButtonsLogin>
+              <ContentButtonTitleImg title="Voltar." onClick={goto('/login')} />
+              <p>Você tem [{4-state.nrcont}] tentativas para acesso...</p>
+              {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
+               
+                <ContentButtonTitleImg
+                  title="Continuar."
+                  onClick={goto('/login2')}
+                />
+              ) : null}
 
-          <Lg.DivisionPgHztalOnOff isopen={panelinputselecao} />
-          <Lg.ContainerMainLogin>
-            <ContentLoginCollunsCenter
-              isopen={panelinputselecao}
-              pwidth={'100%'}
-            >
-              <ContentLoginColluns pwidth={'100%'}>
-                <ContentLoginOpc pwidth={'100%'} open={panelinputselecao}>
-                  <ContentTitleLoginOpc titleopc={'Aplicação :'} />
+              
+            </ContentMainButtonsLogin>
+          </ContentLoginColluns>
+        </ContentLoginPg>
+      </ThemeLogin>
+    </ThemeProvider>
+  );
+};
+
+export default Login1;
+/* 
+          
+
+          
+            <ContentLoginCollunsCenter isopen={panelselect}>
+              <ContentLoginColluns>
+
+                <ContentLoginOpc pwidth="200px" open={panelselect}>
+                  <ContentTitleLoginOpc titleopc={nmlogin} />
+                  <ContentInput>
+                    <ContentRadioOpc
+                      id="E-Mail/Pass"
+                      name="opcao"
+                      value={1}
+                      titulo="E-Mail/Pass"
+                      onclick={() => setModo(1)}
+                    />
+                    <ContentRadioOpc
+                      id="E-Mail/PIN"
+                      name="opcao"
+                      value={2}
+                      titulo="E-Mail/PIN"
+                      onclick={() => setModo(2)}
+                    />
+                    <ContentRadioOpc
+                      id="Pseud/Pass"
+                      name="opcao"
+                      value={3}
+                      titulo="Pseudô/Pass"
+                      onclick={() => setModo(3)}
+                    />
+                    <ContentRadioOpc
+                      id="Pseud/PIN"
+                      name="opcao"
+                      value={4}
+                      titulo="Pseudô/PIN"
+                      onclick={() => setModo(4)}
+                    />
+                  </ContentInput>
+
 
                   {mdlogin == 1 ? (
                     <form name="mdlogin1">
                       <ContentInputOpc
                         titulo="E-Mail.:"
-                        id="email"
+                        id="email1"
                         type="email"
-                        name="opcemail"
+                        name="opcemail1"
                         value={strid}
                         placeholder="email@email.com(.br)"
                         onchange={() => handlerOnChangerStrId}
                       />
                       <ContentInputOpc
-                        titulo="Pass...:"
-                        id="passw"
+                        titulo="Password.:"
+                        id="passw1"
                         type="password"
-                        name="opcpassword"
+                        name="opcpassword1"
                         value={strpsw}
                         maxlength={10}
                         placeholder="**********"
@@ -304,133 +317,189 @@ export const Login1 = () => {
                       />
                     </form>
                   ) : null}
-                  {mdlogin == 2 ? <form name="mdlogin2"></form> : null}
-                  {mdlogin == 3 ? <form name="mdlogin3"></form> : null}
-                  {mdlogin == 4 ? <form name="mdlogin4"></form> : null}
+                  {mdlogin == 2 ? (
+                    <form name="mdlogin2">
+                      <ContentInputOpc
+                        titulo="E-Mail.:"
+                        id="email2"
+                        type="email"
+                        name="opcemail2"
+                        value={strid}
+                        placeholder="email@email.com(.br)"
+                        onchange={() => handlerOnChangerStrId}
+                      />
+                      <ContentInputOpc
+                        titulo="PIN...:"
+                        id="pin1"
+                        type="text"
+                        name="opcpin1"
+                        value={strpsw}
+                        maxlength={4}
+                        placeholder="9999"
+                        onchange={() => handlerOnChangerStrPsw}
+                      />
+                    </form>
+                  ) : null}
+
+                  {mdlogin == 3 ? (
+                    <form name="mdlogin3">
+                      <ContentInputOpc
+                        titulo="Pseudônimo.:"
+                        id="pseud2"
+                        type="text"
+                        name="opcpseud2"
+                        value={strid}
+                        placeholder="Pseudônimo..."
+                        onchange={() => handlerOnChangerStrId}
+                      />
+                      <ContentInputOpc
+                        titulo="Password.:"
+                        id="passw2"
+                        type="password"
+                        name="opcpassword2"
+                        value={strpsw}
+                        maxlength={10}
+                        placeholder="**********"
+                        onchange={() => handlerOnChangerStrPsw}
+                      />
+                    </form>
+                  ) : null}
+                  {mdlogin == 4 ? (
+                    <form name="mdlogin4">
+                      <ContentInputOpc
+                        titulo="Pseudônimo.:"
+                        id="pseud2"
+                        type="text"
+                        name="opcpseud2"
+                        value={strid}
+                        placeholder="Pseudônimo..."
+                        onchange={() => handlerOnChangerStrId}
+                      />
+                      <ContentInputOpc
+                        titulo="PIN...:"
+                        id="pin2"
+                        type="text"
+                        name="opcpin2"
+                        value={strpsw}
+                        maxlength={4}
+                        placeholder="9999"
+                        onchange={() => handlerOnChangerStrPsw}
+                      />
+                    </form>
+                  ) : null}
+
+
                 </ContentLoginOpc>
               </ContentLoginColluns>
             </ContentLoginCollunsCenter>
           </Lg.ContainerMainLogin>
 
-          {/* <ContentLoginOpc pwidth={'100%'} open={panelinputselecao}>
+ 
+          <Lg.DivisionPgHztalOnOff isopen={inputselecao} />
 
-              </ContentLoginOpc> */}
+          <Lg.ContainerMainLogin  isopen={inputselecao}>
+            <ContentLoginCollunsCenter isopen={inputselecao}>
+               <ContentLoginColluns pheight="150px" pwidth="265px">
+                <ContentLoginOpc open={inputselecao}>
+                  <ContentTitleLoginOpc titleopc={'Aplicação : Edição'} />
+                  {mdlogin == 1 ? (
+                    <form name="mdlogin1">
+                      <ContentInputOpc
+                        titulo="E-Mail.:"
+                        id="email1"
+                        type="email"
+                        name="opcemail1"
+                        value={strid}
+                        placeholder="email@email.com(.br)"
+                        onchange={() => handlerOnChangerStrId}
+                      />
+                      <ContentInputOpc
+                        titulo="Password.:"
+                        id="passw1"
+                        type="password"
+                        name="opcpassword1"
+                        value={strpsw}
+                        maxlength={10}
+                        placeholder="**********"
+                        onchange={() => handlerOnChangerStrPsw}
+                      />
+                    </form>
+                  ) : null}
+                  {mdlogin == 2 ? (
+                    <form name="mdlogin2">
+                      <ContentInputOpc
+                        titulo="E-Mail.:"
+                        id="email2"
+                        type="email"
+                        name="opcemail2"
+                        value={strid}
+                        placeholder="email@email.com(.br)"
+                        onchange={() => handlerOnChangerStrId}
+                      />
+                      <ContentInputOpc
+                        titulo="PIN...:"
+                        id="pin1"
+                        type="text"
+                        name="opcpin1"
+                        value={strpsw}
+                        maxlength={4}
+                        placeholder="9999"
+                        onchange={() => handlerOnChangerStrPsw}
+                      />
+                    </form>
+                  ) : null}
 
-          <ContentLoginOpc pwidth={'100%'} open={true}>
-            <ContentTitleLoginOpc titleopc="Aplicação :" />
-            <ContentInput>
-              {/* {mdlogin == 1 ? (
-                <form name="mdlogin1">
-                  <Lg.InputCenter>
-                    <label>E-Mail</label>
-                    <Lg.InputPage
-                      type="email"
-                      id="email1"
-                      name="email1"
-                      value={strid}
-                      placeholder="email@email.com(.br)"
-                      onChange={handlerOnChangerStrId}
-                    />
-                  </Lg.InputCenter>
-                  <Lg.InputCenter>
-                    <label>Pass..</label>
-                    <Lg.InputPage
-                      type="password"
-                      id="password1"
-                      name="password1"
-                      value={strpsw}
-                      placeholder="**********"
-                      onChange={(e) => setStrPsw(e.target.value)}
-                    />
-                  </Lg.InputCenter>
-                </form>
-              ) : null}
- */}
-              {mdlogin == 2 ? (
-                <form name="mdlogin2">
-                  <Lg.InputCenter>
-                    <label>E-Mail</label>
-                    <input
-                      type="email"
-                      id="email2"
-                      name="email2"
-                      value={strid}
-                      placeholder="email@email.com(.br)"
-                      onChange={(e) => setStrId(e.target.value)}
-                    />
-                  </Lg.InputCenter>
-
-                  <Lg.InputCenter>
-                    <label>PIN...:</label>
-                    <input
-                      type="text"
-                      id="pin1"
-                      name="pin1"
-                      value={strpsw}
-                      placeholder="****"
-                      onChange={(e) => setStrPsw(e.target.value)}
-                    />
-                  </Lg.InputCenter>
-                </form>
-              ) : null}
-
-              {mdlogin == 3 ? (
-                <form name="mdlogin3">
-                  <Lg.InputCenter>
-                    <label>Pseud.:</label>
-                    <input
-                      type="text"
-                      id="pseud1"
-                      name="pseud1"
-                      value={strid}
-                      placeholder="Seu pseudônimo."
-                      onChange={(e) => setStrId(e.target.value)}
-                    />
-                  </Lg.InputCenter>
-
-                  <Lg.InputCenter>
-                    <label>Pass...:</label>
-                    <input
-                      type="password"
-                      id="password2"
-                      name="password2"
-                      value={strpsw}
-                      placeholder="**********"
-                      onChange={(e) => setStrPsw(e.target.value)}
-                    />
-                  </Lg.InputCenter>
-                </form>
-              ) : null}
-
-              {mdlogin == 4 ? (
-                <form name="mdlogin4">
-                  <Lg.InputCenter>
-                    <label>Pseud.:</label>
-                    <input
-                      type="text"
-                      id="pseud2"
-                      name="pseud2"
-                      value={strid}
-                      placeholder="Seu pseudônimo."
-                      onChange={(e) => setStrId(e.target.value)}
-                    />
-                  </Lg.InputCenter>
-                  <Lg.InputCenter>
-                    <label>PIN.....:</label>
-                    <input
-                      type="text"
-                      id="pin2"
-                      name="pin2"
-                      placeholder="****"
-                      onChange={(e) => setStrPsw(e.target.value)}
-                    />
-                  </Lg.InputCenter>
-                </form>
-              ) : null}
-            </ContentInput>
-          </ContentLoginOpc>
-
-          {/* 
+                  {mdlogin == 3 ? (
+                    <form name="mdlogin3">
+                      <ContentInputOpc
+                        titulo="Pseudônimo.:"
+                        id="pseud2"
+                        type="text"
+                        name="opcpseud2"
+                        value={strid}
+                        placeholder="Pseudônimo..."
+                        onchange={() => handlerOnChangerStrId}
+                      />
+                      <ContentInputOpc
+                        titulo="Password.:"
+                        id="passw2"
+                        type="password"
+                        name="opcpassword2"
+                        value={strpsw}
+                        maxlength={10}
+                        placeholder="**********"
+                        onchange={() => handlerOnChangerStrPsw}
+                      />
+                    </form>
+                  ) : null}
+                  {mdlogin == 4 ? (
+                    <form name="mdlogin4">
+                      <ContentInputOpc
+                        titulo="Pseudônimo.:"
+                        id="pseud2"
+                        type="text"
+                        name="opcpseud2"
+                        value={strid}
+                        placeholder="Pseudônimo..."
+                        onchange={() => handlerOnChangerStrId}
+                      />
+                      <ContentInputOpc
+                        titulo="PIN...:"
+                        id="pin2"
+                        type="text"
+                        name="opcpin2"
+                        value={strpsw}
+                        maxlength={4}
+                        placeholder="9999"
+                        onchange={() => handlerOnChangerStrPsw}
+                      />
+                    </form>
+                  ) : null}
+                </ContentLoginOpc>
+              </ContentLoginColluns> 
+            </ContentLoginCollunsCenter>
+          </Lg.ContainerMainLogin>
+ 
           <Lg.DivisionPgHztalOnOff isopen={isconfirmainput} />
 
           <ContentLoginOpc pwidth={'100%'} open={isconfirmainput}>
@@ -457,9 +526,8 @@ export const Login1 = () => {
               />
             </ContentButtonsConfirmation>
           </ContentLoginOpc>
- */}
-
-          {/* 
+          
+ 
           <Lg.DivisionPgHztalOnOff isopen={isconfirmaresgatar} />
           <ContentLoginOpc pwidth={'100%'} open={isconfirmaresgatar}>
             <ContentTitleLoginOpc titleopc='"CONFIRMAÇÃO da MUDANÇA de Dados...' />
@@ -486,7 +554,8 @@ export const Login1 = () => {
               />
             </ContentButtonsConfirmation>
           </ContentLoginOpc>
- */}
+
+
 
           <Lg.DivisionPgHztal />
           <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
@@ -500,11 +569,12 @@ export const Login1 = () => {
                     alert('btncontinua');
                   }}
                 />
-              ) : (
+              ) : null}
+               (
                 <p>Você tem [{cont}] tentativas para acesso...</p>
               )}
 
-              {/* 
+  
               {ismostraInput ? (
                 <ContentButtonTitleImg title="Enviar" onClick={handlerEnviar} />
               ) : null}
@@ -530,16 +600,14 @@ export const Login1 = () => {
                   <CardInfoErros nmerro={nmrerrologin} />
                 </PanelModalInfoErros>
               ) : null}
-*/}
             </ContentMainButtonsLogin>
           </ContentLoginColluns>
         </ContentLoginPg>
-      </ThemeLogin>
-    </ThemeProvider>
-  );
-};
 
-/*
+
+
+
+
           <Lg.DivisionPgHztalOnOff isopen={isconfirmainput} />
           <ContentLoginOpc pwidth={'100%'} open={isconfirmainput}>
             <ContentTitleLoginOpc titleopc='"CONFIRMAÇÃO de Dados...' />
