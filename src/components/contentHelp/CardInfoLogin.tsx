@@ -4,7 +4,7 @@ import CardModalTexto from '../Modal/CardModalTexto';
 
 import { AcessoUseForm } from '../contexts/login/ContextAcesso';
 
-export const CardInfoLogin = () => {
+const CardInfoLogin = () => {
   const { state } = AcessoUseForm();
 
   return (
@@ -52,3 +52,5 @@ export const CardInfoLogin = () => {
     </CardModalTexto>
   );
 };
+
+export default CardInfoLogin;

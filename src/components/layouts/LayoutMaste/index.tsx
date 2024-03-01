@@ -1,10 +1,10 @@
 import * as Pg from '../styled';
 import { ContentPages } from '../ContentPages';
-import { HearderPage } from '../../headers/headerPage/HearderPages';
+import { HearderPage } from '../../headers/HearderPages';
 import { ReactNode } from 'react';
 
 type PropsLayoutMaste = {
-  img?:string;
+  
   onclick?: () => void;
   title?:string;
   children?: ReactNode | JSX.Element;
@@ -12,10 +12,10 @@ type PropsLayoutMaste = {
   ischeck: boolean;
   onLogin?:  () => void;
 }
-export const LayoutMaste = ({img, onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutMaste) => {
+export const LayoutMaste = ( { onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutMaste) => {
   return (
     <ContentPages>
-      <HearderPage img={img} onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
+      <HearderPage onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
       <Pg.DivisionPgHztal />
       <Pg.ContainerBody>
         <h1>Menu Master</h1>

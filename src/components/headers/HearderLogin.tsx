@@ -1,23 +1,23 @@
-import * as Pg from '../../layouts/styled.ts';
+import * as Pg from '../layouts/styled.ts';
 
-import logosys from '../../../assets/pngs/logosys.png';
-import help from '../../../assets/svgs/help.svg';
-import esclamacao from '../../../assets/svgs/esclamacao.svg';
+import logosys from '../../assets/pngs/logosys.png';
+import help from '../../assets/svgs/help.svg';
+import esclamacao from '../../assets/svgs/esclamacao.svg';
 
 import React from 'react';
 import Switch from 'react-switch';
 
-import { ContentHeaderButtonSys } from '../ContentHeaderButtonSys.tsx';
-import { ContentHearderItens } from '../ContentHearderItens.tsx';
-import { ContentHearderMain } from '../ContentHearderMain.tsx';
-import { ContentHeaderTitle } from '../ContentHeaderTitle.tsx';
-import { ContentHearderRight } from '../ContentHearderRight.tsx';
-import { ContentHearderItensBar } from '../ContentHearderItensBar.tsx';
-import ContentPagesButton from '../../layouts/ContentPagesButton.tsx';
+import { ContentHeaderButtonSys } from './ContentHeaderButtonSys.tsx';
+import { ContentHearderItens } from './ContentHearderItens.tsx';
+import { ContentHearderMain } from './ContentHearderMain.tsx';
+import { ContentHeaderTitle } from './ContentHeaderTitle.tsx';
+import { ContentHearderRight } from './ContentHearderRight.tsx';
+import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
+import ContentPagesButton from '../layouts/ContentPagesButton.tsx';
 
-import PageModal from '../../Modal/PageModal.tsx';
-import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
-import { CardAcessoSistema } from '../../contentHelp/CardAcessoSistema.tsx';
+import PageModal from '../Modal/PageModal.tsx';
+import CardInfoLogin from '../contentHelp/CardInfoLogin.tsx';
+import CardAcessoSistema from '../contentHelp/CardAcessoSistema.tsx';
 
 type PropsHearderLogin = {
   onclick?: () => void;

@@ -17,8 +17,8 @@ import ContainerItensMenu from './ContainerItensMenu';
 
 import PageModal from '../Modal/PageModal';
 
-import { CardModuloRecep } from '../contentHelp/CardModuloRecep';
-import { CardDesemvolver } from '../contentHelp/CardDesenvolver';
+import CardModuloRecep from '../contentHelp/CardModuloRecep';
+import CardDesemvolver from '../contentHelp/CardDesenvolver';
 
 export const BarSideMenuHome = () => {
   const [isitensmenu, setIsItensMenu] = React.useState(false);

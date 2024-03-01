@@ -3,7 +3,7 @@ import * as MD from '../Modal/styles';
 import  CardModalTexto from '../Modal/CardModalTexto';
 
 
-export const CardModuloRecep = () => {
+const CardModuloRecep = () => {
   return (
     <CardModalTexto >
       <MD.ContentTextoModulos >
@@ -39,3 +39,4 @@ export const CardModuloRecep = () => {
   );
 };
 
+export  default CardModuloRecep;

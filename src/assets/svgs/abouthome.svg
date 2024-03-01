@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="752px" height="752px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 24.67 24.64"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <font id="FontID0" horiz-adv-x="667" font-variant="normal" style="fill-rule:nonzero" font-style="normal" font-weight="400">
+	<font-face 
+		font-family="Arial">
+		<font-face-src>
+			<font-face-name name="Arial"/>
+		</font-face-src>
+	</font-face>
+   <missing-glyph><path d="M0 0z"/></missing-glyph>
+   <glyph unicode="?" horiz-adv-x="556" d="M231.029 176.021c-0.333271,11.6681 -0.499906,20.5034 -0.499906,26.3356 0,34.5044 4.83243,64.1763 14.6675,89.1789 7.16894,19.0037 18.6704,38.0037 34.671,57.174 11.6681,14.001 32.838,34.3378 63.1765,61.1733 30.5015,26.8392 50.1717,48.1721 59.3403,64.1763 9.16494,16.1673 13.6677,33.5046 13.6677,52.5046 0,34.3378 -13.3345,64.5096 -40.007,90.512 -26.6689,26.0024 -59.3403,39.0035 -98.0106,39.0035 -37.5038,0 -68.6755,-11.8347 -93.6781,-35.3376 -25.1692,-23.6695 -41.5067,-60.5067 -49.3386,-110.678l-90.0121 11.0016c8.16876,66.8425 32.1715,118.181 72.3415,153.685 40.1736,35.5042 93.1781,53.3414 159.187,53.3414 69.842,0 125.516,-19.0037 167.186,-57.174 41.5067,-38.174 62.3434,-84.3465 62.3434,-138.517 0,-31.3383 -7.33558,-60.1735 -22.0031,-86.5127 -14.6712,-26.5023 -43.3397,-58.5071 -86.0128,-96.3442 -28.6685,-25.3358 -47.3389,-44.0062 -56.1742,-56.0076 -8.83167,-12.0014 -15.3341,-25.8357 -19.5,-41.5031 -4.16951,-15.5043 -6.66904,-40.8402 -7.33558,-76.0111l-84.0096 0zm-16.0042 -176.021l0 100.014 100.014 0 0 -100.014 -100.014 0z"/>
+  </font>
+  <style type="text/css">
+   <![CDATA[
+    @font-face { font-family:"Arial";font-variant:normal;font-style:normal;font-weight:normal;src:url("#FontID0") format(svg)}
+    .str0 {stroke:#B8B4B6;stroke-width:1.64;stroke-miterlimit:22.9256}
+    .str3 {stroke:red;stroke-width:0.82;stroke-miterlimit:22.9256}
+    .str1 {stroke:black;stroke-width:1.15;stroke-miterlimit:22.9256}
+    .str2 {stroke:#F7FF05;stroke-width:1.15;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil2 {fill:#373435}
+    .fil0 {fill:white}
+    .fnt0 {font-weight:normal;font-size:10.69px;font-family:'Arial'}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil0 str0" d="M1.85 0.82l20.99 0c0.56,0 1.01,0.52 1.01,1.15l0 20.7c0,0.64 -0.45,1.15 -1.01,1.15l-20.99 0c-0.55,0 -1.01,-0.51 -1.01,-1.15 0,-2.49 -0.03,-20.05 -0.02,-20.95 0.01,-0.5 0.62,-0.9 1.03,-0.9z"/>
+  <g id="_2606563282224">
+   <circle class="fil1 str1" cx="12.33" cy="12.32" r="9.02"/>
+   <circle class="fil1 str2" cx="12.33" cy="12.32" r="8.2"/>
+  </g>
+ </g>
+ <g id="Camada_x0020_1_0">
+  <metadata id="CorelCorpID_1Corel-Layer"/>
+  <g id="_2606563280928">
+   <path class="fil1 str3" d="M6.05 12.19l0.11 -0.13 5.93 -6.61 1.81 1.75c0,-0.28 0,-0.56 0,-0.84 -0.01,-0.14 -0.01,-0.14 0.14,-0.14 0.41,0 0.82,0 1.23,-0.01 0.23,0 0.22,-0.01 0.22,0.17l0 2.64 2.66 3.21 -1.64 0c-0.3,0.01 -0.28,-0.04 -0.29,0.26l0.02 5.14 -8.17 0.01c-0.04,-1.73 -0.06,-3.41 -0.1,-5.14 -0.01,-0.29 -0.01,-0.32 -0.33,-0.31 -0.44,0 -1.04,0 -1.59,0z"/>
+   <text x="9.12" y="16.7"  class="fil2 fnt0">?</text>
+  </g>
+ </g>
+</svg>

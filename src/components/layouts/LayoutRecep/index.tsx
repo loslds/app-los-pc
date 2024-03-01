@@ -1,6 +1,6 @@
 import * as Pg from '../styled';
 import { ContentPages } from '../ContentPages';
-import { HearderPage } from '../../headers/headerPage/HearderPages';
+import { HearderPage } from '../../headers/HearderPages';
 import { ReactNode } from 'react';
 import { BarSideMenuRecep } from '../../sidebar/BarSideMenuRecep.tsx';
 

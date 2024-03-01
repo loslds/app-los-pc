@@ -24,7 +24,7 @@ import { ContentItensBody } from '../ContentItensBody.tsx';
 import { ContentCustonImg } from '../ContentCustonImg.tsx';
 
 import PageModal from '../../Modal/PageModal.tsx';
-import { CardImgNeg } from '../../contentHelp/CardImgNeg.tsx';
+import CardImgNeg from '../../contentHelp/CardImgNeg.tsx';
 
 const Home = () => {
   const { state, dispatch } = AcessoUseForm();

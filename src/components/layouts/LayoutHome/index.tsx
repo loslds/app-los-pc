@@ -1,6 +1,6 @@
 import * as Hm from '../styled';
 import { ContentPages } from '../ContentPages';
-import { HearderHome } from '../../headers/headerHome';
+import { HearderHome } from '../../headers/HearderHome';
 import { ReactNode } from 'react';
 import { FooterHome } from '../../footers/FooterHome';
 import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';

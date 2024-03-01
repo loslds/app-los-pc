@@ -7,7 +7,7 @@ type PropsInfoErro ={
 }
 
 
-export const CardInfoErros = ({nmerro}:PropsInfoErro) => {
+const CardInfoErros = ({nmerro}:PropsInfoErro) => {
 
   return (
     <CardModalTexto>
@@ -23,3 +23,4 @@ export const CardInfoErros = ({nmerro}:PropsInfoErro) => {
     </CardModalTexto>
   );
 };
+export default CardInfoErros;

@@ -114,12 +114,11 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
             </M.ContainerMainItem>
             {isrecep && isdiv? (
               <PageModal
-                ispx={true}
-                ptop={'13%'}
+                                ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
                 titulo={'Módulo Recepção.'}
-                onClose={() => setIsDiv(false)}
+                onclose={() => setIsDiv(false)}
               >
                 <CardModuloRecep isscroll={true} />
               </PageModal>
@@ -133,12 +132,12 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
             </M.ContainerMainItem>
             {isdesig && isdiv ? (
               <PageModal
-                ispx={true}
+                
                 ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
                 titulo={'Módulo Design.'}
-                onClose={() => setIsDiv(false)}
+                onclose={() => setIsDiv(false)}
               >
                 <h3>Design.</h3>
               </PageModal>
@@ -152,12 +151,12 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
             </M.ContainerMainItem>
             {isprodu && isdiv ? (
               <PageModal
-                ispx={true}
+                
                 ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
                 titulo={'Módulo Produção.'}
-                onClose={() => setIsDiv(false)}
+                onclose={() => setIsDiv(false)}
               >
                 <h3>Produção.</h3>
               </PageModal>
@@ -171,12 +170,11 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
             </M.ContainerMainItem>
             {isacaba && isdiv ? (
               <PageModal
-                ispx={true}
-                ptop={'13%'}
+                                ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
                 titulo={'Módulo Acabamento.'}
-                onClose={() => setIsDiv(false)}
+                onclose={() => setIsDiv(false)}
               >
                 <h3>Acabamento.</h3>
               </PageModal>
@@ -190,12 +188,12 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
             </M.ContainerMainItem>
             {isexped && isdiv ? (
               <PageModal
-                ispx={true}
+                
                 ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
                 titulo={'Módulo Expedição.'}
-                onClose={() => setIsDiv(false)}
+                onclose={() => setIsDiv(false)}
               >
                 <h3>Expediçao.</h3>
               </PageModal>
@@ -209,12 +207,12 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
             </M.ContainerMainItem>
             {isadmin && isdiv ? (
               <PageModal
-                ispx={true}
+                
                 ptop={'13%'}
                 pwidth={'50%'}
                 pheight={'100%'}
                 titulo={'Administração.'}
-                onClose={() => setIsDiv(false)}
+                onclose={() => setIsDiv(false)}
               >
                 <h3>Administração.</h3>
               </PageModal>
