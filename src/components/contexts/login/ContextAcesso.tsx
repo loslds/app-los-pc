@@ -12,8 +12,8 @@ type StateAcesso = {
   iduser: number;
   idnmuser: string;
   pswuser: string;
-  mdLogin: number;
-  nmLogin: string;
+  mdlogin: number;
+  nmlogin: string;
   nrcont: number;
   nmcont: string;
 
@@ -54,14 +54,16 @@ export const initialData: StateAcesso = {
   nmfant: '',
   idnmuser: '',
   pswuser: '',
-  mdLogin: 0,
-  nmLogin: '',
+  mdlogin: 0,
+  nmlogin: '',
   nrcont: 0,
   nmcont: '',
 
+  iduser: 0,
   pin: '',
   mail: '',
   fonec: '',
+  
   nmRecep: 'Recepção',
   mdRecep: false,
   nmDesig: 'Design',
@@ -78,8 +80,6 @@ export const initialData: StateAcesso = {
   mdMaster: false,
   nmConfig: 'Config',
   mdConfig: false,
-
-  iduser: 0,
 
   modulo: '',
   aplicacao: '',
@@ -98,15 +98,17 @@ export enum AcessoUseActions {
   setNmFant,
   setIdNmUser,
   setPswUser,
+
   setMdLogin,
   setNmLogin,
   setNrCont,
   setNmCont,
 
-
+  setIdUser,
   setPin,
   setMail,
   setFoneC,
+
   setMdRecep,
   setNmRecep,
   setMdDesig,
@@ -123,8 +125,6 @@ export enum AcessoUseActions {
   setNmMaster,
   setMdConfig,
   setNmConfig,
-
-  setIdUser,
   
   setModulo,
   setAplicacao,
@@ -174,12 +174,15 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, nmcont: action.payload };
   
 
+    case AcessoUseActions.setIdUser:
+      return { ...state, iduser: action.payload };
     case AcessoUseActions.setPin:
       return { ...state, pin: action.payload };
     case AcessoUseActions.setMail:
       return { ...state, mail: action.payload };
     case AcessoUseActions.setFoneC:
       return { ...state, fonec: action.payload };
+
     case AcessoUseActions.setMdRecep:
       return { ...state, ndrecep: action.payload };
     case AcessoUseActions.setNmRecep:
@@ -212,22 +215,21 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, mdconfig: action.payload };
     case AcessoUseActions.setNmConfig:
       return { ...state, nmconfig: action.payload };
+
+    case AcessoUseActions.setLogado:
+      return { ...state, logado: action.payload };
     case AcessoUseActions.setModulo:
       return { ...state, modulo: action.payload };
     case AcessoUseActions.setAplicacao:
-      return { ...state, aplicacaoo: action.payload };
-    case AcessoUseActions.setLogado:
-      return { ...state, logado: action.payload };
+      return { ...state, aplicacao: action.payload };
+
     case AcessoUseActions.setDtIni:
       return { ...state, datetimei: action.payload };
     case AcessoUseActions.setDtFim:
       return { ...state, datetimef: action.payload };
     case AcessoUseActions.setTmp:
       return { ...state, tempo: action.payload };
-
-    case AcessoUseActions.setIdUser:
-      return { ...state, iduser: action.payload };
-  
+ 
     default:
       return state;
   }

@@ -6,10 +6,8 @@ import * as MD from '../Modal/styles';
 import TitleModal from '../Modal/TitleModal';
 import xvrm from '../../assets/pngs/xvrm.png';
 
-type PropsModalHlp = {
-    id?: string;
+type PageModalType = {
     children?: React.ReactNode | JSX.Element;
-    ispx?: boolean;
     ptop?: string;
     pwidth?: string;
     pheight?: string;
@@ -17,16 +15,16 @@ type PropsModalHlp = {
     isbtn?: boolean;
     img?: string;
     titbtn?:string;
-    onClose?: () => void;
+    onclose?: () => void;
   };
-const PageModal: React.FC<PropsModalHlp> = ({ispx, ptop, pwidth, pheight, titulo, children, onClose }) => {
+const PageModal: React.FC<PageModalType> = ({ptop, pwidth, pheight, titulo, children, onclose }) => {
   return (
     <MD.Content>
-      <MD.ContainerModal ispx={ispx} ptop={ptop} pwidth={pwidth} pheight={pheight}>
+      <MD.ContainerModal ptop={ptop} pwidth={pwidth} pheight={pheight}>
       <CardModal>
         <TitleModal titulo={titulo} />
         <CardButtonsModal>
-          <ButtonModal img={xvrm} onClick={onClose}/>
+          <ButtonModal img={xvrm} onClick={onclose}/>
         </CardButtonsModal>
       </CardModal>
       {children}

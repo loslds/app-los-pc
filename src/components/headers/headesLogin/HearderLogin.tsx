@@ -66,7 +66,7 @@ export const HearderLogin = ({
             titbtn={'Ajuda...'}
             onClick={handlerOnHelp}
           />
-          
+
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}
@@ -86,12 +86,11 @@ export const HearderLogin = ({
         </ContentHearderItensBar>
         {isonhelp ? (
           <PageModal
-            ispx={true}
             ptop={'1%'}
             pwidth={'65%'}
             pheight={'50%'}
             titulo={'Acesso Sistema.'}
-            onClose={() => setIsOnHelp(false)}
+            onclose={() => setIsOnHelp(false)}
           >
             <CardAcessoSistema />
           </PageModal>
@@ -99,12 +98,11 @@ export const HearderLogin = ({
 
         {isonpanel ? (
           <PageModal
-            ispx={true}
             ptop={'1%'}
             pwidth={'65%'}
-            //pheight={'70%'}
+            pheight={'70%'}
             titulo={'DADOS Context Login.'}
-            onClose={() => setIsOnPanel(false)}
+            onclose={() => setIsOnPanel(false)}
           >
             <CardInfoLogin />
           </PageModal>

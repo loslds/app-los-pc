@@ -1,6 +1,6 @@
 import * as Hm from '../styled';
 import { ContentPages } from '../ContentPages';
-import { HearderPage } from '../../headers/headerPage/HearderPages';
+import { HearderHome } from '../../headers/headerHome';
 import { ReactNode } from 'react';
 import { FooterHome } from '../../footers/FooterHome';
 import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
@@ -17,7 +17,7 @@ type PropsLayoutHome = {
 export const LayoutHome = ({onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutHome) => {
   return (
     <ContentPages>
-      <HearderPage onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
+      <HearderHome onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
       <Hm.DivisionPgHztal />
       <Hm.ContainerBody>
         <Hm.ContainerPage>

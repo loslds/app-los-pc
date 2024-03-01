@@ -1,20 +1,20 @@
 
 import * as MD from '../Modal/styles';
 import  CardModalTexto from '../Modal/CardModalTexto';
-import negado from '../../assets/images/svgs/negado.svg';
+import negado from '../../assets/svgs/negado.svg';
 
 export const CardImgNeg = () => {
   return (
     <CardModalTexto>
       <MD.ContainerHeardModalMain>
         <MD.ContainerModalImg
-         ispx={true}
-         pminheight={'60px'}
-         pwidth={'80px'}
+         pminheight={'70px'}
+         pwidth={'70px'}
          img={negado} />
       </MD.ContainerHeardModalMain>
       <label>Acesso NEGADO.</label>
       <p>No momento seus requisitos não estão habilitados.</p>
+      <br/>
     </CardModalTexto>
   );
 };

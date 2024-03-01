@@ -72,12 +72,13 @@ const Login1 = () => {
   const [nmlogin, setNmLogin] = React.useState('Opções:');
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(0);
-  const [nrerro, setNrErro] = React.useState(0);
-  const [strrerro, setStrErro] = React.useState('');
+  //const [nrerro, setNrErro] = React.useState(0);
+  //const [strrerro, setStrErro] = React.useState('');
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login1' });
     setIsOpen(true);
+    
   }, [dispatch]);
 
   const DescrOpc = [
@@ -91,17 +92,27 @@ const Login1 = () => {
   const setModo = (level: number) => {
     setMdLogin(level);
     setNmLogin(DescrOpc[level]);
+
+    setTentativa(tentativa + 1);
   };
 
   React.useEffect(() => {
+    console.log('tentativa : ',tentativa);
+    console.log('state.nrCont : ',state.nrcont);
+////////////////////////////
     if (mdlogin >= 1 && mdlogin <= 4) {
       setBtnContinua(true);
+      if (tentativa < state.nrcont){
+        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+      }
+ 
     } else if (mdlogin === 0) {
       setBtnContinua(false);
+    
     }
     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-  }, [mdlogin, dispatch]);
+  }, [mdlogin, tentativa, dispatch]);
 
   // const handlerOnChangerStrId = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setStrId(e.currentTarget.value);
@@ -194,6 +205,9 @@ const Login1 = () => {
             <ContentLoginCollunsCenter isopen={isopen}>
               <ContentLoginColluns>
                 <ContentLoginOpc pwidth="200px" open={isopen}>
+
+
+
                   <ContentTitleLoginOpc titleopc={nmlogin} />
                   <ContentInput>
                     <ContentRadioOpc

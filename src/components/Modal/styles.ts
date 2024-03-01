@@ -60,22 +60,22 @@ export const Content = styled.div`
   }
 `;
 
-type PropsMain = {
-  ispx?: boolean;
+type ContainerModalType = {
   ptop?: string;
   pheight?: string;
   pwidth?: string;
   onClick?: () => void;
 };
-export const ContainerModal = styled.div<PropsMain>`
-  border: 2px #727272 solid;
+export const ContainerModal = styled.div<ContainerModalType>`
+  border: 3px double #727272;
+  border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 0px 10px 0px 10px;
   color: black;
   top: ${({ ptop }) => ptop || '62px'};
   position: fixed;
   width: ${({ pwidth }) => pwidth || '66.3%'};
-  //height: ${({ pheight }) => pheight || '90%'};
+  height: ${({ pheight }) => pheight || '90%'};
 
   min-height: auto;
   overflow-y: auto;
@@ -150,15 +150,14 @@ export const ContainerModalTexto = styled.div`
   font-style: normal;
 `;
 
-type PropsImg = {
-  ispx?: boolean;
+type ContainerModalImgType = {
   ptop?: string;
   pminheight?: string;
   pwidth?: string;
   img?: string;
   onClick?: () => void;
 };
-export const ContainerModalImg = styled.div<PropsImg>`
+export const ContainerModalImg = styled.div<ContainerModalImgType>`
   border: 6px silver groove ;
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;
@@ -176,6 +175,7 @@ export const ContainerModalImg = styled.div<PropsImg>`
   background-position: center;
   cursor: pointer;
   outline: none;
+  color: black;
 `;
 
 export const ContainerModalImgModulo = styled.div`
@@ -197,7 +197,7 @@ export const ContainerModalImgModulo = styled.div`
 /////////////// fim MainModal
 /////////////// inicio CardMocal
 export const ContainerCard = styled.div`
-  border-bottom: 2px #727272 solid;
+  border-bottom: 3px double #727272;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -211,6 +211,7 @@ export const ContainerCard = styled.div`
   align-items: center;
   font-size: 16px;
   font-style: normal;
+  color: black;
 `;
 
 export const ContainerCardFlex = styled.div`
@@ -225,6 +226,7 @@ export const ContainerCardFlex = styled.div`
   justify-content: center; /*space-around;*/
   align-content: center;
   align-items: center;
+  color: black;
 `;
 ///////////////// fim CardModal
 
@@ -239,6 +241,7 @@ export const ContainerModalTitle = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
+  color: black;
 `;
 ////////////////// fim TitleModal
 ///////////////// inicio ButtonModal
@@ -484,6 +487,7 @@ export const ContainerHeardModalMain = styled.div`
   justify-content: center;
   align-content: center;
   align-items: center;
+  color: black;
 `;
 type PropsModalModal = {
   ispx?: boolean;
