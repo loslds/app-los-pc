@@ -61,3 +61,20 @@ export function GeradorSnhForte() {
 
   return rtnSnhF;
 }
+
+export function TestaInput(stri: string, strp: string) {
+  let nrleni = stri.length;
+  let nrlenp = strp.length;
+
+  if (nrleni === 0 && nrlenp === 0) {
+    return 1;
+  } else if (nrleni === 0) {
+    return 2;
+  } else if (nrlenp === 0) {
+    return 3;
+  } else if (nrlenp > 0 && nrlenp < 4) {
+    return 4;
+  } else {
+    return 0;
+  }
+}

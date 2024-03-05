@@ -13,7 +13,7 @@ export const ContainerPg = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-content: center;
+  //align-content: center;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   
@@ -24,8 +24,9 @@ export const ContainerFlexPg = styled.div`
   margin: 0px 5px 0px 5px;
   padding: 0px 0px 0px 0px;
   width: 980px;
-  display: flex row;
-  flex-wrap: wrap;
+  //display: flex row;
+  //flex-flow: wrap;
+  //flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
   background-color: transparent;

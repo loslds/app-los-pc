@@ -25,6 +25,7 @@ export const ContainerLoginFlex = styled.div<ContainerLoginFlexType>`
   margin: 5px 0px 5px 0px;
   width: ${({ pwidth }) => pwidth || '65%'};
   display: flex;
+  flex-flow: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;

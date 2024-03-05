@@ -27,7 +27,7 @@ import { ContentButtonTitleImg } from './ContentButtonTitleImg.tsx';
 
 // export const Login = () => {
 const Login = () => {
-  const [isopen, setIsOpen] = React.useState(false);
+  // const [isopen, setIsOpen] = React.useState(false);
   const [edicao, setEdicao] = React.useState('');
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
@@ -94,7 +94,7 @@ const Login = () => {
 
     dispatch({ type: AcessoUseActions.setLogado, payload: '' });
 
-    setIsOpen(true);
+    // setIsOpen(true);
   }, [dispatch]);
 
   React.useEffect(() => {
@@ -123,9 +123,9 @@ const Login = () => {
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
         <ContentLoginPg>
           <ContentTitleLogin modotitle={'Selecione uma Empresa.'} />
-          <Lg.ContainerMainLogin isopen={isopen}>
-            <ContentLoginCollunsCenter isopen={isopen}>
-              <ContentLoginOpc pwidth="200px" open={isopen}>
+          <Lg.ContainerMainLogin isopen={true}>
+            <ContentLoginCollunsCenter isopen={true}>
+              <ContentLoginOpc pwidth="200px" open={true}>
                 <ContentTitleLoginOpc titleopc="Empresa:" />
                 <ContentInput>
                   <select

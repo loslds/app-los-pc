@@ -1,9 +1,6 @@
 import * as Lg from '../../../styles/styledLogin.ts';
 import '../../../styles/global.ts';
 
-//import enviaon from '../../../assets/svgs/enviaron.svg';
-//import enviaoff from '../../../assets/svgs/enviaroff.svg';
-
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
@@ -17,75 +14,17 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentLoginPg } from '../Login/ContentLoginPg.tsx';
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
 import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
-//import { ContentInputOpc } from '../Login/ContentInputOpc.tsx';
 import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
-
-//import { ContentInput } from '../Login/ContentInput.tsx';
-//import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
-//import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
-
-//import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
-//import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
-//import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
-//import { ContentButtonConfimationOnOff } from '../Login/ContentButtonConfimationOnOff.tsx';
-
-//import { ListAcessos } from '../../../books/ListAcessos.tsx';
-
-// type PropsGetLogin = {
-//   mdlogin?:number;
-//   idempr?:number;
-//   strid?:string;
-//   strpsw?:string;
-// }
-//export function GetLogin() {
-// if ( mdlogin === 0 || mdlogin === null || mdlogin === undefined) return false;
-// if ( idempr === 0 || idempr === null || idempr === undefined) return false;
-// if ( strid === '' || strid === null || strid === undefined) return false;
-// if ( strpsw === '' || strpsw === null || strpsw === undefined ) return false;
-//let rtn = true;
-// const ltsAcesso = ListAcessos.map( (ListaAcesso) => {
-// return ListaAcesso;
-//}
-
-// const filtroacesso = idempr === id
-// const [busca, setBusca] = React.useState('');
-// const lowerBusca = busca.toLowerCase();
-// const resultListaFiltrada = ListAcessos
-// .filter((filtroacesso) => ListAcessos.toLowerCase().includes(lowerBusca));
-
-/// EMAIL E PSW
-// if (mdlogin === 1) {
-
-// }
+import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
+import CardInfoErros from '../../contentHelp/CardInfoErros.tsx';
 
 export const Login2 = () => {
-  // const [ispsw] = React.useState(true);
-
-  // const [mdlogin, setMdLogin] = React.useState(0);
-  // const [nmlogin, setNmLogin] = React.useState('Opções:');
-
-  // const [strid, setStrId] = React.useState('');
-  // const [strpsw, setStrPsw] = React.useState('');
-
-  // const [cont, setCont] = React.useState(0);
-
-  // const [iserrologin, setIsErroLogin] = React.useState(false);
-  // const [nmrerrologin, setNmErroLogin] = React.useState('');
-
-  // const [iscontinua, setIsContinua] = React.useState(false);
-  // const [ismostraInput, setIsMostraInput] = React.useState(false);
-  // const [isconfirmainput, setIsConfirmaInput] = React.useState(false);
-
-  // const [isresgatar, setIsResgatar] = React.useState(false);
-  // const [isconfirmaresgatar, setIsConfirmaResgatar] = React.useState(false);
-
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
 
@@ -108,47 +47,21 @@ export const Login2 = () => {
 
   const { state, dispatch } = AcessoUseForm();
 
-  const [isopen] = React.useState(true);
-  const [mdlogin, setMdLogin] = React.useState(state.mdlogin);
-  const [nmlogin, setNmLogin] = React.useState(state.nmlogin);
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(state.nrcont);
 
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
+  const [btnisenviar, setBtnIsEnviar] = React.useState(false);
 
-  console.log('mdlogin1 :', mdlogin);
-  console.log('nmlogin1 :', nmlogin);
-  console.log('tentativa1 :', tentativa);
+  const [iserrologin, setIsErroLogin] = React.useState(false);
+  const [nmrerrologin, setNmErroLogin] = React.useState('');
 
   React.useEffect(() => {
-    setBtnContinua(true);
-    if (tentativa !== state.nrcont) {
-      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    }
-    console.log('tentativa :', tentativa);
-    if (mdlogin !== state.mdlogin) {
-      setMdLogin(state.mdlogin);
-      dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
-    }
-
-    if (nmlogin !== state.nmlogin) {
-      setNmLogin(state.nmlogin);
-      dispatch({ type: AcessoUseActions.setMdLogin, payload: nmlogin });
-    }
-    console.log('mdlogin :', mdlogin + '...' + state.nmlogin);
-    console.log('nmlogin :', nmlogin + '...' + state.nmlogin);
-
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-
-    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
-  }, [btncontinua, dispatch]);
+    setBtnContinua(true);
+  }, [dispatch]);
 
   const handlerOnChangerStrId = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStrId(e.currentTarget.value);
@@ -157,6 +70,7 @@ export const Login2 = () => {
       payload: e.currentTarget.value
     });
   };
+
   const handlerOnChangerStrPsw = (e: React.ChangeEvent<HTMLInputElement>) => {
     setStrPsw(e.currentTarget.value);
     dispatch({
@@ -165,176 +79,324 @@ export const Login2 = () => {
     });
   };
 
+  const handlerContinuar = React.useCallback(() => {
+    setNmErroLogin('');
+    if (strid === '' || strpsw === '') {
+      setTentativa(state.nrcont + 1);
+      dispatch({
+        type: AcessoUseActions.setNrCont,
+        payload: tentativa
+      });
+      if (state.mdlogin >= 1 || (state.mdlogin <= 4 && tentativa > 5)) {
+        if (strid === '' && strpsw === '') {
+          if (state.mdlogin == 1) {
+            setNmErroLogin('Determine seu Email e sua Senha para Acesso...');
+          } else if (state.mdlogin == 2) {
+            setNmErroLogin('Determine seu Email e seu PIN para Acesso...');
+          } else if (state.mdlogin == 3) {
+            setNmErroLogin('Determine seu Nome e sua Senha para Acesso...');
+          } else if (state.mdlogin == 4) {
+            setNmErroLogin('Determine seu Nome e seu PIN para Acesso...');
+          }
+        } else if (strid === '' && strpsw !== '') {
+          if (state.mdlogin == 1 || state.mdlogin == 2) {
+            setNmErroLogin('Determine seu Email para Acesso...');
+          } else if (state.mdlogin == 3 || state.mdlogin == 4) {
+            setNmErroLogin('Determine seu Nome para Acesso...');
+          }
+        } else if (strid !== '' && strpsw === '') {
+          if (state.mdlogin == 1 || state.mdlogin == 3) {
+            setNmErroLogin('Determine sua Senha para Acesso...');
+          } else if (state.mdlogin == 2 || state.mdlogin == 4) {
+            setNmErroLogin('Determine seu PIN para Acesso...');
+          }
+        } else if (tentativa > 4) {
+          setNmErroLogin('"ACABARAM" suas Tentativas...');
+          setBtnContinua(false);
+          setBtnIsEnviar(false);
+        }
+        if (nmrerrologin !== '') {
+          setIsErroLogin(true);
+        } else {
+          setIsErroLogin(false);
+        }
+      }
+    } else {
+      if (strid !== '' && strpsw !== '') {
+        setBtnContinua(false);
+        setBtnIsEnviar(true);
+      } else {
+        setBtnContinua(true);
+        setBtnIsEnviar(false);
+      }
+    }
+  }, [strid, strpsw, tentativa]);
+
   React.useEffect(() => {
-    setBtnContinua(true);
-    setTentativa(tentativa + 1);
-    if (tentativa !== state.nrcont) {
-      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    }
-    console.log('tentativa :', tentativa);
-    if (mdlogin !== state.mdlogin) {
-      setMdLogin(state.mdlogin);
-      dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
-    }
+    console.log('state.idnmuser :', state.idnmuser);
+    console.log('state..pswuser :', state.pswuser);
+    console.log('--------------', '---------------');
+  }, []);
 
-    if (nmlogin !== state.nmlogin) {
-      setNmLogin(state.nmlogin);
-      dispatch({ type: AcessoUseActions.setMdLogin, payload: nmlogin });
-    }
-    console.log('mdlogin :', mdlogin + '...' + state.nmlogin);
-    console.log('nmlogin :', nmlogin + '...' + state.nmlogin);
+  console.log('state.mdlogin2 :', state.mdlogin);
+  console.log('state.nmlogin2 :', state.nmlogin);
+  console.log('state.nrcont2 :', state.nrcont);
+  console.log('/////////////', '//////////////');
 
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
-    dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
+  // React.useEffect(() => {
+  //   setBtnContinua(true);
+  //   setTentativa(tentativa + 1);
+  //   if (tentativa !== state.nrcont) {
+  //     dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+  //   }
+  //   console.log('tentativa :', tentativa);
+  //   if (mdlogin !== state.mdlogin) {
+  //     setMdLogin(state.mdlogin);
+  //     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+  //   }
 
-    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+  //   if (nmlogin !== state.nmlogin) {
+  //     setNmLogin(state.nmlogin);
+  //     dispatch({ type: AcessoUseActions.setMdLogin, payload: nmlogin });
+  //   }
+  //   console.log('mdlogin :', mdlogin + '...' + state.nmlogin);
+  //   console.log('nmlogin :', nmlogin + '...' + state.nmlogin);
 
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
-  }, [btncontinua, dispatch]);
+  //   dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
+  //   dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
 
+  //   dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+  //   dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+  //   dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+
+  //   dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
+  //   dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
+  // }, [btncontinua, dispatch]);
+
+  console.log('tentativa2 :', tentativa);
+  console.log('/////////////', '//////////////');
+  console.log('mdlogin1 :', state.mdlogin);
+  console.log('nmlogin1 :', state.nmlogin);
+  console.log('tentativa1 :', state.nrcont);
+  console.log('/////////////', '//////////////');
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-        <ContentLoginPg>
-          <ContentTitleLogin modotitle={'Edição : ' + state.nmlogin} />
-          <Lg.ContainerMainLogin isopen={isopen}>
-            <ContentLoginCollunsCenter isopen={isopen}>
-              <ContentLoginColluns pheight="200px" pwidth="400px">
-                <ContentLoginOpc pwidth="100%" open={isopen}>
-                  <ContentTitleLoginOpc titleopc={'Entre com os Dados.'} />
-                  {state.mdlogin === 1 ? (
-                    <form name="login1">
-                      <br />
-                      <label>
-                        E-Mail...... :
-                        <input
-                          type="mail"
-                          name="mail1"
-                          value={strid}
-                          onChange={() => handlerOnChangerStrId}
-                        />
-                      </label>
-                      <br />
-                      <label>
-                        PassWord :
-                        <input
-                          type="password"
-                          name="pass1"
-                          value={strpsw}
-                          onChange={() => handlerOnChangerStrPsw}
-                        />
-                      </label>
-                      <br />
-                      {/* <input type="submit" value="Enviar" /> */}
-                    </form>
-                  ) : null}
-                  {state.mdlogin === 2 ? (
-                    <form name="login2">
-                      <br />
-                      <label>
-                        E-Mail...... :
-                        <input
-                          type="mail"
-                          name="mail2"
-                          value={strid}
-                          onChange={() => handlerOnChangerStrId}
-                        />
-                      </label>
-                      <br />
-                      <label>
-                        PassWord :
-                        <input
-                          type="text"
-                          name="pin1"
-                          value={strpsw}
-                          onChange={() => handlerOnChangerStrPsw}
-                        />
-                      </label>
-                      <br />
-                    </form>
-                  ) : null}
-                  {state.mdlogin === 3 ? (
-                    <form name="login3">
-                      <br />
-                      <label>
-                        E-Mail...... :
-                        <input
-                          type="text"
-                          name="peseu1"
-                          value={strid}
-                          onChange={() => handlerOnChangerStrId}
-                        />
-                      </label>
-                      <br />
-                      <label>
-                        PassWord :
-                        <input
-                          type="password"
-                          name="pass2"
-                          value={strpsw}
-                          onChange={() => handlerOnChangerStrPsw}
-                        />
-                      </label>
-                      <br />
-                    </form>
-                  ) : null}
-                  {state.mdlogin === 3 ? (
-                    <form name="login3">
-                      <br />
-                      <label>
-                        E-Mail...... :
-                        <input
-                          type="text"
-                          name="peseu2"
-                          value={strid}
-                          onChange={() => handlerOnChangerStrId}
-                        />
-                      </label>
-                      <br />
-                      <label>
-                        PassWord :
-                        <input
-                          type="text"
-                          name="pin2"
-                          value={strpsw}
-                          onChange={() => handlerOnChangerStrPsw}
-                        />
-                      </label>
-                      <br />
-                    </form>
-                  ) : null}
-                </ContentLoginOpc>
-              </ContentLoginColluns>
-            </ContentLoginCollunsCenter>
-          </Lg.ContainerMainLogin>
+        <Lg.ContainerLogin>
+          <Lg.ContainerLoginFlex>
+            <ContentTitleLogin modotitle={'Edição : ' + state.nmlogin} />
+            <Lg.ContainerMainLogin isopen={true}>
+              <ContentLoginCollunsCenter isopen={true}>
+                <ContentLoginColluns pheight="200px" pwidth="400px">
+                  <ContentLoginOpc pwidth="100%" open={true}>
+                    <ContentTitleLoginOpc titleopc={'Entre com os Dados.'} />
+                    {state.mdlogin === 1 ? (
+                      <form name="login1">
+                        <br />
+                        <label>
+                          E-Mail:
+                          <input
+                            type="mail"
+                            name="mail1"
+                            value={strid}
+                            onChange={handlerOnChangerStrId}
+                          />
+                        </label>
+                        <br />
+                        <label>
+                          Senha:
+                          <input
+                            type="password"
+                            name="pass1"
+                            value={strpsw}
+                            onChange={handlerOnChangerStrPsw}
+                          />
+                        </label>
+                        <br />
+                      </form>
+                    ) : null}
+                    {state.mdlogin === 2 ? (
+                      <form name="login2">
+                        <br />
+                        <label>
+                          E-Mail:
+                          <input
+                            type="mail"
+                            name="mail2"
+                            value={strid}
+                            onChange={handlerOnChangerStrId}
+                          />
+                        </label>
+                        <br />
+                        <label>
+                          PIN....:
+                          <input
+                            type="text"
+                            name="pin1"
+                            value={strpsw}
+                            onChange={handlerOnChangerStrPsw}
+                          />
+                        </label>
+                        <br />
+                      </form>
+                    ) : null}
+                    {state.mdlogin === 3 ? (
+                      <form name="login3">
+                        <br />
+                        <label>
+                          Nome.:
+                          <input
+                            type="text"
+                            name="peseu1"
+                            value={strid}
+                            onChange={handlerOnChangerStrId}
+                          />
+                        </label>
+                        <br />
+                        <label>
+                          Senha:
+                          <input
+                            type="password"
+                            name="pass2"
+                            value={strpsw}
+                            onChange={handlerOnChangerStrPsw}
+                          />
+                        </label>
+                        <br />
+                      </form>
+                    ) : null}
+                    {state.mdlogin === 4 ? (
+                      <form name="login4">
+                        <br />
+                        <label>
+                          Nome.:
+                          <input
+                            type="text"
+                            name="peseu2"
+                            value={strid}
+                            onChange={handlerOnChangerStrId}
+                          />
+                        </label>
+                        <br />
+                        <label>
+                          PIN.....:
+                          <input
+                            type="text"
+                            name="pin2"
+                            value={strpsw}
+                            onChange={handlerOnChangerStrPsw}
+                          />
+                        </label>
+                        <br />
+                      </form>
+                    ) : null}
+                  </ContentLoginOpc>
+                </ContentLoginColluns>
+              </ContentLoginCollunsCenter>
+            </Lg.ContainerMainLogin>
 
-          <Lg.DivisionPgHztal />
+            <Lg.DivisionPgHztal />
 
-          <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
-            <ContentMainButtonsLogin>
-              <ContentButtonTitleImg
-                title="Voltar."
-                onClick={goto('/login1')}
-              />
-              <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
-              {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
+            <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
+              <ContentMainButtonsLogin>
                 <ContentButtonTitleImg
-                  title="Continuar."
-                  onClick={goto('/login3')}
+                  title="Voltar."
+                  onClick={goto('/login1')}
                 />
-              ) : null}
-            </ContentMainButtonsLogin>
-          </ContentLoginColluns>
-        </ContentLoginPg>
+                <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
+                {btncontinua && state.mdlogin > 0 && state.mdlogin < 5 ? (
+                  <ContentButtonTitleImg
+                    title="Continuar."
+                    onClick={handlerContinuar}
+                  />
+                ) : null}
+                {btnisenviar ? (
+                  <ContentButtonTitleImg
+                    title="Enviar."
+                    onClick={goto('/login3')}
+                  />
+                ) : null}
+              </ContentMainButtonsLogin>
+            </ContentLoginColluns>
+            {iserrologin ? (
+              <PanelModalInfoErros
+                ptop={'1%'}
+                pwidth={'65%'}
+                pheight={'auto'}
+                titulo={'ERRO em processamento...'}
+                texto={
+                  'Mais atenção, tentativa: [' + (5 - tentativa) + '] de [5].'
+                }
+                onClose={() => setIsErroLogin(false)}
+              >
+                <CardInfoErros nmerro={nmrerrologin} />
+              </PanelModalInfoErros>
+            ) : null}
+          </Lg.ContainerLoginFlex>
+        </Lg.ContainerLogin>
       </ThemeLogin>
     </ThemeProvider>
   );
 };
 
 export default Login2;
+
+//     if (rtn == 1 ){ str = 'Determine seu ID e Password para Acesso...';
+//     }
+//     if (rtn === 2 ){ str = 'Determine a Edição do seu ID...';
+//     }
+//     if (rtn === 3 ){ str = 'Determine a Edição do seu PassWord...';
+//     }
+//     if (rtn === 4 ){ str = 'Sua "PASSWORD" deve conter mais de (4) Caracteres...';
+//     }
+//     if (cont >= 5 && rtn === 0) {
+//       rtn = 5;
+//       str = '"ACABARAM" suas Tentativas...';
+//       setIsContinua(false);
+//       setIsResgatar(true);
+//       setIsConfirmaInput(false);
+//     }
+
+// const handlerContinuar = React.useCallback(() => {
+//     setNmErroLogin('');
+//     if (mdlogin >= 1) {
+
+//       setCont(cont + 1);
+//       let rtn = 0;
+//       let str = '';
+//       rtn = TestaInput(strid, strpsw);
+//       if (rtn == 1) {
+//         str = 'Determine seu ID e Password para Acesso...';
+//       }
+//       if (rtn === 2) {
+//         str = 'Determine a Edição do seu ID...';
+//       }
+//       if (rtn === 3) {
+//         str = 'Determine a Edição do seu PassWord...';
+//       }
+//       if (rtn === 4) {
+//         str = 'Sua "PASSWORD" deve conter mais de (4) Caracteres...';
+//       }
+//       if (cont >= 5 && rtn === 0) {
+//         rtn = 5;
+//         str = '"ACABARAM" suas Tentativas...';
+//         setIsContinua(false);
+//         setIsResgatar(true);
+//         setIsConfirmaInput(false);
+//         console.log('5 :',4);
+//       }
+//       if (rtn >= 1) {
+//         setNmErroLogin(str);
+//         setIsErroLogin(true);
+//         console.log('4 :',5);
+//       } else {
+//         setIsErroLogin(false);
+//         console.log('3 :',6);
+//       }
+//       console.log('2 :',7);
+//     }
+//     console.log('1 :',8);
+//   }, [cont]);
 
 // const DescrOpc = [
 //   'Opções:',
@@ -848,3 +910,41 @@ export default Login2;
 //                         maxlength={10}
 //                         placeholder="**********"
 //                         onChange={() => handlerOnChangerStrPsw}
+
+//import { ContentInput } from '../Login/ContentInput.tsx';
+//import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
+//import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
+
+//import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
+//import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
+//import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
+//import { ContentButtonConfimationOnOff } from '../Login/ContentButtonConfimationOnOff.tsx';
+
+//import { ListAcessos } from '../../../books/ListAcessos.tsx';
+
+// type PropsGetLogin = {
+//   mdlogin?:number;
+//   idempr?:number;
+//   strid?:string;
+//   strpsw?:string;
+// }
+//export function GetLogin() {
+// if ( mdlogin === 0 || mdlogin === null || mdlogin === undefined) return false;
+// if ( idempr === 0 || idempr === null || idempr === undefined) return false;
+// if ( strid === '' || strid === null || strid === undefined) return false;
+// if ( strpsw === '' || strpsw === null || strpsw === undefined ) return false;
+//let rtn = true;
+// const ltsAcesso = ListAcessos.map( (ListaAcesso) => {
+// return ListaAcesso;
+//}
+
+// const filtroacesso = idempr === id
+// const [busca, setBusca] = React.useState('');
+// const lowerBusca = busca.toLowerCase();
+// const resultListaFiltrada = ListAcessos
+// .filter((filtroacesso) => ListAcessos.toLowerCase().includes(lowerBusca));
+
+/// EMAIL E PSW
+// if (mdlogin === 1) {
+
+// }

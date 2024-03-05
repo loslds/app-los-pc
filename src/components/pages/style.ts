@@ -11,7 +11,8 @@ export const ContainerBodyItemPg = styled.div`
   border-radius: 10px;
   border-color: ${props => props.theme.colors.textColor};
   display: flex ;
-  flex-wrap: wrap row;
+  flex-flow: row;
+  flex-wrap: wrap;
   justify-content: end;
   align-items: center;
   align-content: center;
