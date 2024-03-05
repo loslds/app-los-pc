@@ -13,7 +13,6 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentLoginPg } from '../Login/ContentLoginPg.tsx';
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
 import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
@@ -21,8 +20,13 @@ import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
 import { ContentInput } from '../Login/ContentInput.tsx';
 import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
+
 import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
+//import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
+//import { ContentButtonConfimationOnOff } from '../Login/ContentButtonConfimationOnOff.tsx';
+//import enviaon from '../../../assets/svgs/enviaron.svg';
+//import enviaoff from '../../../assets/svgs/enviaroff.svg';
 
 /////////////////////////////////
 //export function TestaInput(stri: string, strp: string) {
@@ -68,10 +72,16 @@ const Login1 = () => {
   };
   const { state, dispatch } = AcessoUseForm();
   const [isopen, setIsOpen] = React.useState(false);
+  //  const [isedit, setIsEdit] = React.useState(false);
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções:');
   const [btncontinua, setBtnContinua] = React.useState(false);
-  const [tentativa, setTentativa] = React.useState(0);
+  const [tentativa] = React.useState(0);
+  //  const [btnconfirmar, setBtnConfirmar] = React.useState(false);
+  //const [isconfirma, setIsConfirma] = React.useState(false);
+  //  const [strid, setStrId] = React.useState('');
+  //  const [strpsw, setStrPsw] = React.useState('');
+
   //const [nrerro, setNrErro] = React.useState(0);
   //const [strrerro, setStrErro] = React.useState('');
   React.useEffect(() => {
@@ -92,36 +102,99 @@ const Login1 = () => {
   const setModo = (level: number) => {
     setMdLogin(level);
     setNmLogin(DescrOpc[level]);
-
-    setTentativa(tentativa + 1);
+    // setTentativa(tentativa + 1);
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: nmlogin });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
   };
 
   React.useEffect(() => {
-    console.log('tentativa : ',tentativa);
-    console.log('state.nrCont : ',state.nrcont);
-////////////////////////////
-    if (mdlogin >= 1 && mdlogin <= 4) {
-      setBtnContinua(true);
-      if (tentativa < state.nrcont){
-        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-      }
- 
-    } else if (mdlogin === 0) {
+    if (mdlogin === 0) {
       setBtnContinua(false);
-    
+    } else {
+      if (tentativa >= 5) {
+        alert('tentativa === 5');
+        setBtnContinua(false);
+      } else {
+        setBtnContinua(true);
+      }
+
+      // if (mdlogin > 0) {
+      //   if (isedit) {
+      //     setBtnContinua(false);
+      //     setBtnConfirmar(true);
+      //   }
+      //   if (isconfirma ){
+      //     setBtnConfirmar(false);
+      //     setIsConfirma(true);
+      //   }
+      // }
     }
-    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-  }, [mdlogin, tentativa, dispatch]);
+    console.log('mdlogin1 :', mdlogin);
+    console.log('nmlogin1 :', nmlogin);
+    console.log('tentativa1 :', tentativa);
+
+    if (mdlogin !== state.mdlogin) {
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: nmlogin });
+    }
+    if (nmlogin !== state.nmlogin) {
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    }
+    if (tentativa !== state.nrcont) {
+      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+    }
+
+    //   dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
+    //   dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
+  }, [tentativa, mdlogin, nmlogin, dispatch]);
 
   // const handlerOnChangerStrId = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setStrId(e.currentTarget.value);
-  //   dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
   // };
   // const handlerOnChangerStrPsw = (e: React.ChangeEvent<HTMLInputElement>) => {
   //   setStrPsw(e.currentTarget.value);
+  // };
+
+  // React.useEffect(() => {
+  //   if (mdlogin > 0) {
+
+  //     if {}
+  //     setBtnContinua(false);
+  //   } else {
+  //   }
+  // },[]};
+
+  // const handlerContinuar = React.useCallback(() => {
+  //   if (btncontinua) {
+  //     setBtnContinua(false);
+  //   }
+  //   if (!btnconfirmar) {
+  //     setBtnConfirmar(true);
+  //   }
+  // }, [btncontinua, isedit, btnconfirmar]);
+
+  // const handlerConfirmar = () => {
+  //   setBtnConfirmar(false);
+  //   setIsEdit(false);
+  //   setIsConfirma(true);
+  // };
+
+  // const handlerRetornar = () => {
+  //   setStrId('');
+  //   setStrPsw('');
+  //   dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
   //   dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
   // };
+
+  console.log('mdlogin :', mdlogin);
+  console.log('nmlogin :', nmlogin);
+  console.log('tentativa :', tentativa);
+  // console.log('isedit :', isedit);
+  // console.log('btncontinua :', btncontinua);
+  // console.log('isedit :', isedit);
+  // console.log('btnconfirmar :', btnconfirmar);
+  // console.log('strid :', strid);
+  // console.log('strpsw ;', strpsw);
 
   // const handlerContinuar = React.useCallback(() => {
   //   setNmErroLogin('');
@@ -199,76 +272,261 @@ const Login1 = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-        <ContentLoginPg>
-          <ContentTitleLogin modotitle={'Determine a Maneira do seu Acesso.'} />
-          <Lg.ContainerMainLogin isopen={isopen}>
-            <ContentLoginCollunsCenter isopen={isopen}>
-              <ContentLoginColluns>
-                <ContentLoginOpc pwidth="200px" open={isopen}>
+        {isopen ? (
+          <Lg.ContainerLogin>
+            <Lg.ContainerLoginFlex>
+              <ContentTitleLogin
+                modotitle={'Determine a Maneira do seu Acesso.'}
+              />
+              <Lg.ContainerMainLogin isopen={isopen}>
+                <ContentLoginCollunsCenter isopen={isopen}>
+                  <ContentLoginColluns>
+                    <ContentLoginOpc pwidth="200px" open={isopen}>
+                      <ContentTitleLoginOpc titleopc={nmlogin} />
+                      <ContentInput>
+                        <ContentRadioOpc
+                          id="E-Mail/Pass"
+                          name="opcao"
+                          value={1}
+                          titulo="E-Mail/Pass"
+                          onclick={() => setModo(1)}
+                        />
+                        <ContentRadioOpc
+                          id="E-Mail/PIN"
+                          name="opcao"
+                          value={2}
+                          titulo="E-Mail/PIN"
+                          onclick={() => setModo(2)}
+                        />
+                        <ContentRadioOpc
+                          id="Pseud/Pass"
+                          name="opcao"
+                          value={3}
+                          titulo="Pseudô/Pass"
+                          onclick={() => setModo(3)}
+                        />
+                        <ContentRadioOpc
+                          id="Pseud/PIN"
+                          name="opcao"
+                          value={4}
+                          titulo="Pseudô/PIN"
+                          onclick={() => setModo(4)}
+                        />
+                      </ContentInput>
+                    </ContentLoginOpc>
+                  </ContentLoginColluns>
+                </ContentLoginCollunsCenter>
+              </Lg.ContainerMainLogin>
 
+              <Lg.DivisionPgHztal />
 
-
-                  <ContentTitleLoginOpc titleopc={nmlogin} />
-                  <ContentInput>
-                    <ContentRadioOpc
-                      id="E-Mail/Pass"
-                      name="opcao"
-                      value={1}
-                      titulo="E-Mail/Pass"
-                      onclick={() => setModo(1)}
+              <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
+                <ContentMainButtonsLogin>
+                  <ContentButtonTitleImg
+                    title="Voltar."
+                    onClick={goto('/login')}
+                  />
+                  <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
+                  {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
+                    <ContentButtonTitleImg
+                      title="Continuar."
+                      onClick={goto('/login2')}
+                      // onClick={() => setIsEdit(true)}
                     />
-                    <ContentRadioOpc
-                      id="E-Mail/PIN"
-                      name="opcao"
-                      value={2}
-                      titulo="E-Mail/PIN"
-                      onclick={() => setModo(2)}
-                    />
-                    <ContentRadioOpc
-                      id="Pseud/Pass"
-                      name="opcao"
-                      value={3}
-                      titulo="Pseudô/Pass"
-                      onclick={() => setModo(3)}
-                    />
-                    <ContentRadioOpc
-                      id="Pseud/PIN"
-                      name="opcao"
-                      value={4}
-                      titulo="Pseudô/PIN"
-                      onclick={() => setModo(4)}
-                    />
-                  </ContentInput>
-                </ContentLoginOpc>
+                  ) : null}
+                </ContentMainButtonsLogin>
               </ContentLoginColluns>
-            </ContentLoginCollunsCenter>
-          </Lg.ContainerMainLogin>
-          <Lg.DivisionPgHztal />
-
-          <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
-            <ContentMainButtonsLogin>
-              <ContentButtonTitleImg title="Voltar." onClick={goto('/login')} />
-              <p>Você tem [{4-state.nrcont}] tentativas para acesso...</p>
-              {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
-               
-                <ContentButtonTitleImg
-                  title="Continuar."
-                  onClick={goto('/login2')}
-                />
-              ) : null}
-
-              
-            </ContentMainButtonsLogin>
-          </ContentLoginColluns>
-        </ContentLoginPg>
+            </Lg.ContainerLoginFlex>
+          </Lg.ContainerLogin>
+        ) : null}
       </ThemeLogin>
     </ThemeProvider>
   );
 };
 
 export default Login1;
+
+{
+  /* {isedit ? (
+          <Lg.ContainerLogin>
+            <Lg.ContainerLoginFlex>
+              <ContentTitleLogin modotitle={'Edição :' + nmlogin} />
+              <Lg.ContainerMainLogin isopen={isedit}>
+                <ContentLoginCollunsCenter isopen={isedit}>
+                  <ContentLoginColluns pwidth="400px">
+                    <ContentLoginOpc open={isedit}>
+                      
+                      {mdlogin === 1 ? (
+                        <form name="login1">
+                          <br />
+                          <label>
+                            E-Mail...... :
+                            <input
+                              
+                              type="mail"
+                              name="mail1"
+                              value={strid}
+                              onChange={handlerOnChangerStrId}
+                            />
+                          </label>
+                          <br />
+                          <label>
+                            PassWord :
+                            <input
+                              type="password"
+                              name="pass1"
+                              value={strpsw}
+                              onChange={handlerOnChangerStrPsw}
+                            />
+                          </label>
+                          <br />
+                          
+                        </form>
+                      ) : null}
+                      {mdlogin === 2 ? (
+                        <form name="login2">
+                          <br />
+                          <label>
+                            E-Mail...... :
+                            <input
+                              type="mail"
+                              name="mail2"
+                              value={strid}
+                              onChange={handlerOnChangerStrId}
+                            />
+                          </label>
+                          <br />
+                          <label>
+                            PIN......... :
+                            <input
+                              type="text"
+                              name="pin1"
+                              value={strpsw}
+                              onChange={handlerOnChangerStrPsw}
+                            />
+                          </label>
+                          <br />
+                        </form>
+                      ) : null}
+                      {mdlogin === 3 ? (
+                        <form name="login3">
+                          <br />
+                          <label>
+                            Pseudônimo.. :
+                            <input
+                              type="text"
+                              name="peseu1"
+                              value={strid}
+                              onChange={handlerOnChangerStrId}
+                            />
+                          </label>
+                          <br />
+                          <label>
+                            PassWord.... :
+                            <input
+                              type="password"
+                              name="pass2"
+                              value={strpsw}
+                              onChange={handlerOnChangerStrPsw}
+                            />
+                          </label>
+                          <br />
+                        </form>
+                      ) : null}
+                      {mdlogin === 4 ? (
+                        <form name="login4">
+                          <br />
+                          <label>
+                            Pseudônimo.. :
+                            <input
+                              type="text"
+                              name="peseu2"
+                              value={strid}
+                              onChange={handlerOnChangerStrId}
+                            />
+                          </label>
+                          <br />
+                          <label>
+                            PIN......... :
+                            <input
+                              type="text"
+                              name="pin2"
+                              value={strpsw}
+                              onChange={handlerOnChangerStrPsw}
+                            />
+                          </label>
+                          <br />
+                        </form>
+                      ) : null}
+                    </ContentLoginOpc>
+                  </ContentLoginColluns>
+                </ContentLoginCollunsCenter>
+              </Lg.ContainerMainLogin>
+            </Lg.ContainerLoginFlex>
+          </Lg.ContainerLogin>
+        ) : null}
+        {isconfirma ? (
+          <Lg.ContainerLogin>
+            <Lg.ContainerLoginFlex>
+              <Lg.ContainerMainLogin>
+                <ContentTitleLogin
+                  modotitle={'"CONFIRMAÇÃO de Envio dos Dados..."'}
+                />
+                <ContentLoginOpc pwidth={'100%'} open={isconfirma}>
+                  <Lg.ContainerAreaText>
+                    <form name="confResgate">
+                      <Lg.InputCenter>
+                        <h3>Confime se deseja enviar confime!</h3>
+                        <p>Caso "NÃO", confirme Retornarei do Início. </p>
+                      </Lg.InputCenter>
+                    </form>
+                  </Lg.ContainerAreaText>
+                  <ContentButtonsConfirmation>
+                    <ContentButtonConfimationOnOff
+                      title={'SIM'}
+                      img={enviaon}
+                      titlebtn="Enviar..."
+                      onClick={ () => {alert('sim')} }
+                    />
+                    <ContentButtonConfimationOnOff
+                      title={'NÃO'}
+                      img={enviaoff}
+                      titlebtn="Inicio..."
+                      onClick={() => handlerRetornar}
+                    />
+                  </ContentButtonsConfirmation>
+                </ContentLoginOpc>
+              </Lg.ContainerMainLogin>
+            </Lg.ContainerLoginFlex>
+          </Lg.ContainerLogin>
+        ) : null} 
+
+        <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
+          <ContentMainButtonsLogin>
+            <ContentButtonTitleImg title="Voltar." onClick={goto('/login')} />
+            <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
+            {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
+              <ContentButtonTitleImg
+                title="Continuar."
+                onClick={goto('/login2')}
+                // onClick={() => setIsEdit(true)}
+              />
+            ) : null}
+            {/* {btnconfirmar ? (
+              <ContentButtonTitleImg
+                title="Confirmar."
+                onClick={() => setIsConfirma(true) }
+              />
+            ) : null} 
+          </ContentMainButtonsLogin>
+        </ContentLoginColluns>
+        {/* </ContentLoginPg> */
+}
 /* 
           
+
+
+
 
           
             <ContentLoginCollunsCenter isopen={panelselect}>
@@ -745,3 +1003,48 @@ export default Login1;
               </ContentFormCollunsCenter>
             ) : null} 
 */
+
+/* 
+
+            <ContentLoginCollunsCenter isopen={isopen}>
+              <ContentLoginColluns>
+                <ContentLoginOpc pwidth="200px" open={isopen}>
+                  <ContentTitleLoginOpc titleopc={nmlogin} />
+                  <ContentInput>
+                    <ContentRadioOpc
+                      id="E-Mail/Pass"
+                      name="opcao"
+                      value={1}
+                      titulo="E-Mail/Pass"
+                      onclick={() => setModo(1)}
+                    />
+                    <ContentRadioOpc
+                      id="E-Mail/PIN"
+                      name="opcao"
+                      value={2}
+                      titulo="E-Mail/PIN"
+                      onclick={() => setModo(2)}
+                    />
+                    <ContentRadioOpc
+                      id="Pseud/Pass"
+                      name="opcao"
+                      value={3}
+                      titulo="Pseudô/Pass"
+                      onclick={() => setModo(3)}
+                    />
+                    <ContentRadioOpc
+                      id="Pseud/PIN"
+                      name="opcao"
+                      value={4}
+                      titulo="Pseudô/PIN"
+                      onclick={() => setModo(4)}
+                    />
+                  </ContentInput>
+                </ContentLoginOpc>
+              </ContentLoginColluns>
+            </ContentLoginCollunsCenter>
+
+                </Lg.ContainerMainLogin>
+              </Lg.ContainerLogin>
+            <Lg.DivisionPgHztal />
+           */

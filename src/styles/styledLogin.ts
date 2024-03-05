@@ -37,7 +37,8 @@ export const ContainerTitlePanel = styled.div`
   width: 100%;
   background: transparent;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -88,8 +89,8 @@ export const ContainerCollFormCenter = styled.div<ContainerCollFormCenterType>`
   background: ${props => props.theme.colors.backgroundColor};
   min-width: ${({ pwidth }) => pwidth || '200px'};
   display: ${props => (props.isopen ? 'flex' : 'none')};
-  flex-wrap: nowrap;
   flex-flow: row;
+  flex-wrap: wrap;
   //justify-content: left;
   justify-content: center;
   align-items: center;
@@ -109,10 +110,10 @@ export const ContainerLoginCollunsOpc = styled.div<ContainerLoginCollunsOpcType>
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   width: ${({ pwidth }) => pwidth || '200px'};
-  min-height: ${({ pheight }) => pheight || '155px'};
+  //min-height: ${({ pheight }) => pheight || '155px'};
   display: flex;
-  flex-wrap: nowrap;
-  //flex-flow: c;
+  flex-flow: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   align-content: center;
@@ -185,7 +186,8 @@ export const ContainerLoginFlexOpc = styled.div`
   margin: 5px 0px 5px 0px;
   width: 100%;
   min-height: 60px;
-  display: flex row;
+  display: flex;
+  flex-flow: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
@@ -226,7 +228,7 @@ export const InputCenter = styled.div`
   width: 100%;
   display: flex;
   flex-flow: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: left;
   align-content: center;
   align-items: center;
@@ -261,7 +263,8 @@ export const ContainerMainButtonsLogin  = styled.div<ContainerMainButtonsLoginTy
   background: ${props => props.theme.colors.backgroundColor};
   display: flex;
   flex: content;
-  flex-wrap: wrap row;
+  flex-flow: row;
+  flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   align-items: center ;
@@ -289,7 +292,8 @@ export const ContainerBtnLoginSRigth = styled.div`
   margin: 2px 5px 2px 5px;
   background: transparent;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
+  flex-wrap: wrap;
   justify-content: right;
   align-items: center;
   align-content: center;
@@ -363,7 +367,7 @@ export const ContainerAreaText = styled.div`
   padding: 0px 0px 0px 0px;
   size: 16px;
   line-height: 16px;
-  display: flex row;
+  display: flex;
   flex-wrap: wrap;
   flex-flow: column;
   justify-content: left;

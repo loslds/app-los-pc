@@ -35,7 +35,9 @@ select
   padding: 0px 10px 0px 10px;
   font-size: large;
   line-height: normal;
+  //color: black;
 }
+input{color: black;}
 select {
   width: 100%;
 }

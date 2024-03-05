@@ -26,8 +26,9 @@ import { ContentMainButtonsLogin } from './ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from './ContentButtonTitleImg.tsx';
 
 // export const Login = () => {
-const Login = () => {  
+const Login = () => {
   const [isopen, setIsOpen] = React.useState(false);
+  const [edicao, setEdicao] = React.useState('');
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
 
@@ -63,11 +64,6 @@ const Login = () => {
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
 
-    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
-    dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
-
     dispatch({ type: AcessoUseActions.setPin, payload: '' });
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
@@ -88,31 +84,43 @@ const Login = () => {
     //dispatch({ type: AcessoUseActions.setNmConfig, payload: '' });
     dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login' });
+
+    dispatch({ type: AcessoUseActions.setModulo, payload: 'Login' });
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+    dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
+
     dispatch({ type: AcessoUseActions.setLogado, payload: '' });
+
     setIsOpen(true);
   }, [dispatch]);
 
   React.useEffect(() => {
-    if (idempresa > 0) {
-      if (idempresa === 1) {
-        setFantEmpresa('JR.Bordados.');
-      } else if (idempresa === 2) {
-        setFantEmpresa('RB.Serviços.');
-      }
-      setContinua(true);
-    } else {
+    setEdicao('Opção');
+    if (idempresa === 0) {
       setFantEmpresa('');
       setContinua(false);
     }
+    if (idempresa === 1) {
+      setFantEmpresa('JR.Bordados.');
+    }
+    if (idempresa === 2) {
+      setFantEmpresa('RB.Serviços.');
+    }
+    if (idempresa > 0) {
+      setContinua(true);
+    }
     ////////////////
+    dispatch({ type: AcessoUseActions.setAplicacao, payload: edicao });
     dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
     dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
-  }, [idempresa, dispatch]);
+  }, [idempresa, fantempresa, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-        
         <ContentLoginPg>
           <ContentTitleLogin modotitle={'Selecione uma Empresa.'} />
           <Lg.ContainerMainLogin isopen={isopen}>
@@ -134,7 +142,7 @@ const Login = () => {
             </ContentLoginCollunsCenter>
           </Lg.ContainerMainLogin>
           <Lg.DivisionPgHztal />
-          
+
           <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
             <ContentMainButtonsLogin>
               <ContentButtonTitleImg title="Voltar." onClick={goto('/')} />
@@ -146,7 +154,6 @@ const Login = () => {
               ) : null}
             </ContentMainButtonsLogin>
           </ContentLoginColluns>
-
         </ContentLoginPg>
       </ThemeLogin>
     </ThemeProvider>

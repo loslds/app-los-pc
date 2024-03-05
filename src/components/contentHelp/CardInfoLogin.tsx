@@ -43,8 +43,15 @@ const CardInfoLogin = () => {
         <p>NmConfig..: {state.nmConfig}</p>
         <p>MdConfig.: {state.mdConfig ? 'True' : 'False'}</p>
         <p>PinAdm....: {state.pinAdm === 0 ? '0' : state.pinAdm}</p>
+
         <p>Page......: {state.page === '' ? 'Vasio' : state.page}</p>
         <p>Modulo....: {state.modulo === '' ? 'Vasio' : state.modulo}</p>
+
+        <p>MdLogin......: {state.mdlogin === 0 ? '0' : state.mdlogin}</p>
+        <p>NmLogin......: {state.nmlogin === '' ? 'Vasio' : state.nmlogin}</p>
+        <p>NrCont.......: {state.nrcont === 0 ? '0' : state.nrcont}</p>
+        <p>NmCont.......: {state.nmcont === '' ? 'Vasio' : state.nmcont}</p>
+
         <p>Aplicacao.: {state.aplicacao === '' ? 'Vasio' : state.aplicacao}</p>
         <p>DateTimeI.: {state.datetimei === '' ? 'Vasio' : state.datetimei}</p>
         <p>DateTimeF.: {state.datetimef === '' ? 'Vasio' : state.datetimef}</p>

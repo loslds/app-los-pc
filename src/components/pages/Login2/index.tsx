@@ -1,4 +1,5 @@
 import * as Lg from '../../../styles/styledLogin.ts';
+import '../../../styles/global.ts';
 
 //import enviaon from '../../../assets/svgs/enviaron.svg';
 //import enviaoff from '../../../assets/svgs/enviaroff.svg';
@@ -22,8 +23,7 @@ import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.ts
 import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
-import { ContentInput } from '../Login/ContentInput.tsx';
-import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
+//import { ContentInputOpc } from '../Login/ContentInputOpc.tsx';
 import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
 
@@ -108,35 +108,92 @@ export const Login2 = () => {
 
   const { state, dispatch } = AcessoUseForm();
 
-  const [isopen, setIsOpen] = React.useState(false);
-  const [mdlogin, setMdLogin] = React.useState(0);
-  const [nmlogin, setNmLogin] = React.useState('Opções:');
+  const [isopen] = React.useState(true);
+  const [mdlogin, setMdLogin] = React.useState(state.mdlogin);
+  const [nmlogin, setNmLogin] = React.useState(state.nmlogin);
   const [btncontinua, setBtnContinua] = React.useState(false);
-  const [tentativa, setTentativa] = React.useState(0);
+  const [tentativa, setTentativa] = React.useState(state.nrcont);
+
+  const [strid, setStrId] = React.useState('');
+  const [strpsw, setStrPsw] = React.useState('');
+
+  console.log('mdlogin1 :', mdlogin);
+  console.log('nmlogin1 :', nmlogin);
+  console.log('tentativa1 :', tentativa);
 
   React.useEffect(() => {
+    setBtnContinua(true);
+    if (tentativa !== state.nrcont) {
+      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+    }
+    console.log('tentativa :', tentativa);
+    if (mdlogin !== state.mdlogin) {
+      setMdLogin(state.mdlogin);
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    }
+
+    if (nmlogin !== state.nmlogin) {
+      setNmLogin(state.nmlogin);
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: nmlogin });
+    }
+    console.log('mdlogin :', mdlogin + '...' + state.nmlogin);
+    console.log('nmlogin :', nmlogin + '...' + state.nmlogin);
+
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-    setIsOpen(true);
-    setTentativa(state.nrcont);
-  }, [dispatch]);
 
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
 
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
+    dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
+  }, [btncontinua, dispatch]);
 
-  
+  const handlerOnChangerStrId = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStrId(e.currentTarget.value);
+    dispatch({
+      type: AcessoUseActions.setIdNmUser,
+      payload: e.currentTarget.value
+    });
+  };
+  const handlerOnChangerStrPsw = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setStrPsw(e.currentTarget.value);
+    dispatch({
+      type: AcessoUseActions.setPswUser,
+      payload: e.currentTarget.value
+    });
+  };
+
   React.useEffect(() => {
-    console.log('tentativa1 : ', tentativa);
-    console.log('state.nrCont1 : ', state.nrcont);
-    ////////////////////////////
-    if (state.mdlogin >= 1 && mdlogin <= 4) {
-      setBtnContinua(true);
-      if (tentativa < state.nrcont) {
-        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-      }
-    } else if (mdlogin === 0) {
-      setBtnContinua(false);
+    setBtnContinua(true);
+    setTentativa(tentativa + 1);
+    if (tentativa !== state.nrcont) {
+      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
     }
-  }, [mdlogin, tentativa, dispatch]);
+    console.log('tentativa :', tentativa);
+    if (mdlogin !== state.mdlogin) {
+      setMdLogin(state.mdlogin);
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    }
+
+    if (nmlogin !== state.nmlogin) {
+      setNmLogin(state.nmlogin);
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: nmlogin });
+    }
+    console.log('mdlogin :', mdlogin + '...' + state.nmlogin);
+    console.log('nmlogin :', nmlogin + '...' + state.nmlogin);
+
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
+
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: strid });
+    dispatch({ type: AcessoUseActions.setPswUser, payload: strpsw });
+  }, [btncontinua, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -145,14 +202,115 @@ export const Login2 = () => {
           <ContentTitleLogin modotitle={'Edição : ' + state.nmlogin} />
           <Lg.ContainerMainLogin isopen={isopen}>
             <ContentLoginCollunsCenter isopen={isopen}>
-              <ContentLoginColluns>
-                <ContentLoginOpc pwidth="200px" open={isopen}>
+              <ContentLoginColluns pheight="200px" pwidth="400px">
+                <ContentLoginOpc pwidth="100%" open={isopen}>
                   <ContentTitleLoginOpc titleopc={'Entre com os Dados.'} />
-                  <h3>inputs</h3>
+                  {state.mdlogin === 1 ? (
+                    <form name="login1">
+                      <br />
+                      <label>
+                        E-Mail...... :
+                        <input
+                          type="mail"
+                          name="mail1"
+                          value={strid}
+                          onChange={() => handlerOnChangerStrId}
+                        />
+                      </label>
+                      <br />
+                      <label>
+                        PassWord :
+                        <input
+                          type="password"
+                          name="pass1"
+                          value={strpsw}
+                          onChange={() => handlerOnChangerStrPsw}
+                        />
+                      </label>
+                      <br />
+                      {/* <input type="submit" value="Enviar" /> */}
+                    </form>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
+                    <form name="login2">
+                      <br />
+                      <label>
+                        E-Mail...... :
+                        <input
+                          type="mail"
+                          name="mail2"
+                          value={strid}
+                          onChange={() => handlerOnChangerStrId}
+                        />
+                      </label>
+                      <br />
+                      <label>
+                        PassWord :
+                        <input
+                          type="text"
+                          name="pin1"
+                          value={strpsw}
+                          onChange={() => handlerOnChangerStrPsw}
+                        />
+                      </label>
+                      <br />
+                    </form>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <form name="login3">
+                      <br />
+                      <label>
+                        E-Mail...... :
+                        <input
+                          type="text"
+                          name="peseu1"
+                          value={strid}
+                          onChange={() => handlerOnChangerStrId}
+                        />
+                      </label>
+                      <br />
+                      <label>
+                        PassWord :
+                        <input
+                          type="password"
+                          name="pass2"
+                          value={strpsw}
+                          onChange={() => handlerOnChangerStrPsw}
+                        />
+                      </label>
+                      <br />
+                    </form>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <form name="login3">
+                      <br />
+                      <label>
+                        E-Mail...... :
+                        <input
+                          type="text"
+                          name="peseu2"
+                          value={strid}
+                          onChange={() => handlerOnChangerStrId}
+                        />
+                      </label>
+                      <br />
+                      <label>
+                        PassWord :
+                        <input
+                          type="text"
+                          name="pin2"
+                          value={strpsw}
+                          onChange={() => handlerOnChangerStrPsw}
+                        />
+                      </label>
+                      <br />
+                    </form>
+                  ) : null}
                 </ContentLoginOpc>
               </ContentLoginColluns>
             </ContentLoginCollunsCenter>
           </Lg.ContainerMainLogin>
+
           <Lg.DivisionPgHztal />
 
           <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
@@ -165,7 +323,7 @@ export const Login2 = () => {
               {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
                 <ContentButtonTitleImg
                   title="Continuar."
-                  onClick={goto('/login2')}
+                  onClick={goto('/login3')}
                 />
               ) : null}
             </ContentMainButtonsLogin>
@@ -664,3 +822,29 @@ export default Login2;
 //       </ContentButtonsConfirmation>
 //     </ContentFormCollunsCenter>
 //   ) : null}
+
+// mdlogin == 1 ? (
+//   <form name='aaa'
+//     <Lg.InputPage
+//       name="mdlogin1"
+//       disabled={true}
+// //                        titulo="E-Mail.:"
+//       id="email1"
+//       type="email"
+//       name="opcemail1"
+//       value={strid}
+//       placeholder="email@email.com(.br)"
+//       onChange={() => handlerOnChangerStrId}
+//       />
+//   </form>
+
+//                       <.InputPage
+//                         disabled={false}
+// //                        titulo="Password.:"
+//                         id="passw1"
+//                         type="password"
+//                         name="opcpassword1"
+//                         value={strpsw}
+//                         maxlength={10}
+//                         placeholder="**********"
+//                         onChange={() => handlerOnChangerStrPsw}
