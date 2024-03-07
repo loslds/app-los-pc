@@ -62,7 +62,7 @@ import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 
 // }
 
-export const Login3 = () => {
+const Login3 = () => {
   // const [ispsw] = React.useState(true);
 
   // const [mdlogin, setMdLogin] = React.useState(0);
@@ -106,8 +106,8 @@ export const Login3 = () => {
   const { dispatch } = AcessoUseForm();
 
   React.useEffect(() => {
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
-    dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/login3' });
   }, [dispatch]);
 
   // const DescrOpc = [
@@ -203,7 +203,7 @@ export const Login3 = () => {
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
         <ContentLoginPg>
-          <ContentTitleLogin modotitle={'Determine o seu Acesso.'} />
+          <ContentTitleLogin modotitle={'"CONFIRMAÇÃO" de seu Acesso.'} />
           <Lg.ContainerMainLogin>
             <h3>LOGIN3</h3>
           </Lg.ContainerMainLogin>
@@ -213,6 +213,7 @@ export const Login3 = () => {
   );
 };
 
+export default Login3;
 /*
           <Lg.DivisionPgHztalOnOff isopen={isconfirmainput} />
           <ContentLoginOpc pwidth={'100%'} open={isconfirmainput}>
