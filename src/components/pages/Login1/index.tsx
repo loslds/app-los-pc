@@ -56,13 +56,15 @@ const Login1 = () => {
     dispatch({ type: AcessoUseActions.setPage, payload: '/login1' });
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setModulo, payload: 'Login : Opções Acesso'});
+    dispatch({
+      type: AcessoUseActions.setModulo,
+      payload: 'Login : Opções Acesso'
+    });
     dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
     dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
-    dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.'
-    });
+    dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
   }, [dispatch]);
 
@@ -79,6 +81,8 @@ const Login1 = () => {
       'Pseudônino / PIN.'
     ];
 
+    setNmLogin(DescrOpc[mdlogin]);
+
     if (mdlogin === 0) {
       setBtnContinua(false);
     } else {
@@ -89,7 +93,7 @@ const Login1 = () => {
         setBtnContinua(true);
       }
     }
-    setNmLogin(DescrOpc[mdlogin]);
+
     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
     dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
@@ -98,7 +102,6 @@ const Login1 = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-        {/* {isopen ? ( */}
         <Lg.ContainerLogin>
           <Lg.ContainerLoginFlex>
             <ContentTitleLogin modotitle={state.modulo} />
@@ -155,14 +158,12 @@ const Login1 = () => {
                   <ContentButtonTitleImg
                     title="Continuar."
                     onClick={goto('/login2')}
-                    // onClick={() => setIsEdit(true)}
                   />
                 ) : null}
               </ContentMainButtonsLogin>
             </ContentLoginColluns>
           </Lg.ContainerLoginFlex>
         </Lg.ContainerLogin>
-        {/* ) : null} */}
       </ThemeLogin>
     </ThemeProvider>
   );

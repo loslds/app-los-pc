@@ -54,6 +54,7 @@ export const Login2 = () => {
 
   const [iseditar, setIsEditar] = React.useState(false);
   const [btncontinua, setBtnContinua] = React.useState(false);
+  const [ischekd, setIsChekd] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(state.nrcont);
 
   const [strid, setStrId] = React.useState('');
@@ -66,27 +67,17 @@ export const Login2 = () => {
   const tituloConfirmacao = '"CONFIRMA", outra forma de Acesso';
   const [isresgatar, setIsResgatar] = React.useState(false);
 
-  //const [btnresgatar, setBtnIsResgatar] = React.useState(false);
-
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-    //    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    dispatch({
-      type: AcessoUseActions.setModulo,
-      payload: 'Logar :' + state.nmlogin
-    });
-    //dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+    
     dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Login : Selecionado Edição.'
     });
-    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+
     dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
 
@@ -100,69 +91,59 @@ export const Login2 = () => {
 
   const handlerOnChangerStrId = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (tentativa + 1 > 4) {
-        setIsResgatar(true);
-        setIsEditar(false);
-        setBtnContinua(false);
-        setBtnEnviar(false);
-      } else {
-        setStrId(e.currentTarget.value);
-        dispatch({
-          type: AcessoUseActions.setIdNmUser,
-          payload: e.currentTarget.value
-        });
-      }
+      setStrId(e.currentTarget.value);
+      dispatch({
+        type: AcessoUseActions.setIdNmUser,
+        payload: e.currentTarget.value
+      });
     },
     [dispatch]
   );
 
   const spanChangeKeyUpPasId = React.useCallback(() => {
-    if (tentativa + 1 <= 4) {
-      if (strid === '') {
-        setBtnContinua(true);
-      }
-      if (state.idnmuser !== '' && state.pswuser !== '') {
-        setBtnEnviar(true);
-        setBtnContinua(false);
-      }
+    if (strid === '') {
+      setBtnContinua(true);
     }
-  }, [strid]);
+    if (strid !== '' && strpsw !== '') {
+      setBtnEnviar(true);
+      setBtnContinua(false);
+      setIsChekd(true);
+    } else {
+      setBtnContinua(true);
+      setIsChekd(false);
+    }
+  }, [strid, strpsw]);
 
   const handlerOnChangerStrPsw = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (tentativa + 1 > 4) {
-        setIsResgatar(true);
-        setIsEditar(false);
-        setBtnContinua(false);
-        setBtnEnviar(false);
-      } else {
-        setStrPsw(e.currentTarget.value);
-        dispatch({
-          type: AcessoUseActions.setPswUser,
-          payload: e.currentTarget.value
-        });
-      }
+      setStrPsw(e.currentTarget.value);
+      dispatch({
+        type: AcessoUseActions.setPswUser,
+        payload: e.currentTarget.value
+      });
     },
     [dispatch]
   );
 
   const spanChangeKeyUpPasPsw = React.useCallback(() => {
-    if (tentativa + 1 <= 4) {
-      if (strpsw === '') {
-        setBtnContinua(true);
-      }
-      if (state.idnmuser !== '' && state.pswuser !== '') {
-        setBtnEnviar(true);
-        setBtnContinua(false);
-      }
+    if (strpsw === '') {
+      setBtnContinua(true);
     }
-  }, [strpsw]);
+    if (strid !== '' && strpsw !== '') {
+      setBtnEnviar(true);
+      setBtnContinua(false);
+      setIsChekd(true);
+    } else {
+      setBtnContinua(true);
+      setIsChekd(false);
+    }
+  }, [strid, strpsw]);
 
   const handlerContinuar = React.useCallback(() => {
     setNmErroLogin('');
     setTentativa(tentativa + 1);
-    if (state.mdlogin >= 1 && state.mdlogin <= 4) {
-      if (strid === '' || strpsw === '') {
+    if (!ischekd || nmrerrologin !== '') {
+      if (strid === '' && strpsw === '') {
         if (state.mdlogin == 1) {
           setNmErroLogin('Determine seu Email e sua Senha para Acesso...');
         } else if (state.mdlogin == 2) {
@@ -171,47 +152,38 @@ export const Login2 = () => {
           setNmErroLogin('Determine seu Nome e sua Senha para Acesso...');
         } else if (state.mdlogin == 4) {
           setNmErroLogin('Determine seu Nome e seu PIN para Acesso...');
-        } else if (strid === '' && strpsw !== '') {
-          if (state.mdlogin == 1 || state.mdlogin == 2) {
-            setNmErroLogin('Determine seu Email para Acesso...');
-          } else if (state.mdlogin == 3 || state.mdlogin == 4) {
-            setNmErroLogin('Determine seu Nome para Acesso...');
-          }
-        } else if (strid !== '' && strpsw === '') {
-          if (state.mdlogin == 1 || state.mdlogin == 3) {
-            setNmErroLogin('Determine sua Senha para Acesso...');
-          } else if (state.mdlogin == 2 || state.mdlogin == 4) {
-            setNmErroLogin('Determine seu PIN para Acesso...');
-          }
+        }
+      } else if (strid === '') {
+        if (state.mdlogin == 1 || state.mdlogin == 2) {
+          setNmErroLogin('Determine seu Email para Acesso...');
+        } else if (state.mdlogin == 3 || state.mdlogin == 4) {
+          setNmErroLogin('Determine seu Nome para Acesso...');
+        }
+      } else if (strpsw === '') {
+        if (state.mdlogin == 1 || state.mdlogin == 3) {
+          setNmErroLogin('Determine sua Senha para Acesso...');
+        } else if (state.mdlogin == 2 || state.mdlogin == 4) {
+          setNmErroLogin('Determine seu PIN para Acesso...');
         }
       }
     }
   }, [strid, strpsw, tentativa]);
 
   React.useEffect(() => {
-    if (tentativa <= 4) {
-      if (nmrerrologin !== '') {
-        setIsErroLogin(true);
+    if (!ischekd && nmrerrologin !== '') {
+      if (tentativa + 1 > 4) {
         setIsEditar(false);
         setBtnContinua(false);
         setBtnEnviar(false);
-      } else {
-        if (strid !== '' && strpsw !== '') {
-          setBtnEnviar(true);
-          setBtnContinua(false);
-        } else {
-          setBtnContinua(true);
-        }
-      }
-    } else {
-      if (tentativa + 1 > 4) {
         setIsResgatar(true);
         setIsErroLogin(false);
-        setIsEditar(false);
-        setBtnContinua(false);
-        setBtnEnviar(false);
+      } else {
+        setIsErroLogin(true);
       }
     }
+    // else{
+    //   setBtnContinua(true);
+    // }
     dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
   }, [tentativa, dispatch]);
 
@@ -353,7 +325,7 @@ export const Login2 = () => {
                   ) : null}
 
                   {isresgatar ? (
-                    <ContentLoginOpc pwidth={'100%'} open={true}>
+                    <ContentLoginOpc pwidth={'99%'} open={true}>
                       <ContentTitleLoginOpc titleopc={tituloConfirmacao} />
                       <Lg.ContainerAreaText>
                         <form name="confResgate">

@@ -16,23 +16,20 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentLoginPg } from '../Login/ContentLoginPg.tsx';
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
-//import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
-//import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
-//import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
+import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
+import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
 
+import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
+import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
 //import { ContentInput } from '../Login/ContentInput.tsx';
-//import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
 //import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
-
 ////import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 //import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
 //import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
 //import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
 //import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
 //import { ContentButtonConfimationOnOff } from '../Login/ContentButtonConfimationOnOff.tsx';
-
 //import { ListAcessos } from '../../../books/ListAcessos.tsx';
 
 // type PropsGetLogin = {
@@ -103,12 +100,65 @@ const Login3 = () => {
     };
   };
 
-  const { dispatch } = AcessoUseForm();
+  const { state, dispatch } = AcessoUseForm();
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login3' });
+    dispatch({
+      type: AcessoUseActions.setModulo,
+      payload: 'Logar : "CONFIRMAÇÃO" de seu Acesso.'
+    });
+    dispatch({
+      type: AcessoUseActions.setAplicacao,
+      payload: 'Acessando Sistena'
+    });
+    dispatch({ type: AcessoUseActions.setLogado, payload: false });
   }, [dispatch]);
+
+  return (
+    <ThemeProvider theme={theme}>
+      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+        <Lg.ContainerLogin>
+          <Lg.ContainerLoginFlex>
+            <ContentTitleLogin modotitle={state.modulo} />
+            <Lg.ContainerMainLogin isopen={true}>
+              <ContentLoginCollunsCenter isopen={true}>
+                <ContentLoginColluns pheight="200px" pwidth="400px">
+                  <ContentLoginOpc pwidth="100%" open={true}>
+                    <ContentTitleLoginOpc titleopc={state.aplicacao} />
+
+                    <form name="mail">
+                      <br />
+                      <label>
+                        E-Mail:
+                        <input type="text" name="mail" value={state.idnmuser} />
+                      </label>
+                      <br />
+                      <label>
+                        Senha:
+                        <input
+                          type="password"
+                          name="pass1"
+                          value={state.pswuser}
+                        />
+                      </label>
+                      <br />
+                    </form>
+                  </ContentLoginOpc>
+                </ContentLoginColluns>
+              </ContentLoginCollunsCenter>
+            </Lg.ContainerMainLogin>
+          </Lg.ContainerLoginFlex>
+        </Lg.ContainerLogin>
+      </ThemeLogin>
+    </ThemeProvider>
+  );
+};
+
+export default Login3;
+
+/*
 
   // const DescrOpc = [
   //   'Opções:',
@@ -199,23 +249,7 @@ const Login3 = () => {
   //   }
   // }, [isconfirmainput]);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-        <ContentLoginPg>
-          <ContentTitleLogin modotitle={'"CONFIRMAÇÃO" de seu Acesso.'} />
-          <Lg.ContainerMainLogin>
-            <h3>LOGIN3</h3>
-          </Lg.ContainerMainLogin>
-        </ContentLoginPg>
-      </ThemeLogin>
-    </ThemeProvider>
-  );
-};
-
-export default Login3;
-/*
-          <Lg.DivisionPgHztalOnOff isopen={isconfirmainput} />
+<Lg.DivisionPgHztalOnOff isopen={isconfirmainput} />
           <ContentLoginOpc pwidth={'100%'} open={isconfirmainput}>
             <ContentTitleLoginOpc titleopc='"CONFIRMAÇÃO de Dados...' />
             <Lg.ContainerAreaText>

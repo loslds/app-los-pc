@@ -117,8 +117,8 @@ export const Login4 = () => {
   const [tentativa, setTentativa] = React.useState(0);
 
   React.useEffect(() => {
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
-    dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 5 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/login4' });
     setIsOpen(true);
     setTentativa(state.nrcont);
   }, [dispatch]);
