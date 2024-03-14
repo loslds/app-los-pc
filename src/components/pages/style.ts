@@ -64,8 +64,8 @@ export const ContainerCustonButton = styled.div<{ pxheight? : string;}>`
   display: flex;
   //flex-wrap: wrap;
   //flex-flow: row;
-  //justify-content: center;
-  //align-items: center;
+  justify-content: center;
+  align-items: center;
   //align-content: center;
   color:  ${props => props.theme.colors.textColor};
   &:hover {
@@ -147,4 +147,110 @@ export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
   //align-items: center;
   //align-content: center;
 `;
+////////////////////////////////////////////////////////
+type TypeContainerDivManYellow {
+  label?: string;
+  statedata?: string;
+}
+export const ContainerDivManYellow = styled.div<TypeContainerDivManYellow>`
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: ${(props) => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  size: 16px;
+  line-height: 16px;
+  color: ${(props) => props.theme.colors.textColor};
+  background: ${(props) => props.theme.colors.backgroundColor};
+  &:hover {
+    border-color: yellow;
+  }
+`;
 
+type TypeContainerDivManRed {
+  label?: string;
+  statedata?: string;
+}
+export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
+  border: 1px solid;
+  border-radius: 10px;
+  border-color: ${(props) => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  size: 16px;
+  line-height: 16px;
+  color: ${(props) => props.theme.colors.textColor};
+  background: ${(props) => props.theme.colors.backgroundColor};
+  &:hover {
+    border-color: red;
+    label {
+      color: red;
+    }
+  }
+`;
+
+export const ContainerCardDivMainLeft = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  min-height: 50px;
+  max-width: 100%;
+  background: ${(props) => props.theme.colors.backgroundColor};
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color: ${(props) => props.theme.colors.textColor};
+  size: 16px;
+  line-height: 16px;
+`;
+
+export const ContainerCardDivMainEnd = styled.div`
+  border: 1px dashed;
+  border-color: ${(props) => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  min-height: 50px;
+  max-width: 100%;
+  display: flex;
+  background: ${(props) => props.theme.colors.backgroundColor};
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: center;
+  align-content: center;
+  color: ${(props) => props.theme.colors.textColor};
+  size: 16px;
+  line-height: 16px;
+`;
+
+export const ContainerCardDivMainLeftRed = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  min-height: 50px;
+  max-width: 100%;
+  background: ${(props) => props.theme.colors.backgroundColor};
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color: ${(props) => props.theme.colors.textColor};
+  size: 16px;
+  line-height: 16px;
+`;

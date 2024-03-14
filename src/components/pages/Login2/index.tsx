@@ -171,6 +171,7 @@ export const Login2 = () => {
 
   React.useEffect(() => {
     if (!ischekd && nmrerrologin !== '') {
+
       if (tentativa + 1 > 4) {
         setIsEditar(false);
         setBtnContinua(false);
@@ -232,6 +233,7 @@ export const Login2 = () => {
                             <input
                               type="password"
                               name="pass1"
+                              maxLength={10}
                               value={strpsw}
                               onChange={handlerOnChangerStrPsw}
                               onKeyUp={spanChangeKeyUpPasPsw}

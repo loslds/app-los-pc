@@ -336,6 +336,7 @@ export const ContainerButtonOffImg = styled.div`
     background: #ff3737;
    }
 `;
+
 type ButtonOnOffImgType = {
   img?: string;
 };
@@ -376,6 +377,32 @@ export const ContainerAreaText = styled.div`
   align-items: left;
  `;
 
+export const ContainerFormColl = styled.div`
+  border: 2px;
+  border-color: #939393;
+  border-radius: 5px;
+  margin: 5px 5px;
+  padding: 5px 5px;
+  background: ${props => props.theme.colors.backgroundColor};
+  min-height: 40px;
+  display: flex;
+  //flex-flow: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  //align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+  &:hover {
+    background: #ff3737;
+   }
+  label {
+    margin: 2px 5px;
+    padding: 2px 5px;
+    color:  ${props => props.theme.colors.textColor};
+    background: ${props => props.theme.colors.backgroundColor};
+  } 
+`;
+
 type ContainerFormCenterType = {
   pwidth?: string;
 };
@@ -388,8 +415,12 @@ export const ContainerFormCenter = styled.div<ContainerFormCenterType>`
   margin: 5px 5px 5px 5px;
   width: ${({ pwidth }) => pwidth || '65%'};
   display: flex ;
-  justify-content: space-between;
+  //justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 `;
+
 
 
 
