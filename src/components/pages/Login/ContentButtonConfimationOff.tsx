@@ -7,7 +7,7 @@ type BntConfirmation = {
   onClick?: () => void;
   //React.MouseEventHandler<HTMLButtonElement>;
 };
-export const ContentButtonConfimationOff = ({
+const ContentButtonConfimationOff = ({
   title,
   img,
   titlebtn,
@@ -22,3 +22,5 @@ export const ContentButtonConfimationOff = ({
     </Lg.ContainerBtnLoginSRigth>
   );
 };
+
+export default ContentButtonConfimationOff;

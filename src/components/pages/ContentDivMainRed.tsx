@@ -1,28 +1,24 @@
 import { ReactNode } from 'react';
 
-import * as Lg from './style';
+import * as Lg from './style.ts';
 
-type PropsContentDivManRedBtn = {
+type PropsContentDivManRed = {
   label?: string;
   statedata?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentDivManRedBtn = ({
+const ContentDivMainRed = ({
   label,
   statedata,
   children
-}: PropsContentDivManRedBtn) => {
+}: PropsContentDivManRed) => {
   return (
     <Lg.ContainerDivManRed>
       <label>{label}</label>
       <h3>{statedata}</h3>
-    </Lg.ContainerDivManRed>
-
-    <Lg.ContainerCardDivMainEnd>
       {children}
-    </Lg.ContainerCardDivMainEnd>
-    
+    </Lg.ContainerDivManRed>
   );
 };
 
-export default ContentDivManRedBtn;
+export default ContentDivMainRed;

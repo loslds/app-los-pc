@@ -15,17 +15,24 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentLoginPg } from './ContentLoginPg.tsx';
-import { ContentTitleLogin } from './ContentTitleLogin.tsx';
+import ContentCardPage from './ContentCardPage.tsx';
+import { ContentCardTitle } from './ContentCardTitle.tsx';
+//import { ContentTitleLogin } from './ContentTitleLogin.tsx';
+import { ContentCardMain } from './ContentCardMain.tsx';
 import { ContentLoginCollunsCenter } from './ContentLoginCollunsCenter.tsx';
 import { ContentLoginOpc } from './ContentLoginOpc.tsx';
-import { ContentTitleLoginOpc } from './ContentTitleLoginOpc.tsx';
+//import { ContentTitleLoginOpc } from './ContentTitleLoginOpc.tsx';
 import { ContentInput } from './ContentInput.tsx';
-import { ContentLoginColluns } from './ContentLoginColluns.tsx';
-import { ContentMainButtonsLogin } from './ContentMainButtonsLogin.tsx';
-import { ContentButtonTitleImg } from './ContentButtonTitleImg.tsx';
 
-// export const Login = () => {
+import ContentSidePanelBotton from './ContentSidePanelBotton.tsx';
+import ContentSideLabelBotton from './ContentSideLabelBotton.tsx';
+
+import setaesq from '../../../assets/svgs/setaesq.svg';
+import setadir from '../../../assets/svgs/setadir.svg';
+
+//import { ContentMainButtonsLogin } from './ContentMainButtonsLogin.tsx';
+//import ContentButtonTitleImg from './ContentButtonTitleImg.tsx';
+
 const Login = () => {
   // const [isopen, setIsOpen] = React.useState(false);
 
@@ -118,12 +125,17 @@ const Login = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-        <ContentLoginPg>
-          <ContentTitleLogin modotitle={state.modulo} />
-          <Lg.ContainerMainLogin isopen={true}>
+        <ContentCardPage>
+          <ContentCardTitle pheight={'30px'}> 
+            <h2>{state.modulo}</h2>
+          </ContentCardTitle>
+          
+          <ContentCardMain>
             <ContentLoginCollunsCenter isopen={true}>
               <ContentLoginOpc pwidth="200px" open={true}>
-                <ContentTitleLoginOpc titleopc={state.aplicacao} />
+                <ContentCardTitle pheight={'20px'}> 
+                  <h4>{state.aplicacao}</h4>
+                </ContentCardTitle>
                 <ContentInput>
                   <select
                     name="empresa"
@@ -137,12 +149,40 @@ const Login = () => {
                 </ContentInput>
               </ContentLoginOpc>
             </ContentLoginCollunsCenter>
-          </Lg.ContainerMainLogin>
+          </ContentCardMain>
+          
           <Lg.DivisionPgHztal />
 
-          <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
+          <ContentSidePanelBotton open={true} pwidth="100%">
+            <ContentSideLabelBotton
+              pxheight={'40px'}
+              isopen={true}
+              title={'Voltar.: '}
+              img={setaesq}
+              titbtn={'Voltar...'}
+              onclick={goto('/')}
+            />
+            {btncontinua? (
+              <ContentSideLabelBotton
+                pxheight={'20px'}
+                isopen={true}
+                title={'Continuar.: '}
+                img={setadir}
+                titbtn={'Continuar...'}
+                onclick={goto('/login1')}
+              />
+              ): null
+            }
+          </ContentSidePanelBotton>
+
+          
+
+          {/* <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
             <ContentMainButtonsLogin>
-              <ContentButtonTitleImg title="Voltar." onClick={goto('/')} />
+              <ContentButtonTitleImg isimg={true} title="Voltar.">
+                
+              </ContentButtonTitleImg>
+               onClick={goto('/')} />
               {btncontinua && idempresa > 0 ? (
                 <ContentButtonTitleImg
                   title="Continuar."
@@ -150,8 +190,8 @@ const Login = () => {
                 />
               ) : null}
             </ContentMainButtonsLogin>
-          </ContentLoginColluns>
-        </ContentLoginPg>
+          </ContentLoginColluns> */}
+        </ContentCardPage>
       </ThemeLogin>
     </ThemeProvider>
   );

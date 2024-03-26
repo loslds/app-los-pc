@@ -131,6 +131,44 @@ export const ContainerImagem = styled.div`
    }
 `;
 
+export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
+  border: 1px red;
+  border-color: #ffffff;
+
+  //border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  
+  background: ${props => props.theme.colors.backgroundColor};
+  color: ${props => props.theme.colors.textColor};
+  width: 100%;
+  min-height: ${({ pxheight }) => pxheight || '20px'};
+  display: flex;
+  flex-wrap: wrap;
+ 
+  //flex-flow: row;
+  //justify-content: center;
+  //align-items: center;
+  //align-content: center;
+  h1 h2,h3,h4,h5 {
+    display: flex;
+    margin: 0px 10px 0px 10px;
+    padding: 0px 10px 0px 10px;
+    font-size: large;
+    line-height: auto;
+    h1 { font-size: 20px}
+    h2 { font-size: 18px}
+    h3 { font-size: 15px}
+    h4 { font-size: 12px}
+  }
+  label {
+    display: flex;
+    margin: 0px 10px 0px 10px;
+    padding: 0px 10px 0px 10px;
+    font-size: large;
+    line-height: normal;
+  } 
+`;
 export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
   border: 1px red;
   border-color: #ffffff;
@@ -148,7 +186,7 @@ export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
   //align-content: center;
 `;
 ////////////////////////////////////////////////////////
-type TypeContainerDivManYellow {
+type TypeContainerDivManYellow = {
   label?: string;
   statedata?: string;
 }
@@ -156,7 +194,7 @@ export const ContainerDivManYellow = styled.div<TypeContainerDivManYellow>`
   border: 1px solid;
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
-  padding: 0px 0px 0px 0px;
+  padding: 0px 10px 0px 0px;
   margin: 5px 10px 5px 10px;
   width: 100%;
   display: flex;
@@ -172,7 +210,7 @@ export const ContainerDivManYellow = styled.div<TypeContainerDivManYellow>`
   }
 `;
 
-type TypeContainerDivManRed {
+type TypeContainerDivManRed = {
   label?: string;
   statedata?: string;
 }
@@ -253,4 +291,66 @@ export const ContainerCardDivMainLeftRed = styled.div`
   color: ${(props) => props.theme.colors.textColor};
   size: 16px;
   line-height: 16px;
+`;
+
+export const ContainerButtonOn = styled.div`
+border: 1px;
+border-radius: 5px;
+padding: 0px 0px 0px 0px;
+margin: 2px 2px;
+background: transparent;
+min-height: 40px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+align-content: center;
+color: ${(props) => props.theme.colors.textColor};
+&:hover {
+  background: #3aff35;
+}
+`;
+
+export const ContainerButtonOff = styled.div`
+border: 1px;
+border-radius: 5px;
+padding: 0px 0px 0px 0px;
+margin: 2px 2px;
+background: transparent;
+min-height: 40px;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+align-content: center;
+color: ${(props) => props.theme.colors.textColor};
+&:hover {
+  background: #ff3737;
+}
+`;
+
+type ButtonOnOffImgType = {
+img?: string;
+};
+export const ButtonDefaulOnOffImg = styled.button<ButtonOnOffImgType>`
+border: 2px;
+border-radius: 3px;
+margin: 2px 5px 2px 5px;
+color: ${(props) => props.theme.colors.textColor};
+font-size: 12px;
+font-weight: bold;
+font-family: 'Courier New', Courier, monospace;
+background-color: transparent;
+background-image: url(${({ img }) => img || semimg});
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+cursor: pointer;
+outline: none;
+height: 30px;
+min-width: 30px;
+display: flex;
+flex-flow: nowrap;
+justify-content: center;
+align-items: center;
 `;

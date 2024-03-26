@@ -10,6 +10,9 @@ declare module 'styled-components' {
       ligthGray: string;
       backgroundColor: string;
       textColor: string;
+
+      backgroundColorOn: string;
+      backgroundColorOff: string;
     }
   } 
 }

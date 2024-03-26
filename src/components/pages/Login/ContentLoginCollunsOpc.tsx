@@ -1,19 +1,19 @@
 import { ReactNode } from 'react';
 import * as Lg from '../../../styles/styledLogin';
 
-type PropsLoginColluns = {
+type TypeContentLoginCollunsOpc = {
   pheight?: string;
   pwidth?: string;
   children?: ReactNode | JSX.Element;
 };
-export const ContentLoginColluns = ({
+export const ContentLoginCollunsOpc = ({
   pheight,
   pwidth,
   children
-}: PropsLoginColluns) => {
+}: TypeContentLoginCollunsOpc) => {
   return (
-    <Lg.ContainerLoginCollunsOpc pheight={pheight} pwidth={pwidth}>
+    <Lg.ContainerPainelCollunsOpc pheight={pheight} pwidth={pwidth}>
       {children}
-    </Lg.ContainerLoginCollunsOpc>
+    </Lg.ContainerPainelCollunsOpc>
   );
 };

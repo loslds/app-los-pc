@@ -17,12 +17,12 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentLoginPg } from '../Login/ContentLoginPg.tsx';
+import { ContentLoginPg } from '../Login/ContentCardPage.tsx';
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
 
-import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
+import { ContentLoginColluns } from '../Login/ContentLoginCollunsOpc.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
 import { ContentInput } from '../Login/ContentInput.tsx';

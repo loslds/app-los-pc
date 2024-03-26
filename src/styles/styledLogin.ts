@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 import semimg from '../assets/svgs/semimg.svg';
 
-export const ContainerLogin = styled.div`
-  border: none;/* 2px dashed yellow;*/
+export const ContainerCardPage = styled.div`
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -14,10 +14,10 @@ export const ContainerLogin = styled.div`
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
 `;
-type ContainerLoginFlexType = {
+type ContainerCardMainFlexType = {
   pwidth? : string;
 };
-export const ContainerLoginFlex = styled.div<ContainerLoginFlexType>`
+export const ContainerCardPageFlex = styled.div<ContainerCardMainFlexType>`
   border: 3px double;
   border-radius: 10px;
   border-color: ${props => props.theme.colors.textColor};
@@ -30,10 +30,54 @@ export const ContainerLoginFlex = styled.div<ContainerLoginFlexType>`
   justify-content: space-between;
   align-content: center;
 `;
-export const ContainerTitlePanel = styled.div`
-  border: none; /*1px dashed red;*/
+
+
+type TypeContainerCardMain = {
+  pheight?: string;
+};
+export const ContainerCardMain = styled.div<TypeContainerCardMain>`
+  border: none;
   padding: 0px 0px 0px 0px;
-  margin: 5px, 5px;
+  margin: 5px 5px 5px 5px;
+  min-height: ${({ pheight }) => pheight || '20px'};
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+`;
+
+type TypeContainerTitle = {
+  pheight?: string;
+};
+export const ContainerTitle = styled.div<TypeContainerTitle>`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom: 3px double;
+  border-color: ${props => props.theme.colors.textColor};
+  background-color: #bbbbbb;
+
+  min-height: ${({ pheight }) => pheight || '20px'};
+  width: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+`;
+
+export const ContainerTitlePanel = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   min-height: 60px;
   width: 100%;
   background: transparent;
@@ -44,13 +88,17 @@ export const ContainerTitlePanel = styled.div`
   align-items: center;
   align-content: center;
 `;
+//////////////////////////////
 
 export const ContainerTitleLogin = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  border-bottom: 3px double #dfdfdf;
+  border-bottom: 3px double;
+  border-color: ${props => props.theme.colors.textColor};
+  background-color: #bbbbbb;
+
   min-height: 35px;
   width: 100%;
   display: flex;
@@ -59,15 +107,16 @@ export const ContainerTitleLogin = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-  background: #bbbbbb;
+  
 `;
+
 type ContainerMainLoginType = {
   isopen?: boolean;
 };
 export const ContainerMainLogin = styled.div<ContainerMainLoginType>`
+  border: 1px solid red;
   padding: 0px 0px 0px 0px;
   margin: 5px 5px;
-  border: 1px dashed greenyellow;
   width: 100%;
   min-height: 60px;
   display: ${props => (props.isopen ? 'flex' : 'none')};
@@ -99,19 +148,18 @@ export const ContainerCollFormCenter = styled.div<ContainerCollFormCenterType>`
 `;
 //////////////////////////////////////
 
-type ContainerLoginCollunsOpcType = {
-  pheight? : string;
+type ContainerPainelCollunsOpcType = {
+  pheight?: string;
   pwidth? : string;
-  height?: string;
 };
-export const ContainerLoginCollunsOpc = styled.div<ContainerLoginCollunsOpcType>`
+export const ContainerPainelCollunsOpc = styled.div<ContainerPainelCollunsOpcType>`
   border: 1px dashed yellow;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   width: ${({ pwidth }) => pwidth || '200px'};
-  //min-height: ${({ pheight }) => pheight || '155px'};
+  min-height: ${({ pheight }) => pheight || '60px'};
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -120,6 +168,7 @@ export const ContainerLoginCollunsOpc = styled.div<ContainerLoginCollunsOpcType>
   align-content: center;
 `;
 ///////////////////////////////////////
+
 export const DivisionPgHztal = styled.div`
   border: 0px;
   padding: 0px 0px 0px 0px;
@@ -171,20 +220,21 @@ export const ContainerLoginOpc = styled.div<ContainerLoginOpcType>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
+  min-height: 50px;
   min-width: ${({ pwidth }) => pwidth || '32%'};
   color:  ${props => props.theme.colors.textColor};
-  background: ${props => props.theme.colors.backgroundColor};
+  background-color: ${props => props.theme.colors.backgroundColor};
   display: ${props => (props.open ? 'flex' : 'none')};
-  min-height: 50px;
   flex-wrap: wrap;
   justify-content: center;
 `;
+
 export const ContainerLoginFlexOpc = styled.div`
-  border: 3px double;
-  border-radius: 10px;
-  border-color: ${props => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
-  margin: 5px 0px 5px 0px;
+  margin: 0px 0px 0px 0px;
+  border: 3px double;
+  border-color: ${props => props.theme.colors.textColor};
+  border-radius: 10px;
   width: 100%;
   min-height: 60px;
   display: flex;
@@ -193,15 +243,19 @@ export const ContainerLoginFlexOpc = styled.div`
   justify-content: space-between;
   align-content: center;
 `;
+
 export const ContainerTitleLoginOpc = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  background: #bbbbbb;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  border-bottom: 3px double #dfdfdf;
-  min-height: 20px;
+  border-bottom: 3px double;
+  border-bottom-color: ${props => props.theme.colors.textColor};
+  background-color: #bbbbbb;
+
+  min-height: 35px;
   min-width: 100%;
+
   display: flex;
   flex-wrap: wrap;
   flex-flow: column;

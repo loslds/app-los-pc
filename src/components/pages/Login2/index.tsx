@@ -16,15 +16,15 @@ import {
 
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
-import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
+import { ContentLoginCollunsOpc } from '../Login/ContentLoginCollunsOpc.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
 import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
 import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
 import CardInfoErros from '../../contentHelp/CardInfoErros.tsx';
-import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
-import { ContentButtonConfimationOnOff } from '../Login/ContentButtonConfimationOnOff.tsx';
+import ContentButtonsConfirmation from '../Login/ContentButtonsConfirmation.tsx';
+import ContentButtonConfimationOnOff from '../Login/ContentButtonConfimationOnOff.tsx';
 
 import enviaon from '../../../assets/svgs/enviaron.svg';
 import enviaoff from '../../../assets/svgs/enviaroff.svg';
@@ -70,7 +70,7 @@ export const Login2 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-    
+
     dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({
@@ -171,7 +171,6 @@ export const Login2 = () => {
 
   React.useEffect(() => {
     if (!ischekd && nmrerrologin !== '') {
-
       if (tentativa + 1 > 4) {
         setIsEditar(false);
         setBtnContinua(false);
@@ -210,7 +209,7 @@ export const Login2 = () => {
             <ContentTitleLogin modotitle={state.modulo} />
             <Lg.ContainerMainLogin isopen={true}>
               <ContentLoginCollunsCenter isopen={true}>
-                <ContentLoginColluns pheight="200px" pwidth="400px">
+                <ContentLoginCollunsOpc pheight="200px" pwidth="400px">
                   {iseditar ? (
                     <ContentLoginOpc pwidth="100%" open={true}>
                       <ContentTitleLoginOpc titleopc={state.aplicacao} />
@@ -353,7 +352,7 @@ export const Login2 = () => {
                       </ContentButtonsConfirmation>
                     </ContentLoginOpc>
                   ) : null}
-                </ContentLoginColluns>
+                </ContentLoginCollunsOpc>
               </ContentLoginCollunsCenter>
             </Lg.ContainerMainLogin>
             <Lg.DivisionPgHztal />

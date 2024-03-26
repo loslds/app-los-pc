@@ -4,8 +4,10 @@ import * as Lg from '../../../styles/styledLogin';
 type PropsBntConfimation = {
   children?: ReactNode | JSX.Element;
 };
-export const ContentButtonsConfirmation = ({
+const ContentButtonsConfirmation = ({
   children
 }: PropsBntConfimation) => {
   return <Lg.ContainerBtnLoginSRigth>{children}</Lg.ContainerBtnLoginSRigth>;
 };
+
+export default ContentButtonsConfirmation;

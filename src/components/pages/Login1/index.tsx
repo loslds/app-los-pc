@@ -15,14 +15,18 @@ import {
 
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
-import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
+import { ContentLoginCollunsOpc } from '../Login/ContentLoginCollunsOpc.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
 import { ContentInput } from '../Login/ContentInput.tsx';
 import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
 
-import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
-import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
+//import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
+//import ContentButtonTitleImg from '../Login/ContentButtonTitleImg.tsx';
+//import ContainerButtonOffImg from ''
+
+//import setaesq from '../../../assets/svgs/setaesq.svg';
+//import setadir from '../../../assets/svgs/setadir.svg';
 
 const Login1 = () => {
   const [theme, setTheme] = React.useState(dark);
@@ -107,7 +111,7 @@ const Login1 = () => {
             <ContentTitleLogin modotitle={state.modulo} />
             <Lg.ContainerMainLogin isopen={true}>
               <ContentLoginCollunsCenter isopen={true}>
-                <ContentLoginColluns>
+                <ContentLoginCollunsOpc>
                   <ContentLoginOpc pwidth="200px" open={true}>
                     <ContentTitleLoginOpc titleopc={state.aplicacao} />
                     <ContentInput>
@@ -141,27 +145,35 @@ const Login1 = () => {
                       />
                     </ContentInput>
                   </ContentLoginOpc>
-                </ContentLoginColluns>
+                </ContentLoginCollunsOpc>
               </ContentLoginCollunsCenter>
             </Lg.ContainerMainLogin>
 
             <Lg.DivisionPgHztal />
 
-            <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
+            {/* <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
               <ContentMainButtonsLogin>
-                <ContentButtonTitleImg
+                <ContentButtonTitleImg 
+                  isimg={true} 
                   title="Voltar."
-                  onClick={goto('/login')}
-                />
+                  >
+                  <Lg.ContainerSideOnOffButton>
+                    <Lg.ButtonOnOffImg img={setaesq} onClick={onclick} />
+                  </Lg.ContainerSideOnOffButton>
+                </ContentButtonTitleImg>
                 <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
                 {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
                   <ContentButtonTitleImg
                     title="Continuar."
+                    isimg={true}
+                    img={setadir} 
                     onClick={goto('/login2')}
                   />
                 ) : null}
               </ContentMainButtonsLogin>
-            </ContentLoginColluns>
+            </ContentLoginColluns> */}
+
+
           </Lg.ContainerLoginFlex>
         </Lg.ContainerLogin>
       </ThemeLogin>
