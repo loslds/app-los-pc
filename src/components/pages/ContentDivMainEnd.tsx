@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import * as Lg from './style';
+import * as Lg from './stylePage';
 
 type PropsContentDivMainEnd = {
   children?: ReactNode;

@@ -18,7 +18,7 @@ import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.ts
 import { ContentLoginCollunsOpc } from '../Login/ContentLoginCollunsOpc.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
-import { ContentInput } from '../Login/ContentInput.tsx';
+import { ContentInput } from '../ContentInputPage.tsx';
 import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
 
 //import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
@@ -172,8 +172,6 @@ const Login1 = () => {
                 ) : null}
               </ContentMainButtonsLogin>
             </ContentLoginColluns> */}
-
-
           </Lg.ContainerLoginFlex>
         </Lg.ContainerLogin>
       </ThemeLogin>

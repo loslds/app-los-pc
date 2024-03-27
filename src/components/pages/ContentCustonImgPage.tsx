@@ -1,6 +1,6 @@
 import * as Pg from './stylePage';
 
-type PropsCustonImg = {
+type TypeContainerCustonButton = {
   pxheight?: string;
   pheight?: string;
   pwidth?: string;
@@ -8,16 +8,16 @@ type PropsCustonImg = {
   onclick?: () => void;
   titlebtn?: string;
 };
-export const ContentCustonImagem = ({
+export const ContentCustonImgPage = ({
   pxheight,
   pheight,
   pwidth,
   img,
   onclick,
   titlebtn
-}: PropsCustonImg) => {
+}: TypeContainerCustonButton) => {
   return (
-    <Pg.ContainerCustonImagem pxheight={pxheight}>
+    <Pg.ContainerCustonButton pxheight={pxheight}>
       <Pg.ButtonCustonImg
         pheight={pheight}
         pwidth={pwidth}
@@ -25,6 +25,6 @@ export const ContentCustonImagem = ({
         onClick={onclick}
         title={titlebtn}
       />
-    </Pg.ContainerCustonImagem>
+    </Pg.ContainerCustonButton>
   );
 };

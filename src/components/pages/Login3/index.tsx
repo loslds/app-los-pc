@@ -1,5 +1,5 @@
 import * as Lg from '../../../styles/styledLogin.ts';
-import * as Ll from '../style.ts';
+import * as Ll from '../stylePage.ts';
 
 import '../../../styles/global.ts';
 import React from 'react';

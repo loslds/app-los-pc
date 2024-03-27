@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import * as Lg from './style.ts';
+import * as Lg from './stylePage.ts';
 
 type PropsContentDivManRed = {
   label?: string;

@@ -1,10 +1,10 @@
-import { ContentInput } from './ContentInput';
+import { ContentInput } from '../ContentInputPage';
 
 type PropsConttRadioOpc = {
   disabled?: boolean;
   id?: string;
   name?: string;
-  value?: number ;
+  value?: number;
   onclick?: () => void;
   titulo?: string;
 };

@@ -1,13 +1,9 @@
 import { ReactNode } from 'react';
-import * as Hm from './style';
+import * as Pg from './stylePage';
 
-type PropsHearderItensBar = {
-  children?: ReactNode | JSX.Element;
-}
-export const ContentItensBody = ({children}:PropsHearderItensBar) => {
-  return (
-    <Hm.ContainerBodyItensBar>
-      { children }
-    </Hm.ContainerBodyItensBar>
-  );
-}
+type TypeContainerItensBody = {
+  children?: ReactNode;
+};
+export const ContentItensBody = ({ children }: TypeContainerItensBody) => {
+  return <Pg.ContainerBodyItensPage>{children}</Pg.ContainerBodyItensPage>;
+};

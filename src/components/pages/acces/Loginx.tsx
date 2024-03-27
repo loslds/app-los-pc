@@ -1,5 +1,5 @@
 import * as Lg from '../../../styles/styledLogin.ts';
-import * as Pg from '../style.ts';
+import * as Pg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
@@ -17,7 +17,7 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentLoginPg } from '../Login/ContentCardPage.tsx';
+import { ContentLoginPg } from '../ContentCardPage.tsx';
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
 import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
@@ -25,7 +25,7 @@ import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
 import { ContentLoginColluns } from '../Login/ContentLoginCollunsOpc.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
-import { ContentInput } from '../Login/ContentInput.tsx';
+import { ContentInput } from '../ContentInputPage.tsx';
 import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
 import { ContentFormCollunsCenter } from '../Login/ContentFormCollunsCenter.tsx';
 import { ContentTitlePanel } from '../Login/ContentTitlePanel.tsx';

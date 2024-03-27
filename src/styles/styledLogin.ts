@@ -2,79 +2,99 @@ import styled from 'styled-components';
 
 import semimg from '../assets/svgs/semimg.svg';
 
-export const ContainerCardPage = styled.div`
-  border: none;
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  width: 100%;
-  display: flex;
-  min-height: 50px;
-  flex-wrap: wrap;
-  justify-content: center;
-  color:  ${props => props.theme.colors.textColor};
-  background: ${props => props.theme.colors.backgroundColor};
-`;
-type ContainerCardMainFlexType = {
-  pwidth? : string;
-};
-export const ContainerCardPageFlex = styled.div<ContainerCardMainFlexType>`
-  border: 3px double;
-  border-radius: 10px;
-  border-color: ${props => props.theme.colors.textColor};
-  padding: 0px 0px 0px 0px;
-  margin: 5px 0px 5px 0px;
-  width: ${({ pwidth }) => pwidth || '65%'};
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: center;
-`;
+// export const ContainerCardPage = styled.div`
+//   border: none;
+//   padding: 0px 0px 0px 0px;
+//   margin: 0px 0px 0px 0px;
+//   width: 100%;
+//   display: flex;
+//   min-height: 50px;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   color:  ${props => props.theme.colors.textColor};
+//   background: ${props => props.theme.colors.backgroundColor};
+// `;
+// type ContainerCardMainFlexType = {
+//   pwidth? : string;
+// };
+// export const ContainerCardPageFlex = styled.div<ContainerCardMainFlexType>`
+//   border: 3px double;
+//   border-radius: 10px;
+//   border-color: ${props => props.theme.colors.textColor};
+//   padding: 0px 0px 0px 0px;
+//   margin: 5px 0px 5px 0px;
+//   width: ${({ pwidth }) => pwidth || '65%'};
+//   display: flex;
+//   flex-flow: row;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   align-content: center;
+// `;
 
 
-type TypeContainerCardMain = {
-  pheight?: string;
-};
-export const ContainerCardMain = styled.div<TypeContainerCardMain>`
-  border: none;
-  padding: 0px 0px 0px 0px;
-  margin: 5px 5px 5px 5px;
-  min-height: ${({ pheight }) => pheight || '20px'};
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-flow: row;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-`;
+// type TypeContainerCardMain = {
+//   pheight?: string;
+// };
+// export const ContainerCardMain = styled.div<TypeContainerCardMain>`
+//   border: none;
+//   padding: 0px 0px 0px 0px;
+//   margin: 5px 5px 5px 5px;
+//   min-height: ${({ pheight }) => pheight || '20px'};
+//   width: 100%;
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex-flow: row;
+//   justify-content: center;
+//   align-content: center;
+//   align-items: center;
+// `;
 
-type TypeContainerTitle = {
-  pheight?: string;
-};
-export const ContainerTitle = styled.div<TypeContainerTitle>`
-  border: none;
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom: 3px double;
-  border-color: ${props => props.theme.colors.textColor};
-  background-color: #bbbbbb;
 
-  min-height: ${({ pheight }) => pheight || '20px'};
-  width: 100%;
+// type TypeContainerCardCenter = {
+//   pwidth? : string;
+//   open?: boolean;
+// }
+// export const ContainerCardCenter = styled.div<TypeContainerCardCenter>`
+//   border: none;
+//   padding: 0px 0px 0px 0px;
+//   margin: 0px 0px 0px 0px;
+//   min-height: 50px;
+//   min-width: ${({ pwidth }) => pwidth || '32%'};
+//   color:  ${props => props.theme.colors.textColor};
+//   background-color: ${props => props.theme.colors.backgroundColor};
+//   display: ${props => (props.open ? 'flex' : 'none')};
+//   flex-wrap: wrap;
+//   justify-content: center;
+// `;
 
-  display: flex;
-  flex-wrap: wrap;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+// export const ContainerCardCenterFlex = styled.div`
+//   padding: 0px 0px 0px 0px;
+//   margin: 0px 0px 0px 0px;
+//   border: 3px double;
+//   border-color: ${props => props.theme.colors.textColor};
+//   border-radius: 10px;
+//   width: 100%;
+//   min-height: 60px;
+//   display: flex;
+//   flex-flow: row;
+//   flex-wrap: wrap;
+//   justify-content: space-between;
+//   align-content: center;
+// `;
 
-`;
+// export const ContainerInput = styled.div`
+//   border: none;/* 1px solid green;*/
+//   padding: 2px 2px 2px 2px;
+//   margin: 0px 0px 0px 0px;
+//   width: 100%;
+//   display: flex;
+//   flex-flow: wrap;
+//   justify-content: left;
+//   align-items: center;
+//   align-content: center;
 
-export const ContainerTitlePanel = styled.div`
+// `;
+export const ContainerCardTitlePanel = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
@@ -217,7 +237,7 @@ type ContainerLoginOpcType = {
   open?: boolean;
 }
 export const ContainerLoginOpc = styled.div<ContainerLoginOpcType>`
-  border: none;
+  border: 3px solid red;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-height: 50px;
@@ -264,18 +284,7 @@ export const ContainerTitleLoginOpc = styled.div`
   align-content: center; 
 `;
 /////////////////////////////////
-export const ContainerInput = styled.div`
-  border: none;/* 1px solid green;*/
-  padding: 2px 2px 2px 2px;
-  margin: 0px 0px 0px 0px;
-  width: 100%;
-  display: flex;
-  flex-flow: wrap;
-  justify-content: left;
-  align-items: center;
-  align-content: center;
 
-`;
 export const InputCenter = styled.div`
   border: none;
   margin: 0px 0px 0px 0px;

@@ -1,4 +1,3 @@
-//import "../../../styles/global.ts";
 import React from 'react';
 import {
   AcessoUseForm,
@@ -21,7 +20,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LayoutHome } from '../../layouts/LayoutHome/index.tsx';
 import { ContentItensBody } from '../ContentItensBody.tsx';
-import { ContentCustonImg } from '../ContentCustonImg.tsx';
+import { ContentCustonImgPage } from '../ContentCustonImgPage.tsx';
 
 import PageModal from '../../Modal/PageModal.tsx';
 import CardImgNeg from '../../contentHelp/CardImgNeg.tsx';
@@ -110,7 +109,7 @@ const Home = () => {
         onLogin={goto('/login')}
       >
         <ContentItensBody>
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -126,7 +125,7 @@ const Home = () => {
                   }
             }
           />
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -142,7 +141,7 @@ const Home = () => {
                   }
             }
           />
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -158,7 +157,7 @@ const Home = () => {
                   }
             }
           />
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -174,7 +173,7 @@ const Home = () => {
                   }
             }
           />
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -190,7 +189,7 @@ const Home = () => {
                   }
             }
           />
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -206,7 +205,7 @@ const Home = () => {
                   }
             }
           />
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -222,7 +221,7 @@ const Home = () => {
                   }
             }
           />
-          <ContentCustonImg
+          <ContentCustonImgPage
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -242,7 +241,7 @@ const Home = () => {
             <PageModal
               ptop="111px"
               pwidth="30%"
-              pheight='32%'
+              pheight="32%"
               titulo='" A T E N Ç Ã O "'
               onclose={() => {
                 setMainHelp(false);
@@ -258,8 +257,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// ptop={}
-// pwidth={}
-// pheight={}
-// titulo={''}

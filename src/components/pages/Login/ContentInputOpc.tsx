@@ -1,4 +1,4 @@
-import { ContentInput } from './ContentInput';
+import { ContentInput } from '../ContentInputPage';
 
 type PropsContInputOpc = {
   disabled?: boolean;

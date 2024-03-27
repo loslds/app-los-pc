@@ -16,7 +16,7 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentLoginPg } from '../Login/ContentCardPage.tsx';
+import { ContentLoginPg } from '../ContentCardPage.tsx';
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
 import { ContentLoginColluns } from '../Login/ContentLoginCollunsOpc.tsx';

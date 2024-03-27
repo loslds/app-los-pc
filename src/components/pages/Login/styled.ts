@@ -34,7 +34,6 @@ export const ContainerPanelFlex = styled.div`
   align-content: center;
 `;
 
-
 ///////////////////////////////
 
 export const ContainerBtnSRigth = styled.div`
@@ -51,7 +50,10 @@ export const ContainerBtnSRigth = styled.div`
   color:  ${props => props.theme.colors.textColor};
 `;
 
-export const ContainerCustonBtn = styled.div<{ pxheight? : string;}>`
+type  TypeContainerCustonBtn ={
+  pxheight?: string;
+}
+export const ContainerCustonBtn = styled.div<TypeContainerCustonBtn>`
   border: 1px solid;
   border-radius: 10px;
   padding: 0px 0px 0px 0px;
@@ -59,51 +61,21 @@ export const ContainerCustonBtn = styled.div<{ pxheight? : string;}>`
   background: transparent;
   min-height: ${({ pxheight }) => pxheight || '165px'};
   display: flex;
-  //flex-wrap: wrap;
-  //flex-flow: row;
   justify-content: center;
   align-items: center;
-  //align-content: center;
   color:  ${props => props.theme.colors.textColor};
   &:hover {
     background-color: #e4e4e4;
    }
 `;
 
-type ButtonOnOffImgType = {
-  img?: string;
-  };
-  export const ButtonDefaulImg = styled.button<ButtonOnOffImgType>`
-  border: 2px;
-  border-radius: 3px;
-  margin: 2px 5px 2px 5px;
-  color: ${(props) => props.theme.colors.textColor};
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: transparent;
-  background-image: url(${({ img }) => img || semimg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  outline: none;
-  height: 30px;
-  min-width: 30px;
-  display: flex;
-  flex-flow: nowrap;
-  justify-content: center;
-  align-items: center;
-  `;
-  
-
-type Propsbtncuston ={
+type TypeCustonBntImg ={
   pheight?: string;
   pwidth?: string;
   img?: string;
   title?: string;
 }
-export const ButtonCustonbtnImg = styled.button<Propsbtncuston>`
+export const ButtonCustonBtnImg = styled.button<TypeCustonBntImg>`
   border: none;
   margin: 2px 5px 2px 5px;
   color: white;
@@ -124,7 +96,6 @@ export const ButtonCustonbtnImg = styled.button<Propsbtncuston>`
   justify-content: center;
   align-items: center;
 `;
-///////////////////////////////////////////////
 
 export const ContainerButtonBgImgColorOn = styled.div`
   border: 1px solid green;
@@ -143,5 +114,33 @@ export const ContainerButtonBgImgColorOn = styled.div`
     background-color: ${props => props.theme.colors.backgroundColorOn};
    }
 `;
+
+type TypeButtonDefaulImg = {
+  img?: string;
+};
+export const ButtonDefaulImg = styled.button<TypeButtonDefaulImg>`
+  border: 2px;
+  border-radius: 3px;
+  margin: 2px 5px 2px 5px;
+  color: ${(props) => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  height: 30px;
+  min-width: 30px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+///////////////////////////////////////////////
+
 
 

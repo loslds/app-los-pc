@@ -15,23 +15,16 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import ContentCardPage from './ContentCardPage.tsx';
-import { ContentCardTitle } from './ContentCardTitle.tsx';
-//import { ContentTitleLogin } from './ContentTitleLogin.tsx';
-import { ContentCardMain } from './ContentCardMain.tsx';
-import { ContentLoginCollunsCenter } from './ContentLoginCollunsCenter.tsx';
-import { ContentLoginOpc } from './ContentLoginOpc.tsx';
-//import { ContentTitleLoginOpc } from './ContentTitleLoginOpc.tsx';
-import { ContentInput } from './ContentInput.tsx';
-
+import ContentCardPage from '../ContentCardPage.tsx';
+import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
+import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
+import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
+import ContentInputPage from '../ContentInputPage.tsx';
 import ContentSidePanelBotton from './ContentSidePanelBotton.tsx';
 import ContentSideLabelBotton from './ContentSideLabelBotton.tsx';
 
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-
-//import { ContentMainButtonsLogin } from './ContentMainButtonsLogin.tsx';
-//import ContentButtonTitleImg from './ContentButtonTitleImg.tsx';
 
 const Login = () => {
   // const [isopen, setIsOpen] = React.useState(false);
@@ -126,33 +119,28 @@ const Login = () => {
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
         <ContentCardPage>
-          <ContentCardTitle pheight={'30px'}> 
+          <ContentCardPageTitle pheight={'30px'}>
             <h2>{state.modulo}</h2>
-          </ContentCardTitle>
-          
-          <ContentCardMain>
-            <ContentLoginCollunsCenter isopen={true}>
-              <ContentLoginOpc pwidth="200px" open={true}>
-                <ContentCardTitle pheight={'20px'}> 
-                  <h4>{state.aplicacao}</h4>
-                </ContentCardTitle>
-                <ContentInput>
-                  <select
-                    name="empresa"
-                    defaultValue={idempresa}
-                    onChange={(e) => setIdEmpresa(parseInt(e.target.value))}
-                  >
-                    <option value={'0'}>Opções : </option>
-                    <option value={'1'}>JR.Bordados.</option>
-                    <option value={'2'}>BR.Serviços.</option>
-                  </select>
-                </ContentInput>
-              </ContentLoginOpc>
-            </ContentLoginCollunsCenter>
-          </ContentCardMain>
-          
+          </ContentCardPageTitle>
+          <ContentCardBoxMainPage>
+            <ContentCardBoxCenterPage pwidth="200px" open={true}>
+              <ContentCardPageTitle pheight={'20px'}>
+                <h4>{state.aplicacao}</h4>
+              </ContentCardPageTitle>
+              <ContentInputPage>
+                <select
+                  name="empresa"
+                  defaultValue={idempresa}
+                  onChange={(e) => setIdEmpresa(parseInt(e.target.value))}
+                >
+                  <option value={'0'}>Opções : </option>
+                  <option value={'1'}>JR.Bordados.</option>
+                  <option value={'2'}>BR.Serviços.</option>
+                </select>
+              </ContentInputPage>
+            </ContentCardBoxCenterPage>
+          </ContentCardBoxMainPage>
           <Lg.DivisionPgHztal />
-
           <ContentSidePanelBotton open={true} pwidth="100%">
             <ContentSideLabelBotton
               pxheight={'40px'}
@@ -162,7 +150,8 @@ const Login = () => {
               titbtn={'Voltar...'}
               onclick={goto('/')}
             />
-            {btncontinua? (
+
+            {btncontinua ? (
               <ContentSideLabelBotton
                 pxheight={'20px'}
                 isopen={true}
@@ -171,26 +160,8 @@ const Login = () => {
                 titbtn={'Continuar...'}
                 onclick={goto('/login1')}
               />
-              ): null
-            }
+            ) : null}
           </ContentSidePanelBotton>
-
-          
-
-          {/* <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
-            <ContentMainButtonsLogin>
-              <ContentButtonTitleImg isimg={true} title="Voltar.">
-                
-              </ContentButtonTitleImg>
-               onClick={goto('/')} />
-              {btncontinua && idempresa > 0 ? (
-                <ContentButtonTitleImg
-                  title="Continuar."
-                  onClick={goto('/login1')}
-                />
-              ) : null}
-            </ContentMainButtonsLogin>
-          </ContentLoginColluns> */}
         </ContentCardPage>
       </ThemeLogin>
     </ThemeProvider>

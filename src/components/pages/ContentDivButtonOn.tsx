@@ -1,4 +1,4 @@
-import * as Lg from './style';
+import * as Lg from './stylePage';
 
 type PropsContentButtonOn = {
   img?: string;

@@ -1,14 +1,13 @@
-
 //import { ReactNode } from "react";
 
-import * as Lg from "./style";
-          
+import * as Lg from './stylePage';
+
 type PropsContentDivManRed = {
   label?: string;
   statedata?: string;
-//  children?: ReactNode | JSX.Element;
-}
-const ContentDivManYellow = ({ label, statedata}:PropsContentDivManRed) => {
+  //  children?: ReactNode | JSX.Element;
+};
+const ContentDivManYellow = ({ label, statedata }: PropsContentDivManRed) => {
   return (
     <Lg.ContainerDivManYellow>
       <label>{label}</label>
