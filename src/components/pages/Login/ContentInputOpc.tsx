@@ -1,4 +1,5 @@
-import { ContentInput } from '../ContentInputPage';
+
+import ContentInputPage from '../ContentInputPage';
 
 type PropsContInputOpc = {
   disabled?: boolean;
@@ -24,7 +25,7 @@ export const ContentInputOpc = ({
   titulo
 }: PropsContInputOpc) => {
   return (
-    <ContentInput>
+    <ContentInputPage>
       <label>{titulo}</label>
       <input
         disabled={disabled}
@@ -36,6 +37,6 @@ export const ContentInputOpc = ({
         placeholder={placeholder}
         onChange={onchange}
       />
-    </ContentInput>
+    </ContentInputPage>
   );
 };

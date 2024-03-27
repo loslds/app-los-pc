@@ -153,8 +153,23 @@ export const ContainerCardPageTitle = styled.div<TypeContainerCardTitlePage>`
   align-content: center;
 `;
 
+type TypeContainerCollunsCenterPage = {
+  pwidth? : string;
+  isopen?: boolean;
+}
+export const ContainerCollunsCenterPage = styled.div<TypeContainerCollunsCenterPage>`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+  min-width: ${({ pwidth }) => pwidth || '50px'};
+  display: ${props => (props.isopen ? 'flex' : 'none')};
+  flex-direction: column;
+`;
+
 export const ContainerInputPage = styled.div`
-  border: none;/* 1px solid green;*/
+  border: none;
   padding: 2px 2px 2px 2px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -166,9 +181,129 @@ export const ContainerInputPage = styled.div`
 
 `;
 
-/////////////////////////////////////////////////////////
+type TypeContainerPanelPage = {
+  open?: boolean;
+  pwidth? : string;
+}
+export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  min-width: ${({ pwidth }) => pwidth || '32%'};
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+  display: ${props => (props.open ? 'flex' : 'none')};
+  min-height: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 
-export const ContainerCustonButton = styled.div<{ pxheight? : string;}>`
+export const ContainerPanelPageFlex = styled.div`
+  border: 3px double;
+  border-radius: 10px;
+  border-color: ${props => props.theme.colors.textColor};
+  padding: 0px 10px 0px 10px;
+  margin: 5px 10px 5px 10px;
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+`;
+
+export const ContainerBtnSRigthPage = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 5px 2px 5px;
+  background: transparent;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: right;
+  align-items: center;
+  align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+`;
+
+type  TypeContainerCustonBtn ={
+  pxheight?: string;
+}
+export const ContainerCustonBtnPage = styled.div<TypeContainerCustonBtn>`
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  background: transparent;
+  min-height: ${({ pxheight }) => pxheight || '165px'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color:  ${props => props.theme.colors.textColor};
+  &:hover {
+    background-color: #e4e4e4;
+   }
+`;
+
+type TypeButtonDefaulImgPage = {
+  img?: string;
+};
+export const ButtonDefaulImgPage = styled.button<TypeButtonDefaulImgPage>`
+  border: 2px;
+  border-radius: 3px;
+  margin: 2px 5px 2px 5px;
+  color: ${(props) => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  height: 30px;
+  min-width: 30px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+type TypeCustonBntImgPage ={
+  pheight?: string;
+  pwidth?: string;
+  img?: string;
+  title?: string;
+}
+export const ButtonCustonBtnImgPage = styled.button<TypeCustonBntImgPage>`
+  border: none;
+  margin: 2px 5px 2px 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  min-height: ${({ pheight }) => pheight || '125px'};
+  width: ${({ pwidth }) => pwidth || '125px'};
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+type TypeCustonBntPage ={
+  pxheight?: string;
+}
+export const ContainerCustonButton = styled.div<TypeCustonBntPage>`
   border: 1px red;
   border-color: #ffffff;
   border-radius: 5px;
@@ -188,13 +323,13 @@ export const ContainerCustonButton = styled.div<{ pxheight? : string;}>`
    }
 `;
 
-type Propsbtncuston ={
+type TypeBtnCcuston ={
   pheight?: string;
   pwidth?: string;
   img?: string;
   title?: string;
 }
-export const ButtonCustonImg = styled.button<Propsbtncuston>`
+export const ButtonCustonImg = styled.button<TypeBtnCcuston>`
   border: none;
   margin: 2px 5px 2px 5px;
   color: white;
@@ -225,6 +360,9 @@ export const DivisionPgHztal = styled.div`
   display: flex;
   background-color: #9c9c9c;
 `;
+
+
+
 ///////////////////////////////////////////
 
 export const ContainerImagem = styled.div`
@@ -301,6 +439,40 @@ export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
   //align-content: center;
 `;
 ////////////////////////////////////////////////////////
+type TypeContainerDivTestoAtenction = {
+  pxwidth?: string;
+  label?: string;
+  statedata?: string;
+}
+export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAtenction>`
+  border: 1px solid; 
+  border-radius: 10px;
+  border-color: ${(props) => props.theme.colors.textColor};
+  padding: 0px 10px 0px 10px;
+  margin: 5px 10px 5px 10px;
+  width: ${({ pxwidth }) => pxwidth || '100px'};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  size: 16px;
+  line-height: 16px;
+  color: ${(props) => props.theme.colors.textColor};
+  background: ${(props) => props.theme.colors.backgroundColor};
+  &:hover {
+    border: 1px dashed;
+    border-color: red;
+    h3 {
+      color: yellow;
+    }
+    label {
+      color: red;
+    }
+  }
+`;
+
+
+
 type TypeContainerDivManYellow = {
   label?: string;
   statedata?: string;

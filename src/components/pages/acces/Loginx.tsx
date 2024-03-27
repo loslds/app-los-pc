@@ -26,7 +26,7 @@ import { ContentLoginColluns } from '../Login/ContentLoginCollunsOpc.tsx';
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
 import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
 import { ContentInput } from '../ContentInputPage.tsx';
-import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
+import { ContentRadioOpc } from '../ContentRadioPage.tsx';
 import { ContentFormCollunsCenter } from '../Login/ContentFormCollunsCenter.tsx';
 import { ContentTitlePanel } from '../Login/ContentTitlePanel.tsx';
 import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';

@@ -17,7 +17,7 @@ import {
 } from '../../contexts/login/ContextAcesso.tsx';
 
 import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
-import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
+import { ContentLoginCollunsCenter } from '../ContentCardCollunsCenterPage.tsx';
 import { ContentLoginColluns } from '../Login/ContentLoginCollunsOpc.tsx';
 
 import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';

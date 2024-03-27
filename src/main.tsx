@@ -5,8 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Global from './styles/global';
 import Home from './components/pages/Home';
 import Login from './components/pages/Login';
-// import Login1 from './components/pages/Login1';
-// import Login2 from './components/pages/Login2';
+import Login1 from './components/pages/Login1';
+import Login2 from './components/pages/Login2';
 // import Login3 from './components/pages/Login3';
 //import Login4 from './components/pages/Login4';
 
@@ -30,10 +30,10 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-
-          {/*<Route path="/login1" element={<Login1 />} />
+          <Route path="/login1" element={<Login1 />} />
           <Route path="/login2" element={<Login2 />} />
-          <Route path="/login3" element={<Login3 />} />
+
+          {/*<Route path="/login3" element={<Login3 />} />
           <Route path="/login4" element={<Login4 />} /> */}
 
           <Route path="/tabprc" element={<TabPrc />} />

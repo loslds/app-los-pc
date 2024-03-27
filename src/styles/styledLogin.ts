@@ -212,24 +212,7 @@ export const DivisionPgHztalOnOff = styled.div<DivisionPgHztalOnOffType>`
   background-color: #9c9c9c;
 `;
 //////////////////////////////////////
-type ContainerLoginCollunsOpcCenterType = {
-  pwidth? : string;
-  isopen?: boolean;
-}
-export const ContainerLoginCollunsOpcCenter = styled.div<ContainerLoginCollunsOpcCenterType>`
-  border: none;
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  color:  ${props => props.theme.colors.textColor};
-  background: ${props => props.theme.colors.backgroundColor};
-  min-width: ${({ pwidth }) => pwidth || '200px'};
-  display: ${props => (props.isopen ? 'flex' : 'none')};
-  //flex-wrap: nowrap;
-  //flex-flow: row;
-  justify-content: center;
-  //align-items: center;
-  //align-content: center;
-`;
+
 ////////////////////////////////////
 // opções
 type ContainerLoginOpcType = {

@@ -13,20 +13,21 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
-import { ContentLoginCollunsCenter } from '../Login/ContentLoginCollunsCenter.tsx';
-import { ContentLoginCollunsOpc } from '../Login/ContentLoginCollunsOpc.tsx';
-import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
-import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
-import { ContentInput } from '../ContentInputPage.tsx';
-import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
+import ContentCardPage from '../ContentCardPage.tsx';
+import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
+import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
+import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
+import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
 
-//import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
-//import ContentButtonTitleImg from '../Login/ContentButtonTitleImg.tsx';
-//import ContainerButtonOffImg from ''
 
-//import setaesq from '../../../assets/svgs/setaesq.svg';
-//import setadir from '../../../assets/svgs/setadir.svg';
+import { ContentRadioPage } from '../ContentRadioPage.tsx';
+
+import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
+import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
+import ContentDivTestoAtenctionPage from '../ContentDivTestoAtenctionPage.tsx';
+
+import setaesq from '../../../assets/svgs/setaesq.svg';
+import setadir from '../../../assets/svgs/setadir.svg';
 
 const Login1 = () => {
   const [theme, setTheme] = React.useState(dark);
@@ -106,74 +107,77 @@ const Login1 = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-        <Lg.ContainerLogin>
-          <Lg.ContainerLoginFlex>
-            <ContentTitleLogin modotitle={state.modulo} />
-            <Lg.ContainerMainLogin isopen={true}>
-              <ContentLoginCollunsCenter isopen={true}>
-                <ContentLoginCollunsOpc>
-                  <ContentLoginOpc pwidth="200px" open={true}>
-                    <ContentTitleLoginOpc titleopc={state.aplicacao} />
-                    <ContentInput>
-                      <ContentRadioOpc
-                        id="E-Mail/Pass"
-                        name="opcao"
-                        value={1}
-                        titulo="E-Mail/Pass"
-                        onclick={() => setModo(1)}
-                      />
-                      <ContentRadioOpc
-                        id="E-Mail/PIN"
-                        name="opcao"
-                        value={2}
-                        titulo="E-Mail/PIN"
-                        onclick={() => setModo(2)}
-                      />
-                      <ContentRadioOpc
-                        id="Pseud/Pass"
-                        name="opcao"
-                        value={3}
-                        titulo="Pseudô/Pass"
-                        onclick={() => setModo(3)}
-                      />
-                      <ContentRadioOpc
-                        id="Pseud/PIN"
-                        name="opcao"
-                        value={4}
-                        titulo="Pseudô/PIN"
-                        onclick={() => setModo(4)}
-                      />
-                    </ContentInput>
-                  </ContentLoginOpc>
-                </ContentLoginCollunsOpc>
-              </ContentLoginCollunsCenter>
-            </Lg.ContainerMainLogin>
+        <ContentCardPage>
+          <ContentCardPageTitle pheight={'30px'}>
+            <h2>{state.modulo}</h2>
+          </ContentCardPageTitle>
+          <ContentCardBoxMainPage>
+            <ContentCardBoxCenterPage pwidth="200px" open={true}>
+              <ContentCardPageTitle pheight={'20px'}>
+                <h4>{state.aplicacao}</h4>
+              </ContentCardPageTitle>
+              <ContentCardCollunsCenterPage isopen={true} pwidth="80px">
+                <ContentRadioPage
+                  id="E-Mail/Pass"
+                  name="opcao"
+                  value={1}
+                  titulo="E-Mail/Pass"
+                  onclick={() => setModo(1)}
+                />
 
-            <Lg.DivisionPgHztal />
+                <ContentRadioPage
+                  id="E-Mail/PIN"
+                  name="opcao"
+                  value={2}
+                  titulo="E-Mail/PIN"
+                  onclick={() => setModo(2)}
+                />
 
-            {/* <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
-              <ContentMainButtonsLogin>
-                <ContentButtonTitleImg 
-                  isimg={true} 
-                  title="Voltar."
-                  >
-                  <Lg.ContainerSideOnOffButton>
-                    <Lg.ButtonOnOffImg img={setaesq} onClick={onclick} />
-                  </Lg.ContainerSideOnOffButton>
-                </ContentButtonTitleImg>
-                <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
-                {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
-                  <ContentButtonTitleImg
-                    title="Continuar."
-                    isimg={true}
-                    img={setadir} 
-                    onClick={goto('/login2')}
-                  />
-                ) : null}
-              </ContentMainButtonsLogin>
-            </ContentLoginColluns> */}
-          </Lg.ContainerLoginFlex>
-        </Lg.ContainerLogin>
+                <ContentRadioPage
+                  id="Pseud/Pass"
+                  name="opcao"
+                  value={3}
+                  titulo="Pseudô/Pass"
+                  onclick={() => setModo(3)}
+                />
+
+                <ContentRadioPage
+                  id="Pseud/PIN"
+                  name="opcao"
+                  value={4}
+                  titulo="Pseudô/PIN"
+                  onclick={() => setModo(4)}
+                />
+              </ContentCardCollunsCenterPage>
+            </ContentCardBoxCenterPage>
+          </ContentCardBoxMainPage>
+          <Lg.DivisionPgHztal />
+
+          <ContentSidePagePanelBotton open={true} pwidth="100%">
+            <ContentSidePageLabelBotton
+              pxheight={'40px'}
+              isopen={true}
+              title={'Voltar.: '}
+              img={setaesq}
+              titbtn={'Voltar...'}
+              onclick={goto('/login')}
+            />
+            <ContentDivTestoAtenctionPage pxwidth={'300px'} titulo={'Atenção'}>
+              <p>No Momento:[{4 - state.nrcont}] tentativas.</p>
+            </ContentDivTestoAtenctionPage>
+            
+            {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
+              <ContentSidePageLabelBotton
+                pxheight={'20px'}
+                isopen={true}
+                title={'Continuar.: '}
+                img={setadir}
+                titbtn={'Continuar...'}
+                onclick={goto('/login2')}
+              />
+            ) : null}
+          </ContentSidePagePanelBotton>
+        </ContentCardPage>
       </ThemeLogin>
     </ThemeProvider>
   );

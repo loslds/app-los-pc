@@ -1,6 +1,6 @@
-import { ContentInput } from '../ContentInputPage';
+import ContentInputPage from './ContentInputPage';
 
-type PropsConttRadioOpc = {
+type TypeContentRadioPage = {
   disabled?: boolean;
   id?: string;
   name?: string;
@@ -9,16 +9,16 @@ type PropsConttRadioOpc = {
   titulo?: string;
 };
 
-export const ContentRadioOpc = ({
+export const ContentRadioPage = ({
   disabled,
   id,
   name,
   value,
   onclick,
   titulo
-}: PropsConttRadioOpc) => {
+}: TypeContentRadioPage) => {
   return (
-    <ContentInput>
+    <ContentInputPage>
       <input
         disabled={disabled}
         type="radio"
@@ -28,6 +28,6 @@ export const ContentRadioOpc = ({
         onClick={onclick}
       />
       <label>{titulo}</label>
-    </ContentInput>
+    </ContentInputPage>
   );
 };

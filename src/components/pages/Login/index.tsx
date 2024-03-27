@@ -20,8 +20,8 @@ import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
 import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
 import ContentInputPage from '../ContentInputPage.tsx';
-import ContentSidePanelBotton from './ContentSidePanelBotton.tsx';
-import ContentSideLabelBotton from './ContentSideLabelBotton.tsx';
+import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
+import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
@@ -141,8 +141,8 @@ const Login = () => {
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztal />
-          <ContentSidePanelBotton open={true} pwidth="100%">
-            <ContentSideLabelBotton
+          <ContentSidePagePanelBotton open={true} pwidth="100%">
+            <ContentSidePageLabelBotton
               pxheight={'40px'}
               isopen={true}
               title={'Voltar.: '}
@@ -152,7 +152,7 @@ const Login = () => {
             />
 
             {btncontinua ? (
-              <ContentSideLabelBotton
+              <ContentSidePageLabelBotton
                 pxheight={'20px'}
                 isopen={true}
                 title={'Continuar.: '}
@@ -161,7 +161,7 @@ const Login = () => {
                 onclick={goto('/login1')}
               />
             ) : null}
-          </ContentSidePanelBotton>
+          </ContentSidePagePanelBotton>
         </ContentCardPage>
       </ThemeLogin>
     </ThemeProvider>
