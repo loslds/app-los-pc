@@ -1,4 +1,4 @@
-import * as Lg from '../../../styles/styledLogin.ts';
+import * as Lg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
@@ -19,12 +19,11 @@ import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
 import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
 import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
 
-
 import { ContentRadioPage } from '../ContentRadioPage.tsx';
 
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
-import ContentDivTestoAtenctionPage from '../ContentDivTestoAtenctionPage.tsx';
+//import ContentDivTestoAtenctionPage from '../ContentDivTestoAtenctionPage.tsx';
 
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
@@ -151,25 +150,27 @@ const Login1 = () => {
               </ContentCardCollunsCenterPage>
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
-          <Lg.DivisionPgHztal />
+
+          <Lg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
-              isopen={true}
+              istitl={true}
               title={'Voltar.: '}
               img={setaesq}
               titbtn={'Voltar...'}
               onclick={goto('/login')}
             />
-            <ContentDivTestoAtenctionPage pxwidth={'300px'} titulo={'Atenção'}>
-              <p>No Momento:[{4 - state.nrcont}] tentativas.</p>
-            </ContentDivTestoAtenctionPage>
             
+            <Lg.ContainerBoxLabelPage>
+              <label>[ {4 - state.nrcont} ] tentativas. </label>
+            </Lg.ContainerBoxLabelPage>
+
             {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
-                isopen={true}
+                istitl={true}
                 title={'Continuar.: '}
                 img={setadir}
                 titbtn={'Continuar...'}

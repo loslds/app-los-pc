@@ -1,4 +1,4 @@
-import * as Lg from '../../../styles/styledLogin.ts';
+import * as Lg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
@@ -140,11 +140,11 @@ const Login = () => {
               </ContentInputPage>
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
-          <Lg.DivisionPgHztal />
+          <Lg.DivisionPgHztalPage />
           <ContentSidePagePanelBotton open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
-              isopen={true}
+              istitl={true}
               title={'Voltar.: '}
               img={setaesq}
               titbtn={'Voltar...'}
@@ -154,7 +154,7 @@ const Login = () => {
             {btncontinua ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
-                isopen={true}
+                istitl={true}
                 title={'Continuar.: '}
                 img={setadir}
                 titbtn={'Continuar...'}

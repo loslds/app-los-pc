@@ -13,7 +13,9 @@ const ContentCardBoxCenterPage = ({
 }: TypeContentCardBoxPageCenter) => {
   return (
     <Pg.ContainerCardBoxCenterPage open={open} pwidth={pwidth}>
-      <Pg.ContainerCardBoxCenterPageFlex>{children}</Pg.ContainerCardBoxCenterPageFlex>
+      <Pg.ContainerCardBoxCenterPageFlex>
+        {children}
+      </Pg.ContainerCardBoxCenterPageFlex>
     </Pg.ContainerCardBoxCenterPage>
   );
 };

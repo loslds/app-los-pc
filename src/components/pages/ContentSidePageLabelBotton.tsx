@@ -3,7 +3,7 @@ import * as Pg from './stylePage';
 
 type TypeContentSidePageLabelBotton = {
   pxheight?: string;
-  isopen?: boolean;
+  istitl?: boolean;
   title?: string;
   img?: string;
   titbtn?: string;
@@ -11,7 +11,7 @@ type TypeContentSidePageLabelBotton = {
 };
 const ContentSidePageLabelBotton = ({
   pxheight,
-  isopen,
+  istitl,
   title,
   img,
   titbtn,
@@ -19,7 +19,7 @@ const ContentSidePageLabelBotton = ({
 }: TypeContentSidePageLabelBotton) => {
   return (
     <Pg.ContainerBtnSRigthPage>
-      {isopen ? <label>{title}</label> : null}
+      {istitl ? <label>{title}</label> : null}
       <Pg.ContainerCustonBtnPage pxheight={pxheight}>
         <Pg.ButtonDefaulImgPage img={img} title={titbtn} onClick={onclick} />
       </Pg.ContainerCustonBtnPage>

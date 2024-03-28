@@ -1,7 +1,6 @@
+import ContentInputPage from './ContentInputPage';
 
-import ContentInputPage from '../ContentInputPage';
-
-type PropsContInputOpc = {
+type TypeContentInputOpcPage = {
   disabled?: boolean;
   id?: string;
   type?: string;
@@ -13,7 +12,7 @@ type PropsContInputOpc = {
   titulo?: string;
 };
 
-export const ContentInputOpc = ({
+export const ContentInputOpcPage = ({
   disabled,
   id,
   type,
@@ -23,7 +22,7 @@ export const ContentInputOpc = ({
   placeholder,
   onchange,
   titulo
-}: PropsContInputOpc) => {
+}: TypeContentInputOpcPage) => {
   return (
     <ContentInputPage>
       <label>{titulo}</label>

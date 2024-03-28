@@ -107,13 +107,13 @@ export const ContainerCardBoxCenterPage = styled.div<TypeContainerCardCenter>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  min-height: 50px;
-  min-width: ${({ pwidth }) => pwidth || '32%'};
+  //min-height: 50px;
+  max-width: ${({ pwidth }) => pwidth || '100%'};
   color:  ${props => props.theme.colors.textColor};
   background-color: ${props => props.theme.colors.backgroundColor};
   display: ${props => (props.open ? 'flex' : 'none')};
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export const ContainerCardBoxCenterPageFlex = styled.div`
@@ -174,7 +174,8 @@ export const ContainerInputPage = styled.div`
   margin: 0px 0px 0px 0px;
   width: 100%;
   display: flex;
-  flex-flow: wrap;
+  flex-direction: row;
+  //flex-wrap: nowrap;
   justify-content: left;
   align-items: center;
   align-content: center;
@@ -190,12 +191,12 @@ export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-width: ${({ pwidth }) => pwidth || '32%'};
-  color:  ${props => props.theme.colors.textColor};
-  background: ${props => props.theme.colors.backgroundColor};
   display: ${props => (props.open ? 'flex' : 'none')};
-  min-height: 50px;
+  min-height: 60px;
   flex-wrap: wrap;
   justify-content: center;
+  color:  ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
 `;
 
 export const ContainerPanelPageFlex = styled.div`
@@ -211,6 +212,12 @@ export const ContainerPanelPageFlex = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
+
+  label {
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+  }
 `;
 
 export const ContainerBtnSRigthPage = styled.div`
@@ -398,7 +405,11 @@ export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
   min-height: ${({ pxheight }) => pxheight || '20px'};
   display: flex;
   flex-wrap: wrap;
- 
+
+  font-size: 12px;
+  font-weight: normal;
+  font-family: 'Courier New', Courier, monospace;
+  
   //flex-flow: row;
   //justify-content: center;
   //align-items: center;
@@ -409,6 +420,7 @@ export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
     padding: 0px 10px 0px 10px;
     font-size: large;
     line-height: auto;
+    font-weight: bold;
     h1 { font-size: 20px}
     h2 { font-size: 18px}
     h3 { font-size: 15px}
@@ -438,7 +450,50 @@ export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
   //align-items: center;
   //align-content: center;
 `;
+
+export const DivisionPgHztalPage = styled.div`
+  border: 0px;
+  padding: 0px 0px 0px 0px;
+  margin: 1px 0px 1px 0px;
+  height: 3px;
+  width: 100%;
+  display: flex;
+  background-color: #9c9c9c;
+`;
+
+export const ContainerBoxLabelPage = styled.div`
+  border: 1px double;
+  border-color: ${props => props.theme.colors.textColor};
+  border-radius: 10px;
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: normal;
+  font-family: 'Courier New', Courier, monospace;
+  color: ${props => props.theme.colors.textColor};
+  h4,
+  label {
+    display: flex;
+    margin: 0px 10px 0px 0px;
+    padding: 0px 10px 0px 0px;
+    font-size: large;
+    line-height: normal;
+  }
+  &:hover {
+    border-color: red;
+    Label {
+      color: red;
+    }
+  }
+`;
+
 ////////////////////////////////////////////////////////
+
+
+
 type TypeContainerDivTestoAtenction = {
   pxwidth?: string;
   label?: string;
@@ -448,23 +503,30 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
   border: 1px solid; 
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
-  padding: 0px 10px 0px 10px;
-  margin: 5px 10px 5px 10px;
-  width: ${({ pxwidth }) => pxwidth || '100px'};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  min-width: ${({ pxwidth }) => pxwidth || '20%'};
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   align-content: center;
   size: 16px;
   line-height: 16px;
   color: ${(props) => props.theme.colors.textColor};
   background: ${(props) => props.theme.colors.backgroundColor};
+  span {
+    margin: 0px 0px 0px 0px;
+      padding: 0px 0px 0px 0px;
+      color: red;
+    }
+  h3 {  
+    margin: 0px -2px 0px -2px;
+    padding: 0px 0px 0px 0px;
+    color: red;
+  }
   &:hover {
     border: 1px dashed;
     border-color: red;
-    h3 {
-      color: yellow;
-    }
     label {
       color: red;
     }
@@ -474,30 +536,32 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
 
 
 type TypeContainerDivManYellow = {
+  pxwidth?: string;
   label?: string;
   statedata?: string;
 }
 export const ContainerDivManYellow = styled.div<TypeContainerDivManYellow>`
-  border: 1px solid;
+  border: 2px solid;
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 10px 0px 0px;
   margin: 5px 10px 5px 10px;
-  width: 100%;
+  width: ${({ pxwidth }) => pxwidth || '100%'};
   display: flex;
   justify-content: space-between;
   align-items: center;
   align-content: center;
-  size: 16px;
-  line-height: 16px;
+  /* size: 16px;
+  line-height: 16px; */
   color: ${(props) => props.theme.colors.textColor};
   background: ${(props) => props.theme.colors.backgroundColor};
   &:hover {
-    border-color: yellow;
+    border-color: #FF8C00;
   }
 `;
 
 type TypeContainerDivManRed = {
+  pxwidth?: string;
   label?: string;
   statedata?: string;
 }
@@ -507,11 +571,11 @@ export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;
-  width: 100%;
+  width: ${({ pxwidth }) => pxwidth || '100%'};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  align-content: center;
+  //align-content: center;
   size: 16px;
   line-height: 16px;
   color: ${(props) => props.theme.colors.textColor};

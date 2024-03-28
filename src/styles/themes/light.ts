@@ -3,7 +3,7 @@
   colors:{
     primary: "#d4d4d4",
     secundary: "#757575",
-    ligthGray: "#1fb302",
+    ligthGray: "#808080",
 
     backgroundColor:"#ffffff",
     textColor:"#000000",
