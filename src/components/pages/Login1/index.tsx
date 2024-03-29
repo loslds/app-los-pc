@@ -111,11 +111,11 @@ const Login1 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            <ContentCardBoxCenterPage pwidth="200px" open={true}>
-              <ContentCardPageTitle pheight={'20px'}>
+            <ContentCardBoxCenterPage  open={true}>
+              <ContentCardPageTitle >
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
-              <ContentCardCollunsCenterPage isopen={true} pwidth="80px">
+              <ContentCardCollunsCenterPage isopen={true}>
                 <ContentRadioPage
                   id="E-Mail/Pass"
                   name="opcao"

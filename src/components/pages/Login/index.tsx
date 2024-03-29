@@ -124,7 +124,7 @@ const Login = () => {
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
             <ContentCardBoxCenterPage pwidth="200px" open={true}>
-              <ContentCardPageTitle pheight={'20px'}>
+              <ContentCardPageTitle >
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
               <ContentInputPage>

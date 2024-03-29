@@ -1,5 +1,4 @@
-import * as Lg from '../stylePage.ts';
-
+import * as Pg from '../stylePage.ts';
 
 import '../../../styles/global.ts';
 import React from 'react';
@@ -19,10 +18,14 @@ import {
 import ContentCardPage from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
-import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
-import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
+//import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
+//import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
 import ContentDivManYellow from '../ContentDivManYellow.tsx';
 import ContentDivMainRed from '../ContentDivMainRed.tsx';
+import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
+import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
+
+import setaesq from '../../../assets/svgs/setaesq.svg';
 
 //import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 
@@ -46,6 +49,7 @@ import ContentDivMainRed from '../ContentDivMainRed.tsx';
 // import enviaoff from '../../../assets/svgs/enviaroff.svg';
 
 // onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
+
 const Login3 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -104,157 +108,196 @@ const Login3 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            <ContentCardCollunsCenterPage isopen={true} pwidth='400px'>
-            <ContentCardBoxCenterPage open={true} >
-            <ContentCardPageTitle pheight={'20px'}>
-                <h4>{state.aplicacao}</h4>
-              </ContentCardPageTitle>
-              <ContentDivManYellow pxwidth={'80%'} label={'Empresa:'} statedata={state.nmfant}/>
-              <ContentDivManYellow pxwidth={'80%'} label={'SNH:'} statedata={state.idnmuser}/>
-              <ContentDivMainRed pxwidth={'80%'} label={'ID :'} statedata={state.pswuser}/>
-              aaaa
-               
+            {/* <ContentCardCollunsCenterPage isopen={true} pwidth='400px'> */}
+            <ContentSidePagePanelBotton open={true} pwidth="100%">
+              {/*<ContentCardBoxCenterPage open={true} >
 
+                 <ContentCardPageTitle pheight={'20px'}>
+                  <h4>{state.aplicacao}</h4>
+                </ContentCardPageTitle> */}
 
+              <ContentDivManYellow pxheight={'65px'}>
+                <label>Empresa :</label>
+                <h4>ddns.texte-loslds@hotmail.com</h4>
+              </ContentDivManYellow>
 
+              <ContentDivManYellow pxheight={'65px'}>
+                <label>ID :</label>
+                <h4>WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW</h4>
 
+                <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
+                  <ContentSidePageLabelBotton
+                    // pxheight={'50px'}
+                    istitl={true}
+                    title={'Voltar.: '}
+                    img={setaesq}
+                    titbtn={'Voltar...'}
+                    onclick={goto('/login2')}
+                  />
+                </Pg.ContainerCardDivMainEnd>
+              </ContentDivManYellow>
 
-              
-            
-            </ContentCardBoxCenterPage>  
-            </ContentCardCollunsCenterPage>
+              <ContentDivMainRed
+                pxwidth={'70%'}
+                label={'Senha :'}
+                statedata={state.pswuser}
+              />
+
+              <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
+                <ContentSidePageLabelBotton
+                  pxheight={'50px'}
+                  istitl={true}
+                  title={'Voltar.: '}
+                  img={setaesq}
+                  titbtn={'Voltar...'}
+                  onclick={goto('/login2')}
+                />
+              </Pg.ContainerCardDivMainEnd>
+
+              {/* </ContentCardBoxCenterPage>   */}
+              {/* </ContentCardCollunsCenterPage> */}
+            </ContentSidePagePanelBotton>
           </ContentCardBoxMainPage>
+          <Pg.DivisionPgHztalPage />
+
+          <ContentSidePagePanelBotton open={true} pwidth="100%">
+            <ContentSidePageLabelBotton
+              pxheight={'40px'}
+              istitl={true}
+              title={'Voltar.: '}
+              img={setaesq}
+              titbtn={'Voltar...'}
+              onclick={goto('/login2')}
+            />
+          </ContentSidePagePanelBotton>
         </ContentCardPage>
-        </ThemeLogin>
+      </ThemeLogin>
     </ThemeProvider>
   );
 };
 
 export default Login3;
 
-        // {
-        //   /* <Lg.ContainerLogin>
-        //   <Lg.ContainerLoginFlex>
-        //     <ContentTitleLogin modotitle={state.modulo} />
-        //     <Lg.ContainerMainLogin isopen={true}>
-        //       <ContentLoginCollunsCenter isopen={true}>
-        //         <ContentLoginColluns pheight="200px" pwidth="450px">
-        //           <ContentLoginOpc pwidth="100%" open={true}>
-        //             <ContentTitleLoginOpc titleopc={state.aplicacao} />
+// {
+//   /* <Lg.ContainerLogin>
+//   <Lg.ContainerLoginFlex>
+//     <ContentTitleLogin modotitle={state.modulo} />
+//     <Lg.ContainerMainLogin isopen={true}>
+//       <ContentLoginCollunsCenter isopen={true}>
+//         <ContentLoginColluns pheight="200px" pwidth="450px">
+//           <ContentLoginOpc pwidth="100%" open={true}>
+//             <ContentTitleLoginOpc titleopc={state.aplicacao} />
 
-        //             <Lg.ContainerBoxLabelPage>
-        //               <label>[ {4 - state.nrcont} ] tentativas. </label>
-        //             </Lg.ContainerBoxLabelPage>
+//             <Lg.ContainerBoxLabelPage>
+//               <label>[ {4 - state.nrcont} ] tentativas. </label>
+//             </Lg.ContainerBoxLabelPage>
 
-        //             {state.mdlogin === 1 || state.mdlogin === 2 ? (
-        //               <ContentDivManYellow
-        //                 label={'Email :'}
-        //                 statedata={state.idnmuser}
-        //               />
-        //             ) : null}
+//             {state.mdlogin === 1 || state.mdlogin === 2 ? (
+//               <ContentDivManYellow
+//                 label={'Email :'}
+//                 statedata={state.idnmuser}
+//               />
+//             ) : null}
 
-        //             {state.mdlogin === 3 || state.mdlogin === 4 ? (
-        //               <ContentDivManYellow
-        //                 label={'Nome..:'}
-        //                 statedata={state.idnmuser}
-        //               />
-        //             ) : null}
-        //             {/* ////////////////////////////////////////////////////////////// 
-        //             {(!isonoff && state.mdlogin === 1) ||
-        //             state.mdlogin === 3 ? (
-        //               <ContentDivMainRed
-        //                 label={'Senha.:'}
-        //                 statedata={'░░░░░░░░░░'}
-        //               >
-        //                 <Ll.ContainerCardDivMainEnd>
-        //                   <ContentDivButtonOff
-        //                     img={olhooff}
-        //                     onClick={togleShow}
-        //                   />
-        //                 </Ll.ContainerCardDivMainEnd>
-        //               </ContentDivMainRed>
-        //             ) : (
-        //               <ContentDivMainRed
-        //                 label={'Senha.:'}
-        //                 statedata={state.pswuser}
-        //               >
-        //                 <Ll.ContainerCardDivMainEnd>
-        //                   <ContentDivButtonOff
-        //                     img={olhooff}
-        //                     onClick={togleShow}
-        //                   />
-        //                 </Ll.ContainerCardDivMainEnd>
-        //               </ContentDivMainRed>
-        //             )}
-        //             {/* ////////////////////////////////////////////////////////////// 
+//             {state.mdlogin === 3 || state.mdlogin === 4 ? (
+//               <ContentDivManYellow
+//                 label={'Nome..:'}
+//                 statedata={state.idnmuser}
+//               />
+//             ) : null}
+//             {/* //////////////////////////////////////////////////////////////
+//             {(!isonoff && state.mdlogin === 1) ||
+//             state.mdlogin === 3 ? (
+//               <ContentDivMainRed
+//                 label={'Senha.:'}
+//                 statedata={'░░░░░░░░░░'}
+//               >
+//                 <Ll.ContainerCardDivMainEnd>
+//                   <ContentDivButtonOff
+//                     img={olhooff}
+//                     onClick={togleShow}
+//                   />
+//                 </Ll.ContainerCardDivMainEnd>
+//               </ContentDivMainRed>
+//             ) : (
+//               <ContentDivMainRed
+//                 label={'Senha.:'}
+//                 statedata={state.pswuser}
+//               >
+//                 <Ll.ContainerCardDivMainEnd>
+//                   <ContentDivButtonOff
+//                     img={olhooff}
+//                     onClick={togleShow}
+//                   />
+//                 </Ll.ContainerCardDivMainEnd>
+//               </ContentDivMainRed>
+//             )}
+//             {/* //////////////////////////////////////////////////////////////
 
-        //             {(!isonoff && state.mdlogin === 2) ||
-        //             state.mdlogin === 4 ? (
-        //               <ContentDivMainRed
-        //                 label={'PIN...:'}
-        //                 statedata={'░░░░░░░░░░'}
-        //               >
-        //                 <Ll.ContainerCardDivMainEnd>
-        //                   <ContentDivButtonOff
-        //                     img={olhooff}
-        //                     onClick={togleShow}
-        //                   />
-        //                 </Ll.ContainerCardDivMainEnd>
-        //               </ContentDivMainRed>
-        //             ) : (
-        //               <ContentDivMainRed
-        //                 label={'PIN...:'}
-        //                 statedata={state.pswuser}
-        //               >
-        //                 <Ll.ContainerCardDivMainEnd>
-        //                   <ContentDivButtonOn
-        //                     img={olhoon}
-        //                     onClick={togleShow}
-        //                   />
-        //                 </Ll.ContainerCardDivMainEnd>
-        //               </ContentDivMainRed>
-        //             )}
-        //           </ContentLoginOpc>
-        //           <ContentLoginOpc pwidth={'100%'} open={true}>
-        //             <ContentTitleLoginOpc titleopc="CONFIRMAÇÃO :" />
-        //             {/* <Lg.ContainerAreaText> 
-        //             <form>
-        //               <br />
-        //               <h3>Confirmar envio de dados para Acesso...</h3>
-        //               <br />
-        //               <label>Você tem : {4 - state.nrcont} Acesso Login:</label>
-        //             </form>
+//             {(!isonoff && state.mdlogin === 2) ||
+//             state.mdlogin === 4 ? (
+//               <ContentDivMainRed
+//                 label={'PIN...:'}
+//                 statedata={'░░░░░░░░░░'}
+//               >
+//                 <Ll.ContainerCardDivMainEnd>
+//                   <ContentDivButtonOff
+//                     img={olhooff}
+//                     onClick={togleShow}
+//                   />
+//                 </Ll.ContainerCardDivMainEnd>
+//               </ContentDivMainRed>
+//             ) : (
+//               <ContentDivMainRed
+//                 label={'PIN...:'}
+//                 statedata={state.pswuser}
+//               >
+//                 <Ll.ContainerCardDivMainEnd>
+//                   <ContentDivButtonOn
+//                     img={olhoon}
+//                     onClick={togleShow}
+//                   />
+//                 </Ll.ContainerCardDivMainEnd>
+//               </ContentDivMainRed>
+//             )}
+//           </ContentLoginOpc>
+//           <ContentLoginOpc pwidth={'100%'} open={true}>
+//             <ContentTitleLoginOpc titleopc="CONFIRMAÇÃO :" />
+//             {/* <Lg.ContainerAreaText>
+//             <form>
+//               <br />
+//               <h3>Confirmar envio de dados para Acesso...</h3>
+//               <br />
+//               <label>Você tem : {4 - state.nrcont} Acesso Login:</label>
+//             </form>
 
-        //             {/* </Lg.ContainerAreaText> 
+//             {/* </Lg.ContainerAreaText>
 
-        //             <ContentButtonsConfirmation>
-        //               <ContentButtonConfimationOnOff
-        //                 title={'NÃO'}
-        //                 img={enviaoff}
-        //                 titlebtn="Retornar..."
-        //                 onClick={() => {
-        //                   alert('retorna pagina anterior....');
-        //                 }}
-        //               />
+//             <ContentButtonsConfirmation>
+//               <ContentButtonConfimationOnOff
+//                 title={'NÃO'}
+//                 img={enviaoff}
+//                 titlebtn="Retornar..."
+//                 onClick={() => {
+//                   alert('retorna pagina anterior....');
+//                 }}
+//               />
 
-        //               <ContentButtonConfimationOnOff
-        //                 title={'SIM'}
-        //                 img={enviaon}
-        //                 titlebtn="Enviar..."
-        //                 onClick={() => {
-        //                   alert('buscar acesso....');
-        //                 }}
-        //               />
-        //             </ContentButtonsConfirmation>
-        //           </ContentLoginOpc>
-        //         </ContentLoginColluns>
-        //       </ContentLoginCollunsCenter>
-        //     </Lg.ContainerMainLogin>
-        //   </Lg.ContainerLoginFlex>
-        // </Lg.ContainerLogin> */}
-
-
-
+//               <ContentButtonConfimationOnOff
+//                 title={'SIM'}
+//                 img={enviaon}
+//                 titlebtn="Enviar..."
+//                 onClick={() => {
+//                   alert('buscar acesso....');
+//                 }}
+//               />
+//             </ContentButtonsConfirmation>
+//           </ContentLoginOpc>
+//         </ContentLoginColluns>
+//       </ContentLoginCollunsCenter>
+//     </Lg.ContainerMainLogin>
+//   </Lg.ContainerLoginFlex>
+// </Lg.ContainerLogin> */}
 
 /* 
                     {(isonoff && state.mdlogin === 1) || state.mdlogin === 3 ? (

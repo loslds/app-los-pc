@@ -58,8 +58,8 @@ export const ContainerCardPage = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
-  display: flex;
   min-height: 50px;
+  display: flex;
   flex-wrap: wrap;
   justify-content: center;
   color:  ${props => props.theme.colors.textColor};
@@ -108,12 +108,10 @@ export const ContainerCardBoxCenterPage = styled.div<TypeContainerCardCenter>`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   //min-height: 50px;
-  max-width: ${({ pwidth }) => pwidth || '100%'};
+  min-width: ${({ pwidth }) => pwidth || '200px'};
   color:  ${props => props.theme.colors.textColor};
   background-color: ${props => props.theme.colors.backgroundColor};
   display: ${props => (props.open ? 'flex' : 'none')};
-  flex-wrap: wrap;
-  justify-content: space-between;
 `;
 
 export const ContainerCardBoxCenterPageFlex = styled.div`
@@ -143,7 +141,7 @@ export const ContainerCardPageTitle = styled.div<TypeContainerCardTitlePage>`
   border-bottom: 3px double;
   border-color: ${props => props.theme.colors.textColor};
   background-color: #bbbbbb;
-  min-height: ${({ pheight }) => pheight || '20px'};
+  min-height: ${({ pheight }) => pheight || '25px'};
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -154,18 +152,26 @@ export const ContainerCardPageTitle = styled.div<TypeContainerCardTitlePage>`
 `;
 
 type TypeContainerCollunsCenterPage = {
+  pheight? : string;
   pwidth? : string;
   isopen?: boolean;
 }
 export const ContainerCollunsCenterPage = styled.div<TypeContainerCollunsCenterPage>`
-  border: none;
+  border: 1px solid red;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
-  min-width: ${({ pwidth }) => pwidth || '50px'};
+  min-height: ${({ pheight }) => pheight || '50px'};
+  //min-width: ${({ pwidth }) => pwidth || '50px'};
   display: ${props => (props.isopen ? 'flex' : 'none')};
   flex-direction: column;
+  flex: 1 1 10%;
+  
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 `;
 
 export const ContainerInputPage = styled.div`
@@ -212,19 +218,13 @@ export const ContainerPanelPageFlex = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
-
-  label {
-    font-size: 20px;
-    line-height: 20px;
-    font-weight: bold;
-  }
 `;
 
 export const ContainerBtnSRigthPage = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 2px 5px 2px 5px;
-  background: transparent;
+  background-color: transparent;
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -243,9 +243,10 @@ export const ContainerCustonBtnPage = styled.div<TypeContainerCustonBtn>`
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
   background: transparent;
-  min-height: ${({ pxheight }) => pxheight || '165px'};
+  min-height: ${({ pxheight }) => pxheight || '50px'};
   display: flex;
   justify-content: center;
+  align-content: center;
   align-items: center;
   color:  ${props => props.theme.colors.textColor};
   &:hover {
@@ -392,7 +393,7 @@ export const ContainerImagem = styled.div`
 `;
 
 export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
-  border: 1px red;
+  border: 1px blue;
   border-color: #ffffff;
 
   //border-radius: 5px;
@@ -536,6 +537,7 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
 
 
 type TypeContainerDivManYellow = {
+  pxheight?: string;
   pxwidth?: string;
   label?: string;
   statedata?: string;
@@ -545,12 +547,19 @@ export const ContainerDivManYellow = styled.div<TypeContainerDivManYellow>`
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 10px 0px 0px;
-  margin: 5px 10px 5px 10px;
-  width: ${({ pxwidth }) => pxwidth || '100%'};
+  margin: 5px 0px 5px 10px;
+  min-height: ${({ pxheight }) => pxheight || '30px'};
+  width: 100%;
+  //min-width: ${({ pxwidth }) => pxwidth || '32%'};
+  //width: ${({ pxwidth }) => pxwidth || '100%'};
   display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
   justify-content: space-between;
   align-items: center;
+  //align-items: center;
   align-content: center;
+  //align-content: center;
   /* size: 16px;
   line-height: 16px; */
   color: ${(props) => props.theme.colors.textColor};
@@ -571,11 +580,12 @@ export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;
+  min-height: 50px;
   width: ${({ pxwidth }) => pxwidth || '100%'};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  //align-content: center;
+  align-content: center;
   size: 16px;
   line-height: 16px;
   color: ${(props) => props.theme.colors.textColor};
@@ -594,7 +604,7 @@ export const ContainerCardDivMainLeft = styled.div`
   margin: 5px 10px 5px 10px;
   min-height: 50px;
   max-width: 100%;
-  background: ${(props) => props.theme.colors.backgroundColor};
+  background-color: ${(props) => props.theme.colors.backgroundColor};
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -606,21 +616,25 @@ export const ContainerCardDivMainLeft = styled.div`
   line-height: 16px;
 `;
 
-export const ContainerCardDivMainEnd = styled.div`
+type TypeContainerCardDivManEnd = {
+  pxwidth?: string;
+}
+export const ContainerCardDivMainEnd = styled.div<TypeContainerCardDivManEnd>`
   border: 1px dashed;
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;
   min-height: 50px;
-  max-width: 100%;
-  display: flex;
-  background: ${(props) => props.theme.colors.backgroundColor};
+  width: ${({ pxwidth }) => pxwidth || '100%'};
+  background-color: ${(props) => props.theme.colors.backgroundColor};
+
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
   justify-content: end;
-  align-items: center;
+  //align-items: center;
   align-content: center;
+
   color: ${(props) => props.theme.colors.textColor};
   size: 16px;
   line-height: 16px;
@@ -632,7 +646,7 @@ export const ContainerCardDivMainLeftRed = styled.div`
   margin: 5px 10px 5px 10px;
   min-height: 50px;
   max-width: 100%;
-  background: ${(props) => props.theme.colors.backgroundColor};
+  background-color: ${(props) => props.theme.colors.backgroundColor};
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -681,7 +695,7 @@ color: ${(props) => props.theme.colors.textColor};
 `;
 
 type ButtonOnOffImgType = {
-img?: string;
+  img?: string;
 };
 export const ButtonDefaulOnOffImg = styled.button<ButtonOnOffImgType>`
 border: 2px;

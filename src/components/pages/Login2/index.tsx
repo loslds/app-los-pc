@@ -223,7 +223,7 @@ export const Login2 = () => {
           
           {iseditar ? (
             <ContentCardBoxCenterPage pwidth={'350px'} open={true}>
-              <ContentCardPageTitle pheight={'20px'}>
+              <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
               <ContentInputPage>
