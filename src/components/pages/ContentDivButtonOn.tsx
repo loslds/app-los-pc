@@ -1,15 +1,20 @@
 import * as Lg from './stylePage';
 
-type PropsContentButtonOn = {
+type TypeContentDivButtonOn = {
   img?: string;
+  title?: string;
   onClick?: () => void;
 };
-const ContentButtonOn = ({ img, onClick }: PropsContentButtonOn) => {
+const ContentDivButtonOn = ({
+  img,
+  title,
+  onClick
+}: TypeContentDivButtonOn) => {
   return (
-    <Lg.ContainerButtonOff>
-      <Lg.ButtonDefaulOnOffImg img={img} onClick={onClick} />
-    </Lg.ContainerButtonOff>
+    <Lg.ContainerButtonOn>
+      <Lg.ButtonDefaulOnOffImg img={img} title={title} onClick={onClick} />
+    </Lg.ContainerButtonOn>
   );
 };
 
-export default ContentButtonOn;
+export default ContentDivButtonOn;

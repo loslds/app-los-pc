@@ -1,12 +1,14 @@
-import * as Pg from '../stylePage.ts';
+import * as Lg from '../../../styles/styledLogin.ts';
 
-import React from 'react';
+//import enviaon from '../../../assets/svgs/enviaron.svg';
+//import enviaoff from '../../../assets/svgs/enviaroff.svg';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
+import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import {
@@ -14,23 +16,76 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import ContentCardPage from '../ContentCardPage.tsx';
-import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
-import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
+import ContentCardLoginPg from '../ContentCardPage.tsx';
+import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
+import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
+import { ContentLoginColluns } from '../Login/ContentLoginCollunsOpc.tsx';
+import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
+import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
+//import { ContentInput } from '../Login/ContentInput.tsx';
+//import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
+import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
+import { ContentButtonTitleImg } from '../Login/ContentButtonTitleImg.tsx';
 
-import ContentDivManYellow from '../ContentDivManYellow.tsx';
-import ContentDivMainRed from '../ContentDivMainRed.tsx';
-import ContentDivButtonOff from '../ContentDivButtonOff.tsx';
-import ContentDivButtonOn from '../ContentDivButtonOn.tsx';
-import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
-import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
+//import { ContentInput } from '../Login/ContentInput.tsx';
+//import { ContentLoginColluns } from '../Login/ContentLoginColluns.tsx';
+//import { ContentRadioOpc } from '../Login/ContentRadioOpc.tsx';
 
-import setaesq from '../../../assets/svgs/setaesq.svg';
-import olhoa from '../../../assets/svgs/olhoa.svg';
-import olhof from '../../../assets/svgs/olhof.svg';
-import setadir from '../../../assets/svgs/setadir.svg';
+//import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
+//import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
+//import { ContentButtonsConfirmation } from '../Login/ContentButtonsConfirmation.tsx';
+//import { ContentButtonConfimationOnOff } from '../Login/ContentButtonConfimationOnOff.tsx';
 
-export const Login4 = () => {
+//import { ListAcessos } from '../../../books/ListAcessos.tsx';
+
+// type PropsGetLogin = {
+//   mdlogin?:number;
+//   idempr?:number;
+//   strid?:string;
+//   strpsw?:string;
+// }
+//export function GetLogin() {
+// if ( mdlogin === 0 || mdlogin === null || mdlogin === undefined) return false;
+// if ( idempr === 0 || idempr === null || idempr === undefined) return false;
+// if ( strid === '' || strid === null || strid === undefined) return false;
+// if ( strpsw === '' || strpsw === null || strpsw === undefined ) return false;
+//let rtn = true;
+// const ltsAcesso = ListAcessos.map( (ListaAcesso) => {
+// return ListaAcesso;
+//}
+
+// const filtroacesso = idempr === id
+// const [busca, setBusca] = React.useState('');
+// const lowerBusca = busca.toLowerCase();
+// const resultListaFiltrada = ListAcessos
+// .filter((filtroacesso) => ListAcessos.toLowerCase().includes(lowerBusca));
+
+/// EMAIL E PSW
+// if (mdlogin === 1) {
+
+// }
+
+export const Login5 = () => {
+  // const [ispsw] = React.useState(true);
+
+  // const [mdlogin, setMdLogin] = React.useState(0);
+  // const [nmlogin, setNmLogin] = React.useState('Opções:');
+
+  // const [strid, setStrId] = React.useState('');
+  // const [strpsw, setStrPsw] = React.useState('');
+
+  // const [cont, setCont] = React.useState(0);
+
+  // const [iserrologin, setIsErroLogin] = React.useState(false);
+  // const [nmrerrologin, setNmErroLogin] = React.useState('');
+
+  // const [iscontinua, setIsContinua] = React.useState(false);
+  // const [ismostraInput, setIsMostraInput] = React.useState(false);
+  // const [isconfirmainput, setIsConfirmaInput] = React.useState(false);
+
+  // const [isresgatar, setIsResgatar] = React.useState(false);
+  // const [isconfirmaresgatar, setIsConfirmaResgatar] = React.useState(false);
+
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
 
@@ -59,27 +114,81 @@ export const Login4 = () => {
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(0);
 
-  
-  
+  React.useEffect(() => {
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 5 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/login4' });
+    setIsOpen(true);
+    setTentativa(state.nrcont);
+  }, [dispatch]);
+
+  const DescrOpc = [
+    'Opções:',
+    'Resgate com E-Mail.',
+    'Resgate com SMS.',
+    'Resgate com Segurança.',
+    'Cadastro Acesso.'
+  ];
+
+  const setModo = (level: number) => {
+    setMdLogin(level);
+    setNmLogin(DescrOpc[level]);
+    setTentativa(tentativa + 1);
+  };
+
+  React.useEffect(() => {
+    console.log('tentativa1 : ', tentativa);
+    console.log('state.nrCont1 : ', state.nrcont);
+    ////////////////////////////
+    if (mdlogin >= 4 && mdlogin <= 8) {
+      setBtnContinua(true);
+      if (tentativa < state.nrcont) {
+        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+      }
+    } else if (mdlogin === 0) {
+      setBtnContinua(false);
+    }
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+  }, [mdlogin, tentativa, dispatch]);
+
   return (
     <ThemeProvider theme={theme}>
-    <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-      <ContentCardPage>
-        <ContentCardPageTitle>
-          <h2>{state.modulo}</h2>
-        </ContentCardPageTitle>
-        <ContentCardBoxMainPage>
-          <ContentSidePagePanelBotton open={true} pwidth="100%">
-  
-          </ContentSidePagePanelBotton>
-        </ContentCardBoxMainPage>
-      </ContentCardPage>
+      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+        <ContentCardLoginPg>
+          <ContentTitleLogin modotitle={'Determine a Maneira do seu Acesso.'} />
+          
+          <Lg.ContainerMainLogin isopen={isopen}>
+            {/* <ContentCardCollunsCenterPage isopen={isopen}> */}
+
+              <ContentLoginColluns>
+                <ContentLoginOpc pwidth="200px" open={isopen}>
+                  <ContentTitleLoginOpc titleopc={nmlogin} />
+                </ContentLoginOpc>
+              </ContentLoginColluns>
+
+            </ContentCardCollunsCenterPage>
+          {/* </Lg.ContainerMainLogin> */}
+          <Lg.DivisionPgHztal />
+
+          <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
+            <ContentMainButtonsLogin>
+              <ContentButtonTitleImg title="Voltar." onClick={goto('/login')} />
+              <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
+              {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
+                <ContentButtonTitleImg
+                  title="Continuar."
+                  onClick={goto('/login2')}
+                />
+              ) : null}
+            </ContentMainButtonsLogin>
+          </ContentLoginColluns>
+        </ContentCardLoginPg>
       </ThemeLogin>
     </ThemeProvider>
   );
 };
 
-export default Login4;
+export default Login5;
 
 // <Lg.DivisionPgHztalOnOff isopen={iscontinua} />
 // <ContentLoginOpc pwidth={'100%'} open={iscontinua}>

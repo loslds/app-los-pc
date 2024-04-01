@@ -1,6 +1,5 @@
 import * as Pg from '../stylePage.ts';
 
-import '../../../styles/global.ts';
 import React from 'react';
 
 import { ThemeProvider } from 'styled-components';
@@ -18,14 +17,17 @@ import {
 import ContentCardPage from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
-//import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
-//import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
 import ContentDivManYellow from '../ContentDivManYellow.tsx';
 import ContentDivMainRed from '../ContentDivMainRed.tsx';
+import ContentDivButtonOff from '../ContentDivButtonOff.tsx';
+import ContentDivButtonOn from '../ContentDivButtonOn.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 
 import setaesq from '../../../assets/svgs/setaesq.svg';
+import olhoa from '../../../assets/svgs/olhoa.svg';
+import olhof from '../../../assets/svgs/olhof.svg';
+import setadir from '../../../assets/svgs/setadir.svg';
 
 //import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 
@@ -43,8 +45,6 @@ import setaesq from '../../../assets/svgs/setaesq.svg';
 // import ContentButtonsConfirmation from '../Login/ContentButtonsConfirmation.tsx';
 // import ContentButtonConfimationOnOff from '../Login/ContentButtonConfimationOnOff.tsx';
 
-// import olhoon from '../../../assets/svgs/olhoa.svg';
-// import olhooff from '../../../assets/svgs/olhooff.svg';
 // import enviaon from '../../../assets/svgs/enviaron.svg';
 // import enviaoff from '../../../assets/svgs/enviaroff.svg';
 
@@ -54,8 +54,7 @@ const Login3 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
 
-  const inputRef = React.useRef('password');
-  const [isonoff, setIsOnOff] = React.useState(false);
+  const [isshow, setIsShow] = React.useState(false);
 
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
@@ -90,16 +89,6 @@ const Login3 = () => {
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
   }, [dispatch]);
 
-  // const togleShow = () => {
-  //   if (inputRef.current === 'password') {
-  //     setIsOnOff(true);
-  //     inputRef.current = 'text';
-  //   } else {
-  //     setIsOnOff(false);
-  //     inputRef.current = 'password';
-  //   }
-  // };
-
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
@@ -108,56 +97,51 @@ const Login3 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            {/* <ContentCardCollunsCenterPage isopen={true} pwidth='400px'> */}
             <ContentSidePagePanelBotton open={true} pwidth="100%">
-              {/*<ContentCardBoxCenterPage open={true} >
-
-                 <ContentCardPageTitle pheight={'20px'}>
-                  <h4>{state.aplicacao}</h4>
-                </ContentCardPageTitle> */}
-
               <ContentDivManYellow pxheight={'65px'}>
                 <label>Empresa :</label>
-                <h4>ddns.texte-loslds@hotmail.com</h4>
+                <h4>{state.nmfant}</h4>
               </ContentDivManYellow>
-
               <ContentDivManYellow pxheight={'65px'}>
                 <label>ID :</label>
-                <h4>WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW</h4>
-
-                <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
-                  <ContentSidePageLabelBotton
-                    // pxheight={'50px'}
-                    istitl={true}
-                    title={'Voltar.: '}
-                    img={setaesq}
-                    titbtn={'Voltar...'}
-                    onclick={goto('/login2')}
-                  />
-                </Pg.ContainerCardDivMainEnd>
+                <h4>{state.idnmuser}</h4>
               </ContentDivManYellow>
-
-              <ContentDivMainRed
-                pxwidth={'70%'}
-                label={'Senha :'}
-                statedata={state.pswuser}
-              />
-
-              <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
-                <ContentSidePageLabelBotton
-                  pxheight={'50px'}
-                  istitl={true}
-                  title={'Voltar.: '}
-                  img={setaesq}
-                  titbtn={'Voltar...'}
-                  onclick={goto('/login2')}
-                />
-              </Pg.ContainerCardDivMainEnd>
-
-              {/* </ContentCardBoxCenterPage>   */}
-              {/* </ContentCardCollunsCenterPage> */}
+              {!isshow ? (
+                <ContentDivMainRed
+                  pxheigth={'65px'}
+                  label={'Senha :'}
+                  statedata={'░░░░░░░░░░'}
+                >
+                  <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
+                    <ContentDivButtonOff
+                      img={olhof}
+                      title={'Fechar...'}
+                      onClick={() => {
+                        setIsShow(true);
+                      }}
+                    />
+                  </Pg.ContainerCardDivMainEnd>
+                </ContentDivMainRed>
+              ) : (
+                <ContentDivMainRed
+                  pxheigth={'65px'}
+                  label={'Senha :'}
+                  statedata={state.pswuser}
+                >
+                  <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
+                    <ContentDivButtonOn
+                      img={olhoa}
+                      title={'Abrir...'}
+                      onClick={() => {
+                        setIsShow(false);
+                      }}
+                    />
+                  </Pg.ContainerCardDivMainEnd>
+                </ContentDivMainRed>
+              )}
             </ContentSidePagePanelBotton>
           </ContentCardBoxMainPage>
+
           <Pg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton open={true} pwidth="100%">
@@ -169,6 +153,16 @@ const Login3 = () => {
               titbtn={'Voltar...'}
               onclick={goto('/login2')}
             />
+            {state.nmfant !== '' && state.idnmuser !== '' && state.pswuser ? (
+              <ContentSidePageLabelBotton
+                pxheight={'40px'}
+                istitl={true}
+                title={'Enviar: '}
+                img={setadir}
+                titbtn={'Enviar...'}
+                onclick={goto('/login4')}
+              />
+            ) : null}
           </ContentSidePagePanelBotton>
         </ContentCardPage>
       </ThemeLogin>

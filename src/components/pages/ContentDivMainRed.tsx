@@ -2,20 +2,20 @@ import { ReactNode } from 'react';
 
 import * as Lg from './stylePage.ts';
 
-type PropsContentDivManRed = {
-  pxwidth?: string;
+type TypeContentDivManRed = {
+  pxheigth?: string;
   label?: string;
   statedata?: string;
   children?: ReactNode | JSX.Element;
 };
 const ContentDivMainRed = ({
-  pxwidth,
+  pxheigth,
   label,
   statedata,
   children
-}: PropsContentDivManRed) => {
+}: TypeContentDivManRed) => {
   return (
-    <Lg.ContainerDivManRed pxwidth={pxwidth}>
+    <Lg.ContainerDivManRed pxheight={pxheigth}>
       <label>{label}</label>
       <h3>{statedata}</h3>
       {children}

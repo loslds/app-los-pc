@@ -25,9 +25,6 @@ import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
 import CardInfoErros from '../../contentHelp/CardInfoErros.tsx';
 
-
-
-
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 import enviaon from '../../../assets/svgs/enviaron.svg';
@@ -48,7 +45,6 @@ import enviaoff from '../../../assets/svgs/enviaroff.svg';
 export const Login2 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
-
 
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
@@ -199,17 +195,15 @@ export const Login2 = () => {
       }
       dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
     }
-    if (ischeklogin){
+    if (ischeklogin) {
       setBtnEnviar(true);
     }
 
-      // dispatch({
-      //   type: AcessoUseActions.setModulo,
-      //   payload: 'Login : Acesso Resgate.'
-      // });
-      //   setBtnContinua(true);
-    
-    
+    // dispatch({
+    //   type: AcessoUseActions.setModulo,
+    //   payload: 'Login : Acesso Resgate.'
+    // });
+    //   setBtnContinua(true);
   }, [tentativa, dispatch]);
 
   return (
@@ -220,13 +214,13 @@ export const Login2 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-          
-          {iseditar ? (
-            <ContentCardBoxCenterPage pwidth={'350px'} open={true}>
-              <ContentCardPageTitle>
-                <h4>{state.aplicacao}</h4>
-              </ContentCardPageTitle>
-              <ContentInputPage>
+            
+            {iseditar ? (
+              <ContentCardBoxCenterPage pwidth={'350px'} open={true}>
+                <ContentCardPageTitle>
+                  <h4>{state.aplicacao}</h4>
+                </ContentCardPageTitle>
+                <ContentInputPage>
                   {state.mdlogin === 1 ? (
                     <form name="login1">
                       <br />
@@ -337,13 +331,9 @@ export const Login2 = () => {
                       <br />
                     </form>
                   ) : null}
-
                 </ContentInputPage>
               </ContentCardBoxCenterPage>
-            ):null
-          }
-          
-          
+            ) : null}
           </ContentCardBoxMainPage>
 
           <Lg.DivisionPgHztalPage />
@@ -380,8 +370,7 @@ export const Login2 = () => {
                 titbtn={'Enviar...'}
                 onclick={goto('/login3')}
               />
-              ): null
-            }
+            ) : null}
             {iserrologin ? (
               <PanelModalInfoErros
                 ptop={'1%'}
@@ -396,9 +385,6 @@ export const Login2 = () => {
                 <CardInfoErros nmerro={nmrerrologin} />
               </PanelModalInfoErros>
             ) : null}
-
-
-
           </ContentSidePagePanelBotton>
         </ContentCardPage>
       </ThemeLogin>
