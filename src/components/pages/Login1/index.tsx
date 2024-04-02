@@ -111,8 +111,8 @@ const Login1 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            <ContentCardBoxCenterPage  open={true}>
-              <ContentCardPageTitle >
+            <ContentCardBoxCenterPage open={true}>
+              <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
               <ContentCardCollunsCenterPage isopen={true}>
@@ -153,7 +153,7 @@ const Login1 = () => {
 
           <Lg.DivisionPgHztalPage />
 
-          <ContentSidePagePanelBotton open={true} pwidth="100%">
+          <ContentSidePagePanelBotton bordas={true} open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
               istitl={true}
@@ -162,7 +162,7 @@ const Login1 = () => {
               titbtn={'Voltar...'}
               onclick={goto('/login')}
             />
-            
+
             <Lg.ContainerBoxLabelPage>
               <label>[ {4 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>

@@ -2,10 +2,11 @@ import { ReactNode } from 'react';
 import * as Pg from './stylePage';
 
 type TypeContentCardBoxPageCenter = {
+  open?: boolean;
   pwidth?: string;
   children?: ReactNode | JSX.Element;
-  open?: boolean;
 };
+ 
 const ContentCardBoxCenterPage = ({
   open,
   pwidth,

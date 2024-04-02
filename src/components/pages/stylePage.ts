@@ -108,15 +108,18 @@ export const ContainerCardBoxCenterPage = styled.div<TypeContainerCardCenter>`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   //min-height: 50px;
-  min-width: ${({ pwidth }) => pwidth || '200px'};
+  min-width: ${({ pwidth }) => pwidth || '20%'};
   //color:  ${props => props.theme.colors.textColor};
   //background: transparent;
   display: ${props => (props.open ? 'flex' : 'none')};
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex-flow: row;
 `;
 
 export const ContainerCardBoxCenterPageFlex = styled.div`
   padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
+  margin: 5px 5px 5px 5px;
   border: 3px double;
   border-color: ${props => props.theme.colors.textColor};
   border-radius: 10px;
@@ -125,7 +128,7 @@ export const ContainerCardBoxCenterPageFlex = styled.div`
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-content: center;
 `;
 
@@ -163,11 +166,9 @@ export const ContainerCollunsCenterPage = styled.div<TypeContainerCollunsCenterP
   //color:  ${props => props.theme.colors.textColor};
   //background: transparent;
   min-height: ${({ pheight }) => pheight || '50px'};
-  //min-width: ${({ pwidth }) => pwidth || '50px'};
+  min-width: ${({ pwidth }) => pwidth || '100px'};
   display: ${props => (props.isopen ? 'flex' : 'none')};
   flex-direction: column;
-  //flex: 1 1 0%;
-  
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
@@ -181,12 +182,27 @@ export const ContainerInputPage = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  //flex-wrap: nowrap;
+  flex-wrap: nowrap;
   justify-content: left;
+  align-items: center;
+  align-content: center;
+`;
+
+export const ContainerInputMainPage = styled.div`
+  border: 2px solid green;
+  padding: 2px 2px 2px 2px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: column;
+  justify-content: space-between;
   align-items: center;
   align-content: center;
 
 `;
+
+
 
 type TypeContainerPanelPage = {
   open?: boolean;
@@ -205,9 +221,15 @@ export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
   //background: transparent;
 `;
 
-export const ContainerPanelPageFlex = styled.div`
-  border: 3px double;
-  border-radius: 10px;
+
+
+type TypeContainerPanelPageFlex = {
+bordas?: boolean;
+}
+export const ContainerPanelPageFlex = styled.div<TypeContainerPanelPageFlex>`
+  border: ${props => (props.bordas ? '3px' : 'none')};
+  border-style: ${props => (props.bordas ? 'double' : 'none')};
+  border-radius: ${props => (props.bordas ? '10px' : 'none')};
   border-color: ${props => props.theme.colors.textColor};
   padding: 0px 10px 0px 10px;
   margin: 5px 10px 5px 10px;
@@ -393,10 +415,34 @@ export const ContainerImagem = styled.div`
    }
 `;
 
-export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
-  border: 1px blue;
-  border-color: #ffffff;
+type TypeContainerTextoLeftPage = {
+  isborda: boolean;
+}
+export const ContainerTextoLeftPage = styled.div<TypeContainerTextoLeftPage>`
+  border: ${props => (props.isborda ? '1px' : 'none')};
+  border-style: ${props => (props.isborda ? 'solid' : 'none')};
+  border-radius: ${props => (props.isborda ? '10px' : 'none')};
+  border-color: ${props => props.theme.colors.textColor};
+  /* border: 1px solid blueviolet; */
+  padding: 0px 0px 0px 10px;
+  margin: 5px 10px 5px 10px;
+  background: transparent;
+  width: 100%;
+  min-width: 35px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color:  ${props => props.theme.colors.textColor};
 
+`;
+
+export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
+  //border: 1px solid;
+  //border-color: aqua;
+  
   //border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
@@ -406,22 +452,27 @@ export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
 
   background: transparent;
   color: ${props => props.theme.colors.textColor};
-  font-size: 12px;
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
 
   display: flex;
   flex-wrap: wrap;
   //flex-flow: row;
-  //justify-content: center;
-  //align-items: center;
-  //align-content: center;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  font-weight: 500;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  line-height: 18px;
+  
   h1 h2,h3,h4,h5 {
     display: flex;
-    margin: 0px 10px 0px 10px;
-    padding: 0px 10px 0px 10px;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 5px 0px 5px;
     font-size: large;
-    line-height: auto;
+    line-height: normal;
     font-weight: bold;
     h1 { font-size: 20px}
     h2 { font-size: 18px}
@@ -430,9 +481,10 @@ export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
   }
   label {
     display: flex;
-    margin: 0px 10px 0px 10px;
-    padding: 0px 10px 0px 10px;
-    font-size: large;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 0px 0px 0px;
+    font-size: 20px;
+    font-weight: bold;
     line-height: normal;
   } 
 `;
@@ -525,10 +577,13 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
       padding: 0px 0px 0px 0px;
       /* color: red; */
     }
-  h3 {  
-    margin: 0px -2px 0px -2px;
+  h1,h2,h3,h4 {
+    display: flex;
+    margin: 0px 10px 0px 10px;
     padding: 0px 0px 0px 0px;
-    /* color: red; */
+    justify-content: center;
+    align-content: center;
+    color: red; 
   }
   &:hover {
     border: 1px dashed;
@@ -538,8 +593,6 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
     } */
   }
 `;
-
-
 
 type TypeContainerDivManYellow = {
   pxheight?: string;
@@ -552,7 +605,7 @@ export const ContainerDivManYellow = styled.div<TypeContainerDivManYellow>`
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 10px 0px 0px;
-  margin: 5px 0px 5px 10px;
+  margin: 5px 0px 5px 0px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
   width: 100%;
   display: flex;
@@ -577,18 +630,21 @@ export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
   border: 2px solid;
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
-  padding: 0px 10px 0px 0px;
-  margin: 5px 0px 5px 10px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
   align-content: center;
   color: ${(props) => props.theme.colors.textColor};
   background: transparent;
+  size: 16px;
+  line-height: 16px;
+
   &:hover {
     border-color: #fc0303;
   }
@@ -614,7 +670,7 @@ export const ContainerCardDivMainLeft = styled.div<TypeContainerCardDivMainLeft>
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   align-content: center;
 `;
@@ -628,7 +684,7 @@ export const ContainerCardDivMainEnd = styled.div<TypeContainerCardDivManEnd>`
   border-color: ${(props) => props.theme.colors.textColor};
   border-radius: 10px;
   padding: 0px 0px 0px 0px;
-  margin: 5px 10px 5px 10px;
+  margin: 5px 5px 5px 5px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
   width: ${({ pxwidth }) => pxwidth || '100%'};
   background: transparent;
@@ -674,9 +730,10 @@ border-color: ${(props) => props.theme.colors.textColor};
 border-radius: 5px;
 padding: 0px 0px 0px 0px;
 margin: 0px 0px 0px 0px;
-
+width: 40px;
 min-height: 40px;
 display: flex;
+flex-flow: row;
 flex-wrap: wrap;
 justify-content: center;
 align-items: center;
@@ -693,10 +750,11 @@ border: 1px;
 border-radius: 5px;
 padding: 0px 0px 0px 0px;
 margin: 0px 0px 0px 0px;
-
-min-height: 35px;
+min-width: 40px;
+min-height: 40px;
 display: flex;
 flex-wrap: wrap;
+flex-flow: row;
 justify-content: center;
 align-items: center;
 align-content: center;

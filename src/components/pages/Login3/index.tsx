@@ -28,6 +28,7 @@ import setaesq from '../../../assets/svgs/setaesq.svg';
 import olhoa from '../../../assets/svgs/olhoa.svg';
 import olhof from '../../../assets/svgs/olhof.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
+import { ContentDivTxt } from '../ContentDivTxt.tsx';
 
 //import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 
@@ -99,7 +100,7 @@ const Login3 = () => {
           <ContentCardBoxMainPage>
             <ContentSidePagePanelBotton open={true} pwidth="100%">
               <ContentDivManYellow pxheight={'65px'}>
-                <label>Empresa :</label>
+                <label>Empresa:</label>
                 <h4>{state.nmfant}</h4>
               </ContentDivManYellow>
               <ContentDivManYellow pxheight={'65px'}>
@@ -109,10 +110,14 @@ const Login3 = () => {
               {!isshow ? (
                 <ContentDivMainRed
                   pxheigth={'65px'}
-                  label={'Senha :'}
-                  statedata={'░░░░░░░░░░'}
+                  // label={'Senha:'}
+                  // statedata={'░░░░░░░░░░'}
                 >
-                  <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
+                  <ContentDivTxt>
+                  <label>Senha:</label>
+                  <h3>░░░░░░░░░░</h3>
+                  </ContentDivTxt>
+                  <Pg.ContainerCardDivMainEnd pxwidth={'60px'}>
                     <ContentDivButtonOff
                       img={olhof}
                       title={'Fechar...'}
@@ -125,10 +130,15 @@ const Login3 = () => {
               ) : (
                 <ContentDivMainRed
                   pxheigth={'65px'}
-                  label={'Senha :'}
-                  statedata={state.pswuser}
+                  // label={'Senha:'}
+                  // statedata={state.pswuser}
                 >
-                  <Pg.ContainerCardDivMainEnd pxwidth={'50px'}>
+
+                  <ContentDivTxt>
+                    <label>Senha:</label>
+                    <h3>{state.pswuser}</h3>
+                  </ContentDivTxt>
+                  <Pg.ContainerCardDivMainEnd pxwidth={'60px'}>
                     <ContentDivButtonOn
                       img={olhoa}
                       title={'Abrir...'}
@@ -144,7 +154,7 @@ const Login3 = () => {
 
           <Pg.DivisionPgHztalPage />
 
-          <ContentSidePagePanelBotton open={true} pwidth="100%">
+          <ContentSidePagePanelBotton bordas={true} open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
               istitl={true}

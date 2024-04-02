@@ -17,18 +17,26 @@ import {
 import ContentCardPage from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
+import ContentDivTextoLeftPage from '../ContentDivTextoLeftPage.tsx';
 
-import ContentDivManYellow from '../ContentDivManYellow.tsx';
-import ContentDivMainRed from '../ContentDivMainRed.tsx';
-import ContentDivButtonOff from '../ContentDivButtonOff.tsx';
-import ContentDivButtonOn from '../ContentDivButtonOn.tsx';
+import ContainerDivTestoAtenctionPage from '../ContentDivTestoAtenctionPage.tsx';
+
+import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
+
+import ContentCardCollunsCenterPage from '../ContentCardBoxCenterPage.tsx';
+
+//import ContentDivManYellow from '../ContentDivManYellow.tsx';
+//import ContentDivMainRed from '../ContentDivMainRed.tsx';
+//import ContentDivButtonOff from '../ContentDivButtonOff.tsx';
+//import ContentDivButtonOn from '../ContentDivButtonOn.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 
 import setaesq from '../../../assets/svgs/setaesq.svg';
-import olhoa from '../../../assets/svgs/olhoa.svg';
-import olhof from '../../../assets/svgs/olhof.svg';
-import setadir from '../../../assets/svgs/setadir.svg';
+//import olhoa from '../../../assets/svgs/olhoa.svg';
+//import olhof from '../../../assets/svgs/olhof.svg';
+//import setadir from '../../../assets/svgs/setadir.svg';
+import internet from '../../../assets/svgs/internet.svg';
 
 export const Login4 = () => {
   const [theme, setTheme] = React.useState(dark);
@@ -53,27 +61,65 @@ export const Login4 = () => {
 
   const { state, dispatch } = AcessoUseForm();
 
-  const [isopen, setIsOpen] = React.useState(false);
-  const [mdlogin, setMdLogin] = React.useState(0);
-  const [nmlogin, setNmLogin] = React.useState('Opções:');
-  const [btncontinua, setBtnContinua] = React.useState(false);
-  const [tentativa, setTentativa] = React.useState(0);
+  const [isconect, setIsConect] = React.useState(false);
+  //  const [tentativa, setTentativa] = React.useState(0);
 
-  
-  
   return (
     <ThemeProvider theme={theme}>
-    <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
-      <ContentCardPage>
-        <ContentCardPageTitle>
-          <h2>{state.modulo}</h2>
-        </ContentCardPageTitle>
-        <ContentCardBoxMainPage>
-          <ContentSidePagePanelBotton open={true} pwidth="100%">
-  
+      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+        <ContentCardPage>
+          <ContentCardPageTitle>
+            <h2>{state.modulo}</h2>
+          </ContentCardPageTitle>
+          <ContentCardBoxMainPage>
+            <ContentCardPage>
+              <ContentCardPageTitle>
+                <h3>'"A T E N Ç Ã O "'</h3>
+              </ContentCardPageTitle>
+
+              <ContentDivTextoLeftPage isborda={true}>
+                {!isconect ? (
+                  <ContentSidePageLabelBotton
+                    istitl={true}
+                    title={'Conectando...'}
+                    img={internet}
+                  />
+                ) : (
+                  <ContentSidePageLabelBotton
+                    istitl={true}
+                    title={'Conectado....'}
+                    img={internet}
+                  />
+                )}
+              </ContentDivTextoLeftPage>
+
+              <ContentSidePageLabelBotton
+                istitl={true}
+                title={'Verificando Acesso Sistema...'}
+                img={internet}
+              />
+            </ContentCardPage>
+
+            {/* 
+          <ContentCardCollunsCenterPage open={true} pwidth={'100%'}>
+            bbbbbbbb
+             <ContentSidePagePanelBotton bordas={false} open={true} pwidth="100%">
+            aaaaaaaaaaaaaa
+            </ContentSidePagePanelBotton>
+          </ContentCardCollunsCenterPage>  */}
+          </ContentCardBoxMainPage>
+          <Pg.DivisionPgHztalPage />
+          <ContentSidePagePanelBotton bordas={true} open={true} pwidth="100%">
+            <ContentSidePageLabelBotton
+              pxheight={'40px'}
+              istitl={true}
+              title={'Voltar.: '}
+              img={setaesq}
+              titbtn={'Voltar...'}
+              onclick={goto('/login3')}
+            />
           </ContentSidePagePanelBotton>
-        </ContentCardBoxMainPage>
-      </ContentCardPage>
+        </ContentCardPage>
       </ThemeLogin>
     </ThemeProvider>
   );

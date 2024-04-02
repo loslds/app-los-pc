@@ -19,6 +19,7 @@ import ContentCardPage from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
 import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
+import ContentInputMainPage from '../ContentInputMainPage.tsx';
 import ContentInputPage from '../ContentInputPage.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
@@ -27,8 +28,9 @@ import CardInfoErros from '../../contentHelp/CardInfoErros.tsx';
 
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-import enviaon from '../../../assets/svgs/enviaron.svg';
-import enviaoff from '../../../assets/svgs/enviaroff.svg';
+//import enviaon from '../../../assets/svgs/enviaron.svg';
+//import enviaoff from '../../../assets/svgs/enviaroff.svg';
+import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
 
 //import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 //import { ContentLoginCollunsCenter } from '../ContentCardCollunsCenterPage.tsx';
@@ -77,8 +79,8 @@ export const Login2 = () => {
   const [iserrologin, setIsErroLogin] = React.useState(false);
   const [nmrerrologin, setNmErroLogin] = React.useState('');
 
-  const tituloConfirmacao = '"CONFIRMA", outra forma de Acesso';
-  const [isresgatar, setIsResgatar] = React.useState(false);
+//  const tituloConfirmacao = '"CONFIRMA", outra forma de Acesso';
+//  const [isresgatar, setIsResgatar] = React.useState(false);
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
@@ -188,7 +190,7 @@ export const Login2 = () => {
         setIsEditar(false);
         setBtnContinua(false);
         setBtnEnviar(false);
-        setIsResgatar(true);
+//        setIsResgatar(true);
         setIsErroLogin(false);
       } else {
         setIsErroLogin(true);
@@ -214,29 +216,28 @@ export const Login2 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            
             {iseditar ? (
-              <ContentCardBoxCenterPage pwidth={'350px'} open={true}>
+              <ContentCardBoxCenterPage open={true}>
                 <ContentCardPageTitle>
                   <h4>{state.aplicacao}</h4>
                 </ContentCardPageTitle>
-                <ContentInputPage>
-                  {state.mdlogin === 1 ? (
-                    <form name="login1">
-                      <br />
-                      <label>
-                        Email.:
+                <ContentCardCollunsCenterPage isopen={true} pwidth={'200px'}>
+                  <ContentInputMainPage>
+                    {state.mdlogin === 1 ? (
+                      <form name="login1">
+                        <br />
+                        <label>Email.:</label>
                         <input
                           type="mail"
                           name="mail1"
                           value={strid}
+                          size={25}
+                          autoFocus={true}
                           onChange={handlerOnChangerStrId}
                           onKeyUp={spanChangeKeyUpPasId}
                         />
-                      </label>
-                      <br />
-                      <label>
-                        Senha:
+                        <br />
+                        <label>Senha: </label>
                         <input
                           type="password"
                           name="pass1"
@@ -245,93 +246,90 @@ export const Login2 = () => {
                           onChange={handlerOnChangerStrPsw}
                           onKeyUp={spanChangeKeyUpPasPsw}
                         />
-                      </label>
-                      <br />
-                    </form>
-                  ) : null}
-                  {state.mdlogin === 2 ? (
-                    <form name="login2">
-                      <br />
-                      <label>
-                        Email.:
+                        <br />
+                      </form>
+                    ) : null}
+                    {state.mdlogin === 2 ? (
+                      <form name="login2">
+                        <br />
+                        <label>Email.:</label>
                         <input
                           type="mail"
                           name="mail2"
                           value={strid}
+                          size={25}
+                          autoFocus={true}
                           onChange={handlerOnChangerStrId}
                           onKeyUp={spanChangeKeyUpPasId}
                         />
-                      </label>
-                      <br />
-                      <label>
-                        PIN....:
+                        <br />
+                        <label>PIN....:</label>
                         <input
                           type="text"
                           name="pin1"
                           value={strpsw}
+                          maxLength={10}
                           onChange={handlerOnChangerStrPsw}
                           onKeyUp={spanChangeKeyUpPasPsw}
                         />
-                      </label>
-                      <br />
-                    </form>
-                  ) : null}
-                  {state.mdlogin === 3 ? (
-                    <form name="login3">
-                      <br />
-                      <label>
-                        Nome.:
+                        <br />
+                      </form>
+                    ) : null}
+                    {state.mdlogin === 3 ? (
+                      <form name="login3">
+                        <br />
+                        <label>Nome.:</label>
                         <input
                           type="text"
                           name="peseu1"
                           value={strid}
+                          size={25}
+                          autoFocus={true}
                           onChange={handlerOnChangerStrId}
                           onKeyUp={spanChangeKeyUpPasId}
                         />
-                      </label>
-                      <br />
-                      <label>
-                        Senha:
+                        <br />
+                        <label>Senha:</label>
                         <input
                           type="password"
                           name="pass2"
                           value={strpsw}
+                          maxLength={10}
                           onChange={handlerOnChangerStrPsw}
                           onKeyUp={spanChangeKeyUpPasPsw}
                         />
-                      </label>
-                      <br />
-                    </form>
-                  ) : null}
+                        <br />
+                      </form>
+                    ) : null}
 
-                  {state.mdlogin === 4 ? (
-                    <form name="login4">
-                      <br />
-                      <label>
-                        Nome.:
+                    {state.mdlogin === 4 ? (
+                      <form name="login4">
+                        <br />
+                        <label>Nome.:</label>
                         <input
                           type="text"
                           name="peseu2"
                           value={strid}
+                          size={25}
+                          autoFocus={true}
                           onChange={handlerOnChangerStrId}
                           onKeyUp={spanChangeKeyUpPasId}
                         />
-                      </label>
-                      <br />
-                      <label>
-                        PIN.....:
-                        <input
-                          type="text"
-                          name="pin2"
-                          value={strpsw}
-                          onChange={handlerOnChangerStrPsw}
-                          onKeyUp={spanChangeKeyUpPasPsw}
-                        />
-                      </label>
-                      <br />
-                    </form>
-                  ) : null}
-                </ContentInputPage>
+                        <br />
+                        <label>PIN.....:</label>
+                          <input
+                            type="text"
+                            name="pin2"
+                            value={strpsw}
+                            maxLength={10}
+                            onChange={handlerOnChangerStrPsw}
+                            onKeyUp={spanChangeKeyUpPasPsw}
+                          />
+                        <br />
+                      </form>
+                    ) : null}
+                  </ContentInputMainPage>
+                </ContentCardCollunsCenterPage>
               </ContentCardBoxCenterPage>
             ) : null}
           </ContentCardBoxMainPage>
@@ -361,7 +359,7 @@ export const Login2 = () => {
                 onclick={handlerContinuar}
               />
             ) : null}
-            {ischeklogin ? (
+            {ischeklogin && btnenviar? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
                 istitl={true}

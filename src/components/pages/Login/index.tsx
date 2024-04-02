@@ -142,7 +142,7 @@ const Login = () => {
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
           
-          <ContentSidePagePanelBotton open={true} pwidth="100%">
+          <ContentSidePagePanelBotton bordas={true} open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
               istitl={true}
