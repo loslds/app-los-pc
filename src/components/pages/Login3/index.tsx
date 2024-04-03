@@ -23,12 +23,15 @@ import ContentDivButtonOff from '../ContentDivButtonOff.tsx';
 import ContentDivButtonOn from '../ContentDivButtonOn.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
+import { ContentDivTxt } from '../ContentDivTxt.tsx';
 
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import olhoa from '../../../assets/svgs/olhoa.svg';
 import olhof from '../../../assets/svgs/olhof.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-import { ContentDivTxt } from '../ContentDivTxt.tsx';
+import internet from '../../../assets/svgs/internet.svg';
+import Loading from 'components/loadings/Loading.tsx';
+
 
 //import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
 
@@ -56,7 +59,16 @@ const Login3 = () => {
   const [ischeck, setIscheck] = React.useState(false);
 
   const [isshow, setIsShow] = React.useState(false);
+  const [tentativa, setTentativa] = React.useState(0);
 
+  const [isenviar, setIsEnviar] = React.useState(true);
+  const [isbtnenviar, setIsBtnEnviar] = React.useState(true);
+  const [isconectar, setIsConectar] = React.useState(false);
+  const [isbtnconectar, setIsBtnConectar] = React.useState(false);
+
+  //const [isbtnshow, setIsBtnShow] = React.useState(true);
+  
+  const [isconect, setIsConect] = React.useState(false);
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
       setTheme(light);
@@ -90,6 +102,30 @@ const Login3 = () => {
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
   }, [dispatch]);
 
+  const handlerEnviar = () => {
+    setTentativa( state.nrcont + 1 );
+    setIsBtnEnviar(false);
+    setIsEnviar(true);
+  };
+
+  React.useEffect(() => {
+    if (isenviar){
+      let rtn = ConectarServe();
+      setIsConectar(rtn);
+      Loading();
+
+      
+    } else {
+      if (!isconect){
+        setIsConect(true);
+      }
+    }
+    if (!state.logado){
+
+    }
+  }, [dispatch]);
+
+
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
@@ -98,58 +134,96 @@ const Login3 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            <ContentSidePagePanelBotton open={true} pwidth="100%">
-              <ContentDivManYellow pxheight={'65px'}>
-                <label>Empresa:</label>
-                <h4>{state.nmfant}</h4>
-              </ContentDivManYellow>
-              <ContentDivManYellow pxheight={'65px'}>
-                <label>ID :</label>
-                <h4>{state.idnmuser}</h4>
-              </ContentDivManYellow>
-              {!isshow ? (
-                <ContentDivMainRed
-                  pxheigth={'65px'}
-                  // label={'Senha:'}
-                  // statedata={'░░░░░░░░░░'}
-                >
-                  <ContentDivTxt>
-                  <label>Senha:</label>
-                  <h3>░░░░░░░░░░</h3>
-                  </ContentDivTxt>
-                  <Pg.ContainerCardDivMainEnd pxwidth={'60px'}>
-                    <ContentDivButtonOff
-                      img={olhof}
-                      title={'Fechar...'}
-                      onClick={() => {
-                        setIsShow(true);
-                      }}
+          
+            {!isenviar ? ( 
+              <ContentSidePagePanelBotton open={true} pwidth="100%">
+                <ContentDivManYellow pxheight={'65px'}>
+                  <label>Empresa:</label>
+                  <h4>{state.nmfant}</h4>
+                </ContentDivManYellow>
+                <ContentDivManYellow pxheight={'65px'}>
+                  <label>ID :</label>
+                  <h4>{state.idnmuser}</h4>
+                </ContentDivManYellow>
+                
+                {!isshow ? (
+                  <ContentDivMainRed pxheigth={'65px'} >
+                    <ContentDivTxt>
+                      <label>Senha:</label>
+                      <h3>░░░░░░░░░░</h3>
+                    </ContentDivTxt>
+                    <Pg.ContainerCardDivMainEnd pxwidth={'60px'}>
+                      <ContentDivButtonOff
+                        img={olhof}
+                        title={'Fechar...'}
+                        onClick={() => {setIsShow(true)}}
+                      />
+                    </Pg.ContainerCardDivMainEnd>
+                  </ContentDivMainRed>
+                  ) : (
+                    <ContentDivMainRed pxheigth={'65px'}>
+                      <ContentDivTxt>
+                        <label>Senha:</label>
+                        <h3>{state.pswuser}</h3>
+                      </ContentDivTxt>
+                      <Pg.ContainerCardDivMainEnd pxwidth={'60px'}>
+                        <ContentDivButtonOn
+                          img={olhoa}
+                          title={'Abrir...'}
+                          onClick={() => {setIsShow(false);}}
+                        />
+                      </Pg.ContainerCardDivMainEnd>
+                    </ContentDivMainRed>
+                  )
+                }
+                </ContentSidePagePanelBotton>
+              ) : null
+            }
+            {isenviar ? ( 
+              <ContentSidePagePanelBotton open={true} pwidth="100%">
+                {!isconect ? (
+                  <ContentSidePageLabelBotton
+                    istitl={true}
+                    title={'Conectando...'}
+                    img={internet}
+                  />
+                  ) : (
+                    <ContentSidePageLabelBotton
+                      istitl={true}
+                      title={'Conectado....'}
+                      img={internet}
                     />
-                  </Pg.ContainerCardDivMainEnd>
-                </ContentDivMainRed>
-              ) : (
-                <ContentDivMainRed
-                  pxheigth={'65px'}
-                  // label={'Senha:'}
-                  // statedata={state.pswuser}
-                >
+                  )
+                }
+              </ContentSidePagePanelBotton>
+              ): null
+            }
+            {isbtnenviar ? ( 
+              <ContentSidePagePanelBotton open={true} pwidth="100%">
+                {!isconect ? (
+                  <ContentSidePageLabelBotton
+                    istitl={true}
+                    title={'Conectando...'}
+                    img={internet}
+                  />
+                  ) : (
+                    <ContentSidePageLabelBotton
+                      istitl={true}
+                      title={'Conectado....'}
+                      img={internet}
+                    />
+                  )
+                }
+              </ContentSidePagePanelBotton>
+              ): null
+            }
 
-                  <ContentDivTxt>
-                    <label>Senha:</label>
-                    <h3>{state.pswuser}</h3>
-                  </ContentDivTxt>
-                  <Pg.ContainerCardDivMainEnd pxwidth={'60px'}>
-                    <ContentDivButtonOn
-                      img={olhoa}
-                      title={'Abrir...'}
-                      onClick={() => {
-                        setIsShow(false);
-                      }}
-                    />
-                  </Pg.ContainerCardDivMainEnd>
-                </ContentDivMainRed>
-              )}
-            </ContentSidePagePanelBotton>
+
+
+            
+
+
+
           </ContentCardBoxMainPage>
 
           <Pg.DivisionPgHztalPage />
@@ -163,14 +237,24 @@ const Login3 = () => {
               titbtn={'Voltar...'}
               onclick={goto('/login2')}
             />
-            {state.nmfant !== '' && state.idnmuser !== '' && state.pswuser ? (
+            {isbtnenviar ? (
               <ContentSidePageLabelBotton
                 pxheight={'40px'}
                 istitl={true}
                 title={'Enviar: '}
                 img={setadir}
                 titbtn={'Enviar...'}
-                onclick={goto('/login4')}
+                onclick={handlerEnviar}
+              />
+            ) : null}
+            {state.logado ? (
+              <ContentSidePageLabelBotton
+                pxheight={'40px'}
+                istitl={true}
+                title={'Liberado: '}
+                img={setadir}
+                titbtn={'Enviar...'}
+                onclick={goto('/')}
               />
             ) : null}
           </ContentSidePagePanelBotton>
