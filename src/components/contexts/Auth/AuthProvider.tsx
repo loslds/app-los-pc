@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AuthContext } from "./AuthContext";
 
 import { User } from '../../types/User';
-import { useApi } from '../../rooks/useApi';
+import { useApi } from '../../rook/useApi';
 
 type AuthProviderType = {
  children: JSX.Element;

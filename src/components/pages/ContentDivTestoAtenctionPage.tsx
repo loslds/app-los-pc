@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 
-import * as Lg from './stylePage';
+import * as Pg from './stylePage';
 
 type TypeContentDivTestoAtenctionPage = {
   pxwidth?: string;
@@ -17,11 +17,11 @@ const ContentDivTestoAtenctionPage = ({
   children
 }: TypeContentDivTestoAtenctionPage) => {
   return (
-    <Lg.ContainerDivTestoAtenctionPage pxwidth={pxwidth}>
+    <Pg.ContainerDivTestoAtenctionPage pxwidth={pxwidth}>
       <h3>{titulo}</h3>
       <label>{label}</label>
       {children}
-    </Lg.ContainerDivTestoAtenctionPage>
+    </Pg.ContainerDivTestoAtenctionPage>
   );
 };
 

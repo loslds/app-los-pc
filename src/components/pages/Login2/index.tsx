@@ -20,34 +20,17 @@ import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
 import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
 import ContentInputMainPage from '../ContentInputMainPage.tsx';
-import ContentInputPage from '../ContentInputPage.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
 import CardInfoErros from '../../contentHelp/CardInfoErros.tsx';
-
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-//import enviaon from '../../../assets/svgs/enviaron.svg';
-//import enviaoff from '../../../assets/svgs/enviaroff.svg';
 import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
-
-//import { ContentTitleLogin } from '../Login/ContentTitleLogin.tsx';
-//import { ContentLoginCollunsCenter } from '../ContentCardCollunsCenterPage.tsx';
-//import { ContentLoginCollunsOpc } from '../Login/ContentLoginCollunsOpc.tsx';
-//import { ContentLoginOpc } from '../Login/ContentLoginOpc.tsx';
-//import { ContentTitleLoginOpc } from '../Login/ContentTitleLoginOpc.tsx';
-//import { ContentMainButtonsLogin } from '../Login/ContentMainButtonsLogin.tsx';
-//import ContentButtonTitleImg from '../Login/ContentButtonTitleImg.tsx';
-//import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
-//import CardInfoErros from '../../contentHelp/CardInfoErros.tsx';
-//import ContentButtonsConfirmation from '../Login/ContentButtonsConfirmation.tsx';
-//import ContentButtonConfimationOnOff from '../Login/ContentButtonConfimationOnOff.tsx';
 
 export const Login2 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
-
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
       setTheme(light);
@@ -57,53 +40,37 @@ export const Login2 = () => {
       setIscheck(false);
     }
   };
-
   const navigate = useNavigate();
   const goto = (path: string) => {
     return () => {
       navigate(path);
     };
   };
-
   const { state, dispatch } = AcessoUseForm();
-
   const [iseditar, setIsEditar] = React.useState(false);
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [ischeklogin, setIsChekLogin] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(state.nrcont);
-
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
   const [btnenviar, setBtnEnviar] = React.useState(false);
-
   const [iserrologin, setIsErroLogin] = React.useState(false);
   const [nmrerrologin, setNmErroLogin] = React.useState('');
-
-//  const tituloConfirmacao = '"CONFIRMA", outra forma de Acesso';
-//  const [isresgatar, setIsResgatar] = React.useState(false);
-
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-
     dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Login : Selecionado Edição.'
     });
-
-    dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
-
     dispatch({ type: AcessoUseActions.setAplicacao, payload: state.nmlogin });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
-
     setTentativa(state.nrcont);
     setIsEditar(true);
     setBtnContinua(true);
   }, [dispatch]);
-
   const handlerOnChangerStrId = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setStrId(e.currentTarget.value);
@@ -114,7 +81,6 @@ export const Login2 = () => {
     },
     [dispatch]
   );
-
   const spanChangeKeyUpPasId = React.useCallback(() => {
     if (strid === '') {
       setBtnContinua(true);
@@ -128,7 +94,6 @@ export const Login2 = () => {
       setIsChekLogin(false);
     }
   }, [strid, strpsw]);
-
   const handlerOnChangerStrPsw = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setStrPsw(e.currentTarget.value);
@@ -139,7 +104,6 @@ export const Login2 = () => {
     },
     [dispatch]
   );
-
   const spanChangeKeyUpPasPsw = React.useCallback(() => {
     if (strpsw === '') {
       setBtnContinua(true);
@@ -153,7 +117,6 @@ export const Login2 = () => {
       setIsChekLogin(false);
     }
   }, [strid, strpsw]);
-
   const handlerContinuar = React.useCallback(() => {
     setNmErroLogin('');
     setTentativa(tentativa + 1);
@@ -183,14 +146,12 @@ export const Login2 = () => {
       }
     }
   }, [strid, strpsw, tentativa]);
-
   React.useEffect(() => {
     if (!ischeklogin && nmrerrologin !== '') {
       if (tentativa + 1 > 4) {
         setIsEditar(false);
         setBtnContinua(false);
         setBtnEnviar(false);
-//        setIsResgatar(true);
         setIsErroLogin(false);
       } else {
         setIsErroLogin(true);
@@ -200,14 +161,7 @@ export const Login2 = () => {
     if (ischeklogin) {
       setBtnEnviar(true);
     }
-
-    // dispatch({
-    //   type: AcessoUseActions.setModulo,
-    //   payload: 'Login : Acesso Resgate.'
-    // });
-    //   setBtnContinua(true);
   }, [tentativa, dispatch]);
-
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
@@ -301,7 +255,6 @@ export const Login2 = () => {
                         <br />
                       </form>
                     ) : null}
-
                     {state.mdlogin === 4 ? (
                       <form name="login4">
                         <br />
@@ -333,9 +286,7 @@ export const Login2 = () => {
               </ContentCardBoxCenterPage>
             ) : null}
           </ContentCardBoxMainPage>
-
           <Lg.DivisionPgHztalPage />
-
           <ContentSidePagePanelBotton open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
@@ -348,7 +299,6 @@ export const Login2 = () => {
             <Lg.ContainerBoxLabelPage>
               <label>[ {4 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-
             {btncontinua && state.mdlogin > 0 && !ischeklogin ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}

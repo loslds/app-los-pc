@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="134.938mm" height="134.938mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 795.91 795.91"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#E3FFFF;stroke-width:46.81;stroke-miterlimit:22.9256}
+    .str2 {stroke:#00FFFB;stroke-width:9.99;stroke-miterlimit:22.9256}
+    .str4 {stroke:red;stroke-width:2.5;stroke-miterlimit:22.9256}
+    .str0 {stroke:#1C8BD3;stroke-width:31.22;stroke-miterlimit:22.9256}
+    .str3 {stroke:white;stroke-width:29.96;stroke-linecap:round;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil2 {fill:#91D8F7}
+    .fil1 {fill:#1C8BD3}
+    .fil3 {fill:red}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2051570178256">
+   <rect class="fil0" x="-0" y="0" width="795.91" height="795.91"/>
+   <ellipse class="fil1 str0" cx="397.96" cy="396.3" rx="312.13" ry="312.12"/>
+   <circle class="fil0 str1" cx="397.95" cy="396.3" r="351.14"/>
+   <path class="fil2 str2" d="M318.21 268.68c31.36,-31.24 77.54,-44.37 119.98,-42.3 65.33,11.1 97.04,34.08 115.97,58.56 36.01,38.67 36.81,102.98 32.47,138.58 -19.29,82.05 -77.09,112.51 -133.72,123.79l-179.82 -2.16c-171.89,-25.66 -170.64,-287.67 45.11,-276.45z"/>
+   <path class="fil0 str3" d="M306.39 510.55c-35.14,-1.74 -35.84,-1.79 -35.84,-1.79 -60.88,-15.86 -78.48,-63.52 -78,-105.87 14.52,-81.17 100.75,-102.45 156.01,-55.38l49.39 50.44"/>
+   <path class="fil0 str3" d="M448.27 329.95c10.95,-13.82 37.24,-21.17 37.24,-21.17 65.95,-23.93 155.08,24.02 151.82,107.64 10.78,71.47 -85.88,154.4 -168.78,105.14l-82.01 -60.1"/>
+   <g>
+    <rect class="fil3 str4" transform="matrix(0.630658 -0.630658 0.652223 0.652223 187.845 219.627)" width="50.39" height="595.56"/>
+    <rect class="fil3 str4" transform="matrix(-0.630658 -0.630658 -0.652223 0.652223 608.063 219.627)" width="50.39" height="595.56"/>
+   </g>
+  </g>
+ </g>
+</svg>

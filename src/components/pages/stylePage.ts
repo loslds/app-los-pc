@@ -212,7 +212,8 @@ export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  min-width: ${({ pwidth }) => pwidth || '32%'};
+  min-height: 40px;
+  width: ${({ pwidth }) => pwidth || '32%'};
   display: ${props => (props.open ? 'flex' : 'none')};
   min-height: 60px;
   flex-wrap: wrap;
@@ -224,15 +225,15 @@ export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
 
 
 type TypeContainerPanelPageFlex = {
-bordas?: boolean;
+bordas?: string;
 }
 export const ContainerPanelPageFlex = styled.div<TypeContainerPanelPageFlex>`
-  border: ${props => (props.bordas ? '3px' : 'none')};
-  border-style: ${props => (props.bordas ? 'double' : 'none')};
-  border-radius: ${props => (props.bordas ? '10px' : 'none')};
+  border: ${({ bordas }) => bordas || '3px'};
+  border-style: double;
+  border-radius: 10px;
   border-color: ${props => props.theme.colors.textColor};
-  padding: 0px 10px 0px 10px;
-  margin: 5px 10px 5px 10px;
+  padding: 0px 0px 0px 0px;
+  margin: 3px 5px 3px 5px;
   width: 100%;
   min-height: 60px;
   display: flex;
@@ -240,6 +241,7 @@ export const ContainerPanelPageFlex = styled.div<TypeContainerPanelPageFlex>`
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
+  align-items: center;
 `;
 
 export const ContainerBtnSRigthPage = styled.div`
@@ -392,8 +394,6 @@ export const DivisionPgHztal = styled.div`
   background-color: #9c9c9c;
 `;
 
-
-
 ///////////////////////////////////////////
 
 export const ContainerImagem = styled.div`
@@ -423,7 +423,6 @@ export const ContainerTextoLeftPage = styled.div<TypeContainerTextoLeftPage>`
   border-style: ${props => (props.isborda ? 'solid' : 'none')};
   border-radius: ${props => (props.isborda ? '10px' : 'none')};
   border-color: ${props => props.theme.colors.textColor};
-  /* border: 1px solid blueviolet; */
   padding: 0px 0px 0px 10px;
   margin: 5px 10px 5px 10px;
   background: transparent;
@@ -440,28 +439,19 @@ export const ContainerTextoLeftPage = styled.div<TypeContainerTextoLeftPage>`
 `;
 
 export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
-  //border: 1px solid;
-  //border-color: aqua;
-  
-  //border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
-  
   width: 100%;
   min-height: ${({ pxheight }) => pxheight || '20px'};
-
   background: transparent;
   color: ${props => props.theme.colors.textColor};
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
-
   display: flex;
   flex-wrap: wrap;
-  //flex-flow: row;
   justify-content: space-between;
   align-items: center;
   align-content: center;
-
   font-weight: 500;
   font-family: 'Courier New', Courier, monospace;
   font-size: 18px;
@@ -494,12 +484,9 @@ export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
-
   min-height: ${({ pxheight }) => pxheight || '50px'};
-
   background: transparent;
   color: ${props => props.theme.colors.textColor};
-
   display: flex;
   //flex-wrap: wrap;
   //flex-flow: row;
@@ -522,14 +509,11 @@ export const ContainerBoxLabelPage = styled.div`
   border: 1px double;
   border-color: ${props => props.theme.colors.textColor};
   border-radius: 10px;
-
   min-width: 50px;
-
   display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
-
   font-size: 12px;
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
@@ -542,9 +526,6 @@ export const ContainerBoxLabelPage = styled.div`
     font-size: large;
     line-height: normal;
   }
-  /* &:hover {
-    border-color: red;
-  } */
 `;
 
 ////////////////////////////////////////////////////////
@@ -560,14 +541,11 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
-  
   min-width: ${({ pxwidth }) => pxwidth || '20%'};
-  
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
-
   size: 16px;
   line-height: 16px;
   color: ${(props) => props.theme.colors.textColor};
@@ -575,7 +553,6 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
   span {
     margin: 0px 0px 0px 0px;
       padding: 0px 0px 0px 0px;
-      /* color: red; */
     }
   h1,h2,h3,h4 {
     display: flex;
@@ -588,9 +565,6 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
   &:hover {
     border: 1px dashed;
     border-color: red;
-    /* label {
-      color: red;
-    } */
   }
 `;
 
@@ -604,36 +578,10 @@ export const ContainerDivManYellow = styled.div<TypeContainerDivManYellow>`
   border: 2px solid;
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
-  padding: 0px 10px 0px 0px;
+  padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  flex-flow: row;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  color: ${(props) => props.theme.colors.textColor};
-  background: transparent;
-  &:hover {
-    border-color: #FF8C00;
-  }
-`;
-
-type TypeContainerDivManRed = {
-  pxheight?: string;
-  label?: string;
-  statedata?: string;
-}
-export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
-  border: 2px solid;
-  border-radius: 10px;
-  border-color: ${(props) => props.theme.colors.textColor};
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  min-height: ${({ pxheight }) => pxheight || '30px'};
-  width: 100%;
+  width: ${({ pxwidth }) => pxwidth || '100%'};
   display: flex;
   flex-wrap: wrap;
   flex-flow: row;
@@ -642,31 +590,49 @@ export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
   align-content: center;
   color: ${(props) => props.theme.colors.textColor};
   background: transparent;
-  size: 16px;
-  line-height: 16px;
+  &:hover {
+    border-color: orange;
+  }
+`;
 
+type TypeContainerDivManRed = {
+  pxheight?: string;
+  pxwidth?: string;
+  label?: string;
+  statedata?: string;
+}
+export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: ${(props) => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  min-height: ${({ pxheight }) => pxheight || '30px'};
+  width: ${({ pxwidth }) => pxwidth || '100%'};
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color: ${(props) => props.theme.colors.textColor};
+  background: transparent;
   &:hover {
     border-color: #fc0303;
   }
 `;
 
-
 type TypeContainerCardDivMainLeft = {
   pxheight?: string;
-  
 }
 export const ContainerCardDivMainLeft = styled.div<TypeContainerCardDivMainLeft>`
   border: none;
   padding: 0px 0px 0px 0px;
-  margin: 5px 10px 5px 10px;
+  margin: 5px 5px 5px 10px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
   width: 100%;
-  
-  size: 16px;
-  line-height: 16px;
   color: ${(props) => props.theme.colors.textColor};
   background: transparent;
-
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -680,25 +646,21 @@ type TypeContainerCardDivManEnd = {
   pxwidth?: string;
 }
 export const ContainerCardDivMainEnd = styled.div<TypeContainerCardDivManEnd>`
-  border: 2px solid;
+  border: none ;
   border-color: ${(props) => props.theme.colors.textColor};
   border-radius: 10px;
   padding: 0px 0px 0px 0px;
-  margin: 5px 5px 5px 5px;
+  margin: 5px 8px 5px 8px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
   width: ${({ pxwidth }) => pxwidth || '100%'};
   background: transparent;
-
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
   justify-content: end;
   align-items: center;
   align-content: center;
-
   color: ${(props) => props.theme.colors.textColor};
-  size: 16px;
-  line-height: 16px;
 `;
 
 type TypeContainerCardDivMainLeftRed = {
@@ -708,12 +670,9 @@ type TypeContainerCardDivMainLeftRed = {
 export const ContainerCardDivMainLeftRed = styled.div<TypeContainerCardDivMainLeftRed>`
   border: none;
   padding: 0px 0px 0px 0px;
-  margin: 5px 10px 5px 10px;
+  margin: 5px 0px 5px 0px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
   width: ${({ pxwidth }) => pxwidth || '100%'};
-
-  size: 16px;
-  line-height: 16px;
   color: ${(props) => props.theme.colors.textColor};
   background: transparent;
   display: flex;
@@ -766,21 +725,20 @@ background-color: #e4e4e4;
 `;
 
 type TypeButtonDefaulOnOffImg = {
+  pxwdth?: string;
+  pxhght?: string;
   img?: string;
 };
 export const ButtonDefaulOnOffImg = styled.button<TypeButtonDefaulOnOffImg>`
-border: 1px;
+border: none;
 border-radius: 3px;
 padding: 0px 0px 0px 0px;
-margin: 5px 5px 5px 5px;
-
-width: 35px;
-height: 35px;
-
-font-size: 12px;
+margin: 0px 0px 0px  0px;
+width: ${({ pxwdth }) => pxwdth || '40px'};
+height: ${({ pxhght }) => pxhght || '40px'};
+font-size: 16px;
 font-weight: bold;
 font-family: 'Courier New', Courier, monospace;
-
 background-color: transparent;
 background-image: url(${({ img }) => img || semimg});
 background-repeat: no-repeat;
@@ -788,9 +746,49 @@ background-size: cover;
 background-position: center;
 cursor: pointer;
 outline: none;
-
 display: flex;
 flex-flow: nowrap;
 justify-content: center;
 align-items: center;
+`;
+
+type TypeContainerDivMainIcons = {
+  brd?: string;
+  hght?: string;
+  wdth?: string;
+}
+export const ContainerDivMainIcons = styled.div<TypeContainerDivMainIcons>`
+border: ${props => (props.brd ? '3px' : 'none')};
+border-style: ${props => (props.brd ? 'solid' : 'none')};
+border-radius: ${props => (props.brd ? '10px' : 'none')};
+border-color: ${props => props.theme.colors.textColor};
+padding: 0px 0px 0px 0px;
+margin: 5px 10px 5px 10px;
+height: ${({ hght }) => hght || '40px'};
+width: ${({ wdth }) => wdth || '100%'};
+display: flex;
+flex-flow: row;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+align-content: center;
+color: ${(props) => props.theme.colors.textColor};
+background:${(props) => props.theme.colors.backgroundColor};
+`;
+
+
+export const ContainerDivMainImagens = styled.div`
+  border: 1px dashed red;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 3px 3px 3px 3px;
+  max-width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  size: 16px;
+  line-height: 16px;
+  color: ${props => props.theme.colors.textColor};
 `;

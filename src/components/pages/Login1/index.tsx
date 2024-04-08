@@ -3,10 +3,8 @@ import * as Lg from '../stylePage.ts';
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
-
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
 import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import {
   AcessoUseForm,
@@ -18,20 +16,15 @@ import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
 import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
 import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
-
 import { ContentRadioPage } from '../ContentRadioPage.tsx';
-
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
-//import ContentDivTestoAtenctionPage from '../ContentDivTestoAtenctionPage.tsx';
-
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
 const Login1 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
-
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
       setTheme(light);
@@ -41,7 +34,6 @@ const Login1 = () => {
       setIscheck(false);
     }
   };
-
   const navigate = useNavigate();
   const goto = (path: string) => {
     return () => {
@@ -49,12 +41,10 @@ const Login1 = () => {
     };
   };
   const { state, dispatch } = AcessoUseForm();
-
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções:');
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [tentativa] = React.useState(0);
-
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login1' });
@@ -71,11 +61,9 @@ const Login1 = () => {
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
   }, [dispatch]);
-
   const setModo = (level: number) => {
     setMdLogin(level);
   };
-
   React.useEffect(() => {
     const DescrOpc = [
       'Opções:',
@@ -84,9 +72,7 @@ const Login1 = () => {
       'Pseudônino / PassWord.',
       'Pseudônino / PIN.'
     ];
-
     setNmLogin(DescrOpc[mdlogin]);
-
     if (mdlogin === 0) {
       setBtnContinua(false);
     } else {
@@ -97,7 +83,6 @@ const Login1 = () => {
         setBtnContinua(true);
       }
     }
-
     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
     dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
@@ -123,7 +108,6 @@ const Login1 = () => {
                   titulo="E-Mail/Pass"
                   onclick={() => setModo(1)}
                 />
-
                 <ContentRadioPage
                   id="E-Mail/PIN"
                   name="opcao"
@@ -131,7 +115,6 @@ const Login1 = () => {
                   titulo="E-Mail/PIN"
                   onclick={() => setModo(2)}
                 />
-
                 <ContentRadioPage
                   id="Pseud/Pass"
                   name="opcao"
@@ -139,7 +122,6 @@ const Login1 = () => {
                   titulo="Pseudô/Pass"
                   onclick={() => setModo(3)}
                 />
-
                 <ContentRadioPage
                   id="Pseud/PIN"
                   name="opcao"
@@ -150,10 +132,8 @@ const Login1 = () => {
               </ContentCardCollunsCenterPage>
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
-
           <Lg.DivisionPgHztalPage />
-
-          <ContentSidePagePanelBotton bordas={true} open={true} pwidth="100%">
+          <ContentSidePagePanelBotton bordas="3px" open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
               istitl={true}
@@ -162,11 +142,9 @@ const Login1 = () => {
               titbtn={'Voltar...'}
               onclick={goto('/login')}
             />
-
             <Lg.ContainerBoxLabelPage>
               <label>[ {4 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-
             {btncontinua && mdlogin > 0 && mdlogin < 5 ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}

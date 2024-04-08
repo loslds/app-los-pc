@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="134.938mm" height="134.938mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1130.75 1130.75"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:#E3FFFF;stroke-width:66.51;stroke-miterlimit:22.9256}
+    .str2 {stroke:#00FFFB;stroke-width:14.19;stroke-miterlimit:22.9256}
+    .str0 {stroke:#1C8BD3;stroke-width:44.35;stroke-miterlimit:22.9256}
+    .str3 {stroke:white;stroke-width:42.57;stroke-linecap:round;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil2 {fill:#91D8F7}
+    .fil1 {fill:#1C8BD3}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2278988676160">
+   <rect class="fil0" x="-0" y="0" width="1130.75" height="1130.75"/>
+   <ellipse class="fil1 str0" cx="565.38" cy="563.03" rx="443.44" ry="443.42"/>
+   <circle class="fil0 str1" cx="565.37" cy="563.03" r="498.86"/>
+   <g>
+    <path class="fil2 str2" d="M452.08 381.72c44.55,-44.38 110.16,-63.03 170.46,-60.1 92.82,15.76 137.87,48.42 164.76,83.19 51.16,54.94 52.29,146.3 46.13,196.88 -27.4,116.56 -109.52,159.84 -189.98,175.86l-255.47 -3.07c-244.2,-36.46 -242.43,-408.7 64.09,-392.76z"/>
+    <path class="fil0 str3" d="M435.29 725.34c-49.92,-2.47 -50.92,-2.54 -50.92,-2.54 -86.49,-22.53 -111.5,-90.24 -110.81,-150.41 20.63,-115.32 143.13,-145.55 221.65,-78.68l70.17 71.66"/>
+    <path class="fil0 str3" d="M636.86 468.76c15.55,-19.63 52.91,-30.08 52.91,-30.08 93.7,-34 220.33,34.12 215.69,152.93 15.32,101.54 -122.01,219.36 -239.78,149.38l-116.5 -85.39"/>
+   </g>
+  </g>
+ </g>
+</svg>

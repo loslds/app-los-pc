@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="134.874mm" height="134.874mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 559.17 559.17"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str2 {stroke:black;stroke-width:14.04;stroke-miterlimit:22.9256}
+    .str0 {stroke:#E3FFFF;stroke-width:24.57;stroke-miterlimit:22.9256}
+    .str4 {stroke:black;stroke-width:1.75;stroke-miterlimit:22.9256}
+    .str5 {stroke:red;stroke-width:1.75;stroke-miterlimit:22.9256}
+    .str3 {stroke:black;stroke-width:8.78;stroke-miterlimit:22.9256}
+    .str1 {stroke:white;stroke-width:24.57;stroke-linecap:round;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil2 {fill:#373435}
+    .fil1 {fill:#1C8BD3}
+    .fil3 {fill:red}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2347616798848">
+   <rect class="fil0" x="-0" width="559.17" height="559.17"/>
+   <circle class="fil1 str0" cx="277.1" cy="279.07" r="229.93"/>
+   <path class="fil0 str1" d="M202.88 148.45c127.84,-0.05 222.53,88.98 217.97,213"/>
+   <path class="fil0 str1" d="M204.31 197.97c98.24,-0.04 171.01,68.9 167.5,164.93"/>
+   <path class="fil0 str1" d="M205.04 248.72c66.38,-0.03 115.55,46.5 113.18,111.31"/>
+   <line class="fil0 str2" x1="212.43" y1="370.99" x2="189.97" y2= "450.14" />
+   <line class="fil0 str2" x1="243.12" y1="362.89" x2="271.11" y2= "468.18" />
+   <line class="fil0 str3" x1="199.4" y1="430.08" x2="262.11" y2= "457.81" />
+   <line class="fil0 str3" x1="199.4" y1="430.08" x2="248.84" y2= "412.59" />
+   <circle class="fil2 str4" cx="227.53" cy="342.72" r="33.35"/>
+   <polygon class="fil3 str5" points="255.93,325.24 233.85,309.97 248.85,217.97 282.01,287.91 295.88,152.85 318.79,220.98 363.4,111.25 350.14,224 407.42,202.29 310.35,274.04 387.52,265 "/>
+  </g>
+ </g>
+</svg>

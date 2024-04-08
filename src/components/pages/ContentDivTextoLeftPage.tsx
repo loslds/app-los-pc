@@ -13,7 +13,7 @@ const ContentDivTextoLeftPage = ({
   children
 }: TypeContentDivTextoLeftPage) => {
   return (
-    <Pg.ContainerTextoLeftPage isborda={true}>
+    <Pg.ContainerTextoLeftPage isborda={isborda}>
       <label>{label}</label>
       {children}
     </Pg.ContainerTextoLeftPage>

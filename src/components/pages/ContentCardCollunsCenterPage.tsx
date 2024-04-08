@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import * as Lg from './stylePage';
+import * as Pg from './stylePage';
 
 type TypeCardCollunsCenterPage = {
   pheight?: string;
@@ -14,9 +14,9 @@ const ContentCardCollunsCenterPage = ({
   children
 }: TypeCardCollunsCenterPage) => {
   return (
-    <Lg.ContainerCollunsCenterPage isopen={isopen} pheight={pheight} pwidth={pwidth}>
+    <Pg.ContainerCollunsCenterPage isopen={isopen} pheight={pheight} pwidth={pwidth}>
       {children}
-    </Lg.ContainerCollunsCenterPage>
+    </Pg.ContainerCollunsCenterPage>
   );
 };
 

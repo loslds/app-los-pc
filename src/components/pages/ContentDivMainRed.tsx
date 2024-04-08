@@ -1,25 +1,27 @@
 import { ReactNode } from 'react';
 
-import * as Lg from './stylePage.ts';
+import * as Pg from './stylePage.ts';
 
 type TypeContentDivManRed = {
   pxheigth?: string;
+  pxwidth?: string;
   label?: string;
   statedata?: string;
   children?: ReactNode | JSX.Element;
 };
 const ContentDivMainRed = ({
   pxheigth,
+  pxwidth,
   label,
   statedata,
   children
 }: TypeContentDivManRed) => {
   return (
-    <Lg.ContainerDivManRed pxheight={pxheigth}>
+    <Pg.ContainerDivManRed pxheight={pxheigth} pxwidth={pxwidth}>
       <label>{label}</label>
       <h3>{statedata}</h3>
       {children}
-    </Lg.ContainerDivManRed>
+    </Pg.ContainerDivManRed>
   );
 };
 
