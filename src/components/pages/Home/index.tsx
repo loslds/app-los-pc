@@ -30,6 +30,7 @@ const Home = () => {
 
   React.useEffect(() => {
     if (!state.logado) {
+      
       dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
       dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
       //dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
@@ -75,7 +76,12 @@ const Home = () => {
       dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
       dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
       dispatch({ type: AcessoUseActions.setTmp, payload: '' });
+    } else {
+
+      dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
+
     }
+
   }, [dispatch]);
 
   const [theme, setTheme] = useState(dark);
