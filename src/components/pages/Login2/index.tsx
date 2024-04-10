@@ -285,6 +285,8 @@ export const Login2 = () => {
                 </ContentCardCollunsCenterPage>
               </ContentCardBoxCenterPage>
             ) : null}
+
+          
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
           <ContentSidePagePanelBotton open={true} pwidth="100%">

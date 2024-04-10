@@ -244,6 +244,26 @@ export const ContainerPanelPageFlex = styled.div<TypeContainerPanelPageFlex>`
   align-items: center;
 `;
 
+type TypeContainerPageFlex = {
+bordas?: string;
+}
+export const ContainerPageFlex = styled.div<TypeContainerPageFlex>`
+  border: none;
+  border-radius: 10px;
+  border-color: ${props => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 3px 5px 3px 5px;
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+`;
+
+
 export const ContainerBtnSRigthPage = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
@@ -506,9 +526,11 @@ export const DivisionPgHztalPage = styled.div`
 `;
 
 export const ContainerBoxLabelPage = styled.div`
-  border: 1px double;
+  border: 2px dashed;
   border-color: ${props => props.theme.colors.textColor};
   border-radius: 10px;
+  padding: 3px 5px 3px 15px;
+  margin: 3px 10px 3px 10px;
   min-width: 50px;
   display: flex;
   justify-content: center;
@@ -518,6 +540,9 @@ export const ContainerBoxLabelPage = styled.div`
   font-weight: normal;
   font-family: 'Courier New', Courier, monospace;
   color: ${props => props.theme.colors.textColor};
+  &:hover {
+    border-color: #ff0000;
+   }
   h4,
   label {
     display: flex;
@@ -540,7 +565,7 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
   border-radius: 10px;
   border-color: ${(props) => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
-  margin: 5px 0px 5px 0px;
+  margin: 5px 10px 5px 10px;
   min-width: ${({ pxwidth }) => pxwidth || '20%'};
   display: flex;
   justify-content: center;
@@ -621,6 +646,34 @@ export const ContainerDivManRed = styled.div<TypeContainerDivManRed>`
     border-color: #fc0303;
   }
 `;
+
+type TypeContainerDivManBlue = {
+  pxheight?: string;
+  pxwidth?: string;
+  label?: string;
+  statedata?: string;
+}
+export const ContainerDivManBlue = styled.div<TypeContainerDivManBlue>`
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: ${(props) => props.theme.colors.textColor};
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  min-height: ${({ pxheight }) => pxheight || '30px'};
+  width: ${({ pxwidth }) => pxwidth || '100%'};
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color: ${(props) => props.theme.colors.textColor};
+  background: transparent;
+  &:hover {
+    border-color: #00ffff;
+  }
+`;
+
 
 type TypeContainerCardDivMainLeft = {
   pxheight?: string;
