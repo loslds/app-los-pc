@@ -49,6 +49,8 @@ export async function getAccesSnhs(options = {}) {
   if (userIdEmp) {
     resultData.accessnhs = resultData.accessnhs.filter( (p) => p.idemp === userIdEmp ); }
   
+  
+    
   if (userMdLogin === 1 || userMdLogin === 3){
     if (userStrId) {
       resultData.accessnhs = resultData.accessnhs.filter( (p) => p.mailuser === userStrId ); 
