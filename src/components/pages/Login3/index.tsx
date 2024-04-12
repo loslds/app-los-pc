@@ -35,49 +35,25 @@ import setaesq from '../../../assets/svgs/setaesq.svg';
 import olhoa from '../../../assets/svgs/olhoa.svg';
 import olhof from '../../../assets/svgs/olhof.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-
-// isconexao
 import satelite from '../../../assets/svgs/satelite.svg';
-import conexaoon from '../../../assets/svgs/conexaoon.svg';
-import conexaooff from '../../../assets/svgs/conexaooff.svg';
-
-
-import nuvenon from '../../../assets/svgs/nuvenon.svg';
-import nuvenoff from '../../../assets/svgs/nuvenoff.svg';
-
-
-
+import sateliteon from '../../../assets/svgs/sateliteon.svg';
+import sateliteoff from '../../../assets/svgs/sateliteoff.svg';
+import nuvenfind from '../../../assets/svgs/nuvenfind.svg';
+import nuvenfindon from '../../../assets/svgs/nuvenfindon.svg';
+import nuvenfindoff from '../../../assets/svgs/nuvenfindoff.svg';
 import login from '../../../assets/svgs/login.svg';
 import logoon from '../../../assets/svgs/logoon.svg';
 import logooff from '../../../assets/svgs/logooff.svg';
 
-
-
-
-//import internet from '../../../assets/svgs/internet.svg';
-//import login from '../../../assets/svgs/login.svg';
-
-//isfindacesso
-
-
-
-//import logoon from '../../../assets/svgs/logoon.svg';
-
-
-import enviaron from '../../../assets/svgs/enviaron.svg';
-
-import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
-
-//import ContentDivMainImagens from '../ContentDivMainImagens.tsx';
 import Loading from '../../loadings/Loading.tsx';
-//import Login from '../Login/index.tsx';
-
 
 export function Conexao() {
-  const [log,setlog] = React.useState(true);
-  if (log){
+  const [log, setlog] = React.useState(true);
+  if (log) {
     alert('entrei conexao');
-    setTimeout(() => { <Loading /> }, 2000);
+    setTimeout(() => {
+      <Loading />;
+    }, 2000);
     setlog(false);
   }
   console.log('sai : ', 'Conexao()');
@@ -111,25 +87,16 @@ const Login3 = () => {
   const [isenviar, setIsEnviar] = React.useState(true);
 
   const [isconexao, setIsConexao] = React.useState(false);
-  const [isconected, setIsConected] = React.useState(false);
+  const [isconectedon, setIsConectedon] = React.useState(false);
+  const [isconectedoff, setIsConectedoff] = React.useState(false);
 
   const [isfindacces, setIsFindAcces] = React.useState(false);
-  const [isfinding, setIsFinding] = React.useState(false);
+  const [isfindingon, setIsFindingon] = React.useState(false);
+  const [isfindingoff, setIsFindingoff] = React.useState(false);
 
   const [islogin, setIsLogin] = React.useState(false);
-  const [islogged, setIsLogged] = React.useState(false);
-  
-  //const [isredeon, setIsRedeOn] = React.useState(false);
-  //const [isredeoff, setIsRedeOff] = React.useState(false);
-
-  
-  //const [isdadoson, setIsDadosOn] = React.useState(false);
-  //const [isdadosoff, setIsDadosOff] = React.useState(false);
-
-  //const [islogar, setIsLogar] = React.useState(false);
-  //const [islogoon, setIsLogoOn] = React.useState(false);
-  //const [islogooff, setIsLogoOff] = React.useState(false);
-
+  const [isloggedon, setIsLoggedon] = React.useState(false);
+  const [isloggedoff, setIsLoggedoff] = React.useState(false);
 
   const [acesso, setAcesso] = React.useState(false);
   const [isresgatar, setIsResgatar] = React.useState(false);
@@ -192,8 +159,10 @@ const Login3 = () => {
     setIsConexao(true);
     let rtncon = true;
     //acessa servidor
-    if (rtncon){
-      setIsConected(true);
+    if (rtncon) {
+      setIsConectedon(true);
+    } else {
+      setIsConectedoff(true);
     }
   }, []);
 
@@ -202,8 +171,10 @@ const Login3 = () => {
     //acessa dados
     let rtndad = true;
     //acessa servidor
-    if (rtndad){
-      setIsFinding(true);
+    if (rtndad) {
+      setIsFindingon(true);
+    } else {
+      setIsFindingoff(true);
     }
   }, []);
 
@@ -212,8 +183,10 @@ const Login3 = () => {
     //acessa servidor
     let rtnlog = true;
     //acessa servidor
-    if (rtnlog){
-      setIsLogged(true);
+    if (rtnlog) {
+      setIsLoggedon(true);
+    } else {
+      setIsLoggedoff(true);
     }
   }, []);
 
@@ -290,8 +263,8 @@ const Login3 = () => {
                   </ContentDivMainRed>
                 )}
               </ContentSidePagePanelBotton>
-            ) : null}
-
+              ) : null
+            }
             {isenviar ? (
               <ContentPagePanelBotton open={true} pwidth="100%">
                 {!isconexao ? (
@@ -308,39 +281,7 @@ const Login3 = () => {
                       />
                     </Pg.ContainerCardDivMainEnd>
                   </ContentDivMainBlue>
-                  ) : null
-                }
-                {isconected ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Conectar:</label>
-                      <h4>REDE</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOn
-                        img={conexaoon}
-                        title="Acesso REDE."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                  ) : (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Conectar:</label>
-                      <h4>REDE</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOn
-                        img={conexaooff}
-                        title="Acesso REDE."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                  )
-                }
-                    
+                ) : null}
                 {!isfindacces ? (
                   <ContentDivMainBlue pxheigth="50px">
                     <ContentDivTxt>
@@ -349,45 +290,13 @@ const Login3 = () => {
                     </ContentDivTxt>
                     <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                       <ContentDivButtonOff
-                        //img={}
+                        img={nuvenfind}
                         title="Acesso DADOS."
                         onClick={handlerFindAcess}
                       />
                     </Pg.ContainerCardDivMainEnd>
                   </ContentDivMainBlue>
-                  ) : null
-                }
-                {isfindacces ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Serviço:</label>
-                      <h4>DADOS</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOff
-                        img={nuvenon}
-                        title="Acesso DADOS."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                ) : (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Serviço:</label>
-                      <h4>DADOS</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOff
-                        img={nuvenoff}
-                        title="Acesso DADOS."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                  )
-                }
-
+                ) : null}
                 {!islogin ? (
                   <ContentDivMainBlue pxheigth="50px">
                     <ContentDivTxt>
@@ -403,36 +312,114 @@ const Login3 = () => {
                     </Pg.ContainerCardDivMainEnd>
                   </ContentDivMainBlue>
                 ) : null}
-                {!islogged ? (
+              </ContentPagePanelBotton>
+              ) : null
+            }
+
+                        
+              
+
+
+
+
+
+
+
+
+
+                {isconexao && isconectedon ? (
                   <ContentDivMainBlue pxheigth="50px">
                     <ContentDivTxt>
-                      <label>Logar:</label>
-                      <h4>LOGAR</h4>
+                      <label>Conexão:</label>
+                      <h4>REDE CONECTADA</h4>
+                    </ContentDivTxt>
+                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
+                      <ContentDivButtonOn
+                        img={sateliteon}
+                        title="REDE Liberada."
+                        onClick={() => {}}
+                      />
+                    </Pg.ContainerCardDivMainEnd>
+                  </ContentDivMainBlue>
+                ) : null}
+                {isconexao && isconectedoff ? (
+                  <ContentDivMainBlue pxheigth="50px">
+                    <ContentDivTxt>
+                      <label>Conexão:</label>
+                      <h4>REDE NEGADA</h4>
+                    </ContentDivTxt>
+                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
+                      <ContentDivButtonOn
+                        img={sateliteoff}
+                        title="REDE Negada."
+                        onClick={() => {}}
+                      />
+                    </Pg.ContainerCardDivMainEnd>
+                  </ContentDivMainBlue>
+                ) : null}
+
+
+                {isfindacces && isfindingon ? (
+                  <ContentDivMainBlue pxheigth="50px">
+                    <ContentDivTxt>
+                      <label>Serviço:</label>
+                      <h4>DADOS LIBERADO</h4>
+                    </ContentDivTxt>
+                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
+                      <ContentDivButtonOn
+                        img={nuvenfindon}
+                        title="Dados Liberado."
+                        onClick={() => {}}
+                      />
+                    </Pg.ContainerCardDivMainEnd>
+                  </ContentDivMainBlue>
+                ) : null}
+                {isfindacces && !isfindingoff ? (
+                  <ContentDivMainBlue pxheigth="50px">
+                    <ContentDivTxt>
+                      <label>Serviço:</label>
+                      <h4>DADOS NEGADO</h4>
+                    </ContentDivTxt>
+                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
+                      <ContentDivButtonOff
+                        img={nuvenfindoff}
+                        title="Acesso DADOS."
+                        onClick={handlerFindAcess}
+                      />
+                    </Pg.ContainerCardDivMainEnd>
+                  </ContentDivMainBlue>
+                ) : null}
+
+                {islogin && isfindingon ? (
+                  <ContentDivMainBlue pxheigth="50px">
+                    <ContentDivTxt>
+                      <label>LOGAR:</label>
+                      <h4>LOGIN SUCESSO</h4>
+                    </ContentDivTxt>
+                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
+                      <ContentDivButtonOn
+                        img={logoon}
+                        title="Login Sucesso."
+                        onClick={() => {}}
+                      />
+                    </Pg.ContainerCardDivMainEnd>
+                  </ContentDivMainBlue>
+                ) : null}
+                {islogin && isfindingoff ? (
+                  <ContentDivMainBlue pxheigth="50px">
+                    <ContentDivTxt>
+                      <label>Serviço:</label>
+                      <h4>LOGIN NEGADO</h4>
                     </ContentDivTxt>
                     <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                       <ContentDivButtonOff
                         img={logooff}
-                        title="Acesso NEGADO."
+                        title="Login Negado."
                         onClick={() => {}}
                       />
                     </Pg.ContainerCardDivMainEnd>
                   </ContentDivMainBlue>
-                  ) : (
-                    <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Logar:</label>
-                      <h4>LOGAR</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOff
-                        img={logoon}
-                        title="Acesso SUCESSO."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                  )
-                }
+                ) : null}
               </ContentPagePanelBotton>
             ) : null}
           </ContentCardBoxMainPage>
