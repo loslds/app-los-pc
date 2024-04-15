@@ -148,7 +148,7 @@ export const Login2 = () => {
   }, [strid, strpsw, tentativa]);
   React.useEffect(() => {
     if (!ischeklogin && nmrerrologin !== '') {
-      if (tentativa + 1 > 4) {
+      if (tentativa + 1 >= 5) {
         setIsEditar(false);
         setBtnContinua(false);
         setBtnEnviar(false);
@@ -270,14 +270,14 @@ export const Login2 = () => {
                         />
                         <br />
                         <label>PIN.....:</label>
-                          <input
-                            type="text"
-                            name="pin2"
-                            value={strpsw}
-                            maxLength={10}
-                            onChange={handlerOnChangerStrPsw}
-                            onKeyUp={spanChangeKeyUpPasPsw}
-                          />
+                        <input
+                          type="text"
+                          name="pin2"
+                          value={strpsw}
+                          maxLength={10}
+                          onChange={handlerOnChangerStrPsw}
+                          onKeyUp={spanChangeKeyUpPasPsw}
+                        />
                         <br />
                       </form>
                     ) : null}
@@ -285,8 +285,6 @@ export const Login2 = () => {
                 </ContentCardCollunsCenterPage>
               </ContentCardBoxCenterPage>
             ) : null}
-
-          
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
           <ContentSidePagePanelBotton open={true} pwidth="100%">
@@ -301,7 +299,19 @@ export const Login2 = () => {
             <Lg.ContainerBoxLabelPage>
               <label>[ {4 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-            {btncontinua && state.mdlogin > 0 && !ischeklogin ? (
+
+            {!ischeklogin && tentativa >= 4 ? (
+              <ContentSidePageLabelBotton
+                pxheight={'20px'}
+                istitl={true}
+                title={'Resgatar.: '}
+                img={setadir}
+                titbtn={'Resgatar...'}
+                onclick={goto('/login4')}
+              />
+            ) : null}
+
+            {btncontinua && state.mdlogin < 5 && !ischeklogin ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
                 istitl={true}
@@ -311,7 +321,8 @@ export const Login2 = () => {
                 onclick={handlerContinuar}
               />
             ) : null}
-            {ischeklogin && btnenviar? (
+
+            {ischeklogin && btnenviar ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
                 istitl={true}
@@ -321,6 +332,8 @@ export const Login2 = () => {
                 onclick={goto('/login3')}
               />
             ) : null}
+
+
             {iserrologin ? (
               <PanelModalInfoErros
                 ptop={'1%'}

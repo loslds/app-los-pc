@@ -189,8 +189,8 @@ export const ContainerInputPage = styled.div`
 `;
 
 export const ContainerInputMainPage = styled.div`
-  border: 2px solid green;
-  padding: 2px 2px 2px 2px;
+  border: none;
+  padding: 2px 0px 2px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
   display: flex;
@@ -239,7 +239,7 @@ export const ContainerPanelPageFlex = styled.div<TypeContainerPanelPageFlex>`
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: collu;
   align-content: center;
   align-items: center;
 `;
