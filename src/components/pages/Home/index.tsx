@@ -28,9 +28,10 @@ import CardImgNeg from '../../contentHelp/CardImgNeg.tsx';
 const Home = () => {
   const { state, dispatch } = AcessoUseForm();
 
+  console.log('state.logado Home : ', state.logado);
+
   React.useEffect(() => {
     if (!state.logado) {
-      
       dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
       dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
       //dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
@@ -45,13 +46,14 @@ const Home = () => {
       dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
 
       dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-      dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-
-      dispatch({ type: AcessoUseActions.setIdUser, payload: '' });
-      dispatch({ type: AcessoUseActions.setPin, payload: '' });
-      dispatch({ type: AcessoUseActions.setMail, payload: '' });
       dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      
+      dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+      dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
 
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setPin, payload: '' });
+      
       //dispatch({ type: AcessoUseActions.setNmRecep, payload: '' });
       dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
       //dispatch({ type: AcessoUseActions.setNmDesig, payload: '' });
@@ -71,17 +73,15 @@ const Home = () => {
       //  dispatch({ type: AcessoUseActions.setLogado, payload: false });
 
       dispatch({ type: AcessoUseActions.setLogado, payload: false });
-      dispatch({ type: AcessoUseActions.setModulo, payload: '' });
-      dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
       dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
       dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
       dispatch({ type: AcessoUseActions.setTmp, payload: '' });
+      
+      dispatch({ type: AcessoUseActions.setModulo, payload: '' });
+      dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
     } else {
-
       dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
-
     }
-
   }, [dispatch]);
 
   const [theme, setTheme] = useState(dark);

@@ -48,8 +48,11 @@ const Login1 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login1' });
+    
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+    
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Login : Opções Acesso'
@@ -60,6 +63,11 @@ const Login1 = () => {
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
+
+    dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
+    dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
+    dispatch({ type: AcessoUseActions.setTmp, payload: '' });
+
   }, [dispatch]);
   const setModo = (level: number) => {
     setMdLogin(level);

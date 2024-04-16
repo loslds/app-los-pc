@@ -228,6 +228,7 @@ type TypeContainerPanelPageFlex = {
 bordas?: string;
 }
 export const ContainerPanelPageFlex = styled.div<TypeContainerPanelPageFlex>`
+  //border : ${props => props.bordas || 'none'};
   border: ${({ bordas }) => bordas || '3px'};
   border-style: double;
   border-radius: 10px;
@@ -239,7 +240,7 @@ export const ContainerPanelPageFlex = styled.div<TypeContainerPanelPageFlex>`
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
-  justify-content: collu;
+  justify-content: space-between;
   align-content: center;
   align-items: center;
 `;
@@ -592,6 +593,59 @@ export const ContainerDivTestoAtenctionPage = styled.div<TypeContainerDivTestoAt
     border-color: red;
   }
 `;
+
+type TypeContainerDivMainOffRed = {
+  pxheight?: string;
+  pxwidth?: string;
+  label?: string;
+  statedata?: string;
+}
+export const ContainerDivMainOffRed = styled.div<TypeContainerDivMainOffRed>`
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: red;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  min-height: ${({ pxheight }) => pxheight || '30px'};
+  width: ${({ pxwidth }) => pxwidth || '100%'};
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color: red;
+  background: transparent;
+`;
+
+type TypeContainerDivMainOnGreen = {
+  pxheight?: string;
+  pxwidth?: string;
+  label?: string;
+  statedata?: string;
+}
+export const ContainerDivMainOnGreen = styled.div<TypeContainerDivMainOnGreen>`
+  border: 2px solid;
+  border-radius: 10px;
+  border-color: greenyellow;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 0px 5px 0px;
+  min-height: ${({ pxheight }) => pxheight || '30px'};
+  width: ${({ pxwidth }) => pxwidth || '100%'};
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color: greenyellow;
+  background: transparent;
+`;
+
+
+
+
+
 
 type TypeContainerDivManYellow = {
   pxheight?: string;

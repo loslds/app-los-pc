@@ -4,6 +4,8 @@ import Switch from 'react-switch';
 // import '../../layouts/styled.ts';
 import * as Pg from '../layouts/styled.ts';
 
+import {AcessoUseForm} from '../contexts/login/ContextAcesso.tsx';
+
 import logosys from '../../assets/pngs/logosys.png';
 import abouthome from '../../assets/svgs/abouthome.svg';
 import avatar from '../../assets/svgs/avatar.svg';
@@ -34,7 +36,11 @@ export const HearderHome = ({
   ischeck,
   onLogin
 }: PropsHearderHome) => {
+
+  const { state } = AcessoUseForm();
   const [isonpanel, setIsOnPanel] = React.useState(false);
+
+  console.log('state.logado HearderHome :', state.logado);
 
   return (
     <ContentHearderMain>
