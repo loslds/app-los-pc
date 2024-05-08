@@ -26,10 +26,7 @@ import ContentDivMainOnGreen from '../ContentDivMainOnGreen.tsx';
 import ContentDivMainOffRed from '../ContentDivMainOffRed.tsx';
 import ContentDivButtonOff from '../ContentDivButtonOff.tsx';
 import ContentDivButtonOn from '../ContentDivButtonOn.tsx';
-//import CardModalTexto from '../../Modal/CardModalTexto.tsx';
 import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage';
-
-import ContentPagePanelBotton from '../ContentPagePanelBotton.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 import { ContentDivTxt } from '../ContentDivTxt.tsx';
@@ -48,34 +45,13 @@ import login from '../../../assets/svgs/login.svg';
 import logoon from '../../../assets/svgs/logoon.svg';
 import logooff from '../../../assets/svgs/logooff.svg';
 
-import Loading from '../../loadings/Loading.tsx';
-
 export function Conexao() {
-  const [log, setlog] = React.useState(true);
-  if (log) {
-    alert('entrei conexao');
-    setTimeout(() => {
-      <Loading />;
-    }, 2000);
-    setlog(false);
-  }
-  console.log('sai : ', 'Conexao()');
   return true;
 }
 export function FindAcesso() {
-  console.log('entrei : ', 'FindAcesso()');
-  setTimeout(() => {
-    <Loading />;
-  }, 2000);
-  console.log('sai : ', 'FindAcesso()');
   return true;
 }
 export function GetLogon() {
-  console.log('entrei : ', 'GetLogon()');
-  setTimeout(() => {
-    <Loading />;
-  }, 2000);
-  console.log('sai : ', 'GetLogon()');
   return true;
 }
 
@@ -168,15 +144,13 @@ const Login3 = () => {
     } else {
       setIsResgatar(false);
     }
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
   }, [dispatch]);
 
   const handlerConexao = React.useCallback(() => {
     setIsConexao(false);
     setIsFindAcces(true);
+    //acessa conexão
     let rtncon = true;
-    //acessa serviço rede
     if (rtncon) {
       setIsConectedon(true);
     } else {
@@ -191,10 +165,9 @@ const Login3 = () => {
   const handlerFindAcess = React.useCallback(() => {
     setIsFindAcces(false);
     setIsLogin(true);
-    //acessa dados servidor
-    let rtndad = true;
-    //acessa servidor
-    if (rtndad) {
+    //acessa banco de dados
+    let rtndata = true;
+    if (rtndata) {
       setIsFindingon(true);
     } else {
       setIsFindingoff(true);
@@ -208,16 +181,13 @@ const Login3 = () => {
   const handlerLogin = React.useCallback(() => {
     setIsLogin(false);
     setIsAcesso(true);
-
-    //acessa servidor
-    let rtnlog = ;
-    //acessa servidor
-    if (rtnlog) {
+    //acessa dados
+    let rtndados = true;
+    if (rtndados) {
       setIsLoggedon(true);
     } else {
       setIsLoggedoff(true);
       setIsAcesso(false);
-      //dispatch({ type: AcessoUseActions.setLogado, payload: isloggedoff });
       if (tentativa + 1 === 5) {
         setIsResgatar(true);
       }
@@ -225,13 +195,14 @@ const Login3 = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+    dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
     if (isacesso) {
       dispatch({ type: AcessoUseActions.setLogado, payload: isloggedon });
     } else {
       dispatch({ type: AcessoUseActions.setLogado, payload: isloggedoff });
     }
-
-  }, [isacesso, dispatch]);
+  }, [tentativa, isacesso, dispatch]);
 
   console.log('state.logado login3 :', state.logado);
 
@@ -294,6 +265,8 @@ const Login3 = () => {
               )}
             </ContentCardCollunsCenterPage>
 
+            {/* // apos clicar em Enviar // */}
+
             <ContentCardCollunsCenterPage isopen={isconexao} pwidth="100%">
               <ContentDivMainBlue pxheigth="50px">
                 <ContentDivTxt>
@@ -308,6 +281,7 @@ const Login3 = () => {
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
+
               <ContentDivMainBlue pxheigth="50px">
                 <ContentDivTxt>
                   <label>Serviço:</label>
@@ -336,6 +310,7 @@ const Login3 = () => {
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
 
+            {/* // apos clicar em handlerConexao e não obter uma conexão // */}
             <ContentCardCollunsCenterPage isopen={isconectedoff} pwidth="100%">
               <ContentDivMainOffRed pxheight="50px">
                 <ContentDivTxt>
@@ -380,6 +355,7 @@ const Login3 = () => {
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
 
+            {/* // apos retorno Conexao=> true verifica acesso a Database com handlerFindAcess // */}
             <ContentCardCollunsCenterPage isopen={isfindacces} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
@@ -404,7 +380,7 @@ const Login3 = () => {
                   <ContentDivButtonOff
                     img={nuvenfind}
                     title="Acesso DADOS."
-                    onClick={() => {}}
+                    onClick={handlerFindAcess}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
@@ -423,6 +399,7 @@ const Login3 = () => {
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
 
+            {/* // apos clicar em handlerFindAcess e não enconntrar DataBase // */}
             <ContentCardCollunsCenterPage isopen={isfindingoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
@@ -466,6 +443,7 @@ const Login3 = () => {
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
 
+            {/* // apos retorno Database=> true libera handlerLogin busca a existencia dos dados login //*/}
             <ContentCardCollunsCenterPage isopen={islogin} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
@@ -504,12 +482,13 @@ const Login3 = () => {
                   <ContentDivButtonOff
                     img={login}
                     title="Acesso LOGAR."
-                    onClick={() => {}}
+                    onClick={handlerLogin}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
 
+            {/* // apos retorno Login false  // */}
             <ContentCardCollunsCenterPage isopen={isloggedoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
@@ -554,6 +533,7 @@ const Login3 = () => {
               </ContentDivMainOffRed>
             </ContentCardCollunsCenterPage>
 
+            {/* // apos retorno Login => true libera botão   // */}
             <ContentCardCollunsCenterPage isopen={isacesso} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
@@ -616,7 +596,7 @@ const Login3 = () => {
                 <ContentSidePageLabelBotton
                   pxheight={'20px'}
                   istitl={true}
-                  title={'Enviar1.: '}
+                  title={'Enviar.: '}
                   img={setadir}
                   titbtn={'Enviar...'}
                   onclick={handlerEnviar}

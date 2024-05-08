@@ -51,6 +51,9 @@ export const Login2 = () => {
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [ischeklogin, setIsChekLogin] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(state.nrcont);
+  console.log('state.nrcont :', state.nrcont);
+  console.log('tentativa :', tentativa);
+  
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
   const [btnenviar, setBtnEnviar] = React.useState(false);
@@ -59,7 +62,7 @@ export const Login2 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-    dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({
       type: AcessoUseActions.setModulo,
@@ -67,10 +70,10 @@ export const Login2 = () => {
     });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: state.nmlogin });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
-    setTentativa(state.nrcont);
+    //    setTentativa(state.nrcont);
     setIsEditar(true);
     setBtnContinua(true);
-  }, [dispatch]);
+  }, [tentativa, dispatch]);
   const handlerOnChangerStrId = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setStrId(e.currentTarget.value);
@@ -332,7 +335,6 @@ export const Login2 = () => {
                 onclick={goto('/login3')}
               />
             ) : null}
-
 
             {iserrologin ? (
               <PanelModalInfoErros

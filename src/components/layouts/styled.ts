@@ -28,7 +28,7 @@ export const ContainerFlexPg = styled.div`
   //flex-flow: wrap;
   //flex-wrap: wrap;
   justify-content: space-between;
-  align-content: center;
+  //align-content: center;
   background-color: transparent;
 `;
 ///////////// HEADER /////////////////////////

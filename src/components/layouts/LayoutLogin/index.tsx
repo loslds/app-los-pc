@@ -28,9 +28,11 @@ export const LayoutLogin = ({
         ischeck={ischeck}
       />
       <Hm.DivisionPgHztal />
+
       <Hm.ContainerBody>
         <Hm.ContainerPage>{children}</Hm.ContainerPage>
       </Hm.ContainerBody>
+      
     </ContentPages>
   );
 };

@@ -48,14 +48,14 @@ const data = {
   ]
 }
 
-export async function getEmpresa({options}:TypeEmpresasOrderFilter) {
+export async function getEmpresa(options:TypeEmpresasOrderFilter) {
   const result = await new Promise(resolve => {
     setTimeout(() => {
       resolve({ data });
     }, 2000)
   })
 
-  const { order }:TypeEmpresasOrderFilter = options;
+  const {order}:TypeEmpresasOrderFilter = options;
 
   
   

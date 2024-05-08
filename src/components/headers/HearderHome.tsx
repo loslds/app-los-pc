@@ -4,11 +4,11 @@ import Switch from 'react-switch';
 // import '../../layouts/styled.ts';
 import * as Pg from '../layouts/styled.ts';
 
-import {AcessoUseForm} from '../contexts/login/ContextAcesso.tsx';
+import { AcessoUseForm } from '../contexts/login/ContextAcesso.tsx';
 
 import logosys from '../../assets/pngs/logosys.png';
 import abouthome from '../../assets/svgs/abouthome.svg';
-import avatar from '../../assets/svgs/avatar.svg';
+
 
 import { ContentHeaderButtonSys } from './ContentHeaderButtonSys.tsx';
 import { ContentHearderItens } from './ContentHearderItens.tsx';
@@ -23,6 +23,8 @@ import PageModal from '../Modal/PageModal.tsx';
 import CardAcessoSistema from '../contentHelp/CardAcessoSistema.tsx';
 
 type PropsHearderHome = {
+  img: string;
+  titbtn: string;
   onclick?: () => void;
   title?: string;
   onchange: () => void;
@@ -30,13 +32,14 @@ type PropsHearderHome = {
   onLogin?: () => void;
 };
 export const HearderHome = ({
+  img,
+  titbtn,
   onclick,
   title,
   onchange,
   ischeck,
   onLogin
 }: PropsHearderHome) => {
-
   const { state } = AcessoUseForm();
   const [isonpanel, setIsOnPanel] = React.useState(false);
 
@@ -60,10 +63,10 @@ export const HearderHome = ({
             }}
           />
           <ContentPagesButton
-            img={avatar}
-            titbtn={'Logar...'}
-            onClick={onLogin}
-          />
+              img={img}
+              titbtn={titbtn}
+              onClick={onLogin}
+            />
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}

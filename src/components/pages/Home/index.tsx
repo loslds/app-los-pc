@@ -7,6 +7,8 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
+import avatar from '../../../assets/svgs/avatar.svg';
+import avatar1 from '../../../assets/svgs/camera2.svg';
 import recepcao from '../../../assets/svgs/servicos.svg';
 import design from '../../../assets/svgs/design.svg';
 import producao from '../../../assets/svgs/producao.svg';
@@ -47,13 +49,13 @@ const Home = () => {
 
       dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
       dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-      
+
       dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
       dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
 
       dispatch({ type: AcessoUseActions.setMail, payload: '' });
       dispatch({ type: AcessoUseActions.setPin, payload: '' });
-      
+
       //dispatch({ type: AcessoUseActions.setNmRecep, payload: '' });
       dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
       //dispatch({ type: AcessoUseActions.setNmDesig, payload: '' });
@@ -76,7 +78,7 @@ const Home = () => {
       dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
       dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
       dispatch({ type: AcessoUseActions.setTmp, payload: '' });
-      
+
       dispatch({ type: AcessoUseActions.setModulo, payload: '' });
       dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
     } else {
@@ -104,6 +106,7 @@ const Home = () => {
   };
 
   const [mainhelp, setMainHelp] = React.useState(false);
+  const [meusdados, setMeusdados] = React.useState(false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -112,7 +115,15 @@ const Home = () => {
         title={'Sistema J.R.'}
         onchange={ToggleTheme}
         ischeck={ischeck}
-        onLogin={goto('/login')}
+        img={!state.logado ? avatar : avatar1}
+        titbtn={!state.logado ? 'Logar...' : 'Logado...'}
+        onLogin={
+          !state.logado
+            ? goto('/login')
+            : () => {
+                setMeusdados(true);
+              }
+        }
       >
         <ContentItensBody>
           <ContentCustonImgPage
@@ -123,9 +134,7 @@ const Home = () => {
             titlebtn={'Recepção.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/recepcao');
-                  }
+                ? goto('/recepcao')
                 : () => {
                     setMainHelp(true);
                   }
@@ -139,9 +148,7 @@ const Home = () => {
             titlebtn={'Designs.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/design');
-                  }
+                ? goto('/design')
                 : () => {
                     setMainHelp(true);
                   }
@@ -155,9 +162,7 @@ const Home = () => {
             titlebtn={'Produção.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/producao');
-                  }
+                ? goto('/producao')
                 : () => {
                     setMainHelp(true);
                   }
@@ -171,9 +176,7 @@ const Home = () => {
             titlebtn={'Acabamento.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/acabamento');
-                  }
+                ? goto('/acabamento')
                 : () => {
                     setMainHelp(true);
                   }
@@ -187,9 +190,7 @@ const Home = () => {
             titlebtn={'Expedição.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/expedicao');
-                  }
+                ? goto('/expedicao')
                 : () => {
                     setMainHelp(true);
                   }
@@ -203,9 +204,7 @@ const Home = () => {
             titlebtn={'Administração.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/administracao');
-                  }
+                ? goto('/administracao')
                 : () => {
                     setMainHelp(true);
                   }
@@ -219,9 +218,7 @@ const Home = () => {
             titlebtn={'Master.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/master');
-                  }
+                ? goto('/master')
                 : () => {
                     setMainHelp(true);
                   }
@@ -235,9 +232,7 @@ const Home = () => {
             titlebtn={'Config.'}
             onclick={
               state.logado
-                ? () => {
-                    goto('/config');
-                  }
+                ? goto('/config')
                 : () => {
                     setMainHelp(true);
                   }
@@ -251,6 +246,20 @@ const Home = () => {
               titulo='" A T E N Ç Ã O "'
               onclose={() => {
                 setMainHelp(false);
+              }}
+            >
+              <CardImgNeg />
+            </PageModal>
+          ) : null}
+
+          {meusdados ? (
+            <PageModal
+              ptop="111px"
+              pwidth="60%"
+              pheight="32%"
+              titulo='" L O G A D O "'
+              onclose={() => {
+                setMeusdados(false);
               }}
             >
               <CardImgNeg />

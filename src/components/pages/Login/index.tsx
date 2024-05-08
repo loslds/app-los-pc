@@ -26,8 +26,6 @@ import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-
-
 const Login = () => {
   // const [isopen, setIsOpen] = React.useState(false);
 
@@ -95,8 +93,6 @@ const Login = () => {
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções:' });
 
     dispatch({ type: AcessoUseActions.setLogado, payload: '' });
-
-
     // setIsOpen(true);
   }, [dispatch]);
 
@@ -105,20 +101,16 @@ const Login = () => {
       setFantEmpresa('');
       setBtnContinua(false);
     }
-    
     if (idempresa >= 0) {
-
-
-
-    if (idempresa === 1) {
-      setFantEmpresa('JR.Bordados.');
-    }
-    if (idempresa === 2) {
-      setFantEmpresa('RB.Serviços.');
-    }
-    
-    if (idempresa > 0) {
-      setBtnContinua(true);
+      if (idempresa === 1) {
+        setFantEmpresa('JR.Bordados.');
+      }
+      if (idempresa === 2) {
+        setFantEmpresa('RB.Serviços.');
+      }
+      if (idempresa > 0) {
+        setBtnContinua(true);
+      }
     }
     ////////////////
     dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
@@ -134,7 +126,7 @@ const Login = () => {
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
             <ContentCardBoxCenterPage pwidth="200px" open={true}>
-              <ContentCardPageTitle >
+              <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
               <ContentInputPage>
@@ -151,8 +143,8 @@ const Login = () => {
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
-          
-          <ContentSidePagePanelBotton bordas='3px' open={true} pwidth="100%">
+
+          <ContentSidePagePanelBotton bordas="3px" open={true} pwidth="100%">
             <ContentSidePageLabelBotton
               pxheight={'40px'}
               istitl={true}

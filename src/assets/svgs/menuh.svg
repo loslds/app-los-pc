@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64 Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="63.6986mm" height="63.6356mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 184.63 184.45"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#B8B4B6;stroke-width:12.27;stroke-miterlimit:22.9256}
+    .str2 {stroke:black;stroke-width:1.23;stroke-miterlimit:22.9256}
+    .str1 {stroke:#A3A3A3;stroke-width:8.59;stroke-miterlimit:22.9256}
+    .fil1 {fill:none}
+    .fil2 {fill:black}
+    .fil3 {fill:red}
+    .fil0 {fill:snow}
+   ]]>
+  </style>
+ </defs>
+ <g id="Camada_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_1431448067424">
+   <path class="fil0 str0" d="M13.87 6.14l157.07 0c4.17,-0 7.56,3.86 7.56,8.62l0 154.93c0,4.76 -3.38,8.62 -7.56,8.62l-157.07 0c-4.17,-0 -7.55,-3.86 -7.55,-8.63 0,-18.61 -0.27,-150.05 -0.15,-156.8 0.07,-3.73 4.59,-6.75 7.71,-6.75z"/>
+   <circle class="fil1 str1" cx="92.32" cy="92.22" r="61.35"/>
+   <g>
+    <rect class="fil2 str2" x="54.89" y="55.3" width="74.27" height="9.33" rx="9.14" ry="9.14"/>
+    <rect class="fil2 str2" x="54.89" y="76.97" width="74.27" height="9.33" rx="9.14" ry="9.14"/>
+    <rect class="fil2 str2" x="54.89" y="98.63" width="74.27" height="9.33" rx="9.14" ry="9.14"/>
+    <rect class="fil2 str2" x="54.89" y="120.29" width="74.27" height="9.33" rx="9.14" ry="9.14"/>
+   </g>
+  </g>
+  <g id="_1431448073328">
+   <path class="fil3" d="M70.41 73.13l0 1.23c1.09,0 1.94,0.28 2.77,0.42 2.02,0.35 6.81,1.29 8.28,1.29 0.27,-3.19 1.61,-7.63 2.99,-9.77 2.78,-4.32 5.12,-5.44 9.53,-5.44 4.99,0 8.53,5.09 9.04,9.61 0.8,7.1 -1.34,9.77 -4.52,13.81 -1.44,1.83 -2.74,3.33 -4.2,5.12 -0.71,0.87 -1.37,1.75 -1.99,2.67 -0.66,0.97 -1.37,1.94 -1.93,2.98 -1.23,2.31 -1.96,3.78 -2.63,6.69 -1.07,4.64 -0.88,9.48 -0.88,14.33 14.97,0 10.23,1.45 11.08,-6.59 0.36,-3.4 1.33,-5.54 3.23,-8.06 0.63,-0.84 1.04,-1.44 1.68,-2.25 6.09,-7.6 12.24,-15.04 12.24,-25.55 0,-7.68 -2.57,-13.68 -5.99,-18.06 -3.9,-4.98 -8.62,-8.2 -16.83,-8.2 -7.01,0 -11.65,3.26 -15.63,8.17 -2.91,3.59 -6.21,11.2 -6.21,17.6z"/>
+   <path class="fil3" d="M86.85 139.39l10.31 0 0.03 0c0.54,-0.01 0.71,-0.18 0.71,-0.74l0 -16.93 -11.04 0 0 17.67z"/>
+  </g>
+ </g>
+</svg>

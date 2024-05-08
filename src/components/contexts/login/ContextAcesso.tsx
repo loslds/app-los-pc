@@ -39,6 +39,7 @@ type StateAcesso = {
   modulo: string;
   aplicacao: string;
   logado: boolean;
+  avatar: string;
   datetimei: string;
   datetimef: string;
   tempo: string;
@@ -84,6 +85,7 @@ export const initialData: StateAcesso = {
   modulo: '',
   aplicacao: '',
   logado: false,
+  avatar: '',
   datetimei: '',
   datetimef: '',
   tempo: ''
@@ -129,6 +131,7 @@ export enum AcessoUseActions {
   setModulo,
   setAplicacao,
   setLogado,
+  setAvatar,
   setDtIni,
   setDtFim,
   setTmp
@@ -216,13 +219,15 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
     case AcessoUseActions.setNmConfig:
       return { ...state, nmconfig: action.payload };
 
-    case AcessoUseActions.setLogado:
-      return { ...state, logado: action.payload };
     case AcessoUseActions.setModulo:
       return { ...state, modulo: action.payload };
     case AcessoUseActions.setAplicacao:
       return { ...state, aplicacao: action.payload };
 
+    case AcessoUseActions.setLogado:
+      return { ...state, logado: action.payload };
+    case AcessoUseActions.setAvatar:
+      return { ...state, avatar: action.payload };
     case AcessoUseActions.setDtIni:
       return { ...state, datetimei: action.payload };
     case AcessoUseActions.setDtFim:

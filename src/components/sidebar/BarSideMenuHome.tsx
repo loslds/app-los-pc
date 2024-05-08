@@ -1,7 +1,7 @@
 import * as S from './stylesSidebar';
 import React from 'react';
 
-import menu from '../../assets/svgs/menu.svg';
+import menuh from '../../assets/svgs/menuh.svg';
 import servicos from '../../assets/svgs/servicos.svg';
 import design from '../../assets/svgs/design.svg';
 import producao from '../../assets/svgs/producao.svg';
@@ -39,7 +39,7 @@ export const BarSideMenuHome = () => {
     <ContainerBarSideMain>
       <S.ContainerButtonSRigth>
         <ButtonSideBar
-          img={menu}
+          img={menuh}
           titbtn={'Menu Help...'}
           onClick={handlerClickItensMenu}
         />
