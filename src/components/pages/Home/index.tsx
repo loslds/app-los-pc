@@ -8,7 +8,7 @@ import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
 import avatar from '../../../assets/svgs/avatar.svg';
-import avatar1 from '../../../assets/svgs/camera2.svg';
+import avatar001 from '../../../assets/pngs/avatares/avatar001.png';
 import recepcao from '../../../assets/svgs/servicos.svg';
 import design from '../../../assets/svgs/design.svg';
 import producao from '../../../assets/svgs/producao.svg';
@@ -106,24 +106,28 @@ const Home = () => {
   };
 
   const [mainhelp, setMainHelp] = React.useState(false);
-  const [meusdados, setMeusdados] = React.useState(false);
+  const [meuslogin, setMeuLogin] = React.useState(false);  
+  //const [meusdados, setMeusdados] = React.useState(false);
+
+  // const handlerOnClickLogo = React.useCallback(() => {
+  //   setMeuLogin((oldState) => !oldState);
+  // }, []);
 
   return (
     <ThemeProvider theme={theme}>
-      <LayoutHome
+      <LayoutHome 
         onclick={goto('/')}
         title={'Sistema J.R.'}
         onchange={ToggleTheme}
         ischeck={ischeck}
-        img={!state.logado ? avatar : avatar1}
+        img={!state.logado ? avatar : avatar001}
         titbtn={!state.logado ? 'Logar...' : 'Logado...'}
         onLogin={
           !state.logado
             ? goto('/login')
-            : () => {
-                setMeusdados(true);
-              }
+            : () => { setMeuLogin(true) }
         }
+        ofLogin={ !state.logado ? () => setMeuLogin(false) : null }
       >
         <ContentItensBody>
           <ContentCustonImgPage
@@ -252,6 +256,7 @@ const Home = () => {
             </PageModal>
           ) : null}
 
+{/* 
           {meusdados ? (
             <PageModal
               ptop="111px"
@@ -265,6 +270,7 @@ const Home = () => {
               <CardImgNeg />
             </PageModal>
           ) : null}
+ */}
         </ContentItensBody>
       </LayoutHome>
     </ThemeProvider>

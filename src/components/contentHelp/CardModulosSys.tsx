@@ -1,6 +1,6 @@
 import React from 'react';
 import * as M from '../mains/stylesMainPg';
-import  CardModalTexto from '../Modal/CardModalTexto';
+import CardModalTexto from '../Modal/CardModalTexto';
 import { ContentTextoModulos } from '../Modal/styles';
 import ContainerPanelItens from '../mains/ContainerPanelItens';
 import CardItemMaim from '../mains/CardItemMain';
@@ -16,23 +16,18 @@ import administra from '../../assets/images/svgs/administra.svg';
 import PageModal from '../Modal/PageModal';
 import CardModuloRecep from './CardModuloRecep';
 
-type Props = {
-    img?: string;
-  };
-const CardModulosSys: React.FC<Props> = ({ img }) => {
 
-
-  const [isrecep, setIsRecep]= React.useState(false);
-  const [isdesig, setIsDesig]= React.useState(false);
-  const [isprodu, setIsProdu]= React.useState(false);
-  const [isacaba, setIsAcaba]= React.useState(false);
-  const [isexped, setIsExped]= React.useState(false);
-  const [isadmin, setIsAdmin]= React.useState(false);
-  const [isdiv, setIsDiv]= React.useState(false);
+const CardModulosSys = () => {
+  const [isrecep, setIsRecep] = React.useState(false);
+  const [isdesig, setIsDesig] = React.useState(false);
+  const [isprodu, setIsProdu] = React.useState(false);
+  const [isacaba, setIsAcaba] = React.useState(false);
+  const [isexped, setIsExped] = React.useState(false);
+  const [isadmin, setIsAdmin] = React.useState(false);
+  const [isdiv, setIsDiv] = React.useState(false);
 
   const HandlerClickDiv = (t: string) => {
-
-    if ( t === 'Recep' ) {
+    if (t === 'Recep') {
       if (!isrecep) {
         setIsRecep(true);
         setIsDiv(true);
@@ -42,8 +37,7 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
       setIsAcaba(false);
       setIsExped(false);
       setIsAdmin(false);
-      }
-    else if ( t === 'Desig' ) {
+    } else if (t === 'Desig') {
       setIsRecep(false);
       if (!isdesig) {
         setIsDesig(true);
@@ -53,8 +47,7 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
       setIsAcaba(false);
       setIsExped(false);
       setIsAdmin(false);
-    }
-    else if ( t === 'Produ' ) {
+    } else if (t === 'Produ') {
       setIsRecep(false);
       setIsDesig(false);
       if (!isprodu) {
@@ -64,40 +57,37 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
       setIsAcaba(false);
       setIsExped(false);
       setIsAdmin(false);
-    }
-    else if ( t === 'Acaba' ) {
+    } else if (t === 'Acaba') {
       setIsRecep(false);
       setIsDesig(false);
       setIsProdu(false);
-      if (!isacaba){
+      if (!isacaba) {
         setIsAcaba(true);
         setIsDiv(true);
       }
       setIsExped(false);
       setIsAdmin(false);
-    }
-    else if ( t === 'Exped' ) {
+    } else if (t === 'Exped') {
       setIsRecep(false);
       setIsDesig(false);
       setIsProdu(false);
       setIsAcaba(false);
-      if (!isexped){
+      if (!isexped) {
         setIsExped(true);
         setIsDiv(true);
       }
       setIsAdmin(false);
-    }
-    else if ( t === 'Admin' ) {
+    } else if (t === 'Admin') {
       setIsRecep(false);
       setIsDesig(false);
       setIsProdu(false);
       setIsAcaba(false);
       setIsExped(false);
-      if (!isadmin){
+      if (!isadmin) {
         setIsAdmin(true);
         setIsDiv(true);
       }
-     }
+    }
   };
 
   //}, []);
@@ -108,31 +98,48 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
         <ContainerPanelItens>
           <CardItemMaim id={'Recepção'}>
             <M.ContainerMainItem>
-              <ContentItemMainModal liberado={true} imgdiv={servicos} txt={'Recepção.'}>
-                <ButtonImgMain liberado={true} img={enviar} titlebtn={'Abrir...'} onClick={ () => HandlerClickDiv('Recep') } />
+              <ContentItemMainModal
+                liberado={true}
+                imgdiv={servicos}
+                txt={'Recepção.'}
+              >
+                <ButtonImgMain
+                  liberado={true}
+                  img={enviar}
+                  titlebtn={'Abrir...'}
+                  onClick={() => HandlerClickDiv('Recep')}
+                />
               </ContentItemMainModal>
             </M.ContainerMainItem>
-            {isrecep && isdiv? (
+            {isrecep && isdiv ? (
               <PageModal
-                                ptop={'13%'}
+                ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
                 titulo={'Módulo Recepção.'}
                 onclose={() => setIsDiv(false)}
               >
-                <CardModuloRecep isscroll={true} />
+                <CardModuloRecep />
               </PageModal>
             ) : null}
           </CardItemMaim>
           <CardItemMaim id={'Design'}>
             <M.ContainerMainItem>
-              <ContentItemMainModal liberado={true} imgdiv={design} txt={'Design.'}>
-                <ButtonImgMain liberado={true} img={enviar} titlebtn={'Abrir...'} onClick={ () => HandlerClickDiv('Desig') } />
+              <ContentItemMainModal
+                liberado={true}
+                imgdiv={design}
+                txt={'Design.'}
+              >
+                <ButtonImgMain
+                  liberado={true}
+                  img={enviar}
+                  titlebtn={'Abrir...'}
+                  onClick={() => HandlerClickDiv('Desig')}
+                />
               </ContentItemMainModal>
             </M.ContainerMainItem>
             {isdesig && isdiv ? (
               <PageModal
-                
                 ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
@@ -145,13 +152,21 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
           </CardItemMaim>
           <CardItemMaim id={'Produção'}>
             <M.ContainerMainItem>
-              <ContentItemMainModal liberado={true} imgdiv={producao} txt={'Produção.'}>
-                <ButtonImgMain liberado={true} img={enviar} titlebtn={'Abrir...'} onClick={ () => HandlerClickDiv('Produ') } />
+              <ContentItemMainModal
+                liberado={true}
+                imgdiv={producao}
+                txt={'Produção.'}
+              >
+                <ButtonImgMain
+                  liberado={true}
+                  img={enviar}
+                  titlebtn={'Abrir...'}
+                  onClick={() => HandlerClickDiv('Produ')}
+                />
               </ContentItemMainModal>
             </M.ContainerMainItem>
             {isprodu && isdiv ? (
               <PageModal
-                
                 ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
@@ -164,13 +179,22 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
           </CardItemMaim>
           <CardItemMaim id={'Acabamento'}>
             <M.ContainerMainItem>
-              <ContentItemMainModal liberado={true} imgdiv={acabamento} txt={'Acabamento.'}>
-                <ButtonImgMain liberado={true} img={enviar} titlebtn={'Abrir...'} onClick={ () => HandlerClickDiv('Acaba') } />
+              <ContentItemMainModal
+                liberado={true}
+                imgdiv={acabamento}
+                txt={'Acabamento.'}
+              >
+                <ButtonImgMain
+                  liberado={true}
+                  img={enviar}
+                  titlebtn={'Abrir...'}
+                  onClick={() => HandlerClickDiv('Acaba')}
+                />
               </ContentItemMainModal>
             </M.ContainerMainItem>
             {isacaba && isdiv ? (
               <PageModal
-                                ptop={'13%'}
+                ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
                 titulo={'Módulo Acabamento.'}
@@ -182,13 +206,21 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
           </CardItemMaim>
           <CardItemMaim id={'Expedição'}>
             <M.ContainerMainItem>
-              <ContentItemMainModal liberado={true} imgdiv={expedicao} txt={'Expedição.'}>
-                <ButtonImgMain liberado={true} img={enviar} titlebtn={'Abrir...'} onClick={ () => HandlerClickDiv('Exped') } />
+              <ContentItemMainModal
+                liberado={true}
+                imgdiv={expedicao}
+                txt={'Expedição.'}
+              >
+                <ButtonImgMain
+                  liberado={true}
+                  img={enviar}
+                  titlebtn={'Abrir...'}
+                  onClick={() => HandlerClickDiv('Exped')}
+                />
               </ContentItemMainModal>
             </M.ContainerMainItem>
             {isexped && isdiv ? (
               <PageModal
-                
                 ptop={'13%'}
                 pwidth={'80%'}
                 pheight={'100%'}
@@ -201,13 +233,21 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
           </CardItemMaim>
           <CardItemMaim id={'Administração'}>
             <M.ContainerMainItem>
-              <ContentItemMainModal liberado={true} imgdiv={administra} txt={'Administração.'}>
-                <ButtonImgMain liberado={true} img={enviar} titlebtn={'Abrir...'} onClick={ () => HandlerClickDiv('Admin') } />
+              <ContentItemMainModal
+                liberado={true}
+                imgdiv={administra}
+                txt={'Administração.'}
+              >
+                <ButtonImgMain
+                  liberado={true}
+                  img={enviar}
+                  titlebtn={'Abrir...'}
+                  onClick={() => HandlerClickDiv('Admin')}
+                />
               </ContentItemMainModal>
             </M.ContainerMainItem>
             {isadmin && isdiv ? (
               <PageModal
-                
                 ptop={'13%'}
                 pwidth={'50%'}
                 pheight={'100%'}
@@ -221,26 +261,23 @@ const CardModulosSys: React.FC<Props> = ({ img }) => {
         </ContainerPanelItens>
       </ContentTextoModulos>
     </CardModalTexto>
-    );
+  );
 };
 
 export default CardModulosSys;
 
+// const navigate = useNavigate();
+// const goto = (path: string) => {
+//   return () => {
+//     navigate(path);
+//   };
+// };
 
+//const { state, dispatch } = MenuPgUseForm();
 
+//const [ismenu, setIsMenu]= React.useState(false);
+//const tarb_ini = 'Iniciei meu Trabalho '+ state.datetime_ini + '...';
+//const meuacesso = 'O "MEU Acesso " esta restritro à '+ state.nm_modulo + '...';
 
-  // const navigate = useNavigate();
-  // const goto = (path: string) => {
-  //   return () => {
-  //     navigate(path);
-  //   };
-  // };
-
-  //const { state, dispatch } = MenuPgUseForm();
-
-  //const [ismenu, setIsMenu]= React.useState(false);
-  //const tarb_ini = 'Iniciei meu Trabalho '+ state.datetime_ini + '...';
-  //const meuacesso = 'O "MEU Acesso " esta restritro à '+ state.nm_modulo + '...';
-
-  //const handleMenu = React.useCallback(() => {
-  //  setIsMenu(oldState => !oldState)
+//const handleMenu = React.useCallback(() => {
+//  setIsMenu(oldState => !oldState)

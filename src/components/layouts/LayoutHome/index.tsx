@@ -14,6 +14,7 @@ type PropsLayoutHome = {
   onchange: () => void;
   ischeck: boolean;
   onLogin?: () => void;
+  islogado?: boolean;
 };
 export const LayoutHome = ({
   img,
@@ -23,7 +24,8 @@ export const LayoutHome = ({
   children,
   onchange,
   ischeck,
-  onLogin
+  onLogin,
+  islogado
 }: PropsLayoutHome) => {
   return (
     <ContentPages>
@@ -40,7 +42,7 @@ export const LayoutHome = ({
 
       <Hm.ContainerBody>
         <Hm.ContainerPage>
-          <BarSideMenuHome />
+          <BarSideMenuHome islogado={islogado} />
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>

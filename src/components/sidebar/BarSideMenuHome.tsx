@@ -10,17 +10,22 @@ import expedicao from '../../assets/svgs/expedicao.svg';
 import administracao from '../../assets/svgs/administracao.svg';
 import master from '../../assets/svgs/master.svg';
 import config from '../../assets/svgs/config.svg';
+import portaon from '../../assets/svgs/portaon.svg';
 
 import { ContainerBarSideMain } from './ContainerBarSideMain';
 import { ButtonSideBar } from './ButtonSideBar';
 import ContainerItensMenu from './ContainerItensMenu';
+import ContainerItensLogado from './ContainerItensLogado';
 
 import PageModal from '../Modal/PageModal';
 
 import CardModuloRecep from '../contentHelp/CardModuloRecep';
 import CardDesemvolver from '../contentHelp/CardDesenvolver';
-
-export const BarSideMenuHome = () => {
+type TypeBarSideMenuHome = {
+  onclick?: () => void;
+  onclicklg?: () => void;
+};
+export const BarSideMenuHome: TypeBarSideMenuHome = () => {
   const [isitensmenu, setIsItensMenu] = React.useState(false);
   const [ismdrecep, setIsMdRecep] = React.useState(false);
   const [ismddesig, setIsMdDesig] = React.useState(false);
@@ -30,10 +35,17 @@ export const BarSideMenuHome = () => {
   const [ismdadmin, setIsMdAdmin] = React.useState(false);
   const [ismdmaste, setIsMdMaste] = React.useState(false);
   const [ismdconfi, setIsMdConfi] = React.useState(false);
+  const [isitenslogin, setIsItensLogin] = React.useState(false);
 
   const handlerClickItensMenu = React.useCallback(() => {
     setIsItensMenu((oldState) => !oldState);
   }, []);
+
+//  const handlerClickItensLogin = React.useCallback(() => {
+//    setIsItensLogin((oldState) => !oldState);
+//  }, []);
+
+
 
   return (
     <ContainerBarSideMain>
@@ -44,6 +56,7 @@ export const BarSideMenuHome = () => {
           onClick={handlerClickItensMenu}
         />
       </S.ContainerButtonSRigth>
+
       <ContainerItensMenu onoff={isitensmenu}>
         <ButtonSideBar
           img={servicos}
@@ -102,6 +115,22 @@ export const BarSideMenuHome = () => {
           }}
         />
       </ContainerItensMenu>
+
+      <ContainerItensLogado onoff={isitenslogin} >
+          <ButtonSideBar
+            img={servicos}
+            titbtn="Recepção..."
+            onClick={() => {
+              setIsMdRecep(true);
+            }}
+          />
+        <ButtonSideBar
+          img={portaon}
+          titbtn="Fechar Meu logo..."
+          onClick={ () => { setIsItensLogin(false);} }
+        />
+      </ContainerItensLogado>
+
       {ismdrecep ? (
         <PageModal
           ptop={'1%'}

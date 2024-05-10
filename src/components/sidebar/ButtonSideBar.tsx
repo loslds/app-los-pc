@@ -1,6 +1,6 @@
 //import React from "react";
 
-import * as S from "./stylesSidebar";
+import * as S from './stylesSidebar';
 
 type PropsBtSB = {
   img?: string;
@@ -14,4 +14,3 @@ export const ButtonSideBar = ({ titbtn, img, onClick }: PropsBtSB) => {
     </S.ContainerSideButton>
   );
 };
-

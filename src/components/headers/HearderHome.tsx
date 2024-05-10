@@ -30,6 +30,7 @@ type PropsHearderHome = {
   onchange: () => void;
   ischeck?: boolean;
   onLogin?: () => void;
+  islogado?: boolean;
 };
 export const HearderHome = ({
   img,
@@ -38,11 +39,12 @@ export const HearderHome = ({
   title,
   onchange,
   ischeck,
-  onLogin
+  onLogin,
+  islogado
 }: PropsHearderHome) => {
   const { state } = AcessoUseForm();
   const [isonpanel, setIsOnPanel] = React.useState(false);
-
+  
   console.log('state.logado HearderHome :', state.logado);
 
   return (
