@@ -2,14 +2,14 @@ import * as S from "./stylesSidebar";
 
 type PropsItnsLg = {
   children?: React.ReactNode | JSX.Element;
-  onoff: boolean;
+  itonoff: boolean;
 };
 
-const ContainerItensLogado = ({ onoff, children }: PropsItnsLg) => {
+const ContainerItensLogado = ({ itonoff, children }: PropsItnsLg) => {
   return (
-    <S.ContainerItensModulo open={onoff}>
+    <S.ContainerItensLogon itopen={itonoff}>
       {children}
-    </S.ContainerItensModulo>
+    </S.ContainerItensLogon>
   );
 };
 

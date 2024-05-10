@@ -4,6 +4,7 @@ import { HearderHome } from '../../headers/HearderHome';
 import { ReactNode } from 'react';
 import { FooterHome } from '../../footers/FooterHome';
 import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
+import BarSideMenuDados from '../../sidebar/BarSideMenuDados';
 
 type PropsLayoutHome = {
   img: string;
@@ -12,21 +13,13 @@ type PropsLayoutHome = {
   title?: string;
   children?: ReactNode | JSX.Element;
   onchange: () => void;
-  ischeck: boolean;
+  ischeck?: boolean;
   onLogin?: () => void;
-  islogado?: boolean;
+  onclicklog?: () => void;
+  itonoff?: boolean;
 };
 export const LayoutHome = ({
-  img,
-  titbtn,
-  onclick,
-  title,
-  children,
-  onchange,
-  ischeck,
-  onLogin,
-  islogado
-}: PropsLayoutHome) => {
+  img, titbtn, onclick, title, children, onchange, ischeck, onLogin,itonoff,onclicklog}: PropsLayoutHome) => {
   return (
     <ContentPages>
       <HearderHome
@@ -42,7 +35,8 @@ export const LayoutHome = ({
 
       <Hm.ContainerBody>
         <Hm.ContainerPage>
-          <BarSideMenuHome islogado={islogado} />
+          <BarSideMenuHome />
+          <BarSideMenuDados itonoff={itonoff} onclicklog={onclicklog}/>
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>

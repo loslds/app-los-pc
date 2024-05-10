@@ -41,6 +41,23 @@ export const ContainerButtonSRigth = styled.div`
     background-color: #e4e4e4;
   }
 `;
+export const ContainerButtonSDadosLeft = styled.div`
+  border: 2px solid;
+  border-color: ${props => props.theme.colors.textColor};
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  background: transparent;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+  &:hover {
+    background-color: #e4e4e4;
+  }
+`;
 
 export const ContainerBtnMnSRigth = styled.div`
   //border: 1px solid;
@@ -69,6 +86,23 @@ export const ContainerItensModulo = styled.div<PropsItensModulo>`
   background: transparent;
   max-height: fit-content;
   display: ${props => (props.open ? 'flex' : 'none')};
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: space-around;
+`;
+
+type PropsItensLogon = {
+  itopen?: boolean;
+};
+export const ContainerItensLogon = styled.div<PropsItensLogon>`
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 5px 0px 10px;
+  background: transparent;
+  max-height: fit-content;
+  display: ${props => (props.itopen ? 'flex' : 'none')};
   flex-wrap: wrap;
   align-items: center;
   align-content: center;

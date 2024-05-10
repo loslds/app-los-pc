@@ -1,14 +1,10 @@
 import React from 'react';
 import Switch from 'react-switch';
 
-// import '../../layouts/styled.ts';
 import * as Pg from '../layouts/styled.ts';
-
-import { AcessoUseForm } from '../contexts/login/ContextAcesso.tsx';
 
 import logosys from '../../assets/pngs/logosys.png';
 import abouthome from '../../assets/svgs/abouthome.svg';
-
 
 import { ContentHeaderButtonSys } from './ContentHeaderButtonSys.tsx';
 import { ContentHearderItens } from './ContentHearderItens.tsx';
@@ -19,7 +15,6 @@ import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
 import ContentPagesButton from '../layouts/ContentPagesButton.tsx';
 
 import PageModal from '../Modal/PageModal.tsx';
-
 import CardAcessoSistema from '../contentHelp/CardAcessoSistema.tsx';
 
 type PropsHearderHome = {
@@ -30,7 +25,8 @@ type PropsHearderHome = {
   onchange: () => void;
   ischeck?: boolean;
   onLogin?: () => void;
-  islogado?: boolean;
+
+  
 };
 export const HearderHome = ({
   img,
@@ -39,14 +35,12 @@ export const HearderHome = ({
   title,
   onchange,
   ischeck,
-  onLogin,
-  islogado
+  onLogin
+  
 }: PropsHearderHome) => {
-  const { state } = AcessoUseForm();
+
   const [isonpanel, setIsOnPanel] = React.useState(false);
   
-  console.log('state.logado HearderHome :', state.logado);
-
   return (
     <ContentHearderMain>
       <ContentHearderItens>

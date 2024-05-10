@@ -106,16 +106,21 @@ const Home = () => {
   };
 
   const [mainhelp, setMainHelp] = React.useState(false);
-  const [meuslogin, setMeuLogin] = React.useState(false);  
-  //const [meusdados, setMeusdados] = React.useState(false);
+  const [meusdados, setMeusDados] = React.useState(false);
+  
+  const handlerViewItensLogin = React.useCallback(() => {
+    setMeusDados((oldState) => !oldState);
+  }, []);
 
-  // const handlerOnClickLogo = React.useCallback(() => {
-  //   setMeuLogin((oldState) => !oldState);
-  // }, []);
+  const handlerLogonoff = React.useCallback(() => {
+    alert('sai do Sistema...');
+  }, []);
+
 
   return (
     <ThemeProvider theme={theme}>
-      <LayoutHome 
+      <LayoutHome
+        itonoff={meusdados}      
         onclick={goto('/')}
         title={'Sistema J.R.'}
         onchange={ToggleTheme}
@@ -125,10 +130,11 @@ const Home = () => {
         onLogin={
           !state.logado
             ? goto('/login')
-            : () => { setMeuLogin(true) }
+            : ( handlerViewItensLogin )
         }
-        ofLogin={ !state.logado ? () => setMeuLogin(false) : null }
+        onclicklog={handlerLogonoff}
       >
+        
         <ContentItensBody>
           <ContentCustonImgPage
             pxheight={'165px'}
@@ -255,22 +261,6 @@ const Home = () => {
               <CardImgNeg />
             </PageModal>
           ) : null}
-
-{/* 
-          {meusdados ? (
-            <PageModal
-              ptop="111px"
-              pwidth="60%"
-              pheight="32%"
-              titulo='" L O G A D O "'
-              onclose={() => {
-                setMeusdados(false);
-              }}
-            >
-              <CardImgNeg />
-            </PageModal>
-          ) : null}
- */}
         </ContentItensBody>
       </LayoutHome>
     </ThemeProvider>
