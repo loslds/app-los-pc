@@ -7,7 +7,7 @@ import * as C from '../Modal/styles';
 type Props = {
     img?: string;
   };
-const CardQuemSouUser: React.FC<Props> = ({ img }) => {
+const CardMyAccount: React.FC<Props> = ({ img }) => {
 
   const { state } = AcessoUseForm();
 
@@ -74,4 +74,4 @@ const CardQuemSouUser: React.FC<Props> = ({ img }) => {
   );
 };
 
-export default CardQuemSouUser;
+export default CardMyAccount;

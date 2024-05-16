@@ -101,17 +101,16 @@ export const ContainerCardBoxMainPage = styled.div<TypeContainerCardBoxMainPage>
 
 type TypeContainerCardCenter = {
   pwidth? : string;
-  open?: boolean;
 }
 export const ContainerCardBoxCenterPage = styled.div<TypeContainerCardCenter>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   //min-height: 50px;
-  min-width: ${({ pwidth }) => pwidth || '20%'};
+  min-width: ${({ pwidth }) => pwidth || '15%'};
   //color:  ${props => props.theme.colors.textColor};
   //background: transparent;
-  display: ${props => (props.open ? 'flex' : 'none')};
+  display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   flex-flow: row;
@@ -157,7 +156,7 @@ export const ContainerCardPageTitle = styled.div<TypeContainerCardTitlePage>`
 type TypeContainerCollunsCenterPage = {
   pheight? : string;
   pwidth? : string;
-  isopen?: boolean;
+  openccp?: boolean;
 }
 export const ContainerCollunsCenterPage = styled.div<TypeContainerCollunsCenterPage>`
   border: none;
@@ -167,7 +166,8 @@ export const ContainerCollunsCenterPage = styled.div<TypeContainerCollunsCenterP
   //background: transparent;
   min-height: ${({ pheight }) => pheight || '50px'};
   min-width: ${({ pwidth }) => pwidth || '100px'};
-  display: ${props => (props.isopen ? 'flex' : 'none')};
+  display: ${({openccp}) => openccp ? 'flex' : 'none' };
+  //display: ${props => (props.openccp ? 'flex' : 'none')};
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
@@ -312,7 +312,8 @@ export const ButtonDefaulImgPage = styled.button<TypeButtonDefaulImgPage>`
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   background-color: transparent;
-  background-image: url(${({ img }) => img || semimg});
+  background-image: url( ${ ( {img} ) => img ? img : semimg });
+  //background-image: url( ${({ img }) => img || semimg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -847,7 +848,7 @@ font-size: 16px;
 font-weight: bold;
 font-family: 'Courier New', Courier, monospace;
 background-color: transparent;
-background-image: url(${({ img }) => img || semimg});
+background-image: url( ${({ img }) => img || semimg});
 background-repeat: no-repeat;
 background-size: cover;
 background-position: center;

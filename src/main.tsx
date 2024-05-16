@@ -10,6 +10,7 @@ import Login2 from './components/pages/Login2';
 import Login3 from './components/pages/Login3';
 //import Login4 from './components/pages/Login4';
 
+import { MyAccount } from './components/pages/MyAccount';
 import { Recepcao } from './components/pages/Recepcao';
 import { Design } from './components/pages/Design';
 import { Producao } from './components/pages/Producao';
@@ -33,8 +34,8 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
           <Route path="/login1" element={<Login1 />} />
           <Route path="/login2" element={<Login2 />} />
           <Route path="/login3" element={<Login3 />} />
-          {/*<Route path="/login4" element={<Login4 />} />
-          <Route path="/login4" element={<Login4 />} /> */}
+
+          <Route path="/mayaccount" element={<MyAccount />} />
 
           <Route path="/tabprc" element={<TabPrc />} />
           <Route path="/recepcao" element={<Recepcao />} />

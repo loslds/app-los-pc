@@ -19,7 +19,7 @@ export const ContainerFooterColluns = styled.div<PropsFooterCollun>`
   display: flex;
   flex-flow: wrap;
   &:hover {
-    background-color: #acacac;
+    background-color: rgba(125, 125, 125,0.2);//#acacac;
   }
 `;
 

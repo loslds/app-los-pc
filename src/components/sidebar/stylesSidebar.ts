@@ -92,17 +92,15 @@ export const ContainerItensModulo = styled.div<PropsItensModulo>`
   justify-content: space-around;
 `;
 
-type PropsItensLogon = {
-  itopen?: boolean;
-};
-export const ContainerItensLogon = styled.div<PropsItensLogon>`
+export const ContainerItensLogon = styled.div<{openlg?: boolean}>`
   border: 1px solid white;
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 0px 5px 0px 10px;
   background: transparent;
   max-height: fit-content;
-  display: ${props => (props.itopen ? 'flex' : 'none')};
+  display: ${({openlg}) => openlg ? 'flex' : 'none' };
+  //display: ${props => (props.openlg ? 'flex' : 'none')};
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
@@ -111,7 +109,7 @@ export const ContainerItensLogon = styled.div<PropsItensLogon>`
 
 
 type PropsItensBntMn = {
-  open?: boolean;
+  openmbm?: boolean;
 };
 export const ContainerItensModBntMn = styled.div<PropsItensBntMn>`
   //border: 1px solid red;
@@ -120,7 +118,7 @@ export const ContainerItensModBntMn = styled.div<PropsItensBntMn>`
   margin: 0px 0px 0px 0px;
   background: transparent;
   max-height: fit-content;
-  display: ${props => (props.open ? 'flex' : 'none')};
+  display: ${props => (props.openmbm ? 'flex' : 'none')};
   flex-wrap: wrap;
   align-items: center;
   align-content: center;

@@ -174,11 +174,11 @@ export const Login2 = () => {
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
             {iseditar ? (
-              <ContentCardBoxCenterPage open={true}>
+              <ContentCardBoxCenterPage>
                 <ContentCardPageTitle>
                   <h4>{state.aplicacao}</h4>
                 </ContentCardPageTitle>
-                <ContentCardCollunsCenterPage isopen={true} pwidth={'200px'}>
+                <ContentCardCollunsCenterPage openccp={true} pwidth={'180px'}>
                   <ContentInputMainPage>
                     {state.mdlogin === 1 ? (
                       <form name="login1">

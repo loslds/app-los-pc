@@ -7,10 +7,6 @@ import dark from "../../../styles/themes/dark.ts";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThemeRecep } from "../../modulos/themes/ThemeRecep";
-//import { LayoutRecep } from "../../layouts/LayoutRecep/index.tsx";
-//import { ContentItensBody } from "../ContentItensBody.tsx";
-//import { DivisionPgHztal } from "../../layouts/styled.ts";
-//import { MenuRecep }  from "../../menus/MenuMain.tsx";
 
 export const Recepcao = () => {
  
@@ -39,15 +35,9 @@ export const Recepcao = () => {
   return (
 
     <ThemeProvider theme={theme}>
-      <ThemeRecep onclick = {goto('/')} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
+      <ThemeRecep onclick = {goto('/')} onchange = {ToggleTheme} ischeck={ischeck} onLogin={ goto('/')} >
         <h1>aaa</h1>
       </ThemeRecep>
     </ThemeProvider>
   );
 };
-
-{/* <LayoutRecep onclick = {goto('/')} title = {"Recepção."} onchange = {ToggleTheme} ischeck={ischeck} onLogin={goto('/login')} >
-{/* <ContentItensBody> */}
-  // <h1>Conteudo da Pagina</h1>
-{/* </ContentItensBody> */}
-// </LayoutRecep> 

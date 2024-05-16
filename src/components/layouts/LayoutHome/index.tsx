@@ -15,11 +15,11 @@ type PropsLayoutHome = {
   onchange: () => void;
   ischeck?: boolean;
   onLogin?: () => void;
-  onclicklog?: () => void;
-  itonoff?: boolean;
+  //onclicklog?: () => void;
+  openlg3?: boolean;
 };
 export const LayoutHome = ({
-  img, titbtn, onclick, title, children, onchange, ischeck, onLogin,itonoff,onclicklog}: PropsLayoutHome) => {
+  img, titbtn, onclick, title, children, onchange, ischeck, onLogin, openlg3}: PropsLayoutHome) => {
   return (
     <ContentPages>
       <HearderHome
@@ -36,7 +36,7 @@ export const LayoutHome = ({
       <Hm.ContainerBody>
         <Hm.ContainerPage>
           <BarSideMenuHome />
-          <BarSideMenuDados itonoff={itonoff} onclicklog={onclicklog}/>
+          <BarSideMenuDados openlg2={openlg3} />
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>

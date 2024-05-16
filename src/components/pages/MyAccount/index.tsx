@@ -1,4 +1,4 @@
-//import "../../../styles/global.ts";
+// import "../../../styles/global.ts";
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
@@ -6,10 +6,10 @@ import dark from '../../../styles/themes/dark.ts';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutProdu } from '../../layouts/LayoutProdu/index.tsx';
-import { ContentItensBody } from '../ContentItensBody.tsx';
+import { ThemeMyAccount } from '../../modulos/themes/ThemeMyAccount/index.tsx';
 
-export const Producao = () => {
+export const MyAccount = () => {
+
   const [theme, setTheme] = useState(dark);
   const [ischeck, setIscheck] = useState(false);
   const ToggleTheme = () => {
@@ -31,17 +31,14 @@ export const Producao = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <LayoutProdu
+      <ThemeMyAccount
         onclick={()=>{}}
-        title={'Produção.'}
         onchange={ToggleTheme}
         ischeck={ischeck}
         onLogin={goto('/')}
       >
-        <ContentItensBody>
-          <h1>Conteudo da Pagina Produção</h1>
-        </ContentItensBody>
-      </LayoutProdu>
+        <h1>Conteudo Page MyAccount</h1>
+      </ThemeMyAccount>
     </ThemeProvider>
   );
 };

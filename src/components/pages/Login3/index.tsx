@@ -214,7 +214,7 @@ const Login3 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            <ContentCardCollunsCenterPage isopen={isview} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={isview} pwidth="100%">
               <ContentDivManYellow pxheight="65px">
                 <ContentDivTxt>
                   <label>Empresa:</label>
@@ -267,7 +267,7 @@ const Login3 = () => {
 
             {/* // apos clicar em Enviar // */}
 
-            <ContentCardCollunsCenterPage isopen={isconexao} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={isconexao} pwidth="100%">
               <ContentDivMainBlue pxheigth="50px">
                 <ContentDivTxt>
                   <label>Conectar:</label>
@@ -311,7 +311,7 @@ const Login3 = () => {
             </ContentCardCollunsCenterPage>
 
             {/* // apos clicar em handlerConexao e não obter uma conexão // */}
-            <ContentCardCollunsCenterPage isopen={isconectedoff} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={isconectedoff} pwidth="100%">
               <ContentDivMainOffRed pxheight="50px">
                 <ContentDivTxt>
                   <label>Conectar:</label>
@@ -356,7 +356,7 @@ const Login3 = () => {
             </ContentCardCollunsCenterPage>
 
             {/* // apos retorno Conexao=> true verifica acesso a Database com handlerFindAcess // */}
-            <ContentCardCollunsCenterPage isopen={isfindacces} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={isfindacces} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
                   <label>Conectar:</label>
@@ -400,7 +400,7 @@ const Login3 = () => {
             </ContentCardCollunsCenterPage>
 
             {/* // apos clicar em handlerFindAcess e não enconntrar DataBase // */}
-            <ContentCardCollunsCenterPage isopen={isfindingoff} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={isfindingoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
                   <label>Conectar:</label>
@@ -444,7 +444,7 @@ const Login3 = () => {
             </ContentCardCollunsCenterPage>
 
             {/* // apos retorno Database=> true libera handlerLogin busca a existencia dos dados login //*/}
-            <ContentCardCollunsCenterPage isopen={islogin} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={islogin} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
                   <label>Conectar:</label>
@@ -489,7 +489,7 @@ const Login3 = () => {
             </ContentCardCollunsCenterPage>
 
             {/* // apos retorno Login false  // */}
-            <ContentCardCollunsCenterPage isopen={isloggedoff} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={isloggedoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
                   <label>Conectar:</label>
@@ -534,7 +534,7 @@ const Login3 = () => {
             </ContentCardCollunsCenterPage>
 
             {/* // apos retorno Login => true libera botão   // */}
-            <ContentCardCollunsCenterPage isopen={isacesso} pwidth="100%">
+            <ContentCardCollunsCenterPage openccp={isacesso} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
                 <ContentDivTxt>
                   <label>Conectar:</label>

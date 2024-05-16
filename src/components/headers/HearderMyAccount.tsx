@@ -3,7 +3,7 @@ import * as Pg from '../layouts/styled.ts';
 
 import logosys from '../../assets/pngs/logosys.png';
 import help from '../../assets/svgs/help.svg';
-import voltar from '../../assets/svgs/home.svg';
+import home from '../../assets/svgs/home.svg';
 
 import React from 'react';
 import Switch from 'react-switch';
@@ -14,28 +14,26 @@ import { ContentHearderMain } from './ContentHearderMain.tsx';
 import { ContentHeaderTitle } from './ContentHeaderTitle.tsx';
 import { ContentHearderRight } from './ContentHearderRight.tsx';
 import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
-import ContentPagesButton from '.././layouts/ContentPagesButton.tsx';
+import ContentPagesButton from '../layouts/ContentPagesButton.tsx';
 
 import PageModal from '../Modal/PageModal.tsx';
-import CardDesemvolver from '../contentHelp/CardDesenvolver.tsx';
+import CardMyAccount from '../contentHelp/CardMyAccount.tsx';
 
-type PropsHearderPage = {
+type PropsHearderMyAccount = {
   onclick?: () => void;
   title?: string; // titulo page
   onchange: () => void;
   ischeck?: boolean;
-  onLogin?: () => void;
+  onclickhome?: () => void;
 };
-export const HearderPage = ({
+export const HearderMyAccount = ({
   onclick,
   title,
   onchange,
   ischeck,
-  onLogin
-}: PropsHearderPage) => {
+  onclickhome
+}: PropsHearderMyAccount) => {
   const [isonhelp, setIsOnHelp] = React.useState(false);
-
-
 
   const handlerOnHelp = React.useCallback(() => {
     setIsOnHelp((oldState) => !oldState);
@@ -63,7 +61,11 @@ export const HearderPage = ({
             onClick={handlerOnHelp}
           />
 
-          <ContentPagesButton img={voltar} titbtn={'Voltar...'} onClick={onLogin}/>
+          <ContentPagesButton
+            img={home}
+            titbtn={'Click para Voltar...'}
+            onClick={onclickhome}
+          />
 
           <Pg.ContainerPagesButton>
             <Switch
@@ -87,11 +89,11 @@ export const HearderPage = ({
           <PageModal
             ptop={'1%'}
             pwidth={'65%'}
-            pheight={'50%'}
-            titulo={'Help do Acesso Sistema.'}
+            pheight={'65%'}
+            titulo={'Help do Acesso My Account.'}
             onclose={() => setIsOnHelp(false)}
           >
-            <CardDesemvolver />
+            <CardMyAccount />
           </PageModal>
         ) : null}
       </ContentHearderRight>

@@ -1,15 +1,12 @@
-import * as S from "./stylesSidebar";
+import * as S from './stylesSidebar';
 
-type PropsItnsLg = {
+type PropsItensLogado = {
+  openlg1?: boolean;
   children?: React.ReactNode | JSX.Element;
-  itonoff: boolean;
 };
-
-const ContainerItensLogado = ({ itonoff, children }: PropsItnsLg) => {
+const ContainerItensLogado = ({ openlg1, children }: PropsItensLogado) => {
   return (
-    <S.ContainerItensLogon itopen={itonoff}>
-      {children}
-    </S.ContainerItensLogon>
+    <S.ContainerItensLogon openlg={openlg1}>{children}</S.ContainerItensLogon>
   );
 };
 

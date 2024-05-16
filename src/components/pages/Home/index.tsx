@@ -109,18 +109,18 @@ const Home = () => {
   const [meusdados, setMeusDados] = React.useState(false);
   
   const handlerViewItensLogin = React.useCallback(() => {
-    setMeusDados((oldState) => !oldState);
+    setMeusDados( (oldState) => !oldState );
   }, []);
 
-  const handlerLogonoff = React.useCallback(() => {
-    alert('sai do Sistema...');
-  }, []);
+//  const handlerLogonoff = React.useCallback(() => {
+//    alert('sai do Sistema...');
+//  }, []);
 
 
   return (
     <ThemeProvider theme={theme}>
       <LayoutHome
-        itonoff={meusdados}      
+        openlg3= { meusdados }      
         onclick={goto('/')}
         title={'Sistema J.R.'}
         onchange={ToggleTheme}
@@ -132,7 +132,8 @@ const Home = () => {
             ? goto('/login')
             : ( handlerViewItensLogin )
         }
-        onclicklog={handlerLogonoff}
+        
+        // onclicklog={handlerLogonoff}
       >
         
         <ContentItensBody>

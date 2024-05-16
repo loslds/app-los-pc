@@ -4,9 +4,6 @@ import { HearderPage } from '../../headers/HearderPages';
 import { ReactNode } from 'react';
 import { BarSideMenuRecep } from '../../sidebar/BarSideMenuRecep.tsx';
 
-
-
-
 type PropsLayoutRecep = {
   //img?: string;
   onclick?: () => void;
