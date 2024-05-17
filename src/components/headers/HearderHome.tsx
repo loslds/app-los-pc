@@ -1,7 +1,6 @@
-import React from 'react';
-import Switch from 'react-switch';
-
 import * as Pg from '../layouts/styled.ts';
+
+import Switch from 'react-switch';
 
 import { ContentHeaderButtonSys } from './ContentHeaderButtonSys.tsx';
 import { ContentHearderItens } from './ContentHearderItens.tsx';
@@ -29,25 +28,19 @@ export const HearderHome = ({
   imgsys,
   titbtnsys,
   onclicksys,
-
   titlepg,
-
   imghpg,
   titbtnhpg,
   onclickhpg,
-
   imgopen,
   titbtnopen,
   onclickopen,
-
   onchange,
   ischeck
 }: PropsHearderHome) => {
-  const [isonpanel, setIsOnPanel] = React.useState(false);
-
   return (
     <ContentHearderMain>
-     {/** imagem botão do logo da pagina */}
+      {/** imagem botão do logo da pagina */}
       <ContentHearderItens>
         <ContentHeaderButtonSys
           img={imgsys}
@@ -92,7 +85,6 @@ export const HearderHome = ({
             />
           </Pg.ContainerPagesButton>
         </ContentHearderItensBar>
-
       </ContentHearderRight>
     </ContentHearderMain>
   );

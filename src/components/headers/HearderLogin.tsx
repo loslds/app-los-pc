@@ -1,10 +1,5 @@
 import * as Pg from '../layouts/styled.ts';
 
-import logosys from '../../assets/pngs/logosys.png';
-import help from '../../assets/svgs/help.svg';
-import esclamacao from '../../assets/svgs/esclamacao.svg';
-
-import React from 'react';
 import Switch from 'react-switch';
 
 import { ContentHeaderButtonSys } from './ContentHeaderButtonSys.tsx';
@@ -14,10 +9,6 @@ import { ContentHeaderTitle } from './ContentHeaderTitle.tsx';
 import { ContentHearderRight } from './ContentHearderRight.tsx';
 import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
 import ContentPagesButton from '../layouts/ContentPagesButton.tsx';
-
-import PageModal from '../Modal/PageModal.tsx';
-import CardInfoLogin from '../contentHelp/CardInfoLogin.tsx';
-import CardAcessoSistema from '../contentHelp/CardAcessoSistema.tsx';
 
 type PropsHearderLogin = {
   imgsys?: string;
@@ -32,7 +23,6 @@ type PropsHearderLogin = {
   onclickopen?: () => void;
   ischeck: boolean;
   onchange: () => void;
-  children?: ReactNode | JSX.Element;
 };
 export const HearderLogin = ({
   imgsys,
@@ -44,17 +34,10 @@ export const HearderLogin = ({
   onclickhpg,
   imgopen,
   titbtnopen,
-  onclickopen
+  onclickopen,
   ischeck,
-  onchange,
+  onchange
 }: PropsHearderLogin) => {
-  const [isonpanel, setIsOnPanel] = React.useState(false);
-  const [isonhelp, setIsOnHelp] = React.useState(false);
-
-  const handlerOnPanel = React.useCallback(() => {
-    setIsOnPanel((oldState) => !oldState);
-  }, []);
-
 
   return (
     <ContentHearderMain>
@@ -65,19 +48,11 @@ export const HearderLogin = ({
           onClick={onclicksys}
         />
       </ContentHearderItens>
-
       <ContentHearderItens>
         <ContentHeaderTitle title={titlepg} />
       </ContentHearderItens>
-
       <ContentHearderRight>
         <ContentHearderItensBar>
-          <ContentPagesButton
-            img={esclamacao}
-            titbtn={'Panel...'}
-            onClick={handlerOnPanel}
-          />
-
           {/** imagem botão do help da pagina */}
           <ContentPagesButton
             img={imghpg}
@@ -90,7 +65,7 @@ export const HearderLogin = ({
             titbtn={titbtnopen}
             onClick={onclickopen}
           />
-          {/** imagem botão switch do Padrão fundo Preto ou Branco */}          
+          {/** imagem botão switch do Padrão fundo Preto ou Branco */}
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}
