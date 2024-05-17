@@ -1,4 +1,5 @@
 import * as Hm from '../styled';
+
 import { ContentPages } from '../ContentPages';
 import { HearderHome } from '../../headers/HearderHome';
 import { ReactNode } from 'react';
@@ -7,29 +8,52 @@ import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
 import BarSideMenuDados from '../../sidebar/BarSideMenuDados';
 
 type PropsLayoutHome = {
-  img: string;
-  titbtn: string;
-  onclick?: () => void;
-  title?: string;
-  children?: ReactNode | JSX.Element;
+  imgsys?: string;
+  titbtnsys?: string;
+  onclicksys?: () => void;
+  titlepg?: string;
+  imghpg?: string;
+  titbtnhpg?: string;
+  onclickhpg?: () => void;
+  imgopen?: string;
+  titbtnopen?: string;
+  onclickopen?: () => void;
   onchange: () => void;
   ischeck?: boolean;
-  onLogin?: () => void;
-  //onclicklog?: () => void;
+  children?: ReactNode | JSX.Element;
   openlg3?: boolean;
 };
 export const LayoutHome = ({
-  img, titbtn, onclick, title, children, onchange, ischeck, onLogin, openlg3}: PropsLayoutHome) => {
+  imgsys,
+  titbtnsys,
+  onclicksys,
+  titlepg,
+  imghpg,
+  titbtnhpg,
+  onclickhpg,
+  imgopen,
+  titbtnopen,
+  onclickopen,
+  onchange,
+  ischeck,
+  children,
+  openlg3
+}: PropsLayoutHome) => {
   return (
     <ContentPages>
       <HearderHome
-        img={img}
-        titbtn={titbtn}
-        onclick={onclick}
-        title={title}
+        imgsys={imgsys}
+        titbtnsys={titbtnsys}
+        onclicksys={onclicksys}
+        titlepg={titlepg}
+        imghpg={imghpg}
+        titbtnhpg={titbtnhpg}
+        onclickhpg={onclickhpg}
+        imgopen={imgopen}
+        titbtnopen={titbtnopen}
+        onclickopen={onclickopen}
         onchange={onchange}
         ischeck={ischeck}
-        onLogin={onLogin}
       />
       <Hm.DivisionPgHztal />
 

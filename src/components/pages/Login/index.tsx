@@ -4,6 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
+import logosys from '../../../assets/pngs/logosys.png';
+
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
 
 import React from 'react';
@@ -23,12 +25,20 @@ import ContentInputPage from '../ContentInputPage.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 
+import PageModal from '../../Modal/PageModal.tsx';
+import CardAcessoSistema from '../../contentHelp/CardAcessoSistema.tsx';
+import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
+
+import esclamacao from '../../../assets/svgs/esclamacao.svg';
+import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
 const Login = () => {
-  // const [isopen, setIsOpen] = React.useState(false);
-
+  
+  const [onpanel, setOnPanel] = React.useState(false);
+  
+  const [helppg, setHelpPg] = React.useState(false);
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
   const [btncontinua, setBtnContinua] = React.useState(false);
@@ -117,15 +127,36 @@ const Login = () => {
     dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
   }, [idempresa, fantempresa, dispatch]);
 
+  const handlerHelpPg = React.useCallback(() => {
+    setHelpPg((oldState) => !oldState);
+  }, []);
+
+  const handlerOnPanel = React.useCallback(() => {
+    setOnPanel((oldState) => !oldState);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
-      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+      <ThemeLogin
+        imgsys={''}
+        titbtnsys={'Acesso Logo-on...'}
+        onclicksys={()=>{}}
+        titlepg={'Acesso Sistema.'}
+        imghpg={help}
+        titbtnhpg={'Ajuda...'}
+        onclickhpg={handlerHelpPg}
+        imgopen={esclamacao}
+        titbtnopen={'states contexto'}
+        onclickopen={handlerOnPanel}
+        ischeck={ischeck}
+        onchange={ToggleTheme}
+      >
         <ContentCardPage>
           <ContentCardPageTitle pheight={'30px'}>
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            <ContentCardBoxCenterPage pwidth="200px" open={true}>
+            <ContentCardBoxCenterPage pwidth="200px">
               <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
@@ -165,6 +196,31 @@ const Login = () => {
               />
             ) : null}
           </ContentSidePagePanelBotton>
+
+          {helppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'50%'}
+              titulo={'Acesso Sistema.'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardAcessoSistema />
+            </PageModal>
+          ) : null} 
+
+          {onpanel ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'70%'}
+              titulo={'DADOS Context Login.'}
+              onclose={() => setOnPanel(false)}
+            >
+            <CardInfoLogin />
+          </PageModal>
+        ) : null}
+
         </ContentCardPage>
       </ThemeLogin>
     </ThemeProvider>

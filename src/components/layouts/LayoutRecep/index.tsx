@@ -5,19 +5,48 @@ import { ReactNode } from 'react';
 import { BarSideMenuRecep } from '../../sidebar/BarSideMenuRecep.tsx';
 
 type PropsLayoutRecep = {
-  //img?: string;
-  onclick?: () => void;
-  title?:string;
-  children?: ReactNode | JSX.Element;
-  onchange: () => void;
+  imgsys?: string;
+  titbtnsys?: string;
+  onclicksys?: () => void;
+  titlepg?: string;
+  onchange?: ReactNode | JSX.Element;
   ischeck: boolean;
-  onLogin?:  () => void;
-}
-export const LayoutRecep = ({onclick, title, children, onchange, ischeck, onLogin}:PropsLayoutRecep) => {
-  
+  children?: ReactNode | JSX.Element;
+  imgopen?: string;
+  titbtnopen?: string;
+  onClickOpen?: () => void;
+};
+export const LayoutRecep = ({
+  imgsys,
+  titbtnsys,
+  onclicksys,
+  titlepg,
+  onchange,
+  ischeck,
+  children,
+  imghlp,
+  titbtnhlp,
+  onclickhlp,
+  imgopen,
+  titbtnopen,
+  onclickopen
+}: PropsLayoutRecep) => {
   return (
     <ContentPages>
-      <HearderPage onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
+      <HearderRecepcao
+        img={imgsys}
+        titbtn={titbtnsys}
+        onclick={onclicksys}
+        title={titlepg}
+        onchange={onchange}
+        ischeck={ischeck}
+        imghlp={imghlp}
+        titbtnhlp={titbtnhlp}
+        onclickhlp={onclickhlp}
+        imgopen={imgopen}
+        titbtnopen={titbtnopen}
+        onclickopen={onclickopen}
+      />
       <Pg.DivisionPgHztal />
       <Pg.ContainerBody>
         <Pg.ContainerPage>
@@ -30,4 +59,4 @@ export const LayoutRecep = ({onclick, title, children, onchange, ischeck, onLogi
       <h1>Footer Recepção</h1>
     </ContentPages>
   );
-}
+};

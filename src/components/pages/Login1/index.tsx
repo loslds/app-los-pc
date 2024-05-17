@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
+import logosys from '../../../assets/pngs/logosys.png';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -19,6 +20,9 @@ import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
 import { ContentRadioPage } from '../ContentRadioPage.tsx';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
+
+import help from '../../../assets/svgs/help.svg';
+
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
@@ -98,7 +102,16 @@ const Login1 = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+      <ThemeLogin 
+        imgsys={logosys} 
+        titbtnsys={'Home...'}
+        onclicksys={()=>{}}
+        titlepg={'Acesso Sistema.'}
+        imghpg={help}
+        titbtnhpg={''}
+        onclickhpg={}
+        onchange={ToggleTheme} ischeck={ischeck}
+      >
         <ContentCardPage>
           <ContentCardPageTitle pheight={'30px'}>
             <h2>{state.modulo}</h2>

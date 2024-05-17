@@ -7,6 +7,8 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
+import logosys from '../../../assets/pngs/logosys.png';
+import help from '../../../assets/svgs/help.svg';
 import avatar from '../../../assets/svgs/avatar.svg';
 import avatar001 from '../../../assets/pngs/avatares/avatar001.png';
 import recepcao from '../../../assets/svgs/servicos.svg';
@@ -20,16 +22,16 @@ import config from '../../../assets/svgs/config.svg';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LayoutHome } from '../../layouts/LayoutHome/index.tsx';
+import { ThemeHome } from '../../modulos/themes/ThemeHome';
 import { ContentItensBody } from '../ContentItensBody.tsx';
 import { ContentCustonImgPage } from '../ContentCustonImgPage.tsx';
 
 import PageModal from '../../Modal/PageModal.tsx';
 import CardImgNeg from '../../contentHelp/CardImgNeg.tsx';
+import CardHomeSys from '../../contentHelp/CardHomeSys.tsx';
 
 const Home = () => {
   const { state, dispatch } = AcessoUseForm();
-
   console.log('state.logado Home : ', state.logado);
 
   React.useEffect(() => {
@@ -82,7 +84,53 @@ const Home = () => {
       dispatch({ type: AcessoUseActions.setModulo, payload: '' });
       dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
     } else {
+      dispatch({ type: AcessoUseActions.setCurrentStep, payload: 100 });
+      dispatch({ type: AcessoUseActions.setIdAces, payload: 1 });
+      //dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
+      dispatch({ type: AcessoUseActions.setPage, payload: '' });
+
+      dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
+      dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
+
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+      dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+      dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
+      dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+
+      dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+
+      dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+      dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setPin, payload: '' });
+
+      //dispatch({ type: AcessoUseActions.setNmRecep, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
+      //dispatch({ type: AcessoUseActions.setNmDesig, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
+      //dispatch({ type: AcessoUseActions.setNmProdu, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdProdu, payload: false });
+      //dispatch({ type: AcessoUseActions.setNmAcaba, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdAcaba, payload: false });
+      //dispatch({ type: AcessoUseActions.setNmExped, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdExped, payload: false });
+      //dispatch({ type: AcessoUseActions.setNmAdmin, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdAdmin, payload: false });
+      //dispatch({ type: AcessoUseActions.setNmMaster, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
+      //dispatch({ type: AcessoUseActions.setNmConfig, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
+      //  dispatch({ type: AcessoUseActions.setLogado, payload: false });
+
+      dispatch({ type: AcessoUseActions.setLogado, payload: false });
       dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
+      dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
+      dispatch({ type: AcessoUseActions.setTmp, payload: '' });
+
+      dispatch({ type: AcessoUseActions.setModulo, payload: '' });
+      dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
     }
   }, [dispatch]);
 
@@ -105,37 +153,45 @@ const Home = () => {
     };
   };
 
+  const [helppg, setHelpPg] = React.useState(false);
   const [mainhelp, setMainHelp] = React.useState(false);
   const [meusdados, setMeusDados] = React.useState(false);
-  
-  const handlerViewItensLogin = React.useCallback(() => {
-    setMeusDados( (oldState) => !oldState );
+
+  const handlerHelpPg = React.useCallback(() => {
+    setHelpPg((oldState) => !oldState);
   }, []);
 
-//  const handlerLogonoff = React.useCallback(() => {
-//    alert('sai do Sistema...');
-//  }, []);
+  const handlerViewItensLogin = React.useCallback(() => {
+    setMeusDados((oldState) => !oldState);
+  }, []);
 
+  //  const handlerLogonoff = React.useCallback(() => {
+  //    alert('sai do Sistema...');
+  //  }, []);
+
+  // img={abouthome}
+  // titbtn={'Help Acesso Login...'}
+  // onClick={() => {
+  //   setIsOnPanel(true);
+  // }}
 
   return (
     <ThemeProvider theme={theme}>
-      <LayoutHome
-        openlg3= { meusdados }      
-        onclick={goto('/')}
-        title={'Sistema J.R.'}
+      <ThemeHome
+        imgsys={logosys}
+        titbtnsys={'Home...'}
+        onclicksys={ goto('/') }
+        titlepg={'Sistema J.R.'}
+        imghpg={help}
+        titbtnhpg={'Help...'}
+        onclickhpg={handlerHelpPg}
+        imgopen={!state.logado ? avatar : avatar001}
+        titbtnopen={!state.logado ? 'Logar...' : 'Logado...'}
+        onclickopen={!state.logado ? goto('/login') : handlerViewItensLogin}
         onchange={ToggleTheme}
         ischeck={ischeck}
-        img={!state.logado ? avatar : avatar001}
-        titbtn={!state.logado ? 'Logar...' : 'Logado...'}
-        onLogin={
-          !state.logado
-            ? goto('/login')
-            : ( handlerViewItensLogin )
-        }
-        
-        // onclicklog={handlerLogonoff}
+        openlg3={meusdados}
       >
-        
         <ContentItensBody>
           <ContentCustonImgPage
             pxheight={'165px'}
@@ -249,6 +305,19 @@ const Home = () => {
                   }
             }
           />
+
+          {helppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'80%'}
+              titulo={'Help Conteúdo do Sistema.'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardHomeSys />
+            </PageModal>
+          ) : null}
+
           {mainhelp ? (
             <PageModal
               ptop="111px"
@@ -263,7 +332,7 @@ const Home = () => {
             </PageModal>
           ) : null}
         </ContentItensBody>
-      </LayoutHome>
+      </ThemeHome>
     </ThemeProvider>
   );
 };

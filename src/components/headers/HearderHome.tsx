@@ -3,9 +3,6 @@ import Switch from 'react-switch';
 
 import * as Pg from '../layouts/styled.ts';
 
-import logosys from '../../assets/pngs/logosys.png';
-import abouthome from '../../assets/svgs/abouthome.svg';
-
 import { ContentHeaderButtonSys } from './ContentHeaderButtonSys.tsx';
 import { ContentHearderItens } from './ContentHearderItens.tsx';
 import { ContentHearderMain } from './ContentHearderMain.tsx';
@@ -14,55 +11,70 @@ import { ContentHearderRight } from './ContentHearderRight.tsx';
 import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
 import ContentPagesButton from '../layouts/ContentPagesButton.tsx';
 
-import PageModal from '../Modal/PageModal.tsx';
-import CardAcessoSistema from '../contentHelp/CardAcessoSistema.tsx';
-
 type PropsHearderHome = {
-  img: string;
-  titbtn: string;
-  onclick?: () => void;
-  title?: string;
+  imgsys?: string;
+  titbtnsys?: string;
+  onclicksys?: () => void;
+  titlepg?: string;
+  imghpg?: string;
+  titbtnhpg?: string;
+  onclickhpg?: () => void;
+  imgopen?: string;
+  titbtnopen?: string;
+  onclickopen?: () => void;
   onchange: () => void;
   ischeck?: boolean;
-  onLogin?: () => void;
-
-  
 };
 export const HearderHome = ({
-  img,
-  titbtn,
-  onclick,
-  title,
-  onchange,
-  ischeck,
-  onLogin
-  
-}: PropsHearderHome) => {
+  imgsys,
+  titbtnsys,
+  onclicksys,
 
+  titlepg,
+
+  imghpg,
+  titbtnhpg,
+  onclickhpg,
+
+  imgopen,
+  titbtnopen,
+  onclickopen,
+
+  onchange,
+  ischeck
+}: PropsHearderHome) => {
   const [isonpanel, setIsOnPanel] = React.useState(false);
-  
+
   return (
     <ContentHearderMain>
+     {/** imagem botão do logo da pagina */}
       <ContentHearderItens>
-        <ContentHeaderButtonSys img={logosys} onClick={onclick} />
+        <ContentHeaderButtonSys
+          img={imgsys}
+          title={titbtnsys}
+          onClick={onclicksys}
+        />
       </ContentHearderItens>
+      {/** Titulo da pagina */}
       <ContentHearderItens>
-        <ContentHeaderTitle title={title} />
+        <ContentHeaderTitle title={titlepg} />
       </ContentHearderItens>
+
       <ContentHearderRight>
         <ContentHearderItensBar>
+          {/** imagem botão do help da pagina */}
           <ContentPagesButton
-            img={abouthome}
-            titbtn={'Help Acesso Login...'}
-            onClick={() => {
-              setIsOnPanel(true);
-            }}
+            img={imghpg}
+            titbtn={titbtnhpg}
+            onClick={onclickhpg}
           />
+          {/** imagem botão do Acão da pagina */}
           <ContentPagesButton
-              img={img}
-              titbtn={titbtn}
-              onClick={onLogin}
-            />
+            img={imgopen}
+            titbtn={titbtnopen}
+            onClick={onclickopen}
+          />
+          {/** imagem botão switch do Padrão fundo Preto ou Branco */}
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}
@@ -81,17 +93,6 @@ export const HearderHome = ({
           </Pg.ContainerPagesButton>
         </ContentHearderItensBar>
 
-        {isonpanel ? (
-          <PageModal
-            ptop={'1%'}
-            pwidth={'65%'}
-            pheight={'80%'}
-            titulo={'Help do Acesso ao Sistema.'}
-            onclose={() => setIsOnPanel(false)}
-          >
-            <CardAcessoSistema />
-          </PageModal>
-        ) : null}
       </ContentHearderRight>
     </ContentHearderMain>
   );

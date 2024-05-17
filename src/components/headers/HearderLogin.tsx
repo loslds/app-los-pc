@@ -20,16 +20,33 @@ import CardInfoLogin from '../contentHelp/CardInfoLogin.tsx';
 import CardAcessoSistema from '../contentHelp/CardAcessoSistema.tsx';
 
 type PropsHearderLogin = {
-  onclick?: () => void;
-  title?: string; // titulo page
+  imgsys?: string;
+  titbtnsys?: string;
+  onclicksys?: () => void;
+  titlepg?: string;
+  imghpg?: string;
+  titbtnhpg?: string;
+  onclickhpg?: () => void;
+  imgopen?: string;
+  titbtnopen?: string;
+  onclickopen?: () => void;
+  ischeck: boolean;
   onchange: () => void;
-  ischeck?: boolean;
+  children?: ReactNode | JSX.Element;
 };
 export const HearderLogin = ({
-  onclick,
-  title,
+  imgsys,
+  titbtnsys,
+  onclicksys,
+  titlepg,
+  imghpg,
+  titbtnhpg,
+  onclickhpg,
+  imgopen,
+  titbtnopen,
+  onclickopen
+  ischeck,
   onchange,
-  ischeck
 }: PropsHearderLogin) => {
   const [isonpanel, setIsOnPanel] = React.useState(false);
   const [isonhelp, setIsOnHelp] = React.useState(false);
@@ -38,22 +55,21 @@ export const HearderLogin = ({
     setIsOnPanel((oldState) => !oldState);
   }, []);
 
-  const handlerOnHelp = React.useCallback(() => {
-    setIsOnHelp((oldState) => !oldState);
-  }, []);
 
   return (
     <ContentHearderMain>
       <ContentHearderItens>
         <ContentHeaderButtonSys
-          img={logosys}
-          title={'Home...'}
-          onClick={onclick}
+          img={imgsys}
+          title={titbtnsys}
+          onClick={onclicksys}
         />
       </ContentHearderItens>
+
       <ContentHearderItens>
-        <ContentHeaderTitle title={title} />
+        <ContentHeaderTitle title={titlepg} />
       </ContentHearderItens>
+
       <ContentHearderRight>
         <ContentHearderItensBar>
           <ContentPagesButton
@@ -61,12 +77,20 @@ export const HearderLogin = ({
             titbtn={'Panel...'}
             onClick={handlerOnPanel}
           />
-          <ContentPagesButton
-            img={help}
-            titbtn={'Ajuda...'}
-            onClick={handlerOnHelp}
-          />
 
+          {/** imagem botão do help da pagina */}
+          <ContentPagesButton
+            img={imghpg}
+            titbtn={titbtnhpg}
+            onClick={onclickhpg}
+          />
+          {/** imagem botão do Acão da pagina */}
+          <ContentPagesButton
+            img={imgopen}
+            titbtn={titbtnopen}
+            onClick={onclickopen}
+          />
+          {/** imagem botão switch do Padrão fundo Preto ou Branco */}          
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}
@@ -84,29 +108,6 @@ export const HearderLogin = ({
             />
           </Pg.ContainerPagesButton>
         </ContentHearderItensBar>
-        {isonhelp ? (
-          <PageModal
-            ptop={'1%'}
-            pwidth={'65%'}
-            pheight={'50%'}
-            titulo={'Acesso Sistema.'}
-            onclose={() => setIsOnHelp(false)}
-          >
-            <CardAcessoSistema />
-          </PageModal>
-        ) : null}
-
-        {isonpanel ? (
-          <PageModal
-            ptop={'1%'}
-            pwidth={'65%'}
-            pheight={'70%'}
-            titulo={'DADOS Context Login.'}
-            onclose={() => setIsOnPanel(false)}
-          >
-            <CardInfoLogin />
-          </PageModal>
-        ) : null}
       </ContentHearderRight>
     </ContentHearderMain>
   );

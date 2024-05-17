@@ -5,24 +5,25 @@ import { ReactNode } from 'react';
 // import dark from "../../../../styles/themes/dark.ts";
 //import { useState } from "react";
 //import { useNavigate } from "react-router-dom";
-import { LayoutLogin } from '../../../layouts/LayoutLogin/index.tsx';
+import { LayoutHome } from '../../../layouts/LayoutHome/index.tsx';
 
-type PropsThemeLogin = {
+type PropsThemeHome = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
   titlepg?: string;
   imghpg?: string;
   titbtnhpg?: string;
-  onclickhpg?: () => void;
+  onclickhpg: () => void;
   imgopen?: string;
   titbtnopen?: string;
   onclickopen?: () => void;
-  ischeck: boolean;
   onchange: () => void;
+  ischeck: boolean;
   children?: ReactNode | JSX.Element;
+  openlg3?: boolean;
 };
-export const ThemeLogin = ({
+export const ThemeHome = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -33,12 +34,13 @@ export const ThemeLogin = ({
   imgopen,
   titbtnopen,
   onclickopen,
-  ischeck,
   onchange,
+  ischeck,
   children,
-}: PropsThemeLogin) => {
+  openlg3
+}: PropsThemeHome) => {
   return (
-    <LayoutLogin
+    <LayoutHome
       imgsys={imgsys}
       titbtnsys={titbtnsys}
       onclicksys={onclicksys}
@@ -48,11 +50,12 @@ export const ThemeLogin = ({
       onclickhpg={onclickhpg}
       imgopen={imgopen}
       titbtnopen={titbtnopen}
-      ischeck={ischeck}
-      onchange={onchange}
       onclickopen={onclickopen}
+      onchange={onchange}
+      ischeck={ischeck}
+      openlg3={openlg3}
     >
       {children}
-    </LayoutLogin>
+    </LayoutHome>
   );
 };

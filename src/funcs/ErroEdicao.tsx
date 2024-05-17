@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 export function ErroEdicao(nrerro: number) {
+  
   const [isrtn, setIsRtn] = useState(true);
   //let rtn = true;
   if (nrerro == 1) {

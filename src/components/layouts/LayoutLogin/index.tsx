@@ -5,48 +5,55 @@ import { HearderLogin } from '../../headers/HearderLogin';
 import { ReactNode } from 'react';
 
 type PropsLayoutLogin = {
-  onclick?: () => void;
-  title?: string;
-  children?: ReactNode | JSX.Element;
-  onchange: () => void;
+  imgsys?: string;
+  titbtnsys?: string;
+  onclicksys?: () => void;
+  titlepg?: string;
+  imghpg?: string;
+  titbtnhpg?: string;
+  onclickhpg?: () => void;
+  imgopen?: string;
+  titbtnopen?: string;
+  onclickopen?: () => void;
   ischeck: boolean;
-  onLogin?: () => void;
+  onchange: () => void;
+  children?: ReactNode | JSX.Element;
 };
 export const LayoutLogin = ({
-  onclick,
-  title,
-  children,
+  imgsys,
+  titbtnsys,
+  onclicksys,
+  titlepg,
+  imghpg,
+  titbtnhpg,
+  onclickhpg,
+  imgopen,
+  titbtnopen,
+  onclickopen,
+  ischeck,
   onchange,
-  ischeck
+  children
 }: PropsLayoutLogin) => {
   return (
     <ContentPages>
       <HearderLogin
-        onclick={onclick}
-        title={title}
-        onchange={onchange}
+        imgsys={imgsys}
+        titbtnsys={titbtnsys}
+        onclicksys={onclicksys}
+        titlepg={titlepg}
+        imghpg={imghpg}
+        titbtnhpg={titbtnhpg}
+        onclickhpg={onclickhpg}
+        imgopen={imgopen}
+        titbtnopen={titbtnopen}
+        onclickopen={onclickopen}
         ischeck={ischeck}
+        onchange={onchange}
       />
       <Hm.DivisionPgHztal />
-
       <Hm.ContainerBody>
         <Hm.ContainerPage>{children}</Hm.ContainerPage>
       </Hm.ContainerBody>
-      
     </ContentPages>
   );
 };
-
-{
-  /* <HearderPage onclick={onclick} title={title} onchange={onchange} ischeck={ischeck} onLogin={onLogin}/>
-<Hm.DivisionPgHztal />
-<Hm.ContainerBody>
-  <Hm.ContainerPage>
-    <BarSideMenuHome />
-    <Hm.DivisionPgHztal />
-    {children}
-  </Hm.ContainerPage>
-</Hm.ContainerBody>
-<Hm.DivisionPgHztal />
-<FooterHome /> */
-}

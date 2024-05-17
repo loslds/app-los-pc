@@ -1,5 +1,5 @@
 
-export type Users = {
+export type TypeUsers = {
    id?: number;
    name?: string;
    apelido?: string;
@@ -15,6 +15,9 @@ export type Users = {
    bairro: string;
    cidade: string;
    uf: string;
+
+
+
 }
 
 export const ListUser = [
@@ -35,6 +38,8 @@ export const ListUser = [
     bairro: 'São Gerardo',
     cidade: 'Fortaleza',
     uf: 'Ceará',
+
+
   },
   {
     id: 2,
@@ -52,6 +57,7 @@ export const ListUser = [
     bairro: 'São Gerardo',
     cidade: 'Fortaleza',
     uf: 'Ceará',
+
   }
 ];
   // {

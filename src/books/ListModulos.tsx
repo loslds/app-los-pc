@@ -1,4 +1,4 @@
-export type Modulos = {
+export type TypeModulos = {
   id?: number;
   name?: string;
 }

@@ -1,7 +1,11 @@
-export type LstAcessos = {
+export type TypeAcessos = {
   id?: number;
   idemp?: number;
   iduser?: number;
+
+  idmodulo?: number;
+  nmmodulo?: string;
+
   inclusao?: boolean;
   alteracao?: boolean;
   exclusao?: boolean;
@@ -13,8 +17,11 @@ export const ListAcessos = [
   {
     id: 1,
     idemp: 1,
-    modulo: 'Recepção',
     iduser: 1,
+
+    idmodulo: 1,
+    nmmodulo: 'Recepção',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -24,8 +31,11 @@ export const ListAcessos = [
   {
     id: 2,
     idemp: 2,
-    modulo: 'Recepção',
     iduser: 1,
+
+    idmodulo: 1,
+    nmmodulo: 'Recepção',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -35,8 +45,11 @@ export const ListAcessos = [
   {
     id: 3,
     idemp: 1,
-    modulo: 'Design',
     iduser: 1,
+
+    idmodulo: 2,
+    nmmodulo: 'Design',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -46,8 +59,11 @@ export const ListAcessos = [
   {
     id: 4,
     idemp: 2,
-    modulo: 'Design',
     iduser: 1,
+
+    idmodulo: 2,
+    nmmodulo: 'Design',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -57,8 +73,11 @@ export const ListAcessos = [
   {
     id: 5,
     idemp: 1,
-    modulo: 'Produção',
     iduser: 1,
+
+    idmodulo: 3,
+    nmmodulo: 'Produção',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -68,8 +87,11 @@ export const ListAcessos = [
   {
     id: 6,
     idemp: 2,
-    modulo: 'Produção',
     iduser: 1,
+
+    idmodulo: 3,
+    nmmodulo: 'Produção',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -79,8 +101,11 @@ export const ListAcessos = [
   {
     id: 7,
     idemp: 1,
-    modulo: 'Acabamento',
     iduser: 1,
+
+    idmodulo: 4,
+    nmmodulo: 'Acabamento',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -90,8 +115,11 @@ export const ListAcessos = [
   {
     id: 8,
     idemp: 2,
-    modulo: 'Acabamento',
     iduser: 1,
+
+    idmodulo: 4,
+    nmmodulo: 'Acabamento',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -101,8 +129,11 @@ export const ListAcessos = [
   {
     id: 9,
     idemp: 1,
-    modulo: 'Expedição',
     iduser: 1,
+
+    idmodulo: 5,
+    nmmodulo: 'Expedição',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -112,8 +143,11 @@ export const ListAcessos = [
   {
     id: 10,
     idemp: 2,
-    modulo: 'Expedição',
     iduser: 1,
+
+    idmodulo: 5,
+    nmmodulo: 'Expedição',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -123,8 +157,11 @@ export const ListAcessos = [
   {
     id: 11,
     idemp: 1,
-    modulo: 'Administração',
     iduser: 1,
+
+    idmodulo: 6,
+    nmmodulo: 'Administração',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -134,8 +171,11 @@ export const ListAcessos = [
   {
     id: 12,
     idemp: 2,
-    modulo: 'Administração',
     iduser: 1,
+
+    idmodulo: 6,
+    nmmodulo: 'Administração',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -145,8 +185,11 @@ export const ListAcessos = [
   {
     id: 13,
     idemp: 1,
-    modulo: 'Master',
     iduser: 1,
+
+    idmodulo: 7,
+    nmmodulo: 'Master',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -156,8 +199,11 @@ export const ListAcessos = [
   {
     id: 14,
     idemp: 2,
-    modulo: 'Master',
     iduser: 1,
+
+    idmodulo: 7,
+    nmmodulo: 'Master',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -167,8 +213,11 @@ export const ListAcessos = [
   {
     id: 15,
     idemp: 1,
-    modulo: 'Config',
     iduser: 1,
+
+    idmodulo: 8,
+    nmmodulo: 'Config',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,
@@ -178,8 +227,11 @@ export const ListAcessos = [
   {
     id: 16,
     idemp: 2,
-    modulo: 'Config',
     iduser: 1,
+
+    idmodulo: 8,
+    nmmodulo: 'Config',
+
     inclusao: true,
     alteracao: true,
     exclusao: true,

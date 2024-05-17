@@ -167,7 +167,7 @@ export const Login2 = () => {
   }, [tentativa, dispatch]);
   return (
     <ThemeProvider theme={theme}>
-      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+      <ThemeLogin imgsys={logosys} titbtnsys={'Home...'} onclicksys={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
         <ContentCardPage>
           <ContentCardPageTitle pheight={'30px'}>
             <h2>{state.modulo}</h2>
