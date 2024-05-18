@@ -4,8 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
-import logosys from '../../../assets/pngs/logosys.png';
-
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
 
 import React from 'react';
@@ -29,15 +27,14 @@ import PageModal from '../../Modal/PageModal.tsx';
 import CardAcessoSistema from '../../contentHelp/CardAcessoSistema.tsx';
 import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
 
-import esclamacao from '../../../assets/svgs/esclamacao.svg';
+import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
 const Login = () => {
-  
   const [onpanel, setOnPanel] = React.useState(false);
-  
+
   const [helppg, setHelpPg] = React.useState(false);
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
@@ -140,12 +137,12 @@ const Login = () => {
       <ThemeLogin
         imgsys={''}
         titbtnsys={'Acesso Logo-on...'}
-        onclicksys={()=>{}}
+        onclicksys={() => {}}
         titlepg={'Acesso Sistema.'}
         imghpg={help}
         titbtnhpg={'Ajuda...'}
         onclickhpg={handlerHelpPg}
-        imgopen={esclamacao}
+        imgopen={esclamacaocirc}
         titbtnopen={'states contexto'}
         onclickopen={handlerOnPanel}
         ischeck={ischeck}
@@ -207,7 +204,7 @@ const Login = () => {
             >
               <CardAcessoSistema />
             </PageModal>
-          ) : null} 
+          ) : null}
 
           {onpanel ? (
             <PageModal
@@ -217,10 +214,9 @@ const Login = () => {
               titulo={'DADOS Context Login.'}
               onclose={() => setOnPanel(false)}
             >
-            <CardInfoLogin />
-          </PageModal>
-        ) : null}
-
+              <CardInfoLogin />
+            </PageModal>
+          ) : null}
         </ContentCardPage>
       </ThemeLogin>
     </ThemeProvider>
