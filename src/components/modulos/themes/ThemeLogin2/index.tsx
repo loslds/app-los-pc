@@ -1,7 +1,8 @@
+// import "../../../styles/global.ts";
 import { ReactNode } from 'react';
-import { LayoutLogin } from '../../../layouts/LayoutLogin';
+import { LayoutLogin2 } from '../../../layouts/LayoutLogin2';
 
-type PropsThemeLogin = {
+type PropsThemeLogin2 = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -16,7 +17,7 @@ type PropsThemeLogin = {
   onchange: () => void;
   children?: ReactNode | JSX.Element;
 };
-export const ThemeLogin = ({
+export const ThemeLogin2 = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -30,9 +31,9 @@ export const ThemeLogin = ({
   ischeck,
   onchange,
   children
-}: PropsThemeLogin) => {
+}: PropsThemeLogin2) => {
   return (
-    <LayoutLogin
+    <LayoutLogin2
       imgsys={imgsys}
       titbtnsys={titbtnsys}
       onclicksys={onclicksys}
@@ -47,6 +48,6 @@ export const ThemeLogin = ({
       onclickopen={onclickopen}
     >
       {children}
-    </LayoutLogin>
+    </LayoutLogin2>
   );
 };

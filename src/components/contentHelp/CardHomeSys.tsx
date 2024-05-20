@@ -1,6 +1,6 @@
 import * as MD from '../Modal/styles';
 import CardModalTexto from '../Modal/CardModalTexto';
-//import clientes from '../../assets/svgs/clientes.svg';
+import jrjr from '../../assets/svgs/jrjr.svg';
 
 const CardHomeSys = () => {
   return (
@@ -8,9 +8,9 @@ const CardHomeSys = () => {
       <MD.ContentTextoModulos>
         <MD.ContainerHeardModalMain>
           <MD.ContainerModalImg
-            pminheight={'60px'}
-            pwidth={'80px'}
-            // img={clientes}
+            img={jrjr}
+            pminheight={'86px'}
+            pwidth={'88px'}
           />
         </MD.ContainerHeardModalMain>
         <br />

@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
-import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
+import { ThemeLogin2 } from '../../modulos/themes/ThemeLogin2';
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
@@ -28,6 +28,14 @@ import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
 
+import PageModal from '../../Modal/PageModal.tsx';
+import CardAcessoSistema from '../../contentHelp/CardAcessoSistema.tsx';
+import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
+
+import loginpg2 from '../../../assets/svgs/loginpg2.svg';
+import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
+import help from '../../../assets/svgs/help.svg';
+
 export const Login2 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -46,13 +54,15 @@ export const Login2 = () => {
       navigate(path);
     };
   };
+  
+  const [onpanel, setOnPanel] = React.useState(false);
+  const [helppg, setHelpPg] = React.useState(false);
+
   const { state, dispatch } = AcessoUseForm();
   const [iseditar, setIsEditar] = React.useState(false);
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [ischeklogin, setIsChekLogin] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(state.nrcont);
-  console.log('state.nrcont :', state.nrcont);
-  console.log('tentativa :', tentativa);
   
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
@@ -165,9 +175,31 @@ export const Login2 = () => {
       setBtnEnviar(true);
     }
   }, [tentativa, dispatch]);
+
+  const handlerHelpPg = React.useCallback(() => {
+    setHelpPg((oldState) => !oldState);
+  }, []);
+
+  const handlerOnPanel = React.useCallback(() => {
+    setOnPanel((oldState) => !oldState);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
-      <ThemeLogin imgsys={logosys} titbtnsys={'Home...'} onclicksys={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+      <ThemeLogin2
+        imgsys={loginpg2}
+        titbtnsys={'Acesso Logo-on...'}
+        onclicksys={() => {}}
+        titlepg={'Acesso Sistema.'}
+        imghpg={help}
+        titbtnhpg={'Ajuda...'}
+        onclickhpg={handlerHelpPg}
+        imgopen={esclamacaocirc}
+        titbtnopen={'states contexto'}
+        onclickopen={handlerOnPanel}
+        ischeck={ischeck}
+        onchange={ToggleTheme}
+      >
         <ContentCardPage>
           <ContentCardPageTitle pheight={'30px'}>
             <h2>{state.modulo}</h2>
@@ -351,8 +383,32 @@ export const Login2 = () => {
               </PanelModalInfoErros>
             ) : null}
           </ContentSidePagePanelBotton>
+
+          {helppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'50%'}
+              titulo={'Acesso Sistema.'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardAcessoSistema />
+            </PageModal>
+          ) : null}
+
+          {onpanel ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'70%'}
+              titulo={'DADOS Context Login.'}
+              onclose={() => setOnPanel(false)}
+            >
+              <CardInfoLogin />
+            </PageModal>
+          ) : null}
         </ContentCardPage>
-      </ThemeLogin>
+      </ThemeLogin2>
     </ThemeProvider>
   );
 };

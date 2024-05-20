@@ -161,8 +161,8 @@ export const ContainerModalImg = styled.div<ContainerModalImgType>`
   border: 6px silver groove ;
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;
-  min-height: ${({ pminheight }) => pminheight || '27%'};// min-height: 130px;
-  width: ${({ pwidth }) => pwidth || '66.3%'}; // width: 150px;
+  min-height: ${({ pminheight }) => pminheight || '10%'};// min-height: 130px;
+  width: ${({ pwidth }) => pwidth || '10%'}; // width: 150px;
   display: flex;
   flex-flow: wrap;
   justify-content: center; /*space-around;*/
@@ -171,7 +171,7 @@ export const ContainerModalImg = styled.div<ContainerModalImgType>`
   background-color: transparent;
   background-image: url(${({ img }) => img || semimg});
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: center;
   background-position: center;
   cursor: pointer;
   outline: none;

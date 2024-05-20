@@ -27,6 +27,7 @@ import PageModal from '../../Modal/PageModal.tsx';
 import CardAcessoSistema from '../../contentHelp/CardAcessoSistema.tsx';
 import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
 
+import loginpg0 from '../../../assets/svgs/loginpg0.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
@@ -34,8 +35,8 @@ import setadir from '../../../assets/svgs/setadir.svg';
 
 const Login = () => {
   const [onpanel, setOnPanel] = React.useState(false);
-
   const [helppg, setHelpPg] = React.useState(false);
+
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
   const [btncontinua, setBtnContinua] = React.useState(false);
@@ -135,7 +136,7 @@ const Login = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin
-        imgsys={''}
+        imgsys={loginpg0}
         titbtnsys={'Acesso Logo-on...'}
         onclicksys={() => {}}
         titlepg={'Acesso Sistema.'}
