@@ -24,10 +24,12 @@ import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 
 import PageModal from '../../Modal/PageModal.tsx';
-import CardAcessoSistema from '../../contentHelp/CardAcessoSistema.tsx';
+import CardHelpLogin0 from '../../contentHelp/CardHelpLogin0.tsx';
 import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
 
+import login0hlp from '../../../assets/svgs/login0hlp.svg';
 import loginpg0 from '../../../assets/svgs/loginpg0.svg';
+
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
@@ -198,12 +200,12 @@ const Login = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'65%'}
-              pheight={'50%'}
+              pwidth={'30%'}
+              pheight={'37%'}
               titulo={'Acesso Sistema.'}
               onclose={() => setHelpPg(false)}
             >
-              <CardAcessoSistema />
+              <CardHelpLogin0 imgcard={login0hlp} imghlp={loginpg0} />
             </PageModal>
           ) : null}
 

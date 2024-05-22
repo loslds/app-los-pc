@@ -29,10 +29,11 @@ import setadir from '../../../assets/svgs/setadir.svg';
 import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
 
 import PageModal from '../../Modal/PageModal.tsx';
-import CardAcessoSistema from '../../contentHelp/CardAcessoSistema.tsx';
 import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
-
+import CardHelpLogin2 from '../../contentHelp/CardHelpLogin2.tsx';
+import login2hlp from '../../../assets/svgs/login2hlp.svg';
 import loginpg2 from '../../../assets/svgs/loginpg2.svg';
+
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 
@@ -54,7 +55,7 @@ export const Login2 = () => {
       navigate(path);
     };
   };
-  
+
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
@@ -63,10 +64,11 @@ export const Login2 = () => {
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [ischeklogin, setIsChekLogin] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(state.nrcont);
-  
+
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
   const [btnenviar, setBtnEnviar] = React.useState(false);
+  const [btnresgatar, setBtnResgatar] = React.useState(false);
   const [iserrologin, setIsErroLogin] = React.useState(false);
   const [nmrerrologin, setNmErroLogin] = React.useState('');
   React.useEffect(() => {
@@ -83,6 +85,7 @@ export const Login2 = () => {
     //    setTentativa(state.nrcont);
     setIsEditar(true);
     setBtnContinua(true);
+    setIsChekLogin(false);
   }, [tentativa, dispatch]);
   const handlerOnChangerStrId = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,6 +100,7 @@ export const Login2 = () => {
   const spanChangeKeyUpPasId = React.useCallback(() => {
     if (strid === '') {
       setBtnContinua(true);
+      setIsChekLogin(false);
     }
     if (strid !== '' && strpsw !== '') {
       setBtnEnviar(true);
@@ -120,6 +124,7 @@ export const Login2 = () => {
   const spanChangeKeyUpPasPsw = React.useCallback(() => {
     if (strpsw === '') {
       setBtnContinua(true);
+      setIsChekLogin(false);
     }
     if (strid !== '' && strpsw !== '') {
       setBtnEnviar(true);
@@ -133,6 +138,7 @@ export const Login2 = () => {
   const handlerContinuar = React.useCallback(() => {
     setNmErroLogin('');
     setTentativa(tentativa + 1);
+
     if (!ischeklogin || nmrerrologin !== '') {
       if (strid === '' && strpsw === '') {
         if (state.mdlogin == 1) {
@@ -156,22 +162,23 @@ export const Login2 = () => {
         } else if (state.mdlogin == 2 || state.mdlogin == 4) {
           setNmErroLogin('Determine seu PIN para Acesso...');
         }
+        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
       }
     }
-  }, [strid, strpsw, tentativa]);
+  }, [strid, strpsw, tentativa,dispatch]);
   React.useEffect(() => {
     if (!ischeklogin && nmrerrologin !== '') {
-      if (tentativa + 1 >= 5) {
+      if (tentativa === 3) {
         setIsEditar(false);
         setBtnContinua(false);
         setBtnEnviar(false);
         setIsErroLogin(false);
+        setBtnResgatar(true);
       } else {
         setIsErroLogin(true);
       }
       dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    }
-    if (ischeklogin) {
+    }else if (ischeklogin) {
       setBtnEnviar(true);
     }
   }, [tentativa, dispatch]);
@@ -332,21 +339,9 @@ export const Login2 = () => {
               onclick={goto('/login')}
             />
             <Lg.ContainerBoxLabelPage>
-              <label>[ {4 - state.nrcont} ] tentativas. </label>
+              <label>[ {3 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-
-            {!ischeklogin && tentativa >= 4 ? (
-              <ContentSidePageLabelBotton
-                pxheight={'20px'}
-                istitl={true}
-                title={'Resgatar.: '}
-                img={setadir}
-                titbtn={'Resgatar...'}
-                onclick={goto('/login4')}
-              />
-            ) : null}
-
-            {btncontinua && state.mdlogin < 5 && !ischeklogin ? (
+            {btncontinua && state.mdlogin <= 4 || !ischeklogin ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
                 istitl={true}
@@ -368,6 +363,17 @@ export const Login2 = () => {
               />
             ) : null}
 
+            { btnresgatar ? (
+              <ContentSidePageLabelBotton
+                pxheight={'20px'}
+                istitl={true}
+                title={'Resgatar.: '}
+                img={setadir}
+                titbtn={'Resgatar...'}
+                onclick={goto('/login4')}
+              />
+            ) : null}
+
             {iserrologin ? (
               <PanelModalInfoErros
                 ptop={'1%'}
@@ -375,7 +381,7 @@ export const Login2 = () => {
                 pheight={'auto'}
                 titulo={'ERRO em processamento...'}
                 texto={
-                  'Mais atenção, tentativa: [' + (4 - tentativa) + '] de [4].'
+                  'Mais atenção, tentativa: [' + (3 - tentativa) + '] de [3].'
                 }
                 onClose={() => setIsErroLogin(false)}
               >
@@ -387,12 +393,12 @@ export const Login2 = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'65%'}
-              pheight={'50%'}
+              pwidth={'40%'}
+              pheight={'43%'}
               titulo={'Acesso Sistema.'}
               onclose={() => setHelpPg(false)}
             >
-              <CardAcessoSistema />
+              <CardHelpLogin2 imgcard={login2hlp} imghlp={loginpg2} />
             </PageModal>
           ) : null}
 
@@ -414,100 +420,3 @@ export const Login2 = () => {
 };
 
 export default Login2;
-
-// <Lg.ContainerLogin>
-//   <Lg.ContainerLoginFlex>
-//     <ContentTitleLogin modotitle={state.modulo} />
-//     <Lg.ContainerMainLogin isopen={true}>
-//       <ContentLoginCollunsCenter isopen={true}>
-//         <ContentLoginCollunsOpc pheight="200px" pwidth="400px">
-//
-//              {iseditar ? (
-//             <ContentLoginOpc pwidth="100%" open={true}>
-//               <ContentTitleLoginOpc titleopc={state.aplicacao} />
-
-//           {isresgatar ? (
-//             <ContentLoginOpc pwidth={'99%'} open={true}>
-//               <ContentTitleLoginOpc titleopc={tituloConfirmacao} />
-//               <Lg.ContainerAreaText>
-//                 <form name="confResgate">
-//                   <Lg.InputCenter>
-//                     <h3>Confime se deseja outro modo para o acesso.</h3>
-//                     <p>Caso "NÃO" , Retornarei do Início. </p>
-//                   </Lg.InputCenter>
-//                 </form>
-//               </Lg.ContainerAreaText>
-//               <ContentButtonsConfirmation>
-//                 <ContentButtonConfimationOnOff
-//                   title={'NÃO'}
-//                   img={enviaoff}
-//                   titlebtn="Inicio..."
-//                   onClick={goto('/')}
-//                 />
-//                 <ContentButtonConfimationOnOff
-//                   title={'SIM'}
-//                   img={enviaon}
-//                   titlebtn="Outra maneira..."
-//                   onClick={goto('/login4')}
-//                 />
-//               </ContentButtonsConfirmation>
-//             </ContentLoginOpc>
-//           ) : null}
-//         </ContentLoginCollunsOpc>
-//       </ContentLoginCollunsCenter>
-//     </Lg.ContainerMainLogin>
-//     <Lg.DivisionPgHztal />
-//     <ContentLoginColluns pheight={'60px'} pwidth={'100%'}>
-//       <ContentMainButtonsLogin>
-//         <ContentButtonTitleImg
-//           title="Voltar."
-//           onClick={goto('/login1')}
-//         />
-
-//         <p>Você tem [{4 - state.nrcont}] tentativas para acesso...</p>
-
-//         {btncontinua && state.mdlogin > 0 && state.mdlogin <= 4 ? (
-//           <ContentButtonTitleImg
-//             title="Continuar."
-//             onClick={handlerContinuar}
-//           />
-//         ) : null}
-//         {btnenviar ? (
-//           <ContentButtonTitleImg
-//             title="Enviar."
-//             onClick={goto('/login3')}
-//           />
-//         ) : null}
-//       </ContentMainButtonsLogin>
-//     </ContentLoginColluns>
-
-//     {iserrologin ? (
-//       <PanelModalInfoErros
-//         ptop={'1%'}
-//         pwidth={'65%'}
-//         pheight={'auto'}
-//         titulo={'ERRO em processamento...'}
-//         texto={
-//           'Mais atenção, tentativa: [' + (4 - tentativa) + '] de [4].'
-//         }
-//         onClose={() => setIsErroLogin(false)}
-//       >
-//         <CardInfoErros nmerro={nmrerrologin} />
-//       </PanelModalInfoErros>
-//     ) : null}
-//   </Lg.ContainerLoginFlex>
-// </Lg.ContainerLogin>
-
-// console.log('nmrerrologin :', nmrerrologin);
-// console.log('=================================', '.');
-// console.log('state.mdlogin  :', state.mdlogin);
-// console.log('state.nmlogin  :', state.nmlogin);
-
-// console.log('state.idnmuser :', state.idnmuser);
-// console.log('state.pswuser  :', state.pswuser);
-// console.log('/////////////////////////////////', '.');
-// console.log('state.nrcont   :', state.nrcont);
-// console.log('tentativa :', tentativa);
-// console.log('strid     :', strid);
-// console.log('strpsw    :', strpsw);
-// console.log('##################################', '.');

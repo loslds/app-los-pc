@@ -156,6 +156,7 @@ type ContainerModalImgType = {
   pwidth?: string;
   img?: string;
   onClick?: () => void;
+  ishlp?: boolean;
 };
 export const ContainerModalImg = styled.div<ContainerModalImgType>`
   border: 6px silver groove ;
@@ -171,7 +172,7 @@ export const ContainerModalImg = styled.div<ContainerModalImgType>`
   background-color: transparent;
   background-image: url(${({ img }) => img || semimg});
   background-repeat: no-repeat;
-  background-size: center;
+  background-size: cover;
   background-position: center;
   cursor: pointer;
   outline: none;

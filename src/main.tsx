@@ -33,9 +33,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
           <Route path="/login" element={<Login />} />
           <Route path="/login1" element={<Login1 />} />
           <Route path="/login2" element={<Login2 />} />
-         {/*  <Route path="/login3" element={<Login3 />} />
+          <Route path="/login3" element={<Login3 />} />
 
-          <Route path="/mayaccount" element={<MyAccount />} /> */}
+          {/*<Route path="/mayaccount" element={<MyAccount />} /> */}
 
           <Route path="/tabprc" element={<TabPrc />} />
           <Route path="/recepcao" element={<Recepcao />} />

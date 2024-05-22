@@ -1,59 +1,89 @@
+
 import * as MD from '../Modal/styles';
 import CardModalTexto from '../Modal/CardModalTexto';
-import clientes from '../../assets/svgs/clientes.svg';
 
-const CardAcessoSistema = () => {
+type TypeCardAcessoSistema = {
+  imghlp?: string;
+};
+
+
+const CardAcessoSistema = ({ imghlp }: TypeCardAcessoSistema) => {
+  
   return (
     <CardModalTexto>
       <MD.ContentTextoModulos>
         <MD.ContainerHeardModalMain>
           <MD.ContainerModalImg
-            pminheight={'60px'}
-            pwidth={'80px'}
-            img={clientes}
+            pminheight={'100px'}
+            pwidth={'180px'}
+            img={imghlp}
           />
         </MD.ContainerHeardModalMain>
-        <h3>Acesso.</h3>
+
+        <h2>Acesso ao Sistema.</h2>
         <p>
-          01º - O Acesso somente permitira aos cadastrados conforme o Setor e a
+          &emsp;&emsp;&emsp;01º - O Acesso somente permitira aos cadastrados conforme o Setor e a
           Herarquia de sua Área de Trabalho.
         </p>
         <p>
-          &emsp; - Para que possa logar e obter acesso, entre em contato com a
+          &emsp;&emsp;&emsp; - Para que possa logar e obter acesso, entre em contato com a
           Administração.
         </p>
         <p>
-          Receberá uma senha de acesso conforme sua Identidade, e o seu
+          &emsp;&emsp;&emsp; - Receberá uma senha de acesso conforme sua Identidade, e o seu
           trabalho.
         </p>
-        <p>02º - Selecione as Opções necessárias solicitadas em Formulário.</p>
-        <h4>Obs.:</h4>
         <p>
-          Poderá utilizar formas Diferêntes para Acesso, clicando em "Opções."
+          &emsp;&emsp;&emsp;02º - Selecione as Opções ou edite conforme Formulário.
         </p>
-        <h5>Modo:</h5>
-        <p>&emsp; - Determinando: Empresa, ID(apelido) e Senha(password).</p>
-        <p>&emsp; - Determinando: Empresa, ID(apelido) e PIN.</p>
-        <p>&emsp; - Determinando: Empresa, E-Mail, e Senha(password).</p>
-        <p>&emsp; - Determinando: Empresa, E-Mail, e PIN.</p>
-        <p>Somente após isso feito poderá realizar o Login.</p>
-        <br />
-        <h5>Obs. do Caso Recuperação do Acesso:</h5>
-        <p>&emsp; - Recuperar Acesso através de E-Mail.</p>
-        <p>&emsp; - Recuperar Acesso através de SMS.</p>
-        <br />
-        <h5>Obs. do Caso Ateração Cadastrais do Acesso:</h5>
+        <br/>
+        <h3>Obs.:</h3>
         <p>
-          &emsp; - Para isso é necessário estar logado e seguir instruções
-          conforme Opção.
+          &emsp; - Poderá utilizar formas Diferêntes para Acesso, clicando em "Opções."
         </p>
-        <br />
-        <h5>Ao Enviar o seu Acesso em Formulário:</h5>
+        <br/>
+        <h4>Modo:</h4>
         <p>
-          {' '}
-          Assim que for detectado sua Chave de Acesso, O Sistema irá
-          redirecionar voce para o Setor da liberdade do Acesso ao Sistema.
+        &emsp;&emsp;&emsp; 1º Passo 
         </p>
+        <p>
+        &emsp;&emsp;&emsp;&emsp; - Determinando: Uma Empresa para Trabalho.
+        </p>
+        <p>
+        &emsp;&emsp;&emsp; 2º Passo 
+        </p>
+        <p>
+        &emsp;&emsp;&emsp;&emsp; - Determinando: Um ID e uma Senha.
+        </p>
+        <br/>
+        <p>
+        &emsp; De livre escola poderá ser terminado como:
+        </p>
+        <br/>
+        <p>&emsp;&emsp; - ID(apelido) e Senha(password).</p>
+        <p>&emsp;&emsp; - ID(apelido) e PIN.</p>
+        <p>&emsp;&emsp; - ID(E-Mail), e Senha(password).</p>
+        <p>&emsp;&emsp; - ID(E-Mail), e PIN.</p>
+        <label>Atenção:</label>
+        <p>&emsp;&emsp;Somente após isso feito poderá realizar o Login.</p>
+        <p>&emsp;&emsp;Caso envie por mais de (3)Treis vezes o Acesso "ERRADO", poderá acessar SITUAÇÃO DE RESGATE.</p>
+        <br />
+        <h4>Obs. do Caso Recuperação do Acesso:</h4>
+        <p>
+          &emsp; - Recuperar Acesso através de E-Mail. Recuperar Acesso através de SMS. Recuperar Acesso através de WATSZAP.
+        </p>
+        <p>
+          &emsp;&emsp;&emsp; - Atravé de E-MAIL vc receberá um Link para adentrar no Sistema e Refazer seu Acesso ao Sistema.</p>
+        <p>
+          &emsp;&emsp;&emsp; - Atravé de SMS vc receberá um Código para adentrar no Sistema e Refazer seu Acesso ao Sistema.</p>
+        <p>
+          &emsp;&emsp;&emsp; - Atravé de WATSZAP vc receberá um Link para adentrar no Sistema e Refazer seu Acesso ao Sistema.</p>
+        <br />
+        <p>
+          &emsp;Assim que for detectado sua Chave de Acesso, o Sistema irá
+          redirecionar você para o Setor desbloqueado conforme seu Acesso ao Sistema na Pagina Principal(HOME).
+        </p>
+        <br/>
       </MD.ContentTextoModulos>
     </CardModalTexto>
   );

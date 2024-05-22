@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
-import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
+import { ThemeLogin3 } from '../../modulos/themes/ThemeLogin3';
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +31,17 @@ import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 import { ContentDivTxt } from '../ContentDivTxt.tsx';
 
+import PageModal from '../../Modal/PageModal.tsx';
+import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
+import CardHelpLogin3 from '../../contentHelp/CardHelpLogin3.tsx';
+import login3hlp from '../../../assets/svgs/login3hlp.svg';
+import loginpg3 from '../../../assets/svgs/loginpg3.svg';
+
+import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
+import help from '../../../assets/svgs/help.svg';
+
 import setaesq from '../../../assets/svgs/setaesq.svg';
+
 import olhoa from '../../../assets/svgs/olhoa.svg';
 import olhof from '../../../assets/svgs/olhof.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
@@ -58,6 +68,10 @@ export function GetLogon() {
 const Login3 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
+
+  const [onpanel, setOnPanel] = React.useState(false);
+  const [helppg, setHelpPg] = React.useState(false);
+  const [ishelppg, setIsHelpPg] = React.useState(false);
 
   const [isshow, setIsShow] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(0);
@@ -132,6 +146,7 @@ const Login3 = () => {
     setTentativa(state.nrcont + 1);
     setTtModulo('Logar : "CONEXÃO" com REDE.');
 
+    setIsHelpPg(true);
     setIsView(false);
     setIsEnviar(false);
     setIsConexao(true);
@@ -139,7 +154,7 @@ const Login3 = () => {
     setIsLogin(false);
     setIsAcesso(false);
 
-    if (tentativa >= 5) {
+    if (tentativa >= 4) {
       setIsResgatar(true);
     } else {
       setIsResgatar(false);
@@ -150,13 +165,13 @@ const Login3 = () => {
     setIsConexao(false);
     setIsFindAcces(true);
     //acessa conexão
-    let rtncon = true;
+    let rtncon = false;
     if (rtncon) {
       setIsConectedon(true);
     } else {
       setIsConectedoff(true);
       setIsFindAcces(false);
-      if (tentativa + 1 === 5) {
+      if (tentativa + 1 === 4) {
         setIsResgatar(true);
       }
     }
@@ -172,7 +187,7 @@ const Login3 = () => {
     } else {
       setIsFindingoff(true);
       setIsLogin(false);
-      if (tentativa + 1 === 5) {
+      if (tentativa + 1 === 4) {
         setIsResgatar(true);
       }
     }
@@ -188,7 +203,7 @@ const Login3 = () => {
     } else {
       setIsLoggedoff(true);
       setIsAcesso(false);
-      if (tentativa + 1 === 5) {
+      if (tentativa + 1 === 4) {
         setIsResgatar(true);
       }
     }
@@ -204,11 +219,31 @@ const Login3 = () => {
     }
   }, [tentativa, isacesso, dispatch]);
 
-  console.log('state.logado login3 :', state.logado);
+  const handlerHelpPg = React.useCallback(() => {
+    setHelpPg((oldState) => !oldState);
+  }, []);
 
-  return (
+  const handlerOnPanel = React.useCallback(() => {
+    setOnPanel((oldState) => !oldState);
+  }, []);
+
+
+   return (
     <ThemeProvider theme={theme}>
-      <ThemeLogin onclick={goto('/')} onchange={ToggleTheme} ischeck={ischeck}>
+      <ThemeLogin3
+        imgsys={loginpg3}
+        titbtnsys={'Acesso Logo-on...'}
+        onclicksys={() => {}}
+        titlepg={'Acesso Sistema.'}
+        imghpg={help}
+        titbtnhpg={'Ajuda...'}
+        onclickhpg={handlerHelpPg}
+        imgopen={esclamacaocirc}
+        titbtnopen={'states contexto'}
+        onclickopen={handlerOnPanel}
+        ischeck={ischeck}
+        onchange={ToggleTheme}
+      >
         <ContentCardPage pwidth="70%">
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
@@ -590,7 +625,7 @@ const Login3 = () => {
                 onclick={goto('/login2')}
               />
               <Pg.ContainerBoxLabelPage>
-                <label>[ {4 - state.nrcont} ] tentativas. </label>
+                <label>[ {3 - state.nrcont} ] tentativas. </label>
               </Pg.ContainerBoxLabelPage>
               {isenviar ? (
                 <ContentSidePageLabelBotton
@@ -656,561 +691,34 @@ const Login3 = () => {
               ) : null}
             </ContentSidePagePanelBotton>
           ) : null}
+
+          {helppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'40%'}
+              pheight={'48%'}
+              titulo={'Acesso Sistema.'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardHelpLogin3 ishlp={ishelppg} imgcard={login3hlp} imghlp={loginpg3} />
+            </PageModal>
+          ) : null}
+
+          {onpanel ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'70%'}
+              titulo={'DADOS Context Login.'}
+              onclose={() => setOnPanel(false)}
+            >
+              <CardInfoLogin />
+            </PageModal>
+          ) : null}
         </ContentCardPage>
-      </ThemeLogin>
+      </ThemeLogin3>
     </ThemeProvider>
   );
 };
 
 export default Login3;
-
-{
-  /*
-            {isconectedon ? (
-              <ContentPagePanelBotton open={isconexao} pwidth="100%">
-              <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
-                  <label>Conectar:</label>
-                  <h4>REDE</h4>
-                </ContentDivTxt>
-                <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                  <ContentDivButtonOn
-                    img={sateliteon}
-                    title="REDE Liberada."
-                    onClick={() => {}}
-                  />
-                </Pg.ContainerCardDivMainEnd>
-              </ContentDivMainBlue>
-
-              <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
-                  <label>Serviço:</label>
-                  <h4>DADOS</h4>
-                </ContentDivTxt>
-                <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                  <ContentDivButtonOff
-                    img={nuvenfind}
-                    title="Acesso DADOS."
-                    onClick={handlerFindAcess}
-                  />
-                </Pg.ContainerCardDivMainEnd>
-              </ContentDivMainBlue>
-
-              <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
-                  <label>Logar:</label>
-                  <h4>LOGAR</h4>
-                </ContentDivTxt>
-                <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                  <ContentDivButtonOff
-                    img={login}
-                    title="Acesso LOGAR."
-                    onClick={()=>{}}
-                  />
-                </Pg.ContainerCardDivMainEnd>
-              </ContentDivMainBlue>
-
-              </ContentPagePanelBotton>
-              ): null 
-            }
-
-            {isconectedon ? (
-
-
-
-
-
-            
-
-
-
-&& !isconexao && isfindacces && islogin
-
-
-
-
-
-
-
-
-
-
-              <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
-                  <label>Serviço:</label>
-                  <h4>DADOS</h4>
-                </ContentDivTxt>
-                <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                  <ContentDivButtonOff
-                    img={nuvenfind}
-                    title="Acesso DADOS."
-                    onClick={handlerFindAcess}
-                  />
-                </Pg.ContainerCardDivMainEnd>
-              </ContentDivMainBlue>
-
-              <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
-                  <label>Logar:</label>
-                  <h4>LOGAR</h4>
-                </ContentDivTxt>
-                <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                  <ContentDivButtonOff
-                    img={login}
-                    title="Acesso LOGAR."
-                    onClick={handlerLogin}
-                  />
-                </Pg.ContainerCardDivMainEnd>
-              </ContentDivMainBlue>
-            
-            </ContentPagePanelBotton>
- 
-                        
-              
-
-
-
-
-
-
-
-
-
-                {isconexao && isconectedon ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Conexão:</label>
-                      <h4>REDE CONECTADA</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOn
-                        img={sateliteon}
-                        title="REDE Liberada."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                ) : null}
-                {isconexao && isconectedoff ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Conexão:</label>
-                      <h4>REDE NEGADA</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOn
-                        img={sateliteoff}
-                        title="REDE Negada."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                ) : null}
-
-
-                {isfindacces && isfindingon ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Serviço:</label>
-                      <h4>DADOS LIBERADO</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOn
-                        img={nuvenfindon}
-                        title="Dados Liberado."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                ) : null}
-                {isfindacces && !isfindingoff ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Serviço:</label>
-                      <h4>DADOS NEGADO</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOff
-                        img={nuvenfindoff}
-                        title="Acesso DADOS."
-                        onClick={handlerFindAcess}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                ) : null}
-
-                {islogin && isfindingon ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>LOGAR:</label>
-                      <h4>LOGIN SUCESSO</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOn
-                        img={logoon}
-                        title="Login Sucesso."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                ) : null}
-                {islogin && isfindingoff ? (
-                  <ContentDivMainBlue pxheigth="50px">
-                    <ContentDivTxt>
-                      <label>Serviço:</label>
-                      <h4>LOGIN NEGADO</h4>
-                    </ContentDivTxt>
-                    <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-                      <ContentDivButtonOff
-                        img={logooff}
-                        title="Login Negado."
-                        onClick={() => {}}
-                      />
-                    </Pg.ContainerCardDivMainEnd>
-                  </ContentDivMainBlue>
-                ) : null}
-              </ContentPagePanelBotton>
-            ) : null}
-*/
-}
-
-{
-  /* 
-          
-          
-          
-          {isenviar ? (
-            <ContentPagePanelBotton open={true} pwidth="100%">
-              <CardModalTexto>
-                <MD.ContentTextoModulos>
-                  <h4>Informações do Ambiente de acesso.</h4>
-                  <p>&emsp;Você deve Clicar nas imagens para o acesso LOGAR.</p>
-                  <p>
-                    &emsp;01º - O Conecxão à "REDE", estará tentando acessar:
-                    via Internet ou REDE Local.
-                  </p>
-                  <p>
-                    &emsp;02º - O Serviço de "DADOS", localizará o serviço de
-                    DADOS para pesquiza.
-                  </p>
-                  <p>
-                    &emsp;03º - "LOGAR", identifirará suas credenciais de
-                    Acesso.
-                  </p>
-                </MD.ContentTextoModulos>
-              </CardModalTexto>
-            </ContentPagePanelBotton>
-          ) : null}
-          <Pg.DivisionPgHztalPage />
- */
-}
-
-// ////////////////////////////////////////////////
-//              painel de botões
-// ////////////////////////////////////////////////
-// ///////////////////////////////////////////////
-//              Painel de botões:
-//              antes de clicar em enviar
-//              enviar: false
-// ////////////////////////////////////////////////
-//           !isenviar && state.nrcont <= 4 ? (
-//             <ContentSidePagePanelBotton open={true} pwidth="100%">
-//               <ContentSidePageLabelBotton
-//                 pxheight={'40px'}
-//                 istitl={true}
-//                 title={'Voltar: '}
-//                 img={setaesq}
-//                 titbtn={'Voltar...'}
-//                 onclick={goto('/login2')}
-//               />
-//               <Pg.ContainerBoxLabelPage>
-//                 <label>[ {4 - state.nrcont} ] tentativas. </label>
-//               </Pg.ContainerBoxLabelPage>
-//               <ContentSidePageLabelBotton
-//                 pxheight={'20px'}
-//                 istitl={true}
-//                 title={'Enviar.: '}
-//                 img={setadir}
-//                 titbtn={'Enviar...'}
-//                 onclick={handlerEnviar}
-//               />
-//             </ContentSidePagePanelBotton>
-//           ) : null}
-
-// ////////////////////////////////////////////////
-//              Painel de botões:
-//              caso entrando com :
-//              enviar : falso
-//              tentativa: menor ou igual a 4
-// ////////////////////////////////////////////////
-
-//                   <ContentDivMainBlue pxheigth="50px">
-//                     <ContentDivTxt>
-//                       <label>Serviço:</label>
-//                       <h4>DADOS</h4>
-//                     </ContentDivTxt>
-//                     <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
-//                       <ContentDivButtonOff
-//                         img={nuvenon}
-//                         title="Acesso REDE."
-//                         onClick={() => {
-//                           setIsConexao(true);
-//                         }}
-//                       />
-//                     </Pg.ContainerCardDivMainEnd>
-//                   </ContentDivMainBlue>
-//                 ) : (
-//                   <ContentDivMainBlue pxheigth="65px">
-//                     <ContentDivTxt>
-//                       <label>Rede:</label>
-//                       <h4>ALCANÇADA</h4>
-//                     </ContentDivTxt>
-//                     <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                       <ContentDivButtonOn
-//                         pxwdth="40px"
-//                         img={nuvenon}
-//                         title="Conectado em REDE."
-//                         onClick={() => {}}
-//                       />
-//                     </Pg.ContainerCardDivMainEnd>
-//                   </ContentDivMainBlue>
-//                 )}
-
-//           {!isenviar && state.nrcont <= 4  ? (
-//             <ContentSidePagePanelBotton open={true} pwidth="100%">
-//               <ContentSidePageLabelBotton
-//                 pxheight={'40px'}
-//                 istitl={true}
-//                 title={'Voltar: '}
-//                 img={setaesq}
-//                 titbtn={'Voltar...'}
-//                 onclick={goto('/login2')}
-//               />
-//               <Pg.ContainerBoxLabelPage>
-//                 <label>[ {4 - state.nrcont} ] tentativas. </label>
-//               </Pg.ContainerBoxLabelPage>
-//               <ContentSidePageLabelBotton
-//                 pxheight={'20px'}
-//                 istitl={true}
-//                 title={'Enviar.: '}
-//                 img={setadir}
-//                 titbtn={'Enviar...'}
-//                 onclick={handlerEnviar}
-//               />
-//             </ContentSidePagePanelBotton>
-//           ) : null}
-
-//           { state.nrcont >= 4 || isresgatar ? (
-//             <ContentSidePagePanelBotton open={true} pwidth="100%">
-//               <ContentSidePageLabelBotton
-//                 pxheight={'40px'}
-//                 istitl={true}
-//                 title={'Home.: '}
-//                 img={setaesq}
-//                 titbtn={'Home...'}
-//                 onclick={goto('/')}
-//               />
-//               <Pg.ContainerBoxLabelPage>
-//                 <label>Expirou Tentativas [ 4 de {state.nrcont} ]. </label>
-//               </Pg.ContainerBoxLabelPage>
-//               <ContentSidePageLabelBotton
-//                 pxheight={'40px'}
-//                 istitl={true}
-//                 title={'Resgatar: '}
-//                 img={setadir}
-//                 titbtn={'Resgatar...'}
-//                 onclick={goto('/login4')}
-//               />
-//             </ContentSidePagePanelBotton>
-//           ) : null}
-
-//           {islogin ? (
-//             <ContentSidePagePanelBotton open={true} pwidth="100%">
-//               <ContentSidePageLabelBotton
-//                 pxheight={'40px'}
-//                 istitl={true}
-//                 title={'Voltar: '}
-//                 img={setaesq}
-//                 titbtn={'Voltar...'}
-//                 onclick={goto('/login2')}
-//               />
-//               <Pg.ContainerBoxLabelPage>
-//                 <label>[ {4 - state.nrcont} ] tentativas. </label>
-//               </Pg.ContainerBoxLabelPage>
-//               </ContentSidePagePanelBotton>
-//           ) : null}
-//           { acesso ? (
-//             <ContentSidePagePanelBotton open={true} pwidth="100%">
-//               <ContentSidePageLabelBotton
-//                 pxheight={'40px'}
-//                 istitl={true}
-//                 title={'Entrar: '}
-//                 img={enviaron}
-//                 titbtn={'Acessar Sistema...'}
-//                 onclick={goto('/')}
-//               />
-//             </ContentSidePagePanelBotton>
-//           ) : null}
-
-//                <ContentDivManblue pxheight="65px">
-//                   <ContentDivTxt>
-//                     <h4>Validando Acesso</h4>
-//                   </ContentDivTxt>
-//                   <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="35%" />
-//                 </ContentDivManblue>
-
-//               <ContentCardBoxCenterPage open={true} pwidth="100%">
-//                 <ContentDivMainBlue pxheigth="65px">
-//                   <ContentCardPageTitle>
-//                     <h2>Validando Acesso</h2>
-//                   </ContentCardPageTitle>
-//                   <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                     <ContentDivButtonOn
-//                         pxwdth="40px"
-//                         img={satelite}
-//                         title="Acesso a REDE."
-//                         onClick={() => {
-//                           setIsShow(false);
-//                         }}
-//                       />
-//                     </Pg.ContainerCardDivMainEnd>
-//                   </ContentDivMainBlue>
-
-//                 <ContentCardPageTitle>
-//                   <h2>Validando Acesso</h2>
-//                 </ContentCardPageTitle>
-//                 <ContentDivMainImagens>
-//                   {!isconexao ? (
-//                   <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                     <ContentDivTxt>
-//                       <label>Servidor.</label>
-//                     </ContentDivTxt>
-//                     <ContentDivButtonOff
-//                       img={internet}
-//                       title="Serviço Net..."
-//                     />
-//                   </Pg.ContainerCardDivMainEnd>
-//                 ) : null}
-//                 {!isfindacces ? (
-//                   <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                     <ContentDivTxt>
-//                       <label>Dados.</label>
-//                     </ContentDivTxt>
-//                     <ContentDivButtonOff
-//                       img={satelite}
-//                       title="Acesso a Dados"
-//                     />
-//                   </Pg.ContainerCardDivMainEnd>
-//                 ) : null}
-//                 {!islogin ? (
-//                   <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                     <ContentDivTxt>
-//                       <label>Login.</label>
-//                     </ContentDivTxt>
-//                     <ContentDivButtonOff
-//                       img={login}
-//                       title="Acesso Login..."
-//                     />
-//                   </Pg.ContainerCardDivMainEnd>
-//                 ) : null}
-//               </ContentDivMainImagens>
-//             </ContentCardBoxCenterPage>
-//             )
-//           }
-//           </ContentCardBoxMainPage>
-
-//            {islogin ? (
-//             <ContentCardBoxCenterPage open={true} pwidth="100%">
-//               {!isconected ? (
-//                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                   <ContentDivTxt>
-//                     <label>Acesso Servidor</label>
-//                   </ContentDivTxt>
-//                   <ContentDivButtonOff
-//                     // pxwdth="40px"
-//                     img={nuvenoff}
-//                     title="Net Off-Line."
-//                     // onClick={() => {
-//                     //     setIsShow(true);
-//                     // }}
-//                   />
-//                 </Pg.ContainerCardDivMainEnd>
-//               ) : (
-//                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                   <ContentDivTxt>
-//                     <label>Acesso Servidor</label>
-//                   </ContentDivTxt>
-//                   <ContentDivButtonOff
-//                     // pxwdth="40px"
-//                     img={nuvenon}
-//                     title="Net On-Line..."
-//                     // onClick={() => {
-//                     //   setIsShow(true);
-//                     // }}
-//                   />
-//                 </Pg.ContainerCardDivMainEnd>
-//               )}
-
-//               {!isfindacesso ? (
-//                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                   <ContentDivTxt>
-//                     <label>Acesso Não Liberado</label>
-//                   </ContentDivTxt>
-//                   <ContentDivButtonOff
-//                     // pxwdth="40px"
-//                     img={conexaooff}
-//                     title="Dados NÃO liberado."
-//                     // onClick={() => {
-//                     //   setIsShow(true);
-//                     // }}
-//                   />
-//                 </Pg.ContainerCardDivMainEnd>
-//               ) : (
-//                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                   <ContentDivTxt>
-//                     <label>Dados Liberado</label>
-//                   </ContentDivTxt>
-//                   <ContentDivButtonOff
-//                     // pxwdth="40px"
-//                     img={conexaoon}
-//                     title="Dados Liberado"
-//                     // onClick={() => {
-//                     //   setIsShow(true);
-//                     // }}
-//                   />
-//                 </Pg.ContainerCardDivMainEnd>
-//               )}
-
-//               {!islogon ? (
-//                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                   <ContentDivTxt>
-//                     <label>Acesso Sistema</label>
-//                   </ContentDivTxt>
-//                   <ContentDivButtonOff
-//                     // pxwdth="40px"
-//                     img={logooff}
-//                     title="Acesso Negado."
-//                     // onClick={() => {
-//                     //   setIsShow(true);
-//                     // }}
-//                   />
-//                 </Pg.ContainerCardDivMainEnd>
-//               ) : (
-//                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
-//                   <ContentDivTxt>
-//                     <label>Acesso Sistema</label>
-//                   </ContentDivTxt>
-//                   <ContentDivButtonOff
-//                     // pxwdth="40px"
-//                     img={logoon}
-//                     title="Acesso Negado."
-//                     // onClick={() => {
-//                     //   setIsShow(true);
-//                     // }}
-//                   />
-//                 </Pg.ContainerCardDivMainEnd>
-//               )}
-//             </ContentCardBoxCenterPage>
-//           ) : null}
-// */
-//         }

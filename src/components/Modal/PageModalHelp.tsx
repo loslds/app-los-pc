@@ -1,12 +1,12 @@
 import React from 'react';
-import ButtonModal from '../Modal/ButtonModal';
-import CardButtonsModal from '../Modal/CardButtonsModal';
-import CardModal from '../Modal/CardModal';
-import * as MD from '../Modal/styles';
-import TitleModal from '../Modal/TitleModal';
+import ButtonModal from './ButtonModal';
+import CardButtonsModal from './CardButtonsModal';
+import CardModal from './CardModal';
+import * as MD from './styles';
+import TitleModal from './TitleModal';
 import xvrm from '../../assets/pngs/xvrm.png';
 
-type PageModalType = {
+type TypePageModalHelp = {
     children?: React.ReactNode | JSX.Element;
     ptop?: string;
     pwidth?: string;
@@ -16,9 +16,9 @@ type PageModalType = {
     img?: string;
     titbtn?:string;
     onclose?: () => void;
-    
+    // imghlp?: string;   
   };
-const PageModal: React.FC<PageModalType> = ({ptop, pwidth, pheight, titulo, children, onclose }) => {
+const PageModalHelp: React.FC<TypePageModalHelp> = ({ptop, pwidth, pheight, titulo, children, onclose }) => {
   return (
     <MD.Content>
       <MD.ContainerModal ptop={ptop} pwidth={pwidth} pheight={pheight}>
@@ -33,4 +33,4 @@ const PageModal: React.FC<PageModalType> = ({ptop, pwidth, pheight, titulo, chil
     </MD.Content>
   );
 };
-export default PageModal;
+export default PageModalHelp;
