@@ -202,8 +202,6 @@ export const ContainerInputMainPage = styled.div`
 
 `;
 
-
-
 type TypeContainerPanelPage = {
   open?: boolean;
   pwidth? : string;
@@ -214,7 +212,8 @@ export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
   margin: 0px 0px 0px 0px;
   min-height: 40px;
   width: ${({ pwidth }) => pwidth || '32%'};
-  display: ${props => (props.open ? 'flex' : 'none')};
+  display: ${({open}) => open ? 'flex' : 'none' };
+  //  display: ${props => (props.open ? 'flex' : 'none')};
   min-height: 60px;
   flex-wrap: wrap;
   justify-content: center;
@@ -263,7 +262,6 @@ export const ContainerPageFlex = styled.div<TypeContainerPageFlex>`
   align-content: center;
   align-items: center;
 `;
-
 
 export const ContainerBtnSRigthPage = styled.div`
   border: none;
@@ -457,10 +455,12 @@ export const ContainerTextoLeftPage = styled.div<TypeContainerTextoLeftPage>`
   align-items: center;
   align-content: center;
   color:  ${props => props.theme.colors.textColor};
-
 `;
 
-export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
+type TypeContainerCustonText = {
+  pxheight? : string;
+}
+export const ContainerCustonText = styled.div<TypeContainerCustonText>`
   padding: 0px 0px 0px 0px;
   margin: 2px 2px 2px 2px;
   width: 100%;
@@ -500,7 +500,11 @@ export const ContainerCustonText = styled.div<{ pxheight? : string;}>`
     line-height: normal;
   } 
 `;
-export const ContainerCustonImagem = styled.div<{ pxheight? : string;}>`
+
+type TypeContainerCustonImagem = {
+  pxheight? : string;
+}
+export const ContainerCustonImagem = styled.div<TypeContainerCustonImagem>`
   border: 1px;
   border-color: #ffffff;
   border-radius: 5px;
@@ -642,11 +646,6 @@ export const ContainerDivMainOnGreen = styled.div<TypeContainerDivMainOnGreen>`
   color: greenyellow;
   background: transparent;
 `;
-
-
-
-
-
 
 type TypeContainerDivManYellow = {
   pxheight?: string;

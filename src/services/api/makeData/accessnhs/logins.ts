@@ -24,4 +24,5 @@ export type propsFilter ={
   userIdEmp?: number;
   userStrId?: string;
   userStrPsw?: string;
+  p?: string;
 };

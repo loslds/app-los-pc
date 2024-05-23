@@ -25,21 +25,21 @@ const data = {
   ]
 };
 
-// type TypeOptions ={ options?: object}
-// export async function getAcessos( {options}:TypeOptions ) {
+ 
+ export async function getAcessos( options: {} ) {
   
-//   const result = await new Promise(resolve => {
-//     setTimeout(() => {
-//       resolve({ data })
-//     }, 2000)
-//   })
+   const result = await new Promise(resolve => {
+     setTimeout(() => {
+       resolve({ data })
+     }, 2000)
+   })
 
-//   type TypeOrdFilt = {
-//     order?: any, 
-//     filter?: any
-//   }
+   type TypeOrdFilt = {
+     order?: {}, 
+     filter?: {}
+   }
 
-//   const { { order, filter }:TypeOrdFilt } =  options ;
+  const { { order, filter }:TypeOrdFilt } =  options ;
 
 
 

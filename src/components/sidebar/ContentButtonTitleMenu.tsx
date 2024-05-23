@@ -3,12 +3,12 @@ import * as S from "./stylesSidebar";
 import left from "../../assets/svgs/left.svg";
 import higth from "../../assets/svgs/higth.svg";
 
-type BntTitleMn ={
+type TypeSBContentButtonTitleMenu ={
   title?: string;
   isimg?: boolean;
   onclick?: () => void;
 }
-export const ContentButtonTitleMenu = ({isimg,title, onclick }:BntTitleMn) => {
+export const ContentButtonTitleMenu = ({isimg,title, onclick }:TypeSBContentButtonTitleMenu) => {
   return (
     <S.ContainerBtnMnSRigth>
       <label>{title}</label>

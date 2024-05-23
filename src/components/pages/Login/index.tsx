@@ -102,7 +102,7 @@ const Login = () => {
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções:' });
 
-    dispatch({ type: AcessoUseActions.setLogado, payload: '' });
+    dispatch({ type: AcessoUseActions.setLogado, payload: false });
     // setIsOpen(true);
   }, [dispatch]);
 

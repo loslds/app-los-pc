@@ -1,11 +1,11 @@
 import * as S from "./stylesSidebar";
 
-type PropsItnsMd = {
+type TypeSBContainerItensMenu = {
   children?: React.ReactNode | JSX.Element;
   onoff: boolean;
 };
 
-const ContainerItensMenu = ({ onoff, children }: PropsItnsMd) => {
+const ContainerItensMenu = ({ onoff, children }: TypeSBContainerItensMenu) => {
   return (
     <S.ContainerItensModulo open={onoff}>
       {children}

@@ -2,12 +2,12 @@
 
 import * as S from "./stylesSidebar";
 
-type PropsBtOnOffSB = {
+type TypeSBButtonSideOnOffBar = {
   img?: string;
   titbtn?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
-const ButtonSideOnOffBar = ({ titbtn, img, onClick }: PropsBtOnOffSB) => {
+const ButtonSideOnOffBar = ({ titbtn, img, onClick }: TypeSBButtonSideOnOffBar) => {
   return (
     <S.ContainerSideOnOffButton>
       

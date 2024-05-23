@@ -72,9 +72,15 @@ export const Login2 = () => {
   const [iserrologin, setIsErroLogin] = React.useState(false);
   const [nmrerrologin, setNmErroLogin] = React.useState('');
   React.useEffect(() => {
+
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+    if (tentativa >= state.nrcont) {
+      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+    } else {
+      setTentativa(state.nrcont);
+    }
+
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({
       type: AcessoUseActions.setModulo,
@@ -87,6 +93,7 @@ export const Login2 = () => {
     setBtnContinua(true);
     setIsChekLogin(false);
   }, [tentativa, dispatch]);
+
   const handlerOnChangerStrId = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setStrId(e.currentTarget.value);

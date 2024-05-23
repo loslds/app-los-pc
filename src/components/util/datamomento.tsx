@@ -1,5 +1,11 @@
 import moment from "moment";
 
+// cria senha master
+export function criasmstr() {
+  let rtn = moment().format('MM-DD-YYYY');
+  console.log('rtn :',rtn);
+  return rtn;
+}
 
 // moment.locale('pt-BR'); // mudar idioma para português
 moment.locale('pt-BR');

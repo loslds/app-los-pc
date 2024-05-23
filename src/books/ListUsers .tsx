@@ -1,6 +1,7 @@
 
 export type TypeUsers = {
    id?: number;
+   
    name?: string;
    apelido?: string;
    password?: string;

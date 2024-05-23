@@ -13,7 +13,6 @@ export const ContainerSPanelMain = styled.div`
   align-items: center;
   align-content: center;
   justify-content: space-between;
-
   border-color: ${props => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
@@ -75,32 +74,36 @@ export const ContainerBtnMnSRigth = styled.div`
 `;
 
 //container Butto Side lado direito
-type PropsItensModulo = {
+type TypeSBItensModulo = {
   open?: boolean;
 };
-export const ContainerItensModulo = styled.div<PropsItensModulo>`
+export const ContainerItensModulo = styled.div<TypeSBItensModulo>`
   border: 1px solid white;
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 0px 5px 0px 10px;
   background: transparent;
   max-height: fit-content;
-  display: ${props => (props.open ? 'flex' : 'none')};
+  display: ${({open}) => open ? 'flex' : 'none' };
+  //  display: ${({open}) => open ? 'flex' : 'none' };
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
   justify-content: space-around;
 `;
 
-export const ContainerItensLogon = styled.div<{openlg?: boolean}>`
+type TypeSBContainerItensLogon = {
+  openlg?: boolean;
+};
+export const ContainerItensLogon = styled.div<TypeSBContainerItensLogon>`
   border: 1px solid white;
   border-radius: 5px;
   padding: 0px 0px 0px 0px;
   margin: 0px 5px 0px 10px;
   background: transparent;
   max-height: fit-content;
-  display: ${({openlg}) => openlg ? 'flex' : 'none' };
-  //display: ${props => (props.openlg ? 'flex' : 'none')};
+  //display: ${({openlg}) => openlg ? 'flex' : 'none' };
+  display: ${props => (props.openlg ? 'flex' : 'none')};
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
@@ -109,7 +112,7 @@ export const ContainerItensLogon = styled.div<{openlg?: boolean}>`
 
 
 type PropsItensBntMn = {
-  openmbm?: boolean;
+  open?: boolean;
 };
 export const ContainerItensModBntMn = styled.div<PropsItensBntMn>`
   //border: 1px solid red;
@@ -118,7 +121,7 @@ export const ContainerItensModBntMn = styled.div<PropsItensBntMn>`
   margin: 0px 0px 0px 0px;
   background: transparent;
   max-height: fit-content;
-  display: ${props => (props.openmbm ? 'flex' : 'none')};
+  display: ${({open}) => open ? 'flex' : 'none' };
   flex-wrap: wrap;
   align-items: center;
   align-content: center;

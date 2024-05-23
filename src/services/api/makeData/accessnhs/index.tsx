@@ -1,9 +1,34 @@
 import { compareValues } from 'mini-helper';
 
 // import { useState } from 'react';
+// pinmastes
+export type TypeAccesSnhs = {
+  succes: boolean;
+  accessnhs: {
+    id?: number;
+    idemp?: number;
+    iduser?: number;
+    mailuser: string;
+    pseuduser?: string;
+    pswuser?: string;
+    pinuser: string;
+    pinadm?: string;
+    nrmodo?: number;
+  };
+};
 
+export type TupeAccessnhsOrderFilter = {
+  order?: object;
+  filter?: object;
+};
 
-import { TypeAccesSnhs, propsFilter, propsOrderFilter, } from './logins';
+export type TypeAccessnhsFilter ={
+  userMdLogin?: number;
+  userIdEmp?: number;
+  userStrId?: string;
+  userStrPsw?: string;
+  p?: string;
+};
 
 export const data:TypeAccesSnhs = {
   succes: true,
@@ -36,21 +61,19 @@ export const data:TypeAccesSnhs = {
 export async function getAccesSnhs(options = {}) {
   const result = await new Promise((resolve) => {
     setTimeout(() => {
-      resolve({ data });
+      resolve( data );
     }, 3000);
   });
 
     
-  const  {order, filter}:propsOrderFilter = options;
-  const resultData = result && result.data
+  const  {order, filter}:TupeAccessnhsOrderFilter = options;
+  const resultData = result && result.data;
   
-  const {userMdLogin, userIdEmp, userStrId, userStrPsw} : propsFilter  = filter;
+  const { userMdLogin, userIdEmp, userStrId, userStrPsw } : TypeAccessnhsFilter  = filter;
 
   if (userIdEmp) {
     resultData.accessnhs = resultData.accessnhs.filter( (p) => p.idemp === userIdEmp ); }
-  
-  
-    
+      
   if (userMdLogin === 1 || userMdLogin === 3){
     if (userStrId) {
       resultData.accessnhs = resultData.accessnhs.filter( (p) => p.mailuser === userStrId ); 

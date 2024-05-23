@@ -21,7 +21,7 @@ type PropsLayoutHome = {
   onchange: () => void;
   ischeck?: boolean;
   children?: ReactNode | JSX.Element;
-  openlg3?: boolean;
+  openlg?: boolean;
 };
 export const LayoutHome = ({
   imgsys,
@@ -37,7 +37,7 @@ export const LayoutHome = ({
   onchange,
   ischeck,
   children,
-  openlg3
+  openlg
 }: PropsLayoutHome) => {
   return (
     <ContentPages>
@@ -60,7 +60,7 @@ export const LayoutHome = ({
       <Hm.ContainerBody>
         <Hm.ContainerPage>
           <BarSideMenuHome />
-          <BarSideMenuDados openlg2={openlg3} />
+          <BarSideMenuDados openlg={openlg} />
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>

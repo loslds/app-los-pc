@@ -1,5 +1,4 @@
 import * as Pg from '../stylePage.ts';
-//import * as MD from '../../Modal/styles.ts';
 
 import '../../../styles/global.ts';
 
@@ -30,7 +29,7 @@ import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage';
 import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
 import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
 import { ContentDivTxt } from '../ContentDivTxt.tsx';
-
+import CardImgMsg from '../../contentHelp/CardImgMsg.tsx';
 import PageModal from '../../Modal/PageModal.tsx';
 import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
 import CardHelpLogin3 from '../../contentHelp/CardHelpLogin3.tsx';
@@ -65,6 +64,8 @@ export function GetLogon() {
   return true;
 }
 
+export const ListImg = [sateliteoff, nuvenfindoff, logooff];
+
 const Login3 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -85,18 +86,23 @@ const Login3 = () => {
   const [isenviar, setIsEnviar] = React.useState(false);
 
   const [isconexao, setIsConexao] = React.useState(false);
-  const [isconectedon, setIsConectedon] = React.useState(false);
+  // const [isconectedon, setIsConectedon] = React.useState(false);
   const [isconectedoff, setIsConectedoff] = React.useState(false);
 
   const [isfindacces, setIsFindAcces] = React.useState(false);
-  const [isfindingon, setIsFindingon] = React.useState(false);
+  //const [isfindingon, setIsFindingon] = React.useState(false);
   const [isfindingoff, setIsFindingoff] = React.useState(false);
 
   const [islogin, setIsLogin] = React.useState(false);
-  const [isloggedon, setIsLoggedon] = React.useState(false);
+  //const [isloggedon, setIsLoggedon] = React.useState(false);
   const [isloggedoff, setIsLoggedoff] = React.useState(false);
 
+  const [imgmsg, setImgMsg] = React.useState('');
   const [isacesso, setIsAcesso] = React.useState(false);
+  const [iserromsg, setIsErroMsg] = React.useState(false);
+  const [txtaga, setTxtAga] = React.useState('');
+  const [txtlabel, setTxtLabel] = React.useState('');
+  const [txtp, setTxtP] = React.useState('');
   const [isresgatar, setIsResgatar] = React.useState(false);
 
   //  const isMounted = useIsMounted()
@@ -143,9 +149,8 @@ const Login3 = () => {
   }, [dispatch]);
 
   const handlerEnviar = React.useCallback(() => {
-    setTentativa(state.nrcont + 1);
+    setTentativa(state.nrcont);
     setTtModulo('Logar : "CONEXÃO" com REDE.');
-
     setIsHelpPg(true);
     setIsView(false);
     setIsEnviar(false);
@@ -154,7 +159,7 @@ const Login3 = () => {
     setIsLogin(false);
     setIsAcesso(false);
 
-    if (tentativa >= 4) {
+    if (tentativa >= 3) {
       setIsResgatar(true);
     } else {
       setIsResgatar(false);
@@ -165,13 +170,19 @@ const Login3 = () => {
     setIsConexao(false);
     setIsFindAcces(true);
     //acessa conexão
-    let rtncon = false;
-    if (rtncon) {
-      setIsConectedon(true);
-    } else {
+    let rtncon = true;
+
+    if (!rtncon) {
+      //      setIsConectedon(true);
+      //    } else {
+      setImgMsg(ListImg[0]);
+      setTxtAga('"ERRO" na Comunicação');
+      setTxtLabel('Acesso REDE.');
+      setTxtP('Não foi encontrado Comunicação com Provedor.');
+      setIsErroMsg(true);
       setIsConectedoff(true);
       setIsFindAcces(false);
-      if (tentativa + 1 === 4) {
+      if (tentativa >= 3) {
         setIsResgatar(true);
       }
     }
@@ -182,12 +193,17 @@ const Login3 = () => {
     setIsLogin(true);
     //acessa banco de dados
     let rtndata = true;
-    if (rtndata) {
-      setIsFindingon(true);
-    } else {
+    if (!rtndata) {
+      //   setIsFindingon(true);
+      // } else {
+      setImgMsg(ListImg[1]);
+      setTxtAga('"ERRO" no Acesso ao Provedor');
+      setTxtLabel('Acesso DADOS.');
+      setTxtP('Não foi encontrado Banco de Dados para Pesquisa.');
+      setIsErroMsg(true);
       setIsFindingoff(true);
       setIsLogin(false);
-      if (tentativa + 1 === 4) {
+      if (tentativa >= 3) {
         setIsResgatar(true);
       }
     }
@@ -195,30 +211,29 @@ const Login3 = () => {
 
   const handlerLogin = React.useCallback(() => {
     setIsLogin(false);
-    setIsAcesso(true);
     //acessa dados
-    let rtndados = true;
-    if (rtndados) {
-      setIsLoggedon(true);
-    } else {
+    let rtndados = false;
+
+    if (!rtndados) {
+      //   setIsLoggedon(true);
+      // } else {
+      setImgMsg(ListImg[2]);
+      setTxtAga('"ERRO" de Acesso em Provedor');
+      setTxtLabel('Acesso LOGIN.');
+      setTxtP(
+        'Não foi encontrado Dados durante a Pesquisa. Motivo: ID ou Senha "NÂO ENCONTRADA!"'
+      );
       setIsLoggedoff(true);
       setIsAcesso(false);
-      if (tentativa + 1 === 4) {
+      if (tentativa >= 3) {
         setIsResgatar(true);
       }
+    } else {
+      setIsAcesso(true);
     }
   }, [dispatch]);
 
-  React.useEffect(() => {
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
-    if (isacesso) {
-      dispatch({ type: AcessoUseActions.setLogado, payload: isloggedon });
-    } else {
-      dispatch({ type: AcessoUseActions.setLogado, payload: isloggedoff });
-    }
-  }, [tentativa, isacesso, dispatch]);
-
+  
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
   }, []);
@@ -227,8 +242,17 @@ const Login3 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
+  React.useEffect(() => {
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+    dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
+//    if (isacesso) {
+    dispatch({ type: AcessoUseActions.setLogado, payload: isacesso });
+//    } else {
+//      dispatch({ type: AcessoUseActions.setLogado, payload: isloggedoff });
+//    }
+  }, [tentativa, isacesso, dispatch]);
 
-   return (
+  return (
     <ThemeProvider theme={theme}>
       <ThemeLogin3
         imgsys={loginpg3}
@@ -356,7 +380,7 @@ const Login3 = () => {
                   <ContentDivButtonOff
                     img={sateliteoff}
                     title="Acesso REDE."
-                    onClick={() => {}}
+                    onClick={() => setIsErroMsg(true)}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
@@ -459,7 +483,7 @@ const Login3 = () => {
                   <ContentDivButtonOff
                     img={nuvenfindoff}
                     title="Acesso DADOS."
-                    onClick={() => {}}
+                    onClick={() => setIsErroMsg(true)}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
@@ -562,7 +586,7 @@ const Login3 = () => {
                   <ContentDivButtonOff
                     img={logooff}
                     title="Acesso LOGAR."
-                    onClick={() => {}}
+                    onClick={() => setIsErroMsg(true)}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
@@ -614,7 +638,25 @@ const Login3 = () => {
             </ContentCardCollunsCenterPage>
           </ContentCardBoxMainPage>
           <Pg.DivisionPgHztalPage />
-          {state.nrcont <= 4 ? (
+
+          { isconectedoff || isfindingoff || isloggedoff && iserromsg? (
+            <PageModal
+              ptop="111px"
+              pwidth="30%"
+              pheight="32%"
+              titulo='" A T E N Ç Ã O "'
+              onclose={() => setIsErroMsg(false)}
+            >
+              <CardImgMsg
+                img={imgmsg}
+                txtaga={txtaga}
+                txtlabel={txtlabel}
+                txtp={txtp}
+              />
+            </PageModal>
+          ) : null}
+
+          {state.nrcont <= 3 ? (
             <ContentSidePagePanelBotton open={true} pwidth="100%">
               <ContentSidePageLabelBotton
                 pxheight={'40px'}
@@ -627,44 +669,15 @@ const Login3 = () => {
               <Pg.ContainerBoxLabelPage>
                 <label>[ {3 - state.nrcont} ] tentativas. </label>
               </Pg.ContainerBoxLabelPage>
-              {isenviar ? (
+
+              {isresgatar ? (
                 <ContentSidePageLabelBotton
                   pxheight={'20px'}
                   istitl={true}
-                  title={'Enviar.: '}
+                  title={'Resgatar.: '}
                   img={setadir}
-                  titbtn={'Enviar...'}
-                  onclick={handlerEnviar}
-                />
-              ) : null}
-              {isconexao ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
-                  title={'Conectar Rede: '}
-                  img={setadir}
-                  titbtn={'Conectar Rede...'}
-                  onclick={handlerConexao}
-                />
-              ) : null}
-              {isfindacces ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
-                  title={'Solicitar Provedor: '}
-                  img={setadir}
-                  titbtn={'Solicitar Provedor...'}
-                  onclick={handlerFindAcess}
-                />
-              ) : null}
-              {islogin ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
-                  title={'Logar : '}
-                  img={setadir}
-                  titbtn={'Enviar Acesso...'}
-                  onclick={handlerLogin}
+                  titbtn={'Resgatar...'}
+                  onclick={goto('/login4')}
                 />
               ) : null}
 
@@ -679,14 +692,47 @@ const Login3 = () => {
                 />
               ) : null}
 
-              {isresgatar ? (
+              {islogin ? (
                 <ContentSidePageLabelBotton
                   pxheight={'20px'}
                   istitl={true}
-                  title={'Resgatar.: '}
+                  title={'Logar : '}
                   img={setadir}
-                  titbtn={'Resgatar...'}
-                  onclick={goto('/login4')}
+                  titbtn={'Enviar Acesso...'}
+                  onclick={handlerLogin}
+                />
+              ) : null}
+
+              {isfindacces ? (
+                <ContentSidePageLabelBotton
+                  pxheight={'20px'}
+                  istitl={true}
+                  title={'Solicitar Provedor: '}
+                  img={setadir}
+                  titbtn={'Solicitar Provedor...'}
+                  onclick={handlerFindAcess}
+                />
+              ) : null}
+
+              {isconexao ? (
+                <ContentSidePageLabelBotton
+                  pxheight={'20px'}
+                  istitl={true}
+                  title={'Conectar Rede: '}
+                  img={setadir}
+                  titbtn={'Conectar Rede...'}
+                  onclick={handlerConexao}
+                />
+              ) : null}
+
+              {isenviar ? (
+                <ContentSidePageLabelBotton
+                  pxheight={'20px'}
+                  istitl={true}
+                  title={'Enviar.: '}
+                  img={setadir}
+                  titbtn={'Enviar...'}
+                  onclick={handlerEnviar}
                 />
               ) : null}
             </ContentSidePagePanelBotton>
@@ -700,7 +746,11 @@ const Login3 = () => {
               titulo={'Acesso Sistema.'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpLogin3 ishlp={ishelppg} imgcard={login3hlp} imghlp={loginpg3} />
+              <CardHelpLogin3
+                ishlp={ishelppg}
+                imgcard={login3hlp}
+                imghlp={loginpg3}
+              />
             </PageModal>
           ) : null}
 

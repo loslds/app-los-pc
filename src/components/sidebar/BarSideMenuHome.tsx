@@ -105,8 +105,6 @@ export const BarSideMenuHome = () => {
         />
       </ContainerItensMenu>
 
-    
-
       {ismdrecep ? (
         <PageModal
           ptop={'1%'}

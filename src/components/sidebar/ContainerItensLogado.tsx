@@ -1,12 +1,12 @@
 import * as S from './stylesSidebar';
 
-type PropsItensLogado = {
-  openlg1?: boolean;
+type TypeSBContainerItensLogado = {
+  openlg?: boolean;
   children?: React.ReactNode | JSX.Element;
 };
-const ContainerItensLogado = ({ openlg1, children }: PropsItensLogado) => {
+const ContainerItensLogado = ({ openlg, children }: TypeSBContainerItensLogado) => {
   return (
-    <S.ContainerItensLogon openlg={openlg1}>{children}</S.ContainerItensLogon>
+    <S.ContainerItensLogon openlg={openlg}>{children}</S.ContainerItensLogon>
   );
 };
 

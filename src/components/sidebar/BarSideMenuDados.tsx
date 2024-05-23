@@ -15,9 +15,9 @@ import PageModal from '../Modal/PageModal';
 import CardAbortarSys from '../contentHelp/CardAbortarSys';
 
 type TypeBarSideMenuDados = {
-  openlg2?: boolean;
+  openlg?: boolean;
 };
-const BarSideMenuDados = ({ openlg2 }: TypeBarSideMenuDados) => {
+const BarSideMenuDados = ({ openlg }: TypeBarSideMenuDados) => {
   const navigate = useNavigate();
   const goto = (path: string) => {
     return () => {
@@ -33,7 +33,7 @@ const BarSideMenuDados = ({ openlg2 }: TypeBarSideMenuDados) => {
 
   return (
     <ContainerBarSideMain>
-      <ContainerItensLogado openlg1={openlg2}>
+      <ContainerItensLogado openlg={openlg}>
         <ButtonSideBar
           img={avatar001}
           titbtn="Minha Conta..."
