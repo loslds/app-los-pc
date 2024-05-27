@@ -7,7 +7,7 @@ type TypeContentDivTextoLeftPage = {
   label?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentDivTextoLeftPage = ({
+export const ContentDivTextoLeftPage = ({
   isborda,
   label,
   children
@@ -19,5 +19,3 @@ const ContentDivTextoLeftPage = ({
     </Pg.ContainerTextoLeftPage>
   );
 };
-
-export default ContentDivTextoLeftPage;

@@ -1,4 +1,4 @@
-import ContentInputPage from './ContentInputPage';
+import { ContentInputPage } from './ContentInputPage';
 
 type TypeContentInputOpcPage = {
   disabled?: boolean;
@@ -37,5 +37,19 @@ export const ContentInputOpcPage = ({
         onChange={onchange}
       />
     </ContentInputPage>
+
+    // <Pg.ContainerInputPage>
+    //   <label>{titulo}</label>
+    //   <input
+    //     disabled={disabled}
+    //     type={type}
+    //     id={id}
+    //     name={name}
+    //     value={value}
+    //     maxLength={maxlength}
+    //     placeholder={placeholder}
+    //     onChange={onchange}
+    //   />
+    // </Pg.ContainerInputPage>
   );
 };

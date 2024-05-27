@@ -14,10 +14,10 @@ import { ContentHearderMain } from './ContentHearderMain.tsx';
 import { ContentHeaderTitle } from './ContentHeaderTitle.tsx';
 import { ContentHearderRight } from './ContentHearderRight.tsx';
 import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
-import ContentPagesButton from '.././layouts/ContentPagesButton.tsx';
+import { ContentPagesButton } from '.././layouts/ContentPagesButton.tsx';
 
-import PageModal from '../Modal/PageModal.tsx';
-import CardDesemvolver from '../contentHelp/CardDesenvolver.tsx';
+import { PageModal } from '../Modal/PageModal.tsx';
+import { CardDesemvolver } from '../contentHelp/CardDesenvolver.tsx';
 
 type PropsHearderPage = {
   onclick?: () => void;
@@ -34,8 +34,6 @@ export const HearderPage = ({
   onLogin
 }: PropsHearderPage) => {
   const [isonhelp, setIsOnHelp] = React.useState(false);
-
-
 
   const handlerOnHelp = React.useCallback(() => {
     setIsOnHelp((oldState) => !oldState);
@@ -58,12 +56,16 @@ export const HearderPage = ({
       <ContentHearderRight>
         <ContentHearderItensBar>
           <ContentPagesButton
-            img={help}
+            imgbtn={help}
             titbtn={'Ajuda...'}
             onClick={handlerOnHelp}
           />
 
-          <ContentPagesButton img={voltar} titbtn={'Voltar...'} onClick={onLogin}/>
+          <ContentPagesButton
+            imgbtn={voltar}
+            titbtn={'Voltar...'}
+            onClick={onLogin}
+          />
 
           <Pg.ContainerPagesButton>
             <Switch

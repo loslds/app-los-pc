@@ -1,26 +1,21 @@
 import * as MD from '../Modal/styles';
 
-import CardModalTexto from '../Modal/CardModalTexto';
-type PropsInfoErro ={
-  // nrerro?: number;
+import { CardModalTexto } from '../Modal/CardModalTexto';
+type PropsInfoErro = {
   nmerro?: string;
-}
-
-
-const CardInfoErros = ({nmerro}:PropsInfoErro) => {
-
+};
+export const CardInfoErros = ({ nmerro }: PropsInfoErro) => {
   return (
     <CardModalTexto>
       <MD.ContentTextoModulos>
-        <br/>
+        <br />
         <h2>Informação de ERRO Ambiente.</h2>
-        <br/>
+        <br />
         <label>Falta de edição :</label>
-        <br/>
+        <br />
         <h3>{nmerro}</h3>
-        <br/> 
+        <br />
       </MD.ContentTextoModulos>
     </CardModalTexto>
   );
 };
-export default CardInfoErros;

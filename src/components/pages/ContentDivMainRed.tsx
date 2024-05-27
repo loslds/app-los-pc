@@ -9,7 +9,7 @@ type TypeContentDivManRed = {
   statedata?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentDivMainRed = ({
+export const ContentDivMainRed = ({
   pxheigth,
   pxwidth,
   label,
@@ -24,5 +24,3 @@ const ContentDivMainRed = ({
     </Pg.ContainerDivManRed>
   );
 };
-
-export default ContentDivMainRed;

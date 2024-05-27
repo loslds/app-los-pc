@@ -93,7 +93,7 @@ export const ContainerItensModulo = styled.div<TypeSBItensModulo>`
 `;
 
 type TypeSBContainerItensLogon = {
-  openlg?: boolean;
+  disp?: boolean;
 };
 export const ContainerItensLogon = styled.div<TypeSBContainerItensLogon>`
   border: 1px solid white;
@@ -102,8 +102,7 @@ export const ContainerItensLogon = styled.div<TypeSBContainerItensLogon>`
   margin: 0px 5px 0px 10px;
   background: transparent;
   max-height: fit-content;
-  //display: ${({openlg}) => openlg ? 'flex' : 'none' };
-  display: ${props => (props.openlg ? 'flex' : 'none')};
+  display: ${({disp}) => disp ? ('flex') : ('none') };
   flex-wrap: wrap;
   align-items: center;
   align-content: center;

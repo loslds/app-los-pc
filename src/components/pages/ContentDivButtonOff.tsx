@@ -7,7 +7,7 @@ type TypeContentButtonOff = {
   title?: string;
   onClick?: () => void;
 };
-const ContentDivButtonOff = ({pxhght, img, title, onClick }: TypeContentButtonOff) => {
+export const ContentDivButtonOff = ({pxhght, img, title, onClick }: TypeContentButtonOff) => {
   return (
     <Pg.ContainerButtonOff>
       <Pg.ButtonDefaulOnOffImg pxhght={pxhght} img={img} title={title} onClick={onClick} />
@@ -15,4 +15,3 @@ const ContentDivButtonOff = ({pxhght, img, title, onClick }: TypeContentButtonOf
   );
 };
 
-export default ContentDivButtonOff;

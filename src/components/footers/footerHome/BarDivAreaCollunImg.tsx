@@ -1,10 +1,9 @@
-import React from "react";
-import * as F from "../stylesfoot";
+import React from 'react';
+import * as F from '../stylesfoot';
 
-type PropsAreaContentDivImg = {
+type TypeBarDivAreaCollunImg = {
   children?: React.ReactNode | JSX.Element;
 };
-const BarDivAreaCollunImg = ({ children }: PropsAreaContentDivImg) => {
+export const BarDivAreaCollunImg = ({ children }: TypeBarDivAreaCollunImg) => {
   return <F.DivAreaCollunItem>{children}</F.DivAreaCollunItem>;
 };
-export default BarDivAreaCollunImg;

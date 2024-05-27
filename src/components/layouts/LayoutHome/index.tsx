@@ -5,7 +5,7 @@ import { HearderHome } from '../../headers/HearderHome';
 import { ReactNode } from 'react';
 import { FooterHome } from '../../footers/FooterHome';
 import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
-import BarSideMenuDados from '../../sidebar/BarSideMenuDados';
+import { BarSideMenuDados } from '../../sidebar/BarSideMenuDados';
 
 type PropsLayoutHome = {
   imgsys?: string;
@@ -21,7 +21,7 @@ type PropsLayoutHome = {
   onchange: () => void;
   ischeck?: boolean;
   children?: ReactNode | JSX.Element;
-  openlg?: boolean;
+  disp?: boolean;
 };
 export const LayoutHome = ({
   imgsys,
@@ -37,7 +37,7 @@ export const LayoutHome = ({
   onchange,
   ischeck,
   children,
-  openlg
+  disp
 }: PropsLayoutHome) => {
   return (
     <ContentPages>
@@ -56,17 +56,15 @@ export const LayoutHome = ({
         ischeck={ischeck}
       />
       <Hm.DivisionPgHztal />
-
       <Hm.ContainerBody>
         <Hm.ContainerPage>
           <BarSideMenuHome />
-          <BarSideMenuDados openlg={openlg} />
+          <BarSideMenuDados disp={disp} />
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>
       </Hm.ContainerBody>
       <Hm.DivisionPgHztal />
-
       <FooterHome />
     </ContentPages>
   );

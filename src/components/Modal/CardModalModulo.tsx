@@ -1,18 +1,10 @@
 import React from 'react';
 import * as MD from './styles';
 
-type Props = {
+type TypeCardModalTexto = {
   id?: string;
-
   children?: React.ReactNode;
 };
-
-const CardModalTexto: React.FC<Props> = ({ id, children }) => {
-  return (
-    <MD.ContainerModalTexto id={id}>
-      {children}
-    </MD.ContainerModalTexto>
-  );
+export const CardModalTexto = ({ id, children }: TypeCardModalTexto) => {
+  return <MD.ContainerModalTexto id={id}>{children}</MD.ContainerModalTexto>;
 };
-
-export default CardModalTexto;

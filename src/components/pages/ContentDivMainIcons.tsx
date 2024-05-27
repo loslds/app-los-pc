@@ -9,7 +9,7 @@ type TypeContentDivIcons = {
   label?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentDivMainIcons = ({
+export const ContentDivMainIcons = ({
   brd,
   hght,
   wdth,
@@ -27,5 +27,3 @@ const ContentDivMainIcons = ({
     </Pg.ContainerDivMainIcons>
   );
 };
-
-export default ContentDivMainIcons;

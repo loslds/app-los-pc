@@ -2,21 +2,16 @@ import React from 'react';
 
 import * as MD from './styles';
 
-type PropsMainModal = {
+type TypeMainModal = {
   id?: string;
   children?: React.ReactNode;
   onClick?: () => void;
 };
 
-const MainModal: React.FC<PropsMainModal> = ({ id, children }) => {
+export const MainModal = ({ id, children }: TypeMainModal) => {
   return (
     <MD.Content id={id}>
-      <MD.ContentTextoModulos >
-        {children}
-        {/* <C.ContainerModal>{children}</C.ContainerModal> */}
-      </MD.ContentTextoModulos>
+      <MD.ContentTextoModulos>{children}</MD.ContentTextoModulos>
     </MD.Content>
   );
 };
-
-export default MainModal;

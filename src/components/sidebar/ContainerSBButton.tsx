@@ -2,12 +2,16 @@
 
 import * as S from './stylesSidebar';
 
-type TypeSBButtonSideBar = {
+type TypeContainerSBButton = {
   img?: string;
   titbtn?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
-export const ButtonSideBar = ({ titbtn, img, onClick }: TypeSBButtonSideBar) => {
+export const ContainerSBButton = ({
+  titbtn,
+  img,
+  onClick
+}: TypeContainerSBButton) => {
   return (
     <S.ContainerSideButton>
       <S.ButtonSideBarImg img={img} title={titbtn} onClick={onClick} />

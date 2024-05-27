@@ -1,8 +1,9 @@
 import * as MD from '../Modal/styles';
-import CardModalTexto from '../Modal/CardModalTexto';
+
+import { CardModalTexto } from '../Modal/CardModalTexto';
 import jrjr from '../../assets/svgs/jrjr.svg';
 
-const CardHomeSys = () => {
+export const CardHomeSys = () => {
   return (
     <CardModalTexto>
       <MD.ContentTextoModulos>
@@ -153,5 +154,3 @@ const CardHomeSys = () => {
     </CardModalTexto>
   );
 };
-
-export default CardHomeSys;

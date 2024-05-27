@@ -2,13 +2,11 @@ import React from 'react';
 
 import * as MD from './styles';
 
-type Props = {
-  img?: string;
-  titbtn?: string;
-  //onClick?: React.ReactNode | JSX.Element;
+type TypeButtonModal = {
+  imgbm?: string;
+  titbm?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
-const ButtonModal: React.FC<Props> = ({ img, titbtn, onClick }) => {
-  return <MD.ButtonModalImg img={img} title={titbtn} onClick={onClick} />;
+export const ButtonModal = ({ imgbm, titbm, onClick }: TypeButtonModal) => {
+  return <MD.ButtonModalImg img={imgbm} title={titbm} onClick={onClick} />;
 };
-export default ButtonModal;

@@ -1,41 +1,38 @@
+import React from 'react';
+
 import * as Lg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
-
 import { ThemeLogin } from '../../modulos/themes/ThemeLogin/index.tsx';
-
-import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
 import {
   AcessoUseForm,
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
-
-import ContentCardPage from '../ContentCardPage.tsx';
+import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
-import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
-import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
-import ContentInputPage from '../ContentInputPage.tsx';
-import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
-import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
+import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
+import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
+import { ContentInputPage } from '../ContentInputPage.tsx';
+import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
+import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+import { PageModal } from '../../Modal/PageModal.tsx';
+import { CardHelpLogin0 } from '../../contentHelp/CardHelpLogin0.tsx';
+import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 
-import PageModal from '../../Modal/PageModal.tsx';
-import CardHelpLogin0 from '../../contentHelp/CardHelpLogin0.tsx';
-import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
-
+import close from '../../../assets/svgs/close.svg';
 import login0hlp from '../../../assets/svgs/login0hlp.svg';
 import loginpg0 from '../../../assets/svgs/loginpg0.svg';
-
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-const Login = () => {
+export const Login = () => {
+  const { state, dispatch } = AcessoUseForm();
+
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
@@ -45,7 +42,6 @@ const Login = () => {
 
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
-
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
       setTheme(light);
@@ -62,7 +58,6 @@ const Login = () => {
       navigate(path);
     };
   };
-  const { state, dispatch } = AcessoUseForm();
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 1 });
@@ -93,8 +88,8 @@ const Login = () => {
     dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
     //dispatch({ type: AcessoUseActions.setNmConfig, payload: '' });
     dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
-    dispatch({ type: AcessoUseActions.setPage, payload: '/login' });
 
+    dispatch({ type: AcessoUseActions.setPage, payload: '/login' });
     dispatch({ type: AcessoUseActions.setModulo, payload: 'Login: Empresa' });
     dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
@@ -152,7 +147,7 @@ const Login = () => {
         onchange={ToggleTheme}
       >
         <ContentCardPage>
-          <ContentCardPageTitle pheight={'30px'}>
+          <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
@@ -202,7 +197,9 @@ const Login = () => {
               ptop={'1%'}
               pwidth={'30%'}
               pheight={'37%'}
-              titulo={'Acesso Sistema.'}
+              titulo={'Acesso Empresas.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
               <CardHelpLogin0 imgcard={login0hlp} imghlp={loginpg0} />
@@ -213,8 +210,10 @@ const Login = () => {
             <PageModal
               ptop={'1%'}
               pwidth={'65%'}
-              pheight={'70%'}
+              pheight={'75%'}
               titulo={'DADOS Context Login.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setOnPanel(false)}
             >
               <CardInfoLogin />
@@ -225,5 +224,3 @@ const Login = () => {
     </ThemeProvider>
   );
 };
-
-export default Login;

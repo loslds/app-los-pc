@@ -8,7 +8,7 @@ import { ContentHearderMain } from './ContentHearderMain.tsx';
 import { ContentHeaderTitle } from './ContentHeaderTitle.tsx';
 import { ContentHearderRight } from './ContentHearderRight.tsx';
 import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
-import ContentPagesButton from '../layouts/ContentPagesButton.tsx';
+import { ContentPagesButton } from '../layouts/ContentPagesButton.tsx';
 
 type PropsHearderLogin1 = {
   imgsys?: string;
@@ -38,7 +38,6 @@ export const HearderLogin1 = ({
   ischeck,
   onchange
 }: PropsHearderLogin1) => {
-
   return (
     <ContentHearderMain>
       <ContentHearderItens>
@@ -55,13 +54,13 @@ export const HearderLogin1 = ({
         <ContentHearderItensBar>
           {/** imagem botão do help da pagina */}
           <ContentPagesButton
-            img={imghpg}
+            imgbtn={imghpg}
             titbtn={titbtnhpg}
             onClick={onclickhpg}
           />
           {/** imagem botão do Acão da pagina */}
           <ContentPagesButton
-            img={imgopen}
+            imgbtn={imgopen}
             titbtn={titbtnopen}
             onClick={onclickopen}
           />

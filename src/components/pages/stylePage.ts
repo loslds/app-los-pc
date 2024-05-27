@@ -106,14 +106,13 @@ export const ContainerCardBoxCenterPage = styled.div<TypeContainerCardCenter>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  //min-height: 50px;
-  min-width: ${({ pwidth }) => pwidth || '15%'};
-  //color:  ${props => props.theme.colors.textColor};
-  //background: transparent;
+  min-width: ${({ pwidth }) => pwidth || '150px'};
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   flex-flow: row;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
 `;
 
 export const ContainerCardBoxCenterPageFlex = styled.div`
@@ -123,7 +122,7 @@ export const ContainerCardBoxCenterPageFlex = styled.div`
   border-color: ${props => props.theme.colors.textColor};
   border-radius: 10px;
   width: 100%;
-  min-height: 60px;
+  min-height: 40px;
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
@@ -131,10 +130,10 @@ export const ContainerCardBoxCenterPageFlex = styled.div`
   align-content: center;
 `;
 
-type TypeContainerCardTitlePage = {
-  pheight?: string;
-};
-export const ContainerCardPageTitle = styled.div<TypeContainerCardTitlePage>`
+// type TypeContainerCardTitlePage = {
+//   pheight?: string;
+// };
+export const ContainerCardPageTitle = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
@@ -143,7 +142,7 @@ export const ContainerCardPageTitle = styled.div<TypeContainerCardTitlePage>`
   border-bottom: 3px double;
   border-color: ${props => props.theme.colors.textColor};
   background-color: #bbbbbb;
-  min-height: ${({ pheight }) => pheight || '25px'};
+  min-height: 25px;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -162,17 +161,17 @@ export const ContainerCollunsCenterPage = styled.div<TypeContainerCollunsCenterP
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
-  //color:  ${props => props.theme.colors.textColor};
-  //background: transparent;
   min-height: ${({ pheight }) => pheight || '50px'};
   min-width: ${({ pwidth }) => pwidth || '100px'};
-  display: ${({openccp}) => openccp ? 'flex' : 'none' };
-  //display: ${props => (props.openccp ? 'flex' : 'none')};
+//  display: ${({openccp}) => openccp ? 'flex' : 'none' };
+  display: ${props => (props.openccp ? 'flex' : 'none')};
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-content: center;
   align-items: center;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
 `;
 
 export const ContainerInputPage = styled.div`

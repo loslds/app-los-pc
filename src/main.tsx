@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom/client';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Global from './styles/global';
-import Home from './components/pages/Home';
-import Login from './components/pages/Login';
-import Login1 from './components/pages/Login1';
-import Login2 from './components/pages/Login2';
-import Login3 from './components/pages/Login3';
+import { Home } from './components/pages/Home';
+import { Login } from './components/pages/Login';
+import { Login1 } from './components/pages/Login1';
+import { Login2 } from './components/pages/Login2';
+import { Login3 } from './components/pages/Login3';
 //import Login4 from './components/pages/Login4';
 
-import { MyAccount } from './components/pages/MyAccount';
+//import { MyAccount } from './components/pages/MyAccount';
 import { Recepcao } from './components/pages/Recepcao';
 import { Design } from './components/pages/Design';
 import { Producao } from './components/pages/Producao';

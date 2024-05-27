@@ -1,8 +1,9 @@
 import * as MD from '../Modal/styles';
-import CardModalTexto from '../Modal/CardModalTexto';
+
+import { CardModalTexto } from '../Modal/CardModalTexto';
 import negado from '../../assets/svgs/negado.svg';
 
-const CardImgNeg = () => {
+export const CardImgNeg = () => {
   return (
     <CardModalTexto>
       <MD.ContainerHeardModalMain>
@@ -18,5 +19,3 @@ const CardImgNeg = () => {
     </CardModalTexto>
   );
 };
-
-export default CardImgNeg;

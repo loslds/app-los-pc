@@ -1,10 +1,12 @@
-import * as F from "../stylesfoot";
+import * as F from '../stylesfoot';
 
-type PropsFootColuuns = {
+type TypeBarProd3ColunsFoot = {
   pwidth?: string;
   children?: React.ReactNode | JSX.Element;
 };
-const BarProd3ColunsFoot = ({ pwidth, children }: PropsFootColuuns) => {
+export const BarProd3ColunsFoot = ({
+  pwidth,
+  children
+}: TypeBarProd3ColunsFoot) => {
   return <F.Area3ProdCollun pwidth={pwidth}>{children}</F.Area3ProdCollun>;
 };
-export default BarProd3ColunsFoot;

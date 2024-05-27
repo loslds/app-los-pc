@@ -1,13 +1,10 @@
-import React from 'react';
-
-import  MainModal  from './MainModal';
+import { MainModal } from './MainModal';
+import { ButtonModal } from './ButtonModal';
+import { CardButtonsModal } from './CardButtonsModal';
+import { CardModal } from './CardModal';
+import { TitleModal } from './TitleModal';
 
 import close from '../../assets/svgs/close.svg';
-
-import ButtonModal from './ButtonModal';
-import CardButtonsModal from './CardButtonsModal';
-import CardModal from './CardModal';
-import TitleModal  from './TitleModal';
 
 type Props = {
   top?: string;
@@ -23,7 +20,7 @@ type Props = {
   children?: React.ReactNode | JSX.Element;
 };
 
-const Modal: React.FC<Props> = ({
+export const Modal: React.FC<Props> = ({
   isOpen,
   iscard,
   istitle,
@@ -33,43 +30,29 @@ const Modal: React.FC<Props> = ({
   children
 }) => {
   if (!isOpen) return null;
-
-  //  const handleClose = React.useCallback(e => {
-  //    e.stopPropagation();
-  //    onClose();
-  //  }, []);
-
   return (
     <MainModal id={'idmodal1'} onClick={onClick}>
       {iscard && istitle && isbtof ? (
         <CardModal>
           <TitleModal titulo={titulo} />
           <CardButtonsModal>
-            <ButtonModal
-              img={close}
-            />
+            <ButtonModal imgbm={close} titbm={'Fechar...'} onClick={onClick}/>
           </CardButtonsModal>
         </CardModal>
       ) : null}
       {iscard && !istitle && isbtof ? (
         <CardModal>
           <CardButtonsModal>
-            <ButtonModal
-              img={close}
-            />
+            <ButtonModal imgbm={close} titbm={'Fechar...'} onClick={onClick} />
           </CardButtonsModal>
         </CardModal>
       ) : null}
       {!iscard && !istitle && isbtof ? (
         <CardButtonsModal>
-          <ButtonModal
-            img={close}
-          />
+          <ButtonModal imgbm={close} titbm={'Fechar...'} onClick={onClick}/>
         </CardButtonsModal>
       ) : null}
       {children}
     </MainModal>
   );
 };
-
-export default Modal;

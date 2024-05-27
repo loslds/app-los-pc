@@ -1,17 +1,13 @@
 import React from 'react';
 import * as MD from './styles';
 
-type Props = {
+type TypeMainModalHelSys = {
   id?: string;
   children?: React.ReactNode;
 };
 
-const MainModalHelSys: React.FC<Props> = ({ id, children }) => {
+export const MainModalHelSys = ({ id, children }: TypeMainModalHelSys) => {
   return (
-    <MD.ContainerModalImgModulo id={id}>
-      {children}
-    </MD.ContainerModalImgModulo>
+    <MD.ContainerModalImgModulo id={id}>{children}</MD.ContainerModalImgModulo>
   );
 };
-
-export default MainModalHelSys;

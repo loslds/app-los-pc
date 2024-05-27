@@ -7,7 +7,7 @@ type TypeContentDivButtonOn = {
   title?: string;
   onClick?: () => void;
 };
-const ContentDivButtonOn = ({
+export const ContentDivButtonOn = ({
   pxwdth,
   pxhght,
   img,
@@ -21,4 +21,3 @@ const ContentDivButtonOn = ({
   );
 };
 
-export default ContentDivButtonOn;

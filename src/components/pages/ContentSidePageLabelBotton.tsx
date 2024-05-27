@@ -1,4 +1,3 @@
-
 import * as Pg from './stylePage';
 
 type TypeContentSidePageLabelBotton = {
@@ -9,7 +8,7 @@ type TypeContentSidePageLabelBotton = {
   titbtn?: string;
   onclick?: () => void;
 };
-const ContentSidePageLabelBotton = ({
+export const ContentSidePageLabelBotton = ({
   pxheight,
   istitl,
   title,
@@ -19,12 +18,10 @@ const ContentSidePageLabelBotton = ({
 }: TypeContentSidePageLabelBotton) => {
   return (
     <Pg.ContainerBtnSRigthPage>
-      {istitl ? (<label>{title}</label>) : null}
+      {istitl ? <label>{title}</label> : null}
       <Pg.ContainerCustonBtnPage pxheight={pxheight}>
         <Pg.ButtonDefaulImgPage img={img} title={titbtn} onClick={onclick} />
       </Pg.ContainerCustonBtnPage>
     </Pg.ContainerBtnSRigthPage>
   );
 };
-
-export default ContentSidePageLabelBotton;

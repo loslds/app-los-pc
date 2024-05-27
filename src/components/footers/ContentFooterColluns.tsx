@@ -1,16 +1,16 @@
 import * as F from './styles';
 
-type PropsFootColluns = {
+type TypeContentFooterColluns = {
   pwidth?: string;
   children?: React.ReactNode | JSX.Element;
 };
-const ContentFooterColluns = ({ pwidth, children }:PropsFootColluns) => {
+export const ContentFooterColluns = ({
+  pwidth,
+  children
+}: TypeContentFooterColluns) => {
   return (
-    <F.ContainerFooterColluns pwidth={pwidth }>
-      <F.ContainerFooterCollunsFlex>
-        {children}
-      </F.ContainerFooterCollunsFlex>
+    <F.ContainerFooterColluns pwidth={pwidth}>
+      <F.ContainerFooterCollunsFlex>{children}</F.ContainerFooterCollunsFlex>
     </F.ContainerFooterColluns>
   );
 };
-export default ContentFooterColluns;

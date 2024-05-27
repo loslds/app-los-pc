@@ -1,29 +1,30 @@
 import React from 'react';
 
-import close from '../../assets/svgs/close.svg';
+import { ButtonModal } from '../Modal/ButtonModal';
+import { CardButtonsModal } from '../Modal/CardButtonsModal';
+import { CardModal } from '../Modal/CardModal';
+import { MainModal } from '../Modal/MainModal';
+import { TitleModal } from '../Modal/TitleModal';
 
-import  ButtonModal from '../Modal/ButtonModal';
-
-import CardButtonsModal from '../Modal/CardButtonsModal';
-import CardModal from '../Modal/CardModal';
-import MainModal from '../Modal/MainModal';
-import TitleModal from '../Modal/TitleModal';
-
-type Props = {
+type TypeModalForm = {
   isOpen?: boolean;
-  onClose?: () => void;
   titulo?: string;
   form?: React.ReactNode;
+  imgbm?: string;
+  titbm?: string;
+  onClose?: () => void;
   children?: JSX.Element;
 };
 
-export const ModalForm: React.FC<Props> = ({
+export const ModalForm = ({
   isOpen,
   titulo,
-  onClose,
   form,
+  imgbm,
+  titbm,
+  onClose,
   children
-}) => {
+}: TypeModalForm) => {
   if (!isOpen) return null;
 
   return (
@@ -31,7 +32,7 @@ export const ModalForm: React.FC<Props> = ({
       <CardModal id={'idmodal2'}>
         <TitleModal titulo={titulo} />
         <CardButtonsModal>
-          <ButtonModal img={close} onClick={onClose} />
+          <ButtonModal imgbm={imgbm} titbm={titbm} onClick={onClose} />
         </CardButtonsModal>
       </CardModal>
       {form}

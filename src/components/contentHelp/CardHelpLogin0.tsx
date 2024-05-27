@@ -1,15 +1,20 @@
 import React from 'react';
 import * as MD from '../Modal/styles';
-import CardModalTexto from '../Modal/CardModalTexto';
+import { CardModalTexto } from '../Modal/CardModalTexto';
 
-import PageModalHelp from '../Modal/PageModalHelp';
-import CardAcessoSistema from '../contentHelp/CardAcessoSistema';
+import { PageModalHelp } from '../Modal/PageModalHelp';
+import { CardAcessoSistema } from '../contentHelp/CardAcessoSistema';
 
 type TypeCardHelpLogin0 = {
   imghlp?: string;
+  tithlp?: string;
+
   imgcard?: string;
+  titcard?: string;
+
+  onclosecard?: () => void;
 };
-const CardHelpLogin0 = ({ imgcard, imghlp }: TypeCardHelpLogin0) => {
+export const CardHelpLogin0 = ({ imghlp, tithlp }: TypeCardHelpLogin0) => {
   const [helpsyspg, setHelpSysPg] = React.useState(false);
 
   return (
@@ -19,12 +24,12 @@ const CardHelpLogin0 = ({ imgcard, imghlp }: TypeCardHelpLogin0) => {
           <MD.ContainerModalImg
             pminheight={'70px'}
             pwidth={'78px'}
-            img={imgcard}
-            onClick={() => setHelpSysPg(true)}
+            img={imghlp}
+            title={tithlp}
           />
         </MD.ContainerHeardModalMain>
 
-        <h3>Help Página do Acesso ao Sistema.</h3>
+        <h3>Help Página do Acesso a Empresa.</h3>
         <p>
           &emsp; - Para que possa logar é necessário que selecione uma Opção.
         </p>
@@ -36,7 +41,7 @@ const CardHelpLogin0 = ({ imgcard, imghlp }: TypeCardHelpLogin0) => {
         <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
         <label>Obs.:</label>
         <p>&emsp; - Click na imagem para ver o Help da Aplicação.</p>
-        <br/>
+        <br />
       </MD.ContentTextoModulos>
 
       {helpsyspg ? (
@@ -44,14 +49,12 @@ const CardHelpLogin0 = ({ imgcard, imghlp }: TypeCardHelpLogin0) => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'87%'}
-          titulo={'Acesso Sistema.'}
+          titulo={'Acessando Empresas.'}
           onclose={() => setHelpSysPg(false)}
         >
-          <CardAcessoSistema imghlp={imghlp} />
+          <CardAcessoSistema />
         </PageModalHelp>
       ) : null}
     </CardModalTexto>
   );
 };
-
-export default CardHelpLogin0;

@@ -2,11 +2,10 @@ import React from 'react';
 
 import * as C from './styles';
 
-type Props = {
+type TypeCardButtonsModal = {
   id?: string;
   children?: React.ReactNode | JSX.Element;
 };
-const CardButtonsModal: React.FC<Props> = ({ id, children }) => {
+export const CardButtonsModal = ({ id, children }: TypeCardButtonsModal) => {
   return <C.ContainerButtonModal id={id}>{children}</C.ContainerButtonModal>;
 };
-export default CardButtonsModal;

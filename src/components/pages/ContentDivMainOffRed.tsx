@@ -9,7 +9,7 @@ type PropsContentDivMainOffRed = {
   statedata?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentDivMainOffRed = ({
+export const ContentDivMainOffRed = ({
   pxheight,
   pxwidth,
   label,
@@ -25,4 +25,3 @@ const ContentDivMainOffRed = ({
   );
 };
 
-export default ContentDivMainOffRed;

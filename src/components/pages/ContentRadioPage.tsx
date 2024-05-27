@@ -1,4 +1,4 @@
-import ContentInputPage from './ContentInputPage';
+import { ContentInputPage } from './ContentInputPage';
 
 type TypeContentRadioPage = {
   disabled?: boolean;

@@ -1,14 +1,12 @@
-import React from 'react';
-
 import * as MD from './styles';
-type Props = {
+
+type TypeDivTitleModal = {
   title?: string;
 };
-const DivTitleModal: React.FC<Props> = ({title }) => {
+export const DivTitleModal = ({ title }: TypeDivTitleModal) => {
   return (
     <MD.ContainerCenterDiv>
       <label>{title}</label>
     </MD.ContainerCenterDiv>
   );
 };
-export default DivTitleModal;

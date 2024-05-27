@@ -1,18 +1,18 @@
 import * as Lg from '../../../styles/styledLogin';
 
-type BntConfirmationOnOff = {
+type TypeContentButtonConfimationOnOff = {
   title?: string;
   img?: string;
   titlebtn?: string;
   onClick?: () => void;
   //React.MouseEventHandler<HTMLButtonElement>;
 };
-const ContentButtonConfimationOnOff = ({
+export const ContentButtonConfimationOnOff = ({
   title,
   img,
   titlebtn,
   onClick
-}: BntConfirmationOnOff) => {
+}: TypeContentButtonConfimationOnOff) => {
   return (
     <Lg.ContainerBtnLoginSRigth>
       <label>{title}</label>
@@ -22,5 +22,3 @@ const ContentButtonConfimationOnOff = ({
     </Lg.ContainerBtnLoginSRigth>
   );
 };
-
-export default ContentButtonConfimationOnOff;

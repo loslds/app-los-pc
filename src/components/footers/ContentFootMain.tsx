@@ -1,14 +1,9 @@
-import React from "react";
-import * as Pag from "../layouts/styled";
+import React from 'react';
+import * as Pag from '../layouts/styled';
 
-type PropsContentFooterMain = {
+type TypeContentFooterMain = {
   children?: React.ReactNode | JSX.Element;
 };
-const ContentFooterMain = ({ children }: PropsContentFooterMain) => {
-  return (
-    <Pag.ContainerFooter>
-      {children}    
-    </Pag.ContainerFooter>
-  );
+export const ContentFooterMain = ({ children }: TypeContentFooterMain) => {
+  return <Pag.ContainerFooter>{children}</Pag.ContainerFooter>;
 };
-export default ContentFooterMain;

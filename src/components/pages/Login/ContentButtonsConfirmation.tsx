@@ -1,13 +1,11 @@
 import { ReactNode } from 'react';
 import * as Lg from '../../../styles/styledLogin';
 
-type PropsBntConfimation = {
+type TypeContentButtonsConfirmation = {
   children?: ReactNode | JSX.Element;
 };
-const ContentButtonsConfirmation = ({
+export const ContentButtonsConfirmation = ({
   children
-}: PropsBntConfimation) => {
+}: TypeContentButtonsConfirmation) => {
   return <Lg.ContainerBtnLoginSRigth>{children}</Lg.ContainerBtnLoginSRigth>;
 };
-
-export default ContentButtonsConfirmation;

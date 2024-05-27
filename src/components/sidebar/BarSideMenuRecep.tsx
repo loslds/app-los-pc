@@ -12,10 +12,10 @@ import tabcor from '../../assets/svgs/tabcor.svg';
 //import master from "../../assets/svgs/master.svg";
 //import config from "../../assets/svgs/config.svg";
 
-import { ContainerBarSideMain } from './ContainerBarSideMain';
-import { ButtonSideBar } from './ButtonSideBar';
-import ContainerItensModMn from './ContainerItensModMn';
-import { ContentButtonTitleMenu } from './ContentButtonTitleMenu';
+import { ContainerSBMain } from './ContainerSBMain';
+import { ContainerSBButton } from './ContainerSBButton';
+import { ContainerSBItensModMn } from './ContainerSBItensModMn';
+import { ContentSBButtonTitleMenu } from './ContentSBButtonTitleMenu';
 
 import React from 'react';
 //import PageModal from "../Modal/PageModal";
@@ -59,9 +59,9 @@ export const BarSideMenuRecep = () => {
   }, []);
 
   return (
-    <ContainerBarSideMain>
+    <ContainerSBMain>
       <S.ContainerButtonSRigth>
-        <ButtonSideBar
+        <ContainerSBButton
           img={menu}
           titbtn={'Menu...'}
           onClick={handlerClickItensMenu}
@@ -70,25 +70,25 @@ export const BarSideMenuRecep = () => {
       <S.ContainerMenuSide open={isitensmenu}>
         {/* Tabelas  */}
         <S.ContainerButtonSLeft>
-          <ContainerItensModMn onoff={ismntab}>
-            <ButtonSideBar
+          <ContainerSBItensModMn onoff={ismntab}>
+            <ContainerSBButton
               img={tabprc}
               titbtn="Tab.Preços..."
               onClick={() => {
                 setIsTabCor(true);
               }}
             />
-            <ButtonSideBar
+            <ContainerSBButton
               img={tabcor}
               titbtn="Tab.Cores..."
               onClick={() => {
                 setIsTabPrc(true);
               }}
             />
-          </ContainerItensModMn>
+          </ContainerSBItensModMn>
 
           <S.ContainerButtonMnItens>
-            <ContentButtonTitleMenu
+            <ContentSBButtonTitleMenu
               isimg={ismntab}
               title={'Tabelas.'}
               onclick={handlerClickMnTab}
@@ -98,28 +98,28 @@ export const BarSideMenuRecep = () => {
 
         {/* cadastros  */}
         <S.ContainerButtonSLeft>
-          <ContainerItensModMn onoff={ismncad}>
-            <ButtonSideBar
+          <ContainerSBItensModMn onoff={ismncad}>
+            <ContainerSBButton
               titbtn="O.Serviço..."
               onClick={() => {
                 setIsCadOs(true);
               }}
             />
-            <ButtonSideBar
+            <ContainerSBButton
               titbtn="Cliêntes..."
               onClick={() => {
                 setIsCadCli(true);
               }}
             />
-            <ButtonSideBar
+            <ContainerSBButton
               titbtn="Diario..."
               onClick={() => {
                 setIsCadDia(true);
               }}
             />
-          </ContainerItensModMn>
+          </ContainerSBItensModMn>
           <S.ContainerButtonMnItens>
-            <ContentButtonTitleMenu
+            <ContentSBButtonTitleMenu
               isimg={ismncad}
               title={'Cadastros.'}
               onclick={handlerClickMnCad}
@@ -129,34 +129,34 @@ export const BarSideMenuRecep = () => {
 
         {/* Setores  */}
         <S.ContainerButtonSLeft>
-          <ContainerItensModMn onoff={ismnsetor}>
-            <ButtonSideBar
+          <ContainerSBItensModMn onoff={ismnsetor}>
+            <ContainerSBButton
               titbtn="Design..."
               onClick={() => {
                 setIsSetDesg(true);
               }}
             />
-            <ButtonSideBar
+            <ContainerSBButton
               titbtn="Produção..."
               onClick={() => {
                 setIsSetProd(true);
               }}
             />
-            <ButtonSideBar
+            <ContainerSBButton
               titbtn="Produção..."
               onClick={() => {
                 setIsSetAcab(true);
               }}
             />
-            <ButtonSideBar
+            <ContainerSBButton
               titbtn="Expedição..."
               onClick={() => {
                 setIsSetExpe(true);
               }}
             />
-          </ContainerItensModMn>
+          </ContainerSBItensModMn>
           <S.ContainerButtonMnItens>
-            <ContentButtonTitleMenu
+            <ContentSBButtonTitleMenu
               isimg={ismnsetor}
               title={'Setores.'}
               onclick={handlerClickMnSetor}
@@ -164,6 +164,6 @@ export const BarSideMenuRecep = () => {
           </S.ContainerButtonMnItens>
         </S.ContainerButtonSLeft>
       </S.ContainerMenuSide>
-    </ContainerBarSideMain>
+    </ContainerSBMain>
   );
 };

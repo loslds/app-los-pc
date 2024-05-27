@@ -7,18 +7,14 @@ type TypeContentPagePanelBotton = {
   pwidth?: string;
   children?: ReactNode;
 };
-const ContentPagePanelBotton = ({
+export const ContentPagePanelBotton = ({
   open,
   pwidth,
   children
 }: TypeContentPagePanelBotton) => {
   return (
     <Pg.ContainerPanelPage open={open} pwidth={pwidth}>
-      <Pg.ContainerPageFlex>
-        {children}
-      </Pg.ContainerPageFlex>
+      <Pg.ContainerPageFlex>{children}</Pg.ContainerPageFlex>
     </Pg.ContainerPanelPage>
   );
 };
-
-export default ContentPagePanelBotton;

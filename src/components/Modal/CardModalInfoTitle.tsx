@@ -1,16 +1,12 @@
-
-import React from 'react';
-
 import * as MD from './styles';
-type Props = {
-  
+
+type TypeCardModalInfoTitle = {
   titulo?: string;
 };
-const CardModalInfoTitle: React.FC<Props> = ({ titulo }) => {
+export const CardModalInfoTitle = ({ titulo }: TypeCardModalInfoTitle) => {
   return (
     <MD.ContainerInfoErroModalTitle>
       {<h3>{titulo}</h3>}
     </MD.ContainerInfoErroModalTitle>
   );
 };
-export default CardModalInfoTitle;

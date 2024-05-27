@@ -1,27 +1,25 @@
-import React from 'react';
+
 import * as MD from './styles';
 
-type PropsDivOpction = {
-  children?: React.ReactNode;
-  title?: string;
-  description?: string;
+type TypeContainerCenterImgDiv = {
   img?: string;
-  selected?: boolean;
-  onClick?: () => {};
+  // title?: string;
+  // description?: string;
+  // selected?: boolean;
+  // onClick?: () => {};
+  //  children?: React.ReactNode;
 };
 
-const DivActionOpcModal: React.FC<PropsDivOpction> = ({
-  children,
-  title,
-  img,
-  description,
-  selected,
-  onClick
-}) => {
+export const ContainerCenterImgDiv = ({
+  img
+  // title,
+  // description,
+  // selected,
+  // onClick
+//  children,
+}:TypeContainerCenterImgDiv) => {
   return (
     <MD.ContainerCenterImgDiv img={img} />
-
   )
 };
 
-export default DivActionOpcModal;

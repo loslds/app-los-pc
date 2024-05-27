@@ -10,29 +10,26 @@ import {
   AcessoUseForm,
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
-
-import ContentCardPage from '../ContentCardPage.tsx';
+import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
-import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
-import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
-import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
-import { ContentRadioPage } from '../ContentRadioPage.tsx';
-import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
-import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
+import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
+import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
+import { ContentInputPage } from '../ContentInputPage.tsx';
+import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
+import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+import { PageModal } from '../../Modal/PageModal.tsx';
+import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
+import { CardHelpLogin1 } from '../../contentHelp/CardHelpLogin1.tsx';
 
-import PageModal from '../../Modal/PageModal.tsx';
-import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
-import CardHelpLogin1 from '../../contentHelp/CardHelpLogin1.tsx';
+import close from '../../../assets/svgs/close.svg';
 import login1hlp from '../../../assets/svgs/login1hlp.svg';
 import loginpg1 from '../../../assets/svgs/loginpg1.svg';
-
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
-
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-const Login1 = () => {
+export const Login1 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
   const ToggleTheme = () => {
@@ -50,6 +47,7 @@ const Login1 = () => {
       navigate(path);
     };
   };
+
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
@@ -89,26 +87,25 @@ const Login1 = () => {
       setTentativa(state.nrcont);
     }
   }, [dispatch]);
-  const setModo = (level: number) => {
-    setMdLogin(level);
-  };
+
+  const DescrOpc = [
+    'Opções:',
+    'E-Mail / PassWord.',
+    'E-Mail / PIN.',
+    'Pseudônino / PassWord.',
+    'Pseudônino / PIN.'
+  ];
+
   React.useEffect(() => {
-    const DescrOpc = [
-      'Opções:',
-      'E-Mail / PassWord.',
-      'E-Mail / PIN.',
-      'Pseudônino / PassWord.',
-      'Pseudônino / PIN.'
-    ];
     setNmLogin(DescrOpc[mdlogin]);
     if (mdlogin === 0) {
       setBtnContinua(false);
     } else {
       console.log('tentativa : ', tentativa);
       console.log('state.nrcont : ', state.nrcont);
-      if (tentativa >= 4) {
-        alert('tentativa === 4');
-        setBtnContinua(false);
+      if (tentativa >= 5) {
+        alert('tentativa => ' + state.nrcont);
+        setBtnContinua(true);
       } else {
         setBtnContinua(true);
       }
@@ -143,44 +140,28 @@ const Login1 = () => {
         onchange={ToggleTheme}
       >
         <ContentCardPage>
-          <ContentCardPageTitle pheight={'30px'}>
+          <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
+
           <ContentCardBoxMainPage>
-            <ContentCardBoxCenterPage pwidth={'35px'}>
+            <ContentCardBoxCenterPage pwidth="150px">
               <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
-              <ContentCardCollunsCenterPage openccp={true}>
-                <ContentRadioPage
-                  id="E-Mail/Pass"
-                  name="opcao"
-                  value={1}
-                  titulo="E-Mail/Pass"
-                  onclick={() => setModo(1)}
-                />
-                <ContentRadioPage
-                  id="E-Mail/PIN"
-                  name="opcao"
-                  value={2}
-                  titulo="E-Mail/PIN"
-                  onclick={() => setModo(2)}
-                />
-                <ContentRadioPage
-                  id="Pseud/Pass"
-                  name="opcao"
-                  value={3}
-                  titulo="Pseudô/Pass"
-                  onclick={() => setModo(3)}
-                />
-                <ContentRadioPage
-                  id="Pseud/PIN"
-                  name="opcao"
-                  value={4}
-                  titulo="Pseudô/PIN"
-                  onclick={() => setModo(4)}
-                />
-              </ContentCardCollunsCenterPage>
+              <ContentInputPage>
+                <select
+                  name="opcão"
+                  defaultValue={0}
+                  onChange={(e) => setMdLogin(parseInt(e.target.value))}
+                >
+                  <option value={'0'}>Opções : </option>
+                  <option value={'1'}>E-Mail / PassWord.</option>
+                  <option value={'2'}>E-Mail / PIN.</option>
+                  <option value={'3'}>Pseudônino / PassWord.</option>
+                  <option value={'4'}>Pseudônino / PIN.</option>
+                </select>
+              </ContentInputPage>
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
@@ -191,12 +172,10 @@ const Login1 = () => {
               title={'Voltar.: '}
               img={setaesq}
               titbtn={'Voltar...'}
-              onclick={goto('/login')}
+              onclick={goto(state.page)}
             />
             <Lg.ContainerBoxLabelPage>
               <label>[ {3 - state.nrcont} ] tentativas. </label>
-              {/* <label>[ tentativa : {tentativa}]</label>
-              <label>[ state.nrcont : {state.nrcont}]</label> */}
             </Lg.ContainerBoxLabelPage>
             {btncontinua && mdlogin > 0 && mdlogin <= 4 ? (
               <ContentSidePageLabelBotton
@@ -213,9 +192,11 @@ const Login1 = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'40%'}
-              pheight={'54%'}
-              titulo={'Acesso Sistema.'}
+              pwidth={'30%'}
+              pheight={'37%'}
+              titulo={'Acesso Opções Edição.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
               <CardHelpLogin1 imgcard={login1hlp} imghlp={loginpg1} />
@@ -228,6 +209,8 @@ const Login1 = () => {
               pwidth={'65%'}
               pheight={'70%'}
               titulo={'DADOS Context Login.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setOnPanel(false)}
             >
               <CardInfoLogin />
@@ -238,5 +221,3 @@ const Login1 = () => {
     </ThemeProvider>
   );
 };
-
-export default Login1;

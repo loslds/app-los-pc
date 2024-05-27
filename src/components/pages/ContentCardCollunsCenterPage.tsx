@@ -7,7 +7,7 @@ type TypeCardCollunsCenterPage = {
   pwidth?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentCardCollunsCenterPage = ({
+export const ContentCardCollunsCenterPage = ({
   openccp,
   pheight,
   pwidth,
@@ -19,5 +19,3 @@ const ContentCardCollunsCenterPage = ({
     </Pg.ContainerCollunsCenterPage>
   );
 };
-
-export default ContentCardCollunsCenterPage;

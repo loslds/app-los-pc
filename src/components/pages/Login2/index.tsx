@@ -1,5 +1,6 @@
-import * as Lg from '../stylePage.ts';
+import React from 'react';
 
+import * as Lg from '../stylePage.ts';
 import '../../../styles/global.ts';
 
 import { ThemeProvider } from 'styled-components';
@@ -7,30 +8,28 @@ import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
 import { ThemeLogin2 } from '../../modulos/themes/ThemeLogin2';
-import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import {
   AcessoUseForm,
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
-
-import ContentCardPage from '../ContentCardPage.tsx';
+import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
-import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
-import ContentCardBoxCenterPage from '../ContentCardBoxCenterPage.tsx';
-import ContentInputMainPage from '../ContentInputMainPage.tsx';
-import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
-import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
-import PanelModalInfoErros from '../../Modal/PanelModalInfoErros.tsx';
-import CardInfoErros from '../../contentHelp/CardInfoErros.tsx';
+import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
+import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
+import { ContentInputMainPage } from '../ContentInputMainPage.tsx';
+import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
+import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+import { PanelModalInfoErros } from '../../Modal/PanelModalInfoErros.tsx';
+import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
+import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage.tsx';
+import { PageModal } from '../../Modal/PageModal.tsx';
+import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
+import { CardHelpLogin2 } from '../../contentHelp/CardHelpLogin2.tsx';
+
+import close from '../../../assets/svgs/close.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage.tsx';
-
-import PageModal from '../../Modal/PageModal.tsx';
-import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
-import CardHelpLogin2 from '../../contentHelp/CardHelpLogin2.tsx';
 import login2hlp from '../../../assets/svgs/login2hlp.svg';
 import loginpg2 from '../../../assets/svgs/loginpg2.svg';
 
@@ -38,6 +37,8 @@ import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 
 export const Login2 = () => {
+  const { state, dispatch } = AcessoUseForm();
+
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
   const ToggleTheme = () => {
@@ -49,6 +50,7 @@ export const Login2 = () => {
       setIscheck(false);
     }
   };
+
   const navigate = useNavigate();
   const goto = (path: string) => {
     return () => {
@@ -59,7 +61,7 @@ export const Login2 = () => {
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
-  const { state, dispatch } = AcessoUseForm();
+  const [formopcao, setFormOpcao] = React.useState(false);
   const [iseditar, setIsEditar] = React.useState(false);
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [ischeklogin, setIsChekLogin] = React.useState(false);
@@ -72,7 +74,6 @@ export const Login2 = () => {
   const [iserrologin, setIsErroLogin] = React.useState(false);
   const [nmrerrologin, setNmErroLogin] = React.useState('');
   React.useEffect(() => {
-
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
     if (tentativa >= state.nrcont) {
@@ -84,15 +85,16 @@ export const Login2 = () => {
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({
       type: AcessoUseActions.setModulo,
-      payload: 'Login : Selecionado Edição.'
+      payload: 'Login : Selecionar Opção Edição.'
     });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: state.nmlogin });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
     //    setTentativa(state.nrcont);
+    setFormOpcao(true);
     setIsEditar(true);
     setBtnContinua(true);
     setIsChekLogin(false);
-  }, [tentativa, dispatch]);
+  }, [tentativa, formopcao, dispatch]);
 
   const handlerOnChangerStrId = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -172,7 +174,7 @@ export const Login2 = () => {
         dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
       }
     }
-  }, [strid, strpsw, tentativa,dispatch]);
+  }, [strid, strpsw, tentativa, dispatch]);
   React.useEffect(() => {
     if (!ischeklogin && nmrerrologin !== '') {
       if (tentativa === 3) {
@@ -185,7 +187,7 @@ export const Login2 = () => {
         setIsErroLogin(true);
       }
       dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    }else if (ischeklogin) {
+    } else if (ischeklogin) {
       setBtnEnviar(true);
     }
   }, [tentativa, dispatch]);
@@ -215,7 +217,7 @@ export const Login2 = () => {
         onchange={ToggleTheme}
       >
         <ContentCardPage>
-          <ContentCardPageTitle pheight={'30px'}>
+          <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
@@ -224,7 +226,10 @@ export const Login2 = () => {
                 <ContentCardPageTitle>
                   <h4>{state.aplicacao}</h4>
                 </ContentCardPageTitle>
-                <ContentCardCollunsCenterPage openccp={true} pwidth={'180px'}>
+                <ContentCardCollunsCenterPage
+                  openccp={formopcao}
+                  pwidth={'180px'}
+                >
                   <ContentInputMainPage>
                     {state.mdlogin === 1 ? (
                       <form name="login1">
@@ -345,10 +350,11 @@ export const Login2 = () => {
               titbtn={'Voltar...'}
               onclick={goto('/login')}
             />
+            <p>state=: {state.page}</p>
             <Lg.ContainerBoxLabelPage>
               <label>[ {3 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-            {btncontinua && state.mdlogin <= 4 || !ischeklogin ? (
+            {(btncontinua && state.mdlogin <= 4) || !ischeklogin ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
                 istitl={true}
@@ -370,7 +376,7 @@ export const Login2 = () => {
               />
             ) : null}
 
-            { btnresgatar ? (
+            {btnresgatar ? (
               <ContentSidePageLabelBotton
                 pxheight={'20px'}
                 istitl={true}
@@ -400,9 +406,11 @@ export const Login2 = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'40%'}
-              pheight={'43%'}
-              titulo={'Acesso Sistema.'}
+              pwidth={'35%'}
+              pheight={'49%'}
+              titulo={'Acesso Edição de Solicitação.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
               <CardHelpLogin2 imgcard={login2hlp} imghlp={loginpg2} />
@@ -415,6 +423,8 @@ export const Login2 = () => {
               pwidth={'65%'}
               pheight={'70%'}
               titulo={'DADOS Context Login.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setOnPanel(false)}
             >
               <CardInfoLogin />

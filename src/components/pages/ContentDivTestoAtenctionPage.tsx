@@ -10,7 +10,7 @@ type TypeContentDivTestoAtenctionPage = {
   label?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentDivTestoAtenctionPage = ({
+export const ContentDivTestoAtenctionPage = ({
   pxwidth,
   label,
   titulo,
@@ -24,5 +24,3 @@ const ContentDivTestoAtenctionPage = ({
     </Pg.ContainerDivTestoAtenctionPage>
   );
 };
-
-export default ContentDivTestoAtenctionPage;

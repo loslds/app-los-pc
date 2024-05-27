@@ -3,10 +3,10 @@ import { ReactNode } from 'react';
 import * as Pg from './stylePage';
 
 type TypeContentInputMainPage = {
-  children?: ReactNode;
+  children?: ReactNode | JSX.Element;
 };
-const ContentInputMainPage = ({ children }: TypeContentInputMainPage) => {
+export const ContentInputMainPage = ({
+  children
+}: TypeContentInputMainPage) => {
   return <Pg.ContainerInputMainPage>{children}</Pg.ContainerInputMainPage>;
 };
-
-export default ContentInputMainPage;

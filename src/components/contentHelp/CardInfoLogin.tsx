@@ -1,12 +1,10 @@
 import * as MD from '../Modal/styles';
 
-import CardModalTexto from '../Modal/CardModalTexto';
-
+import { CardModalTexto } from '../Modal/CardModalTexto';
 import { AcessoUseForm } from '../contexts/login/ContextAcesso';
 
-const CardInfoLogin = () => {
+export const CardInfoLogin = () => {
   const { state } = AcessoUseForm();
-
   return (
     <CardModalTexto>
       <MD.ContentTextoModulos>
@@ -59,5 +57,3 @@ const CardInfoLogin = () => {
     </CardModalTexto>
   );
 };
-
-export default CardInfoLogin;

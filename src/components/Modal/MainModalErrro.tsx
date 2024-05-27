@@ -2,7 +2,7 @@ import React from 'react';
 
 import * as MD from './styles';
 
-type PropsMainModal = {
+type TypeMainModalErro = {
   ptop?: string;
   pheight?: string;
   pwidth?: string;
@@ -10,14 +10,17 @@ type PropsMainModal = {
   onClick?: () => void;
 };
 
-const MainModalErro: React.FC<PropsMainModal> = ({ptop, pheight, pwidth, children }) => {
+export const MainModalErro = ({
+  ptop,
+  pheight,
+  pwidth,
+  children
+}: TypeMainModalErro) => {
   return (
     <MD.ContentInfoErro>
-      <MD.ContainerInfoErroModal ptop={ptop} pheight={pheight} pwidth={pwidth} >
+      <MD.ContainerInfoErroModal ptop={ptop} pheight={pheight} pwidth={pwidth}>
         {children}
       </MD.ContainerInfoErroModal>
     </MD.ContentInfoErro>
   );
 };
-
-export default MainModalErro;

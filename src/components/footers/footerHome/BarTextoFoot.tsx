@@ -1,13 +1,8 @@
-import * as F from "../stylesfoot";
+import * as F from '../stylesfoot';
 
-type PropsAgaFoot = {
+type TypeBarTextoFoot = {
   children?: React.ReactNode | JSX.Element;
 };
-const BarTextoFoot = ({ children }: PropsAgaFoot) => {
-  return (
-    <F.AreaTestoItem>
-      {children}
-    </F.AreaTestoItem>
-  );
+export const BarTextoFoot = ({ children }: TypeBarTextoFoot) => {
+  return <F.AreaTestoItem>{children}</F.AreaTestoItem>;
 };
-export default BarTextoFoot;

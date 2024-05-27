@@ -1,19 +1,21 @@
-import React from 'react';
-import closevrm from '../../assets/images/closevrm.png';
 import * as MD from './styles';
+import * as Pg from '../pages/stylePage';
 
-type Props = {
-  id?: string;
-  title?: string;
-  onClose: () => void;
+import { ButtonModal } from './ButtonModal';
+//import closevrm from '../../assets/images/closevrm.png';
+
+type TypeDivOpcTitle = {
+  titulo?: string;
+  imgbm?: string;
+  titbm?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
-const DivOpcTitle: React.FC<Props> = ({ title , onClose}) => {
+export const DivOpcTitle = ({ titulo, imgbm, titbm, onClick }: TypeDivOpcTitle) => {
   return (
     <MD.ContainerDivOpcTitle>
-      <h5>{title}</h5>
-      <MD.BButtonModal img={closevrm} title={'Fechar...'} onClick={onClose} />
-      <MD.DivisionPanel />
+      <h5>{titulo}</h5>
+      <ButtonModal imgbm={imgbm} titbm={titbm} onClick={onClick} />
+      <Pg.DivisionPgHztal />
     </MD.ContainerDivOpcTitle>
   );
 };
-export default DivOpcTitle;

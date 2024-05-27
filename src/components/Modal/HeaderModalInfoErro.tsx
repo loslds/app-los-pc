@@ -1,16 +1,12 @@
-import React from 'react';
-
 import * as MD from './styles';
 
-type PropsHeaderModalIE = {
+type TypeHeaderModalInfoErro = {
   children?: React.ReactNode;
 };
-const HeaderModalInfoErro: React.FC<PropsHeaderModalIE> = ({ children }) => {
+export const HeaderModalInfoErro = ({ children }: TypeHeaderModalInfoErro) => {
   return (
     <MD.ContainerCardInfoModalHeader>
       <MD.ContainerCardInfoModalFlex>{children}</MD.ContainerCardInfoModalFlex>
     </MD.ContainerCardInfoModalHeader>
   );
 };
-
-export default HeaderModalInfoErro;

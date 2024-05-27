@@ -5,7 +5,7 @@ type TypeContentCardPage = {
   pwidth?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentCardPage = ({ pwidth, children }: TypeContentCardPage) => {
+export const ContentCardPage = ({ pwidth, children }: TypeContentCardPage) => {
   return (
     <Pg.ContainerCardPage>
       <Pg.ContainerCardPageFlex pwidth={pwidth}>
@@ -15,4 +15,3 @@ const ContentCardPage = ({ pwidth, children }: TypeContentCardPage) => {
   );
 };
 
-export default ContentCardPage;

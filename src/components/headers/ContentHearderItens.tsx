@@ -1,14 +1,9 @@
-
 import { ReactNode } from 'react';
-import * as Hm from '../layouts/styled';
+import * as Ly from '../layouts/styled';
 
-type PropsHearderItens = {
+type TypeContentHearderItens = {
   children?: ReactNode | JSX.Element;
-}
-export const ContentHearderItens = ({children}:PropsHearderItens) => {
-  return (
-    <Hm.ContainerHeaderItens>
-      { children }
-    </Hm.ContainerHeaderItens>
-  );
-}
+};
+export const ContentHearderItens = ({ children }: TypeContentHearderItens) => {
+  return <Ly.ContainerHeaderItens>{children}</Ly.ContainerHeaderItens>;
+};

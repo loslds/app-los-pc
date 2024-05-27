@@ -1,16 +1,20 @@
 import React from 'react';
 import * as MD from '../Modal/styles';
-import CardModalTexto from '../Modal/CardModalTexto';
 
-import PageModalHelp from '../Modal/PageModalHelp';
-import CardAcessoSistema from './CardAcessoSistema';
+import { CardModalTexto } from '../Modal/CardModalTexto';
+import { PageModalHelp } from '../Modal/PageModalHelp';
+import { CardAcessoSistema } from './CardAcessoSistema';
 
 type TypeCardHelpLogin3 = {
   imghlp?: string;
   imgcard?: string;
   ishlp?: boolean;
 };
-const CardHelpLogin3 = ({ ishlp, imgcard, imghlp }: TypeCardHelpLogin3) => {
+export const CardHelpLogin3 = ({
+  ishlp,
+  imgcard,
+  imghlp
+}: TypeCardHelpLogin3) => {
   const [helpsyspg, setHelpSysPg] = React.useState(false);
 
   return (
@@ -61,7 +65,8 @@ const CardHelpLogin3 = ({ ishlp, imgcard, imghlp }: TypeCardHelpLogin3) => {
               3(treis) tentativas de Acesso ao Sistema.
             </p>
             <p>
-              &emsp; - Nps econtramos em estado de suspensão para Logar no Sistema.
+              &emsp; - Nps econtramos em estado de suspensão para Logar no
+              Sistema.
             </p>
             <p>&emsp; - Você estara solicitando conexão com a "REDE".</p>
             <p>&emsp; - Você estara solicitando enviodo "DADOS".</p>
@@ -88,11 +93,9 @@ const CardHelpLogin3 = ({ ishlp, imgcard, imghlp }: TypeCardHelpLogin3) => {
           titulo={'Acesso Sistema.'}
           onclose={() => setHelpSysPg(false)}
         >
-          <CardAcessoSistema imghlp={imghlp} />
+          <CardAcessoSistema />
         </PageModalHelp>
       ) : null}
     </CardModalTexto>
   );
 };
-
-export default CardHelpLogin3;

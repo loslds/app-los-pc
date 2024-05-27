@@ -11,14 +11,12 @@ import administracao from '../../assets/svgs/administracao.svg';
 import master from '../../assets/svgs/master.svg';
 import config from '../../assets/svgs/config.svg';
 
-import { ContainerBarSideMain } from './ContainerBarSideMain';
-import { ButtonSideBar } from './ButtonSideBar';
-import ContainerItensMenu from './ContainerItensMenu';
-
-import PageModal from '../Modal/PageModal';
-
-import CardModuloRecep from '../contentHelp/CardModuloRecep';
-import CardDesemvolver from '../contentHelp/CardDesenvolver';
+import { ContainerSBMain } from './ContainerSBMain';
+import { ContainerSBButton } from './ContainerSBButton';
+import { ContainerSBItensMenu } from './ContainerSBItensMenu';
+import { PageModal } from '../Modal/PageModal';
+import { CardModuloRecep } from '../contentHelp/CardModuloRecep';
+import { CardDesemvolver } from '../contentHelp/CardDesenvolver';
 
 export const BarSideMenuHome = () => {
   const [isitensmenu, setIsItensMenu] = React.useState(false);
@@ -36,74 +34,73 @@ export const BarSideMenuHome = () => {
   }, []);
 
   return (
-    <ContainerBarSideMain>
+    <ContainerSBMain>
       <S.ContainerButtonSRigth>
-        <ButtonSideBar
+        <ContainerSBButton
           img={menuh}
           titbtn={'Menu Help...'}
           onClick={handlerClickItensMenu}
         />
       </S.ContainerButtonSRigth>
 
-      <ContainerItensMenu onoff={isitensmenu}>
-        
-        <ButtonSideBar
+      <ContainerSBItensMenu onoff={isitensmenu}>
+        <ContainerSBButton
           img={servicos}
           titbtn="Recepção..."
           onClick={() => {
             setIsMdRecep(true);
           }}
         />
-        <ButtonSideBar
+        <ContainerSBButton
           img={design}
           titbtn="Design..."
           onClick={() => {
             setIsMdDesig(true);
           }}
         />
-        <ButtonSideBar
+        <ContainerSBButton
           img={producao}
           titbtn="Produção..."
           onClick={() => {
             setIsMdProdu(true);
           }}
         />
-        <ButtonSideBar
+        <ContainerSBButton
           img={acabamento}
           titbtn="Acabamento..."
           onClick={() => {
             setIsMdAcaba(true);
           }}
         />
-        <ButtonSideBar
+        <ContainerSBButton
           img={expedicao}
           titbtn="Expedição..."
           onClick={() => {
             setIsMdExped(true);
           }}
         />
-        <ButtonSideBar
+        <ContainerSBButton
           img={administracao}
           titbtn="Administração..."
           onClick={() => {
             setIsMdAdmin(true);
           }}
         />
-        <ButtonSideBar
+        <ContainerSBButton
           img={master}
           titbtn="Master..."
           onClick={() => {
             setIsMdMaste(true);
           }}
         />
-        <ButtonSideBar
+        <ContainerSBButton
           img={config}
           titbtn="Config..."
           onClick={() => {
             setIsMdConfi(true);
           }}
         />
-      </ContainerItensMenu>
+      </ContainerSBItensMenu>
 
       {ismdrecep ? (
         <PageModal
@@ -209,6 +206,6 @@ export const BarSideMenuHome = () => {
           <CardDesemvolver />
         </PageModal>
       ) : null}
-    </ContainerBarSideMain>
+    </ContainerSBMain>
   );
 };

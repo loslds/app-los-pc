@@ -1,15 +1,15 @@
 import React from 'react';
 import * as MD from '../Modal/styles';
-import CardModalTexto from '../Modal/CardModalTexto';
 
-import PageModalHelp from '../Modal/PageModalHelp';
-import CardAcessoSistema from './CardAcessoSistema';
+import { CardModalTexto } from '../Modal/CardModalTexto';
+import { PageModalHelp } from '../Modal/PageModalHelp';
+import { CardAcessoSistema } from './CardAcessoSistema';
 
 type TypeCardHelpLogin2 = {
   imghlp?: string;
   imgcard?: string;
 };
-const CardHelpLogin2 = ({ imgcard, imghlp }: TypeCardHelpLogin2) => {
+export const CardHelpLogin2 = ({ imgcard, imghlp }: TypeCardHelpLogin2) => {
   const [helpsyspg, setHelpSysPg] = React.useState(false);
 
   return (
@@ -51,11 +51,9 @@ const CardHelpLogin2 = ({ imgcard, imghlp }: TypeCardHelpLogin2) => {
           titulo={'Acesso Sistema.'}
           onclose={() => setHelpSysPg(false)}
         >
-          <CardAcessoSistema imghlp={imghlp} />
+          <CardAcessoSistema  />
         </PageModalHelp>
       ) : null}
     </CardModalTexto>
   );
 };
-
-export default CardHelpLogin2;

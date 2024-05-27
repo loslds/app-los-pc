@@ -15,32 +15,31 @@ import {
   AcessoUseActions
 } from '../../contexts/login/ContextAcesso.tsx';
 
-import ContentCardPage from '../ContentCardPage.tsx';
+import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
-import ContentCardBoxMainPage from '../ContentCardBoxMainPage.tsx';
-import ContentDivManYellow from '../ContentDivManYellow.tsx';
-import ContentDivMainRed from '../ContentDivMainRed.tsx';
-import ContentDivMainBlue from '../ContentDivMainBlue.tsx';
-import ContentDivMainOnGreen from '../ContentDivMainOnGreen.tsx';
-import ContentDivMainOffRed from '../ContentDivMainOffRed.tsx';
-import ContentDivButtonOff from '../ContentDivButtonOff.tsx';
-import ContentDivButtonOn from '../ContentDivButtonOn.tsx';
-import ContentCardCollunsCenterPage from '../ContentCardCollunsCenterPage';
-import ContentSidePagePanelBotton from '../ContentSidePagePanelBotton.tsx';
-import ContentSidePageLabelBotton from '../ContentSidePageLabelBotton.tsx';
-import { ContentDivTxt } from '../ContentDivTxt.tsx';
-import CardImgMsg from '../../contentHelp/CardImgMsg.tsx';
-import PageModal from '../../Modal/PageModal.tsx';
-import CardInfoLogin from '../../contentHelp/CardInfoLogin.tsx';
-import CardHelpLogin3 from '../../contentHelp/CardHelpLogin3.tsx';
+import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
+import { ContentDivManYellow } from '../ContentDivManYellow.tsx';
+import { ContentDivMainRed } from '../ContentDivMainRed.tsx';
+import { ContentDivMainBlue } from '../ContentDivMainBlue.tsx';
+import { ContentDivMainOnGreen } from '../ContentDivMainOnGreen.tsx';
+import { ContentDivMainOffRed } from '../ContentDivMainOffRed.tsx';
+import { ContentDivButtonOff } from '../ContentDivButtonOff.tsx';
+import { ContentDivButtonOn } from '../ContentDivButtonOn.tsx';
+import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage';
+import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
+import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+import { ContentCustonText } from '../ContentCustonText.tsx';
+import { CardImgMsg } from '../../contentHelp/CardImgMsg.tsx';
+import { PageModal } from '../../Modal/PageModal.tsx';
+import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
+import { CardHelpLogin3 } from '../../contentHelp/CardHelpLogin3.tsx';
+
+import close from '../../../assets/svgs/close.svg';
 import login3hlp from '../../../assets/svgs/login3hlp.svg';
 import loginpg3 from '../../../assets/svgs/loginpg3.svg';
-
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
-
 import setaesq from '../../../assets/svgs/setaesq.svg';
-
 import olhoa from '../../../assets/svgs/olhoa.svg';
 import olhof from '../../../assets/svgs/olhof.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
@@ -66,7 +65,9 @@ export function GetLogon() {
 
 export const ListImg = [sateliteoff, nuvenfindoff, logooff];
 
-const Login3 = () => {
+export const Login3 = () => {
+  const { state, dispatch } = AcessoUseForm();
+
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
 
@@ -75,8 +76,7 @@ const Login3 = () => {
   const [ishelppg, setIsHelpPg] = React.useState(false);
 
   const [isshow, setIsShow] = React.useState(false);
-  const [tentativa, setTentativa] = React.useState(0);
-  const [nrclicklogo, setNrClickLogo] = React.useState(0);
+  const [tentativa, setTentativa] = React.useState(state.nrcont);
 
   const [ttmodulo, setTtModulo] = React.useState(
     'Logar : "VERIFICAÇÃO" da Edição de seu Acesso.'
@@ -86,15 +86,12 @@ const Login3 = () => {
   const [isenviar, setIsEnviar] = React.useState(false);
 
   const [isconexao, setIsConexao] = React.useState(false);
-  // const [isconectedon, setIsConectedon] = React.useState(false);
   const [isconectedoff, setIsConectedoff] = React.useState(false);
 
   const [isfindacces, setIsFindAcces] = React.useState(false);
-  //const [isfindingon, setIsFindingon] = React.useState(false);
   const [isfindingoff, setIsFindingoff] = React.useState(false);
 
   const [islogin, setIsLogin] = React.useState(false);
-  //const [isloggedon, setIsLoggedon] = React.useState(false);
   const [isloggedoff, setIsLoggedoff] = React.useState(false);
 
   const [imgmsg, setImgMsg] = React.useState('');
@@ -128,8 +125,6 @@ const Login3 = () => {
     };
   };
 
-  const { state, dispatch } = AcessoUseForm();
-
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login3' });
@@ -149,7 +144,6 @@ const Login3 = () => {
   }, [dispatch]);
 
   const handlerEnviar = React.useCallback(() => {
-    setTentativa(state.nrcont);
     setTtModulo('Logar : "CONEXÃO" com REDE.');
     setIsHelpPg(true);
     setIsView(false);
@@ -158,23 +152,22 @@ const Login3 = () => {
     setIsFindAcces(false);
     setIsLogin(false);
     setIsAcesso(false);
-
     if (tentativa >= 3) {
-      setIsResgatar(true);
-    } else {
       setIsResgatar(false);
+    } else {
+      setIsResgatar(true);
     }
-  }, [dispatch]);
+  }, []);
 
   const handlerConexao = React.useCallback(() => {
     setIsConexao(false);
     setIsFindAcces(true);
+    setIsAcesso(false);
     //acessa conexão
     let rtncon = true;
 
     if (!rtncon) {
-      //      setIsConectedon(true);
-      //    } else {
+      setTentativa(tentativa + 1);
       setImgMsg(ListImg[0]);
       setTxtAga('"ERRO" na Comunicação');
       setTxtLabel('Acesso REDE.');
@@ -183,6 +176,8 @@ const Login3 = () => {
       setIsConectedoff(true);
       setIsFindAcces(false);
       if (tentativa >= 3) {
+        setIsResgatar(false);
+      } else {
         setIsResgatar(true);
       }
     }
@@ -191,11 +186,12 @@ const Login3 = () => {
   const handlerFindAcess = React.useCallback(() => {
     setIsFindAcces(false);
     setIsLogin(true);
+    setIsAcesso(false);
     //acessa banco de dados
     let rtndata = true;
+
     if (!rtndata) {
-      //   setIsFindingon(true);
-      // } else {
+      setTentativa(tentativa + 1);
       setImgMsg(ListImg[1]);
       setTxtAga('"ERRO" no Acesso ao Provedor');
       setTxtLabel('Acesso DADOS.');
@@ -204,19 +200,23 @@ const Login3 = () => {
       setIsFindingoff(true);
       setIsLogin(false);
       if (tentativa >= 3) {
+        setIsResgatar(false);
+      } else {
         setIsResgatar(true);
       }
+    } else {
+      setIsAcesso(false);
     }
   }, []);
 
   const handlerLogin = React.useCallback(() => {
     setIsLogin(false);
+    setIsAcesso(false);
     //acessa dados
     let rtndados = false;
 
     if (!rtndados) {
-      //   setIsLoggedon(true);
-      // } else {
+      setTentativa(tentativa + 1);
       setImgMsg(ListImg[2]);
       setTxtAga('"ERRO" de Acesso em Provedor');
       setTxtLabel('Acesso LOGIN.');
@@ -226,14 +226,15 @@ const Login3 = () => {
       setIsLoggedoff(true);
       setIsAcesso(false);
       if (tentativa >= 3) {
+        setIsResgatar(false);
+      } else {
         setIsResgatar(true);
       }
     } else {
       setIsAcesso(true);
     }
-  }, [dispatch]);
+  }, []);
 
-  
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
   }, []);
@@ -243,13 +244,8 @@ const Login3 = () => {
   }, []);
 
   React.useEffect(() => {
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
     dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
-//    if (isacesso) {
     dispatch({ type: AcessoUseActions.setLogado, payload: isacesso });
-//    } else {
-//      dispatch({ type: AcessoUseActions.setLogado, payload: isloggedoff });
-//    }
   }, [tentativa, isacesso, dispatch]);
 
   return (
@@ -275,25 +271,25 @@ const Login3 = () => {
           <ContentCardBoxMainPage>
             <ContentCardCollunsCenterPage openccp={isview} pwidth="100%">
               <ContentDivManYellow pxheight="65px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Empresa:</label>
                   <h4>{state.nmfant}</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="35%" />
               </ContentDivManYellow>
               <ContentDivManYellow pxheight="65px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>ID:</label>
                   <h4>{state.idnmuser}</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%" />
               </ContentDivManYellow>
               {!isshow ? (
                 <ContentDivMainRed pxheigth="65px">
-                  <ContentDivTxt>
+                  <ContentCustonText>
                     <label>Senha:</label>
                     <h4>░░░░░░░░░░</h4>
-                  </ContentDivTxt>
+                  </ContentCustonText>
                   <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
                     <ContentDivButtonOff
                       img={olhof}
@@ -306,10 +302,10 @@ const Login3 = () => {
                 </ContentDivMainRed>
               ) : (
                 <ContentDivMainRed pxheigth="65px">
-                  <ContentDivTxt>
+                  <ContentCustonText>
                     <label>Senha:</label>
                     <h4>{state.pswuser}</h4>
-                  </ContentDivTxt>
+                  </ContentCustonText>
                   <Pg.ContainerCardDivMainEnd pxheight="60px" pxwidth="33%">
                     <ContentDivButtonOn
                       pxwdth="40px"
@@ -328,10 +324,10 @@ const Login3 = () => {
 
             <ContentCardCollunsCenterPage openccp={isconexao} pwidth="100%">
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Conectar:</label>
                   <h4>REDE</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={satelite}
@@ -342,10 +338,10 @@ const Login3 = () => {
               </ContentDivMainBlue>
 
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Serviço:</label>
                   <h4>DADOS</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={nuvenfind}
@@ -355,10 +351,10 @@ const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Logar:</label>
                   <h4>LOGAR</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={login}
@@ -372,10 +368,10 @@ const Login3 = () => {
             {/* // apos clicar em handlerConexao e não obter uma conexão // */}
             <ContentCardCollunsCenterPage openccp={isconectedoff} pwidth="100%">
               <ContentDivMainOffRed pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Conectar:</label>
                   <h4>REDE</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={sateliteoff}
@@ -386,10 +382,10 @@ const Login3 = () => {
               </ContentDivMainOffRed>
 
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Serviço:</label>
                   <h4>DADOS</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={nuvenfind}
@@ -400,10 +396,10 @@ const Login3 = () => {
               </ContentDivMainBlue>
 
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Logar:</label>
                   <h4>LOGAR</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={login}
@@ -417,10 +413,10 @@ const Login3 = () => {
             {/* // apos retorno Conexao=> true verifica acesso a Database com handlerFindAcess // */}
             <ContentCardCollunsCenterPage openccp={isfindacces} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Conectar:</label>
                   <h4>REDE</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={sateliteon}
@@ -431,10 +427,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Serviço:</label>
                   <h4>DADOS</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={nuvenfind}
@@ -444,10 +440,10 @@ const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Logar:</label>
                   <h4>LOGAR</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={login}
@@ -461,10 +457,10 @@ const Login3 = () => {
             {/* // apos clicar em handlerFindAcess e não enconntrar DataBase // */}
             <ContentCardCollunsCenterPage openccp={isfindingoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Conectar:</label>
                   <h4>REDE</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={sateliteon}
@@ -475,10 +471,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainOffRed pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Serviço:</label>
                   <h4>DADOS</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={nuvenfindoff}
@@ -488,10 +484,10 @@ const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Logar:</label>
                   <h4>LOGAR</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={login}
@@ -505,10 +501,10 @@ const Login3 = () => {
             {/* // apos retorno Database=> true libera handlerLogin busca a existencia dos dados login //*/}
             <ContentCardCollunsCenterPage openccp={islogin} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Conectar:</label>
                   <h4>REDE</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={sateliteon}
@@ -519,10 +515,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Serviço:</label>
                   <h4>DADOS</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={nuvenfindon}
@@ -533,10 +529,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainBlue pxheigth="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Logar:</label>
                   <h4>LOGAR</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={login}
@@ -550,10 +546,10 @@ const Login3 = () => {
             {/* // apos retorno Login false  // */}
             <ContentCardCollunsCenterPage openccp={isloggedoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Conectar:</label>
                   <h4>REDE</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={sateliteon}
@@ -564,10 +560,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Serviço:</label>
                   <h4>DADOS</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={nuvenfindon}
@@ -578,10 +574,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainOffRed>
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Logar:</label>
                   <h4>LOGAR</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={logooff}
@@ -595,10 +591,10 @@ const Login3 = () => {
             {/* // apos retorno Login => true libera botão   // */}
             <ContentCardCollunsCenterPage openccp={isacesso} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Conectar:</label>
                   <h4>REDE</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={sateliteon}
@@ -609,10 +605,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Serviço:</label>
                   <h4>DADOS</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={nuvenfindon}
@@ -623,10 +619,10 @@ const Login3 = () => {
               </ContentDivMainOnGreen>
 
               <ContentDivMainOnGreen pxheight="50px">
-                <ContentDivTxt>
+                <ContentCustonText>
                   <label>Logar:</label>
                   <h4>LOGAR</h4>
-                </ContentDivTxt>
+                </ContentCustonText>
                 <Pg.ContainerCardDivMainEnd pxheight="50px" pxwidth="33%">
                   <ContentDivButtonOff
                     img={logoon}
@@ -639,13 +635,15 @@ const Login3 = () => {
           </ContentCardBoxMainPage>
           <Pg.DivisionPgHztalPage />
 
-          { isconectedoff || isfindingoff || isloggedoff && iserromsg? (
+          {isconectedoff || isfindingoff || (isloggedoff && iserromsg) ? (
             <PageModal
-              ptop="111px"
-              pwidth="30%"
-              pheight="32%"
-              titulo='" A T E N Ç Ã O "'
-              onclose={() => setIsErroMsg(false)}
+              ptop={'1%'}
+              pwidth={'30%'}
+              pheight={'37%'}
+              titulo={'Acesso Confirmação de Envio.'}
+              imgbm={close}
+              titbm={'Fechar...'}
+              onclose={() => setHelpPg(false)}
             >
               <CardImgMsg
                 img={imgmsg}
@@ -670,7 +668,7 @@ const Login3 = () => {
                 <label>[ {3 - state.nrcont} ] tentativas. </label>
               </Pg.ContainerBoxLabelPage>
 
-              {isresgatar ? (
+              {isresgatar || state.nrcont > 3 ? (
                 <ContentSidePageLabelBotton
                   pxheight={'20px'}
                   istitl={true}
@@ -744,6 +742,8 @@ const Login3 = () => {
               pwidth={'40%'}
               pheight={'48%'}
               titulo={'Acesso Sistema.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
               <CardHelpLogin3
@@ -760,6 +760,8 @@ const Login3 = () => {
               pwidth={'65%'}
               pheight={'70%'}
               titulo={'DADOS Context Login.'}
+              imgbm={close}
+              titbm={'Fechar...'}
               onclose={() => setOnPanel(false)}
             >
               <CardInfoLogin />
@@ -770,5 +772,3 @@ const Login3 = () => {
     </ThemeProvider>
   );
 };
-
-export default Login3;

@@ -1,21 +1,25 @@
-import React from 'react';
-
 import * as MD from './styles';
-import DivTitleModal from './DivTitleModal';
 
-type Props = {
-  // children?: React.ReactNode;
+import { DivTitleModal } from './DivTitleModal';
+
+type TypeCardModalTexto = {
   onClick?: () => void;
   path?: string;
   title?: string;
   img?: string;
   id?: string;
 };
-const DivActionMenuModal: React.FC<Props> = ({id, img, path, title, onClick }) => {
+export const DivActionMenuModal = ({
+  id,
+  img,
+  path,
+  title,
+  onClick
+}: TypeCardModalTexto) => {
   return (
-    <MD.ContainerActionItemDivMenu >
+    <MD.ContainerActionItemDivMenu>
       <MD.ContainerActClickModalItemMenu id={id} path={path} onClick={onClick}>
-        <MD.ContainerCenterImgDiv img={img}/>
+        <MD.ContainerCenterImgDiv img={img} />
         <DivTitleModal title={title} />
       </MD.ContainerActClickModalItemMenu>
     </MD.ContainerActionItemDivMenu>

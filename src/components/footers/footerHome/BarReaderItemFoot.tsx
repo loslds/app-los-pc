@@ -1,13 +1,8 @@
-import * as F from "../stylesfoot";
+import * as F from '../stylesfoot';
 
-type PropsAgaFoot = {
+type TypeBarReaderItemFoot = {
   children?: React.ReactNode | JSX.Element;
 };
-const BarReaderItemFoot = ({ children }: PropsAgaFoot) => {
-  return (
-    <F.AreaReaderTesto>
-      {children}
-    </F.AreaReaderTesto>
-  );
+export const BarReaderItemFoot = ({ children }: TypeBarReaderItemFoot) => {
+  return <F.AreaReaderTesto>{children}</F.AreaReaderTesto>;
 };
-export default BarReaderItemFoot;

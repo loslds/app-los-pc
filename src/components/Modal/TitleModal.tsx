@@ -1,15 +1,11 @@
-import React from 'react';
+import * as MD from './styles';
 
-import * as C from './styles';
-type Props = {
+type TypeTitleModal = {
   id?: string;
   titulo?: string;
 };
-const TitleModal: React.FC<Props> = ({ id, titulo }) => {
+export const TitleModal = ({ id, titulo }: TypeTitleModal) => {
   return (
-    <C.ContainerModalTitle id={id}>
-      {<h3>{titulo}</h3>}
-    </C.ContainerModalTitle>
+    <MD.ContainerModalTitle id={id}>{<h3>{titulo}</h3>}</MD.ContainerModalTitle>
   );
 };
-export default TitleModal;

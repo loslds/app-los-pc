@@ -1,5 +1,5 @@
 import React from 'react';
-import { criasmstr }  from '../../util/datamomento.tsx'
+import { criasmstr } from '../../util/datamomento.tsx';
 import {
   AcessoUseForm,
   AcessoUseActions
@@ -27,21 +27,17 @@ import { ThemeHome } from '../../modulos/themes/ThemeHome';
 import { ContentItensBody } from '../ContentItensBody.tsx';
 import { ContentCustonImgPage } from '../ContentCustonImgPage.tsx';
 
-import PageModal from '../../Modal/PageModal.tsx';
-import CardImgNeg from '../../contentHelp/CardImgNeg.tsx';
-import CardHomeSys from '../../contentHelp/CardHomeSys.tsx';
+import { PageModal } from '../../Modal/PageModal.tsx';
+import { CardImgNeg } from '../../contentHelp/CardImgNeg.tsx';
+import { CardHomeSys } from '../../contentHelp/CardHomeSys.tsx';
 
+import close from '../../../assets/svgs/close.svg';
 
-
-const Home = () => {
-
+export const Home = () => {
   const { state, dispatch } = AcessoUseForm();
   console.log('state.logado Home : ', state.logado);
 
-  
-
   React.useEffect(() => {
-    
     if (!state.logado) {
       dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
       dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
@@ -67,7 +63,7 @@ const Home = () => {
       dispatch({ type: AcessoUseActions.setMdAdmin, payload: false });
       dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
       dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
-      
+
       dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
       dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
       dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
@@ -78,7 +74,7 @@ const Home = () => {
       dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
       dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
       dispatch({ type: AcessoUseActions.setTmp, payload: '' });
-     } 
+    }
     //else {
     //   dispatch({ type: AcessoUseActions.setCurrentStep, payload: 100 });
     //   dispatch({ type: AcessoUseActions.setIdAces, payload: 1 });
@@ -153,12 +149,12 @@ const Home = () => {
   const [mainhelp, setMainHelp] = React.useState(false);
   const [meusdados, setMeusDados] = React.useState(false);
 
-  React.useCallback(()=>{
-    const [pmst,setPMST] = React.useState('');
+  React.useCallback(() => {
+    const [pmst, setPMST] = React.useState('');
     const snhm = criasmstr();
     setPMST(snhm);
     dispatch({ type: AcessoUseActions.setPinAdm, payload: pmst });
-  },[dispatch])
+  }, [dispatch]);
 
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
@@ -173,7 +169,7 @@ const Home = () => {
       <ThemeHome
         imgsys={logosys}
         titbtnsys={'Home...'}
-        onclicksys={ goto('/') }
+        onclicksys={goto('/')}
         titlepg={'Sistema J.R.'}
         imghpg={help}
         titbtnhpg={'Help...'}
@@ -183,7 +179,7 @@ const Home = () => {
         onclickopen={!state.logado ? goto('/login') : handlerViewItensLogin}
         onchange={ToggleTheme}
         ischeck={ischeck}
-        openlg={meusdados}
+        disp={meusdados}
       >
         <ContentItensBody>
           <div>{state.pinAdm}</div>
@@ -304,7 +300,9 @@ const Home = () => {
             <PageModal
               ptop={'1%'}
               pwidth={'65%'}
-              pheight={'80%'}
+              pheight={'90%'}
+              imgbm={close}
+              titbm="Fechar..."
               titulo={'Help Conteúdo do Sistema.'}
               onclose={() => setHelpPg(false)}
             >
@@ -318,6 +316,8 @@ const Home = () => {
               pwidth="30%"
               pheight="32%"
               titulo='" A T E N Ç Ã O "'
+              imgbm={close}
+              titbm="Fechar..."
               onclose={() => {
                 setMainHelp(false);
               }}
@@ -330,5 +330,3 @@ const Home = () => {
     </ThemeProvider>
   );
 };
-
-export default Home;

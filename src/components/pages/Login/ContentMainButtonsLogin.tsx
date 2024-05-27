@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import * as Lg from '../../../styles/styledLogin';
 
-type PropsBntMainLogin = {
+type TypeContentMainButtonsLogin = {
   children?: ReactNode | JSX.Element;
 };
-export const ContentMainButtonsLogin = ({ children }: PropsBntMainLogin) => {
+export const ContentMainButtonsLogin = ({ children }: TypeContentMainButtonsLogin) => {
   return (
     <Lg.ContainerMainButtonsLogin>
       <Lg.ContainerMainButtonsLoginFlex>

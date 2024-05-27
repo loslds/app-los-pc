@@ -21,7 +21,7 @@ type PropsThemeHome = {
   onchange: () => void;
   ischeck: boolean;
   children?: ReactNode | JSX.Element;
-  openlg?: boolean;
+  disp?: boolean;
 };
 export const ThemeHome = ({
   imgsys,
@@ -37,7 +37,7 @@ export const ThemeHome = ({
   onchange,
   ischeck,
   children,
-  openlg
+  disp
 }: PropsThemeHome) => {
   return (
     <LayoutHome
@@ -53,7 +53,7 @@ export const ThemeHome = ({
       onclickopen={onclickopen}
       onchange={onchange}
       ischeck={ischeck}
-      openlg={openlg}
+      disp={disp}
     >
       {children}
     </LayoutHome>

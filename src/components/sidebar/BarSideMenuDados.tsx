@@ -6,18 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import avatar001 from '../../assets/svgs/avatar001.svg';
 import portaon from '../../assets/svgs/portaon.svg';
 
-import { ContainerBarSideMain } from './ContainerBarSideMain';
-import { ButtonSideBar } from './ButtonSideBar';
-import ContainerItensLogado from './ContainerItensLogado';
+import { ContainerSBMain } from './ContainerSBMain';
+import { ContainerSBButton } from './ContainerSBButton';
+import { ContainerSBItensLogado } from './ContainerSBItensLogado';
 
-import PageModal from '../Modal/PageModal';
-('components/Modal/PageModal');
-import CardAbortarSys from '../contentHelp/CardAbortarSys';
+import { PageModal } from '../Modal/PageModal';
+
+import { CardAbortarSys } from '../contentHelp/CardAbortarSys';
 
 type TypeBarSideMenuDados = {
-  openlg?: boolean;
+  disp?: boolean;
 };
-const BarSideMenuDados = ({ openlg }: TypeBarSideMenuDados) => {
+export const BarSideMenuDados = ({ disp }: TypeBarSideMenuDados) => {
   const navigate = useNavigate();
   const goto = (path: string) => {
     return () => {
@@ -32,20 +32,23 @@ const BarSideMenuDados = ({ openlg }: TypeBarSideMenuDados) => {
   }, []);
 
   return (
-    <ContainerBarSideMain>
-      <ContainerItensLogado openlg={openlg}>
-        <ButtonSideBar
+    <ContainerSBMain>
+      <ContainerSBItensLogado disp={disp}>
+        <ContainerSBButton
           img={avatar001}
           titbtn="Minha Conta..."
           onClick={goto('/MyAccount')}
         />
-        <ButtonSideBar titbtn="Meus Acesso..." onClick={goto('/MyAccount')} />
-        <ButtonSideBar
+        <ContainerSBButton
+          titbtn="Meus Acesso..."
+          onClick={goto('/MyAccount')}
+        />
+        <ContainerSBButton
           img={portaon}
           titbtn="Fazerlogo-off..."
           onClick={handlerAbortar}
         />
-      </ContainerItensLogado>
+      </ContainerSBItensLogado>
       {isabortar ? (
         <PageModal
           ptop="111px"
@@ -59,8 +62,6 @@ const BarSideMenuDados = ({ openlg }: TypeBarSideMenuDados) => {
           <CardAbortarSys />
         </PageModal>
       ) : null}
-    </ContainerBarSideMain>
+    </ContainerSBMain>
   );
 };
-
-export default BarSideMenuDados;

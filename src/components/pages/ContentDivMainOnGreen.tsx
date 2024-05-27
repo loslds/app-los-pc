@@ -9,7 +9,7 @@ type PropsContentDivMainOnGreen = {
   statedata?: string;
   children?: ReactNode | JSX.Element;
 };
-const ContentDivMainOnGreen = ({
+export const ContentDivMainOnGreen = ({
   pxheight,
   pxwidth,
   label,
@@ -24,5 +24,3 @@ const ContentDivMainOnGreen = ({
     </Pg.ContainerDivMainOnGreen>
   );
 };
-
-export default ContentDivMainOnGreen;

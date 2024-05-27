@@ -1,14 +1,12 @@
+import * as Ly from '../layouts/styled';
 
-import * as Hm from '../layouts/styled';
-
-type PropsHeaderTitle = {
-  title?:string;
-}
-export const ContentHeaderTitle = ({title }:PropsHeaderTitle) => {
+type TypeContentHeaderTitle = {
+  title?: string;
+};
+export const ContentHeaderTitle = ({ title }: TypeContentHeaderTitle) => {
   return (
-    <Hm.ContainerTitleHeader>
+    <Ly.ContainerTitleHeader>
       <h1>{title}</h1>
-    </Hm.ContainerTitleHeader>
-    
+    </Ly.ContainerTitleHeader>
   );
-}
+};

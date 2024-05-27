@@ -1,14 +1,13 @@
-import React from "react";
-import * as F from "../stylesfoot";
+import React from 'react';
+import * as F from '../stylesfoot';
 
-type PropsAreaContainer = {
+type TypeBarProdMainFoot = {
   children?: React.ReactNode | JSX.Element;
 };
-const BarProdMainFoot = ({ children }: PropsAreaContainer) => {
+export const BarProdMainFoot = ({ children }: TypeBarProdMainFoot) => {
   return (
     <F.ContainerProdMain>
       <F.ContainerProdMainFlex>{children}</F.ContainerProdMainFlex>
     </F.ContainerProdMain>
   );
 };
-export default BarProdMainFoot;

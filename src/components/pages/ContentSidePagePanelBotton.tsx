@@ -8,7 +8,7 @@ type TypeContentSidePagePanelBotton = {
   pwidth?: string;
   children?: ReactNode;
 };
-const ContentSidePagePanelBotton = ({
+export const ContentSidePagePanelBotton = ({
   open,
   bordas,
   pwidth,
@@ -22,5 +22,3 @@ const ContentSidePagePanelBotton = ({
     </Pg.ContainerPanelPage>
   );
 };
-
-export default ContentSidePagePanelBotton;

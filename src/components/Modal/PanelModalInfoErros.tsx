@@ -1,37 +1,36 @@
 import React from 'react';
-import ButtonModal from './ButtonModal';
-import CardButtonsModal from './CardButtonsModal';
-import HeaderModalInfoErro from './HeaderModalInfoErro';
-import CardModalInfoTitle from './CardModalInfoTitle';
-import FooterModalInfoErro from './FooterModalInfoErro';
-import xvrm from '../../assets/pngs/xvrm.png';
-import MainModalErro from './MainModalErrro';
 
+import { ButtonModal } from './ButtonModal';
+import { CardButtonsModal } from './CardButtonsModal';
+import { HeaderModalInfoErro } from './HeaderModalInfoErro';
+import { CardModalInfoTitle } from './CardModalInfoTitle';
+import { FooterModalInfoErro } from './FooterModalInfoErro';
+import { MainModalErro } from './MainModalErrro';
 
-type PropsModalInfoHlp = {
+type TypePanelModalInfoErros = {
   id?: string;
   children?: React.ReactNode | JSX.Element;
-
   ptop?: string;
   pwidth?: string;
   pheight?: string;
   titulo?: string;
   texto?: string;
   isbtn?: boolean;
-  img?: string;
-  titbtn?: string;
-
+  imgbm?: string;
+  titbm?: string;
   onClose?: () => void;
 };
-const PanelModalInfoErros: React.FC<PropsModalInfoHlp> = ({
+export const PanelModalInfoErros = ({
   ptop,
   pwidth,
   pheight,
   titulo,
   texto,
   children,
+  imgbm,
+  titbm,
   onClose
-}) => {
+}: TypePanelModalInfoErros) => {
   return (
     <MainModalErro ptop={ptop} pwidth={pwidth} pheight={pheight}>
       <HeaderModalInfoErro>
@@ -39,7 +38,7 @@ const PanelModalInfoErros: React.FC<PropsModalInfoHlp> = ({
       </HeaderModalInfoErro>
       {children}
       <CardButtonsModal>
-        <ButtonModal img={xvrm} onClick={onClose} />
+        <ButtonModal imgbm={imgbm} titbm={titbm} onClick={onClose} />
       </CardButtonsModal>
       <FooterModalInfoErro>
         <CardModalInfoTitle titulo={texto} />
@@ -47,4 +46,3 @@ const PanelModalInfoErros: React.FC<PropsModalInfoHlp> = ({
     </MainModalErro>
   );
 };
-export default PanelModalInfoErros;

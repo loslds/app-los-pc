@@ -1,12 +1,12 @@
 import * as Lg from '../../../styles/styledLogin';
 
-type BntTitleLg = {
+type TypeContentButtonTitleImg = {
   isimg?: boolean;
   title?: string;
   children?: React.ReactNode;
   //React.MouseEventHandler<HTMLButtonElement>;
 };
-const ContentButtonTitleImg = ({ isimg, title, children }: BntTitleLg) => {
+export const ContentButtonTitleImg = ({ isimg, title, children }: TypeContentButtonTitleImg) => {
   return (
     <Lg.ContainerBtnLoginSRigth>
       {isimg ? <label>{title}</label> : null}
@@ -15,4 +15,4 @@ const ContentButtonTitleImg = ({ isimg, title, children }: BntTitleLg) => {
   );
 };
 
-export default ContentButtonTitleImg;
+

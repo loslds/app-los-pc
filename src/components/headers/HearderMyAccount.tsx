@@ -14,10 +14,10 @@ import { ContentHearderMain } from './ContentHearderMain.tsx';
 import { ContentHeaderTitle } from './ContentHeaderTitle.tsx';
 import { ContentHearderRight } from './ContentHearderRight.tsx';
 import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
-import ContentPagesButton from '../layouts/ContentPagesButton.tsx';
+import { ContentPagesButton } from '../layouts/ContentPagesButton.tsx';
 
-import PageModal from '../Modal/PageModal.tsx';
-import CardMyAccount from '../contentHelp/CardMyAccount.tsx';
+import { PageModal } from '../Modal/PageModal.tsx';
+import { CardMyAccount } from '../contentHelp/CardMyAccount.tsx';
 
 type PropsHearderMyAccount = {
   onclick?: () => void;
@@ -56,13 +56,13 @@ export const HearderMyAccount = ({
       <ContentHearderRight>
         <ContentHearderItensBar>
           <ContentPagesButton
-            img={help}
+            imgbtn={help}
             titbtn={'Ajuda...'}
             onClick={handlerOnHelp}
           />
 
           <ContentPagesButton
-            img={home}
+            imgbtn={home}
             titbtn={'Click para Voltar...'}
             onClick={onclickhome}
           />

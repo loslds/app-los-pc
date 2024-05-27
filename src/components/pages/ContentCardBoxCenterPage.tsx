@@ -6,7 +6,7 @@ type TypeContentCardBoxPageCenter = {
   children?: ReactNode | JSX.Element;
 };
  
-const ContentCardBoxCenterPage = ({
+export const ContentCardBoxCenterPage = ({
   pwidth,
   children
 }: TypeContentCardBoxPageCenter) => {
@@ -19,4 +19,3 @@ const ContentCardBoxCenterPage = ({
   );
 };
 
-export default ContentCardBoxCenterPage;
