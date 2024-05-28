@@ -1,11 +1,12 @@
 import React from 'react';
 
-import * as C from './styles';
+import * as MD from './styles';
 
 type TypeCardButtonsModal = {
   id?: string;
   children?: React.ReactNode | JSX.Element;
+  onclose?: () => void;
 };
-export const CardButtonsModal = ({ id, children }: TypeCardButtonsModal) => {
-  return <C.ContainerButtonModal id={id}>{children}</C.ContainerButtonModal>;
+export const CardButtonsModal = ({ id, onclose, children }: TypeCardButtonsModal) => {
+  return <MD.ContainerButtonModal id={id} onClick={onclose}>{children}</MD.ContainerButtonModal>;
 };

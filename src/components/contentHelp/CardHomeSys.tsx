@@ -3,6 +3,7 @@ import * as MD from '../Modal/styles';
 import { CardModalTexto } from '../Modal/CardModalTexto';
 import jrjr from '../../assets/svgs/jrjr.svg';
 
+
 export const CardHomeSys = () => {
   return (
     <CardModalTexto>

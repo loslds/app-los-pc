@@ -8,8 +8,12 @@ import { CardAcessoSistema } from './CardAcessoSistema';
 type TypeCardHelpLogin2 = {
   imghlp?: string;
   imgcard?: string;
+  imgbm?: string;
+  titbm?: string;
+  onclose?: () => void;
 };
-export const CardHelpLogin2 = ({ imgcard, imghlp }: TypeCardHelpLogin2) => {
+export const CardHelpLogin2 = ({ imghlp, imgcard, imgbm, titbm, onclose }: TypeCardHelpLogin2) => {
+  
   const [helpsyspg, setHelpSysPg] = React.useState(false);
 
   return (
@@ -19,7 +23,8 @@ export const CardHelpLogin2 = ({ imgcard, imghlp }: TypeCardHelpLogin2) => {
           <MD.ContainerModalImg
             pminheight={'70px'}
             pwidth={'78px'}
-            img={imgcard}
+            img={imghlp}
+            title={'Help-Login2...'}
             onClick={() => setHelpSysPg(true)}
           />
         </MD.ContainerHeardModalMain>
@@ -49,9 +54,11 @@ export const CardHelpLogin2 = ({ imgcard, imghlp }: TypeCardHelpLogin2) => {
           pwidth={'65%'}
           pheight={'87%'}
           titulo={'Acesso Sistema.'}
-          onclose={() => setHelpSysPg(false)}
+          imgbm={imgbm}
+          titbm={titbm}
+          onclose={onclose}
         >
-          <CardAcessoSistema  />
+          <CardAcessoSistema imgcard={imgcard} />
         </PageModalHelp>
       ) : null}
     </CardModalTexto>

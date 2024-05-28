@@ -202,7 +202,13 @@ export const Login = () => {
               titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpLogin0 imgcard={login0hlp} imghlp={loginpg0} />
+              <CardHelpLogin0
+                imghlp={login0hlp}
+                imgcard={loginpg0}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setHelpPg(false)}
+              />
             </PageModal>
           ) : null}
 

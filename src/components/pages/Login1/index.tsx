@@ -192,14 +192,20 @@ export const Login1 = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'30%'}
-              pheight={'37%'}
+              pwidth={'40%'}
+              pheight={'54%'}
               titulo={'Acesso Opções Edição.'}
               imgbm={close}
               titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpLogin1 imgcard={login1hlp} imghlp={loginpg1} />
+              <CardHelpLogin1
+                imghlp={login1hlp}
+                imgcard={loginpg1}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setHelpPg(false)}
+              />
             </PageModal>
           ) : null}
 

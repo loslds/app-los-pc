@@ -748,8 +748,11 @@ export const Login3 = () => {
             >
               <CardHelpLogin3
                 ishlp={ishelppg}
-                imgcard={login3hlp}
-                imghlp={loginpg3}
+                imghlp={login3hlp}
+                imgcard={loginpg3}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setHelpPg(false)}
               />
             </PageModal>
           ) : null}

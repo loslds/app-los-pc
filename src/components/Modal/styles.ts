@@ -111,7 +111,11 @@ justify-content: center;
 align-items: center;
 background-color: #fcfceb;
 `;
-export const ContentTextoModulos = styled.div<{ isscroll? : boolean }>`
+
+type TypeContentTextoModulos = {
+  isscroll? : boolean;
+};
+export const ContentTextoModulos = styled.div<TypeContentTextoModulos>`
   border: none;/*1px green solid;*/
   padding: 0px 0px 0px 0px;
   margin: 5px 0px 5px 0px;
@@ -245,6 +249,7 @@ export const ContainerModalTitle = styled.div`
   color: black;
 `;
 ////////////////// fim TitleModal
+
 ///////////////// inicio ButtonModal
 export const ContainerButtonModal = styled.div`
   border: 0px;
@@ -257,7 +262,7 @@ export const ContainerButtonModal = styled.div`
   align-items: center;
   align-content: center;
   background-color: transparent;
-  color: black;
+  color: ${props => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
@@ -286,6 +291,58 @@ export const ButtonModalImg = styled.button<{ img?: string }>`
   align-items: center;
 `;
 ////////////////////////////////////////
+type TypeContainerModalButtonImgCard = {
+  ptop?: string;
+  pminheight?: string;
+  pwidth?: string;
+  onClick?: () => void;
+  ishlp?: boolean;
+};
+export const ContainerModalButtonImgCard = styled.div<TypeContainerModalButtonImgCard>`
+  
+  top: ${({ ptop }) => ptop ||  ''};
+  border: 6px silver groove ;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  min-height: ${({ pminheight }) => pminheight || '45px'};
+  width: ${({ pwidth }) => pwidth || '45px'};
+  display: flex;
+  flex-flow: wrap;
+  justify-content: center; 
+  //align-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: ${props => props.theme.colors.textColor};
+  cursor: pointer;
+  outline: none;
+`;
+type TypeButtonModalImgCard ={
+  img?: string;
+  pxminheight?: string;
+  pxwidth?: string;
+}
+export const ButtonModalImgCard = styled.button<TypeButtonModalImgCard>`
+  border: none; /*1 red solid;*/
+  padding: 0px 0px 0px 0px;
+  margin: 2px 5px 2px 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  min-height: ${({ pxminheight }) => pxminheight || '35px'};// min-height: 130px;
+  width: ${({ pxwidth }) => pxwidth || '35px'}; // width: 150px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
 
 // ++++++++++++++++++++++++++++++++++
 

@@ -3,9 +3,8 @@ import { CardModalTexto } from '../Modal/CardModalTexto';
 
 type TypeCardAcessoSistema = {
   imgcard?: string;
-  titcard?: string;
 };
-export const CardAcessoSistema = ({ imgcard, titcard }: TypeCardAcessoSistema) => {
+export const CardAcessoSistema = ({ imgcard }: TypeCardAcessoSistema) => {
   return (
     <CardModalTexto>
       <MD.ContentTextoModulos>
@@ -14,8 +13,6 @@ export const CardAcessoSistema = ({ imgcard, titcard }: TypeCardAcessoSistema) =
             pminheight={'100px'}
             pwidth={'180px'}
             img={imgcard}
-            title={titcard}
-            
           />
         </MD.ContainerHeardModalMain>
 

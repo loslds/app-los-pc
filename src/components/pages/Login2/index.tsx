@@ -406,14 +406,20 @@ export const Login2 = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'35%'}
-              pheight={'49%'}
+              pwidth={'55%'}
+              pheight={'60%'}
               titulo={'Acesso Edição de Solicitação.'}
               imgbm={close}
               titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpLogin2 imgcard={login2hlp} imghlp={loginpg2} />
+              <CardHelpLogin2
+                imghlp={login2hlp}
+                imgcard={loginpg2}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setHelpPg(false)}
+              />
             </PageModal>
           ) : null}
 
