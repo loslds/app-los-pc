@@ -21,7 +21,7 @@ type TypeLayoutHome = {
   onchange: () => void;
   ischeck?: boolean;
   children?: ReactNode | JSX.Element;
-  disp?: boolean;
+  open?: boolean;
 };
 export const LayoutHome = ({
   imgsys,
@@ -37,7 +37,7 @@ export const LayoutHome = ({
   onchange,
   ischeck,
   children,
-  disp
+  open
 }: TypeLayoutHome) => {
   return (
     <ContentPages>
@@ -59,7 +59,7 @@ export const LayoutHome = ({
       <Hm.ContainerBody>
         <Hm.ContainerPage>
           <BarSideMenuHome />
-          <BarSideMenuDados disp={disp} />
+          <BarSideMenuDados open={open} />
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>
