@@ -89,7 +89,6 @@ export const ContainerModal = styled.div<ContainerModalType>`
 `;
 ///////////////////////////////////////////////////
 type PropsModulosSys = {
-  ispx?: boolean;
   ptop?: string;
   pheight?: string;
   pwidth?: string;
@@ -139,10 +138,8 @@ export const ContainerModalTexto = styled.div`
   padding: 0px 5px 0px 0px;
   margin: 2px 10px 2px 10px;
   width: 100%;
-
   min-height: auto;
   overflow-y: auto;
-
   display: flex row;
   flex-wrap: wrap;
   flex-direction: center;
@@ -155,12 +152,10 @@ export const ContainerModalTexto = styled.div`
 `;
 
 type ContainerModalImgType = {
-  ptop?: string;
   pminheight?: string;
   pwidth?: string;
   img?: string;
   onClick?: () => void;
-  ishlp?: boolean;
 };
 export const ContainerModalImg = styled.div<ContainerModalImgType>`
   border: 6px silver groove ;
@@ -548,7 +543,6 @@ export const ContainerHeardModalMain = styled.div`
   color: black;
 `;
 type PropsModalModal = {
-  ispx?: boolean;
   ptop?: string;
   pminheight?: string;
   pwidth?: string;
@@ -569,7 +563,12 @@ export const ContentModalModal = styled.div<PropsModalModal>`
   background-color: transparent;
 `;
 
-export const ButtonModalMenu = styled.button<{ img?: string ; sizer?: string; onClick: () => void; }>`
+type PropsModalMenu = {
+  img?: string;
+  sizer?: string;
+  onClick: () => void;
+};
+export const ButtonModalMenu = styled.button<PropsModalMenu>`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
@@ -593,11 +592,14 @@ export const ButtonModalMenu = styled.button<{ img?: string ; sizer?: string; on
   align-items: center;
 `;
 
-export const ContainerDivModalItemsMenu = styled.div<{ open?: boolean }>`
+type PropsContainerDivModalItemsMenu = {
+  open?: boolean;
+};
+export const ContainerDivModalItemsMenu = styled.div<PropsContainerDivModalItemsMenu>`
   border-left: 3px red solid;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 10px;
-  //height: 100px;
+  min-height: 50px;
   width: 200px;
   background-color: transparent; //* black;*/
   display: ${props => ( props.open ? 'flex row' : 'none')};
@@ -609,7 +611,6 @@ export const ContainerDivModalItemsMenu = styled.div<{ open?: boolean }>`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-style: normal;
 `;
-
 
 export const ContainerActionItemDivMenu = styled.div`
   border: 1px silver solid;
@@ -628,11 +629,11 @@ export const ContainerActionItemDivMenu = styled.div`
     //background-color: #00c0ff;
   }
  `;
-type PropsClick = {
+type PropsContainerActClickModalItemMenu = {
   onClick?: () => void;
   path?: string;
 };
-export const ContainerActClickModalItemMenu = styled.div<PropsClick>`
+export const ContainerActClickModalItemMenu = styled.div<PropsContainerActClickModalItemMenu>`
 border: none; /*3px yellow solid;*/
 min-height: 38px;
 width: 100%;
@@ -644,7 +645,11 @@ justify-content: space-between;
 align-items: center;
 `;
 
-export const ContainerCenterImgDiv = styled.div<{ img? : string }>`
+type PropsContainerCenterImgDiv = {
+  img? : string;
+};
+
+export const ContainerCenterImgDiv = styled.div<PropsContainerCenterImgDiv>`
   border: none; /*1px green solid;*/
   padding: 0px 0px 0px 0px;
   margin: 2px 0px 0px 2px;
@@ -723,13 +728,13 @@ export const ContentInfoErro = styled.div`
   font-family: 'Courier New', Courier, monospace;
 `;
 
-type PropsIEModal = {
+type PropsContainerInfoErroModal = {
   ptop?: string;
   pheight?: string;
   pwidth?: string;
   onClick?: () => void;
 };
-export const ContainerInfoErroModal = styled.div<PropsIEModal>`
+export const ContainerInfoErroModal = styled.div<PropsContainerInfoErroModal>`
   border: 5px double;
   border-color: #e30005;
   border-radius: 15px;
@@ -737,13 +742,11 @@ export const ContainerInfoErroModal = styled.div<PropsIEModal>`
   margin: 0px 10px 0px 10px;
   background-color: #efef94;
   color: #0000ff;
-
   top: ${({ ptop }) => ptop || '62px'};
   position: fixed;
   max-width: ${({ pwidth }) => pwidth || '66.3%'};
   height: ${({ pheight }) => pheight || '90%'};
   overflow-y: auto;
-
   display: flex row;
   flex-wrap: nowrap;
   flex-direction: center;
@@ -760,7 +763,6 @@ export const ContainerCardInfoModalHeader = styled.div`
   margin: 0px 0px 0px 0px;
   width: 100%;
   min-height: 30px;
-  
   display: flex;
   flex-flow: wrap;
   justify-content: center;
@@ -777,7 +779,6 @@ export const ContainerCardInfoModalFooter = styled.div`
   margin: 0px 0px 0px 0px;
   width: 100%;
   min-height: 30px;
-  
   display: flex;
   flex-flow: wrap;
   justify-content: center;
@@ -798,7 +799,6 @@ export const ContainerCardInfoModalFlex = styled.div`
   justify-content: center; /*space-around;*/
   align-content: center;
   align-items: center;
-
   color: #000000;
   font-size: 16px;
   font-style: normal;
