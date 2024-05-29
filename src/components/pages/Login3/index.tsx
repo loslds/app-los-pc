@@ -26,8 +26,10 @@ import { ContentDivMainOffRed } from '../ContentDivMainOffRed.tsx';
 import { ContentDivButtonOff } from '../ContentDivButtonOff.tsx';
 import { ContentDivButtonOn } from '../ContentDivButtonOn.tsx';
 import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage';
+
+import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
-import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+
 import { ContentCustonText } from '../ContentCustonText.tsx';
 import { CardImgMsg } from '../../contentHelp/CardImgMsg.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
@@ -52,6 +54,7 @@ import nuvenfindoff from '../../../assets/svgs/nuvenfindoff.svg';
 import login from '../../../assets/svgs/login.svg';
 import logoon from '../../../assets/svgs/logoon.svg';
 import logooff from '../../../assets/svgs/logooff.svg';
+import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 
 export function Conexao() {
   return true;
@@ -71,6 +74,7 @@ export const Login3 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
 
+  const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
   const [ishelppg, setIsHelpPg] = React.useState(false);
@@ -134,6 +138,7 @@ export const Login3 = () => {
       payload: 'Acessando Sistena'
     });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
+    setStart(true);
     setIsView(true);
     setIsEnviar(true);
     setIsConexao(false);
@@ -655,83 +660,98 @@ export const Login3 = () => {
           ) : null}
 
           {state.nrcont <= 3 ? (
-            <ContentSidePagePanelBotton open={true} pwidth="100%">
-              <ContentSidePageLabelBotton
-                pxheight={'40px'}
-                istitl={true}
-                title={'Voltar: '}
-                img={setaesq}
-                titbtn={'Voltar...'}
-                onclick={goto('/login2')}
-              />
+            <ContentSidePagePanelBotton open={start} pwidth="100%">
+              <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setaesq}
+                  titbtn={'Voltar...'}
+                  onclick={goto('/login2')}
+                />
+              </ContentSidePageBottonLabel>
               <Pg.ContainerBoxLabelPage>
                 <label>[ {3 - state.nrcont} ] tentativas. </label>
               </Pg.ContainerBoxLabelPage>
 
               {isresgatar || state.nrcont > 3 ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
+                <ContentSidePageBottonLabel
+                  istitl={isresgatar}
                   title={'Resgatar.: '}
-                  img={setadir}
-                  titbtn={'Resgatar...'}
-                  onclick={goto('/login4')}
-                />
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Resgatar...'}
+                    onclick={goto('/login4')}
+                  />
+                </ContentSidePageBottonLabel>
               ) : null}
 
               {isacesso ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
+                <ContentSidePageBottonLabel
+                  istitl={isacesso}
                   title={'Entrar : '}
-                  img={setadir}
-                  titbtn={'Entrar no Sistema...'}
-                  onclick={goto('/')}
-                />
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Entrar no Sistema...'}
+                    onclick={goto('/')}
+                  />
+                </ContentSidePageBottonLabel>
               ) : null}
 
               {islogin ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
-                  title={'Logar : '}
-                  img={setadir}
-                  titbtn={'Enviar Acesso...'}
-                  onclick={handlerLogin}
-                />
+                <ContentSidePageBottonLabel istitl={islogin} title={'Logar : '}>
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Enviar Acesso...'}
+                    onclick={handlerLogin}
+                  />
+                </ContentSidePageBottonLabel>
               ) : null}
 
               {isfindacces ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
+                <ContentSidePageBottonLabel
+                  istitl={isfindacces}
                   title={'Solicitar Provedor: '}
-                  img={setadir}
-                  titbtn={'Solicitar Provedor...'}
-                  onclick={handlerFindAcess}
-                />
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Solicitar Provedor...'}
+                    onclick={handlerFindAcess}
+                  />
+                </ContentSidePageBottonLabel>
               ) : null}
 
               {isconexao ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
+                <ContentSidePageBottonLabel
+                  istitl={isconexao}
                   title={'Conectar Rede: '}
-                  img={setadir}
-                  titbtn={'Conectar Rede...'}
-                  onclick={handlerConexao}
-                />
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Conectar Rede...'}
+                    onclick={handlerConexao}
+                  />
+                </ContentSidePageBottonLabel>
               ) : null}
 
               {isenviar ? (
-                <ContentSidePageLabelBotton
-                  pxheight={'20px'}
-                  istitl={true}
+                <ContentSidePageBottonLabel
+                  istitl={isenviar}
                   title={'Enviar.: '}
-                  img={setadir}
-                  titbtn={'Enviar...'}
-                  onclick={handlerEnviar}
-                />
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Enviar...'}
+                    onclick={handlerEnviar}
+                  />
+                </ContentSidePageBottonLabel>
               ) : null}
             </ContentSidePagePanelBotton>
           ) : null}

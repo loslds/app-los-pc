@@ -1,13 +1,9 @@
-import * as Hm from '../styled';
-
-import { ContentPages } from '../ContentPages';
-import { HearderHome } from '../../headers/HearderHome';
 import { ReactNode } from 'react';
-import { FooterHome } from '../../footers/FooterHome';
-import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
-import { BarSideMenuDados } from '../../sidebar/BarSideMenuDados';
+import * as Ly from '../styled';
+import { ContentPages } from '../ContentPages';
+import { HearderRecepcao } from '../../headers/HearderRecepcao';
 
-type TypeLayoutHome = {
+type TypeLayoutRecepcao = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -18,12 +14,11 @@ type TypeLayoutHome = {
   imgopen?: string;
   titbtnopen?: string;
   onclickopen?: () => void;
+  ischeck: boolean;
   onchange: () => void;
-  ischeck?: boolean;
   children?: ReactNode | JSX.Element;
-  disp?: boolean;
 };
-export const LayoutHome = ({
+export const LayoutRecepcao = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -34,14 +29,13 @@ export const LayoutHome = ({
   imgopen,
   titbtnopen,
   onclickopen,
-  onchange,
   ischeck,
-  children,
-  disp
-}: TypeLayoutHome) => {
+  onchange,
+  children
+}: TypeLayoutRecepcao) => {
   return (
     <ContentPages>
-      <HearderHome
+      <HearderRecepcao
         imgsys={imgsys}
         titbtnsys={titbtnsys}
         onclicksys={onclicksys}
@@ -52,20 +46,18 @@ export const LayoutHome = ({
         imgopen={imgopen}
         titbtnopen={titbtnopen}
         onclickopen={onclickopen}
-        onchange={onchange}
         ischeck={ischeck}
+        onchange={onchange}
       />
-      <Hm.DivisionPgHztal />
-      <Hm.ContainerBody>
-        <Hm.ContainerPage>
-          <BarSideMenuHome />
-          <BarSideMenuDados disp={disp} />
-          <Hm.DivisionPgHztal />
-          {children}
-        </Hm.ContainerPage>
-      </Hm.ContainerBody>
-      <Hm.DivisionPgHztal />
-      <FooterHome />
+      <Ly.DivisionPgHztal />
+      <Ly.ContainerBody>
+
+        <h1>SideMenu help con SideMenu Acao</h1>
+        
+        <Ly.ContainerPage>{children}</Ly.ContainerPage>
+      </Ly.ContainerBody>
+      <Ly.DivisionPgHztal />
+      <h1>Footer Recepção</h1>
     </ContentPages>
   );
 };

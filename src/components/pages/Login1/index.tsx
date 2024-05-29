@@ -16,7 +16,8 @@ import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
 import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
-import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
+import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { CardHelpLogin1 } from '../../contentHelp/CardHelpLogin1.tsx';
@@ -47,7 +48,7 @@ export const Login1 = () => {
       navigate(path);
     };
   };
-
+  const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
@@ -98,6 +99,7 @@ export const Login1 = () => {
 
   React.useEffect(() => {
     setNmLogin(DescrOpc[mdlogin]);
+    setStart(true);
     if (mdlogin === 0) {
       setBtnContinua(false);
     } else {
@@ -165,27 +167,30 @@ export const Login1 = () => {
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
-          <ContentSidePagePanelBotton bordas="3px" open={true} pwidth="100%">
-            <ContentSidePageLabelBotton
-              pxheight={'40px'}
-              istitl={true}
-              title={'Voltar.: '}
-              img={setaesq}
-              titbtn={'Voltar...'}
-              onclick={goto(state.page)}
-            />
+          <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
+            <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={setaesq}
+                titbtn={'Voltar...'}
+                onclick={goto('/login')}
+              />
+            </ContentSidePageBottonLabel>
             <Lg.ContainerBoxLabelPage>
               <label>[ {3 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
             {btncontinua && mdlogin > 0 && mdlogin <= 4 ? (
-              <ContentSidePageLabelBotton
-                pxheight={'20px'}
-                istitl={true}
+              <ContentSidePageBottonLabel
+                istitl={btncontinua}
                 title={'Continuar.: '}
-                img={setadir}
-                titbtn={'Continuar...'}
-                onclick={goto('/login2')}
-              />
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Continuar...'}
+                  onclick={goto('/login2')}
+                />
+              </ContentSidePageBottonLabel>
             ) : null}
           </ContentSidePagePanelBotton>
 

@@ -1,10 +1,9 @@
-import * as Hm from '../styled';
+import { ReactNode } from 'react';
+import * as Ly from '../styled';
 import { ContentPages } from '../ContentPages';
 import { HearderLogin } from '../../headers/HearderLogin';
-//import { FooterLogin } from '../../footers/FooterLogin';
-import { ReactNode } from 'react';
 
-type PropsLayoutLogin = {
+type TypeLayoutLogin = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -33,7 +32,7 @@ export const LayoutLogin = ({
   ischeck,
   onchange,
   children
-}: PropsLayoutLogin) => {
+}: TypeLayoutLogin) => {
   return (
     <ContentPages>
       <HearderLogin
@@ -50,10 +49,10 @@ export const LayoutLogin = ({
         ischeck={ischeck}
         onchange={onchange}
       />
-      <Hm.DivisionPgHztal />
-      <Hm.ContainerBody>
-        <Hm.ContainerPage>{children}</Hm.ContainerPage>
-      </Hm.ContainerBody>
+      <Ly.DivisionPgHztal />
+      <Ly.ContainerBody>
+        <Ly.ContainerPage>{children}</Ly.ContainerPage>
+      </Ly.ContainerBody>
     </ContentPages>
   );
 };

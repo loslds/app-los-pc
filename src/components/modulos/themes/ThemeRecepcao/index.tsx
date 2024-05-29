@@ -1,25 +1,22 @@
-// import "../../../styles/global.ts";
 import { ReactNode } from 'react';
+import { LayoutRecepcao } from '../../../layouts/LayoutRecepcao';
 
-import { LayoutHome } from '../../../layouts/LayoutHome/index.tsx';
-
-type PropsThemeHome = {
+type TypeThemeRecepcao = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
   titlepg?: string;
   imghpg?: string;
   titbtnhpg?: string;
-  onclickhpg: () => void;
+  onclickhpg?: () => void;
   imgopen?: string;
   titbtnopen?: string;
   onclickopen?: () => void;
-  onchange: () => void;
   ischeck: boolean;
+  onchange: () => void;
   children?: ReactNode | JSX.Element;
-  disp?: boolean;
 };
-export const ThemeHome = ({
+export const ThemeRecepcao = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -30,13 +27,12 @@ export const ThemeHome = ({
   imgopen,
   titbtnopen,
   onclickopen,
-  onchange,
   ischeck,
-  children,
-  disp
-}: PropsThemeHome) => {
+  onchange,
+  children
+}: TypeThemeRecepcao) => {
   return (
-    <LayoutHome
+    <LayoutRecepcao
       imgsys={imgsys}
       titbtnsys={titbtnsys}
       onclicksys={onclicksys}
@@ -46,12 +42,11 @@ export const ThemeHome = ({
       onclickhpg={onclickhpg}
       imgopen={imgopen}
       titbtnopen={titbtnopen}
-      onclickopen={onclickopen}
-      onchange={onchange}
       ischeck={ischeck}
-      disp={disp}
+      onchange={onchange}
+      onclickopen={onclickopen}
     >
       {children}
-    </LayoutHome>
+    </LayoutRecepcao>
   );
 };

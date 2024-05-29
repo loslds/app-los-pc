@@ -1,3 +1,5 @@
+
+
 import * as Lg from '../../../styles/styledLogin';
 
 type TypeContentButtonTitleImg = {

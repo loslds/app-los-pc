@@ -17,7 +17,8 @@ import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
 import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
-import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
+import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpLogin0 } from '../../contentHelp/CardHelpLogin0.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
@@ -32,7 +33,7 @@ import setadir from '../../../assets/svgs/setadir.svg';
 
 export const Login = () => {
   const { state, dispatch } = AcessoUseForm();
-
+  const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
@@ -42,6 +43,7 @@ export const Login = () => {
 
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
+
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
       setTheme(light);
@@ -102,6 +104,7 @@ export const Login = () => {
   }, [dispatch]);
 
   React.useEffect(() => {
+    setStart(true);
     if (idempresa === 0) {
       setFantEmpresa('');
       setBtnContinua(false);
@@ -170,25 +173,27 @@ export const Login = () => {
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
 
-          <ContentSidePagePanelBotton bordas="3px" open={true} pwidth="100%">
-            <ContentSidePageLabelBotton
-              pxheight={'40px'}
-              istitl={true}
-              title={'Voltar.: '}
-              img={setaesq}
-              titbtn={'Voltar...'}
-              onclick={goto('/')}
-            />
-
-            {btncontinua ? (
-              <ContentSidePageLabelBotton
-                pxheight={'20px'}
-                istitl={true}
-                title={'Continuar.: '}
-                img={setadir}
-                titbtn={'Continuar...'}
-                onclick={goto('/login1')}
+          <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
+            <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={setaesq}
+                titbtn={'Voltar...'}
+                onclick={goto('/')}
               />
+            </ContentSidePageBottonLabel>
+            <Lg.ContainerBoxLabelPage>
+              <label>[ {3 - state.nrcont} ] tentativas. </label>
+            </Lg.ContainerBoxLabelPage>
+            {btncontinua ? (
+              <ContentSidePageBottonLabel istitl={btncontinua} title={'Continuar.: '}>
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Continuar...'}
+                  onclick={goto('/login1')}
+                />
+              </ContentSidePageBottonLabel>
             ) : null}
           </ContentSidePagePanelBotton>
 

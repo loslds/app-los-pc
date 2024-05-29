@@ -19,7 +19,8 @@ import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
 import { ContentInputMainPage } from '../ContentInputMainPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
-import { ContentSidePageLabelBotton } from '../ContentSidePageLabelBotton.tsx';
+import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
+import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 import { PanelModalInfoErros } from '../../Modal/PanelModalInfoErros.tsx';
 import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
 import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage.tsx';
@@ -58,6 +59,7 @@ export const Login2 = () => {
     };
   };
 
+  const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
@@ -90,6 +92,7 @@ export const Login2 = () => {
     dispatch({ type: AcessoUseActions.setAplicacao, payload: state.nmlogin });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
     //    setTentativa(state.nrcont);
+    setStart(true);
     setFormOpcao(true);
     setIsEditar(true);
     setBtnContinua(true);
@@ -341,50 +344,59 @@ export const Login2 = () => {
             ) : null}
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
-          <ContentSidePagePanelBotton open={true} pwidth="100%">
-            <ContentSidePageLabelBotton
-              pxheight={'40px'}
-              istitl={true}
-              title={'Voltar.: '}
-              img={setaesq}
-              titbtn={'Voltar...'}
-              onclick={goto('/login')}
-            />
+          <ContentSidePagePanelBotton open={start} pwidth="100%">
+            <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={setaesq}
+                titbtn={'Voltar...'}
+                onclick={goto('/login')}
+              />
+            </ContentSidePageBottonLabel>
             <p>state=: {state.page}</p>
             <Lg.ContainerBoxLabelPage>
               <label>[ {3 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
             {(btncontinua && state.mdlogin <= 4) || !ischeklogin ? (
-              <ContentSidePageLabelBotton
-                pxheight={'20px'}
-                istitl={true}
+              <ContentSidePageBottonLabel
+                istitl={btncontinua}
                 title={'Continuar.: '}
-                img={setadir}
-                titbtn={'Continuar...'}
-                onclick={handlerContinuar}
-              />
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Continuar...'}
+                  onclick={handlerContinuar}
+                />
+              </ContentSidePageBottonLabel>
             ) : null}
 
             {ischeklogin && btnenviar ? (
-              <ContentSidePageLabelBotton
-                pxheight={'20px'}
-                istitl={true}
+              <ContentSidePageBottonLabel
+                istitl={btnenviar}
                 title={'Enviar.: '}
-                img={setadir}
-                titbtn={'Enviar...'}
-                onclick={goto('/login3')}
-              />
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Enviar...'}
+                  onclick={goto('/login3')}
+                />
+              </ContentSidePageBottonLabel>
             ) : null}
 
             {btnresgatar ? (
-              <ContentSidePageLabelBotton
-                pxheight={'20px'}
-                istitl={true}
+              <ContentSidePageBottonLabel
+                istitl={btnresgatar}
                 title={'Resgatar.: '}
-                img={setadir}
-                titbtn={'Resgatar...'}
-                onclick={goto('/login4')}
-              />
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Resgatar...'}
+                  onclick={goto('/login4')}
+                />
+              </ContentSidePageBottonLabel>
             ) : null}
 
             {iserrologin ? (
@@ -441,5 +453,3 @@ export const Login2 = () => {
     </ThemeProvider>
   );
 };
-
-export default Login2;
