@@ -1,15 +1,17 @@
 import * as MD from '../Modal/styles';
 import { CardModalTexto } from '../Modal/CardModalTexto';
-import negado from '../../assets/svgs/negado.svg';
 
-export const CardDesemvolver = () => {
+type TypeCardDesemvolver = {
+  imgcard?: string;
+};
+export const CardDesemvolver = ({ imgcard }: TypeCardDesemvolver) => {
   return (
     <CardModalTexto>
       <MD.ContainerHeardModalMain>
         <MD.ContainerModalImg
           pminheight={'60px'}
           pwidth={'80px'}
-          img={negado}
+          img={imgcard}
         />
       </MD.ContainerHeardModalMain>
       <label>Serviço em Desemvolvimento.</label>

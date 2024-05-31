@@ -75,7 +75,7 @@ export const ContainerModal = styled.div<ContainerModalType>`
   top: ${({ ptop }) => ptop || '62px'};
   position: fixed;
   width: ${({ pwidth }) => pwidth || '66.3%'};
-  height: ${({ pheight }) => pheight || '90%'};
+  height: ${({ pheight }) => pheight || '95%'};
 
   min-height: auto;
   overflow-y: auto;
@@ -111,16 +111,12 @@ align-items: center;
 background-color: #fcfceb;
 `;
 
-type TypeContentTextoModulos = {
-  isscroll? : boolean;
-};
-export const ContentTextoModulos = styled.div<TypeContentTextoModulos>`
-  border: none;/*1px green solid;*/
-  padding: 0px 0px 0px 0px;
-  margin: 5px 0px 5px 0px;
-  height: ${props => ( props.isscroll ? '500px' : 'auto')};
-  //overflow-y: ${props => ( props.isscroll ? 'scroll' : 'auto')};
-  width: 98%;
+export const ContentTextoModulos = styled.div`
+  border: none;
+  padding: 0px 25px 0px 0px;
+  margin: 2px 10px 2px 10px;
+  min-height: 40px;
+  width: 100%;
   overflow-y: auto;
   display: flex row;
   flex-wrap: wrap;
@@ -132,6 +128,16 @@ export const ContentTextoModulos = styled.div<TypeContentTextoModulos>`
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-style: normal;
 `;
+
+
+  // min-height: auto;
+  // display: flex row;
+  // flex-wrap: wrap;
+  // flex-direction: center;
+  // justify-content: center;
+  // align-items: center;
+  // background-color: transparent;
+  // font-size: 12px;
 ///////////////////////////////////////////////////
 export const ContainerModalTexto = styled.div`
   border: 0px;
@@ -728,13 +734,13 @@ export const ContentInfoErro = styled.div`
   font-family: 'Courier New', Courier, monospace;
 `;
 
-type PropsContainerInfoErroModal = {
+type TypeContainerInfoErroModal = {
   ptop?: string;
   pheight?: string;
   pwidth?: string;
   onClick?: () => void;
 };
-export const ContainerInfoErroModal = styled.div<PropsContainerInfoErroModal>`
+export const ContainerInfoErroModal = styled.div<TypeContainerInfoErroModal>`
   border: 5px double;
   border-color: #e30005;
   border-radius: 15px;

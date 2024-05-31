@@ -1,6 +1,8 @@
 import * as S from './stylesSidebar';
 import React from 'react';
 
+import close from '../../assets/svgs/close.svg';
+import negado from '../../assets/svgs/negado.svg';
 import menuh from '../../assets/svgs/menuh.svg';
 import servicos from '../../assets/svgs/servicos.svg';
 import design from '../../assets/svgs/design.svg';
@@ -15,7 +17,7 @@ import { ContainerSBMain } from './ContainerSBMain';
 import { ContainerSBButton } from './ContainerSBButton';
 import { ContainerSBItensMenu } from './ContainerSBItensMenu';
 import { PageModal } from '../Modal/PageModal';
-import { CardModuloRecep } from '../contentHelp/CardModuloRecep';
+import { CardSBHlpRecep } from '../contentHelp/CardSBHlpRecep';
 import { CardDesemvolver } from '../contentHelp/CardDesenvolver';
 
 export const BarSideMenuHome = () => {
@@ -46,56 +48,56 @@ export const BarSideMenuHome = () => {
       <ContainerSBItensMenu onoff={isitensmenu}>
         <ContainerSBButton
           img={servicos}
-          titbtn="Recepção..."
+          titbtn="Help Recepção..."
           onClick={() => {
             setIsMdRecep(true);
           }}
         />
         <ContainerSBButton
           img={design}
-          titbtn="Design..."
+          titbtn="Help Design..."
           onClick={() => {
             setIsMdDesig(true);
           }}
         />
         <ContainerSBButton
           img={producao}
-          titbtn="Produção..."
+          titbtn="Help Produção..."
           onClick={() => {
             setIsMdProdu(true);
           }}
         />
         <ContainerSBButton
           img={acabamento}
-          titbtn="Acabamento..."
+          titbtn="Help Acabamento..."
           onClick={() => {
             setIsMdAcaba(true);
           }}
         />
         <ContainerSBButton
           img={expedicao}
-          titbtn="Expedição..."
+          titbtn="Help Expedição..."
           onClick={() => {
             setIsMdExped(true);
           }}
         />
         <ContainerSBButton
           img={administracao}
-          titbtn="Administração..."
+          titbtn="Help Administração..."
           onClick={() => {
             setIsMdAdmin(true);
           }}
         />
         <ContainerSBButton
           img={master}
-          titbtn="Master..."
+          titbtn="Help Master..."
           onClick={() => {
             setIsMdMaste(true);
           }}
         />
         <ContainerSBButton
           img={config}
-          titbtn="Config..."
+          titbtn="Help Config..."
           onClick={() => {
             setIsMdConfi(true);
           }}
@@ -105,14 +107,16 @@ export const BarSideMenuHome = () => {
       {ismdrecep ? (
         <PageModal
           ptop={'1%'}
-          pwidth={'65%'}
-          pheight={'80%'}
-          titulo={'Recepção.'}
+          pwidth={'61%'}
+          pheight={'70%'}
+          titulo={'Help  : Recepção.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdRecep(false);
           }}
         >
-          <CardModuloRecep />
+          <CardSBHlpRecep imgcard={servicos} />
         </PageModal>
       ) : null}
       {ismddesig ? (
@@ -120,12 +124,14 @@ export const BarSideMenuHome = () => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'50%'}
-          titulo={'Design.'}
+          titulo={'Help  : Design.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdDesig(false);
           }}
         >
-          <CardDesemvolver />
+          <CardDesemvolver imgcard={negado} />
         </PageModal>
       ) : null}
       {ismdprodu ? (
@@ -133,12 +139,14 @@ export const BarSideMenuHome = () => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'50%'}
-          titulo={'Produção.'}
+          titulo={'Help  : Produção.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdProdu(false);
           }}
         >
-          <CardDesemvolver />
+          <CardDesemvolver imgcard={negado} />
         </PageModal>
       ) : null}
       {ismdacaba ? (
@@ -146,12 +154,14 @@ export const BarSideMenuHome = () => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'50%'}
-          titulo={'Acabamento.'}
+          titulo={'Help  : Acabamento.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdAcaba(false);
           }}
         >
-          <CardDesemvolver />
+          <CardDesemvolver imgcard={negado} />
         </PageModal>
       ) : null}
       {ismdexped ? (
@@ -159,12 +169,14 @@ export const BarSideMenuHome = () => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'50%'}
-          titulo={'Expedição.'}
+          titulo={'Help  : Expedição.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdExped(false);
           }}
         >
-          <CardDesemvolver />
+          <CardDesemvolver imgcard={negado} />
         </PageModal>
       ) : null}
       {ismdadmin ? (
@@ -172,12 +184,14 @@ export const BarSideMenuHome = () => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'50%'}
-          titulo={'Administração.'}
+          titulo={'Help  : Administração.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdAdmin(false);
           }}
         >
-          <CardDesemvolver />
+          <CardDesemvolver imgcard={negado} />
         </PageModal>
       ) : null}
       {ismdmaste ? (
@@ -185,12 +199,14 @@ export const BarSideMenuHome = () => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'50%'}
-          titulo={'Master.'}
+          titulo={'Help  : Master.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdMaste(false);
           }}
         >
-          <CardDesemvolver />
+          <CardDesemvolver imgcard={negado} />
         </PageModal>
       ) : null}
       {ismdconfi ? (
@@ -198,12 +214,14 @@ export const BarSideMenuHome = () => {
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'50%'}
-          titulo={'Cpnfig.'}
+          titulo={'Help  : Config.'}
+          imgbm={close}
+          titbm={'Fechar...'}
           onclose={() => {
             setIsMdConfi(false);
           }}
         >
-          <CardDesemvolver />
+          <CardDesemvolver imgcard={negado} />
         </PageModal>
       ) : null}
     </ContainerSBMain>

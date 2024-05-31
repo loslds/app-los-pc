@@ -157,10 +157,10 @@ export const Login3 = () => {
     setIsFindAcces(false);
     setIsLogin(false);
     setIsAcesso(false);
-    if (tentativa >= 3) {
-      setIsResgatar(false);
-    } else {
+    if (tentativa >= 4) {
       setIsResgatar(true);
+    } else {
+      setIsResgatar(false);
     }
   }, []);
 
@@ -180,10 +180,11 @@ export const Login3 = () => {
       setIsErroMsg(true);
       setIsConectedoff(true);
       setIsFindAcces(false);
-      if (tentativa >= 3) {
-        setIsResgatar(false);
-      } else {
+      if (tentativa >= 4) {
+        setIsEnviar(false);
         setIsResgatar(true);
+      } else {
+        setIsResgatar(false);
       }
     }
   }, []);
@@ -204,10 +205,11 @@ export const Login3 = () => {
       setIsErroMsg(true);
       setIsFindingoff(true);
       setIsLogin(false);
-      if (tentativa >= 3) {
-        setIsResgatar(false);
-      } else {
+      if (tentativa >= 4) {
+        setIsEnviar(false);
         setIsResgatar(true);
+      } else {
+        setIsResgatar(false);
       }
     } else {
       setIsAcesso(false);
@@ -230,10 +232,11 @@ export const Login3 = () => {
       );
       setIsLoggedoff(true);
       setIsAcesso(false);
-      if (tentativa >= 3) {
-        setIsResgatar(false);
-      } else {
+      if (tentativa >= 4) {
+        setIsEnviar(false);
         setIsResgatar(true);
+      } else {
+        setIsResgatar(false);
       }
     } else {
       setIsAcesso(true);
@@ -251,6 +254,7 @@ export const Login3 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
     dispatch({ type: AcessoUseActions.setLogado, payload: isacesso });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
   }, [tentativa, isacesso, dispatch]);
 
   return (
@@ -659,7 +663,7 @@ export const Login3 = () => {
             </PageModal>
           ) : null}
 
-          {state.nrcont <= 3 ? (
+          {state.nrcont <= 3 && !isresgatar ? (
             <ContentSidePagePanelBotton open={start} pwidth="100%">
               <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
                 <ContentSidePageBottonButton
@@ -672,20 +676,6 @@ export const Login3 = () => {
               <Pg.ContainerBoxLabelPage>
                 <label>[ {3 - state.nrcont} ] tentativas. </label>
               </Pg.ContainerBoxLabelPage>
-
-              {isresgatar || state.nrcont > 3 ? (
-                <ContentSidePageBottonLabel
-                  istitl={isresgatar}
-                  title={'Resgatar.: '}
-                >
-                  <ContentSidePageBottonButton
-                    pxheight={'40px'}
-                    img={setadir}
-                    titbtn={'Resgatar...'}
-                    onclick={goto('/login4')}
-                  />
-                </ContentSidePageBottonLabel>
-              ) : null}
 
               {isacesso ? (
                 <ContentSidePageBottonLabel
@@ -753,6 +743,33 @@ export const Login3 = () => {
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
+            </ContentSidePagePanelBotton>
+          ) : null}
+
+          {isresgatar ? (
+            <ContentSidePagePanelBotton open={start} pwidth="100%">
+              <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setaesq}
+                  titbtn={'Voltar...'}
+                  onclick={goto('/login2')}
+                />
+              </ContentSidePageBottonLabel>
+              <Pg.ContainerBoxLabelPage>
+                <label>[ {3 - state.nrcont} ] tentativas. </label>
+              </Pg.ContainerBoxLabelPage>
+              <ContentSidePageBottonLabel
+                istitl={isresgatar}
+                title={'Resgatar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Resgatar...'}
+                  onclick={goto('/login4')}
+                />
+              </ContentSidePageBottonLabel>
             </ContentSidePagePanelBotton>
           ) : null}
 

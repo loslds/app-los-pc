@@ -1,16 +1,17 @@
 import * as MD from '../Modal/styles';
 
 import { CardModalTexto } from '../Modal/CardModalTexto';
-import jrjr from '../../assets/svgs/jrjr.svg';
 
-
-export const CardHomeSys = () => {
+type TypeCardHomeSys = {
+  imgcard?: string;
+};
+export const CardHomeSys = ({ imgcard }: TypeCardHomeSys) => {
   return (
     <CardModalTexto>
       <MD.ContentTextoModulos>
         <MD.ContainerHeardModalMain>
           <MD.ContainerModalImg
-            img={jrjr}
+            img={imgcard}
             pminheight={'86px'}
             pwidth={'88px'}
           />
@@ -143,7 +144,7 @@ export const CardHomeSys = () => {
         </p>
         <label>ENCONTRARA UM HELP EM TODAS AS PAGINAS DESTE SISTEMA</label>
         <p>
-          &emsp;&emsp; - Cada Pagina o Help lhe dara esplicação adequada de como
+          &emsp;&emsp; - Cada Pagina o Help lhe dará esplicação adequada de como
           utilisar o Sistema.
         </p>
         <p>

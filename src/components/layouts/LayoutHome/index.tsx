@@ -63,6 +63,7 @@ export const LayoutHome = ({
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>
+        
       </Hm.ContainerBody>
       <Hm.DivisionPgHztal />
       <FooterHome />

@@ -10,8 +10,10 @@ import dark from '../../../styles/themes/dark.ts';
 
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
+import jrjr from '../../../assets/svgs/jrjr.svg';
 import avatar from '../../../assets/svgs/avatar.svg';
 import avatar001 from '../../../assets/pngs/avatares/avatar001.png';
+import negado from '../../../assets/svgs/negado.svg';
 import recepcao from '../../../assets/svgs/servicos.svg';
 import design from '../../../assets/svgs/design.svg';
 import producao from '../../../assets/svgs/producao.svg';
@@ -306,7 +308,7 @@ export const Home = () => {
               titulo={'Help Conteúdo do Sistema.'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHomeSys />
+              <CardHomeSys imgcard={jrjr}/>
             </PageModal>
           ) : null}
 
@@ -314,7 +316,7 @@ export const Home = () => {
             <PageModal
               ptop="111px"
               pwidth="30%"
-              pheight="32%"
+              pheight="25%"
               titulo='" A T E N Ç Ã O "'
               imgbm={close}
               titbm="Fechar..."
@@ -322,7 +324,7 @@ export const Home = () => {
                 setMainHelp(false);
               }}
             >
-              <CardImgNeg />
+              <CardImgNeg imgcard={negado} />
             </PageModal>
           ) : null}
         </ContentItensBody>

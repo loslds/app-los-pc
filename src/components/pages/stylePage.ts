@@ -220,8 +220,6 @@ export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
   //background: transparent;
 `;
 
-
-
 type TypeContainerPanelPageFlex = {
 bordas?: string;
 }
@@ -897,4 +895,18 @@ export const ContainerDivMainImagens = styled.div`
   size: 16px;
   line-height: 16px;
   color: ${props => props.theme.colors.textColor};
+`;
+
+export const ContainerBoxMainPage = styled.div`
+  border: 3px solid red;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 5px 5px 5px;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: space-between;
+  align-content: center;
+  //align-items: center;
 `;

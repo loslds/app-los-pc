@@ -29,6 +29,7 @@ import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { CardHelpLogin2 } from '../../contentHelp/CardHelpLogin2.tsx';
 
 import close from '../../../assets/svgs/close.svg';
+import enviaron from '../../../assets/svgs/enviaron.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 import login2hlp from '../../../assets/svgs/login2hlp.svg';
@@ -75,10 +76,11 @@ export const Login2 = () => {
   const [btnresgatar, setBtnResgatar] = React.useState(false);
   const [iserrologin, setIsErroLogin] = React.useState(false);
   const [nmrerrologin, setNmErroLogin] = React.useState('');
+
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-    if (tentativa >= state.nrcont) {
+    if (tentativa != state.nrcont) {
       dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
     } else {
       setTentativa(state.nrcont);
@@ -95,8 +97,10 @@ export const Login2 = () => {
     setStart(true);
     setFormOpcao(true);
     setIsEditar(true);
-    setBtnContinua(true);
     setIsChekLogin(false);
+    setBtnContinua(true);
+    setBtnResgatar(false)
+    
   }, [tentativa, formopcao, dispatch]);
 
   const handlerOnChangerStrId = React.useCallback(
@@ -147,52 +151,77 @@ export const Login2 = () => {
       setIsChekLogin(false);
     }
   }, [strid, strpsw]);
+
   const handlerContinuar = React.useCallback(() => {
     setNmErroLogin('');
-    setTentativa(tentativa + 1);
-
     if (!ischeklogin || nmrerrologin !== '') {
       if (strid === '' && strpsw === '') {
-        if (state.mdlogin == 1) {
+        if (state.mdlogin === 1) {
           setNmErroLogin('Determine seu Email e sua Senha para Acesso...');
-        } else if (state.mdlogin == 2) {
+        } else if (state.mdlogin === 2) {
           setNmErroLogin('Determine seu Email e seu PIN para Acesso...');
-        } else if (state.mdlogin == 3) {
+        } else if (state.mdlogin === 3) {
           setNmErroLogin('Determine seu Nome e sua Senha para Acesso...');
-        } else if (state.mdlogin == 4) {
+        } else if (state.mdlogin === 4) {
           setNmErroLogin('Determine seu Nome e seu PIN para Acesso...');
         }
-      } else if (strid === '') {
-        if (state.mdlogin == 1 || state.mdlogin == 2) {
-          setNmErroLogin('Determine seu Email para Acesso...');
-        } else if (state.mdlogin == 3 || state.mdlogin == 4) {
-          setNmErroLogin('Determine seu Nome para Acesso...');
-        }
-      } else if (strpsw === '') {
-        if (state.mdlogin == 1 || state.mdlogin == 3) {
-          setNmErroLogin('Determine sua Senha para Acesso...');
-        } else if (state.mdlogin == 2 || state.mdlogin == 4) {
-          setNmErroLogin('Determine seu PIN para Acesso...');
-        }
-        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-      }
-    }
-  }, [strid, strpsw, tentativa, dispatch]);
-  React.useEffect(() => {
-    if (!ischeklogin && nmrerrologin !== '') {
-      if (tentativa === 3) {
-        setIsEditar(false);
-        setBtnContinua(false);
-        setBtnEnviar(false);
-        setIsErroLogin(false);
-        setBtnResgatar(true);
       } else {
-        setIsErroLogin(true);
+        setTentativa(tentativa + 1);
+        if (strid === '') {
+          if (state.mdlogin === 1 || state.mdlogin === 2) {
+            setNmErroLogin('Determine seu Email para Acesso...');
+          } else if (state.mdlogin === 3 || state.mdlogin === 4) {
+            setNmErroLogin('Determine seu Nome para Acesso...');
+          }
+        } else if (strpsw === '') {
+          if (state.mdlogin === 1 || state.mdlogin === 3) {
+            setNmErroLogin('Determine sua Senha para Acesso...');
+          } else if (state.mdlogin === 2 || state.mdlogin === 4) {
+            setNmErroLogin('Determine seu PIN para Acesso...');
+          }
+        }
       }
-      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    } else if (ischeklogin) {
-      setBtnEnviar(true);
+    } else {
+      setTentativa(tentativa + 1);
     }
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+  }, [strid, strpsw, tentativa, dispatch]);
+
+  React.useEffect(() => {
+    if (ischeklogin) {
+      setIsEditar(true);
+      setBtnEnviar(true);
+    } else {
+      if (nmrerrologin !== '') {
+        setIsErroLogin(true);
+        if (tentativa === 3) {
+          setIsEditar(false);
+          setBtnContinua(false);
+          setBtnEnviar(false);
+          setBtnResgatar(true);
+        } else {
+          setIsEditar(true);
+          setBtnContinua(true);
+          setBtnEnviar(false);
+          setBtnResgatar(false);
+        }
+      }
+    }
+
+    // if (!ischeklogin && nmrerrologin !== '') {
+    //   if (tentativa >= 3) {
+    //     setIsEditar(false);
+    //     setBtnContinua(false);
+    //     setBtnEnviar(false);
+    //     setIsErroLogin(false);
+    //     setBtnResgatar(true);
+    //   } else {
+    //     setIsErroLogin(true);
+    //   }
+    // } else if (ischeklogin) {
+    // }
+
+    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
   }, [tentativa, dispatch]);
 
   const handlerHelpPg = React.useCallback(() => {
@@ -344,34 +373,25 @@ export const Login2 = () => {
             ) : null}
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
+
+
+
+
+
           <ContentSidePagePanelBotton open={start} pwidth="100%">
             <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
                 img={setaesq}
                 titbtn={'Voltar...'}
-                onclick={goto('/login')}
+                onclick={goto('/login1')}
               />
             </ContentSidePageBottonLabel>
-            <p>state=: {state.page}</p>
             <Lg.ContainerBoxLabelPage>
               <label>[ {3 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-            {(btncontinua && state.mdlogin <= 4) || !ischeklogin ? (
-              <ContentSidePageBottonLabel
-                istitl={btncontinua}
-                title={'Continuar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setadir}
-                  titbtn={'Continuar...'}
-                  onclick={handlerContinuar}
-                />
-              </ContentSidePageBottonLabel>
-            ) : null}
 
-            {ischeklogin && btnenviar ? (
+            {btnenviar && ischeklogin ? (
               <ContentSidePageBottonLabel
                 istitl={btnenviar}
                 title={'Enviar.: '}
@@ -398,22 +418,37 @@ export const Login2 = () => {
                 />
               </ContentSidePageBottonLabel>
             ) : null}
-
-            {iserrologin ? (
-              <PanelModalInfoErros
-                ptop={'1%'}
-                pwidth={'65%'}
-                pheight={'auto'}
-                titulo={'ERRO em processamento...'}
-                texto={
-                  'Mais atenção, tentativa: [' + (3 - tentativa) + '] de [3].'
-                }
-                onClose={() => setIsErroLogin(false)}
+  
+            {btncontinua ? (
+              <ContentSidePageBottonLabel
+                istitl={btncontinua}
+                title={'Continuar.: '}
               >
-                <CardInfoErros nmerro={nmrerrologin} />
-              </PanelModalInfoErros>
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Continuar...'}
+                  onclick={handlerContinuar}
+                />
+              </ContentSidePageBottonLabel>
             ) : null}
+
           </ContentSidePagePanelBotton>
+          
+          {iserrologin ? (
+            <PanelModalInfoErros
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'auto'}
+              titulo={'ERRO em Processamento...'}
+              texto={'Mais atenção! Na [' + state.nrcont + 'º] tentativa.'}
+              imgbm={enviaron}
+              titbm={'Voltar...'}
+              onClose={() => setIsErroLogin(false)}
+            >
+              <CardInfoErros imgcard={''} nmerro={nmrerrologin} />
+            </PanelModalInfoErros>
+          ) : null}
 
           {helppg ? (
             <PageModal

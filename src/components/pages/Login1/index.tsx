@@ -56,7 +56,7 @@ export const Login1 = () => {
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções:');
   const [btncontinua, setBtnContinua] = React.useState(false);
-
+  const [btnresgatar, setBtnResgatar] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(0);
 
   React.useEffect(() => {
@@ -82,9 +82,10 @@ export const Login1 = () => {
     dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
     dispatch({ type: AcessoUseActions.setTmp, payload: '' });
 
-    if (tentativa >= state.nrcont) {
+    if (state.nrcont === 0) {
       dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    } else {
+    }
+    if (state.nrcont > tentativa) {
       setTentativa(state.nrcont);
     }
   }, [dispatch]);
@@ -103,12 +104,11 @@ export const Login1 = () => {
     if (mdlogin === 0) {
       setBtnContinua(false);
     } else {
-      console.log('tentativa : ', tentativa);
-      console.log('state.nrcont : ', state.nrcont);
-      if (tentativa >= 5) {
-        alert('tentativa => ' + state.nrcont);
-        setBtnContinua(true);
+      if (tentativa > 3) {
+        setBtnResgatar(true);
+        setBtnContinua(false);
       } else {
+        setBtnResgatar(false);
         setBtnContinua(true);
       }
     }
@@ -179,7 +179,7 @@ export const Login1 = () => {
             <Lg.ContainerBoxLabelPage>
               <label>[ {3 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-            {btncontinua && mdlogin > 0 && mdlogin <= 4 ? (
+            {btncontinua && mdlogin > 0 && mdlogin <= 3 ? (
               <ContentSidePageBottonLabel
                 istitl={btncontinua}
                 title={'Continuar.: '}
@@ -189,6 +189,19 @@ export const Login1 = () => {
                   img={setadir}
                   titbtn={'Continuar...'}
                   onclick={goto('/login2')}
+                />
+              </ContentSidePageBottonLabel>
+            ) : null}
+            {btnresgatar ? (
+              <ContentSidePageBottonLabel
+                istitl={btnresgatar}
+                title={'Resgatar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Resgatar...'}
+                  onclick={goto('/login4')}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
