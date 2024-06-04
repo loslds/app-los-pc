@@ -61,7 +61,7 @@ export const Login = () => {
   const [helppg, setHelpPg] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(0);
 
-  const [idempresa, setIdEmpresa] = React.useState(0);
+  
 
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [btnresgatar, setBtnResgatar] = React.useState(false);
