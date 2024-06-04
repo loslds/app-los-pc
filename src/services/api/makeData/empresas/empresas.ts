@@ -6,9 +6,9 @@ export type TypeEmpresas = {
 };
 
 export type TypeEmpresasOrderFilter = {
-  order?: object;
-  filter?: object;
-  opcoes?: object;
+  order?: string;
+  filter?: string;
+  opcoes?: string;
 };
 
 export type TypeEmpresasFilter ={

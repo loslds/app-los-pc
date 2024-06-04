@@ -18,9 +18,12 @@ import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
 import { ContentInputMainPage } from '../ContentInputMainPage.tsx';
+import { ContentBoxMainPage } from '../ContentBoxMainPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
+import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
+
 import { PanelModalInfoErros } from '../../Modal/PanelModalInfoErros.tsx';
 import { CardInfoErros } from '../../contentHelp/CardInfoErros.tsx';
 import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage.tsx';
@@ -374,7 +377,9 @@ export const Login2 = () => {
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
 
-
+          <ContentBoxMainPage>
+            <h4>ContentBoxMainPage</h4>
+          </ContentBoxMainPage>
 
 
 
@@ -387,9 +392,8 @@ export const Login2 = () => {
                 onclick={goto('/login1')}
               />
             </ContentSidePageBottonLabel>
-            <Lg.ContainerBoxLabelPage>
-              <label>[ {3 - state.nrcont} ] tentativas. </label>
-            </Lg.ContainerBoxLabelPage>
+            
+            <ContentBoxLabelPage label={'Tentativa ['+state.nrcont+']'} />
 
             {btnenviar && ischeklogin ? (
               <ContentSidePageBottonLabel

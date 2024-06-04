@@ -30,6 +30,7 @@ import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
+
 export const Login1 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -48,11 +49,13 @@ export const Login1 = () => {
       navigate(path);
     };
   };
+
+
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
-  const { state, dispatch } = AcessoUseForm();
+  const {state, dispatch } = AcessoUseForm();
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções:');
   const [btncontinua, setBtnContinua] = React.useState(false);
@@ -62,32 +65,29 @@ export const Login1 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login1' });
-
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Login : Opções Acesso'
     });
+    dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
+    if (state.nrcont > 0) {
+      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+    } else {
+      setTentativa(state.nrcont);
+    }
+    if(state.nrcont === 4){
+      setBtnResgatar(true);
+    }
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
+    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
     dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
-
     dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
-    dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
-
     dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
     dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
     dispatch({ type: AcessoUseActions.setTmp, payload: '' });
-
-    if (state.nrcont === 0) {
-      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    }
-    if (state.nrcont > tentativa) {
-      setTentativa(state.nrcont);
-    }
   }, [dispatch]);
 
   const DescrOpc = [
@@ -101,10 +101,11 @@ export const Login1 = () => {
   React.useEffect(() => {
     setNmLogin(DescrOpc[mdlogin]);
     setStart(true);
+
     if (mdlogin === 0) {
       setBtnContinua(false);
     } else {
-      if (tentativa > 3) {
+      if (tentativa <= 3) {
         setBtnResgatar(true);
         setBtnContinua(false);
       } else {

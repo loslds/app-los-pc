@@ -1,14 +1,14 @@
-import React from 'react';
-import { ListEmps } from '../../books/ListEmps';
-export const useEpresas = () => {
-  const [empresa, setEmpresa] = React.useState([]);
+//import React from 'react';
+// import { ListEmps } from '../../books/ListEmps';
+// export const useEpresas = () => {
+//   const [empresa, setEmpresa] = React.useState([]);
 
-  React.useEffect(() => {
-    const empresas = (ListEmps.map = (id, fant));
-  }, []);
+//   React.useEffect(() => {
+//     const empresas = (ListEmps.map = (id, fant));
+//   }, []);
 
-  return empresa;
-};
+//   return empresa;
+// };
 
 //   import { ListEmp } from '../../booklist';
 //   const [islistemp, setIsListEmp] = React.useState(false);

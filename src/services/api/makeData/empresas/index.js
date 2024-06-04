@@ -1,7 +1,6 @@
 // import Api from '../../requester'
-import { compareValues } from 'mini-helper'
+import { compareValues } from 'mini-helper';
 
-import {TypeEmpresas, TypeEmpresasOrderFilter, TypeEmpresasFilter} from './empresas';
 
 const data = {
   success: true,
@@ -19,7 +18,7 @@ const data = {
       fonecel: '(85) 999417475',
       local: 'Rua Professor Anacleto',
       compl: 'Casa',
-      nrlocal: '576',
+      nrlocal: 576,
       cep: '60450-360',
       bairro: 'Parqueândia',
       cidade: 'Fortaleza',
@@ -37,44 +36,37 @@ const data = {
       fonefx: '(85) 3243-1872',
       fonecel: '(85) 999001110',
       local: 'Rua Professor Anacleto',
-      nrlocal: '576',
+      nrlocal: 576,
       compl: 'Casa',
       cep: '60450-360',
       bairro: 'Parqueândia',
       cidade: 'Fortaleza',
       uf: 'Ceará'
     }
-  
   ]
-}
+};
 
-export async function getEmpresa(options:TypeEmpresasOrderFilter) {
-  const result = await new Promise(resolve => {
+
+export async function getEmpresas(options = {} ) {
+  const result = await new Promise((resolve) => {
     setTimeout(() => {
       resolve({ data });
-    }, 2000)
-  })
+    }, 2000);
+  });
 
-  const {order}:TypeEmpresasOrderFilter = options;
-
+  const { order, filter = {} } = options;
   
-  
-  
-  
-  
-  
-  const {order, filter}:TypeEmpresasOrderFilter = options;
   const resultData = result && result.data;
 
-  const { empresasId }:TypeEmpresasFilter = filter;
+  const { empId } = filter;
 
-  if (empresaId) {
-    resultData.empresas = resultData.empresas.filter(p => p.id === empresasId);
+  if ( empId ) {
+    resultData.empresas = resultData.empresas.filter(p => p.promocao === promocao)
   }
-  
+
+    
   if (resultData.empresas && order) {
-    resultData.empresas = resultData.empresas.sort(compareValues(order, 'asc'))
-  }
-  
+    resultData.empresas = resultData.empresas.sort(compareValues(order, 'asc'))}
   return resultData
 }
+
