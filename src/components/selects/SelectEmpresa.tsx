@@ -1,17 +1,11 @@
 import React from 'react';
 
-import * as Sl from './styledSelect';
 import { ListEmpresas } from '../../books/ListEmps';
 import {
   AcessoUseForm,
   AcessoUseActions
 } from '../contexts/login/ContextAcesso';
-
-function getFindFantasia(id: number) {
-  let fantasia = id.toString(10);
-
-  return fantasia;
-}
+import { ContentMainSelectPage } from './ContentMaimSelectPage';
 
 export const SelectEmpresa = () => {
   const { state, dispatch } = AcessoUseForm();
@@ -19,46 +13,46 @@ export const SelectEmpresa = () => {
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
 
-  const handlerSelect = (e: number) => {
-    setIdEmpresa(e);
+  const handlerSelect = (e: string) => {
+    setIdEmpresa(parseInt(e));
+
+    console.log('IdEmpresa.. : ', idempresa);
   };
 
   React.useEffect(() => {
-    if (idempresa === 0) {
+    if (idempresa < 0) {
       setFantEmpresa('');
+    } else {
+      dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
+      dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
     }
-    if (idempresa >= 0) {
-      let nfemp = getFindFantasia(idempresa);
-      console.log('nfemp :', nfemp);
-      if (nfemp != '') {
-        setFantEmpresa(nfemp);
-      } else {
-        setFantEmpresa('');
-      }
-    }
-    dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
-    dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
-  },[idempresa,dispatch]);
+  }, [idempresa, dispatch]);
 
   console.log('state.idemp. :', state.idemp);
   console.log('state.nmfant :', state.nmfant);
 
   return (
-    <Sl.ContainerSel>
-      <Sl.ContainerSelFlex>
-        <select
-          name="empresa"
-          size={1}
-          value={0}
-          defaultValue={idempresa}
-          onChange={(e) => handlerSelect(parseInt(e.target.value))}
-        >
-          <option value={'0'}>Opções : </option>
-          {ListEmpresas.map((item,index) => (
-            <option key={index} value={item.id}>{item.fant}</option>
-          ))}
-        </select>
-      </Sl.ContainerSelFlex>
-    </Sl.ContainerSel>
+    <ContentMainSelectPage>
+      <select
+        name="empresa"
+        size={1}
+        value={0}
+        defaultValue={idempresa}
+        onChange={(e) => handlerSelect(e.target.value)}
+      >
+        <option value={-1}>Opções : </option>
+        {ListEmpresas.map((item, index) => (
+          <option key={index} value={item.id}>
+            {item.fant}
+          </option>
+        ))}
+      </select>
+
+      <ul>
+        {ListEmpresas.map((emp) => (
+          <li key={emp.id}>{emp.id}</li>
+        ))}
+      </ul>
+    </ContentMainSelectPage>
   );
 };
