@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { ListEmpresas } from '../../books/ListEmps';
 import {
   AcessoUseForm,
   AcessoUseActions
@@ -13,20 +12,26 @@ export const SelectEmpresa = () => {
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
 
-  const handlerSelect = (e: string) => {
-    setIdEmpresa(parseInt(e));
+  const handlerSelect = (e: number) => {
+    setIdEmpresa(e);
+    if (e > 0) {
+      if (e === 1) {
+        setFantEmpresa('JR-Bordados.');
+      } else {
+        setFantEmpresa('RB-Serviços.');
+      }
+    } else {
+      setFantEmpresa('');
+    }
 
     console.log('IdEmpresa.. : ', idempresa);
+    console.log('fantempresa : ', fantempresa);
   };
 
   React.useEffect(() => {
-    if (idempresa < 0) {
-      setFantEmpresa('');
-    } else {
-      dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
-      dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
-    }
-  }, [idempresa, dispatch]);
+    dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
+    dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
+  }, [dispatch]);
 
   console.log('state.idemp. :', state.idemp);
   console.log('state.nmfant :', state.nmfant);
@@ -35,24 +40,13 @@ export const SelectEmpresa = () => {
     <ContentMainSelectPage>
       <select
         name="empresa"
-        size={1}
-        value={0}
         defaultValue={idempresa}
-        onChange={(e) => handlerSelect(e.target.value)}
+        onChange={(e) => handlerSelect(parseInt(e.target.value))}
       >
-        <option value={-1}>Opções : </option>
-        {ListEmpresas.map((item, index) => (
-          <option key={index} value={item.id}>
-            {item.fant}
-          </option>
-        ))}
+        <option value={'0'}>Opções : </option>
+        <option value={'1'}>JR-Bordados.</option>
+        <option value={'2'}>RB-Serviços.</option>
       </select>
-
-      <ul>
-        {ListEmpresas.map((emp) => (
-          <li key={emp.id}>{emp.id}</li>
-        ))}
-      </ul>
     </ContentMainSelectPage>
   );
 };

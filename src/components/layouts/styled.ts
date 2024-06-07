@@ -1,6 +1,7 @@
+import semimg from '../../assets/svgs/semimg.svg';
+
 import styled from "styled-components";
 
-import semimg from '../../assets/svgs/semimg.svg';
 ////////////////////////////////
 /////////// maim header ////////////
 export const ContainerPg = styled.div`
@@ -126,8 +127,10 @@ export const ContainerImgSys = styled.div`
   align-items: center;
   align-content: center;
 `;
-
-export const ButtonPagesImgSys = styled.button<{ img?: string }>`
+type TypeButtonPagesImgSys = {
+  img?: string;
+}
+export const ButtonPagesImgSys = styled.button<TypeButtonPagesImgSys>`
   border: none;
   margin: 2px 2px 2px 2px;
   color: white;
@@ -135,10 +138,6 @@ export const ButtonPagesImgSys = styled.button<{ img?: string }>`
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
   background-color: transparent;
-  background-image: url(${({ img }) => img || semimg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   cursor: pointer;
   outline: none;
   width: 140px; /*150px;*/
@@ -147,6 +146,10 @@ export const ButtonPagesImgSys = styled.button<{ img?: string }>`
   flex-flow: nowrap;
   justify-content: center;
   align-items: center;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const ContainerTitleHeader = styled.div`

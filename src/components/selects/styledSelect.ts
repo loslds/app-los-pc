@@ -3,8 +3,8 @@ import semimg from '../../assets/svgs/semimg.svg';
 
 export const ContainerSel = styled.div`
   border: none;
-  padding: 0px auto;
-  margin: 0px auto;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   max-width: 100%;
   display: flex;
   min-height: 50px;
@@ -12,9 +12,9 @@ export const ContainerSel = styled.div`
 `;
 
 export const ContainerSelFlex = styled.div`
-  border: 2px dotted #25ff20;
-  padding: 0px auto;
-  margin: 0px auto;
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   min-height: 50px;
   width: 100%;
   display: flex;
@@ -28,8 +28,8 @@ export const ContainerSelFlex = styled.div`
 `;
 
 export const BarColLeft = styled.div`
-  padding: 4px auto;
-  margin: 4px auto;
+  padding: 4px 4px 4px 4px;
+  margin: 4px 4px 4px 4px;
   min-width: 49%;
   flex-flow: row wrap;
   justify-content: center;
@@ -37,9 +37,9 @@ export const BarColLeft = styled.div`
   align-content: center;
 `
 export const BarColHidth = styled.div`
-  /* border: 1px #ff0000 solid; */
-  padding: 4px auto;
-  margin: 4px auto;
+  border: none;
+  padding: 4px 4px 4px 4px;
+  margin: 4px 4px 4px 4px; 
   min-width: 40%;
   display: flex;
   flex-flow: row wrap;
@@ -48,7 +48,7 @@ export const BarColHidth = styled.div`
   align-content: center;
 `
 export const ImagesContainer = styled.div`
-  /* border: 2px black solid; */
+  border: none;
   display: flex;
   flex-flow: 'row nowrap';
   justify-content: space-around;
@@ -56,7 +56,7 @@ export const ImagesContainer = styled.div`
   align-items: center;
 `
 export const ConteinerItemLink = styled.div`
-  /* border: 1px blue solid; */
+  border: none;
   margin: 0px 4px 0px 4px;
   padding: 0px 4px 0px 4px;
   display: inline-flex;
@@ -66,9 +66,9 @@ export const ConteinerItemLink = styled.div`
   font-size: 20px;
 `
 export const MainContainer = styled.div`
-  border: 1px #40f708 solid;
-  padding: 0;
-  margin: 0;
+  border: 1px solid #40f708;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   min-height: 100%;
   width: 100%;
   display: flex;
@@ -76,9 +76,9 @@ export const MainContainer = styled.div`
   justify-content: center;
 `
 export const BtnBarMain = styled.button<{img:string;}>`
-  /* border: 1px blue solid; */
-  padding: 0px;
-  margin: 0 4px;
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 4px 2px 4px;
   align-items: center;
   align-content: center;
   justify-content: center center;
@@ -93,9 +93,9 @@ export const BtnBarMain = styled.button<{img:string;}>`
 `
 export const ImagemButton = styled.button<{img:string;}>`
   /* border: 1px blue solid; */
-  border: 1px transparent;
-  margin: 0 4px;
-  padding: 0;
+  border: none;
+  margin: 4px 4px 4px 4px;
+  padding: 0px 0px 0px 0px;
   display: block;
   width: 40px;
   height: 40px;
@@ -108,8 +108,9 @@ export const ImagemButton = styled.button<{img:string;}>`
   outline: none;
 `
 export const ConteinerFixButton = styled.div`
-  /* border: 2px #000000 dotted; */
-  margin: 0 auto;
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   min-width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -118,13 +119,14 @@ export const ConteinerFixButton = styled.div`
   align-items: center;
   div {
     display: block;
-    padding: 0 8px 0 8px;
+    padding: 0px 8px 0px 8px;
     width: 33.333%;
   }
 `
 export const ImagemLeftButtomLabel = styled.button<{img:string;}>`
   padding-left: 44px;
-  margin: 0 auto;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   height: 40px;
   width: 100%;
   border-radius: 5px;
@@ -141,22 +143,22 @@ export const ImagemLeftButtomLabel = styled.button<{img:string;}>`
   font-family: 'Stencil';
 `
 export const ImgSys = styled.img`
+  padding: 0px 4px 0px 4px;
+  margin: 2px 2px 2px 2px;
   max-height: 50px;
-  padding: 0 4 0 4;
-  margin: 2 auto;
   display: block;
 `
 export const ImgEmp = styled.img`
+  padding: 0px 4px 0px 4px;
+  margin: 2px 2px 2px 2px;
   max-height: 50px;
-  padding: 0 4 0 4;
-  margin: 2 auto;
   display: block;
 `
 export const MenuBarFlex = styled.div`
   border: 1px #f80606 dotted;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   width: 900px;
-  padding: 0 auto;
-  margin: 0 auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -175,7 +177,7 @@ export const ButtonCallModal = styled.button`
   border: 2px white solid; 
   border-radius: 5px;
   margin: 0px 10px 0px 10px;
-  padding: 2px auto;
+  padding: 2px 2px 2px 2px;
   min-height: 40px;
   display: flex;
   flex-flow: row wrap;

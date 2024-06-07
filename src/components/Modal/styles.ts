@@ -175,7 +175,7 @@ export const ContainerModalImg = styled.div<ContainerModalImgType>`
   align-content: center;
   align-items: center;
   background-color: transparent;
-  background-image: url(${({ img }) => img || semimg});
+  background-image: url(${ (  { img } ) => img || semimg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

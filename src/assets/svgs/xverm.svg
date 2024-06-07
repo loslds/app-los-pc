@@ -20,7 +20,7 @@ viewBox="0 0 27.32 27.32"
   <metadata id="CorelCorpID_0Corel-Layer"/>
   <rect class="fil0 str0" x="1.52" y="1.7" width="24.29" height="23.92" rx="1.52" ry="1.52"/>
   <g style="clip-path:url(#id0)">
-   <image id="closeverm.png" x="0" y="0" width="27.32" height="27.32" xlink:href="xverm_Images\xverm_ImgID1.png"/>
+   <image id="closeverm.png" x="0" y="0" width="27.32" height="27.32" />
   </g>
  </g>
 </svg>

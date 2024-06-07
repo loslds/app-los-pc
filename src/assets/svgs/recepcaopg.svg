@@ -978,7 +978,7 @@ viewBox="0 0 11.08 6.01"
     <path id="_1_225" class="fil1" d="M2.88 2.33l-2.07 0 0 -0.01 2.07 0 0.01 0 -0.01 0zm0.01 -0l0 0 -0.01 0 0.01 -0zm0 -1.8l0 1.8 -0.01 0 0 -1.8 0.01 -0 0.01 0zm-0.01 -0l0.01 0 0 0 -0.01 -0zm-2.07 0l2.07 0 0 0.01 -2.07 0 -0.01 -0 0.01 -0zm-0.01 0l0 -0 0.01 0 -0.01 0zm0 1.8l0 -1.8 0.01 0 0 1.8 -0.01 0 -0.01 -0zm0.01 0l-0.01 0 0 -0 0.01 0z"/>
    </g>
    <g style="clip-path:url(#id0)">
-    <image id="jrbordados.png" x="0.81" y="0.64" width="2.08" height="1.56" xlink:href="recepcaopg_Images\recepcaopg_ImgID1.png"/>
+    <image id="jrbordados.png" x="0.81" y="0.64" width="2.08" height="1.56" />
    </g>
    <g>
     <g>
