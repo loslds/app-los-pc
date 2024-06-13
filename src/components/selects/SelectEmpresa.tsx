@@ -4,7 +4,7 @@ import {
   AcessoUseForm,
   AcessoUseActions
 } from '../contexts/login/ContextAcesso';
-import { ContentMainSelectPage } from './ContentMaimSelectPage';
+import { ContentMainSelectPage } from './ContentMainSelectPage';
 
 export const SelectEmpresa = () => {
   const { state, dispatch } = AcessoUseForm();
@@ -23,18 +23,12 @@ export const SelectEmpresa = () => {
     } else {
       setFantEmpresa('');
     }
-
-    console.log('IdEmpresa.. : ', idempresa);
-    console.log('fantempresa : ', fantempresa);
   };
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
     dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
   }, [dispatch]);
-
-  console.log('state.idemp. :', state.idemp);
-  console.log('state.nmfant :', state.nmfant);
 
   return (
     <ContentMainSelectPage>

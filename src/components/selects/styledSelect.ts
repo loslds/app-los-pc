@@ -12,7 +12,7 @@ export const ContainerSel = styled.div`
 `;
 
 export const ContainerSelFlex = styled.div`
-  border: none;
+  border: 1px red solid;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-height: 50px;

@@ -152,6 +152,85 @@ export const ContainerCardPageTitle = styled.div`
   align-content: center;
 `;
 
+export const ContainerCardPagePanelTitle = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  background-color: transparent;
+  min-height: 25px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+
+type TypeContainerTextoBgPanelYellow = {
+  isbgcolor?: boolean;
+}
+export const ContainerTextoBgPanelYellow = styled.div<TypeContainerTextoBgPanelYellow>`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  min-height: 40px;
+  width: 100%;
+  overflow-y: auto;
+  display: flex row;
+  flex-wrap: wrap;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  background: ${props => (props.isbgcolor ? '#fffee8' : 'tranparent')};
+  color: #000000;
+  font-size: 18px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-style: normal;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 2px 2px 2px 10px;
+    padding: 2px 2px 2px 2px;
+    text-decoration-color: #727272;
+  }
+  h1 {
+    text-decoration: 3px underline;
+  }
+  h2 {
+    text-decoration: 2px underline;
+  }
+  h3 {
+    text-decoration: 1.5px underline;
+  }
+  h4 {
+    text-decoration: 1px underline;
+  }
+  h5 {
+    text-decoration: 1px underline;
+  }
+  label,
+  p {
+    margin: 2px 2px 2px 10px;
+    padding: 2px 2px 2px 2px;
+    font-size: 14px;
+  }
+  label {
+    color: #556aff;
+    span {
+      margin: 0px 2px 0px 10px;
+      font-weight: bold;
+      color: #000000;
+    }
+  }
+  li {
+    list-style-type: none;
+    margin-left: 15px;
+  }
+`;
+
 type TypeContainerCollunsCenterPage = {
   pheight? : string;
   pwidth? : string;

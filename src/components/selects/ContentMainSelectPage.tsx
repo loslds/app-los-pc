@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import * as Sl from './styledSelect';
 
 type TypeContentMainSelectPage = {
-  children?: ReactNode;
+  children?: ReactNode  | JSX.Element;
 };
 export const ContentMainSelectPage = ({
   children

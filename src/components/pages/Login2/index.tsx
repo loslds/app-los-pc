@@ -67,165 +67,142 @@ export const Login2 = () => {
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
-  const [formopcao, setFormOpcao] = React.useState(false);
   const [iseditar, setIsEditar] = React.useState(false);
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [ischeklogin, setIsChekLogin] = React.useState(false);
-  const [tentativa, setTentativa] = React.useState(state.nrcont);
 
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
-  const [btnenviar, setBtnEnviar] = React.useState(false);
+  //const [btnenviar, setBtnEnviar] = React.useState(false);
   const [btnresgatar, setBtnResgatar] = React.useState(false);
   const [iserrologin, setIsErroLogin] = React.useState(false);
   const [nmrerrologin, setNmErroLogin] = React.useState('');
+  const [statemodulo, setStateModulo] = React.useState(state.modulo);
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login2' });
-    if (tentativa != state.nrcont) {
-      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    } else {
-      setTentativa(state.nrcont);
-    }
-
-    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+    setStateModulo(state.modulo);
     dispatch({
       type: AcessoUseActions.setModulo,
-      payload: 'Login : Selecionar Opção Edição.'
+      payload: 'Login : Edição - ' + statemodulo
     });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: state.nmlogin });
+
+    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
     dispatch({ type: AcessoUseActions.setLogado, payload: false });
-    //    setTentativa(state.nrcont);
     setStart(true);
-    setFormOpcao(true);
-    setIsEditar(true);
     setIsChekLogin(false);
     setBtnContinua(true);
-    setBtnResgatar(false)
-    
-  }, [tentativa, formopcao, dispatch]);
+    if (state.nrcont >= 4) {
+      setIsEditar(false);
+      setBtnResgatar(true);
+    } else {
+      setIsEditar(true);
+      setBtnResgatar(false);
+    }
+  }, [dispatch]);
 
-  const handlerOnChangerStrId = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setStrId(e.currentTarget.value);
-      dispatch({
-        type: AcessoUseActions.setIdNmUser,
-        payload: e.currentTarget.value
-      });
-    },
-    [dispatch]
-  );
-  const spanChangeKeyUpPasId = React.useCallback(() => {
-    if (strid === '') {
-      setBtnContinua(true);
-      setIsChekLogin(false);
-    }
-    if (strid !== '' && strpsw !== '') {
-      setBtnEnviar(true);
-      setBtnContinua(false);
-      setIsChekLogin(true);
-    } else {
-      setBtnContinua(true);
-      setIsChekLogin(false);
-    }
-  }, [strid, strpsw]);
-  const handlerOnChangerStrPsw = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setStrPsw(e.currentTarget.value);
-      dispatch({
-        type: AcessoUseActions.setPswUser,
-        payload: e.currentTarget.value
-      });
-    },
-    [dispatch]
-  );
-  const spanChangeKeyUpPasPsw = React.useCallback(() => {
-    if (strpsw === '') {
-      setBtnContinua(true);
-      setIsChekLogin(false);
-    }
-    if (strid !== '' && strpsw !== '') {
-      setBtnEnviar(true);
-      setBtnContinua(false);
-      setIsChekLogin(true);
-    } else {
-      setBtnContinua(true);
-      setIsChekLogin(false);
-    }
-  }, [strid, strpsw]);
+  // const handlerOnChangerStrId = React.useCallback(
+  //   (e: React.ChangeEvent<HTMLInputElement>) => {
+  //     if (iseditar){  
+  //       setStrId(e.currentTarget.value);
+  //     }
+  //   },[iseditar]
+  // );
+
+  // const spanChangeKeyUpPasId = React.useCallback(() => {
+  //   if (state.nrcont >= 4) {
+  //     setIsEditar(false);
+  //     setBtnContinua(false);
+  //     setBtnResgatar(true);
+  //   } else {
+  //     if (strid === '') {
+  //       setBtnContinua(true);
+  //       setIsChekLogin(false);
+  //     }
+  //     if (strid !== '' && strpsw !== '') {
+  //       setBtnContinua(false);
+  //       setIsChekLogin(true);
+  //     } else {
+  //       setBtnContinua(true);
+  //       setIsChekLogin(false);
+  //     }
+  //   }
+  // }, [strid, strpsw]);
+
+  // const handlerOnChangerStrPsw = React.useCallback(
+  //   (e: React.ChangeEvent<HTMLInputElement>) => {
+  //     if (iseditar){  
+  //       setStrPsw(e.currentTarget.value);
+  //     }
+  //   },[iseditar]
+  // );
+
+  // const spanChangeKeyUpPasPsw = React.useCallback(() => {
+  //   if (state.nrcont >= 4) {
+  //     setIsEditar(false);
+  //     setBtnContinua(false);
+  //     setBtnResgatar(true);
+  //   } else {
+  //     if (strpsw === '') {
+  //       setBtnContinua(true);
+  //       setIsChekLogin(false);
+  //     }
+  //     if (strid !== '' && strpsw !== '') {
+  //       setBtnContinua(false);
+  //       setIsChekLogin(true);
+  //     } else {
+  //       setBtnContinua(true);
+  //       setIsChekLogin(false);
+  //     }
+  //   }
+  // }, [strid, strpsw]);
 
   const handlerContinuar = React.useCallback(() => {
     setNmErroLogin('');
-    if (!ischeklogin || nmrerrologin !== '') {
+    if (!ischeklogin) {
       if (strid === '' && strpsw === '') {
         if (state.mdlogin === 1) {
-          setNmErroLogin('Determine seu Email e sua Senha para Acesso...');
+          setNmErroLogin('Determine: Email e Senha para Acesso...');
         } else if (state.mdlogin === 2) {
-          setNmErroLogin('Determine seu Email e seu PIN para Acesso...');
+          setNmErroLogin('Determine: Email e PIN para Acesso...');
         } else if (state.mdlogin === 3) {
-          setNmErroLogin('Determine seu Nome e sua Senha para Acesso...');
+          setNmErroLogin('Determine: Pseudônimo e Senha para Acesso...');
         } else if (state.mdlogin === 4) {
-          setNmErroLogin('Determine seu Nome e seu PIN para Acesso...');
-        }
-      } else {
-        setTentativa(tentativa + 1);
-        if (strid === '') {
+          setNmErroLogin('Determine: Pseudônimo e PIN para Acesso...');
+        } else if (strid === '') {
           if (state.mdlogin === 1 || state.mdlogin === 2) {
-            setNmErroLogin('Determine seu Email para Acesso...');
+            setNmErroLogin('Determine: Email para Acesso...');
           } else if (state.mdlogin === 3 || state.mdlogin === 4) {
-            setNmErroLogin('Determine seu Nome para Acesso...');
+            setNmErroLogin('Determine: Pseudônimo para Acesso...');
           }
         } else if (strpsw === '') {
           if (state.mdlogin === 1 || state.mdlogin === 3) {
-            setNmErroLogin('Determine sua Senha para Acesso...');
+            setNmErroLogin('Determine: Senha para Acesso...');
           } else if (state.mdlogin === 2 || state.mdlogin === 4) {
-            setNmErroLogin('Determine seu PIN para Acesso...');
+            setNmErroLogin('Determine: PIN para Acesso...');
           }
         }
+        setIsErroLogin(true);
       }
-    } else {
-      setTentativa(tentativa + 1);
     }
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-  }, [strid, strpsw, tentativa, dispatch]);
+
+  }, [state.mdlogin]);
 
   React.useEffect(() => {
-    if (ischeklogin) {
-      setIsEditar(true);
-      setBtnEnviar(true);
+    if (state.nrcont >= 4) {
+      setIsEditar(false);
+      setBtnContinua(false);
+      setBtnResgatar(true);
     } else {
-      if (nmrerrologin !== '') {
-        setIsErroLogin(true);
-        if (tentativa === 3) {
-          setIsEditar(false);
-          setBtnContinua(false);
-          setBtnEnviar(false);
-          setBtnResgatar(true);
-        } else {
-          setIsEditar(true);
-          setBtnContinua(true);
-          setBtnEnviar(false);
-          setBtnResgatar(false);
-        }
-      }
+      setIsEditar(true);
+      setBtnContinua(true);
+      setBtnResgatar(false);
     }
-
-    // if (!ischeklogin && nmrerrologin !== '') {
-    //   if (tentativa >= 3) {
-    //     setIsEditar(false);
-    //     setBtnContinua(false);
-    //     setBtnEnviar(false);
-    //     setIsErroLogin(false);
-    //     setBtnResgatar(true);
-    //   } else {
-    //     setIsErroLogin(true);
-    //   }
-    // } else if (ischeklogin) {
-    // }
-
-    dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-  }, [tentativa, dispatch]);
+    dispatch({type: AcessoUseActions.setIdNmUser, payload: strid });
+    dispatch({type: AcessoUseActions.setPswUser, payload: strpsw });
+  }, [state.nrcont, nmrerrologin, dispatch]);
 
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
@@ -251,6 +228,16 @@ export const Login2 = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
+        <div>
+          <label>State idemp...: {state.idemp}</label>
+          <label>State nmfant..: {state.nmfant}</label>
+          <label>State mdlogin.: {state.mdlogin}</label>
+          <label>State nmlogin.: {state.nmlogin}</label>
+          <label>Const strid...: {strid}</label>
+          <label>State idnmuser: {state.idnmuser}</label>
+          <label>Const strpsw..: {strpsw}</label>
+          <label>State pswuser.: {state.pswuser}</label>
+        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
@@ -262,7 +249,7 @@ export const Login2 = () => {
                   <h4>{state.aplicacao}</h4>
                 </ContentCardPageTitle>
                 <ContentCardCollunsCenterPage
-                  openccp={formopcao}
+                  openccp={iseditar}
                   pwidth={'180px'}
                 >
                   <ContentInputMainPage>
@@ -276,8 +263,8 @@ export const Login2 = () => {
                           value={strid}
                           size={25}
                           autoFocus={true}
-                          onChange={handlerOnChangerStrId}
-                          onKeyUp={spanChangeKeyUpPasId}
+                          onChange={(e) => setStrId(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasId}
                         />
                         <br />
                         <label>Senha: </label>
@@ -286,8 +273,8 @@ export const Login2 = () => {
                           name="pass1"
                           maxLength={10}
                           value={strpsw}
-                          onChange={handlerOnChangerStrPsw}
-                          onKeyUp={spanChangeKeyUpPasPsw}
+                          onChange={(e) => setStrPsw(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasPsw}
                         />
                         <br />
                       </form>
@@ -302,8 +289,8 @@ export const Login2 = () => {
                           value={strid}
                           size={25}
                           autoFocus={true}
-                          onChange={handlerOnChangerStrId}
-                          onKeyUp={spanChangeKeyUpPasId}
+                          onChange={(e) => setStrId(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasId}
                         />
                         <br />
                         <label>PIN....:</label>
@@ -312,8 +299,8 @@ export const Login2 = () => {
                           name="pin1"
                           value={strpsw}
                           maxLength={10}
-                          onChange={handlerOnChangerStrPsw}
-                          onKeyUp={spanChangeKeyUpPasPsw}
+                          onChange={(e) => setStrPsw(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasPsw}
                         />
                         <br />
                       </form>
@@ -328,8 +315,8 @@ export const Login2 = () => {
                           value={strid}
                           size={25}
                           autoFocus={true}
-                          onChange={handlerOnChangerStrId}
-                          onKeyUp={spanChangeKeyUpPasId}
+                          onChange={(e) => setStrId(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasId}
                         />
                         <br />
                         <label>Senha:</label>
@@ -338,8 +325,8 @@ export const Login2 = () => {
                           name="pass2"
                           value={strpsw}
                           maxLength={10}
-                          onChange={handlerOnChangerStrPsw}
-                          onKeyUp={spanChangeKeyUpPasPsw}
+                          onChange={(e) => setStrPsw(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasPsw}
                         />
                         <br />
                       </form>
@@ -354,8 +341,8 @@ export const Login2 = () => {
                           value={strid}
                           size={25}
                           autoFocus={true}
-                          onChange={handlerOnChangerStrId}
-                          onKeyUp={spanChangeKeyUpPasId}
+                          onChange={(e) => setStrId(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasId}
                         />
                         <br />
                         <label>PIN.....:</label>
@@ -364,8 +351,8 @@ export const Login2 = () => {
                           name="pin2"
                           value={strpsw}
                           maxLength={10}
-                          onChange={handlerOnChangerStrPsw}
-                          onKeyUp={spanChangeKeyUpPasPsw}
+                          onChange={(e) => setStrPsw(e.currentTarget.value)}
+                          // onKeyUp={spanChangeKeyUpPasPsw}
                         />
                         <br />
                       </form>
@@ -377,13 +364,12 @@ export const Login2 = () => {
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
 
-          <ContentBoxMainPage>
+          {/* <ContentBoxMainPage>
             <h4>ContentBoxMainPage</h4>
-          </ContentBoxMainPage>
-
-
+          </ContentBoxMainPage> */}
 
           <ContentSidePagePanelBotton open={start} pwidth="100%">
+
             <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
@@ -392,22 +378,8 @@ export const Login2 = () => {
                 onclick={goto('/login1')}
               />
             </ContentSidePageBottonLabel>
-            
-            <ContentBoxLabelPage label={'Tentativa ['+state.nrcont+']'} />
 
-            {btnenviar && ischeklogin ? (
-              <ContentSidePageBottonLabel
-                istitl={btnenviar}
-                title={'Enviar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setadir}
-                  titbtn={'Enviar...'}
-                  onclick={goto('/login3')}
-                />
-              </ContentSidePageBottonLabel>
-            ) : null}
+            <ContentBoxLabelPage label={'Tentativa [' + state.nrcont + ']'} />
 
             {btnresgatar ? (
               <ContentSidePageBottonLabel
@@ -418,11 +390,11 @@ export const Login2 = () => {
                   pxheight={'40px'}
                   img={setadir}
                   titbtn={'Resgatar...'}
-                  onclick={goto('/login4')}
+                  onclick={goto('/login')}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
-  
+
             {btncontinua ? (
               <ContentSidePageBottonLabel
                 istitl={btncontinua}
@@ -436,9 +408,8 @@ export const Login2 = () => {
                 />
               </ContentSidePageBottonLabel>
             ) : null}
-
           </ContentSidePagePanelBotton>
-          
+
           {iserrologin ? (
             <PanelModalInfoErros
               ptop={'1%'}

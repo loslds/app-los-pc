@@ -129,15 +129,6 @@ export const ContentTextoModulos = styled.div`
   font-style: normal;
 `;
 
-
-  // min-height: auto;
-  // display: flex row;
-  // flex-wrap: wrap;
-  // flex-direction: center;
-  // justify-content: center;
-  // align-items: center;
-  // background-color: transparent;
-  // font-size: 12px;
 ///////////////////////////////////////////////////
 export const ContainerModalTexto = styled.div`
   border: 0px;

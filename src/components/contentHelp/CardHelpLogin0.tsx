@@ -35,7 +35,7 @@ export const CardHelpLogin0 = ({
 
         <h3>Help Página do Acesso a Empresa.</h3>
         <p>
-          &emsp; - Para que possa logar é necessário que selecione uma Opção.
+          &emsp; - Para que possa logar, é necessário que selecione uma Opção.
         </p>
         <p>
           &emsp; - No momento você prescisa somente optar em selecionar uma

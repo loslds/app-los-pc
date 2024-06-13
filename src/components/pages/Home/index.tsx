@@ -68,10 +68,13 @@ export const Home = () => {
 
       dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
       dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+
       dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
       dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+
       dispatch({ type: AcessoUseActions.setModulo, payload: '' });
       dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
+
       dispatch({ type: AcessoUseActions.setLogado, payload: false });
       dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
       dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
@@ -308,7 +311,7 @@ export const Home = () => {
               titulo={'Help Conteúdo do Sistema.'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHomeSys imgcard={jrjr}/>
+              <CardHomeSys imgcard={jrjr} />
             </PageModal>
           ) : null}
 

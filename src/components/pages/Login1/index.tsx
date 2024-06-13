@@ -30,7 +30,6 @@ import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-
 export const Login1 = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -50,12 +49,11 @@ export const Login1 = () => {
     };
   };
 
-
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
-  const {state, dispatch } = AcessoUseForm();
+  const { state, dispatch } = AcessoUseForm();
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções:');
   const [btncontinua, setBtnContinua] = React.useState(false);
@@ -70,25 +68,20 @@ export const Login1 = () => {
       payload: 'Login : Opções Acesso'
     });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
-    if (state.nrcont > 0) {
-      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-    } else {
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+    if (state.nrcont >= 4) {
       setTentativa(state.nrcont);
-    }
-    if(state.nrcont === 4){
       setBtnResgatar(true);
+    } else {
+      if (state.nrcont > 0) {
+        setTentativa(state.nrcont);
+        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+      } else {
+        dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
+      }
     }
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
-    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
-    dispatch({ type: AcessoUseActions.setLogado, payload: false });
-    dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
-    dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
-    dispatch({ type: AcessoUseActions.setTmp, payload: '' });
-  }, [dispatch]);
+  }, [state.nrcont, dispatch]);
 
   const DescrOpc = [
     'Opções:',
@@ -101,11 +94,10 @@ export const Login1 = () => {
   React.useEffect(() => {
     setNmLogin(DescrOpc[mdlogin]);
     setStart(true);
-
     if (mdlogin === 0) {
       setBtnContinua(false);
     } else {
-      if (tentativa <= 3) {
+      if (tentativa >= 3) {
         setBtnResgatar(true);
         setBtnContinua(false);
       } else {
@@ -142,6 +134,14 @@ export const Login1 = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
+        <div>
+          <label>State idemp...: {state.idemp}</label>
+          <label>State nmfant..: {state.nmfant}</label>
+          <label>Const mdlogin.: {mdlogin}</label>
+          <label>State mdlogin.: {state.mdlogin}</label>
+          <label>Const nmlogin.: {nmlogin}</label>
+          <label>State nmlogin.: {state.nmlogin}</label>
+        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
@@ -152,6 +152,7 @@ export const Login1 = () => {
               <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
+
               <ContentInputPage>
                 <select
                   name="opcão"
@@ -168,8 +169,10 @@ export const Login1 = () => {
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
           <Lg.DivisionPgHztalPage />
+
           <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
-            <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+
+          <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
                 img={setaesq}
@@ -177,10 +180,12 @@ export const Login1 = () => {
                 onclick={goto('/login')}
               />
             </ContentSidePageBottonLabel>
+
             <Lg.ContainerBoxLabelPage>
               <label>[ {3 - state.nrcont} ] tentativas. </label>
             </Lg.ContainerBoxLabelPage>
-            {btncontinua && mdlogin > 0 && mdlogin <= 3 ? (
+            
+            {btncontinua ? (
               <ContentSidePageBottonLabel
                 istitl={btncontinua}
                 title={'Continuar.: '}
@@ -193,10 +198,11 @@ export const Login1 = () => {
                 />
               </ContentSidePageBottonLabel>
             ) : null}
+
             {btnresgatar ? (
               <ContentSidePageBottonLabel
                 istitl={btnresgatar}
-                title={'Resgatar.: '}
+                title={'Resgatar...: '}
               >
                 <ContentSidePageBottonButton
                   pxheight={'40px'}
@@ -205,7 +211,8 @@ export const Login1 = () => {
                   onclick={goto('/login4')}
                 />
               </ContentSidePageBottonLabel>
-            ) : null}
+            ) : null}            
+            
           </ContentSidePagePanelBotton>
 
           {helppg ? (
@@ -246,3 +253,14 @@ export const Login1 = () => {
     </ThemeProvider>
   );
 };
+
+// dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
+// dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+// dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+// dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+// dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+// dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+// dispatch({ type: AcessoUseActions.setLogado, payload: false });
+// dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
+// dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
+// dispatch({ type: AcessoUseActions.setTmp, payload: '' });
