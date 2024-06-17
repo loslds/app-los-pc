@@ -29,6 +29,7 @@ import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage';
 
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
+import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 
 import { ContentCustonText } from '../ContentCustonText.tsx';
 import { CardImgMsg } from '../../contentHelp/CardImgMsg.tsx';
@@ -132,7 +133,7 @@ export const Login3 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/login3' });
-    dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
+    //    dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
     dispatch({
       type: AcessoUseActions.setAplicacao,
       payload: 'Acessando Sistena'
@@ -150,26 +151,27 @@ export const Login3 = () => {
 
   const handlerEnviar = React.useCallback(() => {
     setTtModulo('Logar : "CONEXÃO" com REDE.');
-    setIsHelpPg(true);
+    setIsHelpPg(false);
     setIsView(false);
     setIsEnviar(false);
     setIsConexao(true);
     setIsFindAcces(false);
     setIsLogin(false);
     setIsAcesso(false);
-    if (tentativa >= 4) {
-      setIsResgatar(true);
-    } else {
+    if (tentativa <= 3) {
       setIsResgatar(false);
+    } else {
+      setIsResgatar(true);
     }
   }, []);
 
   const handlerConexao = React.useCallback(() => {
+    setIsHelpPg(false);
     setIsConexao(false);
     setIsFindAcces(true);
     setIsAcesso(false);
     //acessa conexão
-    let rtncon = true;
+    let rtncon = false;
 
     if (!rtncon) {
       setTentativa(tentativa + 1);
@@ -180,21 +182,22 @@ export const Login3 = () => {
       setIsErroMsg(true);
       setIsConectedoff(true);
       setIsFindAcces(false);
-      if (tentativa >= 4) {
+      if (tentativa <= 3) {
+        setIsResgatar(false);
+      } else {
         setIsEnviar(false);
         setIsResgatar(true);
-      } else {
-        setIsResgatar(false);
       }
     }
   }, []);
 
   const handlerFindAcess = React.useCallback(() => {
+    setIsHelpPg(false);
     setIsFindAcces(false);
     setIsLogin(true);
     setIsAcesso(false);
     //acessa banco de dados
-    let rtndata = true;
+    let rtndata = false;
 
     if (!rtndata) {
       setTentativa(tentativa + 1);
@@ -205,11 +208,11 @@ export const Login3 = () => {
       setIsErroMsg(true);
       setIsFindingoff(true);
       setIsLogin(false);
-      if (tentativa >= 4) {
+      if (tentativa <= 3) {
+        setIsResgatar(false);
+      } else {
         setIsEnviar(false);
         setIsResgatar(true);
-      } else {
-        setIsResgatar(false);
       }
     } else {
       setIsAcesso(false);
@@ -217,10 +220,11 @@ export const Login3 = () => {
   }, []);
 
   const handlerLogin = React.useCallback(() => {
+    setIsHelpPg(false);
     setIsLogin(false);
     setIsAcesso(false);
     //acessa dados
-    let rtndados = false;
+    let rtndados = true;
 
     if (!rtndados) {
       setTentativa(tentativa + 1);
@@ -230,18 +234,20 @@ export const Login3 = () => {
       setTxtP(
         'Não foi encontrado Dados durante a Pesquisa. Motivo: ID ou Senha "NÂO ENCONTRADA!"'
       );
+      setIsErroMsg(true);
       setIsLoggedoff(true);
       setIsAcesso(false);
-      if (tentativa >= 4) {
+      if (tentativa <= 3) {
+        setIsResgatar(false);
+      } else {
         setIsEnviar(false);
         setIsResgatar(true);
-      } else {
-        setIsResgatar(false);
       }
     } else {
       setIsAcesso(true);
     }
   }, []);
+  
 
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
@@ -250,13 +256,14 @@ export const Login3 = () => {
   const handlerOnPanel = React.useCallback(() => {
     setOnPanel((oldState) => !oldState);
   }, []);
-
+  
   React.useEffect(() => {
-    dispatch({ type: AcessoUseActions.setModulo, payload: ttmodulo });
-    dispatch({ type: AcessoUseActions.setLogado, payload: isacesso });
+    if (iserromsg){
+      setHelpPg(true);
+    }
     dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
-  }, [tentativa, isacesso, dispatch]);
-
+    dispatch({ type: AcessoUseActions.setLogado, payload: isacesso });
+  }, [iserromsg, tentativa, isacesso, dispatch]);
   return (
     <ThemeProvider theme={theme}>
       <ThemeLogin3
@@ -275,7 +282,7 @@ export const Login3 = () => {
       >
         <ContentCardPage pwidth="70%">
           <ContentCardPageTitle>
-            <h2>{state.modulo}</h2>
+            <h2>{ttmodulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
             <ContentCardCollunsCenterPage openccp={isview} pwidth="100%">
@@ -328,9 +335,7 @@ export const Login3 = () => {
                 </ContentDivMainRed>
               )}
             </ContentCardCollunsCenterPage>
-
             {/* // apos clicar em Enviar // */}
-
             <ContentCardCollunsCenterPage openccp={isconexao} pwidth="100%">
               <ContentDivMainBlue pxheigth="50px">
                 <ContentCustonText>
@@ -373,7 +378,6 @@ export const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
-
             {/* // apos clicar em handlerConexao e não obter uma conexão // */}
             <ContentCardCollunsCenterPage openccp={isconectedoff} pwidth="100%">
               <ContentDivMainOffRed pxheight="50px">
@@ -418,7 +422,6 @@ export const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
-
             {/* // apos retorno Conexao=> true verifica acesso a Database com handlerFindAcess // */}
             <ContentCardCollunsCenterPage openccp={isfindacces} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
@@ -462,7 +465,6 @@ export const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
-
             {/* // apos clicar em handlerFindAcess e não enconntrar DataBase // */}
             <ContentCardCollunsCenterPage openccp={isfindingoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
@@ -506,7 +508,6 @@ export const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
-
             {/* // apos retorno Database=> true libera handlerLogin busca a existencia dos dados login //*/}
             <ContentCardCollunsCenterPage openccp={islogin} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
@@ -551,7 +552,6 @@ export const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
             </ContentCardCollunsCenterPage>
-
             {/* // apos retorno Login false  // */}
             <ContentCardCollunsCenterPage openccp={isloggedoff} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
@@ -596,7 +596,6 @@ export const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
             </ContentCardCollunsCenterPage>
-
             {/* // apos retorno Login => true libera botão   // */}
             <ContentCardCollunsCenterPage openccp={isacesso} pwidth="100%">
               <ContentDivMainOnGreen pxheight="50px">
@@ -644,26 +643,32 @@ export const Login3 = () => {
           </ContentCardBoxMainPage>
           <Pg.DivisionPgHztalPage />
 
-          {isconectedoff || isfindingoff || (isloggedoff && iserromsg) ? (
-            <PageModal
-              ptop={'1%'}
-              pwidth={'30%'}
-              pheight={'37%'}
-              titulo={'Acesso Confirmação de Envio.'}
-              imgbm={close}
-              titbm={'Fechar...'}
-              onclose={() => setHelpPg(false)}
-            >
-              <CardImgMsg
-                img={imgmsg}
-                txtaga={txtaga}
-                txtlabel={txtlabel}
-                txtp={txtp}
+          {isresgatar ? (
+            <ContentSidePagePanelBotton open={start} pwidth="100%">
+              <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setaesq}
+                  titbtn={'Voltar...'}
+                  onclick={goto('/login')}
+                />
+              </ContentSidePageBottonLabel>
+              <ContentBoxLabelPage
+                label={'Tentativa [ ' + state.nrcont + 'ª ]'}
               />
-            </PageModal>
-          ) : null}
-
-          {state.nrcont <= 3 && !isresgatar ? (
+              <ContentSidePageBottonLabel
+                istitl={isresgatar}
+                title={'Resgatar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Resgatar...'}
+                  onclick={goto('/login4')}
+                />
+              </ContentSidePageBottonLabel>
+            </ContentSidePagePanelBotton>
+          ) : (
             <ContentSidePagePanelBotton open={start} pwidth="100%">
               <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
                 <ContentSidePageBottonButton
@@ -673,10 +678,9 @@ export const Login3 = () => {
                   onclick={goto('/login2')}
                 />
               </ContentSidePageBottonLabel>
-              <Pg.ContainerBoxLabelPage>
-                <label>[ {3 - state.nrcont} ] tentativas. </label>
-              </Pg.ContainerBoxLabelPage>
-
+              <ContentBoxLabelPage
+                label={'Tentativa [ ' + state.nrcont + 'ª ]'}
+              />
               {isacesso ? (
                 <ContentSidePageBottonLabel
                   istitl={isacesso}
@@ -690,7 +694,6 @@ export const Login3 = () => {
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
-
               {islogin ? (
                 <ContentSidePageBottonLabel istitl={islogin} title={'Logar : '}>
                   <ContentSidePageBottonButton
@@ -701,7 +704,6 @@ export const Login3 = () => {
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
-
               {isfindacces ? (
                 <ContentSidePageBottonLabel
                   istitl={isfindacces}
@@ -715,7 +717,6 @@ export const Login3 = () => {
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
-
               {isconexao ? (
                 <ContentSidePageBottonLabel
                   istitl={isconexao}
@@ -729,7 +730,6 @@ export const Login3 = () => {
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
-
               {isenviar ? (
                 <ContentSidePageBottonLabel
                   istitl={isenviar}
@@ -744,40 +744,32 @@ export const Login3 = () => {
                 </ContentSidePageBottonLabel>
               ) : null}
             </ContentSidePagePanelBotton>
-          ) : null}
+          )}
 
-          {isresgatar ? (
-            <ContentSidePagePanelBotton open={start} pwidth="100%">
-              <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setaesq}
-                  titbtn={'Voltar...'}
-                  onclick={goto('/login2')}
-                />
-              </ContentSidePageBottonLabel>
-              <Pg.ContainerBoxLabelPage>
-                <label>[ {3 - state.nrcont} ] tentativas. </label>
-              </Pg.ContainerBoxLabelPage>
-              <ContentSidePageBottonLabel
-                istitl={isresgatar}
-                title={'Resgatar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setadir}
-                  titbtn={'Resgatar...'}
-                  onclick={goto('/login4')}
-                />
-              </ContentSidePageBottonLabel>
-            </ContentSidePagePanelBotton>
+          {ishelppg? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'30%'}
+              pheight={'50%'}
+              titulo={'Acesso DataBase.'}
+              imgbm={close}
+              titbm={'Fechar...'}
+              onclose={() => setIsHelpPg(false)}
+            >
+              <CardImgMsg
+                img={imgmsg}
+                txtaga={txtaga}
+                txtlabel={txtlabel}
+                txtp={txtp}
+              />
+            </PageModal>
           ) : null}
 
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'40%'}
-              pheight={'48%'}
+              pwidth={'55%'}
+              pheight={'60%'}
               titulo={'Acesso Sistema.'}
               imgbm={close}
               titbm={'Fechar...'}

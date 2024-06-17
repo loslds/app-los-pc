@@ -2,6 +2,7 @@ import React from 'react';
 import * as MD from '../Modal/styles';
 
 import { CardModalTexto } from '../Modal/CardModalTexto';
+import { CardModalTextoModulos } from '../Modal/CardModalTextoModulos';
 import { PageModalHelp } from '../Modal/PageModalHelp';
 import { CardAcessoSistema } from './CardAcessoSistema';
 
@@ -21,12 +22,11 @@ export const CardHelpLogin3 = ({
   titbm,
   onclose
 }: TypeCardHelpLogin3) => {
-  
   const [helpsyspg, setHelpSysPg] = React.useState(false);
 
   return (
     <CardModalTexto>
-      <MD.ContentTextoModulos>
+      <CardModalTextoModulos>
         <MD.ContainerHeardModalMain>
           <MD.ContainerModalImg
             pminheight={'70px'}
@@ -36,12 +36,10 @@ export const CardHelpLogin3 = ({
             onClick={() => setHelpSysPg(true)}
           />
         </MD.ContainerHeardModalMain>
-
         <h3>Help Página do Acesso ao Sistema.</h3>
         <br />
-
         {!ishlp ? (
-          <div>
+          <MD.ContentTextoModulos>
             <p>
               &emsp; - Para prosseguir seu logo-on, apresentamos os Dados que
               irá Enviar.
@@ -55,25 +53,33 @@ export const CardHelpLogin3 = ({
               irá encontrar um Botão que poderá visualizar se esta correto a
               edição da mesma.
             </p>
+            <p>&emsp; - Tem somente (3)Treis oportunidade.</p>
             <p>
-              &emsp; - Tem somente (3)Treis oportunidade.Na (4)quatra, mostrara
-              um botão para acesso do RESGATE.
+              &emsp; - Caso não tenha certeza da edição, click em Voltar e
+              Reditar.
+            </p>
+            <p>
+              &emsp; - Caso tenha certeza que está correta , click em Enviar.
             </p>
             <br />
-            <p>&emsp; - Após estar ciênte é só dar um click para Enviar.</p>
             <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
             <label>Obs.:</label>
-            <p>&emsp; - Click na imagem para ver o Help da Aplicação.</p>
-            <br />
-          </div>
-        ) : (
-          <div>
             <p>
-              &emsp; - Apartir deste momento você acabade usar uma de suas
+              &emsp; - Toda vêz que Enviar e não conseguir acesso, a contagem
+              começa e por 3(treis) vezes.
+            </p>
+            <p>&emsp; - Consulte Help através das imagens na Aplicação.</p>
+            <br />
+          </MD.ContentTextoModulos>
+        ) : (
+          <MD.ContentTextoModulos>
+
+            <p>
+              &emsp; - Apartir deste momento você acaba de usar uma de suas
               3(treis) tentativas de Acesso ao Sistema.
             </p>
             <p>
-              &emsp; - Nps econtramos em estado de suspensão para Logar no
+              &emsp; - Nós econtramos em estado de suspensão para Logar no
               Sistema.
             </p>
             <p>&emsp; - Você estara solicitando conexão com a "REDE".</p>
@@ -84,14 +90,14 @@ export const CardHelpLogin3 = ({
               &emsp;&emsp;&emsp; - Caso não estabeleça a conexão Sucesso.Você
               deve solicitar.
             </p>
-
+            <br />
             <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
             <label>Obs.:</label>
             <p>&emsp; - Click na imagem para ver o Help da Aplicação.</p>
             <br />
-          </div>
+          </MD.ContentTextoModulos>
         )}
-      </MD.ContentTextoModulos>
+      </CardModalTextoModulos>
 
       {helpsyspg ? (
         <PageModalHelp

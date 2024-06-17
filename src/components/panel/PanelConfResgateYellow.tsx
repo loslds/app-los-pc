@@ -47,7 +47,7 @@ export const PanelConfResgateYellow = ({
       </ContentCardPagePanelTitle>
       <h4>{subtitulo}</h4>
       <p>
-        &emsp;&emsp;No momento você inseriu a solicitação do Login para Acesso a
+        &emsp;&emsp;No momento você inseriu a solicitação do Login para Acesso
         Empresa:
       </p>
       <label>

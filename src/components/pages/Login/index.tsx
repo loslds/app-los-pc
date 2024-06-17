@@ -19,6 +19,7 @@ import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
+import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpLogin0 } from '../../contentHelp/CardHelpLogin0.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
@@ -69,7 +70,7 @@ export const Login = () => {
   const [fantempresa, setFantEmpresa] = React.useState('');
 
   React.useEffect(() => {
-    if (state.nrcont >= 4) {
+    if (state.nrcont >= 3) {
       dispatch({ type: AcessoUseActions.setCurrentStep, payload: 5 });
       dispatch({ type: AcessoUseActions.setPage, payload: '/login' });
       dispatch({ type: AcessoUseActions.setModulo, payload: 'Login: Resgate' });
@@ -113,7 +114,7 @@ export const Login = () => {
     if (idempresa === 0) {
       setBtnContinua(false);
     } else {
-      if (tentativa >= 4) {
+      if (tentativa >= 3) {
         setBtnResgatar(true);
         setBtnContinua(false);
       } else {
@@ -181,7 +182,6 @@ export const Login = () => {
           <Lg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
-            
             <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
@@ -191,10 +191,8 @@ export const Login = () => {
               />
             </ContentSidePageBottonLabel>
 
-            <Lg.ContainerBoxLabelPage>
-              <label>[ {3 - state.nrcont} ] tentativas. </label>
-            </Lg.ContainerBoxLabelPage>
-            
+            <ContentBoxLabelPage label={'Tentativa [ ' + state.nrcont + 'ª ]'} />
+
             {btncontinua ? (
               <ContentSidePageBottonLabel
                 istitl={btncontinua}
@@ -227,8 +225,8 @@ export const Login = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'30%'}
-              pheight={'37%'}
+              pwidth={'40%'}
+              pheight={'43%'}
               titulo={'Acesso Empresas.'}
               imgbm={close}
               titbm={'Fechar...'}

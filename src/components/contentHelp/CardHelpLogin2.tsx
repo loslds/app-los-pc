@@ -41,7 +41,8 @@ export const CardHelpLogin2 = ({ imghlp, imgcard, imgbm, titbm, onclose }: TypeC
           oportunidade.Na (4)quatra, mostrara um botão para acesso do RESGATE.
         </p>
         <br />
-        <p>&emsp; - Após a Edição click em Continuar.</p>
+        <p>&emsp;&emsp; - Após a Edição click em Continuar.</p>
+        <p>&emsp;&emsp; - O Sistema irá rever sua edição , se tudo estiver conforme solicitado click em Acessar...</p>
         <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
         <label>Obs.:</label>
         <p>&emsp; - Click na imagem para ver o Help da Aplicação.</p>

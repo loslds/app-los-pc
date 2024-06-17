@@ -17,6 +17,7 @@ import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
 import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
+import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
@@ -62,15 +63,17 @@ export const Login1 = () => {
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
+
     dispatch({ type: AcessoUseActions.setPage, payload: '/login1' });
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Login : Opções Acesso'
     });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
+
     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-    if (state.nrcont >= 4) {
+    if (state.nrcont >= 3) {
       setTentativa(state.nrcont);
       setBtnResgatar(true);
     } else {
@@ -171,8 +174,7 @@ export const Login1 = () => {
           <Lg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
-
-          <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+            <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
                 img={setaesq}
@@ -181,10 +183,9 @@ export const Login1 = () => {
               />
             </ContentSidePageBottonLabel>
 
-            <Lg.ContainerBoxLabelPage>
-              <label>[ {3 - state.nrcont} ] tentativas. </label>
-            </Lg.ContainerBoxLabelPage>
-            
+            <ContentBoxLabelPage label={'Tentativa [ ' + state.nrcont + 'ª ]'} />
+
+
             {btncontinua ? (
               <ContentSidePageBottonLabel
                 istitl={btncontinua}
@@ -211,15 +212,14 @@ export const Login1 = () => {
                   onclick={goto('/login4')}
                 />
               </ContentSidePageBottonLabel>
-            ) : null}            
-            
+            ) : null}
           </ContentSidePagePanelBotton>
 
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'40%'}
-              pheight={'54%'}
+              pwidth={'50%'}
+              pheight={'60%'}
               titulo={'Acesso Opções Edição.'}
               imgbm={close}
               titbm={'Fechar...'}
