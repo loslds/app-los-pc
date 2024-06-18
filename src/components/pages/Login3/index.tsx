@@ -56,7 +56,6 @@ import login from '../../../assets/svgs/login.svg';
 import logoon from '../../../assets/svgs/logoon.svg';
 import logooff from '../../../assets/svgs/logooff.svg';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
-import { CardSwitHelp3 } from 'components/contentHelp/CardSwitHelp3.tsx';
 
 export function Conexao() {
   return true;
@@ -93,6 +92,7 @@ export const Login3 = () => {
   const [isview, setIsView] = React.useState(false);
 
   const [isenviar, setIsEnviar] = React.useState(false);
+  const [enviado, setEnviado] = React.useState(false);
 
   const [isconexao, setIsConexao] = React.useState(false);
   const [isconectedoff, setIsConectedoff] = React.useState(false);
@@ -154,8 +154,10 @@ export const Login3 = () => {
   }, [dispatch]);
 
   const handlerEnviar = React.useCallback(() => {
+    setEnviado(true);
     setTtModulo('Logar : "CONEXÃO" com REDE.');
     setIsHelpPg(false);
+    setIsErroMsg(false);
     setIsView(false);
     setIsEnviar(false);
     setIsConexao(true);
@@ -170,6 +172,7 @@ export const Login3 = () => {
   }, []);
 
   const handlerConexao = React.useCallback(() => {
+    setIsErroMsg(false);
     setIsHelpPg(false);
     setIsConexao(false);
     setIsFindAcces(true);
@@ -196,6 +199,7 @@ export const Login3 = () => {
   }, []);
 
   const handlerFindAcess = React.useCallback(() => {
+    setIsErroMsg(false);
     setIsHelpPg(false);
     setIsFindAcces(false);
     setIsLogin(true);
@@ -224,6 +228,7 @@ export const Login3 = () => {
   }, []);
 
   const handlerLogin = React.useCallback(() => {
+    setIsErroMsg(false);
     setIsHelpPg(false);
     setIsLogin(false);
     setIsAcesso(false);
@@ -271,8 +276,8 @@ export const Login3 = () => {
     <ThemeProvider theme={theme}>
       <ThemeLogin3
         imgsys={loginpg3}
-        titbtnsys={'Acesso Logo-on...'}
-        onclicksys={() => {}}
+        titbtnsys={'Home...'}
+        onclicksys={goto('/')}
         titlepg={'Acesso Sistema.'}
         imghpg={help}
         titbtnhpg={'Ajuda...'}
@@ -349,7 +354,7 @@ export const Login3 = () => {
                   <ContentDivButtonOff
                     img={satelite}
                     title="Acesso REDE."
-                    onClick={handlerConexao}
+                    onClick={() => {}}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
@@ -392,7 +397,7 @@ export const Login3 = () => {
                   <ContentDivButtonOff
                     img={sateliteoff}
                     title="Acesso REDE."
-                    onClick={() => setIsErroMsg(true)}
+                    onClick={() => {}}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
@@ -450,7 +455,7 @@ export const Login3 = () => {
                   <ContentDivButtonOff
                     img={nuvenfind}
                     title="Acesso DADOS."
-                    onClick={handlerFindAcess}
+                    onClick={() => {}}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
@@ -493,7 +498,7 @@ export const Login3 = () => {
                   <ContentDivButtonOff
                     img={nuvenfindoff}
                     title="Acesso DADOS."
-                    onClick={() => setIsErroMsg(true)}
+                    onClick={() => {}}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
@@ -550,7 +555,7 @@ export const Login3 = () => {
                   <ContentDivButtonOff
                     img={login}
                     title="Acesso LOGAR."
-                    onClick={handlerLogin}
+                    onClick={() => {}}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainBlue>
@@ -594,7 +599,7 @@ export const Login3 = () => {
                   <ContentDivButtonOff
                     img={logooff}
                     title="Acesso LOGAR."
-                    onClick={() => setIsErroMsg(true)}
+                    onClick={() => {}}
                   />
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOffRed>
@@ -643,6 +648,25 @@ export const Login3 = () => {
                 </Pg.ContainerCardDivMainEnd>
               </ContentDivMainOnGreen>
             </ContentCardCollunsCenterPage>
+
+            {iserromsg ? (
+              <PageModal
+                ptop={'1%'}
+                pwidth={'30%'}
+                pheight={'50%'}
+                titulo={'Acesso DataBase.'}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setIsErroMsg(false)}
+              >
+                <CardImgMsg
+                  img={imgmsg}
+                  txtaga={txtaga}
+                  txtlabel={txtlabel}
+                  txtp={txtp}
+                />
+              </PageModal>
+            ) : null}
           </ContentCardBoxMainPage>
           <Pg.DivisionPgHztalPage />
 
@@ -748,7 +772,8 @@ export const Login3 = () => {
               ) : null}
             </ContentSidePagePanelBotton>
           )}
-          {helppg && !ishelppg ? (
+
+          {helppg && !enviado ? (
             <PageModal
               ptop={'1%'}
               pwidth={'55%'}
@@ -767,7 +792,7 @@ export const Login3 = () => {
               />
             </PageModal>
           ) : null}
-          {ishelppg ? (
+          {helppg && enviado ? (
             <PageModal
               ptop={'1%'}
               pwidth={'55%'}
@@ -783,26 +808,6 @@ export const Login3 = () => {
                 imgbm={close}
                 titbm={'Fechar...'}
                 onclose={() => setHelpPg(false)}
-              />
-            </PageModal>
-          ) : null}
-
-          
-          {ishelppg ? (
-            <PageModal
-              ptop={'1%'}
-              pwidth={'30%'}
-              pheight={'50%'}
-              titulo={'Acesso DataBase.'}
-              imgbm={close}
-              titbm={'Fechar...'}
-              onclose={() => setIsHelpPg(false)}
-            >
-              <CardImgMsg
-                img={imgmsg}
-                txtaga={txtaga}
-                txtlabel={txtlabel}
-                txtp={txtp}
               />
             </PageModal>
           ) : null}

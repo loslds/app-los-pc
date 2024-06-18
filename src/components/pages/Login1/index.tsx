@@ -125,8 +125,8 @@ export const Login1 = () => {
     <ThemeProvider theme={theme}>
       <ThemeLogin1
         imgsys={loginpg1}
-        titbtnsys={'Acesso Logo-on...'}
-        onclicksys={() => {}}
+        titbtnsys={'Home...'}
+        onclicksys={goto('/')}
         titlepg={'Acesso Sistema.'}
         imghpg={help}
         titbtnhpg={'Ajuda...'}
