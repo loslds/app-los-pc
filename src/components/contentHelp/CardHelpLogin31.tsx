@@ -8,9 +8,18 @@ import { CardAcessoSistema } from './CardAcessoSistema';
 type TypeCardHelpLogin31 = {
   imghlp?: string;
   imgcard?: string;
+  imgbm?: string;
+  titbm?: string;
+  onclose?: () => void;
 };
-export const CardHelpLogin3 = ({ imgcard, imghlp }: TypeCardHelpLogin31) => {
-  const [helpsyspg, setHelpSysPg] = React.useState(false);
+export const CardHelpLogin31 = ({
+  imghlp,
+  imgcard,
+  imgbm,
+  titbm,
+  onclose
+}: TypeCardHelpLogin31) => {
+  const [help, setHelp] = React.useState(false);
 
   return (
     <CardModalTexto>
@@ -19,47 +28,46 @@ export const CardHelpLogin3 = ({ imgcard, imghlp }: TypeCardHelpLogin31) => {
           <MD.ContainerModalImg
             pminheight={'70px'}
             pwidth={'78px'}
-            img={imgcard}
-            onClick={() => setHelpSysPg(true)}
+            img={imghlp}
+            title={'Help...'}
+            onClick={() => setHelp(true)}
           />
         </MD.ContainerHeardModalMain>
 
         <h3>Help Página do Acesso ao Sistema.</h3>
         <br />
         <p>
-          &emsp; - Entramos no momento de Acesso a Intranet eou Internet. Para
-          prosseguir seu logo-on, devemos conectar com a plataforma da REDE.
+          &emsp; - Apartir deste momento você acaba de usar uma de suas 3(treis)
+          tentativas de Acesso ao Sistema.
         </p>
         <p>
-          &emsp; - Com a devida certeza, você pode verificar se esta correto a
-          sua Edição para o acesso ao Sistema.
+          &emsp; - Nós econtramos em estado de suspensão para Logar no Sistema.
         </p>
+        <p>&emsp; - Você estara solicitando conexão com a "REDE".</p>
+        <p>&emsp; - Você estara solicitando enviodo "DADOS".</p>
+        <p>&emsp; - Você estara solicitando liberação de seus "LOGIN".</p>
+        <br />
         <p>
-          &emsp; - Caso tenha dúvida na edição de sua Senha, no bloco Senha: irá
-          encontrar um Botão que poderá visualizar se esta correto a edição da
-          mesma.
-        </p>
-        <p>
-          &emsp; - Tem somente (3)Treis oportunidade.Na (4)quatra, mostrara um
-          botão para acesso do RESGATE.
+          &emsp;&emsp;&emsp; - Caso não estabeleça a conexão Sucesso.Você deve
+          solicitar.
         </p>
         <br />
-        <p>&emsp; - Após estar ciênte é só dar um click para Enviar.</p>
         <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
         <label>Obs.:</label>
         <p>&emsp; - Click na imagem para ver o Help da Aplicação.</p>
         <br />
       </MD.ContentTextoModulos>
-
-      {helpsyspg ? (
+      {help ? (
         <PageModalHelp
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'87%'}
           titulo={'Acesso Sistema.'}
-          onclose={() => setHelpSysPg(false)}
+          imgbm={imgbm}
+          titbm={titbm}
+          onclose={onclose}
         >
-          <CardAcessoSistema imghlp={imghlp} />
+          <CardAcessoSistema imgcard={imgcard} />
         </PageModalHelp>
       ) : null}
     </CardModalTexto>

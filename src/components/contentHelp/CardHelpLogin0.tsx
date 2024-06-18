@@ -19,7 +19,7 @@ export const CardHelpLogin0 = ({
   titbm,
   onclose
 }: TypeCardHelpLogin0) => {
-  const [helpsyspg, setHelpSysPg] = React.useState(false);
+  const [help, setHelp] = React.useState(false);
 
   return (
     <CardModalTexto>
@@ -29,7 +29,7 @@ export const CardHelpLogin0 = ({
             pminheight={'70px'}
             pwidth={'78px'}
             img={imghlp}
-            onClick={() => setHelpSysPg(true)}
+            onClick={() => setHelp(true)}
           />
         </MD.ContainerHeardModalMain>
 
@@ -48,7 +48,7 @@ export const CardHelpLogin0 = ({
         <br />
       </MD.ContentTextoModulos>
 
-      {helpsyspg ? (
+      {help ? (
         <PageModalHelp
           ptop={'1%'}
           pwidth={'65%'}

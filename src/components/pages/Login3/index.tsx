@@ -36,7 +36,7 @@ import { CardImgMsg } from '../../contentHelp/CardImgMsg.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { CardHelpLogin3 } from '../../contentHelp/CardHelpLogin3.tsx';
-
+import { CardHelpLogin31 } from '../../contentHelp/CardHelpLogin31.tsx';
 import close from '../../../assets/svgs/close.svg';
 import login3hlp from '../../../assets/svgs/login3hlp.svg';
 import loginpg3 from '../../../assets/svgs/loginpg3.svg';
@@ -56,6 +56,7 @@ import login from '../../../assets/svgs/login.svg';
 import logoon from '../../../assets/svgs/logoon.svg';
 import logooff from '../../../assets/svgs/logooff.svg';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
+import { CardSwitHelp3 } from 'components/contentHelp/CardSwitHelp3.tsx';
 
 export function Conexao() {
   return true;
@@ -77,7 +78,10 @@ export const Login3 = () => {
 
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
+
   const [helppg, setHelpPg] = React.useState(false);
+  const [helpconf, setHelpConf] = React.useState(false);
+
   const [ishelppg, setIsHelpPg] = React.useState(false);
 
   const [isshow, setIsShow] = React.useState(false);
@@ -247,7 +251,6 @@ export const Login3 = () => {
       setIsAcesso(true);
     }
   }, []);
-  
 
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
@@ -256,9 +259,9 @@ export const Login3 = () => {
   const handlerOnPanel = React.useCallback(() => {
     setOnPanel((oldState) => !oldState);
   }, []);
-  
+
   React.useEffect(() => {
-    if (iserromsg){
+    if (iserromsg) {
       setHelpPg(true);
     }
     dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
@@ -745,8 +748,47 @@ export const Login3 = () => {
               ) : null}
             </ContentSidePagePanelBotton>
           )}
+          {helppg && !ishelppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'55%'}
+              pheight={'60%'}
+              titulo={'Acesso Sistema.'}
+              imgbm={close}
+              titbm={'Fechar...'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardHelpLogin3
+                imghlp={login3hlp}
+                imgcard={loginpg3}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setHelpPg(false)}
+              />
+            </PageModal>
+          ) : null}
+          {ishelppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'55%'}
+              pheight={'60%'}
+              titulo={'Acesso Sistema.'}
+              imgbm={close}
+              titbm={'Fechar...'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardHelpLogin31
+                imghlp={login3hlp}
+                imgcard={loginpg3}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setHelpPg(false)}
+              />
+            </PageModal>
+          ) : null}
 
-          {ishelppg? (
+          
+          {ishelppg ? (
             <PageModal
               ptop={'1%'}
               pwidth={'30%'}
@@ -761,27 +803,6 @@ export const Login3 = () => {
                 txtaga={txtaga}
                 txtlabel={txtlabel}
                 txtp={txtp}
-              />
-            </PageModal>
-          ) : null}
-
-          {helppg ? (
-            <PageModal
-              ptop={'1%'}
-              pwidth={'55%'}
-              pheight={'60%'}
-              titulo={'Acesso Sistema.'}
-              imgbm={close}
-              titbm={'Fechar...'}
-              onclose={() => setHelpPg(false)}
-            >
-              <CardHelpLogin3
-                ishlp={ishelppg}
-                imghlp={login3hlp}
-                imgcard={loginpg3}
-                imgbm={close}
-                titbm={'Fechar...'}
-                onclose={() => setHelpPg(false)}
               />
             </PageModal>
           ) : null}
