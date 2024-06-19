@@ -14,7 +14,7 @@ export const PanelConfResgateYellow = ({
   titulo,
   subtitulo
 }: TypePanelConfResgateYellow) => {
-  const { state, dispatch } = AcessoUseForm();
+  const { state } = AcessoUseForm();
 
   //const [idempresa, setIdEmpresa] = React.useState(0);
   //const [fantempresa, setFantEmpresa] = React.useState('');
@@ -47,7 +47,7 @@ export const PanelConfResgateYellow = ({
       </ContentCardPagePanelTitle>
       <h4>{subtitulo}</h4>
       <p>
-        &emsp;&emsp;No momento você inseriu a solicitação do Login para Acesso
+        &emsp;&emsp;No momento você inseriu a solicitação do Resgate para Acesso
         Empresa:
       </p>
       <label>

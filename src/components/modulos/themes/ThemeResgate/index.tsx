@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { LayoutLogin } from '../../../layouts/LayoutLogin';
+import { LayoutResgate } from '../../../layouts/LayoutResgate';
 
-type PropsThemeLogin4 = {
+type PropsThemeResgate = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -16,7 +16,7 @@ type PropsThemeLogin4 = {
   onchange: () => void;
   children?: ReactNode | JSX.Element;
 };
-export const ThemeLogin = ({
+export const ThemeResgate = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -30,9 +30,9 @@ export const ThemeLogin = ({
   ischeck,
   onchange,
   children
-}: PropsThemeLogin4) => {
+}: PropsThemeResgate) => {
   return (
-    <LayoutLogin
+    <LayoutResgate
       imgsys={imgsys}
       titbtnsys={titbtnsys}
       onclicksys={onclicksys}
@@ -47,6 +47,6 @@ export const ThemeLogin = ({
       onclickopen={onclickopen}
     >
       {children}
-    </LayoutLogin>
+    </LayoutResgate>
   );
 };

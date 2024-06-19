@@ -79,9 +79,8 @@ export const Login3 = () => {
   const [onpanel, setOnPanel] = React.useState(false);
 
   const [helppg, setHelpPg] = React.useState(false);
-  const [helpconf, setHelpConf] = React.useState(false);
-
-  const [ishelppg, setIsHelpPg] = React.useState(false);
+  
+  //const [ishelppg, setIsHelpPg] = React.useState(false);
 
   const [isshow, setIsShow] = React.useState(false);
   const [tentativa, setTentativa] = React.useState(state.nrcont);
@@ -156,7 +155,7 @@ export const Login3 = () => {
   const handlerEnviar = React.useCallback(() => {
     setEnviado(true);
     setTtModulo('Logar : "CONEXÃO" com REDE.');
-    setIsHelpPg(false);
+    //setIsHelpPg(false);
     setIsErroMsg(false);
     setIsView(false);
     setIsEnviar(false);
@@ -173,7 +172,7 @@ export const Login3 = () => {
 
   const handlerConexao = React.useCallback(() => {
     setIsErroMsg(false);
-    setIsHelpPg(false);
+    //setIsHelpPg(false);
     setIsConexao(false);
     setIsFindAcces(true);
     setIsAcesso(false);
@@ -200,7 +199,7 @@ export const Login3 = () => {
 
   const handlerFindAcess = React.useCallback(() => {
     setIsErroMsg(false);
-    setIsHelpPg(false);
+    //setIsHelpPg(false);
     setIsFindAcces(false);
     setIsLogin(true);
     setIsAcesso(false);
@@ -229,7 +228,7 @@ export const Login3 = () => {
 
   const handlerLogin = React.useCallback(() => {
     setIsErroMsg(false);
-    setIsHelpPg(false);
+    //setIsHelpPg(false);
     setIsLogin(false);
     setIsAcesso(false);
     //acessa dados

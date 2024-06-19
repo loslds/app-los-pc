@@ -1,11 +1,10 @@
 import React from 'react';
-
 import * as Lg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
-import { ThemeLogin } from '../../modulos/themes/ThemeLogin';
+import { ThemeResgate } from '../../modulos/themes/ThemeResgate';
 import { useNavigate } from 'react-router-dom';
 import {
   AcessoUseForm,
@@ -21,25 +20,21 @@ import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
-import { CardHelpLogin0 } from '../../contentHelp/CardHelpLogin0.tsx';
+import { CardHelpResgate0 } from '../../contentHelp/CardHelpResgate0.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import close from '../../../assets/svgs/close.svg';
-import login0hlp from '../../../assets/svgs/login0hlp.svg';
-import loginpg0 from '../../../assets/svgs/loginpg0.svg';
+//import resgatehlp from '../../../assets/svgs/resgatehlp.svg';
+//import resgatepg from '../../../assets/svgs/resgatepg.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-
-export const Login = () => {
-  const { state, dispatch } = AcessoUseForm();
-
+export const Resgate = () => {
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
-
   const ToggleTheme = () => {
     if (theme.name === 'dark') {
       setTheme(light);
@@ -49,7 +44,6 @@ export const Login = () => {
       setIscheck(false);
     }
   };
-
   const navigate = useNavigate();
   const goto = (path: string) => {
     return () => {
@@ -57,46 +51,45 @@ export const Login = () => {
     };
   };
 
+  const { state, dispatch } = AcessoUseForm();
+
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
-  const [tentativa, setTentativa] = React.useState(0);
 
-  const [btncontinua, setBtnContinua] = React.useState(false);
-  const [btnresgatar, setBtnResgatar] = React.useState(false);
-
+  //const [nrcont, setNrCont] = React.useState(0);
+  //const [nmcont, setNmCont] = React.useState('');
+  //const [mdlogin, setMdLogin] = React.useState(0);
+  //const [nmlogin, setNmLogin] = React.useState('');
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
 
+  const [btncontinua, setBtnContinua] = React.useState(false);
+
   React.useEffect(() => {
-    if (state.nrcont >= 3) {
-      dispatch({ type: AcessoUseActions.setCurrentStep, payload: 5 });
-      dispatch({ type: AcessoUseActions.setPage, payload: '/login' });
-      dispatch({ type: AcessoUseActions.setModulo, payload: 'Login: Resgate' });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 1 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/resgate' });
+    dispatch({ type: AcessoUseActions.setModulo, payload: 'Resgate: Empresa' });
+    dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+    if (state.idemp > 0) {
       dispatch({
         type: AcessoUseActions.setAplicacao,
         payload: 'Confirmação.'
       });
-      dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
-      dispatch({
-        type: AcessoUseActions.setNmLogin,
-        payload: 'Resgate : Selecine uma Opção.'
-      });
-      setTentativa(state.nrcont);
       setIdEmpresa(state.idemp);
       setFantEmpresa(state.nmfant);
-      setBtnResgatar(true);
     } else {
-      dispatch({ type: AcessoUseActions.setCurrentStep, payload: 1 });
-      dispatch({ type: AcessoUseActions.setPage, payload: '/login' });
-      dispatch({ type: AcessoUseActions.setModulo, payload: 'Login: Empresa' });
       dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
-      dispatch({ type: AcessoUseActions.setNrCont, payload: tentativa });
       dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
       dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
+      setIdEmpresa(0);
+      setFantEmpresa('');
     }
     setStart(true);
-  }, [dispatch]);
+  }, [state.idemp, dispatch]);
 
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
@@ -109,29 +102,25 @@ export const Login = () => {
   const DescrOpc = ['Opções:', 'JR-Bordados.', 'RB-Serviços.'];
 
   React.useEffect(() => {
-    setFantEmpresa(DescrOpc[idempresa]);
     if (idempresa === 0) {
       setBtnContinua(false);
     } else {
-      if (tentativa >= 3) {
-        setBtnResgatar(true);
-        setBtnContinua(false);
-      } else {
-        setBtnResgatar(false);
-        setBtnContinua(true);
-      }
+      setFantEmpresa(DescrOpc[idempresa]);
+      setBtnContinua(true);
     }
+    dispatch({ type: AcessoUseActions.setNrCont, payload: idempresa });
     dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
     dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
-  }, [idempresa, btnresgatar, state.nrcont, state.idemp, dispatch]);
+  }, [idempresa, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
-      <ThemeLogin
-        imgsys={loginpg0}
+      <ThemeResgate
+        // imgsys={resgatepg}
+        imgsys={''}
         titbtnsys={'Home...'}
         onclicksys={goto('/')}
-        titlepg={'Acesso Sistema.'}
+        titlepg={'Acesso Resgate.'}
         imghpg={help}
         titbtnhpg={'Ajuda...'}
         onclickhpg={handlerHelpPg}
@@ -156,7 +145,7 @@ export const Login = () => {
               <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
-              {!btnresgatar ? (
+              {idempresa === 0 ? (
                 <ContentInputPage>
                   <select
                     name="opcão"
@@ -170,7 +159,7 @@ export const Login = () => {
                 </ContentInputPage>
               ) : (
                 <PanelConfResgateYellow
-                  isbgcolor={btnresgatar}
+                  isbgcolor={true}
                   titulo={'Acesso Resgate'}
                   subtitulo={'Dados Inseridos'}
                 />
@@ -181,17 +170,17 @@ export const Login = () => {
           <Lg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
-            <ContentSidePageBottonLabel istitl={start} title={'Voltar.: '}>
+            <ContentSidePageBottonLabel istitl={start} title={'Abortar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
                 img={setaesq}
-                titbtn={'Voltar...'}
+                titbtn={'Abortar...'}
                 onclick={goto('/')}
               />
             </ContentSidePageBottonLabel>
-
-            <ContentBoxLabelPage label={'Tentativa [ ' + state.nrcont + 'ª ]'} />
-
+            <ContentBoxLabelPage
+              label={'" Processo : ABORTAR ou CONTINUAR "'}
+            />
             {btncontinua ? (
               <ContentSidePageBottonLabel
                 istitl={btncontinua}
@@ -201,46 +190,32 @@ export const Login = () => {
                   pxheight={'40px'}
                   img={setadir}
                   titbtn={'Continuar...'}
-                  onclick={goto('/login1')}
-                />
-              </ContentSidePageBottonLabel>
-            ) : null}
-
-            {btnresgatar ? (
-              <ContentSidePageBottonLabel
-                istitl={btnresgatar}
-                title={'Resgatar...: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setadir}
-                  titbtn={'Resgatar...'}
-                  onclick={goto('/login4')}
+                  onclick={goto('/resgate1')}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
           </ContentSidePagePanelBotton>
-
           {helppg ? (
             <PageModal
               ptop={'1%'}
               pwidth={'40%'}
               pheight={'43%'}
-              titulo={'Acesso Empresas.'}
+              titulo={'Acesso Resgate.'}
               imgbm={close}
               titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpLogin0
-                imghlp={login0hlp}
-                imgcard={loginpg0}
+              <CardHelpResgate0
+                // imghlp={resgatehlp}
+                // imgcard={resgatepg}
+                imghlp={''}
+                imgcard={''}
                 imgbm={close}
                 titbm={'Fechar...'}
                 onclose={() => setHelpPg(false)}
               />
             </PageModal>
           ) : null}
-
           {onpanel ? (
             <PageModal
               ptop={'1%'}
@@ -254,57 +229,10 @@ export const Login = () => {
               <CardInfoLogin />
             </PageModal>
           ) : null}
-
-          {/*isloading ? <Loading /> : null */}
         </ContentCardPage>
-      </ThemeLogin>
+      </ThemeResgate>
     </ThemeProvider>
   );
 };
 
-// dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-// dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-// dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
-// dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-
-// dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-// dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-// dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
-// dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-
-// dispatch({ type: AcessoUseActions.setPin, payload: '' });
-// dispatch({ type: AcessoUseActions.setMail, payload: '' });
-// dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-
-// dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
-// dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
-// dispatch({ type: AcessoUseActions.setMdProdu, payload: false });
-// dispatch({ type: AcessoUseActions.setMdAcaba, payload: false });
-// dispatch({ type: AcessoUseActions.setMdExped, payload: false });
-// dispatch({ type: AcessoUseActions.setMdAdmin, payload: false });
-// dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
-// dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
-
-//  {empreas.map((empresas) => {
-//                   const { id, fant } = empresas;
-//                   return (
-//                     <select
-//                       key={id}
-//                       name={fant}
-//                       title={'Empresas'}
-//                       defaultValue={0}
-//                     >
-//                       <option value={empresas.id}>{empresas.fant}</option>
-//                     </select>
-//                   );
-//                 })}
-
-/* <select
-                  name="empresa"
-                  defaultValue={0}
-                  onChange={(e) => setIdEmpresa(parseInt(e.target.value))}
-                >
-                  <option value={'0'}>Opções : </option>
-                  <option value={'1'}>JR.Bordados.</option>
-                  <option value={'2'}>BR.Serviços.</option>
-                </select> */
+export default Resgate;

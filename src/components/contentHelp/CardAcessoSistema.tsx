@@ -57,8 +57,8 @@ export const CardAcessoSistema = ({ imgcard }: TypeCardAcessoSistema) => {
         <label>Atenção:</label>
         <p>&emsp;&emsp;Somente após isso feito poderá realizar o Login.</p>
         <p>
-          &emsp;&emsp;Caso envie por mais de (3)Treis vezes o Acesso "ERRADO",
-          poderá acessar SITUAÇÃO DE RESGATE.
+          &emsp;&emsp;Caso envie por mais de (3)Treis vezes o Acesso "NAO
+          EXECUTADO COM SUCESSO", poderá acessar SITUAÇÃO DE RESGATE.
         </p>
         <br />
         <h4>Obs. do Caso Recuperação do Acesso:</h4>
@@ -67,8 +67,8 @@ export const CardAcessoSistema = ({ imgcard }: TypeCardAcessoSistema) => {
           de SMS. Recuperar Acesso através de WATSZAP.
         </p>
         <p>
-          &emsp;&emsp;&emsp; - Atravé de E-MAIL vc receberá um Link para
-          adentrar no Sistema e Refazer seu Acesso ao Sistema.
+          &emsp;&emsp;&emsp; - Atravé de EMAIL você receberá imornações para
+          Acessar o Sistema, e Refazer seu Acesso.
         </p>
         <p>
           &emsp;&emsp;&emsp; - Atravé de SMS vc receberá um Código para adentrar
