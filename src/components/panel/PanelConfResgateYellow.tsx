@@ -62,8 +62,9 @@ export const PanelConfResgateYellow = ({
         Resgate ao acesso para esta Empresa.
       </p>
       <h5>Obs:.</h5>
+      <p>&emsp;&emsp;Caso "ABORTAR" clique na seta à esquerda "Abortar"...</p>
       <p>
-        &emsp;&emsp;Caso "SIM", abaixo clique na Seta a Direita "Resgatar"...
+        &emsp;&emsp;Caso "CONTINUAR", abaixo clique na Seta a Direita "Continuar"...
       </p>
       <p>&emsp;&emsp;Caso "NÃO" clique na seta à esquerda "Voltar"...</p>
     </ContentTextoBgPanelYellow>

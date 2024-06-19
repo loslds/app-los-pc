@@ -33,13 +33,13 @@ export const CardAcessoSistema = ({ imgcard }: TypeCardAcessoSistema) => {
           &emsp;&emsp;&emsp;02º - Selecione as Opções ou edite conforme
           Formulário.
         </p>
-        <br />
+       
         <h3>Obs.:</h3>
         <p>
           &emsp; - Poderá utilizar formas Diferêntes para Acesso, clicando em
           "Opções."
         </p>
-        <br />
+     
         <h4>Modo:</h4>
         <p>&emsp;&emsp;&emsp; 1º Passo</p>
         <p>
@@ -47,9 +47,9 @@ export const CardAcessoSistema = ({ imgcard }: TypeCardAcessoSistema) => {
         </p>
         <p>&emsp;&emsp;&emsp; 2º Passo</p>
         <p>&emsp;&emsp;&emsp;&emsp; - Determinando: Um ID e uma Senha.</p>
-        <br />
+    
         <p>&emsp; De livre escola poderá ser terminado como:</p>
-        <br />
+      
         <p>&emsp;&emsp; - ID(apelido) e Senha(password).</p>
         <p>&emsp;&emsp; - ID(apelido) e PIN.</p>
         <p>&emsp;&emsp; - ID(E-Mail), e Senha(password).</p>
@@ -57,34 +57,53 @@ export const CardAcessoSistema = ({ imgcard }: TypeCardAcessoSistema) => {
         <label>Atenção:</label>
         <p>&emsp;&emsp;Somente após isso feito poderá realizar o Login.</p>
         <p>
-          &emsp;&emsp;Caso envie por mais de (3)Treis vezes o Acesso "NAO
+          &emsp;&emsp; - Caso envie por mais de (3)Treis vezes o Acesso "NAO
           EXECUTADO COM SUCESSO", poderá acessar SITUAÇÃO DE RESGATE.
         </p>
-        <br />
+      
         <h4>Obs. do Caso Recuperação do Acesso:</h4>
+        <p>&emsp;&emsp;&emsp; - Empresa cadastrada.</p>
+        <p>&emsp;&emsp;&emsp; - Email cadastrado.</p>
+        <p>&emsp;&emsp;&emsp; - Telefone cadastrado.</p>
+        <p>&emsp;&emsp;&emsp; - Whatsapp cadastrado.</p>
+        <p>&emsp;&emsp;&emsp; - Respostas as Peguntas cadastradas.</p>
+        <h4>Do processo a requerido ao Acesso:</h4>
         <p>
-          &emsp; - Recuperar Acesso através de E-Mail. Recuperar Acesso através
-          de SMS. Recuperar Acesso através de WATSZAP.
+          &emsp;Recuperar através do EMAIL.
         </p>
         <p>
-          &emsp;&emsp;&emsp; - Atravé de EMAIL você receberá imornações para
-          Acessar o Sistema, e Refazer seu Acesso.
+          &emsp;&emsp; - Será enviado um email e conterá as imformações com as quais você irá seguir.
+        </p>
+      
+        <p>
+          &emsp;Recuperar através do Telefone.
         </p>
         <p>
-          &emsp;&emsp;&emsp; - Atravé de SMS vc receberá um Código para adentrar
-          no Sistema e Refazer seu Acesso ao Sistema.
+          &emsp;&emsp; - Será enviado um SMS com o Código de segurança temporário.
+        </p>
+       
+        <p>
+          &emsp;Recuperar através do Whatsapp.
         </p>
         <p>
-          &emsp;&emsp;&emsp; - Atravé de WATSZAP vc receberá um Link para
-          adentrar no Sistema e Refazer seu Acesso ao Sistema.
+          &emsp;&emsp; - Será enviado um Código de segurança temporário.
+        </p>
+       
+        <p>
+          &emsp;Recuperar através de Perguntas.
+        </p>
+        <p>
+          &emsp;&emsp; - Será solicitada as respostas para as perguntas exigidas.
         </p>
         <br />
+        <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
         <p>
           &emsp;Assim que for detectado sua Chave de Acesso, o Sistema irá
           redirecionar você para o Setor desbloqueado conforme seu Acesso ao
           Sistema na Pagina Principal(HOME).
         </p>
         <br />
+        
       </MD.ContentTextoModulos>
     </CardModalTexto>
   );

@@ -38,11 +38,12 @@ export const CardHelpResgate0 = ({
         </p>
         <p>&emsp;&emsp;&emsp; - Empresa cadastrada.</p>
         <p>&emsp;&emsp;&emsp; - Email cadastrado.</p>
-        <p>&emsp;&emsp;&emsp; - Telefone cadastrado para envio de SMS.</p>
-        <p>&emsp;&emsp;&emsp; - Respostas as Peguntas, cadastradas.</p>
+        <p>&emsp;&emsp;&emsp; - Telefone cadastrado.</p>
+        <p>&emsp;&emsp;&emsp; - Whatsapp cadastrado.</p>
+        <p>&emsp;&emsp;&emsp; - Respostas as Peguntas cadastradas.</p>
         <br />
         <br />
-        <h3>Situações do recuso em processo do Resgate.</h3>
+        <h3>Situações dos recurso em processo do Resgate.</h3>
         <label>Do Caso.:</label>
         <p>
           &emsp; - Se não não tiver a Empresa em processo, deverá selecionar uma

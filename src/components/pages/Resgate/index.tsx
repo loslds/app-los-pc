@@ -18,7 +18,7 @@ import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
-import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
+//import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpResgate0 } from '../../contentHelp/CardHelpResgate0.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
@@ -102,10 +102,14 @@ export const Resgate = () => {
   const DescrOpc = ['Opções:', 'JR-Bordados.', 'RB-Serviços.'];
 
   React.useEffect(() => {
+    
     if (idempresa === 0) {
       setBtnContinua(false);
     } else {
       setFantEmpresa(DescrOpc[idempresa]);
+      dispatch({ type: AcessoUseActions.setNrCont, payload: idempresa });
+      dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
+      dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
       setBtnContinua(true);
     }
     dispatch({ type: AcessoUseActions.setNrCont, payload: idempresa });
@@ -178,9 +182,9 @@ export const Resgate = () => {
                 onclick={goto('/')}
               />
             </ContentSidePageBottonLabel>
-            <ContentBoxLabelPage
-              label={'" Processo : ABORTAR ou CONTINUAR "'}
-            />
+            {/* <ContentBoxLabelPage
+              label={'" Processo : RESGATAR "'}
+            /> */}
             {btncontinua ? (
               <ContentSidePageBottonLabel
                 istitl={btncontinua}
@@ -198,8 +202,8 @@ export const Resgate = () => {
           {helppg ? (
             <PageModal
               ptop={'1%'}
-              pwidth={'40%'}
-              pheight={'43%'}
+              pwidth={'50%'}
+              pheight={'88%'}
               titulo={'Acesso Resgate.'}
               imgbm={close}
               titbm={'Fechar...'}
@@ -220,7 +224,7 @@ export const Resgate = () => {
             <PageModal
               ptop={'1%'}
               pwidth={'65%'}
-              pheight={'75%'}
+              pheight={'95%'}
               titulo={'DADOS Context Login.'}
               imgbm={close}
               titbm={'Fechar...'}
