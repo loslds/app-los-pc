@@ -26,7 +26,8 @@ import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import close from '../../../assets/svgs/close.svg';
 //import resgatehlp from '../../../assets/svgs/resgatehlp.svg';
-//import resgatepg from '../../../assets/svgs/resgatepg.svg';
+import resgatepg from '../../../assets/svgs/resgatepg.svg';
+import resgatehlp from '../../../assets/svgs/resgatehlp.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
@@ -121,7 +122,7 @@ export const Resgate = () => {
     <ThemeProvider theme={theme}>
       <ThemeResgate
         // imgsys={resgatepg}
-        imgsys={''}
+        imgsys={resgatepg}
         titbtnsys={'Home...'}
         onclicksys={goto('/')}
         titlepg={'Acesso Resgate.'}
@@ -210,10 +211,10 @@ export const Resgate = () => {
               onclose={() => setHelpPg(false)}
             >
               <CardHelpResgate0
-                // imghlp={resgatehlp}
-                // imgcard={resgatepg}
-                imghlp={''}
-                imgcard={''}
+                imghlp={resgatehlp}
+                imgcard={resgatepg}
+                //imghlp={}
+                //imgcard={''}
                 imgbm={close}
                 titbm={'Fechar...'}
                 onclose={() => setHelpPg(false)}

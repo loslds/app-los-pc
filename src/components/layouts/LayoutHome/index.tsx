@@ -11,13 +11,21 @@ type TypeLayoutHome = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
+
   titlepg?: string;
+
   imghpg?: string;
   titbtnhpg?: string;
   onclickhpg?: () => void;
+
   imgopen?: string;
   titbtnopen?: string;
   onclickopen?: () => void;
+
+  imgreg?: string;
+  titbtnreg?: string;
+  onclickreg?: () => void;
+
   onchange: () => void;
   ischeck?: boolean;
   children?: ReactNode | JSX.Element;
@@ -27,13 +35,21 @@ export const LayoutHome = ({
   imgsys,
   titbtnsys,
   onclicksys,
+
   titlepg,
+
   imghpg,
   titbtnhpg,
   onclickhpg,
+
   imgopen,
   titbtnopen,
   onclickopen,
+
+  imgreg,
+  titbtnreg,
+  onclickreg,
+
   onchange,
   ischeck,
   children,
@@ -52,6 +68,9 @@ export const LayoutHome = ({
         imgopen={imgopen}
         titbtnopen={titbtnopen}
         onclickopen={onclickopen}
+        imgreg={imgreg}
+        titbtnreg={titbtnreg}
+        onclickreg={onclickreg}
         onchange={onchange}
         ischeck={ischeck}
       />
@@ -63,7 +82,6 @@ export const LayoutHome = ({
           <Hm.DivisionPgHztal />
           {children}
         </Hm.ContainerPage>
-        
       </Hm.ContainerBody>
       <Hm.DivisionPgHztal />
       <FooterHome />

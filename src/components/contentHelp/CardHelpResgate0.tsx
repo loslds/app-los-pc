@@ -41,36 +41,35 @@ export const CardHelpResgate0 = ({
         <p>&emsp;&emsp;&emsp; - Telefone cadastrado.</p>
         <p>&emsp;&emsp;&emsp; - Whatsapp cadastrado.</p>
         <p>&emsp;&emsp;&emsp; - Respostas as Peguntas cadastradas.</p>
-        <br />
-        <br />
         <h3>Situações dos recurso em processo do Resgate.</h3>
         <label>Do Caso.:</label>
         <p>
-          &emsp; - Se não não tiver a Empresa em processo, deverá selecionar uma
-          nas opções oferecidas.
+          &emsp; - Se não tiver logado, deverá selecionar uma nas opções oferecidas.
         </p>
         <p>
-          &emsp;&emsp;&emsp; - Se não não tiver a Empresa em processo, deverá
-          selecionar uma nas opções oferecidas.
+          &emsp; - Se estive logado, não precisará, sistema fornecera a opção.
         </p>
         <label>Obs.:</label>
+        <p>&emsp; - Existem (2)Duas opções para saistafer o resgate:</p>
+        <p>&emsp; - Opções: "ABORTAR" ou "CONTINUAR".</p>
+        <h4>Opções: "ABORTAR" </h4>
         <p>
-          &emsp;&emsp; - Ao clicar "ABORTAR", abrira a opçao de selecionar uma
-          Empresa como Opção.
+          &emsp;&emsp; - Se tiver Logado e Clicar "ABORTAR", o sistema irá achar
+          que você não deseja RECUPERAR o acesso com a Empresa login efetuado.
         </p>
         <p>
-          &emsp;&emsp; - Ao clicar "CONTINUAR", para que Continue com o procedimento
-          de Resgate.
-        </p>
-        <br />
-        <p>
-          &emsp; - Se ja tiver a Empresa em processo, apresentará as mesmas e
-          basta clicar "CONTINUAR", para que Continue com o procedimento de Resgate.
+          &emsp;&emsp; - O sistema limpará o login direcionado a Empresa
+          apresentada e retornará com a opção de escolha de empresa.
         </p>
         <p>
-          &emsp; - Caso queira abandorar o Processo de Resgate, basta clicar "ABORTAR".
+          &emsp;&emsp; - Se não tiver Logado e Clicar "ABORTAR", o sistema irá
+          retornar para a "HOME" inicial do sistema.
         </p>
-        <br />
+        <h4>Opção: "CONTINUAR".</h4>
+        <p>
+          &emsp;&emsp; - o Sistema irá passar para próxima fase, de Opções de
+          como voçê quer resgatar seu acesso.
+        </p>
         <br />
         <p>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒</p>
         <label>Obs.:</label>
@@ -82,7 +81,7 @@ export const CardHelpResgate0 = ({
         <PageModalHelp
           ptop={'1%'}
           pwidth={'65%'}
-          pheight={'87%'}
+          pheight={'90%'}
           titulo={'Acessando Empresas.'}
           imgbm={imgbm}
           titbm={titbm}

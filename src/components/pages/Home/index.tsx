@@ -10,6 +10,7 @@ import dark from '../../../styles/themes/dark.ts';
 
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
+import resgate from '../../../assets/svgs/resgate.svg';
 import jrjr from '../../../assets/svgs/jrjr.svg';
 import avatar from '../../../assets/svgs/avatar.svg';
 import avatar001 from '../../../assets/pngs/avatares/avatar001.png';
@@ -182,9 +183,12 @@ export const Home = () => {
         imgopen={!state.logado ? avatar : avatar001}
         titbtnopen={!state.logado ? 'Logar...' : 'Logado...'}
         onclickopen={!state.logado ? goto('/login') : handlerViewItensLogin}
+        imgreg={resgate}
+        titbtnreg={'Resgatar Acesso...'}
+        onclickreg={goto('/resgate')}
         onchange={ToggleTheme}
         ischeck={ischeck}
-        disp={meusdados}
+        open={meusdados}
       >
         <ContentItensBody>
           <div>{state.pinAdm}</div>

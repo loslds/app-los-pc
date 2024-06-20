@@ -14,13 +14,21 @@ type PropsHearderHome = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
+
   titlepg?: string;
+
   imghpg?: string;
   titbtnhpg?: string;
   onclickhpg?: () => void;
+
   imgopen?: string;
   titbtnopen?: string;
   onclickopen?: () => void;
+
+  imgreg?: string;
+  titbtnreg?: string;
+  onclickreg?: () => void;
+
   onchange: () => void;
   ischeck?: boolean;
 };
@@ -28,13 +36,21 @@ export const HearderHome = ({
   imgsys,
   titbtnsys,
   onclicksys,
+
   titlepg,
+
   imghpg,
   titbtnhpg,
   onclickhpg,
+
   imgopen,
   titbtnopen,
   onclickopen,
+
+  imgreg,
+  titbtnreg,
+  onclickreg,
+
   onchange,
   ischeck
 }: PropsHearderHome) => {
@@ -61,13 +77,22 @@ export const HearderHome = ({
             titbtn={titbtnhpg}
             onClick={onclickhpg}
           />
+          
           {/** imagem botão do Acão da pagina */}
           <ContentPagesButton
             imgbtn={imgopen}
             titbtn={titbtnopen}
             onClick={onclickopen}
           />
-          {/** imagem botão switch do Padrão fundo Preto ou Branco */}
+
+          {/** imagem botão do Restate da pagina */}
+          <ContentPagesButton
+            imgbtn={imgreg}
+            titbtn={titbtnreg}
+            onClick={onclickreg}
+          />
+
+          {/** botão switch do Padrão fundo Preto ou Branco */}
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}

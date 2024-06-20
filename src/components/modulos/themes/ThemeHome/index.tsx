@@ -14,10 +14,13 @@ type PropsThemeHome = {
   imgopen?: string;
   titbtnopen?: string;
   onclickopen?: () => void;
+  imgreg?: string;
+  titbtnreg?: string;
+  onclickreg?: () => void;
   onchange: () => void;
   ischeck: boolean;
   children?: ReactNode | JSX.Element;
-  disp?: boolean;
+  open?: boolean;
 };
 export const ThemeHome = ({
   imgsys,
@@ -30,10 +33,13 @@ export const ThemeHome = ({
   imgopen,
   titbtnopen,
   onclickopen,
+  imgreg,
+  titbtnreg,
+  onclickreg,
   onchange,
   ischeck,
   children,
-  disp
+  open
 }: PropsThemeHome) => {
   return (
     <LayoutHome
@@ -47,9 +53,12 @@ export const ThemeHome = ({
       imgopen={imgopen}
       titbtnopen={titbtnopen}
       onclickopen={onclickopen}
+      imgreg={imgreg}
+      titbtnreg={titbtnreg}
+      onclickreg={onclickreg}
       onchange={onchange}
       ischeck={ischeck}
-      disp={disp}
+      open={open}
     >
       {children}
     </LayoutHome>

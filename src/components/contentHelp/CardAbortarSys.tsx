@@ -1,8 +1,18 @@
+import React from 'react';
+
+import '../../styles/global';
 import * as C from '../Modal/styles';
 
-import { AcessoUseForm } from '../contexts/login/ContextAcesso';
+import {
+  AcessoUseForm,
+  AcessoUseActions
+} from '../contexts/login/ContextAcesso';
+
+import { useNavigate } from 'react-router-dom';
+
 import { CardModalTexto } from '../Modal/CardModalTexto';
 import { ContentCustonImgPage } from '../pages/ContentCustonImgPage';
+import { ContentBoxMainPage } from '../pages/ContentBoxMainPage';
 
 import portaon from '../../assets/svgs/portaon.svg';
 
@@ -11,8 +21,6 @@ export function refreshTime() {
     timeZone: 'America/Sao_Paulo'
   });
   var formattedString = dateString.replace(', ', ' - ');
-  //timeDisplay.innerHTML = formattedString;
-
   return formattedString;
 }
 
@@ -20,7 +28,16 @@ type TypeCardAbortarSys = {
   img?: string;
 };
 export const CardAbortarSys = ({ img }: TypeCardAbortarSys) => {
-  const { state } = AcessoUseForm();
+  const navigate = useNavigate();
+  const goto = (path: string) => {
+    return () => {
+      navigate(path);
+    };
+  };
+
+  const { state, dispatch } = AcessoUseForm();
+
+  const [abortar, setAbortar] = React.useState(false);
 
   // const myClock = () => {
   //   setInterval(refreshTime, 1000);
@@ -29,6 +46,17 @@ export const CardAbortarSys = ({ img }: TypeCardAbortarSys) => {
   const tarb_ini = 'Iniciei meu Trabalho : ' + state.datetimei + '...';
   // const meuacesso =
   //   'O "MEU nível de Acesso " disponibiliza : ' + state.page + '.';
+
+  const hanlerAbortar = React.useCallback(() => {
+    setAbortar((oldState) => !oldState);
+  }, []);
+
+  React.useEffect(() => {
+    if (state.logado && abortar) {
+      dispatch({ type: AcessoUseActions.setLogado, payload: false });
+      goto('/');
+    }
+  }, [state.logado, abortar, dispatch]);
 
   return (
     <CardModalTexto>
@@ -40,26 +68,28 @@ export const CardAbortarSys = ({ img }: TypeCardAbortarSys) => {
       <h1> Ola, {state.idnmuser}.</h1>
       <br />
       <br />
-      <li>Meus Acessoa ao Sistema:</li>
-      <p> &emsp;&emsp;acessos do Liberardos para minha Pessoa...</p>
+      <li>Meus Acessos ao Sistema:</li>
+      <p> &emsp;&emsp;acessos do Liberardos para voce...</p>
       <br />
       <li>Obs:. Meus Acessos até o Momento :</li>
       <p> &emsp;&emsp;acessos do bd no dia de hoje...</p>
       <label>Fazer "LOGOUT" no Sistema.</label>
       <p>
-        &emsp;&emsp;&rarr;Ao CLick desta opção, automaticamente desconectará
-        você do serviço do Sistema.
+        &emsp;&emsp;&rarr;Ao CLick na Imagem abaixo, automaticamente
+        desconectará você do serviço do Sistema.
       </p>
       <br />
       <br />
-      <ContentCustonImgPage
-        pxheight={'65px'}
-        pheight={'65px'}
-        pwidth={'65px'}
-        img={portaon}
-        titlebtn={'Logout...'}
-        onclick={() => {}}
-      />
+      <ContentBoxMainPage>
+        <ContentCustonImgPage
+          pxheight={'65px'}
+          pheight={'65px'}
+          pwidth={'65px'}
+          img={portaon}
+          titlebtn={'Logout...'}
+          onclick={hanlerAbortar}
+        />
+      </ContentBoxMainPage>
       <br />
       <br />
     </CardModalTexto>
