@@ -11,7 +11,7 @@ export function criasmstr() {
 moment.locale('pt-BR');
 
 export function hojediahora() {
-   let data = moment.locale('pt-BR');
+   let data = moment.locale('PT-BR');
 console.log('data :', data);
 
 //    let dia = data.format('dddd DD/MM/YYYY');

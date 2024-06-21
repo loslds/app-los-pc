@@ -50,8 +50,12 @@ export const CardHelpResgate0 = ({
           &emsp; - Se estive logado, não precisará, sistema fornecera a opção.
         </p>
         <label>Obs.:</label>
-        <p>&emsp; - Existem (2)Duas opções para saistafer o resgate:</p>
-        <p>&emsp; - Opções: "ABORTAR" ou "CONTINUAR".</p>
+        <p>&emsp; - Existem (3)Treis opções para satisfaser os recursos do resgate:</p>
+        <p>&emsp; - Opções: "VOLTAR","ABORTAR" ou "CONTINUAR".</p>
+        <h4>Opções: "VOLTAR" </h4>
+        <p>
+          &emsp;&emsp; - O Sistema irá retornar para o efeito anterior.
+        </p>
         <h4>Opções: "ABORTAR" </h4>
         <p>
           &emsp;&emsp; - Se tiver Logado e Clicar "ABORTAR", o sistema irá achar

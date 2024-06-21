@@ -33,7 +33,6 @@ import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-
 export const Login = () => {
   const { state, dispatch } = AcessoUseForm();
 
@@ -123,7 +122,7 @@ export const Login = () => {
     }
     dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
     dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
-  }, [idempresa, btnresgatar, state.nrcont, state.idemp, dispatch]);
+  }, [idempresa, fantempresa, btnresgatar, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -173,7 +172,35 @@ export const Login = () => {
                   isbgcolor={btnresgatar}
                   titulo={'Acesso Resgate'}
                   subtitulo={'Dados Inseridos'}
-                />
+                >
+                  <p>
+                    &emsp;&emsp;No momento você inseriu a solicitação do Resgate
+                    para Acesso Empresa:
+                  </p>
+                  <label>
+                    {' '}
+                    &emsp;ID Empresa....: <span>{state.idemp}.</span>{' '}
+                  </label>
+                  <label>
+                    {' '}
+                    &emsp;Nome Fantasia: <span>{state.nmfant}.</span>{' '}
+                  </label>
+                  <br />
+                  <p>
+                    &emsp;&emsp;Precisamos que você confirme se deseja continuar
+                    com o Resgate ao acesso para esta Empresa.
+                  </p>
+                  <h5>Obs:.</h5>
+                  <p>
+                    &emsp;&emsp;Caso "ABORTAR" clique na seta à esquerda
+                    "Abortar"...
+                  </p>
+                  <p>
+                    &emsp;&emsp;Caso "CONTINUAR", abaixo clique na Seta a
+                    Direita "Continuar"...
+                  </p>
+                  <br />
+                </PanelConfResgateYellow>
               )}
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
@@ -190,7 +217,9 @@ export const Login = () => {
               />
             </ContentSidePageBottonLabel>
 
-            <ContentBoxLabelPage label={'Tentativa [ ' + state.nrcont + 'ª ]'} />
+            <ContentBoxLabelPage
+              label={'Tentativa [ ' + state.nrcont + 'ª ]'}
+            />
 
             {btncontinua ? (
               <ContentSidePageBottonLabel
@@ -215,7 +244,7 @@ export const Login = () => {
                   pxheight={'40px'}
                   img={setadir}
                   titbtn={'Resgatar...'}
-                  onclick={goto('/login4')}
+                  onclick={goto('/resgate1')}
                 />
               </ContentSidePageBottonLabel>
             ) : null}

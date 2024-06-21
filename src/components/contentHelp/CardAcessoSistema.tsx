@@ -11,7 +11,7 @@ export const CardAcessoSistema = ({ imgcard }: TypeCardAcessoSistema) => {
         <MD.ContainerHeardModalMain>
           <MD.ContainerModalImg
             pminheight={'100px'}
-            pwidth={'180px'}
+            pwidth={'220px'}
             img={imgcard}
           />
         </MD.ContainerHeardModalMain>

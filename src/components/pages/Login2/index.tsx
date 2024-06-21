@@ -336,7 +336,7 @@ export const Login2 = () => {
                   pxheight={'40px'}
                   img={setadir}
                   titbtn={'Resgatar...'}
-                  onclick={goto('/login4')}
+                  onclick={goto('/resgate1')}
                 />
               </ContentSidePageBottonLabel>
             ) : null}

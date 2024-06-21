@@ -7,7 +7,7 @@ import * as Lg from '../stylePage.ts';
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
-import { ThemeResgate } from '../../modulos/themes/ThemeResgate';
+import { ThemeResgate } from '../../modulos/themes/ThemeResgate/index.tsx';
 import { useNavigate } from 'react-router-dom';
 import {
   AcessoUseForm,
@@ -23,43 +23,44 @@ import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 //import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
-import { CardHelpResgate0 } from '../../contentHelp/CardHelpResgate0.tsx';
+import { CardHelpResgate1 } from '../../contentHelp/CardHelpResgate1.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import close from '../../../assets/svgs/close.svg';
 import resgatepg from '../../../assets/svgs/resgatepg.svg';
-import resgatehlp from '../../../assets/svgs/resgatehlp.svg';
+import resgatehlp1 from '../../../assets/svgs/resgatehlp1.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-export const Resgate = () => {
+export const Resgate1 = () => {
   const { state, dispatch } = AcessoUseForm();
 
-  
-  const [idempresa, setIdEmpresa] = React.useState(0);
-  const [fantempresa, setFantEmpresa] = React.useState('');
-  
+  //const [idempresa, setIdEmpresa] = React.useState(0);
+  //const [fantempresa, setFantEmpresa] = React.useState('');
+
   const [snhmaster, setSnhMaster] = React.useState('');
 
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
+  const [mdlogin, setMdLogin] = React.useState(0);
+  const [nmlogin, setNmLogin] = React.useState('Opções :');
+
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [isconfirmation, setIsConfirmation] = React.useState(false);
 
   React.useEffect(() => {
-
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
-    dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-    dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 1 });
+    //dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
+    //dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate' });
 
-    dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
+    //dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
+    //dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
 
     dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
@@ -72,10 +73,13 @@ export const Resgate = () => {
     dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
 
-    dispatch({ type: AcessoUseActions.setModulo, payload: 'Resgate: Empresa' });
-    dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
+    dispatch({
+      type: AcessoUseActions.setModulo,
+      payload: 'Resgate: Opções Resgate'
+    });
+    //dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
 
-//////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
     setStart(true);
   }, [dispatch]);
@@ -106,19 +110,19 @@ export const Resgate = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  const DescrOpc = ['Opções :', 'JR-Bordados.', 'RB-Serviços.'];
+  const DescrOpc = ['Opções :', 'E-Mail.', 'SMS.', 'Whatsapp.', 'Perguntas.'];
   React.useEffect(() => {
-    setFantEmpresa(DescrOpc[idempresa]);
-    if (idempresa === 0) {
+    setNmLogin(DescrOpc[mdlogin]);
+    if (mdlogin === 0) {
       setIsConfirmation(false);
       setBtnContinua(false);
     } else {
       setIsConfirmation(true);
       setBtnContinua(true);
     }
-    dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
-    dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
-  }, [idempresa, fantempresa, dispatch]);
+    dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+  }, [mdlogin, nmlogin, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -138,10 +142,12 @@ export const Resgate = () => {
       >
         <div>
           <label>Senha MASTER.....: {snhmaster}</label>
-          <label>Const idempresa..: {idempresa}</label>
           <label>State idemp......: {state.idemp}</label>
-          <label>Const fantempresa: {fantempresa}</label>
           <label>State nmfant.....: {state.nmfant}</label>
+          <label>Const mdlogin....: {mdlogin}</label>
+          <label>Const nmlogin....: {nmlogin}</label>
+          <label>State mdlogin....: {state.mdlogin}</label>
+          <label>State nmlogin....: {state.nmlogin}</label>
         </div>
         <ContentCardPage>
           <ContentCardPageTitle>
@@ -152,55 +158,56 @@ export const Resgate = () => {
               <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
-              {idempresa === 0 ? (
+              {mdlogin === 0 ? (
                 <ContentInputPage>
                   <ContentInputPage>
-                  <select
-                    name="opcão"
-                    defaultValue={idempresa}
-                    onChange={(e) => setIdEmpresa(parseInt(e.target.value))}
-                  >
-                    <option value={'0'}>Opções : </option>
-                    <option value={'1'}>JR-Bordados.</option>
-                    <option value={'2'}>RB-Serviços.</option>
-                  </select>
+                    <select
+                      name="opcão"
+                      defaultValue={mdlogin}
+                      onChange={(e) => setMdLogin(parseInt(e.target.value))}
+                    >
+                      <option value={'0'}>Opções : </option>
+                      <option value={'1'}>E-Mail.</option>
+                      <option value={'2'}>SMS.</option>
+                      <option value={'3'}>Whatsapp.</option>
+                      <option value={'4'}>Perguntas.</option>
+                    </select>
+                  </ContentInputPage>
                 </ContentInputPage>
-                </ContentInputPage>
-                ) : null
-              }
+              ) : null}
               {isconfirmation ? (
                 <PanelConfResgateYellow
                   isbgcolor={start}
                   titulo={'Acesso Resgate'}
                   subtitulo={'Dados Inseridos'}
                 >
-                  <p>
-                    &emsp;&emsp;No momento você inseriu a solicitação do Resgate
-                    para Acesso Empresa:
-                  </p>
+                  <p>&emsp;&emsp;Já temos "EMPRESA".</p>
                   <label>
-                    &emsp;ID Empresa....: <span>{idempresa}</span>
+                    &emsp;&emsp;&emsp;ID Empresa....: <span>{state.idemp}</span>
                   </label>
                   <label>
-                    &emsp;Nome Fantasia: <span>{fantempresa}</span>
+                    &emsp;Nome Fantasia: <span>{state.nmfant}</span>
+                  </label>
+                  <p>&emsp;No momento você inseriu a optou por:</p>
+                  <label>
+                    &emsp;Através de : <span>{nmlogin}</span>
                   </label>
                   <br />
                   <p>
-                    &emsp;&emsp;Precisamos que você confirme se deseja continuar.
+                    &emsp;&emsp;Precisamos que você confirme se deseja continuar...
                   </p>
                   <h5>Obs:.</h5>
                   <p>
-                    &emsp;&emsp;Caso "ABORTAR" clique na seta à esquerda
-                    "Abortar"...
+                    &emsp;&emsp;Caso queira mudar, click em "VOLTAR" na seta à
+                    esquerda "Voltar"...
                   </p>
                   <p>
-                    &emsp;&emsp;Caso "CONTINUAR", abaixo clique na Seta à
-                    direita "Continuar"...
+                    &emsp;&emsp;Caso "CONTINUAR", clique na Seta a Direita
+                    "Continuar"...
                   </p>
                   <br />
                 </PanelConfResgateYellow>
-                ) : null
-              }
+              ) : null}
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 
@@ -211,8 +218,8 @@ export const Resgate = () => {
               <ContentSidePageBottonButton
                 pxheight={'40px'}
                 img={setaesq}
-                titbtn={'Abortar...'}
-                onclick={goto('/')}
+                titbtn={'Voltar...'}
+                onclick={goto('/resgate')}
               />
             </ContentSidePageBottonLabel>
             {/* <ContentBoxLabelPage
@@ -227,7 +234,7 @@ export const Resgate = () => {
                   pxheight={'40px'}
                   img={setadir}
                   titbtn={'Continuar...'}
-                  onclick={goto('/resgate1')}
+                  onclick={goto('/resgate2')}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
@@ -237,14 +244,14 @@ export const Resgate = () => {
             <PageModal
               ptop={'1%'}
               pwidth={'50%'}
-              pheight={'88%'}
+              pheight={'75%'}
               titulo={'Acesso Resgate.'}
               imgbm={close}
               titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpResgate0
-                imghlp={resgatehlp}
+              <CardHelpResgate1
+                imghlp={resgatehlp1}
                 imgcard={resgatepg}
                 imgbm={close}
                 titbm={'Fechar...'}
@@ -265,11 +272,8 @@ export const Resgate = () => {
               <CardInfoLogin />
             </PageModal>
           ) : null}
-
         </ContentCardPage>
       </ThemeResgate>
     </ThemeProvider>
   );
 };
-
-

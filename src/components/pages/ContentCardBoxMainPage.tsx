@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import * as Pg from './stylePage';
 
 type TypeContentCardBoxMainPage = {
-  children?: ReactNode;
+  children?: ReactNode | JSX.Element;
   id?: string;
   name?: string;
   value?: number;
