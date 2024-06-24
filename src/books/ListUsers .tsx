@@ -16,8 +16,9 @@ export type TypeUsers = {
    bairro: string;
    cidade: string;
    uf: string;
-
-
+   pergunta1: string;
+   pergunta2: string;
+   pergunta3: string;
 
 }
 
@@ -39,9 +40,13 @@ export const ListUser = [
     bairro: 'São Gerardo',
     cidade: 'Fortaleza',
     uf: 'Ceará',
-
-
-  },
+    pergunta1: 'Qual o nome Tipo de Animal você mais Admira ?',
+    resposta1: 'Cachorro',
+    pergunta2: 'Qual Marca de Veículo você mais Gosta ?',
+    resposta2: 'Ford',
+    pergunta3: 'Qual o esporte você mais Simpatiza ?',
+    resposta3: 'Natação'
+   },
   {
     id: 2,
     name: 'Lindsay O. Sbrissa',
@@ -58,7 +63,12 @@ export const ListUser = [
     bairro: 'São Gerardo',
     cidade: 'Fortaleza',
     uf: 'Ceará',
-
+    pergunta1: 'Qual o nome Tipo de Animal você mais Admira ?',
+    resposta1: 'Gato',
+    pergunta2: 'Qual Marca de Veículo você mais Gosta ?',
+    resposta2: 'Fiat',
+    pergunta3: 'Qual o esporte você mais Simpatiza ?',
+    resposta3: 'Futebol'
   }
 ];
   // {

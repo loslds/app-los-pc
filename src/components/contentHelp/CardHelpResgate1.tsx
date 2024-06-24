@@ -44,8 +44,8 @@ export const CardHelpResgate1 = ({
         </p>
         <h4>Situações dos recurso em processo do Resgate.</h4>
         <label>Como Concluido.:</label>
-        <p>&emsp; - Já temos a Empresa e a maneira de Comunicarmos.</p>
-        <label>{state.nmfant}</label>
+        <p>&emsp; - Já temos a Empresa, a qual devemos filtrar seu acesso.</p>
+        <label><span> # - </span>{state.nmfant}</label>
 
 
         {state.mdlogin === 0 ? (
@@ -61,9 +61,8 @@ export const CardHelpResgate1 = ({
           </div>
         ) : (
           <div>
-            <h4>Empresa disponivel para o resgate</h4>
-            <label>{state.nmfant}</label>
-            <label>{state.nmlogin}</label>
+            <h4>Maneira da qual devemos nos comunicar:</h4>
+            <label><span> # - </span>{state.nmlogin}</label>
             <p>
               &emsp; - Apartir daqui iremos te encaminhar para nos comunicarmos.
             </p>
@@ -92,7 +91,7 @@ export const CardHelpResgate1 = ({
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'90%'}
-          titulo={'Acessando Empresas.'}
+          titulo={'Acessando ao Sistema.'}
           imgbm={imgbm}
           titbm={titbm}
           onclose={onclose}

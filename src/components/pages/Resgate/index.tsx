@@ -28,8 +28,8 @@ import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import close from '../../../assets/svgs/close.svg';
-import resgatepg from '../../../assets/svgs/resgatepg.svg';
-import resgatehlp from '../../../assets/svgs/resgatehlp.svg';
+import resgatepg1 from '../../../assets/svgs/regatepg1.svg';
+import resgatehlp1 from '../../../assets/svgs/regatehlp1.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
@@ -53,7 +53,7 @@ export const Resgate = () => {
 
   React.useEffect(() => {
 
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 1 });
     dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
     dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate' });
@@ -69,10 +69,18 @@ export const Resgate = () => {
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
     dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
+    dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
+    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
+    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
+    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
+    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
+    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+
     dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
 
-    dispatch({ type: AcessoUseActions.setModulo, payload: 'Resgate: Empresa' });
+    dispatch({ type: AcessoUseActions.setModulo, payload: 'Resgate: Opção Empresa' });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
 
 //////////////////////////////////////////////////////////////////////////
@@ -123,7 +131,7 @@ export const Resgate = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeResgate
-        imgsys={resgatepg}
+        imgsys={resgatepg1}
         titbtnsys={'Home...'}
         onclicksys={goto('/')}
         titlepg={'Acesso Resgate.'}
@@ -244,8 +252,8 @@ export const Resgate = () => {
               onclose={() => setHelpPg(false)}
             >
               <CardHelpResgate0
-                imghlp={resgatehlp}
-                imgcard={resgatepg}
+                imghlp={resgatehlp1}
+                imgcard={resgatepg1}
                 imgbm={close}
                 titbm={'Fechar...'}
                 onclose={() => setHelpPg(false)}

@@ -17,6 +17,13 @@ type StateAcesso = {
   pin: string;
   fonec: string;
   avatar: string;
+  cpf: string;
+  perg1: string;
+  resp1: string;
+  perg2: string;
+  resp2: string;
+  perg3: string;
+  resp3: string;
 
   nmRecep: string;
   mdRecep: boolean;
@@ -64,6 +71,13 @@ export const initialData: StateAcesso = {
   mail: '',
   fonec: '',
   avatar: '',
+  cpf: '',
+  perg1: '',
+  resp1: '',
+  perg2: '',
+  resp2: '',
+  perg3: '',
+  resp3: '',
 
   nmRecep: 'Recepção',
   mdRecep: false,
@@ -111,6 +125,13 @@ export enum AcessoUseActions {
   setMail,
   setFoneC,
   setAvatar,
+  setCpf,
+  setperg1,
+  setresp1,
+  setperg2,
+  setresp2,
+  setperg3,
+  setresp3,
 
   setMdRecep,
   setNmRecep,
@@ -182,6 +203,20 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, fonec: action.payload };
     case AcessoUseActions.setAvatar:
       return { ...state, avatar: action.payload };
+    case AcessoUseActions.setCpf:
+        return { ...state, cpf: action.payload };
+    case AcessoUseActions.setperg1:
+      return { ...state, perg1: action.payload };
+    case AcessoUseActions.setresp1:
+      return { ...state, resp1: action.payload };
+    case AcessoUseActions.setperg2:
+      return { ...state, perg2: action.payload };
+    case AcessoUseActions.setresp2:
+      return { ...state, resp2: action.payload };
+    case AcessoUseActions.setperg3:
+      return { ...state, perg3: action.payload };
+    case AcessoUseActions.setresp3:
+      return { ...state, resp3: action.payload };
 
     case AcessoUseActions.setMdRecep:
       return { ...state, ndrecep: action.payload };

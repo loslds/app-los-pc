@@ -10,7 +10,7 @@ import dark from '../../../styles/themes/dark.ts';
 
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
-import resgate from '../../../assets/svgs/resgate.svg';
+import resgatebtn from '../../../assets/svgs/resgatebtn.svg';
 import jrjr from '../../../assets/svgs/jrjr.svg';
 import avatar from '../../../assets/svgs/avatar.svg';
 import avatar001 from '../../../assets/pngs/avatares/avatar001.png';
@@ -58,6 +58,13 @@ export const Home = () => {
       dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
       dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
+      dispatch({ type: AcessoUseActions.setperg1, payload: '' });
+      dispatch({ type: AcessoUseActions.setresp1, payload: '' });
+      dispatch({ type: AcessoUseActions.setperg2, payload: '' });
+      dispatch({ type: AcessoUseActions.setresp2, payload: '' });
+      dispatch({ type: AcessoUseActions.setperg3, payload: '' });
+      dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+      
       dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
       dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
       dispatch({ type: AcessoUseActions.setMdProdu, payload: false });
@@ -183,7 +190,7 @@ export const Home = () => {
         imgopen={!state.logado ? avatar : avatar001}
         titbtnopen={!state.logado ? 'Logar...' : 'Logado...'}
         onclickopen={!state.logado ? goto('/login') : handlerViewItensLogin}
-        imgreg={resgate}
+        imgreg={resgatebtn}
         titbtnreg={'Resgatar Acesso...'}
         onclickreg={goto('/resgate')}
         onchange={ToggleTheme}
