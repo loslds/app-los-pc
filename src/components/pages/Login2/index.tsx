@@ -207,6 +207,7 @@ export const Login2 = () => {
                   pwidth={'180px'}
                 >
                   <ContentInputMainPage>
+                    
                     {state.mdlogin === 1 ? (
                       <form name="login1">
                         <br />

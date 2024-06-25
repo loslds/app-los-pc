@@ -17,8 +17,8 @@ import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
-import { ContentCardCollunsCenterPage} from '../ContentCardCollunsCenterPage.tsx';
-import { ContentInputMainPage} from '../ContentInputMainPage.tsx';
+import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage.tsx';
+import { ContentInputMainPage } from '../ContentInputMainPage.tsx';
 import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
@@ -27,7 +27,9 @@ import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx'
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpResgate1 } from '../../contentHelp/CardHelpResgate1.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
+
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
+import { CardImgMsg } from '../../contentHelp/CardImgMsg.tsx';
 import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 
 import close from '../../../assets/svgs/close.svg';
@@ -37,6 +39,51 @@ import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
+//import satelite from '../../../assets/svgs/satelite.svg';
+//import sateliteon from '../../../assets/svgs/sateliteon.svg';
+import sateliteoff from '../../../assets/svgs/sateliteoff.svg';
+//import nuvenfind from '../../../assets/svgs/nuvenfind.svg';
+//import nuvenfindon from '../../../assets/svgs/nuvenfindon.svg';
+import nuvenfindoff from '../../../assets/svgs/nuvenfindoff.svg';
+//import login from '../../../assets/svgs/login.svg';
+//import logoon from '../../../assets/svgs/logoon.svg';
+//import logooff from '../../../assets/svgs/logooff.svg';
+import notedicao from '../../../assets/svgs/notedicao.svg';
+
+export const ListImg = [sateliteoff, nuvenfindoff, notedicao];
+
+export function CheckEmail(str: string) {
+  if (str === '') {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+export function CheckFone(str: string) {
+  if (str === '') {
+    return false;
+  } else {
+    return true;
+  }
+}
+export function CheckCPF(str: string) {
+  if (str === '') {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+export function Conexao() {
+  return true;
+}
+export function FindAcesso() {
+  return true;
+}
+export function FindUsers() {
+  return true;
+}
 
 export const Resgate2 = () => {
   const { state, dispatch } = AcessoUseForm();
@@ -51,32 +98,53 @@ export const Resgate2 = () => {
   const [helppg, setHelpPg] = React.useState(false);
 
   //const [mdlogin, setMdLogin] = React.useState(0);
-  const [nmlogin, setNmLogin] = React.useState('Opções :');
+  //const [nmlogin, setNmLogin] = React.useState('Opções :');
 
   const [iscontatoemail, setIsContatoEmail] = React.useState(false);
-  const [isconfemail, setIsConfEmail] = React.useState(false);
   const [iscontatosms, setIsContatoSms] = React.useState(false);
-  const [isconfsms, setIsConfSms] = React.useState(false);
   const [iscontatozap, setIsContatoZap] = React.useState(false);
-  const [isconfzap, setIsConfZap] = React.useState(false);
-  const [iscpf, setIsCpf] = React.useState(false);
-  const [conferido, setConferido] = React.useState(false);
-
+  const [iscontatocpf, setIsContatoCpf] = React.useState(false);
   const [isconfcpf, setIsConfCpf] = React.useState(false);
-  const [ispergunta, setIsPergunta] = React.useState(false);
 
-  const [ispergunta1, setIsPergunta1] = React.useState(false);
-  const [pergunta1, setPergunta1] = React.useState('');
-  const [ispergunta2, setIsPergunta2] = React.useState(false);
-  const [pergunta2, setPergunta2] = React.useState('');
-  const [ispergunta3, setIsPergunta3] = React.useState(false);
-  const [pergunta3, setPergunta3] = React.useState('');
-
+  const [isstrvalue, setIsStrValue] = React.useState(false);
   const [strid, setStrId] = React.useState('');
   const [strpsw, setStrPsw] = React.useState('');
 
+  const [ischekedicao, setIsChekEdicao] = React.useState(false);
+  const [isconfedicao, setIsConfEdicao] = React.useState(false);
+
+  const [imgmsg, setImgMsg] = React.useState('');
+  const [isacesso, setIsAcesso] = React.useState(false);
+  const [iserromsg, setIsErroMsg] = React.useState(false);
+  const [txtaga, setTxtAga] = React.useState('');
+  const [txtlabel, setTxtLabel] = React.useState('');
+  const [txtp, setTxtP] = React.useState('');
+
+  const [isconexao, setIsConexao] = React.useState(false);
+  const [isconectedoff, setIsConectedoff] = React.useState(false);
+  const [isfindacces, setIsFindAcces] = React.useState(false);
+  const [isfindingoff, setIsFindingoff] = React.useState(false);
+  const [isusers, setIsUsers] = React.useState(false);
+
+  const [isloggedoff, setIsLoggedoff] = React.useState(false);
+
+  const [iseditar, setIsEditar] = React.useState(false);
+  const [edicao, setEdicao] = React.useState('');
+
+  const [ispergunta, setIsPergunta] = React.useState(false);
+  const [isresposta, setIsResposta] = React.useState(false);
+  const [pergunta1, setPergunta1] = React.useState('');
+  const [resposta1, setResposta1] = React.useState('');
+  const [pergunta2, setPergunta2] = React.useState('');
+  const [resposta2, setResposta2] = React.useState('');
+  const [pergunta3, setPergunta3] = React.useState('');
+  const [resposta3, setResposta3] = React.useState('');
+  const [isstrresp, setIsStrResp] = React.useState(false);
+  const [strresp1, setStrResp1] = React.useState('');
+  const [strresp2, setStrResp2] = React.useState('');
+  const [strresp3, setStrResp3] = React.useState('');
+
   const [btncontinua, setBtnContinua] = React.useState(false);
-  const [isconfirmation, setIsConfirmation] = React.useState(false);
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
@@ -98,40 +166,45 @@ export const Resgate2 = () => {
     dispatch({ type: AcessoUseActions.setperg3, payload: '' });
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
 
-    if (state.mdlogin === 1){
+    if (state.mdlogin === 1) {
       setIsContatoEmail(true);
-      setIsContatoSms(false);
-      setIsContatoZap(false);
-      setIsCpf(false);
-      setIsPergunta(false);
-    } else if (state.mdlogin === 2){
-      setIsContatoEmail(false);
+      //   setIsContatoSms(false);
+      //   setIsContatoZap(false);
+      //   setIsContatoCpf(false);
+      //   setIsPergunta(false);
+    } else if (state.mdlogin === 2) {
+      // setIsContatoEmail(false);
       setIsContatoSms(true);
-      setIsContatoZap(false);
-      setIsCpf(false);
-      setIsPergunta(false);
-    } else if (state.mdlogin === 3){
-      setIsContatoEmail(false);
-      setIsContatoSms(false);
+      // setIsContatoZap(false);
+      // setIsContatoCpf(false);
+      // setIsPergunta(false);
+    } else if (state.mdlogin === 3) {
+      // setIsContatoEmail(false);
+      // setIsContatoSms(false);
       setIsContatoZap(true);
-      setIsCpf(false);
-      setIsPergunta(false);
-    } else if (state.mdlogin === 4){
-      setIsContatoEmail(false);
-      setIsContatoSms(false);
-      setIsContatoZap(false);
-      setIsCpf(true);
-      setIsPergunta(false);
+      // setIsContatoCpf(false);
+      // setIsPergunta(false);
+    } else if (state.mdlogin === 4) {
+      // setIsContatoEmail(false);
+      // setIsContatoSms(false);
+      // setIsContatoZap(false);
+      setIsContatoCpf(true);
+      //setIsPergunta(false);
     }
+    setIsEditar(true);
+    setEdicao('Através de : ');
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Resgate: Contato Usuário'
     });
-    dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Contato :'+ state.mdlogin + '.' });
+    dispatch({
+      type: AcessoUseActions.setAplicacao,
+      payload: 'Contato :' + state.mdlogin + '.'
+    });
 
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-      
+
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
     setStart(true);
@@ -163,48 +236,114 @@ export const Resgate2 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  const handlerConferirEdição = React.useCallback(() => {
-    if (strid === ''){
-      setConferido(false);
-    } else {
-      setConferido(true);
+  const handlerCheckEdicao = () => {
+    setBtnContinua(false);
+    if (iscontatoemail) {
+      setIsChekEdicao(CheckEmail(strid));
+      setEdicao('Resgatar através do Email: ');
+    } else if (iscontatosms) {
+      setIsChekEdicao(CheckFone(strid));
+      setEdicao('Resgatar através do Celular: ');
+    } else if (iscontatozap) {
+      setIsChekEdicao(CheckFone(strid));
+      setEdicao('Resgatar através do Celular: ');
+    } else if (iscontatocpf) {
+      setIsChekEdicao(CheckCPF(strid));
     }
-  }, []);
+    // if (ischekedicao) {
+    //   setIsEditar(false);
+    //   setIsConfEdicao(true);
+    //   setIsErroMsg(false);
+    //   setBtnContinua(true);
+    // }
+  };
 
   React.useEffect(() => {
-    if (conferido ){
-      if (iscontatoemail){
-      setIsContatoEmail(false);
-      setIsConfEmail(true);
-      } else if (iscontatosms){
-        setIsContatoSms(false);
-        setIsConfSms(true);
-      } else if (iscontatozap){
-        setIsContatoZap(false);
-        setIsConfZap(true);
-      } else if (iscpf){
-        setIsCpf(false);
-        setIsConfCpf(true);
-      }
+    setIsPergunta(false);
+    if (!ischekedicao) {
+      
     } else {
-      if (iscontatoemail){
-        setIsContatoEmail(true);
-        setIsConfEmail(false);
-      } else if (iscontatosms){
-        setIsContatoSms(true);
-        setIsConfSms(false);
-      } else if (iscontatozap){
-        setIsContatoZap(true);
-        setIsConfZap(false);
-      } else if (iscpf){
-        setIsCpf(true);
-        setIsConfCpf(false);
+      if (!iserromsg) {
+        setIsEditar(true);
+        setIsErroMsg(true);
+        if (iscontatoemail) {
+          setImgMsg(ListImg[2]);
+          setTxtAga('"ERRO" na Edição do Email');
+          setTxtLabel('Não foi Editado o EMAIL.');
+          setTxtP('Verifique sua edição de Email.');
+        } else if (iscontatosms) {
+          setImgMsg(ListImg[2]);
+          setTxtAga('"ERRO" na Edição do Telefone');
+          setTxtLabel('Não foi Editado o Nº Celular para SMS.');
+          setTxtP('Verifique sua edição do Celular para SMS.');
+        } else if (iscontatozap) {
+          setImgMsg(ListImg[2]);
+          setTxtAga('"ERRO" na Edição do Telefone');
+          setTxtLabel('Não foi Editado o Nº Celular para Whatsapp.');
+          setTxtP('Verifique sua edição do Celular para Whatsapp.');
+        } else if (iscontatocpf) {
+          setImgMsg(ListImg[2]);
+          setTxtAga('"ERRO" na Edição do C.P.F');
+          setTxtLabel('Não foi Editado o Nº C.P.F.');
+          setTxtP('Verifique sua edição do C.P.F.');
+        }
       }
     }
     
-    dispatch({ type: AcessoUseActions.setId, payload: mdlogin });
-    // dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-  }, [conferido, iscontatoemail, iscontatosms, iscontatozap, iscpf, dispatch]);
+
+    if (isconfedicao && iserromsg) {
+      setIsEditar(true);
+      setIsConfEdicao(false);
+    }
+    if (ischekedicao && !iserromsg) {
+      setIsEditar(false);
+      setIsConfEdicao(true);
+    }
+  }, [
+    ischekedicao,
+    iserromsg,
+    isconfedicao,
+    iseditar,
+    iscontatoemail,
+    iscontatosms,
+    iscontatozap,
+    iscontatocpf
+  ]);
+
+  const handlerCheckDados = () => {
+    setBtnContinua(false);
+    if (iscontatoemail || iscontatosms || iscontatozap ){
+      setBtnContinua(true);  
+    } else if (iscontatocpf && ispergunta){
+      if ()
+    } 
+
+    ){
+      if (strid === state.mail){
+        setBtnContinua(true);  
+      }
+    } else if (iscontatosms){
+      if (strid === state.fonec){
+        setBtnContinua(true);  
+      } 
+    } else if (iscontatozap){
+      if (strid === state.fonec){
+        setBtnContinua(true);  
+    }
+  }
+    } else if (iscontatocpf) {
+      setImgMsg(ListImg[2]);
+      setTxtAga('"ERRO" na Edição do C.P.F');
+      setTxtLabel('Não foi Editado o Nº C.P.F.');
+      setTxtP('Verifique sua edição do C.P.F.');
+    }
+
+    if (isconfedicao) {
+      setBtnContinua(true);
+    } else {
+      setBtnContinua(false);
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -223,11 +362,13 @@ export const Resgate2 = () => {
         onchange={ToggleTheme}
       >
         <div>
-          <label>Senha MASTER.....: {snhmaster}</label>
-          <label>State idemp......: {state.idemp}</label>
-          <label>State nmfant.....: {state.nmfant}</label>
-          <label>State nmlogin....: {state.nmlogin}</label>
-          <label>State mdlogin....: {state.mdlogin}</label>
+          <label>Senha MASTER.......: {snhmaster}</label>
+          <label>State mdlogin......: {state.nmlogin}</label>
+          <label>State idemp........: {state.idemp}</label>
+          <label>State nmfant.......: {state.nmfant}</label>
+          <label>State ischekedicao.: {ischekedicao}</label>
+          <label>State strid........: {strid}</label>
+          <label>State isconfEdicao.: {isconfedicao}</label>
         </div>
         <ContentCardPage>
           <ContentCardPageTitle>
@@ -238,10 +379,8 @@ export const Resgate2 = () => {
               <ContentCardPageTitle>
                 <h4>{state.aplicacao}</h4>
               </ContentCardPageTitle>
-              <ContentCardCollunsCenterPage
-                openccp={iscontatoemail}
-                pwidth={'180px'}
-              >
+
+              <ContentCardCollunsCenterPage openccp={iseditar} pwidth={'180px'}>
                 <ContentInputMainPage>
                   {iscontatoemail ? (
                     <ContentInputPage>
@@ -259,8 +398,7 @@ export const Resgate2 = () => {
                         <br />
                       </form>
                     </ContentInputPage>
-                    ) : null
-                  }
+                  ) : null}
                   {iscontatosms ? (
                     <ContentInputPage>
                       <form name="telefone">
@@ -277,8 +415,7 @@ export const Resgate2 = () => {
                         <br />
                       </form>
                     </ContentInputPage>
-                    ) : null
-                  }
+                  ) : null}
                   {iscontatozap ? (
                     <ContentInputPage>
                       <form name="whatsapp">
@@ -295,9 +432,8 @@ export const Resgate2 = () => {
                         <br />
                       </form>
                     </ContentInputPage>
-                    ) : null
-                  }
-                  {iscpf ? (
+                  ) : null}
+                  {iscontatocpf && !ispergunta ? (
                     <ContentInputPage>
                       <form name="cpf">
                         <br />
@@ -313,68 +449,98 @@ export const Resgate2 = () => {
                         <br />
                       </form>
                     </ContentInputPage>
-                    ) : null
-                  }
+                  ) : null}
+                  {iscontatocpf && ispergunta ? (
+                    <ContentInputPage>
+                      <label>
+                        C.P.F. : <span>{strid}</span>
+                      </label>
+                      <form name="perguntas">
+                        <br />
+                        <label>{pergunta1} ?</label>
+                        <input
+                          type="text"
+                          name="perg1"
+                          value={strresp1}
+                          size={25}
+                          autoFocus={true}
+                          onChange={(e) => setStrResp1(e.currentTarget.value)}
+                        />
+                        <br />
+                        <label>{pergunta2} ?</label>
+                        <input
+                          type="text"
+                          name="perg2"
+                          value={strresp2}
+                          maxLength={25}
+                          onChange={(e) => setStrResp2(e.currentTarget.value)}
+                        />
+                        <br />
+                        <label>{pergunta3} ?</label>
+                        <input
+                          type="text"
+                          name="perg3"
+                          value={strresp3}
+                          maxLength={25}
+                          onChange={(e) => setStrResp3(e.currentTarget.value)}
+                        />
+                        <br />
+                      </form>
+                    </ContentInputPage>
+                  ) : null}
                 </ContentInputMainPage>
+              </ContentCardCollunsCenterPage>
 
-                </ContentCardCollunsCenterPage> 
- 
-                <PanelConfResgateYellow
-                  titulo={'Acesso Resgate: '+ state.nmlogin}
-                  subtitulo={'Dados Requeridos :'}
-                  >
-                  {conferido && isconfemail? (
-
-
-                  <label>&emsp;Detemine o email conforme seu Cadastro :</label>
-
-  
-  
-  <label>
-  &emsp;&emsp;&emsp;Nome Fantasia: <span>{state.nmfant}</span>
-  </label>
-  <p>&emsp;No momento você inseriu a optou por:</p>
-  <label>
-  &emsp;&emsp;&emsp;Através de : <span>{nmlogin}</span>
-  </label>
-  <br />
-  <p>
-    &emsp;&emsp;Precisamos que você confirme se deseja continuar...
-  </p>
-  <h5>Obs:.</h5>
-  <p>
-    &emsp;&emsp;Caso queira mudar, click em "VOLTAR" na seta à
-    esquerda "Voltar"...
-  </p>
-  <p>
-    &emsp;&emsp;Caso "CONTINUAR", clique na Seta a Direita
-    "Continuar"...
-  </p>
-  <br />
-</PanelConfResgateYellow>
-) : null}
- */}
-              {isconfirmation ? (
-                <PanelConfResgateYellow
-                  isbgcolor={start}
-                  titulo={'Acesso Resgate'}
-                  subtitulo={'Dados Inseridos'}
+              {iserromsg ? (
+                <PageModal
+                  ptop={'1%'}
+                  pwidth={'30%'}
+                  pheight={'50%'}
+                  titulo={'ERRO na Edição de Informação.'}
+                  imgbm={close}
+                  titbm={'Fechar...'}
+                  onclose={() => setIsErroMsg(false)}
                 >
+                  <CardImgMsg
+                    img={imgmsg}
+                    txtaga={txtaga}
+                    txtlabel={txtlabel}
+                    txtp={txtp}
+                  />
+                </PageModal>
+              ) : null}
 
-                  <p>&emsp;&emsp;Já temos "EMPRESA".</p>
+              {isconfedicao &&
+              (iscontatoemail || iscontatosms || iscontatozap) &&
+              !iserromsg &&
+              !iscontatocpf ? (
+                <PanelConfResgateYellow
+                  titulo={'Resgate para seu Acesso.'}
+                  subtitulo={'Dados Requeridos :'}
+                >
+                  <p>&emsp;&emsp;Já temos em mãos :</p>
                   <label>
-                    &emsp;&emsp;&emsp;ID Empresa....: <span>{state.idemp}</span>
+                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                    <span>{state.idemp}</span>
                   </label>
                   <label>
-                  &emsp;&emsp;&emsp;Nome Fantasia: <span>{state.nmfant}</span>
+                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                    <span>{state.nmfant}</span>
                   </label>
-                  <p>&emsp;No momento você inseriu a optou por:</p>
+                  <p>&emsp;Você optou por:</p>
                   <label>
-                  &emsp;&emsp;&emsp;Através de : <span>{nmlogin}</span>
+                    &emsp;&emsp;&emsp;# - Resgatar com :{' '}
+                    <span>{state.nmlogin}</span>
+                  </label>
+                  <br />
+                  <h4>Sua Edição:</h4>
+                  <label>
+                    &emsp;{edicao} <span>{strid}</span>
                   </label>
                   <br />
                   <p>
-                    &emsp;&emsp;Precisamos que você confirme se deseja continuar...
+                    &emsp;&emsp;Precisamos que você confirme se deseja
+                    continuar...
                   </p>
                   <h5>Obs:.</h5>
                   <p>
@@ -403,32 +569,69 @@ export const Resgate2 = () => {
               />
             </ContentSidePageBottonLabel>
 
-            { (iscontatoemail || iscontatosms || iscontatozap || iscpf) ? ( 
-              // Mostra a rotina para resgatar. 
-              <ContentBoxLabelPage label={'Contato: [ ' + state.nmlogin + ' ]'} />
-              ) : null
-            }
+            {iscontatoemail || iscontatosms || iscontatozap || iscontatocpf ? (
+              // Mostra a rotina para resgatar.
+              <ContentBoxLabelPage
+                label={'Contato: [ ' + state.nmlogin + ' ]'}
+              />
+            ) : null}
 
-            { btncontinua && (iscontatoemail || iscontatosms || iscontatozap || iscpf) ? (
-              // Conferir se existe edição e ao clicar continuar compara com a existencia de usuário com :
-              // mesmo email, ou mesmo foneC para para SmS, ou foneC para Zap, ou mesmo cpf para perguntas. 
+            {!ischekedicao ? (
+              // Conferir se existe edição e se esta correta.
               <ContentSidePageBottonLabel
-                istitl={btncontinua}
-                title={'Continuar.: '}
+                istitl={iseditar}
+                title={'Checar...: '}
               >
                 <ContentSidePageBottonButton
                   pxheight={'40px'}
                   img={setadir}
-                  titbtn={'Continuar...'}
-                  onclick={handlerConferirEdição}
+                  titbtn={'Checar Edição...'}
+                  onclick={handlerCheckEdicao}
                 />
               </ContentSidePageBottonLabel>
-              ) : null
-            }
-
-
+            ) : null}
+            {ischekedicao && iscontatocpf && ispergunta ? (
+              <ContentSidePageBottonLabel
+                istitl={ischekedicao}
+                title={'Checar Dados...: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Checar Dados...'}
+                  onclick={handlerCheckDados}
+                />
+              </ContentSidePageBottonLabel>
+            ) : null}
+            {ischekedicao && btncontinua ? (
+              <ContentSidePageBottonLabel
+                istitl={ischekedicao}
+                title={'Enviar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Enviar Dados...'}
+                  onclick={goto('/resgate3')}
+                />
+              </ContentSidePageBottonLabel>
+            ) : null}
           </ContentSidePagePanelBotton>
 
+          {/* {iserromsg ? (
+            <PanelModalInfoErros
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'auto'}
+              titulo={'ERRO em Processamento...'}
+              texto={'Mais atenção! Edição obrigatória.'}
+              imgbm={enviaron}
+              titbm={'Voltar...'}
+              onClose={() => setIsErroLogin(false)}
+            >
+              <CardInfoErros imgcard={''} nmerro={nmrerrologin} />
+            </PanelModalInfoErros>
+          ) : null} */}
 
           {helppg ? (
             <PageModal
@@ -467,3 +670,87 @@ export const Resgate2 = () => {
     </ThemeProvider>
   );
 };
+
+{
+  /* 
+if (iscontatocpf) {
+        if (!ispergunta) {
+          setPergunta1(state.perg1);
+          setPergunta2(state.perg2);
+          setPergunta3(state.perg3);
+          setResposta1(state.resp1);
+          setResposta2(state.resp2);
+          setResposta3(state.resp3);
+          setIsPergunta(true);
+          if (ischekedicao) {
+            setIsConfEdicao(true);
+            setIsErroMsg(false);
+          }
+          if (resposta1 === strresp1){
+            setIsStrResp(true);
+          } else if (resposta2 === strresp2){
+            setIsStrResp(true);
+          } else if (resposta3 === strresp3){
+            setIsStrResp(true);
+          }
+          if (isstrresp){
+            if (str)
+
+          setImgMsg(ListImg[2]);
+          setTxtAga('"ERRO" na Edição da 1ª Pergunta');
+          setTxtLabel('Não foi Editado a 1ª Pergunta');
+          setTxtP('Verifique sua edição da 1ª Pergunta');
+        } else if (isstrresp2){
+          setImgMsg(ListImg[2]);
+          setTxtAga('"ERRO" na Edição da 2ª Pergunta');
+          setTxtLabel('Não foi Editado a 2ª Pergunta');
+          setTxtP('Verifique sua edição da 2ª Pergunta');
+        } else if (isstrresp1){
+          setImgMsg(ListImg[2]);
+          setTxtAga('"ERRO" na Edição da 3ª Pergunta');
+          setTxtLabel('Não foi Editado a 3ª Pergunta');
+          setTxtP('Verifique sua edição da 3ª Pergunta');
+        }
+
+
+
+        /////////////////////////////////////////////////////
+
+
+
+  //   if (conferido ){
+  //     if (iscontatoemail){
+  //     setIsContatoEmail(false);
+  //     setIsConfEmail(true);
+  //     } else if (iscontatosms){
+  //       setIsContatoSms(false);
+  //       setIsConfSms(true);
+  //     } else if (iscontatozap){
+  //       setIsContatoZap(false);
+  //       setIsConfZap(true);
+  //     } else if (iscpf){
+  //       setIsCpf(false);
+  //       setIsConfCpf(true);
+  //     }
+  //   } else {
+  //     if (iscontatoemail){
+  //       setIsContatoEmail(true);
+  //       setIsConfEmail(false);
+  //     } else if (iscontatosms){
+  //       setIsContatoSms(true);
+  //       setIsConfSms(false);
+  //     } else if (iscontatozap){
+  //       setIsContatoZap(true);
+  //       setIsConfZap(false);
+  //     } else if (iscpf){
+  //       setIsCpf(true);
+  //       setIsConfCpf(false);
+  //     }
+  //   }
+    
+  //   dispatch({ type: AcessoUseActions.setIdNmUser, payload:  });
+  //   // dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+
+
+*/
+}
