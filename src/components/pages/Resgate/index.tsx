@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ListEmps } from '../../../books/ListEmps.tsx';
+
 import { criasmstr } from '../../util/datamomento.tsx';
 
 import * as Lg from '../stylePage.ts';
@@ -86,6 +88,9 @@ export const Resgate = () => {
 //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
     setStart(true);
+
+
+    
   }, [dispatch]);
 
   const [theme, setTheme] = React.useState(dark);
@@ -106,6 +111,7 @@ export const Resgate = () => {
     };
   };
 
+
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
   }, []);
@@ -124,6 +130,25 @@ export const Resgate = () => {
       setIsConfirmation(true);
       setBtnContinua(true);
     }
+    // indexando por id a minha lista
+    
+    
+    ListEmps.map(function(item){
+      console.log('item,id :',item.id);
+      return item.id;
+    });
+    
+    //const tmnhEmpr = ListEmps.length;
+    
+
+    // const empfiltrada = [];
+    // let i=0;
+    // for ( i <= tmnhEmpr ) {
+    //   if (ListEmpresas.id == idempresa ) {
+    //     empfiltrada.push(Empresas[i]);
+    //   }
+    // };
+
     dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
     dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
   }, [idempresa, fantempresa, dispatch]);

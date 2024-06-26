@@ -1,4 +1,4 @@
-export type TypeEmpresas = {
+export type TypeEmps = {
   id?: number;
   fant?: string;
   name?: string;
@@ -18,7 +18,7 @@ export type TypeEmpresas = {
   uf?: string;
 }
 
-export const ListEmpresas = [
+export const ListEmps = [
   {
     id: 1,
     fant: 'JR-Bordados.',

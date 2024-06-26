@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ListEmpresas } from 'books/ListEmps.tsx';
-import { ListUser } from 'books/ListUsers .tsx';
+//import { ListEmps } from '../../../books/ListEmps.tsx';
+//import { ListUser } from '../../../books/ListUsers .tsx';
 
 import { criasmstr } from '../../util/datamomento.tsx';
 
@@ -141,8 +141,8 @@ export const Resgate2 = () => {
   const [iseditar, setIsEditar] = React.useState(false);
   const [edicao, setEdicao] = React.useState('');
 
-  const [ispergunta, setIsPergunta] = React.useState(false);
-  const [isresposta, setIsResposta] = React.useState(false);
+  //const [ispergunta, setIsPergunta] = React.useState(false);
+  //const [isresposta, setIsResposta] = React.useState(false);
   const [pergunta1, setPergunta1] = React.useState('');
   const [resposta1, setResposta1] = React.useState('');
   const [pergunta2, setPergunta2] = React.useState('');
