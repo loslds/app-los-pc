@@ -28,7 +28,7 @@ import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import close from '../../../assets/svgs/close.svg';
-import resgatepg2 from '../../../assets/svgs/resgtepg2.svg';
+import resgatepg2 from '../../../assets/svgs/resgatepg2.svg';
 import resgatehlp2 from '../../../assets/svgs/resgatehlp2.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';

@@ -28,8 +28,8 @@ import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import close from '../../../assets/svgs/close.svg';
-import resgatepg1 from '../../../assets/svgs/regatepg1.svg';
-import resgatehlp1 from '../../../assets/svgs/regatehlp1.svg';
+import resgatepg1 from '../../../assets/svgs/resgatepg1.svg';
+import resgatehlp1 from '../../../assets/svgs/resgatehlp1.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';

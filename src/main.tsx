@@ -10,7 +10,7 @@ import { Login2 } from './components/pages/Login2';
 import { Login3 } from './components/pages/Login3';
 import { Resgate } from './components/pages/Resgate';
 import { Resgate1 } from './components/pages/Resgate1';
-
+import { Resgate2 } from './components/pages/Resgate2';
 //import { Resgate1 } from './components/pages/Resgate1';
 
 //import { MyAccount } from './components/pages/MyAccount';
@@ -39,6 +39,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
           <Route path="/login3" element={<Login3 />} />
           <Route path="/resgate" element={<Resgate />} />
           <Route path="/resgate1" element={<Resgate1 />} />
+          <Route path="/resgate2" element={<Resgate2 />} />
 
           {/* <Route path="/mayaccount" element={<MyAccount />} /> */}
           <Route path="/tabprc" element={<TabPrc />} />
