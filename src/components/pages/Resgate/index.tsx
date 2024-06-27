@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { ListEmps } from '../../../books/ListEmps.tsx';
-
 import { criasmstr } from '../../util/datamomento.tsx';
 
 import * as Lg from '../stylePage.ts';
@@ -133,10 +131,7 @@ export const Resgate = () => {
     // indexando por id a minha lista
     
     
-    ListEmps.map(function(item){
-      console.log('item,id :',item.id);
-      return item.id;
-    });
+   
     
     //const tmnhEmpr = ListEmps.length;
     

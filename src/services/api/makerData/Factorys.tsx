@@ -1,10 +1,8 @@
-// import Api from '../../requester'
-import { compareValues } from 'mini-helper';
+import type { IResponseFactoryList } from '../factory/factory.dto';
 
-
-const data = {
+export const data:IResponseFactoryList = {
   success: true,
-  empresas: [
+  factorys: [
     {
       id: 1,
       fant: 'JR-Bordados.',
@@ -18,11 +16,12 @@ const data = {
       fonecel: '(85) 999417475',
       local: 'Rua Professor Anacleto',
       compl: 'Casa',
-      nrlocal: 576,
+      nrlocal: '576',
       cep: '60450-360',
       bairro: 'Parqueândia',
       cidade: 'Fortaleza',
-      uf: 'Ceará'
+      estado: 'Ceará',
+      uf: 'CE'
     },
     {
       id: 2,
@@ -36,37 +35,13 @@ const data = {
       fonefx: '(85) 3243-1872',
       fonecel: '(85) 999001110',
       local: 'Rua Professor Anacleto',
-      nrlocal: 576,
+      nrlocal: '576',
       compl: 'Casa',
       cep: '60450-360',
       bairro: 'Parqueândia',
       cidade: 'Fortaleza',
-      uf: 'Ceará'
+      estado: 'Ceará',
+      uf: 'CE'
     }
   ]
 };
-
-
-export async function getEmpresas(options = {} ) {
-  const result = await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ data });
-    }, 2000);
-  });
-
-  const { order, filter = {} } = options;
-  
-  const resultData = result && result.data;
-
-  const { empId } = filter;
-
-  if ( empId ) {
-    resultData.empresas = resultData.empresas.filter(p => p.promocao === promocao)
-  }
-
-    
-  if (resultData.empresas && order) {
-    resultData.empresas = resultData.empresas.sort(compareValues(order, 'asc'))}
-  return resultData
-}
-
