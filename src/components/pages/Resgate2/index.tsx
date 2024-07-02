@@ -1,8 +1,5 @@
 import React from 'react';
 
-//import { ListEmps } from '../../../books/ListEmps.tsx';
-//import { ListUser } from '../../../books/ListUsers .tsx';
-
 import { criasmstr } from '../../util/datamomento.tsx';
 
 import * as Lg from '../stylePage.ts';
@@ -26,7 +23,6 @@ import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
-//import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpResgate1 } from '../../contentHelp/CardHelpResgate1.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
@@ -42,18 +38,11 @@ import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-//import satelite from '../../../assets/svgs/satelite.svg';
-//import sateliteon from '../../../assets/svgs/sateliteon.svg';
 import sateliteoff from '../../../assets/svgs/sateliteoff.svg';
-//import nuvenfind from '../../../assets/svgs/nuvenfind.svg';
-//import nuvenfindon from '../../../assets/svgs/nuvenfindon.svg';
 import nuvenfindoff from '../../../assets/svgs/nuvenfindoff.svg';
-//import login from '../../../assets/svgs/login.svg';
-//import logoon from '../../../assets/svgs/logoon.svg';
-//import logooff from '../../../assets/svgs/logooff.svg';
 import notedicao from '../../../assets/svgs/notedicao.svg';
 
-export const ListImg = [sateliteoff, nuvenfindoff, notedicao];
+//export const ListImg = [sateliteoff, nuvenfindoff, notedicao];
 
 export function IsValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -113,20 +102,15 @@ export const Resgate2 = () => {
   const [strid, setStrId] = React.useState('');
 
   const [nrerrochecked, setNrErroChecked] = React.useState(0);
-  const [imgmsg, setImgMsg] = React.useState('');
+  const [imgmsg, setImgMsg] = React.useState(notedicao);
   const [iserromsg, setIsErroMsg] = React.useState(false);
   const [txtaga, setTxtAga] = React.useState('');
   const [txtlabel, setTxtLabel] = React.useState('');
   const [txtp, setTxtP] = React.useState('');
 
   const [iseditar, setIsEditar] = React.useState(false);
-  const [isbtneditar, setIsBtnEditar] = React.useState(false);
-
-  const [isconferir, setIsConferir] = React.useState(false);
-  const [btnconferir, setBtnConferir] = React.useState(false);
   const [ischeckedicao, setIsCheckEdicao] = React.useState(false);
-  const [btnchecaredicao, setBtnChecarEdicao] = React.useState(false);
-
+  const [isconferir, setIsConferir] = React.useState(false);
   const [isconfirmar, setIsConfirmar] = React.useState(false);
   const [iscontinuar, setIsContinuar] = React.useState(false);
 
@@ -141,12 +125,17 @@ export const Resgate2 = () => {
     dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
+
     dispatch({ type: AcessoUseActions.setPin, payload: '' });
+
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+
     dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
     dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+
     dispatch({ type: AcessoUseActions.setperg1, payload: '' });
     dispatch({ type: AcessoUseActions.setresp1, payload: '' });
     dispatch({ type: AcessoUseActions.setperg2, payload: '' });
@@ -154,6 +143,18 @@ export const Resgate2 = () => {
     dispatch({ type: AcessoUseActions.setperg3, payload: '' });
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
 
+    dispatch({
+      type: AcessoUseActions.setModulo,
+      payload: 'Resgate: Contato Usuário'
+    });
+    dispatch({
+      type: AcessoUseActions.setAplicacao,
+      payload: 'Contato :' + state.nmlogin + '.'
+    });
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
+    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+    //////////////////////////////////////////////////////////////////////////
+    setSnhMaster(criasmstr);
     setEdicao('');
     if (state.mdlogin === 1) {
       setIsContatoEmail(true);
@@ -168,19 +169,6 @@ export const Resgate2 = () => {
       setIsContatoCpf(true);
       setEdicao('Resgatar através do C.P.F.: ');
     }
-    dispatch({
-      type: AcessoUseActions.setModulo,
-      payload: 'Resgate: Contato Usuário'
-    });
-    dispatch({
-      type: AcessoUseActions.setAplicacao,
-      payload: 'Contato :' + state.nmlogin + '.'
-    });
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    //////////////////////////////////////////////////////////////////////////
-    setSnhMaster(criasmstr);
-    setEdicao('');
     setOnPanel(false);
     setHelpPg(false);
     setIsEditar(true);
@@ -191,11 +179,6 @@ export const Resgate2 = () => {
     setIsConfirmar(false);
     setIsContinuar(false);
     setStart(true);
-
-    // setIsBtnEditar(false);
-    // setBtnChecarEdicao(false);
-    // setBtnConferir(false);
-    // setIsBtnContinuar(false);
   }, [dispatch]);
 
   const [theme, setTheme] = React.useState(dark);
@@ -209,6 +192,7 @@ export const Resgate2 = () => {
       setIscheck(false);
     }
   };
+
   const navigate = useNavigate();
   const goto = (path: string) => {
     return () => {
@@ -225,13 +209,13 @@ export const Resgate2 = () => {
   }, []);
 
   React.useEffect(() => {
-    setIsEditar(true);
-    setIsCheckEdicao(false);
-    setIsErroMsg(false);
-    setNrErroChecked(0);
-    setIsConferir(false);
-    setIsConfirmar(false);
-    setIsContinuar(false);
+    // setIsEditar(true);
+    // setIsCheckEdicao(false);
+    // setIsErroMsg(false);
+    // setNrErroChecked(0);
+    // setIsConferir(false);
+    // setIsConfirmar(false);
+    // setIsContinuar(false);
     if (strid === '') {
       if (ischeckedicao) {
         setIsCheckEdicao(false);
@@ -239,33 +223,17 @@ export const Resgate2 = () => {
     } else {
       setIsCheckEdicao(true);
     }
-    // if (strid === '') {
-    //   if (ischeckedicao) {
-    //     setIsCheckEdicao(false);
-    //   }
-    //   if (btnchecaredicao) {
-    //     setBtnChecarEdicao(false);
-    //   }
-    // } else {
-    //   if (!ischeckedicao) {
-    //     setIsCheckEdicao(true);
-    //   }
-    //   if (!btnchecaredicao) {
-    //     setBtnChecarEdicao(true);
-    //   }
-    // }
   }, [strid, ischeckedicao]);
 
   const handlerChecarEdicao = () => {
-    setIsEditar(true);
-    setIsCheckEdicao(false);
-    setIsErroMsg(false);
-    setNrErroChecked(0);
-    setIsConferir(false);
-    setIsConfirmar(false);
-    setIsContinuar(false);
-    setNrErroChecked(0);
+    // setIsEditar(true);
+    //    setIsCheckEdicao(false);
+    // setIsErroMsg(false);
+    // setIsConferir(false);
+    // setIsConfirmar(false);
+    // setIsContinuar(false);
 
+    setNrErroChecked(0);
     let rtn = false;
     if (iscontatoemail) {
       rtn = IsValidEmail(strid);
@@ -287,9 +255,10 @@ export const Resgate2 = () => {
       if (!rtn) {
         setNrErroChecked(4);
       }
+    } else {
+      setNrErroChecked(0);
     }
     if (nrerrochecked > 0) {
-      setImgMsg(ListImg[2]);
       if (nrerrochecked == 1) {
         setTxtAga('"ERRO" na Edição do Email');
         setTxtLabel('Email com formato na Editação com ERRO.');
@@ -307,22 +276,20 @@ export const Resgate2 = () => {
         setTxtLabel('Não foi Editado o Nº C.P.F. corretamente.');
         setTxtP('Verifique Nº C.P.F. para identificar Perguntas.');
       }
+      setIsEditar(true);
+      //      setIsCheckEdicao(false);
       setIsErroMsg(true);
+      setIsConferir(false);
+      setIsConfirmar(false);
+      setIsContinuar(false);
     } else {
       setIsEditar(false);
+      setNrErroChecked(0);
+      setIsErroMsg(false);
+      setIsConfirmar(false);
+      setIsContinuar(false);
       setIsConferir(true);
     }
-  };
-
-  const handlerConfirmarEdicao = () => {
-    setIsEditar(false);
-    setIsCheckEdicao(false);
-    setIsErroMsg(false);
-    setNrErroChecked(0);
-    setIsConferir(false);
-    setIsConfirmar(false);
-    setIsContinuar(true);
-    setNrErroChecked(0);
   };
 
   React.useEffect(() => {
@@ -331,6 +298,17 @@ export const Resgate2 = () => {
       dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     }
   }, [isconfirmar, dispatch]);
+
+  const handlerConfirmarEdicao = () => {
+    setIsEditar(false);
+    setIsCheckEdicao(false);
+    setNrErroChecked(0);
+    setIsErroMsg(false);
+    setNrErroChecked(0);
+    setIsConferir(false);
+    setIsConfirmar(false);
+    setIsContinuar(true);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -591,28 +569,26 @@ export const Resgate2 = () => {
                 onclick={goto('/resgate1')}
               />
             </ContentSidePageBottonLabel>
-
-            <ContentBoxLabelPage label={'Contato: [ ' + state.nmlogin + ' ]'} />
-
-            {ischeckedicao ? (
-              // Conferir se existe edição e se esta correta.
+            <ContentBoxLabelPage label={'Processo de Resgate.'} />
+            {iscontinuar ? (
+              // Após confirmar proceguir para proxima pagina.
               <ContentSidePageBottonLabel
-                istitl={ischeckedicao}
-                title={'Checar...: '}
+                istitl={iscontinuar}
+                title={'Continuar.: '}
               >
                 <ContentSidePageBottonButton
                   pxheight={'40px'}
                   img={setadir}
-                  titbtn={'Checar Edição...'}
-                  onclick={handlerChecarEdicao}
+                  titbtn={'Continuar...'}
+                  onclick={goto('/resgate3')}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
 
             {isconfirmar ? (
-              // Confirma Dados ou não Confirma.
+              // Confirma Dados ou não.
               <ContentSidePageBottonLabel
-                istitl={btnconferir}
+                istitl={isconfirmar}
                 title={'Confirmar.: '}
               >
                 <ContentSidePageBottonButton
@@ -624,17 +600,17 @@ export const Resgate2 = () => {
               </ContentSidePageBottonLabel>
             ) : null}
 
-            {iscontinuar ? (
-              // Confirma Dados ou não Confirma.
+            {ischeckedicao ? (
+              // Checa a edição se existir verifica se esta correta.
               <ContentSidePageBottonLabel
-                istitl={iscontinuar}
-                title={'Continuar.: '}
+                istitl={ischeckedicao}
+                title={'Checar...: '}
               >
                 <ContentSidePageBottonButton
                   pxheight={'40px'}
                   img={setadir}
-                  titbtn={'Continuar...'}
-                  onclick={goto('/resgate3')}
+                  titbtn={'Checar Edição...'}
+                  onclick={handlerChecarEdicao}
                 />
               </ContentSidePageBottonLabel>
             ) : null}

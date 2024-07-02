@@ -49,9 +49,12 @@ export const Resgate1 = () => {
 
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções :');
+  const [aplicacao, setAplicacao] = React.useState('Opção');
 
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [isconfirmation, setIsConfirmation] = React.useState(false);
+
+
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
@@ -79,14 +82,15 @@ export const Resgate1 = () => {
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
     
     dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
 
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+    
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Resgate: Opção Forma.'
     });
-    //dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
-
+    dispatch({ type: AcessoUseActions.setAplicacao, payload: aplicacao });
+    
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
     setStart(true);
@@ -124,12 +128,23 @@ export const Resgate1 = () => {
     if (mdlogin === 0) {
       setIsConfirmation(false);
       setBtnContinua(false);
+      dispatch({
+        type: AcessoUseActions.setModulo,
+        payload: 'Resgate: Opção Forma.'
+      });
+      dispatch({ type: AcessoUseActions.setAplicacao, payload: aplicacao });
     } else {
       setIsConfirmation(true);
       setBtnContinua(true);
+      dispatch({
+        type: AcessoUseActions.setModulo,
+        payload: 'Resgatar.' 
+      });
+      dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Através de: '+ nmlogin });
     }
     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
+
   }, [mdlogin, nmlogin, dispatch]);
 
   return (
@@ -156,6 +171,7 @@ export const Resgate1 = () => {
           <label>Const nmlogin....: {nmlogin}</label>
           <label>State mdlogin....: {state.mdlogin}</label>
           <label>State nmlogin....: {state.nmlogin}</label>
+          <label>State aplicacao..: {state.aplicacao}</label>
         </div>
         <ContentCardPage>
           <ContentCardPageTitle>
