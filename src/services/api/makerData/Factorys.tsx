@@ -1,6 +1,6 @@
 import type { IResponseFactoryList } from '../factory/factory.dto';
 
-export const data:IResponseFactoryList = {
+export const fatoryData:IResponseFactoryList = {
   success: true,
   factorys: [
     {
