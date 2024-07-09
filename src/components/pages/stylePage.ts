@@ -257,17 +257,95 @@ export const ContainerInputPage = styled.div`
   border: none;
   padding: 2px 2px 2px 2px;
   margin: 0px 0px 0px 0px;
-  width: 100%;
+  min-width: 48%;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: left;
   align-items: center;
   align-content: center;
 `;
 
+export const ContainerInputCenter = styled.div<{open?: boolean;}>`
+  border: 2px solid green;
+  padding: 2px 2px 2px 2px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  min-height: 45px;
+  display:  ${props => (props.open ? 'flex' : 'none')};
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 18px;
+  line-height: normal;
+  font-style: normal;
+  font-family: 'Courier New', Courier, monospace;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+`;
+ 
+
+
+export const ContainerInputCenterimg = styled.div`
+  border: 2px solid green;
+  padding: 2px 2px 2px 2px;
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 16px;
+  line-height: normal;
+  font-style: normal;
+  font-family: 'Courier New', Courier, monospace;
+  color: ${props => props.theme.colors.textColor};
+  background: ${props => props.theme.colors.backgroundColor};
+ 
+  label {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 5px 0px 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    align-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: normal;
+  }
+  input {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 0px 0px;
+    min-width: 48%;
+    display: flex;
+    //flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    align-content: center;
+ }
+  img {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 0px 0px;
+    height: 40px;
+    height: 40px;
+  }
+  button {
+    padding: 2px 2px 2px 2px;
+    margin: 0px 0px 0px 0px;
+    height: 40px;
+    height: 40px;
+  }
+`;
 export const ContainerInputMainPage = styled.div`
-  border: none;
+  border: 1px solid red;
   padding: 2px 0px 2px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
@@ -372,6 +450,20 @@ export const ContainerCustonBtnPage = styled.div<TypeContainerCustonBtn>`
   &:hover {
     background: #e4e4e4;
    }
+`;
+type  TypeContainerCustonButton ={
+  pxheight?: string;
+}
+export const ContainerDefaulButton = styled.div<TypeContainerCustonButton>`
+  border: 1px solid red;
+  border-radius: 45%;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  min-height: ${({ pxheight }) => pxheight || '34px'};
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 `;
 
 type TypeButtonDefaulImgPage = {

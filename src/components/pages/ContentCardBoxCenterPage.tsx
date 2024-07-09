@@ -3,7 +3,8 @@ import * as Pg from './stylePage';
 
 type TypeContentCardBoxPageCenter = {
   pwidth?: string;
-  children?: ReactNode | JSX.Element;
+  children?: ReactNode;
+  //children?: ReactNode | JSX.Element;
 };
  
 export const ContentCardBoxCenterPage = ({

@@ -38,31 +38,6 @@ import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 import notedicao from '../../../assets/svgs/notedicao.svg';
 
-export function isEmailValid(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-export function CheckFone(str: string) {
-  if (str === '') {
-    return false;
-  } else {
-    return true;
-  }
-}
-export function CheckCPF(str: string): boolean {
-  if (str === '') {
-    return false;
-  } else {
-    return true;
-  }
-}
-export function CheckResp(str: string): boolean {
-  if (str === '') {
-    return false;
-  } else {
-    return true;
-  }
-}
 export function Conexao() {
   return true;
 }
@@ -79,27 +54,47 @@ interface FormState {
   zap: string;
   cpf: string;
 }
-export const Resgate2 = () => {
+export const Resgate3 = () => {
   const { state, dispatch } = AcessoUseForm();
+
   const [snhmaster, setSnhMaster] = React.useState('');
+
   const [iscontatoemail, setIsContatoEmail] = React.useState(false);
   const [iscontatosms, setIsContatoSms] = React.useState(false);
   const [iscontatozap, setIsContatoZap] = React.useState(false);
   const [iscontatocpf, setIsContatoCpf] = React.useState(false);
   const [edicao, setEdicao] = React.useState('');
+
   const [inputstrid, setInputStrId] = React.useState('');
   const [isvalidado, setIsValidado] = React.useState(false);
   const [txtaga, setTxtAga] = React.useState('');
   const [txtlabel, setTxtLabel] = React.useState('');
   const [txtp, setTxtP] = React.useState('');
 
+ 
   //const [ischeckedicao, setIsCheckEdicao] = React.useState(false);
   //const [isconfirmar, setIsConfirmar] = React.useState(false);
 
   const [iseditar, setIsEditar] = React.useState(false);
-  const [iscontinuar, setIsContinuar] = React.useState(false);
-  const [isbtncontinuar, setIsBtnContinuar] = React.useState(false);
+  const [isbtndatacenter, setIsBtnDataCenter] = React.useState(false);
+  const [isconected, setIsConected] = React.useState(false);
+
+  const [perg1, setPerg1] = React.useState('');
+  const [resp1, setResp1] = React.useState('');
+  const [strresp1, setStrResp1] = React.useState('');
+  const [perg2, setPerg2] = React.useState('');
+  const [resp2, setResp2] = React.useState('');
+  const [strresp2, setStrResp2] = React.useState('');
+  const [perg3, setPerg3] = React.useState('');
+  const [resp3, setResp3] = React.useState('');
+  const [strresp3, setStrResp3] = React.useState('');
+
+  const [isbtnperguntas, setIsBtnPerguntas] = React.useState(false);
+ 
   const [isbtnenviar, setIsBtnEnviar] = React.useState(false);
+  const [isbtnconferir, setIsBtnConferir] = React.useState(false);
+  const [isbtncontinuar, setIsBtnContinuar] = React.useState(false);
+
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
@@ -114,64 +109,61 @@ export const Resgate2 = () => {
   const [erros, setErros] = React.useState<Partial<FormState>>({});
 
   React.useEffect(() => {
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
-    dispatch({ type: AcessoUseActions.setPage, payload: '/resgate2' });
-
-    //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    dispatch({ type: AcessoUseActions.setMail, payload: '' });
-    //dispatch({ type: AcessoUseActions.setPin, payload: '' });
-    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
-    dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
-    dispatch({
-      type: AcessoUseActions.setModulo,
-      payload: 'Resgatar: Contato Usuário'
-    });
-    dispatch({
-      type: AcessoUseActions.setAplicacao,
-      payload: 'Contato :' + state.nmlogin + '.'
-    });
-    //////////////////////////////////////////////////////////////////////////
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/resgate3' });
+    dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     if (state.mdlogin === 1) {
       setIsContatoEmail(true);
-      setEdicao('Resgatar através do Email: ');
-      setTxtAga('"ERRO" na Edição do Email');
-      setTxtLabel('Email com formato na Editação com ERRO.');
-      setTxtP('Verifique sua edição de Email.');
-    } else if (state.mdlogin === 2) {
-      setIsContatoSms(true);
-      setEdicao('Resgatar através de SMS: ');
-      setTxtAga('"ERRO" na Edição do Telefone');
-      setTxtP('Nº Celular com formato incompativel na Edição para SMS.');
-      setTxtP('Verifique Nº Celular para contato com SMS.');
-    } else if (state.mdlogin === 3) {
-      setIsContatoZap(true);
-      setEdicao('Resgatar através do Whatsapp: ');
-      setTxtAga('"ERRO" na Edição do Telefone');
-      setTxtLabel('Não foi Editado o Nº Celular para Whatsapp.');
-      setTxtP('Verifique Nº Celular para contato com Whatsapp.');
-    } else if (state.mdlogin === 4) {
-      setIsContatoCpf(true);
-      setEdicao('Resgatar através do C.P.F.: ');
-      setTxtAga('"ERRO" na Edição do C.P.F');
-      setTxtLabel('Não foi Editado o Nº C.P.F. corretamente.');
-      setTxtP('Verifique Nº C.P.F. para identificar Perguntas.');
+    } else {
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      if (state.mdlogin === 2 || state.mdlogin === 3) {
+        if (state.mdlogin === 2){
+          setIsContatoSms(true);
+        } else {
+          setIsContatoZap(true);
+        }
+      } else {
+        dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+        if (state.mdlogin === 4) {
+          setIsContatoCpf(true);
+        } else {
+          dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+        }
+      }
     }
-    setSnhMaster(criasmstr);
-    setIsValidado(true);
-    setIsEditar(true);
+    dispatch({ type: AcessoUseActions.setPin, payload: '' });
+    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
-    setIsBtnContinuar(true);
-    setIsContinuar(false);
+    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
+    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
+    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
+    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
+    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
+    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+    dispatch({ type: AcessoUseActions.setModulo, payload: '' });
+    dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
+    setPerg1('');
+    setResp1('');
+    setStrResp1('');
+    setPerg2('');
+    setResp2('');
+    setStrResp2('');
+    setPerg3('');
+    setResp3('');
+    setStrResp3('');
+      //////////////////////////////////////////////////////////////////////////
+    setSnhMaster(criasmstr);
+
+    setIsEditar(false);
+    setIsBtnDataCenter(true);
+    setIsConected(false);
+    setIsBtnPerguntas(false);
     setIsBtnEnviar(false);
+    setIsBtnConferir(false);
+    setIsValidado(true);
+    setIsBtnContinuar(false);
     setStart(true);
   }, [dispatch]);
 
@@ -201,51 +193,7 @@ export const Resgate2 = () => {
   const handlerOnPanel = React.useCallback(() => {
     setOnPanel((oldState) => !oldState);
   }, []);
-
-  const handlerEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputStrId(e.target.value);
-    console.log('inputstrid', inputstrid);
-    setForm({ ...form, email: inputstrid });
-    console.log('form.email', form.email);
-    setIsContinuar(false);
-    setIsValidado(true);
-    const novosErros: Partial<FormState> = {};
-    if (inputstrid === '') {
-      novosErros.email = 'Por favor, digite o seu Email.';
-    } else {
-      if (!isEmailValid(inputstrid)) {
-        setErros({ ...erros, email: 'Email inválido' });
-      } else {
-        setErros({ ...erros, email: '' });
-      }
-      console.log('setErros', erros);
-    }
-    setIsBtnEnviar(false);
-  };
-
-  const handlerContinuar = React.useCallback(() => {
-    if (inputstrid !== '') {
-      setIsEditar(false);
-      setIsBtnContinuar(false);
-      setIsBtnEnviar(true);
-    } else {
-      setIsValidado(false);
-    }
-  }, [iseditar, isbtncontinuar, isbtnenviar, isvalidado]);
-
-  React.useEffect(() => {
-    if (isbtnenviar && !iseditar && !isbtncontinuar) {
-      if (iscontatoemail) {
-        dispatch({ type: AcessoUseActions.setMail, payload: inputstrid });
-      }
-      if (iscontatosms || iscontatozap) {
-        dispatch({ type: AcessoUseActions.setFoneC, payload: inputstrid });
-      }
-      if (iscontatocpf) {
-        dispatch({ type: AcessoUseActions.setCpf, payload: inputstrid });
-      }
-    }
-  }, [isbtnenviar, dispatch]);
+ 
 
   return (
     <ThemeProvider theme={theme}>
@@ -265,41 +213,65 @@ export const Resgate2 = () => {
       >
         <div>
           <p>Senha MASTER.: {snhmaster}</p>
-          <p>State idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
-          <p>State nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
-          <p>State.mdlogin.....: {state.mdlogin ? state.mdlogin : '0'}</p>
-          <p>State nmlogin.....: {state.nmlogin ? state.nmlogin : 'vasio'}</p>
-          <p>State.modulo......: {state.modulo}</p>
-          <p>State.aplicacao...: {state.aplicacao}</p>
-          <p>Stado para Contato.: </p>
-          <p>Painel Edição......: {iseditar ? 'verdadeiro' : 'falso'}</p>
-          <p>
-            Dados InputStrId.: {inputstrid ? inputstrid : 'vasio'}
-          </p>
-          <p>
-             State IsValidado..: {isvalidado ? 'verdadeiro' : 'falso'}
-          </p>
-          <p>Stado para Botão.: </p>
-          <p>
-            IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}
-          </p>
-          <p>
-            IsBtnEnviar......: {isbtnenviar ? 'verdadeiro' : 'falso'}
-          </p>
+          <p>State.idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
+          <p>State.nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
+          <p>State.mail........: {state.mail ? state.mail : 'vasio'}</p>
+          <p>State.fonec sms...: {state.fonec ? state.fonec : 'vasio'}</p>
+          <p>State.fonec zap...: {state.fonec ? state.fonec : 'vasio'}</p>
+          <p>State.cpf.........: {state.cpf ? state.cpf : 'vasio'}</p>
+          <p>Painel Editar.....: {iseditar ? 'verdadeiro' : 'falso'}</p>
+          <p>Painel Botões.:</p>
+          <p>IsBtnDataCenter...: {isbtndatacenter ? 'verdadeiro' : 'falso'}</p>
+          <p>IsBtnPerguntas....: {isbtnperguntas ? 'verdadeiro' : 'falso'}</p>
+          <p>IsBtnEnviar.......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
+          <p>IsBtnConferir.....: {isbtnconferir ? 'verdadeiro' : 'falso'}</p>
+          <p>isValiEdição......: {isvalidado ? 'verdadeiro' : 'falso'}</p>
+          <p>IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
         </div>
         <ContentCardPage>
           <ContentCardPageTitle>
-            <h2>{state.modulo}</h2>
+          {isbtndatacenter ? <h2>Resgatar: DataCenter</h2> : null}
+
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
             <ContentCardBoxCenterPage pwidth="200px">
               <ContentCardPageTitle>
-                {iseditar ? <h4>{state.aplicacao}</h4> : null}
-                {isbtnenviar ? <h4>Para Processamento.</h4> : null}
+                {isbtndatacenter ? <h4>{'Conectar com DataCenter'}</h4> : null}
+
               </ContentCardPageTitle>
+              {isbtndatacenter ? (
+                <PanelConfResgateYellow
+                  isbgcolor={isbtndatacenter}
+                  titulo={'Resgate em Banco de Dados.'}
+                  subtitulo={'Dados para Resgate:'}
+                >
+                  <p>&emsp;&emsp;Busca pelos Dados :</p>
+                  <label>&emsp;&emsp;&emsp;Acessos a Usuários</label>
+
+                  <p>&emsp;&emsp;&emsp;Empresa</p>
+
+
+
+
+
+
+
+
+
+
+
+
 
               <ContentInputCenter open={iseditar}>
-                {iscontatoemail ? (
+
+
+
+
+
+
+
+
+                {/* {iscontatoemail ? (
                   <form name="mail">
                     <br />
                     <input
@@ -366,8 +338,8 @@ export const Resgate2 = () => {
                   </ContentInputPage>
                 ) : null}
               </ContentInputCenter>
-
-              {!iseditar && !isbtncontinuar && isbtnenviar ? (
+ */}
+              {/* {!iseditar && !isbtncontinuar && isbtnenviar ? (
                 <PanelConfResgateYellow
                   isbgcolor={isbtnenviar}
                   titulo={'Resgate para seu Acesso.'}
@@ -410,7 +382,7 @@ export const Resgate2 = () => {
                   </p>
                   <br />
                 </PanelConfResgateYellow>
-              ) : null}
+              ) : null} */}
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 

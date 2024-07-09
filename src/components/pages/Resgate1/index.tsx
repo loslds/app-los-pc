@@ -49,12 +49,10 @@ export const Resgate1 = () => {
 
   const [mdlogin, setMdLogin] = React.useState(0);
   const [nmlogin, setNmLogin] = React.useState('Opções :');
-  const [aplicacao, setAplicacao] = React.useState('Opção');
+  const [aplicacao, setAplicacao] = React.useState('');
 
   const [btncontinua, setBtnContinua] = React.useState(false);
   const [isconfirmation, setIsConfirmation] = React.useState(false);
-
-
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
@@ -65,32 +63,32 @@ export const Resgate1 = () => {
     //dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
     //dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
 
-    dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+    //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+    //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+    //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
-    dispatch({ type: AcessoUseActions.setPin, payload: '' });
+    //dispatch({ type: AcessoUseActions.setPin, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
+    //dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
     dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
-    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
-    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
-    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
-    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
-    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
-    
-    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+    //dispatch({ type: AcessoUseActions.setperg1, payload: '' });
+    //dispatch({ type: AcessoUseActions.setresp1, payload: '' });
+    //dispatch({ type: AcessoUseActions.setperg2, payload: '' });
+    //dispatch({ type: AcessoUseActions.setresp2, payload: '' });
+    //dispatch({ type: AcessoUseActions.setperg3, payload: '' });
+    //dispatch({ type: AcessoUseActions.setresp3, payload: '' });
 
-    dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-    
+    //dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+    dispatch({ type: AcessoUseActions.setNmLogin, payload: 'Opções :' });
+
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Resgate: Opção Forma.'
     });
+    setAplicacao('Opção');
     dispatch({ type: AcessoUseActions.setAplicacao, payload: aplicacao });
-    
+
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
     setStart(true);
@@ -123,6 +121,7 @@ export const Resgate1 = () => {
   }, []);
 
   const DescrOpc = ['Opções :', 'E-Mail.', 'SMS.', 'Whatsapp.', 'Perguntas.'];
+
   React.useEffect(() => {
     setNmLogin(DescrOpc[mdlogin]);
     if (mdlogin === 0) {
@@ -138,40 +137,42 @@ export const Resgate1 = () => {
       setBtnContinua(true);
       dispatch({
         type: AcessoUseActions.setModulo,
-        payload: 'Resgatar.' 
+        payload: 'Resgatar.'
       });
-      dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Através de: '+ nmlogin });
+      setAplicacao('Através de: ' + nmlogin);
+      dispatch({
+        type: AcessoUseActions.setAplicacao,
+        payload: 'Através de: ' + nmlogin
+      });
     }
     dispatch({ type: AcessoUseActions.setMdLogin, payload: mdlogin });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: nmlogin });
-
   }, [mdlogin, nmlogin, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
       <ThemeResgate
-        imgsys={resgatepg2}
-        titbtnsys={'Home...'}
-        onclicksys={goto('/')}
-        titlepg={'Acesso Resgate.'}
-        imghpg={help}
-        titbtnhpg={'Ajuda...'}
-        onclickhpg={handlerHelpPg}
-        imgopen={esclamacaocirc}
-        titbtnopen={'states contexto'}
-        onclickopen={handlerOnPanel}
-        ischeck={ischeck}
-        onchange={ToggleTheme}
+        imgsys= {resgatepg2}
+        titbtnsys = 'Home...'
+        onclicksys = {goto('/')}
+        titlepg = 'Acesso Resgate.'
+        imghpg = {help}
+        titbtnhpg = 'Ajuda...'
+        onclickhpg = {handlerHelpPg}
+        imgopen = {esclamacaocirc}
+        titbtnopen = 'Help Contexto...'
+        onclickopen = {handlerOnPanel}
+        ischeck = {ischeck}
+        onchange = {ToggleTheme}
       >
         <div>
-          <label>Senha MASTER.....: {snhmaster}</label>
-          <label>State idemp......: {state.idemp}</label>
-          <label>State nmfant.....: {state.nmfant}</label>
-          <label>Const mdlogin....: {mdlogin}</label>
-          <label>Const nmlogin....: {nmlogin}</label>
-          <label>State mdlogin....: {state.mdlogin}</label>
-          <label>State nmlogin....: {state.nmlogin}</label>
-          <label>State aplicacao..: {state.aplicacao}</label>
+          <p>Senha MASTER.....: {snhmaster}</p>
+          <p>State.idemp......: {state.idemp}</p>
+          <p>State.nmfant.....: {state.nmfant}</p>
+          <p>State.mdlogin....: {state.mdlogin}</p>
+          <p>State.nmlogin....: {state.nmlogin}</p>
+          <p>State.modulo.....: {state.modulo}</p>
+          <p>State.aplicacao..: {state.aplicacao}</p>
         </div>
         <ContentCardPage>
           <ContentCardPageTitle>
@@ -184,21 +185,20 @@ export const Resgate1 = () => {
               </ContentCardPageTitle>
               {mdlogin === 0 ? (
                 <ContentInputPage>
-                  <ContentInputPage>
-                    <select
-                      name="opcão"
-                      defaultValue={mdlogin}
-                      onChange={(e) => setMdLogin(parseInt(e.target.value))}
-                    >
-                      <option value={'0'}>Opções : </option>
-                      <option value={'1'}>E-Mail.</option>
-                      <option value={'2'}>SMS.</option>
-                      <option value={'3'}>Whatsapp.</option>
-                      <option value={'4'}>Perguntas.</option>
-                    </select>
-                  </ContentInputPage>
+                  <select
+                    name="opcão"
+                    defaultValue={mdlogin}
+                    onChange={(e) => setMdLogin(parseInt(e.target.value))}
+                  >
+                    <option value={'0'}>Opções : </option>
+                    <option value={'1'}>E-Mail.</option>
+                    <option value={'2'}>SMS.</option>
+                    <option value={'3'}>Whatsapp.</option>
+                    <option value={'4'}>Perguntas.</option>
+                  </select>
                 </ContentInputPage>
               ) : null}
+
               {isconfirmation ? (
                 <PanelConfResgateYellow
                   isbgcolor={start}
@@ -210,15 +210,16 @@ export const Resgate1 = () => {
                     &emsp;&emsp;&emsp;ID Empresa....: <span>{state.idemp}</span>
                   </label>
                   <label>
-                  &emsp;&emsp;&emsp;Nome Fantasia: <span>{state.nmfant}</span>
+                    &emsp;&emsp;&emsp;Nome Fantasia: <span>{state.nmfant}</span>
                   </label>
                   <p>&emsp;No momento você inseriu a optou por:</p>
                   <label>
-                  &emsp;&emsp;&emsp;Através de : <span>{nmlogin}</span>
+                    &emsp;&emsp;&emsp;Através de : <span>{nmlogin}</span>
                   </label>
                   <br />
                   <p>
-                    &emsp;&emsp;Precisamos que você confirme se deseja continuar...
+                    &emsp;&emsp;Precisamos que você confirme se deseja
+                    continuar...
                   </p>
                   <h5>Obs:.</h5>
                   <p>
