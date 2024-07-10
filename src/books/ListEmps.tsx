@@ -1,4 +1,4 @@
-export type TypeEmps = {
+interface TypeEmps {
   id?: number;
   fant?: string;
   name?: string;
@@ -7,33 +7,32 @@ export type TypeEmps = {
   insm?: string;
   cpf?: string;
   mail?: string;
-  fonefx?: string;
+  idfone?: number;
   fonecel?: string;
   local?: string;
   compl?: string;
-  nrlocal?: number;
+  nrlocal?: string;
   cep?: string;
   bairro?: string;
   cidade?: string;
   uf?: string;
 }
 
-export const ListEmps = [
+export const ListEmps:TypeEmps[] = [
   {
     id: 1,
     fant: 'JR-Bordados.',
     name: 'Junior Bordados Ltda.',
-    cnpj: '010.157.662/0001-23',
-    inse: '06.365670-2',
+    cnpj: '010157662000123',
+    inse: '063656702',
     insm: '',
     cpf: '',
     mail: 'jrbordados@hotmail.com.br',
-    fonefx: '(85) 3243-1872',
-    fonecel: '(85) 999417475',
+    idfone: 1,
     local: 'Rua Professor Anacleto',
     compl: 'Casa',
     nrlocal: '576',
-    cep: '60450-360',
+    cep: '60450360',
     bairro: 'Parqueândia',
     cidade: 'Fortaleza',
     uf: 'Ceará'
@@ -42,17 +41,16 @@ export const ListEmps = [
     id: 2,
     fant: 'RB-Serviços.',
     name: 'Roberta Bastos Ltda.',
-    cnpj: '002.494.780/0001-07',
+    cnpj: '002494780000107',
     inse: '',
     insm: '',
     cpf: '',
     mail: 'rbservicos@hotmail.com.br',
-    fonefx: '(85) 3243-1872',
-    fonecel: '(85) 999001110',
+    idfone: 2,
     local: 'Rua Professor Anacleto',
     nrlocal: '576',
     compl: 'Casa',
-    cep: '60450-360',
+    cep: '60450360',
     bairro: 'Parqueândia',
     cidade: 'Fortaleza',
     uf: 'Ceará'

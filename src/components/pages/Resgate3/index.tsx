@@ -95,6 +95,12 @@ export const Resgate3 = () => {
   const [isbtnconferir, setIsBtnConferir] = React.useState(false);
   const [isbtncontinuar, setIsBtnContinuar] = React.useState(false);
 
+  const [islistcces, setListAcces] = React.useState(false);
+  const [islistemps, setIsListEmps] = React.useState(false);
+  const [islistusers, setIsListUsers] = React.useState(false);
+  const [islistfones, setIsListFones] = React.useState(false);
+
+
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
@@ -194,6 +200,14 @@ export const Resgate3 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
  
+  const hanlerDataCenter = React.useCallback(() => {
+    alert('entrei em hadlerDataCenter')
+    // criar lista acesso com idempresa === state.idemp
+    // criar lista empresa com o mesmo id === state.idemp
+    // criar lista usuario com o mesmo idempresa === state.idemp
+    // criar lista de telefones com o mesmo idempresa === state.idemp
+  }, []);
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -247,142 +261,43 @@ export const Resgate3 = () => {
                 >
                   <p>&emsp;&emsp;Busca pelos Dados :</p>
                   <label>&emsp;&emsp;&emsp;Acessos a Usuários</label>
-
-                  <p>&emsp;&emsp;&emsp;Empresa</p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <ContentInputCenter open={iseditar}>
-
-
-
-
-
-
-
-
-                {/* {iscontatoemail ? (
-                  <form name="mail">
-                    <br />
-                    <input
-                      type="email"
-                      //name="mail"
-                      value={inputstrid}
-                      size={25}
-                      autoFocus={true}
-                      onChange={handlerEmailChange}
-                    />
-                    {erros.email && <span>{erros.email}</span>}
-                    <br />
-                  </form>
-                ) : null}
-                {iscontatosms ? (
-                  <ContentInputPage>
-                    <form name="sms">
-                      <br />
-                      <label>TeleFone.:</label>
-                      <input
-                        type="text"
-                        name="sms"
-                        value={inputstrid}
-                        size={11}
-                        autoFocus={true}
-                        onChange={() => {}}
-                      />
-                      <br />
-                    </form>
-                  </ContentInputPage>
-                ) : null}
-                {iscontatozap ? (
-                  <ContentInputPage>
-                    <form name="zap">
-                      <br />
-                      <label>Whatsapp.:</label>
-                      <input
-                        type="text"
-                        name="zap"
-                        value={inputstrid}
-                        size={11}
-                        autoFocus={true}
-                        onChange={() => {}}
-                      />
-                      <br />
-                    </form>
-                  </ContentInputPage>
-                ) : null}
-                {iscontatocpf ? (
-                  <ContentInputPage>
-                    <form name="cpf">
-                      <br />
-                      <label>C.P.F. .:</label>
-                      <input
-                        type="text"
-                        name="cpf"
-                        value={inputstrid}
-                        size={11}
-                        autoFocus={true}
-                        onChange={() => {}}
-                      />
-                      <br />
-                    </form>
-                  </ContentInputPage>
-                ) : null}
-              </ContentInputCenter>
- */}
-              {/* {!iseditar && !isbtncontinuar && isbtnenviar ? (
-                <PanelConfResgateYellow
-                  isbgcolor={isbtnenviar}
-                  titulo={'Resgate para seu Acesso.'}
-                  subtitulo={'Dados Informados :'}
-                >
-                  <p>&emsp;&emsp;Já temos em mãos :</p>
-                  <label>
-                    &emsp;&emsp;&emsp;# - ID Empresa....:{state.idemp}
-                    <span>{state.idemp}</span>
-                  </label>
-                  <label>
-                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-                    <span>{state.nmfant}</span>
-                  </label>
-                  {iscontatoemail ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{inputstrid}</span>
-                    </label>
-                  ) : null}
-                  {iscontatosms || iscontatozap ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Celular : <span>{inputstrid}</span>
-                    </label>
-                  ) : null}
-                  {iscontatocpf ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - C.P.F. :{' '}
-                      <span>+85{inputstrid}</span>
-                    </label>
-                  ) : null}
+                  <p>&emsp;&emsp;&emsp;Acessos:</p>
+                  {islistcces ? (
+                    <p>Ativada.</p>
+                  ) : (
+                    <p>Desativada.</p>) 
+                  }
+                  <p>&emsp;&emsp;&emsp;Empresas:</p>
+                  {islistemps ? (
+                    <p>Ativada.</p>
+                  ) : (
+                    <p>Desativada.</p>) 
+                  }
+                  <p>&emsp;&emsp;&emsp;Usuários:</p>
+                  {islistusers ? (
+                    <p>Ativada.</p>
+                  ) : (
+                    <p>Desativada.</p>) 
+                  }
+                  <p>&emsp;&emsp;&emsp;Telefones:</p>
+                  {islistfones ? (
+                    <p>Ativada.</p>
+                  ) : (
+                    <p>Desativada.</p>) 
+                  }
                   <br />
                   <h5>Obs:.</h5>
                   <p>
-                    &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-                    Esquerda...
+                    &emsp;&emsp;Caso queira " Abortar.: " clique na Seta à Esquerda...
                   </p>
                   <p>
-                    &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
+                    &emsp;&emsp;Caso deseja " Proceguir.:", clique na Seta à
                     Direita...
                   </p>
                   <br />
                 </PanelConfResgateYellow>
-              ) : null} */}
+                ) : null
+              }
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 
@@ -408,20 +323,25 @@ export const Resgate3 = () => {
           <Lg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
-            {inputstrid !== '' ? (
-              <ContentCardPageTitle>
-                <h3>Informado : {inputstrid}</h3>
-              </ContentCardPageTitle>
-            ) : null}
             <ContentSidePageBottonLabel istitl={start} title={'Abortar.: '}>
               <ContentSidePageBottonButton
-                pxheight="40px"
+                pxheight={'40px'}
                 img={setaesq}
-                titbtn="Voltar..."
-                onclick={goto('/resgate1')}
+                titbtn={'Abortar...'}
+                onclick={goto('/')}
               />
             </ContentSidePageBottonLabel>
-
+            {isbtndatacenter ? (
+              <ContentSidePageBottonLabel istitl={start} title={'Prosseguir.: '}>
+                <ContentSidePageBottonButton
+                  pxheight="40px"
+                  img={setaesq}
+                  titbtn="Prosseguir..."
+                  onclick={hanlerDataCenter}
+                />
+              </ContentSidePageBottonLabel>
+            ): null}
+{/* 
             {iseditar && isbtncontinuar && !isbtnenviar ? (
               <ContentSidePageBottonLabel
                 istitl={isbtncontinuar}
@@ -449,6 +369,7 @@ export const Resgate3 = () => {
                 />
               </ContentSidePageBottonLabel>
             ) : null}
+*/}
           </ContentSidePagePanelBotton>
 
           {helppg ? (
@@ -489,6 +410,121 @@ export const Resgate3 = () => {
     </ThemeProvider>
   );
 };
+
+
+            //   <ContentInputCenter open={iseditar}>
+            //      {iscontatoemail ? (
+            //       <form name="mail">
+            //         <br />
+            //         <input
+            //           type="email"
+            //           //name="mail"
+            //           value={inputstrid}
+            //           size={25}
+            //           autoFocus={true}
+            //           onChange={handlerEmailChange}
+            //         />
+            //         {erros.email && <span>{erros.email}</span>}
+            //         <br />
+            //       </form>
+            //     ) : null}
+            //     {iscontatosms ? (
+            //       <ContentInputPage>
+            //         <form name="sms">
+            //           <br />
+            //           <label>TeleFone.:</label>
+            //           <input
+            //             type="text"
+            //             name="sms"
+            //             value={inputstrid}
+            //             size={11}
+            //             autoFocus={true}
+            //             onChange={() => {}}
+            //           />
+            //           <br />
+            //         </form>
+            //       </ContentInputPage>
+            //     ) : null}
+            //     {iscontatozap ? (
+            //       <ContentInputPage>
+            //         <form name="zap">
+            //           <br />
+            //           <label>Whatsapp.:</label>
+            //           <input
+            //             type="text"
+            //             name="zap"
+            //             value={inputstrid}
+            //             size={11}
+            //             autoFocus={true}
+            //             onChange={() => {}}
+            //           />
+            //           <br />
+            //         </form>
+            //       </ContentInputPage>
+            //     ) : null}
+            //     {iscontatocpf ? (
+            //       <ContentInputPage>
+            //         <form name="cpf">
+            //           <br />
+            //           <label>C.P.F. .:</label>
+            //           <input
+            //             type="text"
+            //             name="cpf"
+            //             value={inputstrid}
+            //             size={11}
+            //             autoFocus={true}
+            //             onChange={() => {}}
+            //           />
+            //           <br />
+            //         </form>
+            //       </ContentInputPage>
+            //     ) : null}
+            //   </ContentInputCenter>
+ 
+            //  {!iseditar && !isbtncontinuar && isbtnenviar ? (
+            //     <PanelConfResgateYellow
+            //       isbgcolor={isbtnenviar}
+            //       titulo={'Resgate para seu Acesso.'}
+            //       subtitulo={'Dados Informados :'}
+            //     >
+            //       <p>&emsp;&emsp;Já temos em mãos :</p>
+            //       <label>
+            //         &emsp;&emsp;&emsp;# - ID Empresa....:{state.idemp}
+            //         <span>{state.idemp}</span>
+            //       </label>
+            //       <label>
+            //         &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+            //         <span>{state.nmfant}</span>
+            //       </label>
+            //       {iscontatoemail ? (
+            //         <label>
+            //           &emsp;&emsp;&emsp;# - E-MAIL : <span>{inputstrid}</span>
+            //         </label>
+            //       ) : null}
+            //       {iscontatosms || iscontatozap ? (
+            //         <label>
+            //           &emsp;&emsp;&emsp;# - Celular : <span>{inputstrid}</span>
+            //         </label>
+            //       ) : null}
+            //       {iscontatocpf ? (
+            //         <label>
+            //           &emsp;&emsp;&emsp;# - C.P.F. :{' '}
+            //           <span>+85{inputstrid}</span>
+            //         </label>
+            //       ) : null}
+            //       <br />
+            //       <h5>Obs:.</h5>
+            //       <p>
+            //         &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
+            //         Esquerda...
+            //       </p>
+            //       <p>
+            //         &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
+            //         Direita...
+            //       </p>
+            //       <br />
+            //     </PanelConfResgateYellow>
+            //   ) : null} 
 
 // {isbtnenviar ? (
 //   <PanelConfResgateYellow

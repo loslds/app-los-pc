@@ -1,12 +1,12 @@
-export type TypeAplicacao = {
+interface TypeAplic {
   id?: number;
-  name?: string;
+  rotina?: string;
 }
 
-export const ListAplicacao = [
-  { id: 1,  name: 'Inclusão' },
-  { id: 2,  name: 'Alteração'  },
-  { id: 3,  name: 'Exclusão' },
-  { id: 4,  name: 'Listagem'  },
-  { id: 5,  name: 'Visualisação' }
+export const ListAplicacao: TypeAplic[] = [
+  { id: 1, rotina: 'Inclusão' },
+  { id: 2, rotina: 'Alteração' },
+  { id: 3, rotina: 'Exclusão' },
+  { id: 4, rotina: 'Listagem' },
+  { id: 5, rotina: 'Visualisação' }
 ];
