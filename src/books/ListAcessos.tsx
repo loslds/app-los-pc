@@ -1,4 +1,4 @@
-interface TypeAcessos {
+export interface IAcessos {
   id?: number;
   idemp?: number;
   iduser?: number;
@@ -17,15 +17,15 @@ interface TypeAcessos {
   mdmaster?: boolean;
   nmmaster?: string;
   mdconfig?: boolean;
-  nmconfig?: string;  
+  nmconfig?: string;
   inclusao?: boolean;
   alteracao?: boolean;
   exclusao?: boolean;
   listagem?: boolean;
   visualizar?: boolean;
-};
+}
 
-export const ListAcessos: TypeAcessos[] = [
+export const ListAcessos: IAcessos[] = [
   {
     id: 1,
     idemp: 1,
@@ -50,7 +50,7 @@ export const ListAcessos: TypeAcessos[] = [
     alteracao: true,
     exclusao: true,
     listagem: true,
-    visualizar: true,
+    visualizar: true
   },
   {
     id: 2,
@@ -76,6 +76,19 @@ export const ListAcessos: TypeAcessos[] = [
     alteracao: true,
     exclusao: true,
     listagem: true,
-    visualizar: true,
-  } 
+    visualizar: true
+  }
 ];
+
+export const AcessosIndexById = (): { [key: number]: IAcessos } => {
+  return ListAcessos.reduce((acc, lacessos) => {
+    if (lacessos.id !== undefined) {
+      acc[lacessos.id] = lacessos;
+    }
+    return acc;
+  }, {} as { [key: number]: IAcessos });
+};
+
+export const GetFilterAcessoId = (id: number): IAcessos | undefined => {
+  return ListAcessos.find((acess) => acess.id === id);
+};

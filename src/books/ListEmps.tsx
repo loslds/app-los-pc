@@ -1,4 +1,4 @@
-interface TypeEmps {
+export interface IEmps {
   id?: number;
   fant?: string;
   name?: string;
@@ -14,11 +14,12 @@ interface TypeEmps {
   nrlocal?: string;
   cep?: string;
   bairro?: string;
+  estado?: string;
   cidade?: string;
   uf?: string;
 }
 
-export const ListEmps:TypeEmps[] = [
+export const ListEmps:IEmps[] = [
   {
     id: 1,
     fant: 'JR-Bordados.',
@@ -35,7 +36,8 @@ export const ListEmps:TypeEmps[] = [
     cep: '60450360',
     bairro: 'Parqueândia',
     cidade: 'Fortaleza',
-    uf: 'Ceará'
+    estado: 'Ceará',
+    uf: 'CE'
   },
   {
     id: 2,
@@ -53,6 +55,16 @@ export const ListEmps:TypeEmps[] = [
     cep: '60450360',
     bairro: 'Parqueândia',
     cidade: 'Fortaleza',
-    uf: 'Ceará'
+    estado: 'Ceará',
+    uf: 'CE'
   }
 ];
+
+export const EmpsIndexById = (): { [key: number]:IEmps } => {
+  return ListEmps.reduce((acc, lemps) => {
+    if (lemps.id !== undefined) {
+      acc[lemps.id] = lemps;
+    }
+    return acc;
+  }, {} as { [key: number]:IEmps });
+};

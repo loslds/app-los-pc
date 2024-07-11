@@ -1,5 +1,4 @@
-
-interface TypeUsers {
+export interface IUsers {
    id?: number;
    name?: string;
    apelido?: string;
@@ -9,22 +8,22 @@ interface TypeUsers {
    cpf?: string;
    cnpj?: string;
    foto?: string;
-   idfone: number; 
-   local: string;
-   nrlocal: string;
-   cep: string;
-   bairro: string;
-   cidade: string;
-   uf: string;
-   pergunta1: string;
-   resposta1: string;
-   pergunta2: string;
-   resposta2: string;
-   pergunta3: string;
-   resposta3: string;
+   idfone?: number; 
+   local?: string;
+   nrlocal?: string;
+   cep?: string;
+   bairro?: string;
+   cidade?: string;
+   uf?: string;
+   pergunta1?: string;
+   resposta1?: string;
+   pergunta2?: string;
+   resposta2?: string;
+   pergunta3?: string;
+   resposta3?: string;
 }
 
-export const ListUsers: TypeUsers[] = [
+export const ListUsers: IUsers[] = [
   {
     id: 1,
     name: 'Lindsay O. Sbrissa',
@@ -73,3 +72,16 @@ export const ListUsers: TypeUsers[] = [
     resposta3: 'Futebol'
   }
 ];
+
+export const UsersIndexById = (): { [key: number]: IUsers } => {
+  return ListUsers.reduce((acc, lusers) => {
+    if (lusers.id !== undefined) {
+      acc[lusers.id] = lusers;
+    }
+    return acc;
+  }, {} as { [key: number]: IUsers });
+};
+
+export const GetFilterUserId = (id: number): IUsers | undefined => {
+  return ListUsers.find(user => user.id === id);
+};
