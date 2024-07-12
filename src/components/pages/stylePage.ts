@@ -363,7 +363,7 @@ type TypeContainerPanelPage = {
   pwidth? : string;
 }
 export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
-  border: none;
+  border: 2px solid red;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-height: 40px;

@@ -170,9 +170,8 @@ export const Resgate3 = () => {
     setStrResp3('');
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
-
-    setIsEditar(false);
     setIsBtnDataCenter(true);
+    setIsEditar(false);
     setIsConected(false);
     setIsBtnPerguntas(false);
     setIsBtnEnviar(false);
@@ -278,7 +277,7 @@ export const Resgate3 = () => {
       }
     }
     if (isbtndatacenter) {
-      set;
+      setIsBtnDataCenter(false);
       setIsConected(true);
     }
     /////
@@ -424,36 +423,6 @@ export const Resgate3 = () => {
               </ContentSidePageBottonLabel>
             ) : null}
 
-            {/* 
-
-{iseditar && isbtncontinuar && !isbtnenviar ? (
-              <ContentSidePageBottonLabel
-                istitl={isbtncontinuar}
-                title="Confirmar.: "
-              >
-                <ContentSidePageBottonButton
-                  pxheight="40px"
-                  img={setadir}
-                  titbtn="Confirmar..."
-                  onclick={handlerContinuar}
-                />
-              </ContentSidePageBottonLabel>
-            ) : null}
-
-            {isbtnenviar && !iseditar && !isbtncontinuar ? (
-              <ContentSidePageBottonLabel
-                istitl={isbtnenviar}
-                title="Continuar.: "
-              >
-                <ContentSidePageBottonButton
-                  pxheight="40px"
-                  img={setadir}
-                  titbtn="Continuar..."
-                  onclick={goto('/resgate3')}
-                />
-              </ContentSidePageBottonLabel>
-            ) : null}
-*/}
           </ContentSidePagePanelBotton>
 
           {helppg ? (
@@ -494,6 +463,37 @@ export const Resgate3 = () => {
     </ThemeProvider>
   );
 };
+
+          
+
+// {iseditar && isbtncontinuar && !isbtnenviar ? (
+//               <ContentSidePageBottonLabel
+//                 istitl={isbtncontinuar}
+//                 title="Confirmar.: "
+//               >
+//                 <ContentSidePageBottonButton
+//                   pxheight="40px"
+//                   img={setadir}
+//                   titbtn="Confirmar..."
+//                   onclick={handlerContinuar}
+//                 />
+//               </ContentSidePageBottonLabel>
+//             ) : null}
+
+//             {isbtnenviar && !iseditar && !isbtncontinuar ? (
+//               <ContentSidePageBottonLabel
+//                 istitl={isbtnenviar}
+//                 title="Continuar.: "
+//               >
+//                 <ContentSidePageBottonButton
+//                   pxheight="40px"
+//                   img={setadir}
+//                   titbtn="Continuar..."
+//                   onclick={goto('/resgate3')}
+//                 />
+//               </ContentSidePageBottonLabel>
+//             ) : null}
+
 
 //   <ContentInputCenter open={iseditar}>
 //      {iscontatoemail ? (

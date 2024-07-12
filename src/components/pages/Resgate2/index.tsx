@@ -37,42 +37,7 @@ import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 import notedicao from '../../../assets/svgs/notedicao.svg';
-
-export function isEmailValid(email: string): boolean {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-export function CheckFone(str: string) {
-  if (str === '') {
-    return false;
-  } else {
-    return true;
-  }
-}
-export function CheckCPF(str: string): boolean {
-  if (str === '') {
-    return false;
-  } else {
-    return true;
-  }
-}
-export function CheckResp(str: string): boolean {
-  if (str === '') {
-    return false;
-  } else {
-    return true;
-  }
-}
-export function Conexao() {
-  return true;
-}
-export function FindAcesso() {
-  return true;
-}
-export function FindUsers() {
-  return true;
-}
-
+import { isEmailValid, isFoneCValid, isCpfValid } from '../../../funcs/ErroEdicao.tsx';
 interface FormState {
   email: string;
   sms: string;
@@ -81,6 +46,7 @@ interface FormState {
 }
 export const Resgate2 = () => {
   const { state, dispatch } = AcessoUseForm();
+  
   const [snhmaster, setSnhMaster] = React.useState('');
   const [iscontatoemail, setIsContatoEmail] = React.useState(false);
   const [iscontatosms, setIsContatoSms] = React.useState(false);
@@ -93,14 +59,12 @@ export const Resgate2 = () => {
   const [txtlabel, setTxtLabel] = React.useState('');
   const [txtp, setTxtP] = React.useState('');
 
-  //const [ischeckedicao, setIsCheckEdicao] = React.useState(false);
-  //const [isconfirmar, setIsConfirmar] = React.useState(false);
-
   const [iseditar, setIsEditar] = React.useState(false);
-  const [iscontinuar, setIsContinuar] = React.useState(false);
-  const [isbtncontinuar, setIsBtnContinuar] = React.useState(false);
-  const [isbtnenviar, setIsBtnEnviar] = React.useState(false);
   const [start, setStart] = React.useState(false);
+  const [isbtncontinuar, setIsBtnContinuar] = React.useState(false);
+  const [isbtnvalidar, setIsBtnValidar] = React.useState(false);
+  const [isbtnenviar, setIsBtnEnviar] = React.useState(false);
+  
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
@@ -166,13 +130,12 @@ export const Resgate2 = () => {
       setTxtP('Verifique Nº C.P.F. para identificar Perguntas.');
     }
     setSnhMaster(criasmstr);
-    setIsValidado(true);
     setIsEditar(true);
-
     setIsBtnContinuar(true);
-    setIsContinuar(false);
+    setIsBtnValidar(false);
+    setIsValidado(true);
     setIsBtnEnviar(false);
-    setStart(true);
+    setStart(false);
   }, [dispatch]);
 
   const [theme, setTheme] = React.useState(dark);
@@ -202,39 +165,67 @@ export const Resgate2 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  const handlerEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlerStrIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputStrId(e.target.value);
-    console.log('inputstrid', inputstrid);
     setForm({ ...form, email: inputstrid });
-    console.log('form.email', form.email);
-    setIsContinuar(false);
-    setIsValidado(true);
+    setIsValidado(false);
     const novosErros: Partial<FormState> = {};
-    if (inputstrid === '') {
+
+    if (iscontatoemail && inputstrid === '') {
       novosErros.email = 'Por favor, digite o seu Email.';
     } else {
       if (!isEmailValid(inputstrid)) {
         setErros({ ...erros, email: 'Email inválido' });
       } else {
         setErros({ ...erros, email: '' });
+        setIsValidado(true);
       }
-      console.log('setErros', erros);
     }
-    setIsBtnEnviar(false);
+    if (iscontatosms || (iscontatozap && inputstrid === '')) {
+      if (iscontatosms) {
+        novosErros.sms = 'Por favor, digite nº Celular para SMS.';
+      } else {
+        if (!isFoneCValid(inputstrid)) {
+          setErros({ ...erros, sms: 'Nº Celular inválido' });
+        } else {
+          setIsValidado(true);
+          setErros({ ...erros, sms: '' });
+        }
+      }
+      if (iscontatozap) {
+        novosErros.sms = 'Por favor, digite nº Celular para Whatsapp.';
+      } else {
+        if (!isFoneCValid(inputstrid)) {
+          setErros({ ...erros, zap: 'Nº Celular inválido' });
+        } else {
+          setIsValidado(true);
+          setErros({ ...erros, zap: '' });
+        }
+      }
+    }
+    if (iscontatocpf && inputstrid === '') {
+      novosErros.cpf = 'Por favor, digite nº Documento CPF.';
+    } else {
+      if (!isCpfValid(inputstrid)) {
+        setErros({ ...erros, cpf: 'Nº Documnto inválido' });
+      } else {
+        setIsValidado(true);
+        setErros({ ...erros, cpf: '' });
+      }
+    }
   };
 
   const handlerContinuar = React.useCallback(() => {
-    if (inputstrid !== '') {
+    if (isvalidado) {
       setIsEditar(false);
       setIsBtnContinuar(false);
+      setStart(true);
       setIsBtnEnviar(true);
-    } else {
-      setIsValidado(false);
     }
-  }, [iseditar, isbtncontinuar, isbtnenviar, isvalidado]);
+  }, [isvalidado, iseditar, isbtncontinuar, isbtnenviar]);
 
   React.useEffect(() => {
-    if (isbtnenviar && !iseditar && !isbtncontinuar) {
+    if (isbtnenviar) {
       if (iscontatoemail) {
         dispatch({ type: AcessoUseActions.setMail, payload: inputstrid });
       }
@@ -273,19 +264,12 @@ export const Resgate2 = () => {
           <p>State.aplicacao...: {state.aplicacao}</p>
           <p>Stado para Contato.: </p>
           <p>Painel Edição......: {iseditar ? 'verdadeiro' : 'falso'}</p>
-          <p>
-            Dados InputStrId.: {inputstrid ? inputstrid : 'vasio'}
-          </p>
-          <p>
-             State IsValidado..: {isvalidado ? 'verdadeiro' : 'falso'}
-          </p>
-          <p>Stado para Botão.: </p>
-          <p>
-            IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}
-          </p>
-          <p>
-            IsBtnEnviar......: {isbtnenviar ? 'verdadeiro' : 'falso'}
-          </p>
+          <p>Dados InputStrId.: {inputstrid ? inputstrid : 'vasio'}</p>
+          <p>State IsValidado..: {isvalidado ? 'verdadeiro' : 'falso'}</p>
+          <p>Painel Start .....: {iseditar ? 'verdadeiro' : 'falso'}</p>
+          <p>Stado para Botão..: </p>
+          <p>IsBtnContinuar....: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
+          <p>IsBtnEnviar......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
         </div>
         <ContentCardPage>
           <ContentCardPageTitle>
@@ -294,7 +278,7 @@ export const Resgate2 = () => {
           <ContentCardBoxMainPage>
             <ContentCardBoxCenterPage pwidth="200px">
               <ContentCardPageTitle>
-                {iseditar ? <h4>{state.aplicacao}</h4> : null}
+                {isbtncontinuar ? <h4>{state.aplicacao}</h4> : null}
                 {isbtnenviar ? <h4>Para Processamento.</h4> : null}
               </ContentCardPageTitle>
 
@@ -308,12 +292,13 @@ export const Resgate2 = () => {
                       value={inputstrid}
                       size={25}
                       autoFocus={true}
-                      onChange={handlerEmailChange}
+                      onChange={handlerStrIdChange}
                     />
                     {erros.email && <span>{erros.email}</span>}
                     <br />
                   </form>
                 ) : null}
+
                 {iscontatosms ? (
                   <ContentInputPage>
                     <form name="sms">
@@ -325,7 +310,7 @@ export const Resgate2 = () => {
                         value={inputstrid}
                         size={11}
                         autoFocus={true}
-                        onChange={() => {}}
+                        onChange={handlerStrIdChange}
                       />
                       <br />
                     </form>
@@ -342,7 +327,7 @@ export const Resgate2 = () => {
                         value={inputstrid}
                         size={11}
                         autoFocus={true}
-                        onChange={() => {}}
+                        onChange={handlerStrIdChange}
                       />
                       <br />
                     </form>
@@ -359,7 +344,7 @@ export const Resgate2 = () => {
                         value={inputstrid}
                         size={11}
                         autoFocus={true}
-                        onChange={() => {}}
+                        onChange={handlerStrIdChange}
                       />
                       <br />
                     </form>
@@ -367,9 +352,9 @@ export const Resgate2 = () => {
                 ) : null}
               </ContentInputCenter>
 
-              {!iseditar && !isbtncontinuar && isbtnenviar ? (
+              {start ? (
                 <PanelConfResgateYellow
-                  isbgcolor={isbtnenviar}
+                  isbgcolor={start}
                   titulo={'Resgate para seu Acesso.'}
                   subtitulo={'Dados Informados :'}
                 >
@@ -400,6 +385,8 @@ export const Resgate2 = () => {
                   ) : null}
                   <br />
                   <h5>Obs:.</h5>
+                  colocar para confirmar
+                 < ADSa
                   <p>
                     &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
                     Esquerda...
@@ -435,12 +422,43 @@ export const Resgate2 = () => {
 
           <Lg.DivisionPgHztalPage />
 
-          <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
-            {inputstrid !== '' ? (
+          {iseditar && inputstrid !== '' ? (
+            <ContentSidePagePanelBotton
+              bordas="3px"
+              open={iseditar}
+              pwidth="100%"
+            >
               <ContentCardPageTitle>
                 <h3>Informado : {inputstrid}</h3>
               </ContentCardPageTitle>
-            ) : null}
+              <ContentSidePageBottonLabel
+                istitl={iseditar}
+                title={'Abortar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight="40px"
+                  img={setaesq}
+                  titbtn="Voltar..."
+                  onclick={goto('/resgate1')}
+                />
+              </ContentSidePageBottonLabel>
+
+              {isbtncontinuar ? (
+                <ContentSidePageBottonLabel
+                  istitl={isbtncontinuar}
+                  title="Continuar.: "
+                >
+                  <ContentSidePageBottonButton
+                    pxheight="40px"
+                    img={setadir}
+                    titbtn="Continuar..."
+                    onclick={handlerContinuar}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+            </ContentSidePagePanelBotton>
+          ) : null}
+          <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
             <ContentSidePageBottonLabel istitl={start} title={'Abortar.: '}>
               <ContentSidePageBottonButton
                 pxheight="40px"
@@ -450,29 +468,15 @@ export const Resgate2 = () => {
               />
             </ContentSidePageBottonLabel>
 
-            {iseditar && isbtncontinuar && !isbtnenviar ? (
-              <ContentSidePageBottonLabel
-                istitl={isbtncontinuar}
-                title="Confirmar.: "
-              >
-                <ContentSidePageBottonButton
-                  pxheight="40px"
-                  img={setadir}
-                  titbtn="Confirmar..."
-                  onclick={handlerContinuar}
-                />
-              </ContentSidePageBottonLabel>
-            ) : null}
-
-            {isbtnenviar && !iseditar && !isbtncontinuar ? (
+            {isbtnenviar ? (
               <ContentSidePageBottonLabel
                 istitl={isbtnenviar}
-                title="Continuar.: "
+                title="Enviar.: "
               >
                 <ContentSidePageBottonButton
                   pxheight="40px"
                   img={setadir}
-                  titbtn="Continuar..."
+                  titbtn="Enviar..."
                   onclick={goto('/resgate3')}
                 />
               </ContentSidePageBottonLabel>
