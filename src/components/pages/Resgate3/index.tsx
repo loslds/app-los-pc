@@ -35,7 +35,7 @@ import resgatehlp3 from '../../../assets/svgs/resgatehlp3.svg';
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
-import setadir from '../../../assets/svgs/setadir.svg';
+//import setadir from '../../../assets/svgs/setadir.svg';
 import notedicao from '../../../assets/svgs/notedicao.svg';
 
 import { IUsers, UsersIndexById } from '../../../books/ListUsers.tsx';
