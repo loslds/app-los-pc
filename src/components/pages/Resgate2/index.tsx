@@ -56,7 +56,8 @@ export const Resgate2 = () => {
     zap: '',
     cpf: ''
   });
-  const [erros, setErros] = React.useState<Partial<FormState>>({});
+  const [erros] = React.useState<Partial<FormState>>({});
+
   const [snhmaster, setSnhMaster] = React.useState('');
   const [iscontatoemail, setIsContatoEmail] = React.useState(false);
   const [iscontatosms, setIsContatoSms] = React.useState(false);
@@ -77,13 +78,8 @@ export const Resgate2 = () => {
   const [isbtnedicao, setIsBtnEdicao] = React.useState(false);
 
   const [ischecaedicao, setIsChecaEdicao] = React.useState(false);
-  const [isbtnchecado, setIsBtnChecado] = React.useState(false);
   const [isvalidado, setIsValidado] = React.useState(false);
-  const [iserroedicao, setIsErroEdicao] = React.useState(false);
-
-  const [iscontinuar, setIsContinuar] = React.useState(false);
   const [isbtncontinuar, setIsBtnContinuar] = React.useState(false);
-
   const [isenviar, setIsEnviar] = React.useState(false);
   const [isbtnenviar, setIsBtnEnviar] = React.useState(false);
 
@@ -228,6 +224,8 @@ export const Resgate2 = () => {
     setIsValidado(true);
     setErroHelp(false);
     setIsBtnContinuar(false);
+    setIsEnviar(false);
+    setIsBtnEnviar(false);
     if (iscontatoemail) {
       if (!isEmailValid(inputstrid)) {
         setIsValidado(false);
@@ -261,6 +259,7 @@ export const Resgate2 = () => {
     setIsChecaEdicao(false);
     setIsValidado(false);
     setIsEnviar(true);
+    setIsBtnEnviar(true);
   };
 
   React.useEffect(() => {
@@ -440,7 +439,8 @@ export const Resgate2 = () => {
                   <br />
                 </PanelConfResgateYellow>
               ) : null}
-              {isvalidado ? (
+
+              {isenviar ? (
                 <PanelConfResgateYellow
                   isbgcolor={ischecaedicao}
                   titulo={'Resgate para seu Acesso.'}
@@ -486,15 +486,15 @@ export const Resgate2 = () => {
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 
-          {iserroedicao ? (
+          {errohelp ? (
             <PageModal
               ptop="1%"
               pwidth="40%"
               pheight="40%"
-              titulo={'ERRO em Edição'}
+              titulo={edicao}
               imgbm={close}
               titbm="Fechar..."
-              onclose={() => setIsErroEdicao(false)}
+              onclose={() => setErroHelp(false)}
             >
               <CardImgMsg
                 img={notedicao}
