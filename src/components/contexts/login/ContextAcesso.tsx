@@ -16,6 +16,7 @@ type StateAcesso = {
   pswuser: string;
   pin: string;
   fonec: string;
+  fonez: string;
   avatar: string;
   cpf: string;
   perg1: string;
@@ -70,6 +71,7 @@ export const initialData: StateAcesso = {
   pin: '',
   mail: '',
   fonec: '',
+  fonez: '',
   avatar: '',
   cpf: '',
   perg1: '',
@@ -124,6 +126,7 @@ export enum AcessoUseActions {
   setPin,
   setMail,
   setFoneC,
+  setFoneZ,
   setAvatar,
   setCpf,
   setperg1,
@@ -201,6 +204,8 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, mail: action.payload };
     case AcessoUseActions.setFoneC:
       return { ...state, fonec: action.payload };
+    case AcessoUseActions.setFoneZ:
+      return { ...state, fonez: action.payload };      
     case AcessoUseActions.setAvatar:
       return { ...state, avatar: action.payload };
     case AcessoUseActions.setCpf:

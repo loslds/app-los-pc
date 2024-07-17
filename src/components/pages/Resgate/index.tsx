@@ -67,6 +67,7 @@ export const Resgate = () => {
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
     dispatch({ type: AcessoUseActions.setPin, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+    dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
     dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
     dispatch({ type: AcessoUseActions.setCpf, payload: '' });

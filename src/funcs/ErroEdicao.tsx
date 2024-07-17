@@ -14,20 +14,37 @@ export function ErroEdicao(nrerro: number) {
   return isrtn;
 }
 
-export function isEmailValid(email: string): boolean {
+export function isEmailValid(email: string): string {
+  const normalizedEmail = email.toLowerCase();
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
+
+  if (!emailRegex.test(normalizedEmail) ) {
+    return '';
+  }
+
+  const masked = normalizedEmail.replace(emailRegex, '($1) $2-$3');
+  return masked;
 }
 
-export function isFoneCValid(fonec: string): boolean {
+export function isFoneCValid(fonec: string): string {
+  // Remove todos os caracteres não numéricos
+  const cleaned = fonec.replace(/\D/g, '');
+
   const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
-  return fonecRegex.test(fonec);
+
+  if (!fonecRegex.test(cleaned)) {
+    return '';
+  } 
+  // Aplica a máscara
+  const masked = cleaned.replace(fonecRegex, '($1) $2-$3');
+  return masked;
 }
 
-export function isCpfValid(cpf: string): boolean {
+export function isCpfValid(cpf: string): string {
   const cleaned = cpf.replace(/\D/g, '');
 
-  if (cleaned.length !== 11) return false;
+  if (cleaned.length !== 11) return cpf;
 
   let sum = 0;
   let remainder;
@@ -37,7 +54,7 @@ export function isCpfValid(cpf: string): boolean {
     sum += parseInt(cleaned.substring(i - 1, i)) * (11 - i);
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
-  if (remainder !== parseInt(cleaned.substring(9, 10))) return false;
+  if (remainder !== parseInt(cleaned.substring(9, 10))) return '';
 
   sum = 0;
   // Validação do segundo dígito verificador
@@ -45,9 +62,15 @@ export function isCpfValid(cpf: string): boolean {
     sum += parseInt(cleaned.substring(i - 1, i)) * (12 - i);
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
-  if (remainder !== parseInt(cleaned.substring(10, 11))) return false;
+  if (remainder !== parseInt(cleaned.substring(10, 11))) return '';
 
-  return true;
+  // Aplica a máscara de CPF
+  const maskedCPF = cleaned.replace(
+    /(\d{3})(\d{3})(\d{3})(\d{2})/,
+    '$1.$2.$3-$4'
+  );
+
+  return maskedCPF;
 }
 
 /**

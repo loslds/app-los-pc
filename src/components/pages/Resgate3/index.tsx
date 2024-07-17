@@ -422,7 +422,6 @@ export const Resgate3 = () => {
                 />
               </ContentSidePageBottonLabel>
             ) : null}
-
           </ContentSidePagePanelBotton>
 
           {helppg ? (
@@ -464,8 +463,6 @@ export const Resgate3 = () => {
   );
 };
 
-          
-
 // {iseditar && isbtncontinuar && !isbtnenviar ? (
 //               <ContentSidePageBottonLabel
 //                 istitl={isbtncontinuar}
@@ -493,7 +490,6 @@ export const Resgate3 = () => {
 //                 />
 //               </ContentSidePageBottonLabel>
 //             ) : null}
-
 
 //   <ContentInputCenter open={iseditar}>
 //      {iscontatoemail ? (
@@ -652,3 +648,73 @@ export const Resgate3 = () => {
 //     <br />
 //   </PanelConfResgateYellow>
 // ) : null}
+
+// const handlerStrIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+//   const newValue = e.target.value;
+//   setMaskedEmail('');
+//   setMaskedFoneC('');
+//   setMaskedFoneZ('');
+//   setMaskedCpf('');
+//   setInputStrId(newValue);
+//   setIsChecaEdicao(false);
+//   setErroEdt('');
+
+//   if (iscontatoemail) {
+//     if (newValue.length === 0) {
+//       setErroEdt('Edite o seu Email.');
+//     } else {
+//       const masck = isEmailValid(newValue);
+//       if (masck === '') {
+//         setErroEdt('Edição Email INCOMPATIVEL.');
+//       } else {
+//         setMaskedEmail(newValue.toLocaleLowerCase());
+//         setInputStrId(maskedemail);
+//         setIsChecaEdicao(true);
+//       }
+//     }
+//   }
+
+//   if (iscontatosms || iscontatozap) {
+//     if (newValue === '') {
+//       setErroEdt('Edite nº Celular.');
+//     } else {
+//       const masked = isFoneCValid(newValue);
+//       if (masked === '') {
+//         setErroEdt('Edição de Nº INCOMPATIVEL.');
+//       } else {
+//         if (iscontatosms) {
+//           setMaskedFoneC(masked);
+//         } else {
+//           setMaskedFoneZ('(+55) ' + masked);
+//         }
+//         setIsChecaEdicao(true);
+//       }
+//     }
+//   }
+//   if (iscontatocpf) {
+//     if (newValue === '') {
+//       setErroEdt('Edite nº Doc. CPF.');
+//     } else {
+//       const masked = isCpfValid(newValue);
+//       if (masked === '') {
+//         setErroEdt('Edição Nº CPF INCOMPATIVEL.');
+//       } else {
+//         setMaskedCpf(masked);
+//         setIsChecaEdicao(true);
+//       }
+//     }
+//   }
+
+//   if (ischecaedicao) {
+//     setIsEdicao(true);
+//     setErroHelp(false);
+//     setIsBtnContinuar(false);
+//     setIsBtnEnviar(false);
+//   } else {
+//     if (newValue === '') {
+//       setIsChecaEdicao(false);
+//     } else {
+//       setIsChecaEdicao(true);
+//     }
+//   }
+// };

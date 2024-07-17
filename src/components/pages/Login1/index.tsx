@@ -182,9 +182,9 @@ export const Login1 = () => {
                 onclick={goto('/login')}
               />
             </ContentSidePageBottonLabel>
-<ContentBoxLabelPage label={'Tentativa [ ' + state.nrcont + 'ª ]'} />
-            
-
+            <ContentBoxLabelPage
+              label={'Tentativa [ ' + state.nrcont + 'ª ]'}
+            />
 
             {btncontinua ? (
               <ContentSidePageBottonLabel
