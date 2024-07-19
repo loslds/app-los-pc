@@ -20,12 +20,16 @@ export function isEmailValid(email: string): string {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(normalizedEmail) ) {
+    console.log('emailRegex : ', 'falso');
     return '';
   }
 
   const masked = normalizedEmail.replace(emailRegex, '($1) $2-$3');
+  console.log('masked email : ',masked)
   return masked;
 }
+
+
 
 export function isFoneCValid(fonec: string): string {
   // Remove todos os caracteres não numéricos

@@ -53,12 +53,6 @@ export function FindUsers() {
   return true;
 }
 
-interface FormState {
-  email: string;
-  sms: string;
-  zap: string;
-  cpf: string;
-}
 export const Resgate3 = () => {
   const { state, dispatch } = AcessoUseForm();
 
@@ -86,9 +80,11 @@ export const Resgate3 = () => {
   const [perg1, setPerg1] = React.useState('');
   const [resp1, setResp1] = React.useState('');
   const [strresp1, setStrResp1] = React.useState('');
+
   const [perg2, setPerg2] = React.useState('');
   const [resp2, setResp2] = React.useState('');
   const [strresp2, setStrResp2] = React.useState('');
+  
   const [perg3, setPerg3] = React.useState('');
   const [resp3, setResp3] = React.useState('');
   const [strresp3, setStrResp3] = React.useState('');
@@ -114,21 +110,13 @@ export const Resgate3 = () => {
   const [fones, setFones] = React.useState<IFones | undefined>(undefined);
   const [emps, setEmps] = React.useState<IEmps | undefined>(undefined);
 
-  const [form, setForm] = React.useState<FormState>({
-    email: '',
-    sms: '',
-    zap: '',
-    cpf: ''
-  });
-
-  const [erros, setErros] = React.useState<Partial<FormState>>({});
-
+  
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate3' });
-    dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+    //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+    //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+    //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     if (state.mdlogin === 1) {
       setIsContatoEmail(true);
     } else {
@@ -332,6 +320,7 @@ export const Resgate3 = () => {
                   titulo={'Resgate em Banco de Dados.'}
                   subtitulo={'Dados para Resgate:'}
                 >
+                  <div>
                   <p>&emsp;&emsp;Busca pelos Dados :</p>
                   <label>&emsp;&emsp;&emsp;Acessos a Usuários</label>
                   <p>&emsp;&emsp;&emsp;Acessos:</p>
@@ -353,6 +342,7 @@ export const Resgate3 = () => {
                     Direita...
                   </p>
                   <br />
+                  </div>
                 </PanelConfResgateYellow>
               ) : null}
             </ContentCardBoxCenterPage>

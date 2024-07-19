@@ -306,6 +306,7 @@ export const Login2 = () => {
                       </form>
                     ) : null}
                   </ContentInputMainPage>
+                  
                 </ContentCardCollunsCenterPage>
               </ContentCardBoxCenterPage>
             ) : null}

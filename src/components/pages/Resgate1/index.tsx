@@ -87,7 +87,7 @@ export const Resgate1 = () => {
       type: AcessoUseActions.setModulo,
       payload: 'Resgate: Opção Forma.'
     });
-    setAplicacao('Opção');
+    setAplicacao('Opções');
     dispatch({ type: AcessoUseActions.setAplicacao, payload: aplicacao });
 
     //////////////////////////////////////////////////////////////////////////
@@ -182,7 +182,7 @@ export const Resgate1 = () => {
           <ContentCardBoxMainPage>
             <ContentCardBoxCenterPage pwidth="200px">
               <ContentCardPageTitle>
-                <h4>{state.aplicacao}</h4>
+                <h4>{aplicacao}</h4>
               </ContentCardPageTitle>
               {mdlogin === 0 ? (
                 <ContentInputPage>
