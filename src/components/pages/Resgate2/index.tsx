@@ -195,49 +195,43 @@ export const Resgate2 = () => {
       } else if (!isNumber(inputstrid)) {
         setErroEdt('Edite somente Nº...');
         setIsConfirmation(false);
+      } else if (inputstrid.length < 11) {
+        setIsConfirmation(false);
+        setErroEdt('Continue a Edição...');
+      } else if (inputstrid.length > 11) {
+        setIsConfirmation(false);
+        setErroEdt('Excesso de Nº na Edição...');
+      } else if (!isCpfValid(inputstrid)) {
+        setIsConfirmation(false);
+        setErroEdt('Edição Incompatível.');
+      } else if (!isExistsCPF(inputstrid)) {
+        setIsConfirmation(false);
+        setErroEdt('Nº de Edição Inválido.');
       } else {
-        if (inputstrid.length < 11) {
-          setIsConfirmation(false);
-          setErroEdt('Continue a Edição...');
-        } else if (inputstrid.length > 11) {
-          setIsConfirmation(false);
-          setErroEdt('Excesso de Nº na Edição...');
-        } else {
-          if (inputstrid.length === 11) {
-            if (!isCpfValid(inputstrid)) {
-              setIsConfirmation(false);
-              setErroEdt('Edição Incompatível.');
-            } else {
-              if (isExistsCPF(inputstrid)) {
-                masck = MasckedCpf(inputstrid);
-                setMaskedCpf(masck);
-                setIsConfirmation(true);
-                setErroEdt('Possível Edição.');
-                setStatusBtn('[ CONFIRMAÇÃO... ]');
-              } else {
-                setIsConfirmation(false);
-                setErroEdt('Nº de Edição Inválido.');
-              }
-            }
-          }
-        }
+        masck = MasckedCpf(inputstrid);
+        setMaskedCpf(masck);
+        setIsConfirmation(true);
+        setErroEdt('Possível Edição.');
+        setStatusBtn('[ CONFIRMAÇÃO... ]');
       }
     }
+
     //////////////////////////
     if (iscontatosms || iscontatozap) {
+      setErroEdt('Aguardando Edição.');
       if (inputstrid === '') {
         setIsConfirmation(false);
         setErroEdt('Edite nº Celular.');
-      } else if (!isNumber) {
+      } else if (!isNumber(inputstrid)) {
         setErroEdt('Edite somente Nº...');
         setIsConfirmation(false);
-      } else if (inputstrid.length <= 10) {
+      } else if (inputstrid.length < 11) {
         setIsConfirmation(false);
         setErroEdt('Continue a Edição...');
-      } else if (inputstrid.length >= 12) {
+      } else if (inputstrid.length > 11) {
         setIsConfirmation(false);
-        setErroEdt('Ecesso de Nº na Edição...');
-      } else if (isFoneCValid(inputstrid)) {
+        setErroEdt('Excesso de Nº na Edição...');
+      } else if (!isFoneCValid(inputstrid)) {
         setIsConfirmation(false);
         setErroEdt('Edição Incompatível.');
       } else {
@@ -255,6 +249,7 @@ export const Resgate2 = () => {
     }
     ////////////////////////////
     if (iscontatoemail) {
+      setErroEdt('Aguardando Edição.');
       if (inputstrid === '') {
         setIsConfirmation(false);
         setErroEdt('Edite o seu Email.');
@@ -269,19 +264,37 @@ export const Resgate2 = () => {
         setStatusBtn('[ CONFIRMAÇÃO... ]');
       }
     }
-
     setBtnConfirmation(isconfirmation);
-  }, [inputstrid]);
+  }, [
+    isconfirmation,
+    inputstrid,
+    iscontatocpf,
+    iscontatosms,
+    iscontatozap,
+    iscontatoemail
+  ]);
 
-  const handlerConfirmation = () => {
+  const handlerConfirmation = React.useCallback(() => {
     setIsEditar(false);
-    setIsView(true);
     setIsConfirmation(false);
     setBtnConfirmation(false);
+    setIsView(true);
     setIsContinuar(true);
-    setBtnContinuar(true);
+    setBtnContinuar(isview);
     setStatusBtn('[ CONTINUAR... ]');
-  };
+  }, [iseditar, isview]);
+
+  React.useEffect(() => {
+    if (!iseditar) {
+      setIsConfirmation(iseditar);
+      setBtnConfirmation(iseditar);
+    }
+    if (!isview) {
+      setIsContinuar(isview);
+      setBtnContinuar(isview);
+    }
+  }, [iseditar, isview]);
+  ////////////////////
 
   React.useEffect(() => {
     if (iscontinuar && inputstrid !== '') {
@@ -298,10 +311,10 @@ export const Resgate2 = () => {
   }, [
     iscontinuar,
     inputstrid,
-    iscontatoemail,
+    iscontatocpf,
     iscontatosms,
     iscontatozap,
-    iscontatocpf,
+    iscontatoemail,
     dispatch
   ]);
   ////////////////////
@@ -407,7 +420,7 @@ export const Resgate2 = () => {
                 </ContentInputPage>
               ) : null}
 
-              {isview && isconfirmation ? (
+              {isconfirmation && isview ? (
                 <PanelConfResgateYellow
                   isbgcolor={isconfirmation}
                   titulo={'Resgate para seu Acesso.'}
@@ -454,6 +467,18 @@ export const Resgate2 = () => {
                     Direita...
                   </p>
                   <br />
+
+                  {isconfirmation ? (
+                    <label>
+                      &emsp;&emsp;&emsp;???- isconfirmation :{' '}
+                      <span>'VERDADEIRO'</span>
+                    </label>
+                  ) : (
+                    <label>
+                      &emsp;&emsp;&emsp;???- isconfirmation :{' '}
+                      <span>'FALSO'</span>
+                    </label>
+                  )}
                 </PanelConfResgateYellow>
               ) : null}
 
@@ -498,6 +523,17 @@ export const Resgate2 = () => {
                     Direita...
                   </p>
                   <br />
+
+                  {iscontinuar ? (
+                    <label>
+                      &emsp;&emsp;&emsp;???- iscontinuar :{' '}
+                      <span>'VERDADEIRO'</span>
+                    </label>
+                  ) : (
+                    <label>
+                      &emsp;&emsp;&emsp;???- iscontinuar : <span>'FALSO'</span>
+                    </label>
+                  )}
                 </PanelConfResgateYellow>
               ) : null}
 
@@ -524,43 +560,7 @@ export const Resgate2 = () => {
 
           <Lg.DivisionPgHztalPage />
 
-          {iseditar || btnconfirmation ? (
-            <ContentSidePagePanelBotton
-              bordas="3px"
-              open={iseditar}
-              pwidth="100%"
-            >
-              <ContentSidePageBottonLabel
-                istitl={iseditar}
-                title={'Abortar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setaesq}
-                  titbtn={'Voltar...'}
-                  onclick={goto('/resgate1')}
-                />
-              </ContentSidePageBottonLabel>
-              {inputstrid === '' ? (
-                <ContentBoxLabelPage label={'[ E D I Ç Ã O ]'} />
-              ) : (
-                <ContentBoxLabelPage label={statusbtn} />
-              )}
-              {btnconfirmation && inputstrid !== '' ? (
-                <ContentSidePageBottonLabel
-                  istitl={btnconfirmation}
-                  title={'Confirmar.: '}
-                >
-                  <ContentSidePageBottonButton
-                    pxheight="40px"
-                    img={setadir}
-                    titbtn=" Confirmar..."
-                    onclick={handlerConfirmation}
-                  />
-                </ContentSidePageBottonLabel>
-              ) : null}
-            </ContentSidePagePanelBotton>
-          ) : (
+          {btncontinuar && isview ? (
             <ContentSidePagePanelBotton
               bordas="3px"
               open={btncontinuar}
@@ -590,7 +590,58 @@ export const Resgate2 = () => {
                 />
               </ContentSidePageBottonLabel>
             </ContentSidePagePanelBotton>
-          )}
+          ) : null}
+          {btnconfirmation && inputstrid !== '' ? (
+            <ContentSidePagePanelBotton
+              bordas="3px"
+              open={iseditar}
+              pwidth="100%"
+            >
+              <ContentSidePageBottonLabel
+                istitl={iseditar}
+                title={'Abortar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setaesq}
+                  titbtn={'Voltar...'}
+                  onclick={goto('/resgate1')}
+                />
+              </ContentSidePageBottonLabel>
+              <ContentBoxLabelPage label={statusbtn} />
+              <ContentSidePageBottonLabel
+                istitl={btnconfirmation}
+                title={'Confirmar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight="40px"
+                  img={setadir}
+                  titbtn=" Confirmar..."
+                  onclick={handlerConfirmation}
+                />
+              </ContentSidePageBottonLabel>
+            </ContentSidePagePanelBotton>
+          ) : null}
+          {inputstrid === '' ? (
+            <ContentSidePagePanelBotton
+              bordas="3px"
+              open={iseditar}
+              pwidth="100%"
+            >
+              <ContentSidePageBottonLabel
+                istitl={iseditar}
+                title={'Abortar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setaesq}
+                  titbtn={'Voltar...'}
+                  onclick={goto('/resgate1')}
+                />
+              </ContentSidePageBottonLabel>
+              <ContentBoxLabelPage label={'[ E D I Ç Ã O ]'} />
+            </ContentSidePagePanelBotton>
+          ) : null}
 
           {helppg ? (
             <PageModal

@@ -70,87 +70,56 @@ export function MasckedFoneFx(fonefx: string): string {
 export function isFoneCValid(fonec: string): boolean {
   // Remove todos os caracteres não numéricos
   const cleaned = fonec.replace(/\D/g, '');
-
   const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
-
-  if (!fonecRegex.test(cleaned)) {
-    return false;
-  }
-
-  return true;
+  return fonecRegex.test(cleaned);
 }
 
 // mascarar telefone Celular
 export function MasckedFoneC(fonec: string): string {
-  // Remove todos os caracteres não numéricos
   const cleaned = fonec.replace(/\D/g, '');
-
   const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
-
-  if (!fonecRegex.test(cleaned)) {
-    return 'Número Celular incompatível.';
-  }
-  // Aplica a máscara
-  const masked = cleaned.replace(fonecRegex, '($1) $2-$3');
-  return masked;
+  return cleaned.replace(fonecRegex, '($1) $2-$3');
 }
 ////////////////////////////////////////////////////////////
 // testa se foi editado somente numeros
 export function isNumber(str: string): boolean {
   const strRegex = /^[0-9]+$/; // Apenas números
-
   return strRegex.test(str);
 }
 
 /////////////////////////////////////////////////////////////
 // validar Documento CPF
 export function isCpfValid(cpf: string): boolean {
-  // Remove todos os caracteres não numéricos
   const cleaned = cpf.replace(/\D/g, '');
-
-  // Expressão regular para verificar se o CPF tem 11 dígitos
   const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
-
   return cpfRegex.test(cleaned);
 }
 
-// se Numero cpd existe conforme verificador
+// se Numero cpf existe conforme verificador
 export function isExistsCPF(cpf: string): boolean {
   const cleaned = cpf.replace(/\D/g, '');
-
   if (cleaned.length !== 11) return false;
-
   let sum = 0;
   let remainder;
-
-  // Validação do primeiro dígito verificador
   for (let i = 1; i <= 9; i++) {
     sum += parseInt(cleaned.substring(i - 1, i)) * (11 - i);
   }
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
   if (remainder !== parseInt(cleaned.substring(9, 10))) return false;
-
   sum = 0;
-  // Validação do segundo dígito verificador
   for (let i = 1; i <= 10; i++) {
     sum += parseInt(cleaned.substring(i - 1, i)) * (12 - i);
   }
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
   if (remainder !== parseInt(cleaned.substring(10, 11))) return false;
-
   return true;
 }
 
 // Mascarar Documento CPF
 export function MasckedCpf(cpf: string): string {
   const cleaned = cpf.replace(/\D/g, '');
-
-  if (!isCpfValid(cleaned)) {
-    return 'Número CPF inválido.';
-  }
-
   return cleaned.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
 }
 
