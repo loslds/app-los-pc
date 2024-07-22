@@ -114,28 +114,50 @@ export const Resgate3 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate3' });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/resgate2' });
+    
     //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
     //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
     //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+
+
+
+    dispatch({ type: AcessoUseActions.setMail, payload: '' });
+    //dispatch({ type: AcessoUseActions.setPin, payload: '' });
+    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+    dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+    // dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
+    dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    //    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
+    //    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
+    //    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
+    //    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
+    //    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
+    //    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+    dispatch({
+      type: AcessoUseActions.setModulo,
+      payload: 'Resgatar: Contato Usuário'
+    });
+    dispatch({
+      type: AcessoUseActions.setAplicacao,
+      payload: 'Contato :' + state.nmlogin + '.'
+    });
     if (state.mdlogin === 1) {
       setIsContatoEmail(true);
-    } else {
-      dispatch({ type: AcessoUseActions.setMail, payload: '' });
-      if (state.mdlogin === 2 || state.mdlogin === 3) {
-        if (state.mdlogin === 2) {
-          setIsContatoSms(true);
-        } else {
-          setIsContatoZap(true);
-        }
-      } else {
-        dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-        if (state.mdlogin === 4) {
-          setIsContatoCpf(true);
-        } else {
-          dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-        }
-      }
     }
+    if (state.mdlogin === 2) {
+      setIsContatoSms(true);
+    } 
+    if (state.mdlogin === 3) {
+      setIsContatoZap(true);
+    }
+    if (state.mdlogin === 4) {
+      setIsContatoCpf(true);
+    }
+    dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPin, payload: '' });
     dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
@@ -147,6 +169,7 @@ export const Resgate3 = () => {
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
     dispatch({ type: AcessoUseActions.setModulo, payload: '' });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
+
     setPerg1('');
     setResp1('');
     setStrResp1('');
@@ -708,3 +731,25 @@ export const Resgate3 = () => {
 //     }
 //   }
 // };
+// <div>
+//   <p>Senha MASTER.: {snhmaster}</p>
+//   <p>State idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
+//   <p>State nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
+//   <p>State.mdlogin.....: {state.mdlogin ? state.mdlogin : '0'}</p>
+//   <p>State nmlogin.....: {state.nmlogin ? state.nmlogin : 'vasio'}</p>
+//   <p>State.modulo......: {state.modulo}</p>
+//   <p>State.aplicacao...: {state.aplicacao}</p>
+//   <p>Stado para Contato.: </p>
+//   <p>Painel Edição......: {isedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>Dados InputStrId.: {inputstrid ? inputstrid : 'vasio'}</p>
+//   <p>State IsEdição...: {isedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>State IsChecar...: {ischecaedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>Painel Footer....: {ispnlfooter ? 'verdadeiro' : 'falso'}</p>
+//   <p>Stado Ação Botão.: </p>
+//   <p>IsBtnEdição......: {isbtnedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>IsBtnChecaEdição.: {ischecaedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>IsBtnContinuar...: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
+//   <p>IsBtnEnviar......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
+// </div>
+
+////////////////////
