@@ -170,6 +170,7 @@ export const Resgate = () => {
                   </ContentInputPage>
                 </ContentInputPage>
               ) : null}
+
               {isconfirmation ? (
                 <PanelConfResgateYellow
                   isbgcolor={start}
@@ -239,7 +240,7 @@ export const Resgate = () => {
             <PageModal
               ptop={'1%'}
               pwidth={'50%'}
-              pheight={'88%'}
+              pheight={'93%'}
               titulo={'Acesso Resgate.'}
               imgbm={close}
               titbm={'Fechar...'}

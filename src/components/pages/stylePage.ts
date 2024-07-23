@@ -363,7 +363,7 @@ type TypeContainerPanelPage = {
   pwidth? : string;
 }
 export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
-  border: 2px solid red;
+  border: none;
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   min-height: 40px;
@@ -957,6 +957,59 @@ export const ContainerCardDivMainLeftRed = styled.div<TypeContainerCardDivMainLe
   align-items: center;
   align-content: center;
 `;
+
+type TypeContainerSinaleiro = {
+  pxheight?: string;
+  pxwidth?: string;
+}
+export const ContainerSinaleiro = styled.div<TypeContainerSinaleiro>`
+border: 1px solid;
+border-color: ${(props) => props.theme.colors.textColor};
+border-radius: 45%;
+padding: 0px 0px 0px 0px;
+margin: 0px 0px 0px 0px;
+min-height: ${({ pxheight }) => pxheight || '30px'};
+width: ${({ pxwidth }) => pxwidth || '100%'};
+color: ${(props) => props.theme.colors.textColor};
+background: transparent;
+display: flex;
+flex-flow: row;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+align-content: center;
+`;
+
+type TypeButtonSinaleiro = {
+  pxhght?: string;
+  pxwdth?: string;
+  img?: string;
+}
+export const ButtonSinaleiro = styled.button<TypeButtonSinaleiro>`
+  border: none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  min-height: ${({ pxhght }) => pxhght || '30px'};
+  width: ${({ pxwdth }) => pxwdth || '100%'};
+  color: ${(props) => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+
+
 
 export const ContainerButtonOn = styled.div`
 border: 1px solid;

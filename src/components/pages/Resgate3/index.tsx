@@ -17,6 +17,7 @@ import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
+import { ContentDivSinaleiro } from '../ContentDivSinaleiro.tsx';
 //import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
@@ -42,6 +43,8 @@ import { IUsers, UsersIndexById } from '../../../books/ListUsers.tsx';
 import { IAcessos, AcessosIndexById } from '../../../books/ListAcessos.tsx';
 import { IFones, FonesIndexById } from '../../../books/ListFones.tsx';
 import { IEmps, EmpsIndexById } from '../../../books/ListEmps.tsx';
+
+import botaoverde from '../../../assets/svgs/botaoverde.svg';
 
 export function Conexao() {
   return true;
@@ -84,7 +87,7 @@ export const Resgate3 = () => {
   const [perg2, setPerg2] = React.useState('');
   const [resp2, setResp2] = React.useState('');
   const [strresp2, setStrResp2] = React.useState('');
-  
+
   const [perg3, setPerg3] = React.useState('');
   const [resp3, setResp3] = React.useState('');
   const [strresp3, setStrResp3] = React.useState('');
@@ -110,31 +113,36 @@ export const Resgate3 = () => {
   const [fones, setFones] = React.useState<IFones | undefined>(undefined);
   const [emps, setEmps] = React.useState<IEmps | undefined>(undefined);
 
-  
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate3' });
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate2' });
-    
-    //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
 
-
-
-    dispatch({ type: AcessoUseActions.setMail, payload: '' });
-    //dispatch({ type: AcessoUseActions.setPin, payload: '' });
-    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-    dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
-    // dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
-    dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+    if (state.mdlogin === 1) {
+      // dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
+    if (state.mdlogin === 2) {
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      // dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
+    if (state.mdlogin === 3) {
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      // dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
+    if (state.mdlogin === 4) {
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      // dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Resgatar: Contato Usuário'
@@ -143,42 +151,33 @@ export const Resgate3 = () => {
       type: AcessoUseActions.setAplicacao,
       payload: 'Contato :' + state.nmlogin + '.'
     });
-    if (state.mdlogin === 1) {
-      setIsContatoEmail(true);
-    }
-    if (state.mdlogin === 2) {
-      setIsContatoSms(true);
-    } 
-    if (state.mdlogin === 3) {
-      setIsContatoZap(true);
-    }
-    if (state.mdlogin === 4) {
-      setIsContatoCpf(true);
-    }
+
+    // atraves da busca dos DBs
     dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPin, payload: '' });
-    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
 
+    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
     dispatch({ type: AcessoUseActions.setperg1, payload: '' });
     dispatch({ type: AcessoUseActions.setresp1, payload: '' });
     dispatch({ type: AcessoUseActions.setperg2, payload: '' });
     dispatch({ type: AcessoUseActions.setresp2, payload: '' });
     dispatch({ type: AcessoUseActions.setperg3, payload: '' });
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
-    dispatch({ type: AcessoUseActions.setModulo, payload: '' });
-    dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
 
     setPerg1('');
     setResp1('');
     setStrResp1('');
+
     setPerg2('');
     setResp2('');
     setStrResp2('');
+
     setPerg3('');
     setResp3('');
     setStrResp3('');
+
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
     setIsBtnDataCenter(true);
@@ -310,23 +309,6 @@ export const Resgate3 = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
-        <div>
-          <p>Senha MASTER.: {snhmaster}</p>
-          <p>State.idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
-          <p>State.nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
-          <p>State.mail........: {state.mail ? state.mail : 'vasio'}</p>
-          <p>State.fonec sms...: {state.fonec ? state.fonec : 'vasio'}</p>
-          <p>State.fonec zap...: {state.fonec ? state.fonec : 'vasio'}</p>
-          <p>State.cpf.........: {state.cpf ? state.cpf : 'vasio'}</p>
-          <p>Painel Editar.....: {iseditar ? 'verdadeiro' : 'falso'}</p>
-          <p>Painel Botões.:</p>
-          <p>IsBtnDataCenter...: {isbtndatacenter ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnPerguntas....: {isbtnperguntas ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnEnviar.......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnConferir.....: {isbtnconferir ? 'verdadeiro' : 'falso'}</p>
-          <p>isValiEdição......: {isvalidado ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
-        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             {isbtndatacenter ? <h2>Resgatar: DataCenter</h2> : null}
@@ -343,28 +325,97 @@ export const Resgate3 = () => {
                   titulo={'Resgate em Banco de Dados.'}
                   subtitulo={'Dados para Resgate:'}
                 >
+                  <p>&emsp;&emsp;Já temos em mãos :</p>
+                  <label>
+                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                    <span>{state.idemp}</span>
+                  </label>
+                  <label>
+                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                    <span>{state.nmfant}</span>
+                  </label>
+                  {state.mdlogin === 1 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{state.mail}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Celular : <span>{state.fonec}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                      <span>{state.fonez}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 4 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{state.cpf}</span>
+                    </label>
+                  ) : null}
+                  <h4>{state.nmlogin}</h4>
                   <div>
-                  <p>&emsp;&emsp;Busca pelos Dados :</p>
-                  <label>&emsp;&emsp;&emsp;Acessos a Usuários</label>
-                  <p>&emsp;&emsp;&emsp;Acessos:</p>
-                  {islistacess ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <p>&emsp;&emsp;&emsp;Usuários:</p>
-                  {islistusers ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <p>&emsp;&emsp;&emsp;Empresas:</p>
-                  {islistemps ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <p>&emsp;&emsp;&emsp;Telefones:</p>
-                  {islistfones ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <br />
-                  <h5>Obs:.</h5>
-                  <p>
-                    &emsp;&emsp;Caso queira " Abortar.: " clique na Seta à
-                    Esquerda...
-                  </p>
-                  <p>
-                    &emsp;&emsp;Caso deseja " Proceguir.:", clique na Seta à
-                    Direita...
-                  </p>
-                  <br />
+                    <p>&emsp;&emsp;Busca pelos Dados :</p>
+                    <label>
+                      &emsp;&emsp;&emsp;Acessos..:{' '}
+                      {islistacess ? (
+                        <span>
+                          <ContentDivSinaleiro
+                            pxheight="15px"
+                            pxwidth="18px"
+                            pxhght="15px"
+                            img={botaoverde}
+                          />
+                        </span>
+                      ) : (
+                        <span>
+                          <ContentDivSinaleiro
+                            pxheight="15px"
+                            pxwidth="18px"
+                            pxhght="15px"
+                            img={botaoverde}
+                            />
+
+                        </span>
+                      )}
+                    </label>
+                    <label>
+                      &emsp;&emsp;&emsp;Usuários..:
+                      {islistusers ? (
+                        <span>Ativada.</span>
+                      ) : (
+                        <span>Desativada.</span>
+                      )}
+                    </label>
+                    <label>
+                      &emsp;&emsp;&emsp;Empresas:{' '}
+                      {islistemps ? (
+                        <span>Ativada.</span>
+                      ) : (
+                        <span>Desativada.</span>
+                      )}
+                    </label>
+                    <label>
+                      &emsp;&emsp;&emsp;Telefones.:{' '}
+                      {islistfones ? (
+                        <span>Ativada.</span>
+                      ) : (
+                        <span>Desativada.</span>
+                      )}
+                    </label>
+                    <br />
+                    <h5>Obs:.</h5>
+                    <p>
+                      &emsp;&emsp;Caso queira " Abortar.: " clique na Seta à
+                      Esquerda...
+                    </p>
+                    <p>
+                      &emsp;&emsp;Caso deseja " Proceguir.:", clique na Seta à
+                      Direita...
+                    </p>
+                    <br />
                   </div>
                 </PanelConfResgateYellow>
               ) : null}
@@ -475,6 +526,24 @@ export const Resgate3 = () => {
     </ThemeProvider>
   );
 };
+
+//         <div>
+//          <p>Senha MASTER.: {snhmaster}</p>
+//          <p>State.idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
+//          <p>State.nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
+//          <p>State.mail........: {state.mail ? state.mail : 'vasio'}</p>
+//          <p>State.fonec sms...: {state.fonec ? state.fonec : 'vasio'}</p>
+//          <p>State.fonec zap...: {state.fonec ? state.fonec : 'vasio'}</p>
+//          <p>State.cpf.........: {state.cpf ? state.cpf : 'vasio'}</p>
+//          <p>Painel Editar.....: {iseditar ? 'verdadeiro' : 'falso'}</p>
+//          <p>Painel Botões.:</p>
+//          <p>IsBtnDataCenter...: {isbtndatacenter ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnPerguntas....: {isbtnperguntas ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnEnviar.......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnConferir.....: {isbtnconferir ? 'verdadeiro' : 'falso'}</p>
+//          <p>isValiEdição......: {isvalidado ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
+//        </div>
 
 // {iseditar && isbtncontinuar && !isbtnenviar ? (
 //               <ContentSidePageBottonLabel
