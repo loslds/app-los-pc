@@ -2,7 +2,7 @@ import React from 'react';
 
 import { criasmstr } from '../../util/datamomento.tsx';
 
-import * as Lg from '../stylePage.ts';
+import * as Pg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
@@ -17,7 +17,11 @@ import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
-import { ContentDivSinaleiro } from '../ContentDivSinaleiro.tsx';
+
+import { ContentLabelTesto } from '../ContentLabelTesto.tsx';
+import { ContentLabelButtonOnOff } from '../ContentLabelButtonOnOff.tsx';
+
+// import { ContentDivSinaleiro } from '../ContentDivSinaleiro.tsx';
 //import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
@@ -44,7 +48,8 @@ import { IAcessos, AcessosIndexById } from '../../../books/ListAcessos.tsx';
 import { IFones, FonesIndexById } from '../../../books/ListFones.tsx';
 import { IEmps, EmpsIndexById } from '../../../books/ListEmps.tsx';
 
-import botaoverde from '../../../assets/svgs/botaoverde.svg';
+//import botaoverde from '../../../assets/svgs/botaoverde.svg';
+//import botaoverme from '../../../assets/svgs/botaoverme.svg';
 
 export function Conexao() {
   return true;
@@ -103,10 +108,16 @@ export const Resgate3 = () => {
   const [helppg, setHelpPg] = React.useState(false);
 
   const [islistacess, setListAcess] = React.useState(false);
+  const [isbtnhlplistacess, setBtnHlpListAcess] = React.useState(false);
+
   const [islistusers, setIsListUsers] = React.useState(false);
+  const [isbtnhlplistusers, setBtnHlpListUsers] = React.useState(false);
+
   const [islistfones, setIsListFones] = React.useState(false);
+  const [isbtnhlplistfones, setBtnHlpListFones] = React.useState(false);
 
   const [islistemps, setIsListEmps] = React.useState(false);
+  const [isbtnhlplistemps, setBtnHlpListEmps] = React.useState(false);
 
   const [acesso, setAcess] = React.useState<IAcessos | undefined>(undefined);
   const [user, setUser] = React.useState<IUsers | undefined>(undefined);
@@ -154,7 +165,7 @@ export const Resgate3 = () => {
 
     // atraves da busca dos DBs
     dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPin, payload: '' });
 
@@ -180,7 +191,7 @@ export const Resgate3 = () => {
 
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
-    setIsBtnDataCenter(true);
+    setIsBtnDataCenter(false);
     setIsEditar(false);
     setIsConected(false);
     setIsBtnPerguntas(false);
@@ -218,9 +229,21 @@ export const Resgate3 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  // const hasContent = <T>(list: T[]): boolean => {
-  //   return list.length > 0;
-  // };
+  const handlerBtnListAcess = React.useCallback(() => {
+    setBtnHlpListAcess((oldState) => !oldState);
+  }, []);
+
+  const handlerBtnListUsers = React.useCallback(() => {
+    setBtnHlpListUsers((oldState) => !oldState);
+  }, []);
+
+  const handlerBtnListFones = React.useCallback(() => {
+    setBtnHlpListFones((oldState) => !oldState);
+  }, []);
+
+  const handlerBtnListEmps = React.useCallback(() => {
+    setBtnHlpListEmps((oldState) => !oldState);
+  }, []);
 
   // Função de callback
   const handlerDataCenter = React.useCallback(() => {
@@ -358,53 +381,66 @@ export const Resgate3 = () => {
                   <h4>{state.nmlogin}</h4>
                   <div>
                     <p>&emsp;&emsp;Busca pelos Dados :</p>
-                    <label>
-                      &emsp;&emsp;&emsp;Acessos..:{' '}
-                      {islistacess ? (
-                        <span>
-                          <ContentDivSinaleiro
-                            pxheight="15px"
-                            pxwidth="18px"
-                            pxhght="15px"
-                            img={botaoverde}
-                          />
-                        </span>
-                      ) : (
-                        <span>
-                          <ContentDivSinaleiro
-                            pxheight="15px"
-                            pxwidth="18px"
-                            pxhght="15px"
-                            img={botaoverde}
-                            />
-
-                        </span>
-                      )}
-                    </label>
-                    <label>
-                      &emsp;&emsp;&emsp;Usuários..:
-                      {islistusers ? (
-                        <span>Ativada.</span>
-                      ) : (
-                        <span>Desativada.</span>
-                      )}
-                    </label>
-                    <label>
-                      &emsp;&emsp;&emsp;Empresas:{' '}
-                      {islistemps ? (
-                        <span>Ativada.</span>
-                      ) : (
-                        <span>Desativada.</span>
-                      )}
-                    </label>
-                    <label>
-                      &emsp;&emsp;&emsp;Telefones.:{' '}
-                      {islistfones ? (
-                        <span>Ativada.</span>
-                      ) : (
-                        <span>Desativada.</span>
-                      )}
-                    </label>
+                    <ContentLabelTesto testo={'Acesso....:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistacess}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListAcess}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Usuário...:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListUsers}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Empresas:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistemps}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListEmps}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Telefones.:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListFones}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Telefones.:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListFones}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
                     <br />
                     <h5>Obs:.</h5>
                     <p>
@@ -441,7 +477,7 @@ export const Resgate3 = () => {
             </PageModal>
           ) : null}
 
-          <Lg.DivisionPgHztalPage />
+          <Pg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
             <ContentSidePageBottonLabel istitl={start} title={'Abortar.: '}>
@@ -459,7 +495,7 @@ export const Resgate3 = () => {
               </ContentCardPageTitle>
             ) : null}
 
-            {isbtndatacenter ? (
+            {!isbtndatacenter ? (
               <ContentSidePageBottonLabel
                 istitl={start}
                 title={'Prosseguir.: '}
@@ -526,6 +562,39 @@ export const Resgate3 = () => {
     </ThemeProvider>
   );
 };
+
+{
+  /* 
+                    <div>
+                    <p>&emsp;&emsp;Busca pelos Dados :</p>
+                    <label>
+                      {islistacess ? (
+                        <label>ATIVADO.
+                        <span>
+                          <ContentDivSinaleiro
+                            pxheight="15px"
+                            pxwidth="18px"
+                            pxhght="15px"
+                            img={botaoverde}
+                          />
+                        </span>
+                        </label>
+                      ) : (
+                        <label>DESATIVADO.
+                        <span>
+                          <ContentDivSinaleiro
+                            pxheight="15px"
+                            pxwidth="18px"
+                            pxhght="15px"
+                            img={botaoverme}
+                          />
+                        </span>
+                        </label>
+                      )}
+                    </label> 
+                    </div>
+                    */
+}
 
 //         <div>
 //          <p>Senha MASTER.: {snhmaster}</p>

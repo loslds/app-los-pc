@@ -945,7 +945,7 @@ type TypeContainerCardDivMainLeftRed = {
 export const ContainerCardDivMainLeftRed = styled.div<TypeContainerCardDivMainLeftRed>`
   border: none;
   padding: 0px 0px 0px 0px;
-  margin: 5px 0px 5px 0px;
+  margin: 0px 0px 0px 0px;
   min-height: ${({ pxheight }) => pxheight || '30px'};
   width: ${({ pxwidth }) => pxwidth || '100%'};
   color: ${(props) => props.theme.colors.textColor};
@@ -958,26 +958,61 @@ export const ContainerCardDivMainLeftRed = styled.div<TypeContainerCardDivMainLe
   align-content: center;
 `;
 
+export const ContainerLabelTexto = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  min-height: 15px;
+  width: 100%;
+  color: ${(props) => props.theme.colors.textColor};
+  background: transparent;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: left;
+  /* align-items: center;*/
+  align-content: center; 
+  div {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+  }
+`;
+
 type TypeContainerSinaleiro = {
+  onoff?: boolean;
   pxheight?: string;
   pxwidth?: string;
 }
 export const ContainerSinaleiro = styled.div<TypeContainerSinaleiro>`
-border: 1px solid;
-border-color: ${(props) => props.theme.colors.textColor};
-border-radius: 45%;
+border: none;
 padding: 0px 0px 0px 0px;
 margin: 0px 0px 0px 0px;
-min-height: ${({ pxheight }) => pxheight || '30px'};
+min-height: ${({ pxheight }) => pxheight || '12px'};
 width: ${({ pxwidth }) => pxwidth || '100%'};
 color: ${(props) => props.theme.colors.textColor};
 background: transparent;
 display: flex;
 flex-flow: row;
 flex-wrap: wrap;
-justify-content: center;
-align-items: center;
+justify-content: left;
+//align-items: center;
 align-content: center;
+label {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 10px 0px 10px;
+  font-size: 12px;
+  font-style: normal;
+  color: ${({onoff}) => onoff ? 'green' : 'red' };
+  &:hover {
+    color: orange;
+  }
+}
+span {
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  font-size: 12px;
+  font-style: normal;
+}
 `;
 
 type TypeButtonSinaleiro = {
@@ -986,11 +1021,13 @@ type TypeButtonSinaleiro = {
   img?: string;
 }
 export const ButtonSinaleiro = styled.button<TypeButtonSinaleiro>`
-  border: none;
+  border: 1px solid;
+  border-color: ${(props) => props.theme.colors.textColor};
+  border-radius: 45%;
   margin: 0px 0px 0px 0px;
   padding: 0px 0px 0px 0px;
-  min-height: ${({ pxhght }) => pxhght || '30px'};
-  width: ${({ pxwdth }) => pxwdth || '100%'};
+  min-height: ${({ pxhght }) => pxhght || '18px'};
+  min-width: ${({ pxwdth }) => pxwdth || '18px'};
   color: ${(props) => props.theme.colors.textColor};
   font-size: 12px;
   font-weight: bold;
@@ -1005,6 +1042,7 @@ export const ButtonSinaleiro = styled.button<TypeButtonSinaleiro>`
   display: flex;
   flex-flow: nowrap;
   justify-content: center;
+  align-content: center;
   align-items: center;
 `;
 
