@@ -38,10 +38,9 @@ import setadir from '../../../assets/svgs/setadir.svg';
 export const Resgate = () => {
   const { state, dispatch } = AcessoUseForm();
 
-  
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
-  
+
   const [snhmaster, setSnhMaster] = React.useState('');
 
   const [start, setStart] = React.useState(false);
@@ -52,7 +51,6 @@ export const Resgate = () => {
   const [isconfirmation, setIsConfirmation] = React.useState(false);
 
   React.useEffect(() => {
-
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 1 });
     dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
     dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
@@ -81,15 +79,15 @@ export const Resgate = () => {
     dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
 
-    dispatch({ type: AcessoUseActions.setModulo, payload: 'Resgate: Opção Empresa' });
+    dispatch({
+      type: AcessoUseActions.setModulo,
+      payload: 'Resgate: Opção Empresa'
+    });
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
 
-//////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
     setStart(true);
-
-
-    
   }, [dispatch]);
 
   const [theme, setTheme] = React.useState(dark);
@@ -110,7 +108,6 @@ export const Resgate = () => {
     };
   };
 
-
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
   }, []);
@@ -129,22 +126,6 @@ export const Resgate = () => {
       setIsConfirmation(true);
       setBtnContinua(true);
     }
-    // indexando por id a minha lista
-    
-    
-   
-    
-    //const tmnhEmpr = ListEmps.length;
-    
-
-    // const empfiltrada = [];
-    // let i=0;
-    // for ( i <= tmnhEmpr ) {
-    //   if (ListEmpresas.id == idempresa ) {
-    //     empfiltrada.push(Empresas[i]);
-    //   }
-    // };
-
     dispatch({ type: AcessoUseActions.setIdEmp, payload: idempresa });
     dispatch({ type: AcessoUseActions.setNmFant, payload: fantempresa });
   }, [idempresa, fantempresa, dispatch]);
@@ -165,13 +146,6 @@ export const Resgate = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
-        <div>
-          <label>Senha MASTER.....: {snhmaster}</label>
-          <label>Const idempresa..: {idempresa}</label>
-          <label>State idemp......: {state.idemp}</label>
-          <label>Const fantempresa: {fantempresa}</label>
-          <label>State nmfant.....: {state.nmfant}</label>
-        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
@@ -184,19 +158,19 @@ export const Resgate = () => {
               {idempresa === 0 ? (
                 <ContentInputPage>
                   <ContentInputPage>
-                  <select
-                    name="opcão"
-                    defaultValue={idempresa}
-                    onChange={(e) => setIdEmpresa(parseInt(e.target.value))}
-                  >
-                    <option value={'0'}>Opções : </option>
-                    <option value={'1'}>JR-Bordados.</option>
-                    <option value={'2'}>RB-Serviços.</option>
-                  </select>
+                    <select
+                      name="opcão"
+                      defaultValue={idempresa}
+                      onChange={(e) => setIdEmpresa(parseInt(e.target.value))}
+                    >
+                      <option value={'0'}>Opções : </option>
+                      <option value={'1'}>JR-Bordados.</option>
+                      <option value={'2'}>RB-Serviços.</option>
+                    </select>
+                  </ContentInputPage>
                 </ContentInputPage>
-                </ContentInputPage>
-                ) : null
-              }
+              ) : null}
+
               {isconfirmation ? (
                 <PanelConfResgateYellow
                   isbgcolor={start}
@@ -215,7 +189,8 @@ export const Resgate = () => {
                   </label>
                   <br />
                   <p>
-                    &emsp;&emsp;Precisamos que você confirme se deseja continuar.
+                    &emsp;&emsp;Precisamos que você confirme se deseja
+                    continuar.
                   </p>
                   <h5>Obs:.</h5>
                   <p>
@@ -228,8 +203,7 @@ export const Resgate = () => {
                   </p>
                   <br />
                 </PanelConfResgateYellow>
-                ) : null
-              }
+              ) : null}
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 
@@ -266,7 +240,7 @@ export const Resgate = () => {
             <PageModal
               ptop={'1%'}
               pwidth={'50%'}
-              pheight={'88%'}
+              pheight={'93%'}
               titulo={'Acesso Resgate.'}
               imgbm={close}
               titbm={'Fechar...'}
@@ -294,11 +268,8 @@ export const Resgate = () => {
               <CardInfoLogin />
             </PageModal>
           ) : null}
-
         </ContentCardPage>
       </ThemeResgate>
     </ThemeProvider>
   );
 };
-
-

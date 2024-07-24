@@ -2,7 +2,7 @@ import React from 'react';
 
 import { criasmstr } from '../../util/datamomento.tsx';
 
-import * as Lg from '../stylePage.ts';
+import * as Pg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
@@ -17,6 +17,11 @@ import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
+
+import { ContentLabelTesto } from '../ContentLabelTesto.tsx';
+import { ContentLabelButtonOnOff } from '../ContentLabelButtonOnOff.tsx';
+
+// import { ContentDivSinaleiro } from '../ContentDivSinaleiro.tsx';
 //import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
@@ -42,6 +47,9 @@ import { IUsers, UsersIndexById } from '../../../books/ListUsers.tsx';
 import { IAcessos, AcessosIndexById } from '../../../books/ListAcessos.tsx';
 import { IFones, FonesIndexById } from '../../../books/ListFones.tsx';
 import { IEmps, EmpsIndexById } from '../../../books/ListEmps.tsx';
+
+//import botaoverde from '../../../assets/svgs/botaoverde.svg';
+//import botaoverme from '../../../assets/svgs/botaoverme.svg';
 
 export function Conexao() {
   return true;
@@ -84,7 +92,7 @@ export const Resgate3 = () => {
   const [perg2, setPerg2] = React.useState('');
   const [resp2, setResp2] = React.useState('');
   const [strresp2, setStrResp2] = React.useState('');
-  
+
   const [perg3, setPerg3] = React.useState('');
   const [resp3, setResp3] = React.useState('');
   const [strresp3, setStrResp3] = React.useState('');
@@ -100,65 +108,90 @@ export const Resgate3 = () => {
   const [helppg, setHelpPg] = React.useState(false);
 
   const [islistacess, setListAcess] = React.useState(false);
+  const [isbtnhlplistacess, setBtnHlpListAcess] = React.useState(false);
+
   const [islistusers, setIsListUsers] = React.useState(false);
+  const [isbtnhlplistusers, setBtnHlpListUsers] = React.useState(false);
+
   const [islistfones, setIsListFones] = React.useState(false);
+  const [isbtnhlplistfones, setBtnHlpListFones] = React.useState(false);
 
   const [islistemps, setIsListEmps] = React.useState(false);
+  const [isbtnhlplistemps, setBtnHlpListEmps] = React.useState(false);
 
   const [acesso, setAcess] = React.useState<IAcessos | undefined>(undefined);
   const [user, setUser] = React.useState<IUsers | undefined>(undefined);
   const [fones, setFones] = React.useState<IFones | undefined>(undefined);
   const [emps, setEmps] = React.useState<IEmps | undefined>(undefined);
 
-  
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate3' });
-    //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-    if (state.mdlogin === 1) {
-      setIsContatoEmail(true);
-    } else {
-      dispatch({ type: AcessoUseActions.setMail, payload: '' });
-      if (state.mdlogin === 2 || state.mdlogin === 3) {
-        if (state.mdlogin === 2) {
-          setIsContatoSms(true);
-        } else {
-          setIsContatoZap(true);
-        }
-      } else {
-        dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-        if (state.mdlogin === 4) {
-          setIsContatoCpf(true);
-        } else {
-          dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-        }
-      }
-    }
-    dispatch({ type: AcessoUseActions.setPin, payload: '' });
-    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
+    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
+    dispatch({ type: AcessoUseActions.setPage, payload: '/resgate2' });
 
+    if (state.mdlogin === 1) {
+      // dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
+    if (state.mdlogin === 2) {
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      // dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
+    if (state.mdlogin === 3) {
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      // dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
+    if (state.mdlogin === 4) {
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      // dispatch({ type: AcessoUseActions.setCpf, payload: '' });
+    }
+    dispatch({
+      type: AcessoUseActions.setModulo,
+      payload: 'Resgatar: Contato Usuário'
+    });
+    dispatch({
+      type: AcessoUseActions.setAplicacao,
+      payload: 'Contato :' + state.nmlogin + '.'
+    });
+
+    // atraves da busca dos DBs
+    dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
+    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+    dispatch({ type: AcessoUseActions.setPin, payload: '' });
+
+    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
     dispatch({ type: AcessoUseActions.setperg1, payload: '' });
     dispatch({ type: AcessoUseActions.setresp1, payload: '' });
     dispatch({ type: AcessoUseActions.setperg2, payload: '' });
     dispatch({ type: AcessoUseActions.setresp2, payload: '' });
     dispatch({ type: AcessoUseActions.setperg3, payload: '' });
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
-    dispatch({ type: AcessoUseActions.setModulo, payload: '' });
-    dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
+
     setPerg1('');
     setResp1('');
     setStrResp1('');
+
     setPerg2('');
     setResp2('');
     setStrResp2('');
+
     setPerg3('');
     setResp3('');
     setStrResp3('');
+
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
-    setIsBtnDataCenter(true);
+    setIsBtnDataCenter(false);
     setIsEditar(false);
     setIsConected(false);
     setIsBtnPerguntas(false);
@@ -196,9 +229,21 @@ export const Resgate3 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  // const hasContent = <T>(list: T[]): boolean => {
-  //   return list.length > 0;
-  // };
+  const handlerBtnListAcess = React.useCallback(() => {
+    setBtnHlpListAcess((oldState) => !oldState);
+  }, []);
+
+  const handlerBtnListUsers = React.useCallback(() => {
+    setBtnHlpListUsers((oldState) => !oldState);
+  }, []);
+
+  const handlerBtnListFones = React.useCallback(() => {
+    setBtnHlpListFones((oldState) => !oldState);
+  }, []);
+
+  const handlerBtnListEmps = React.useCallback(() => {
+    setBtnHlpListEmps((oldState) => !oldState);
+  }, []);
 
   // Função de callback
   const handlerDataCenter = React.useCallback(() => {
@@ -287,23 +332,6 @@ export const Resgate3 = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
-        <div>
-          <p>Senha MASTER.: {snhmaster}</p>
-          <p>State.idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
-          <p>State.nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
-          <p>State.mail........: {state.mail ? state.mail : 'vasio'}</p>
-          <p>State.fonec sms...: {state.fonec ? state.fonec : 'vasio'}</p>
-          <p>State.fonec zap...: {state.fonec ? state.fonec : 'vasio'}</p>
-          <p>State.cpf.........: {state.cpf ? state.cpf : 'vasio'}</p>
-          <p>Painel Editar.....: {iseditar ? 'verdadeiro' : 'falso'}</p>
-          <p>Painel Botões.:</p>
-          <p>IsBtnDataCenter...: {isbtndatacenter ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnPerguntas....: {isbtnperguntas ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnEnviar.......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnConferir.....: {isbtnconferir ? 'verdadeiro' : 'falso'}</p>
-          <p>isValiEdição......: {isvalidado ? 'verdadeiro' : 'falso'}</p>
-          <p>IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
-        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             {isbtndatacenter ? <h2>Resgatar: DataCenter</h2> : null}
@@ -320,28 +348,110 @@ export const Resgate3 = () => {
                   titulo={'Resgate em Banco de Dados.'}
                   subtitulo={'Dados para Resgate:'}
                 >
+                  <p>&emsp;&emsp;Já temos em mãos :</p>
+                  <label>
+                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                    <span>{state.idemp}</span>
+                  </label>
+                  <label>
+                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                    <span>{state.nmfant}</span>
+                  </label>
+                  {state.mdlogin === 1 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{state.mail}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Celular : <span>{state.fonec}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                      <span>{state.fonez}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 4 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{state.cpf}</span>
+                    </label>
+                  ) : null}
+                  <h4>{state.nmlogin}</h4>
                   <div>
-                  <p>&emsp;&emsp;Busca pelos Dados :</p>
-                  <label>&emsp;&emsp;&emsp;Acessos a Usuários</label>
-                  <p>&emsp;&emsp;&emsp;Acessos:</p>
-                  {islistacess ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <p>&emsp;&emsp;&emsp;Usuários:</p>
-                  {islistusers ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <p>&emsp;&emsp;&emsp;Empresas:</p>
-                  {islistemps ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <p>&emsp;&emsp;&emsp;Telefones:</p>
-                  {islistfones ? <p>Ativada.</p> : <p>Desativada.</p>}
-                  <br />
-                  <h5>Obs:.</h5>
-                  <p>
-                    &emsp;&emsp;Caso queira " Abortar.: " clique na Seta à
-                    Esquerda...
-                  </p>
-                  <p>
-                    &emsp;&emsp;Caso deseja " Proceguir.:", clique na Seta à
-                    Direita...
-                  </p>
-                  <br />
+                    <p>&emsp;&emsp;Busca pelos Dados :</p>
+                    <ContentLabelTesto testo={'Acesso....:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistacess}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListAcess}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Usuário...:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListUsers}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Empresas:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistemps}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListEmps}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Telefones.:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListFones}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Telefones.:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnListFones}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <br />
+                    <h5>Obs:.</h5>
+                    <p>
+                      &emsp;&emsp;Caso queira " Abortar.: " clique na Seta à
+                      Esquerda...
+                    </p>
+                    <p>
+                      &emsp;&emsp;Caso deseja " Proceguir.:", clique na Seta à
+                      Direita...
+                    </p>
+                    <br />
                   </div>
                 </PanelConfResgateYellow>
               ) : null}
@@ -367,7 +477,7 @@ export const Resgate3 = () => {
             </PageModal>
           ) : null}
 
-          <Lg.DivisionPgHztalPage />
+          <Pg.DivisionPgHztalPage />
 
           <ContentSidePagePanelBotton bordas="3px" open={start} pwidth="100%">
             <ContentSidePageBottonLabel istitl={start} title={'Abortar.: '}>
@@ -385,7 +495,7 @@ export const Resgate3 = () => {
               </ContentCardPageTitle>
             ) : null}
 
-            {isbtndatacenter ? (
+            {!isbtndatacenter ? (
               <ContentSidePageBottonLabel
                 istitl={start}
                 title={'Prosseguir.: '}
@@ -452,6 +562,57 @@ export const Resgate3 = () => {
     </ThemeProvider>
   );
 };
+
+{
+  /* 
+                    <div>
+                    <p>&emsp;&emsp;Busca pelos Dados :</p>
+                    <label>
+                      {islistacess ? (
+                        <label>ATIVADO.
+                        <span>
+                          <ContentDivSinaleiro
+                            pxheight="15px"
+                            pxwidth="18px"
+                            pxhght="15px"
+                            img={botaoverde}
+                          />
+                        </span>
+                        </label>
+                      ) : (
+                        <label>DESATIVADO.
+                        <span>
+                          <ContentDivSinaleiro
+                            pxheight="15px"
+                            pxwidth="18px"
+                            pxhght="15px"
+                            img={botaoverme}
+                          />
+                        </span>
+                        </label>
+                      )}
+                    </label> 
+                    </div>
+                    */
+}
+
+//         <div>
+//          <p>Senha MASTER.: {snhmaster}</p>
+//          <p>State.idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
+//          <p>State.nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
+//          <p>State.mail........: {state.mail ? state.mail : 'vasio'}</p>
+//          <p>State.fonec sms...: {state.fonec ? state.fonec : 'vasio'}</p>
+//          <p>State.fonec zap...: {state.fonec ? state.fonec : 'vasio'}</p>
+//          <p>State.cpf.........: {state.cpf ? state.cpf : 'vasio'}</p>
+//          <p>Painel Editar.....: {iseditar ? 'verdadeiro' : 'falso'}</p>
+//          <p>Painel Botões.:</p>
+//          <p>IsBtnDataCenter...: {isbtndatacenter ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnPerguntas....: {isbtnperguntas ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnEnviar.......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnConferir.....: {isbtnconferir ? 'verdadeiro' : 'falso'}</p>
+//          <p>isValiEdição......: {isvalidado ? 'verdadeiro' : 'falso'}</p>
+//          <p>IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
+//        </div>
 
 // {iseditar && isbtncontinuar && !isbtnenviar ? (
 //               <ContentSidePageBottonLabel
@@ -708,3 +869,25 @@ export const Resgate3 = () => {
 //     }
 //   }
 // };
+// <div>
+//   <p>Senha MASTER.: {snhmaster}</p>
+//   <p>State idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
+//   <p>State nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
+//   <p>State.mdlogin.....: {state.mdlogin ? state.mdlogin : '0'}</p>
+//   <p>State nmlogin.....: {state.nmlogin ? state.nmlogin : 'vasio'}</p>
+//   <p>State.modulo......: {state.modulo}</p>
+//   <p>State.aplicacao...: {state.aplicacao}</p>
+//   <p>Stado para Contato.: </p>
+//   <p>Painel Edição......: {isedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>Dados InputStrId.: {inputstrid ? inputstrid : 'vasio'}</p>
+//   <p>State IsEdição...: {isedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>State IsChecar...: {ischecaedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>Painel Footer....: {ispnlfooter ? 'verdadeiro' : 'falso'}</p>
+//   <p>Stado Ação Botão.: </p>
+//   <p>IsBtnEdição......: {isbtnedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>IsBtnChecaEdição.: {ischecaedicao ? 'verdadeiro' : 'falso'}</p>
+//   <p>IsBtnContinuar...: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
+//   <p>IsBtnEnviar......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
+// </div>
+
+////////////////////

@@ -166,15 +166,6 @@ export const Resgate1 = () => {
         ischeck = {ischeck}
         onchange = {ToggleTheme}
       >
-        <div>
-          <p>Senha MASTER.....: {snhmaster}</p>
-          <p>State.idemp......: {state.idemp}</p>
-          <p>State.nmfant.....: {state.nmfant}</p>
-          <p>State.mdlogin....: {state.mdlogin}</p>
-          <p>State.nmlogin....: {state.nmlogin}</p>
-          <p>State.modulo.....: {state.modulo}</p>
-          <p>State.aplicacao..: {state.aplicacao}</p>
-        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
@@ -184,6 +175,7 @@ export const Resgate1 = () => {
               <ContentCardPageTitle>
                 <h4>{aplicacao}</h4>
               </ContentCardPageTitle>
+              
               {mdlogin === 0 ? (
                 <ContentInputPage>
                   <select
@@ -234,6 +226,7 @@ export const Resgate1 = () => {
                   <br />
                 </PanelConfResgateYellow>
               ) : null}
+
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 

@@ -13,69 +13,117 @@ export function ErroEdicao(nrerro: number) {
   }
   return isrtn;
 }
+///////////////////////////////////////////////////////
+// Função para validar email
+export function isValidarEmail(email: string): boolean {
+  const normalizedEmail = email.toLowerCase();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function isEmailValid(email: string): string {
+  if (!emailRegex.test(normalizedEmail)) {
+    return false;
+  }
+  return true;
+}
+
+// Função para normalizar (mascarar) email
+export function MasckedEmail(email: string): string {
   const normalizedEmail = email.toLowerCase();
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  if (!emailRegex.test(normalizedEmail) ) {
+  if (!emailRegex.test(normalizedEmail)) {
     console.log('emailRegex : ', 'falso');
-    return '';
+    return 'Email incompatível.';
   }
 
-  const masked = normalizedEmail.replace(emailRegex, '($1) $2-$3');
-  console.log('masked email : ',masked)
-  return masked;
+  return normalizedEmail;
+}
+/////////////////////////////////////////////////////
+/// validar telefone fixo
+export function isFoneFxValid(fonefx: string): boolean {
+  // Remove todos os caracteres não numéricos
+  const cleaned = fonefx.replace(/\D/g, '');
+  const fonefxRegex = /^(\d{2})(\d{4})(\d{4})$/;
+
+  if (!fonefxRegex.test(cleaned)) {
+    return false;
+  }
+  return true;
 }
 
+/// mascarar telefone fixo
+export function MasckedFoneFx(fonefx: string): string {
+  // Remove todos os caracteres não numéricos
+  const cleaned = fonefx.replace(/\D/g, '');
+  const fonefxRegex = /^(\d{2})(\d{4})(\d{4})$/;
 
+  if (!fonefxRegex.test(cleaned)) {
+    return 'Número Telefone incompatível.';
+  }
+  // Aplica a máscara
+  const masked = cleaned.replace(fonefxRegex, '($1) $2-$3');
+  return masked;
+}
+//////////////////////////////////////////////////////////
 
-export function isFoneCValid(fonec: string): string {
+// validar telefone Celular
+export function isFoneCValid(fonec: string): boolean {
   // Remove todos os caracteres não numéricos
   const cleaned = fonec.replace(/\D/g, '');
-
   const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
-
-  if (!fonecRegex.test(cleaned)) {
-    return '';
-  } 
-  // Aplica a máscara
-  const masked = cleaned.replace(fonecRegex, '($1) $2-$3');
-  return masked;
+  return fonecRegex.test(cleaned);
 }
 
-export function isCpfValid(cpf: string): string {
+// mascarar telefone Celular
+export function MasckedFoneC(fonec: string): string {
+  const cleaned = fonec.replace(/\D/g, '');
+  const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
+  return cleaned.replace(fonecRegex, '($1) $2-$3');
+}
+////////////////////////////////////////////////////////////
+// testa se foi editado somente numeros
+export function isNumber(str: string): boolean {
+  const strRegex = /^[0-9]+$/; // Apenas números
+  return strRegex.test(str);
+}
+
+/////////////////////////////////////////////////////////////
+// validar Documento CPF
+export function isCpfValid(cpf: string): boolean {
   const cleaned = cpf.replace(/\D/g, '');
+  const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
+  return cpfRegex.test(cleaned);
+}
 
-  if (cleaned.length !== 11) return cpf;
-
+// se Numero cpf existe conforme verificador
+export function isExistsCPF(cpf: string): boolean {
+  const cleaned = cpf.replace(/\D/g, '');
+  if (cleaned.length !== 11) return false;
   let sum = 0;
   let remainder;
-
-  // Validação do primeiro dígito verificador
-  for (let i = 1; i <= 9; i++)
+  for (let i = 1; i <= 9; i++) {
     sum += parseInt(cleaned.substring(i - 1, i)) * (11 - i);
+  }
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
-  if (remainder !== parseInt(cleaned.substring(9, 10))) return '';
-
+  if (remainder !== parseInt(cleaned.substring(9, 10))) return false;
   sum = 0;
-  // Validação do segundo dígito verificador
-  for (let i = 1; i <= 10; i++)
+  for (let i = 1; i <= 10; i++) {
     sum += parseInt(cleaned.substring(i - 1, i)) * (12 - i);
+  }
   remainder = (sum * 10) % 11;
   if (remainder === 10 || remainder === 11) remainder = 0;
-  if (remainder !== parseInt(cleaned.substring(10, 11))) return '';
-
-  // Aplica a máscara de CPF
-  const maskedCPF = cleaned.replace(
-    /(\d{3})(\d{3})(\d{3})(\d{2})/,
-    '$1.$2.$3-$4'
-  );
-
-  return maskedCPF;
+  if (remainder !== parseInt(cleaned.substring(10, 11))) return false;
+  return true;
 }
+
+// Mascarar Documento CPF
+export function MasckedCpf(cpf: string): string {
+  const cleaned = cpf.replace(/\D/g, '');
+  return cleaned.replace(/^(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4');
+}
+
+/////////////////////////////////////////////////////////////////
 
 /**
  * Função para validar e mascarar um número de celular.
@@ -90,6 +138,7 @@ export function maskFoneCNumber(phone: string): string {
   if (!phoneRegex.test(cleaned)) {
     return 'Número de celular inválido';
   }
+
   // Aplica a máscara
   const masked = cleaned.replace(phoneRegex, '($1) $2-$3');
   return masked;
@@ -116,18 +165,18 @@ export function maskCPF(cpf: string): string {
   return masked;
 }
 
-export function maskAndValidateCPF(cpf: string): string {
-  if (!isCpfValid(cpf)) {
-    return 'Número de CPF inválido.';
-  } else {
-    const cleaned = cpf.replace(/\D/g, '');
-    // Expressão regular para verificar se o CPF tem 11 dígitos
-    const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
-    if (cpfRegex.test(cleaned)) {
-      const masked = cleaned.replace(cpfRegex, '$1.$2.$3-$4');
-      return masked;
-    } else {
-      return 'Edição CPF inconpatível.';
-    }
-  }
-}
+// export function maskAndValidateCPF(cpf: string): string {
+//   if (!isCpfValid(cpf)) {
+//     return 'Número de CPF inválido.';
+//   } else {
+//     const cleaned = cpf.replace(/\D/g, '');
+//     // Expressão regular para verificar se o CPF tem 11 dígitos
+//     const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
+//     if (cpfRegex.test(cleaned)) {
+//       const masked = cleaned.replace(cpfRegex, '$1.$2.$3-$4');
+//       return masked;
+//     } else {
+//       return 'Edição CPF inconpatível.';
+//     }
+//   }
+// }
