@@ -17,22 +17,24 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
-    "react-switch": "^7.0.0"
+    "react-router-dom": "^6.25.1",
+    "react-switch": "^7.0.0",
+    "styled-components": "^6.1.12"
   },
   "devDependencies": {
     "@types/node": "^20.10.3",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "typescript": "^5.2.2",
     "@typescript-eslint/eslint-plugin": "~7.0.2",
     "@typescript-eslint/parser": "~7.0.2",
+    "@vitejs/plugin-react": "^4.2.0",
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^2.0.0",
     "eslint-plugin-react-hooks": "5.1.0-rc-f994737d14-20240522",
     "eslint-plugin-react-refresh": "^0.4.4",
     "eslint-plugin-storybook": "0.9.0--canary.156.da7873a.0",
-    "@vitejs/plugin-react": "^4.2.0",
+    "typescript": "^5.2.2",
     "vite": "^5.0.0"
   }
 }

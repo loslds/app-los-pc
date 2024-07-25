@@ -73,7 +73,8 @@ export const Resgate3 = () => {
   const [edicao, setEdicao] = React.useState('');
 
   const [inputstrid, setInputStrId] = React.useState('');
-  const [isvalidado, setIsValidado] = React.useState(false);
+  
+  const [ishlperror, setIsHlpError] = React.useState(false);
   const [txtaga, setTxtAga] = React.useState('');
   const [txtlabel, setTxtLabel] = React.useState('');
   const [txtp, setTxtP] = React.useState('');
@@ -111,16 +112,16 @@ export const Resgate3 = () => {
   const [helppg, setHelpPg] = React.useState(false);
 
   const [islistacess, setIsListAcess] = React.useState(false);
-  const [isbtnhlplistacess, setBtnHlpListAcess] = React.useState(false);
+  const [isbtnhlplistacess, setIsBtnHlpListAcess] = React.useState(false);
 
   const [islistusers, setIsListUsers] = React.useState(false);
-  const [isbtnhlplistusers, setBtnHlpListUsers] = React.useState(false);
+  const [isbtnhlplistusers, setIsBtnHlpListUsers] = React.useState(false);
 
   const [islistfones, setIsListFones] = React.useState(false);
-  const [isbtnhlplistfones, setBtnHlpListFones] = React.useState(false);
+  const [isbtnhlplistfones, setIsBtnHlpListFones] = React.useState(false);
 
   const [islistemps, setIsListEmps] = React.useState(false);
-  const [isbtnhlplistemps, setBtnHlpListEmps] = React.useState(false);
+  const [isbtnhlplistemps, setIsBtnHlpListEmps] = React.useState(false);
 
   const [acesso, setAcess] = React.useState<IAcessos | undefined>(undefined);
   const [user, setUser] = React.useState<IUsers | undefined>(undefined);
@@ -194,6 +195,7 @@ export const Resgate3 = () => {
 
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
+    setIsHlpError(false);
     setIsConected(false);
     setVerificadoDb(false);
     setIsDownDatasState(false);
@@ -204,7 +206,7 @@ export const Resgate3 = () => {
     setIsBtnPerguntas(false);
     setIsBtnEnviar(false);
     setIsBtnConferir(false);
-    setIsValidado(true);
+    
     setIsBtnContinuar(false);
     setStart(true);
   }, [dispatch]);
@@ -237,19 +239,19 @@ export const Resgate3 = () => {
   }, []);
 
   const handlerBtnHlpListAcess = React.useCallback(() => {
-    setBtnHlpListAcess((oldState) => !oldState);
+    setIsBtnHlpListAcess((oldState) => !oldState);
   }, []);
 
   const handlerBtnHlpListUsers = React.useCallback(() => {
-    setBtnHlpListUsers((oldState) => !oldState);
+    setIsBtnHlpListUsers((oldState) => !oldState);
   }, []);
 
   const handlerBtnHlpListFones = React.useCallback(() => {
-    setBtnHlpListFones((oldState) => !oldState);
+    setIsBtnHlpListFones((oldState) => !oldState);
   }, []);
 
   const handlerBtnHlpListEmps = React.useCallback(() => {
-    setBtnHlpListEmps((oldState) => !oldState);
+    setIsBtnHlpListEmps((oldState) => !oldState);
   }, []);
 
   // Função de callback
@@ -328,6 +330,7 @@ export const Resgate3 = () => {
     } else {
       setVerificadoDb(true);
     }
+
     setIsDownDatasState(verificadodb);
   },[verificadodb, islistacess, islistusers, islistemps, islistfones]);
 
@@ -543,6 +546,22 @@ export const Resgate3 = () => {
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 
+          
+          
+          { isbtnhlplistacess ? (
+            <PageModal
+              ptop="1%"
+              pwidth="40%"
+              pheight="40%"
+              titulo={edicao}
+              imgbm={close}
+              titbm="Fechar..."
+              onclose={() => setIsBtnHlpListAcess(false)}
+            >
+              <GetHelpList 
+            </PageModal>
+          ): null}
+          
           {!isvalidado ? (
             <PageModal
               ptop="1%"
