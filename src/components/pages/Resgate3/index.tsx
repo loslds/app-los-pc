@@ -61,33 +61,24 @@ export function FindUsers() {
   return true;
 }
 
+export interface HelpGetItem {
+  nmpnl?: string;
+  nmlst?: string;
+  sinal?: boolean;
+}
+
 export const Resgate3 = () => {
   const { state, dispatch } = AcessoUseForm();
 
   const [snhmaster, setSnhMaster] = React.useState('');
 
-  const [iscontatoemail, setIsContatoEmail] = React.useState(false);
-  const [iscontatosms, setIsContatoSms] = React.useState(false);
-  const [iscontatozap, setIsContatoZap] = React.useState(false);
-  const [iscontatocpf, setIsContatoCpf] = React.useState(false);
   const [edicao, setEdicao] = React.useState('');
-
   const [inputstrid, setInputStrId] = React.useState('');
-  
+
   const [ishlperror, setIsHlpError] = React.useState(false);
   const [txtaga, setTxtAga] = React.useState('');
   const [txtlabel, setTxtLabel] = React.useState('');
   const [txtp, setTxtP] = React.useState('');
-
-  //const [ischeckedicao, setIsCheckEdicao] = React.useState(false);
-  //const [isconfirmar, setIsConfirmar] = React.useState(false);
-
-  const [iseditar, setIsEditar] = React.useState(false);
-  const [isconected, setIsConected] = React.useState(false);
-  const [isdowndatasstate, setIsDownDatasState] = React.useState(false);
-
-  const [verificadodb,setVerificadoDb] = React.useState(false); 
-  const [btndatacenter, setBtnDataCenter] = React.useState(false);
 
   const [perg1, setPerg1] = React.useState('');
   const [resp1, setResp1] = React.useState('');
@@ -107,9 +98,11 @@ export const Resgate3 = () => {
   const [isbtnconferir, setIsBtnConferir] = React.useState(false);
   const [isbtncontinuar, setIsBtnContinuar] = React.useState(false);
 
-  const [start, setStart] = React.useState(false);
-  const [onpanel, setOnPanel] = React.useState(false);
-  const [helppg, setHelpPg] = React.useState(false);
+  const [verificadodb, setVerificadoDb] = React.useState(false);
+
+
+  
+  const [btndatacenter, setBtnDataCenter] = React.useState(false);
 
   const [islistacess, setIsListAcess] = React.useState(false);
   const [isbtnhlplistacess, setIsBtnHlpListAcess] = React.useState(false);
@@ -123,20 +116,47 @@ export const Resgate3 = () => {
   const [islistemps, setIsListEmps] = React.useState(false);
   const [isbtnhlplistemps, setIsBtnHlpListEmps] = React.useState(false);
 
-  const [helplista, setHelpLista] = React.useState('');
-  const [helpsinal, setHelpSinal] = React.useState(false);
+  const [helphndpnl, setHelpHndpnl] = React.useState('');
+  const [helplstacess, setHelpLstAcess] = React.useState('');
+  const [helplstemps, setHelpLstEmps] = React.useState('');
+  const [helplstusers, setHelpLstUsers] = React.useState('');
+  const [helplstfones, setHelpLstFones] = React.useState('');
+  const [ishelpconextedacess, setIsHelpConectedAcess] = React.useState(false);
+  const [ishelpconextedemps, setIsHelpConectedEmps] = React.useState(false);
+  const [ishelpconextedusers, setIsHelpConectedUsers] = React.useState(false);
+  const [ishelpconextedfones, setIsHelpConectedFones] = React.useState(false);
 
+  //////////////////////////////////////////////////////////////////////////////
   const [acesso, setAcess] = React.useState<IAcessos | undefined>(undefined);
   const [user, setUser] = React.useState<IUsers | undefined>(undefined);
   const [fones, setFones] = React.useState<IFones | undefined>(undefined);
   const [emps, setEmps] = React.useState<IEmps | undefined>(undefined);
+  ////////////////////////////////////////////////////////////////////////////// 
+  const [start, setStart] = React.useState(false);
+  const [onpanel, setOnPanel] = React.useState(false);
+  const [helppg, setHelpPg] = React.useState(false);
+  const [helpmodal, setHelpModal] = React.useState(false);
+  const [gethlpmodalAcess, setGetHelpModalAcess] = React.useState<HelpGetItem[]>([]);
+  const [gethlpmodalUsers, setGetHelpModalUsers] = React.useState<HelpGetItem[]>([]);
+  const [gethlpmodalemps, setGetHelpModalEmps] = React.useState<HelpGetItem[]>([]);
+  const [gethlpmodalfones, setGetHelpModalFones] = React.useState<HelpGetItem[]>([]);
+
+  const [gethelpnmpnl, setGetHelpNmPnl] = React.useState('');
+  const [gethelpnmlst, setGetHelpNmLst] = React.useState('');
+  const [gethelpvalid, setGetHelpValid] = React.useState(false);
+
+  const [iseditar, setIsEditar] = React.useState(false);
+  
+
+  const [isconected, setIsConected] = React.useState(false);
+  const [isconexao, setIsConexao] = React.useState(false);
+
+  const [isdownloaddc, setIsDownloadDC] = React.useState(false);
+  const [isdowndatacenter, setIsDownDataCenter] = React.useState(false);
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate3' });
-    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
-    dispatch({ type: AcessoUseActions.setPage, payload: '/resgate2' });
-
     if (state.mdlogin === 1) {
       // dispatch({ type: AcessoUseActions.setMail, payload: '' });
       dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
@@ -183,37 +203,57 @@ export const Resgate3 = () => {
     dispatch({ type: AcessoUseActions.setresp2, payload: '' });
     dispatch({ type: AcessoUseActions.setperg3, payload: '' });
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+    /////////////////////////////////////////////////////////////////////////
 
     setPerg1('');
     setResp1('');
     setStrResp1('');
-
     setPerg2('');
     setResp2('');
     setStrResp2('');
-
     setPerg3('');
     setResp3('');
     setStrResp3('');
-
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
-    setIsHlpError(false);
-    setIsConected(false);
-    setVerificadoDb(false);
-    setIsDownDatasState(false);
-
-    setBtnDataCenter(false);
-///////////////////
-    setIsEditar(false);
-    setIsBtnPerguntas(false);
-    setIsBtnEnviar(false);
-    setIsBtnConferir(false);
     
-    setIsBtnContinuar(false);
-    setStart(true);
-  }, [dispatch]);
+      
+    
 
+
+    setIsConected(false);
+    setIsConexao(true);
+
+    setIsDownloadDC(false);
+    setIsDownDataCenter(false);
+  
+    
+
+    //     setVerificadoDb(false);
+    //     setIsDownDatasState(false);
+    //     setBtnDataCenter(false);
+    // ///////////////////
+    //     setIsEditar(false);
+    //     setIsBtnPerguntas(false);
+    //     setIsBtnEnviar(false);
+    //     setIsBtnConferir(false);
+
+    //     setIsBtnContinuar(false);
+
+    setIsConected(false);
+    setIsConexao(true);
+    setHelpModal(false);
+    setGetHelpNmPnl('Conexao');
+    setGetHelpNmLst('ListAcessos');
+    setGetHelpValid(isconected);
+    setGetHelpModalAcess([{ nmpnl: gethelpnmpnl, nmlst: gethelpnmlst, sinal: gethelpvalid }]);
+
+    
+    setIsDownloadDC(false);
+    setIsDownDataCenter(false);
+    setStart(true);
+  }, [gethelpnmpnl, gethelpnmlst, gethelpvalid,dispatch]);
+  
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
   const ToggleTheme = () => {
@@ -232,6 +272,152 @@ export const Resgate3 = () => {
       navigate(path);
     };
   };
+  
+  // const handlerBtnHlpListAcess = React.useCallback(() => {
+  //   setIsBtnHlpListAcess((oldState) => !oldState);
+  //   setHelpNmLista('Lista Acesso');
+  //   setHelpOpen(islistacess);
+
+  // }, []);
+
+  // const handlerBtnHlpListUsers = React.useCallback(() => {
+  //   setIsBtnHlpListUsers((oldState) => !oldState);
+  //   setHelpNmLista('Lista Usuário');
+  //   setHelpOpen(islistusers);
+
+  // }, []);
+
+  // const handlerBtnHlpListFones = React.useCallback(() => {
+  //   setIsBtnHlpListFones((oldState) => !oldState);
+  //   setHelpNmLista('Lista Telefones');
+  //   setHelpOpen(islistfones);
+
+  // }, []);
+
+  // const handlerBtnHlpListEmps = React.useCallback(() => {
+  //   setIsBtnHlpListEmps((oldState) => !oldState);
+  // }, []);
+
+  // Função de callback
+  const handlerIsConectar = React.useCallback(() => {
+    setIsConected(isconexao);
+    if (isconected) {
+      // Criar lista USUARIOS com INDEX ID
+      const Lstacessos = AcessosIndexById();
+      // Verificar se a lista de Acessos vasia ou corrompida ou existente
+      if (Object.keys(Lstacessos).length > 0) {
+        setIsListAcess(true);
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListAcessos');
+        setGetHelpValid(true);
+      } else {
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListAcessos');
+        setGetHelpValid(false);
+        // memssagem de e alerta para o erro
+        setIsListAcess(false);
+        setTxtAga('"ERRO" ao acessar ACESSOS dos USUÁRIOS');
+        setTxtLabel('Não foi encontrado DATA ou DADOS de Acessos.');
+        setTxtP(
+          'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
+        );
+      }
+      
+      /////////////////////////
+      // Criar lista USUARIOS com INDEX ID
+      const Lstusuarios = UsersIndexById();
+      // Verificar se a lista de usuários vasia ou corrompida ou existente
+      if (Object.keys(Lstusuarios).length > 0) {
+        setIsListUsers(true);
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListUsers');
+        setGetHelpValid(true);
+      } else {
+        // memssagem de e alerta para o erro
+        setIsListUsers(false);
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListUsers');
+        setGetHelpValid(false);
+        setTxtAga('"ERRO" ao acessar USUÁRIOS');
+        setTxtLabel('Não foi encontrado DATA ou DADOS de Usuários.');
+        setTxtP(
+          'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
+        );
+      }
+
+      ///////////////////////////
+      // Criar lista FONES com INDEX ID
+      const Lstfones = FonesIndexById();
+      // Verificar se a lista de Fones vasia ou corrompida ou existente
+      if (Object.keys(Lstfones).length > 0) {
+        setIsListFones(true);
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListFones');
+        setGetHelpValid(true);
+      } else {
+        // memssagem de e alerta para o erro
+        setIsListFones(false);
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListFones');
+        setGetHelpValid(false);
+        setTxtAga('"ERRO" ao acessar TELEFONES');
+        setTxtLabel('Não foi encontrado DATA ou DADOS de Telefones.');
+        setTxtP(
+          'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
+        );
+      }
+      //////////////////////////
+      // Criar lista FONES com INDEX ID
+      const LstEmps = EmpsIndexById();
+      // Verificar se a lista de Fones vasia ou corrompida ou existente
+      if (Object.keys(LstEmps).length > 0) {
+        setIsListEmps(true);
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListEmps');
+        setGetHelpValid(true);
+      } else {
+        // memssagem de e alerta para o erro
+        setIsListEmps(false);
+        setGetHelpNmPnl('Conexao');
+        setGetHelpNmLst('ListEmps');
+        setGetHelpValid(false);
+        setTxtAga('"ERRO" ao acessar TELEFONES');
+        setTxtLabel('Não foi encontrado DATA ou DADOS de Telefones.');
+        setTxtP(
+          'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
+        );
+      }
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (isconected) {
+      setIsHelpConectedAcess(islistacess);
+      setIsHelpConectedEmps(islistemps);
+      setIsHelpConectedUsers(islistusers);
+      setIsHelpConectedFones(islistfones);
+      setIsDownDataCenter(isconected);
+    }
+    if (isconected){
+      setIsConected(false);
+    }
+    setIsConexao(isconected);
+  }, [isconected, islistacess, islistusers, islistemps, islistfones]);
+
+  // Função de callback
+  const handlerDownDatasCenter = React.useCallback(() => {
+    setIsDownloadDC(isdowndatacenter);
+    if (isdowndatacenter) {
+      alert('isdowndatacenter: verdadeiro');
+    }
+  }, []);
+
+
+
+
+
+
+
 
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
@@ -241,117 +427,28 @@ export const Resgate3 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  const handlerBtnHlpListAcess = React.useCallback(() => {
-    setIsBtnHlpListAcess((oldState) => !oldState);
-    setHelpLista('Lista Acesso');
-    setHelpSinal(islistacess);
+  const handlerHelpModal = (str: string) => {
+    const item: HelpGetItem = { nmpnl: gethelpnmpnl, nmlst: gethelpnmlst, sinal: gethelpvalid };
 
-  }, []);
-
-  const handlerBtnHlpListUsers = React.useCallback(() => {
-    setIsBtnHlpListUsers((oldState) => !oldState);
-    setHelpLista('Lista Usuário');
-    setHelpSinal(islistusers);
-
-  }, []);
-
-  const handlerBtnHlpListFones = React.useCallback(() => {
-    setIsBtnHlpListFones((oldState) => !oldState);
-    setHelpLista('Lista Telefones');
-    setHelpSinal(islistfones);
-
-  }, []);
-
-  const handlerBtnHlpListEmps = React.useCallback(() => {
-    setIsBtnHlpListEmps((oldState) => !oldState);
-    setHelpLista('Lista Empresas');
-    setHelpSinal(islistemps);
-  }, []);
-
-  // Função de callback
-  const handlerIsConectar = React.useCallback(() => {
-    // Criar lista USUARIOS com INDEX ID
-    setVerificadoDb(false);
-    const Lstacessos = AcessosIndexById();
-    // Verificar se a lista de Acessos vasia ou corrompida ou existente
-    if (Object.keys(Lstacessos).length > 0) {
-      setIsListAcess(true);
-    } else {
-      // memssagem de e alerta para o erro
-      setIsListAcess(false);
-      setTxtAga('"ERRO" ao acessar ACESSOS dos USUÁRIOS');
-      setTxtLabel('Não foi encontrado DATA ou DADOS Acessos do Usuários.');
-      setTxtP(
-        'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
-      );
-    }
-    /////////////////////////
-    if (islistacess) {
-      // Criar lista USUARIOS com INDEX ID
-      const Lstusuarios = UsersIndexById();
-      // Verificar se a lista de usuários vasia ou corrompida ou existente
-      if (Object.keys(Lstusuarios).length > 0) {
-        setIsListUsers(true);
-      } else {
-        // memssagem de e alerta para o erro
-        setIsListUsers(false);
-        setTxtAga('"ERRO" ao acessar USUÁRIOS');
-        setTxtLabel('Não foi encontrado DATA ou DADOS Usuários.');
-        setTxtP(
-          'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
-        );
-      }
-      ///////////////////////////
-      if (islistusers) {
-        // Criar lista FONES com INDEX ID
-        const Lstfones = FonesIndexById();
-        // Verificar se a lista de Fones vasia ou corrompida ou existente
-        if (Object.keys(Lstfones).length > 0) {
-          setIsListFones(true);
-        } else {
-          // memssagem de e alerta para o erro
-          setIsListFones(false);
-          setTxtAga('"ERRO" ao acessar TELEFONES');
-          setTxtLabel('Não foi encontrado DATA ou DADOS Telefones.');
-          setTxtP(
-            'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
-          );
-        }
-        //////////////////////////
-        if (islistfones) {
-          // Criar lista FONES com INDEX ID
-          const LstEmps = EmpsIndexById();
-          // Verificar se a lista de Fones vasia ou corrompida ou existente
-          if (Object.keys(LstEmps).length > 0) {
-            setIsListEmps(true);
-          } else {
-            // memssagem de e alerta para o erro
-            setIsListEmps(false);
-            setTxtAga('"ERRO" ao acessar TELEFONES');
-            setTxtLabel('Não foi encontrado DATA ou DADOS Telefones.');
-            setTxtP(
-              'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
-            );
-          }
-        }
-      }
-    }
-  }, []);
-  React.useEffect(() => {
-    setVerificadoDb(false);
-    if ( !islistacess || !islistusers || !islistemps || islistfones ){
-      setVerificadoDb(false);
-    } else {
-      setVerificadoDb(true);
-    }
-
-    setIsDownDatasState(verificadodb);
-  },[verificadodb, islistacess, islistusers, islistemps, islistfones]);
-
-  // Função de callback
-  const handlerDownDatasState = React.useCallback(() => {
-
-  }, []);
+  switch (str) {
+    case 'Acessos':
+      setGetHelpModalAcess([item]);
+      break;
+    case 'Usuarios':
+      setGetHelpModalUsers([item]);
+      break;
+    case 'Telefones':
+      setGetHelpModalFones([item]);
+      setHelpModal(true);
+      break;
+    case 'Empresas':
+      setGetHelpModalEmps([item]);
+      setHelpModal(true);
+      break;
+    default:
+      break;
+  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -371,55 +468,24 @@ export const Resgate3 = () => {
       >
         <ContentCardPage>
           <ContentCardPageTitle>
-            {!isconected ? <h2>Conexão com DataCenter</h2> : null}
-            {!isdowndatasstate ? <h2>{'DonwLoad DataCenter.'}</h2> : null}
+            {isconexao ? <h2>Conexão com DataCenter</h2> : null}
+            {isdowndatacenter ? <h2>{'DonwLoads Data Center.'}</h2> : null}
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
             <ContentCardBoxCenterPage pwidth="200px">
               <ContentCardPageTitle>
-                {!isconected ? <h4>{'Conectar com DataCenter.'}</h4> : null}
-                {!isdowndatasstate ? <h4>{'DonwLoad Datas.'}</h4> : null}
+                {isconexao ? <h4>{'Conectar com DataCenter.'}</h4> : null}
+                {isdowndatacenter ? <h4>{'DonwLoads Informações.'}</h4> : null}
               </ContentCardPageTitle>
-
-              { !isconected ? (
+{/* //////////////////////// mostra painel Conectar //////////////////////////// */}
+              {isconexao ? (
                 <PanelConfResgateYellow
                   isbgcolor={!isconected}
-                  titulo={'Resgate em Banco de Dados.'}
-                  subtitulo={'Dados para Resgate:'}
+                  titulo={'Conexão com Banco de Dados.'}
+                  subtitulo={'Existência de Data Center.'}
                 >
-                  <p>&emsp;&emsp;Já temos em mãos :</p>
-                  <label>
-                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
-                    <span>{state.idemp}</span>
-                  </label>
-                  <label>
-                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-                    <span>{state.nmfant}</span>
-                  </label>
-                  {state.mdlogin === 1 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{state.mail}</span>
-                    </label>
-                  ) : null}
-                  {state.mdlogin === 2 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Celular : <span>{state.fonec}</span>
-                    </label>
-                  ) : null}
-                  {state.mdlogin === 3 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
-                      <span>{state.fonez}</span>
-                    </label>
-                  ) : null}
-                  {state.mdlogin === 4 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{state.cpf}</span>
-                    </label>
-                  ) : null}
-                  <h4>{state.nmlogin}</h4>
+                  <h4>&emsp;&emsp;Busca pelos Data Center :</h4>
                   <div>
-                    <p>&emsp;&emsp;Busca pelos Dados :</p>
                     <ContentLabelTesto testo={'Acesso....:'}>
                       <ContentLabelButtonOnOff
                         sinal={islistacess}
@@ -427,19 +493,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnHlpListAcess}
-                      />
-                    </ContentLabelTesto>
-                  </div>
-                  <div>
-                    <ContentLabelTesto testo={'Usuário...:'}>
-                      <ContentLabelButtonOnOff
-                        sinal={islistusers}
-                        pxheight="18px"
-                        pxwidth="140px"
-                        pxhght="16px"
-                        pxwdth="16px"
-                        onClick={handlerBtnHlpListUsers}
+                        onClick={ () => handlerHelpModal('Acessos')}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -451,7 +505,19 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnHlpListEmps}
+                        onClick={ () => handlerHelpModal('Empresas')}
+                        />
+                      </ContentLabelTesto>
+                    </div>
+                    <div>
+                    <ContentLabelTesto testo={'Usuário...:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={ () => handlerHelpModal('Usuarios')}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -463,7 +529,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnHlpListFones}
+                        onClick={ () => handlerHelpModal('Teçefones')}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -483,20 +549,20 @@ export const Resgate3 = () => {
                 </PanelConfResgateYellow>
               ) : null}
 
-              { !isdowndatasstate ? (
+{/* ///////////////// mostra painel Downloads de Dados ///////////////////// */}
+              {isdowndatacenter ? (
                 <PanelConfResgateYellow
                   isbgcolor={!isconected}
-                  titulo={'Resgate em Banco de Dados.'}
-                  subtitulo={'Dados para Resgate:'}
+                  titulo={'Downloads dos Data Center.'}
+                  subtitulo={'Informações de Resgate:'}
                 >
-                  <p>&emsp;&emsp;Obter Dados DataBase :</p>
+                  <h4>&emsp;&emsp;Resgatar Informaões em Data Center :</h4>
                   <div>
                     <ContentLabelTesto testo={'Acesso....:'}>
-  
                       <ContentLabelButtonOnOff
                         sinal={islistacess}
                         pxheight="18px"
-                        pxwidth="140px" 
+                        pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
                         onClick={handlerBtnHlpListAcess}
@@ -505,7 +571,6 @@ export const Resgate3 = () => {
                   </div>
                   <div>
                     <ContentLabelTesto testo={'Usuário...:'}>
-                      
                       <ContentLabelButtonOnOff
                         sinal={islistusers}
                         pxheight="18px"
@@ -530,7 +595,6 @@ export const Resgate3 = () => {
                   </div>
                   <div>
                     <ContentLabelTesto testo={'Telefones.:'}>
-                      
                       <ContentLabelButtonOnOff
                         sinal={islistusers}
                         pxheight="18px"
@@ -555,14 +619,14 @@ export const Resgate3 = () => {
                     <br />
                   </div>
                 </PanelConfResgateYellow>
-                ) : null }
-{/* //////////////////////////////////////////////////////////////////// */}
+              ) : null}
+
+
+              {/* //////////////////////////////////////////////////////////////////// */}
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 
-          
-          
-          { isbtnhlplistacess ? (
+          {helpmodal ? (
             <PageModal
               ptop="1%"
               pwidth="40%"
@@ -570,13 +634,20 @@ export const Resgate3 = () => {
               titulo={edicao}
               imgbm={close}
               titbm="Fechar..."
-              onclose={() => setIsBtnHlpListAcess(false)}
+              onclose={() => setHelpModal(false)}
             >
-              <GetHelpList lista={helplista} sinal={helpsinal} /> 
+              { (gethelpnmpnl === 'Conexao') ? (
+              <GetCardHelpResgate 
+                hndpnl={get}
+                nmlst={helpnmlista}
+                open={helpopen}
+              />
+              ): null }
             </PageModal>
-          ): null}
+          ) : null}
 
-{/*           
+
+          {/*           
           // {!isvalidado ? (
           //   <PageModal
           //     ptop="1%"
@@ -609,22 +680,20 @@ export const Resgate3 = () => {
               />
             </ContentSidePageBottonLabel>
 
-            {!isconected ? (
+            {isconected ? (
               <ContentCardPageTitle>
-                <h3>Informação: [ Desconectado! ]</h3>
+                <h3>Informação: [ CONEXÃO...]</h3>
               </ContentCardPageTitle>
             ) : null}
-            { !isdowndatasstate ? (
+            
+            {isdowndatasstate ? (
               <ContentCardPageTitle>
-              <h3>DonwLoad : [ Data Center! ]</h3>
-            </ContentCardPageTitle>
+                <h3>DonwLoad : [ Data Center! ]</h3>
+              </ContentCardPageTitle>
             ) : null}
-
-            {!isconected ? (
-              <ContentSidePageBottonLabel
-                istitl={start}
-                title={'Conectar.: '}
-              >
+{/* //////////////////////// mostra botão Conectar //////////////////////////// */}
+            {isconexao ? (
+              <ContentSidePageBottonLabel istitl={start} title={'Conectar.: '}>
                 <ContentSidePageBottonButton
                   pxheight="40px"
                   img={setaesq}
@@ -633,8 +702,8 @@ export const Resgate3 = () => {
                 />
               </ContentSidePageBottonLabel>
             ) : null}
-
-            { !isdowndatasstate ? (
+{/* //////////////////////// mostra botão Conectar //////////////////////////// */}
+            {isdowndatacenter ? (
               <ContentSidePageBottonLabel
                 istitl={start}
                 title={'Prosseguir.: '}
@@ -643,7 +712,7 @@ export const Resgate3 = () => {
                   pxheight="40px"
                   img={setaesq}
                   titbtn="Prosseguir..."
-                  onclick={ handlerDownDatasState}
+                  onclick={handlerDownDatasCenter}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
@@ -687,3 +756,38 @@ export const Resgate3 = () => {
     </ThemeProvider>
   );
 };
+
+
+/*
+                <p>&emsp;&emsp;Já temos em mãos :</p>
+                  <label>
+                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                    <span>{state.idemp}</span>
+                  </label>
+                  <label>
+                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                    <span>{state.nmfant}</span>
+                  </label>
+                  {state.mdlogin === 1 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{state.mail}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Celular : <span>{state.fonec}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                      <span>{state.fonez}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 4 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{state.cpf}</span>
+                    </label>
+                  ) : null}
+                  <h4>{state.nmlogin}</h4> 
+*/
