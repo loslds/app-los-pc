@@ -21,7 +21,7 @@ import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
-//import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
+
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpResgate1 } from '../../contentHelp/CardHelpResgate1.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
@@ -41,7 +41,7 @@ export const Resgate1 = () => {
   //const [idempresa, setIdEmpresa] = React.useState(0);
   //const [fantempresa, setFantEmpresa] = React.useState('');
 
-  const [snhmaster, setSnhMaster] = React.useState('');
+//  const [snhmaster, setSnhMaster] = React.useState('');
 
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
@@ -91,7 +91,7 @@ export const Resgate1 = () => {
     dispatch({ type: AcessoUseActions.setAplicacao, payload: aplicacao });
 
     //////////////////////////////////////////////////////////////////////////
-    setSnhMaster(criasmstr);
+  //  setSnhMaster(criasmstr);
     setStart(true);
   }, [dispatch]);
 

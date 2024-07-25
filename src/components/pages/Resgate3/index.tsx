@@ -82,8 +82,11 @@ export const Resgate3 = () => {
   //const [isconfirmar, setIsConfirmar] = React.useState(false);
 
   const [iseditar, setIsEditar] = React.useState(false);
-  const [isbtndatacenter, setIsBtnDataCenter] = React.useState(false);
   const [isconected, setIsConected] = React.useState(false);
+  const [isdowndatasstate, setIsDownDatasState] = React.useState(false);
+
+  const [verificadodb,setVerificadoDb] = React.useState(false); 
+  const [btndatacenter, setBtnDataCenter] = React.useState(false);
 
   const [perg1, setPerg1] = React.useState('');
   const [resp1, setResp1] = React.useState('');
@@ -107,7 +110,7 @@ export const Resgate3 = () => {
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
-  const [islistacess, setListAcess] = React.useState(false);
+  const [islistacess, setIsListAcess] = React.useState(false);
   const [isbtnhlplistacess, setBtnHlpListAcess] = React.useState(false);
 
   const [islistusers, setIsListUsers] = React.useState(false);
@@ -191,9 +194,13 @@ export const Resgate3 = () => {
 
     //////////////////////////////////////////////////////////////////////////
     setSnhMaster(criasmstr);
-    setIsBtnDataCenter(false);
-    setIsEditar(false);
     setIsConected(false);
+    setVerificadoDb(false);
+    setIsDownDatasState(false);
+
+    setBtnDataCenter(false);
+///////////////////
+    setIsEditar(false);
     setIsBtnPerguntas(false);
     setIsBtnEnviar(false);
     setIsBtnConferir(false);
@@ -229,38 +236,40 @@ export const Resgate3 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  const handlerBtnListAcess = React.useCallback(() => {
+  const handlerBtnHlpListAcess = React.useCallback(() => {
     setBtnHlpListAcess((oldState) => !oldState);
   }, []);
 
-  const handlerBtnListUsers = React.useCallback(() => {
+  const handlerBtnHlpListUsers = React.useCallback(() => {
     setBtnHlpListUsers((oldState) => !oldState);
   }, []);
 
-  const handlerBtnListFones = React.useCallback(() => {
+  const handlerBtnHlpListFones = React.useCallback(() => {
     setBtnHlpListFones((oldState) => !oldState);
   }, []);
 
-  const handlerBtnListEmps = React.useCallback(() => {
+  const handlerBtnHlpListEmps = React.useCallback(() => {
     setBtnHlpListEmps((oldState) => !oldState);
   }, []);
 
   // Função de callback
-  const handlerDataCenter = React.useCallback(() => {
+  const handlerIsConectar = React.useCallback(() => {
     // Criar lista USUARIOS com INDEX ID
+    setVerificadoDb(false);
     const Lstacessos = AcessosIndexById();
     // Verificar se a lista de Acessos vasia ou corrompida ou existente
     if (Object.keys(Lstacessos).length > 0) {
-      setListAcess(true);
+      setIsListAcess(true);
     } else {
       // memssagem de e alerta para o erro
-      setListAcess(false);
+      setIsListAcess(false);
       setTxtAga('"ERRO" ao acessar ACESSOS dos USUÁRIOS');
       setTxtLabel('Não foi encontrado DATA ou DADOS Acessos do Usuários.');
       setTxtP(
         'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
       );
     }
+    /////////////////////////
     if (islistacess) {
       // Criar lista USUARIOS com INDEX ID
       const Lstusuarios = UsersIndexById();
@@ -276,6 +285,7 @@ export const Resgate3 = () => {
           'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
         );
       }
+      ///////////////////////////
       if (islistusers) {
         // Criar lista FONES com INDEX ID
         const Lstfones = FonesIndexById();
@@ -291,6 +301,7 @@ export const Resgate3 = () => {
             'Verifique se existe o Banco de Dados, ou se existir, não contem registro ou esta corrompido.'
           );
         }
+        //////////////////////////
         if (islistfones) {
           // Criar lista FONES com INDEX ID
           const LstEmps = EmpsIndexById();
@@ -309,11 +320,20 @@ export const Resgate3 = () => {
         }
       }
     }
-    if (isbtndatacenter) {
-      setIsBtnDataCenter(false);
-      setIsConected(true);
+  }, []);
+  React.useEffect(() => {
+    setVerificadoDb(false);
+    if ( !islistacess || !islistusers || !islistemps || islistfones ){
+      setVerificadoDb(false);
+    } else {
+      setVerificadoDb(true);
     }
-    /////
+    setIsDownDatasState(verificadodb);
+  },[verificadodb, islistacess, islistusers, islistemps, islistfones]);
+
+  // Função de callback
+  const handlerDownDatasState = React.useCallback(() => {
+
   }, []);
 
   return (
@@ -334,17 +354,19 @@ export const Resgate3 = () => {
       >
         <ContentCardPage>
           <ContentCardPageTitle>
-            {isbtndatacenter ? <h2>Resgatar: DataCenter</h2> : null}
+            {!isconected ? <h2>Conexão com DataCenter</h2> : null}
+            {!isdowndatasstate ? <h2>{'DonwLoad DataCenter.'}</h2> : null}
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
             <ContentCardBoxCenterPage pwidth="200px">
               <ContentCardPageTitle>
-                {isbtndatacenter ? <h4>{'Conectar com DataCenter'}</h4> : null}
+                {!isconected ? <h4>{'Conectar com DataCenter.'}</h4> : null}
+                {!isdowndatasstate ? <h4>{'DonwLoad Datas.'}</h4> : null}
               </ContentCardPageTitle>
 
-              {isbtndatacenter ? (
+              { !isconected ? (
                 <PanelConfResgateYellow
-                  isbgcolor={isbtndatacenter}
+                  isbgcolor={!isconected}
                   titulo={'Resgate em Banco de Dados.'}
                   subtitulo={'Dados para Resgate:'}
                 >
@@ -388,7 +410,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnListAcess}
+                        onClick={handlerBtnHlpListAcess}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -400,7 +422,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnListUsers}
+                        onClick={handlerBtnHlpListUsers}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -412,7 +434,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnListEmps}
+                        onClick={handlerBtnHlpListEmps}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -424,19 +446,81 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnListFones}
+                        onClick={handlerBtnHlpListFones}
                       />
                     </ContentLabelTesto>
                   </div>
                   <div>
-                    <ContentLabelTesto testo={'Telefones.:'}>
+                    <br />
+                    <h5>Obs:.</h5>
+                    <p>
+                      &emsp;&emsp;Caso queira " Abortar.: " clique na Seta à
+                      Esquerda...
+                    </p>
+                    <p>
+                      &emsp;&emsp;Caso deseja " Conectar.:", clique na Seta à
+                      Direita...
+                    </p>
+                    <br />
+                  </div>
+                </PanelConfResgateYellow>
+              ) : null}
+
+              { !isdowndatasstate ? (
+                <PanelConfResgateYellow
+                  isbgcolor={!isconected}
+                  titulo={'Resgate em Banco de Dados.'}
+                  subtitulo={'Dados para Resgate:'}
+                >
+                  <p>&emsp;&emsp;Obter Dados DataBase :</p>
+                  <div>
+                    <ContentLabelTesto testo={'Acesso....:'}>
+  
+                      <ContentLabelButtonOnOff
+                        sinal={islistacess}
+                        pxheight="18px"
+                        pxwidth="140px" 
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnHlpListAcess}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Usuário...:'}>
+                      
                       <ContentLabelButtonOnOff
                         sinal={islistusers}
                         pxheight="18px"
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={handlerBtnListFones}
+                        onClick={handlerBtnHlpListUsers}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Empresas:'}>
+                      <ContentLabelButtonOnOff
+                        sinal={islistemps}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnHlpListEmps}
+                      />
+                    </ContentLabelTesto>
+                  </div>
+                  <div>
+                    <ContentLabelTesto testo={'Telefones.:'}>
+                      
+                      <ContentLabelButtonOnOff
+                        sinal={islistusers}
+                        pxheight="18px"
+                        pxwidth="140px"
+                        pxhght="16px"
+                        pxwdth="16px"
+                        onClick={handlerBtnHlpListFones}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -454,7 +538,8 @@ export const Resgate3 = () => {
                     <br />
                   </div>
                 </PanelConfResgateYellow>
-              ) : null}
+                ) : null }
+{/* //////////////////////////////////////////////////////////////////// */}
             </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
 
@@ -489,27 +574,32 @@ export const Resgate3 = () => {
               />
             </ContentSidePageBottonLabel>
 
-            {isconected ? (
+            {!isconected ? (
               <ContentCardPageTitle>
-                <h3>Informação: [ Conectado! ]</h3>
+                <h3>Informação: [ Desconectado! ]</h3>
               </ContentCardPageTitle>
             ) : null}
+            { !isdowndatasstate ? (
+              <ContentCardPageTitle>
+              <h3>DonwLoad : [ Data Center! ]</h3>
+            </ContentCardPageTitle>
+            ) : null}
 
-            {!isbtndatacenter ? (
+            {!isconected ? (
               <ContentSidePageBottonLabel
                 istitl={start}
-                title={'Prosseguir.: '}
+                title={'Conectar.: '}
               >
                 <ContentSidePageBottonButton
                   pxheight="40px"
                   img={setaesq}
-                  titbtn="Prosseguir..."
-                  onclick={handlerDataCenter}
+                  titbtn="Conectar..."
+                  onclick={handlerIsConectar}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
 
-            {isbtndatacenter ? (
+            { !isdowndatasstate ? (
               <ContentSidePageBottonLabel
                 istitl={start}
                 title={'Prosseguir.: '}
@@ -518,7 +608,7 @@ export const Resgate3 = () => {
                   pxheight="40px"
                   img={setaesq}
                   titbtn="Prosseguir..."
-                  onclick={handlerDataCenter}
+                  onclick={ handlerDownDatasState}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
@@ -562,332 +652,3 @@ export const Resgate3 = () => {
     </ThemeProvider>
   );
 };
-
-{
-  /* 
-                    <div>
-                    <p>&emsp;&emsp;Busca pelos Dados :</p>
-                    <label>
-                      {islistacess ? (
-                        <label>ATIVADO.
-                        <span>
-                          <ContentDivSinaleiro
-                            pxheight="15px"
-                            pxwidth="18px"
-                            pxhght="15px"
-                            img={botaoverde}
-                          />
-                        </span>
-                        </label>
-                      ) : (
-                        <label>DESATIVADO.
-                        <span>
-                          <ContentDivSinaleiro
-                            pxheight="15px"
-                            pxwidth="18px"
-                            pxhght="15px"
-                            img={botaoverme}
-                          />
-                        </span>
-                        </label>
-                      )}
-                    </label> 
-                    </div>
-                    */
-}
-
-//         <div>
-//          <p>Senha MASTER.: {snhmaster}</p>
-//          <p>State.idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
-//          <p>State.nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
-//          <p>State.mail........: {state.mail ? state.mail : 'vasio'}</p>
-//          <p>State.fonec sms...: {state.fonec ? state.fonec : 'vasio'}</p>
-//          <p>State.fonec zap...: {state.fonec ? state.fonec : 'vasio'}</p>
-//          <p>State.cpf.........: {state.cpf ? state.cpf : 'vasio'}</p>
-//          <p>Painel Editar.....: {iseditar ? 'verdadeiro' : 'falso'}</p>
-//          <p>Painel Botões.:</p>
-//          <p>IsBtnDataCenter...: {isbtndatacenter ? 'verdadeiro' : 'falso'}</p>
-//          <p>IsBtnPerguntas....: {isbtnperguntas ? 'verdadeiro' : 'falso'}</p>
-//          <p>IsBtnEnviar.......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
-//          <p>IsBtnConferir.....: {isbtnconferir ? 'verdadeiro' : 'falso'}</p>
-//          <p>isValiEdição......: {isvalidado ? 'verdadeiro' : 'falso'}</p>
-//          <p>IsBtnContinuar.: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
-//        </div>
-
-// {iseditar && isbtncontinuar && !isbtnenviar ? (
-//               <ContentSidePageBottonLabel
-//                 istitl={isbtncontinuar}
-//                 title="Confirmar.: "
-//               >
-//                 <ContentSidePageBottonButton
-//                   pxheight="40px"
-//                   img={setadir}
-//                   titbtn="Confirmar..."
-//                   onclick={handlerContinuar}
-//                 />
-//               </ContentSidePageBottonLabel>
-//             ) : null}
-
-//             {isbtnenviar && !iseditar && !isbtncontinuar ? (
-//               <ContentSidePageBottonLabel
-//                 istitl={isbtnenviar}
-//                 title="Continuar.: "
-//               >
-//                 <ContentSidePageBottonButton
-//                   pxheight="40px"
-//                   img={setadir}
-//                   titbtn="Continuar..."
-//                   onclick={goto('/resgate3')}
-//                 />
-//               </ContentSidePageBottonLabel>
-//             ) : null}
-
-//   <ContentInputCenter open={iseditar}>
-//      {iscontatoemail ? (
-//       <form name="mail">
-//         <br />
-//         <input
-//           type="email"
-//           //name="mail"
-//           value={inputstrid}
-//           size={25}
-//           autoFocus={true}
-//           onChange={handlerEmailChange}
-//         />
-//         {erros.email && <span>{erros.email}</span>}
-//         <br />
-//       </form>
-//     ) : null}
-//     {iscontatosms ? (
-//       <ContentInputPage>
-//         <form name="sms">
-//           <br />
-//           <label>TeleFone.:</label>
-//           <input
-//             type="text"
-//             name="sms"
-//             value={inputstrid}
-//             size={11}
-//             autoFocus={true}
-//             onChange={() => {}}
-//           />
-//           <br />
-//         </form>
-//       </ContentInputPage>
-//     ) : null}
-//     {iscontatozap ? (
-//       <ContentInputPage>
-//         <form name="zap">
-//           <br />
-//           <label>Whatsapp.:</label>
-//           <input
-//             type="text"
-//             name="zap"
-//             value={inputstrid}
-//             size={11}
-//             autoFocus={true}
-//             onChange={() => {}}
-//           />
-//           <br />
-//         </form>
-//       </ContentInputPage>
-//     ) : null}
-//     {iscontatocpf ? (
-//       <ContentInputPage>
-//         <form name="cpf">
-//           <br />
-//           <label>C.P.F. .:</label>
-//           <input
-//             type="text"
-//             name="cpf"
-//             value={inputstrid}
-//             size={11}
-//             autoFocus={true}
-//             onChange={() => {}}
-//           />
-//           <br />
-//         </form>
-//       </ContentInputPage>
-//     ) : null}
-//   </ContentInputCenter>
-
-//  {!iseditar && !isbtncontinuar && isbtnenviar ? (
-//     <PanelConfResgateYellow
-//       isbgcolor={isbtnenviar}
-//       titulo={'Resgate para seu Acesso.'}
-//       subtitulo={'Dados Informados :'}
-//     >
-//       <p>&emsp;&emsp;Já temos em mãos :</p>
-//       <label>
-//         &emsp;&emsp;&emsp;# - ID Empresa....:{state.idemp}
-//         <span>{state.idemp}</span>
-//       </label>
-//       <label>
-//         &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-//         <span>{state.nmfant}</span>
-//       </label>
-//       {iscontatoemail ? (
-//         <label>
-//           &emsp;&emsp;&emsp;# - E-MAIL : <span>{inputstrid}</span>
-//         </label>
-//       ) : null}
-//       {iscontatosms || iscontatozap ? (
-//         <label>
-//           &emsp;&emsp;&emsp;# - Celular : <span>{inputstrid}</span>
-//         </label>
-//       ) : null}
-//       {iscontatocpf ? (
-//         <label>
-//           &emsp;&emsp;&emsp;# - C.P.F. :{' '}
-//           <span>+85{inputstrid}</span>
-//         </label>
-//       ) : null}
-//       <br />
-//       <h5>Obs:.</h5>
-//       <p>
-//         &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-//         Esquerda...
-//       </p>
-//       <p>
-//         &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
-//         Direita...
-//       </p>
-//       <br />
-//     </PanelConfResgateYellow>
-//   ) : null}
-
-// {isbtnenviar ? (
-//   <PanelConfResgateYellow
-//     isbgcolor={isbtnenviar}
-//     titulo={'Resgate para seu Acesso.'}
-//     subtitulo={'Dados Fornecidos :'}
-//   >
-//     <p>&emsp;&emsp;Já temos em mãos :</p>
-//     <label>
-//       &emsp;&emsp;&emsp;# - ID Empresa....:{state.idemp}
-//       <span>{state.idemp}</span>
-//     </label>
-//     <label>
-//       &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-//       <span>{state.nmfant}</span>
-//     </label>
-//     {iscontatoemail ? (
-//       <label>
-//         &emsp;&emsp;&emsp;# - E-MAIL : <span>{state.mail}</span>
-//       </label>
-//     ) : null}
-//     {iscontatosms || iscontatozap ? (
-//       <label>
-//         &emsp;&emsp;&emsp;# - Celular : <span>{state.fonec}</span>
-//       </label>
-//     ) : null}
-//     {iscontatocpf ? (
-//       <label>
-//         &emsp;&emsp;&emsp;# - C.P.F. : <span>+85{state.cpf}</span>
-//       </label>
-//     ) : null}
-//     <br />
-//     <h5>Obs:.</h5>
-//     <p>
-//       &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-//       Esquerda...
-//     </p>
-//     <p>
-//       &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
-//       Direita...
-//     </p>
-//     <br />
-//   </PanelConfResgateYellow>
-// ) : null}
-
-// const handlerStrIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//   const newValue = e.target.value;
-//   setMaskedEmail('');
-//   setMaskedFoneC('');
-//   setMaskedFoneZ('');
-//   setMaskedCpf('');
-//   setInputStrId(newValue);
-//   setIsChecaEdicao(false);
-//   setErroEdt('');
-
-//   if (iscontatoemail) {
-//     if (newValue.length === 0) {
-//       setErroEdt('Edite o seu Email.');
-//     } else {
-//       const masck = isEmailValid(newValue);
-//       if (masck === '') {
-//         setErroEdt('Edição Email INCOMPATIVEL.');
-//       } else {
-//         setMaskedEmail(newValue.toLocaleLowerCase());
-//         setInputStrId(maskedemail);
-//         setIsChecaEdicao(true);
-//       }
-//     }
-//   }
-
-//   if (iscontatosms || iscontatozap) {
-//     if (newValue === '') {
-//       setErroEdt('Edite nº Celular.');
-//     } else {
-//       const masked = isFoneCValid(newValue);
-//       if (masked === '') {
-//         setErroEdt('Edição de Nº INCOMPATIVEL.');
-//       } else {
-//         if (iscontatosms) {
-//           setMaskedFoneC(masked);
-//         } else {
-//           setMaskedFoneZ('(+55) ' + masked);
-//         }
-//         setIsChecaEdicao(true);
-//       }
-//     }
-//   }
-//   if (iscontatocpf) {
-//     if (newValue === '') {
-//       setErroEdt('Edite nº Doc. CPF.');
-//     } else {
-//       const masked = isCpfValid(newValue);
-//       if (masked === '') {
-//         setErroEdt('Edição Nº CPF INCOMPATIVEL.');
-//       } else {
-//         setMaskedCpf(masked);
-//         setIsChecaEdicao(true);
-//       }
-//     }
-//   }
-
-//   if (ischecaedicao) {
-//     setIsEdicao(true);
-//     setErroHelp(false);
-//     setIsBtnContinuar(false);
-//     setIsBtnEnviar(false);
-//   } else {
-//     if (newValue === '') {
-//       setIsChecaEdicao(false);
-//     } else {
-//       setIsChecaEdicao(true);
-//     }
-//   }
-// };
-// <div>
-//   <p>Senha MASTER.: {snhmaster}</p>
-//   <p>State idemp.......: {state.idemp ? state.idemp : 'vasio'}</p>
-//   <p>State nmfant......: {state.nmfant ? state.nmfant : 'vasio'}</p>
-//   <p>State.mdlogin.....: {state.mdlogin ? state.mdlogin : '0'}</p>
-//   <p>State nmlogin.....: {state.nmlogin ? state.nmlogin : 'vasio'}</p>
-//   <p>State.modulo......: {state.modulo}</p>
-//   <p>State.aplicacao...: {state.aplicacao}</p>
-//   <p>Stado para Contato.: </p>
-//   <p>Painel Edição......: {isedicao ? 'verdadeiro' : 'falso'}</p>
-//   <p>Dados InputStrId.: {inputstrid ? inputstrid : 'vasio'}</p>
-//   <p>State IsEdição...: {isedicao ? 'verdadeiro' : 'falso'}</p>
-//   <p>State IsChecar...: {ischecaedicao ? 'verdadeiro' : 'falso'}</p>
-//   <p>Painel Footer....: {ispnlfooter ? 'verdadeiro' : 'falso'}</p>
-//   <p>Stado Ação Botão.: </p>
-//   <p>IsBtnEdição......: {isbtnedicao ? 'verdadeiro' : 'falso'}</p>
-//   <p>IsBtnChecaEdição.: {ischecaedicao ? 'verdadeiro' : 'falso'}</p>
-//   <p>IsBtnContinuar...: {isbtncontinuar ? 'verdadeiro' : 'falso'}</p>
-//   <p>IsBtnEnviar......: {isbtnenviar ? 'verdadeiro' : 'falso'}</p>
-// </div>
-
-////////////////////
