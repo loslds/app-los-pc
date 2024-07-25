@@ -123,6 +123,9 @@ export const Resgate3 = () => {
   const [islistemps, setIsListEmps] = React.useState(false);
   const [isbtnhlplistemps, setIsBtnHlpListEmps] = React.useState(false);
 
+  const [helplista, setHelpLista] = React.useState('');
+  const [helpsinal, setHelpSinal] = React.useState(false);
+
   const [acesso, setAcess] = React.useState<IAcessos | undefined>(undefined);
   const [user, setUser] = React.useState<IUsers | undefined>(undefined);
   const [fones, setFones] = React.useState<IFones | undefined>(undefined);
@@ -240,18 +243,29 @@ export const Resgate3 = () => {
 
   const handlerBtnHlpListAcess = React.useCallback(() => {
     setIsBtnHlpListAcess((oldState) => !oldState);
+    setHelpLista('Lista Acesso');
+    setHelpSinal(islistacess);
+
   }, []);
 
   const handlerBtnHlpListUsers = React.useCallback(() => {
     setIsBtnHlpListUsers((oldState) => !oldState);
+    setHelpLista('Lista Usuário');
+    setHelpSinal(islistusers);
+
   }, []);
 
   const handlerBtnHlpListFones = React.useCallback(() => {
     setIsBtnHlpListFones((oldState) => !oldState);
+    setHelpLista('Lista Telefones');
+    setHelpSinal(islistfones);
+
   }, []);
 
   const handlerBtnHlpListEmps = React.useCallback(() => {
     setIsBtnHlpListEmps((oldState) => !oldState);
+    setHelpLista('Lista Empresas');
+    setHelpSinal(islistemps);
   }, []);
 
   // Função de callback
@@ -558,28 +572,30 @@ export const Resgate3 = () => {
               titbm="Fechar..."
               onclose={() => setIsBtnHlpListAcess(false)}
             >
-              <GetHelpList 
+              <GetHelpList lista={helplista} sinal={helpsinal} /> 
             </PageModal>
           ): null}
-          
-          {!isvalidado ? (
-            <PageModal
-              ptop="1%"
-              pwidth="40%"
-              pheight="40%"
-              titulo={edicao}
-              imgbm={close}
-              titbm="Fechar..."
-              onclose={() => setIsValidado(true)}
-            >
-              <CardImgMsg
-                img={notedicao}
-                txtaga={txtaga}
-                txtlabel={txtlabel}
-                txtp={txtp}
-              />
-            </PageModal>
-          ) : null}
+
+{/*           
+          // {!isvalidado ? (
+          //   <PageModal
+          //     ptop="1%"
+          //     pwidth="40%"
+          //     pheight="40%"
+          //     titulo={edicao}
+          //     imgbm={close}
+          //     titbm="Fechar..."
+          //     onclose={() => setIsValidado(true)}
+          //   >
+          //     <CardImgMsg
+          //       img={notedicao}
+          //       txtaga={txtaga}
+          //       txtlabel={txtlabel}
+          //       txtp={txtp}
+          //     />
+          //   </PageModal>
+          // ) : null}
+ */}
 
           <Pg.DivisionPgHztalPage />
 
