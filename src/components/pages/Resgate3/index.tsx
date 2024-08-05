@@ -50,11 +50,18 @@ import { IEmps, EmpsIndexById } from '../../../books/ListEmps.tsx';
 import botaoverde from '../../../assets/svgs/botaoverde.svg';
 import botaoverme from '../../../assets/svgs/botaoverme.svg';
 
+
 export interface HelpGetItem {
   nmpnl?: string;
   nmlst?: string;
   sinal?: boolean;
 }
+
+export interface HelpGetItemConect {
+  painel?: string,
+  lista:[nmlst?: string, valid?: boolean] 
+}
+
 
 export const Resgate3 = () => {
   //* dispado do uso do contexto *//
@@ -77,29 +84,34 @@ export const Resgate3 = () => {
   //* State para uso do Botão Helps na Pg. CASO CONEXÃO */////////////////////////
   //* State Abrir/Fechar Help através do Botão em Pg. *//
   const [helpconexao, setHelpConexao] = React.useState(false);
-  //* State guardar Nome do Painel aberto na Pg.  sobre ListAcessos *//
-  const [helplstacessonmpnl, setHelpLstAcessoNmPnl] = React.useState('');
+  const [helpdownload, setHelpDownload] = React.useState(false);
+  const [helpupdate, setHelpUpDate] = React.useState(false);
+  const [helpverify, setHelpVerify] = React.useState(false);
+  
+  //* State guardar Nome do Painel aberto na Pg.*//
+  const [helpnomepainel, setHelpNomePainel] = React.useState('');
+
   //* State guardar Nome da Lista para verificar Existência da Mesma. *//
   const [helplstacessonmlst, setHelpLstAcessoNmLst] = React.useState('');
   //* State guardar Semáfaro da Existencia da Lista. *//
   const [helplstacessovalid, setHelpLstAcessoValid] = React.useState(false);
 
   //* State guardar Nome do Painel aberto na Pg.  sobre ListUsers *//
-  const [helplstusersnmpnl, setHelpLstUsersNmPnl] = React.useState('');
+  //const [helplstusersnmpnl, setHelpLstUsersNmPnl] = React.useState('');
   //* State guardar Nome da Lista para verificar Existência da Mesma. *//
   const [helplstusersnmlst, setHelpLstUsersNmLst] = React.useState('');
   //* State guardar Semáfaro da Existencia da Lista. *//
   const [helplstusersvalid, setHelpLstUsersValid] = React.useState(false);
 
   //* State guardar Nome do Painel aberto na Pg.  sobre ListFones *//
-  const [helplstfonesnmpnl, setHelpLstFonesNmPnl] = React.useState('');
+  //const [helplstfonesnmpnl, setHelpLstFonesNmPnl] = React.useState('');
   //* State guardar Nome da Lista para verificar Existência da Mesma. *//
   const [helplstfonesnmlst, setHelpLstFonesNmLst] = React.useState('');
   //* State guardar Semáfaro da Existencia da Lista. *//
   const [helplstfonesvalid, setHelpLstFonesValid] = React.useState(false);
 
   //* State guardar Nome do Painel aberto na Pg.  sobre ListEmprs *//
-  const [helplstempsnmpnl, setHelpLstEmpsNmPnl] = React.useState('');
+  //const [helplstempsnmpnl, setHelpLstEmpsNmPnl] = React.useState('');
   //* State guardar Nome da Lista para verificar Existência da Mesma. *//
   const [helplstempsnmlst, setHelpLstEmpsNmLst] = React.useState('');
   //* State guardar Semáfaro da Existencia da Lista. *//
@@ -107,6 +119,15 @@ export const Resgate3 = () => {
 
   //* State Semáfaro da Existencia dentro o controle do useEffect. *//
   const [isconected, setIsConected] = React.useState(false);
+
+  const [isdownload, setIsDownload] = React.useState(false);  
+  const [isdownloaded, setIsDownloaded] = React.useState(false);
+  const [isupdate, setIsUpDate] = React.useState(false);
+  const [isupdated, setIsUpDated] = React.useState(false);
+  const [isverify, setIsVerify] = React.useState(false);
+  const [isverified, setIsVerified] = React.useState(false);
+  
+
   //* State Semáfaro da Validacao dentro do Procedimento de avaliação. *//
   const [isvadid, setIsValid] = React.useState(false);
   //* State das condições de visualização do Painel Aberto/Fechado e controle do
@@ -116,53 +137,122 @@ export const Resgate3 = () => {
   //* State para guardar os parametros da função da chamada do Help para ser
   //  utilizado no component CardSwitHelpResgate = ({ nmpnl, nmlst, sinal} :
   // TypeCardSwitHelpResgate) *//
-  const [gethelplstacessnmpnl, setGetHelpLstAcessNmPnl] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstacessnmlst, setGetHelpLstAcessNmLst] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstacessvalid, setGetHelpLstAcessValid] = React.useState<
-    HelpGetItem[]
-  >([]);
-
-  const [gethelplstusersnmpnl, setGetHelpLstUsersNmPnl] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstusersnmlst, setGetHelpLstUsersNmLst] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstusersvalid, setGetHelpLstUsersValid] = React.useState<
-    HelpGetItem[]
-  >([]);
-
-  const [gethelplstfonesnmpnl, setGetHelpLstFonesNmPnl] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstfonesnmlst, setGetHelpLstFonesNmLst] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstfonesvalid, setGetHelpLstFonesValid] = React.useState<
-    HelpGetItem[]
-  >([]);
-
-  const [gethelplstempsnmpnl, setGetHelpLstEmpsNmPnl] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstempsnmlst, setGetHelpLstEmpsNmLst] = React.useState<
-    HelpGetItem[]
-  >([]);
-  const [gethelplstempsvalid, setGetHelpLstEmpsValid] = React.useState<
-    HelpGetItem[]
-  >([]);
+  const [gethelplstacess, setGetHelpLstAcess] = React.useState<HelpGetItem[]>([]);
+  const [gethelplstusers, setGetHelpLstUsers] = React.useState<HelpGetItem[]>([]);
+  const [gethelplstfones, setGetHelpLstFones] = React.useState<HelpGetItem[]>([]);
+  const [gethelplstemps, setGetHelpLstEmps] = React.useState<HelpGetItem[]>([]);
   ////////////////////////////////////////////////////////////////////////////////
+  const [gethelpnItensConexao, setGetHelpItensConexao] = React.useState(
+    [
+      {
+        painel: 'Conexao',
+        lista: [
+          {
+            nmlst: 'LstAcessos',
+            valid: false
+          },
+          {
+            nmlst: 'LstUsers',
+            valid: false
+          },
+          {
+            nmlst: 'ListFones',
+            valid: false
+          },
+          {
+            nmlst: 'LstEmps',
+            valid: false
+          }
+        ]
+      }
+    ]
+  );
+  const [gethelpitensdownload, setGetHelpItensDownload] = React.useState(
+    [
+      {
+        painel: 'Download',
+        lista: [
+          {
+            nmlst: 'LstAcessos',
+            valid: false
+          },
+          {
+            nmlst: 'LstUsers',
+            valid: false
+          },
+          {
+            nmlst: 'ListFones',
+            valid: false
+          },
+          {
+            nmlst: 'LstEmps',
+            valid: false
+          }
+        ]
+      }
+    ]
+  );
+  ////////////////////////////////////////////////////////////////////////////////
+  const [gethelpitensupdate, setGetHelpItensUpDate] = React.useState(
+    [
+      {
+        painel: 'UpDate',
+        lista: [
+          {
+            nmlst: 'LstAcessos',
+            valid: false
+          },
+          {
+            nmlst: 'LstUsers',
+            valid: false
+          },
+          {
+            nmlst: 'ListFones',
+            valid: false
+          },
+          {
+            nmlst: 'LstEmps',
+            valid: false
+          }
+        ]
+      }
+    ]
+  );
+  ////////////////////////////////////////////////////////////////////////////////
+  const [gethelpitensverify, setGetHelpItensVerify] = React.useState(
+    [
+      {
+        painel: 'Conexao',
+        lista: [
+          {
+            nmlst: 'LstAcessos',
+            valid: false
+          },
+          {
+            nmlst: 'LstUsers',
+            valid: false
+          },
+          {
+            nmlst: 'ListFones',
+            valid: false
+          },
+          {
+            nmlst: 'LstEmps',
+            valid: false
+          }
+        ]
+      }
+    ]
+  );
+  ////////////////////////////////////////////////////////////////////////////////
+
 
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
   //////////////////////////////////////////////////////////////////////////////
 
-  const [isdownload, setIsDownload] = React.useState(false);
+  
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 4 });
@@ -219,6 +309,10 @@ export const Resgate3 = () => {
     setIsValid(false);
     setIsConexao(true);
     setIsDownload(false);
+    setIsDownloaded(false);
+    setIsUpDate(false);
+    setIsUpDated(false);
+
     setEdicao('C O N E C Ã O')
     setHelpConexao(false);
     setStart(true);
@@ -243,11 +337,12 @@ export const Resgate3 = () => {
     };
   };
 
-  // Função de callback
+
+  // Função de callback botão 
   const handlerConexao = React.useCallback(() => {
     setIsConected(isconexao);
     if (isconected) {
-      setHelpLstAcessoNmPnl('Conexao');
+      setHelpNomePainel('Conexao');
       setHelpLstAcessoNmLst('ListAcessos');
       setHelpLstAcessoValid(false);
       setIsValid(false);
@@ -259,7 +354,6 @@ export const Resgate3 = () => {
       }
       setHelpLstAcessoValid(isvadid);
       /////////////////////////
-      setHelpLstUsersNmPnl('Conexao');
       setHelpLstUsersNmLst('ListUsers');
       setHelpLstUsersValid(false);
       setIsValid(false);
@@ -271,7 +365,6 @@ export const Resgate3 = () => {
       }
       setHelpLstUsersValid(true);
       /////////////////////////
-      setHelpLstFonesNmPnl('Conexao');
       setHelpLstFonesNmLst('ListFones');
       setHelpLstFonesValid(false);
       setIsValid(false);
@@ -283,8 +376,7 @@ export const Resgate3 = () => {
       }
       setHelpLstFonesValid(isvadid);
       //////////////////////////
-      setHelpLstEmpsNmPnl('Conexao');
-      setHelpLstEmpsNmLst('ListFones');
+      setHelpLstEmpsNmLst('ListEmps');
       setHelpLstEmpsValid(false);
       setIsValid(false);
       // Criar lista EMPRESAS com INDEX ID
@@ -295,41 +387,78 @@ export const Resgate3 = () => {
       }
       setHelpLstEmpsValid(isvadid);
     }
+
   }, []);
 
   React.useEffect(() => {
     if (isconected) {
-      setGetHelpLstAcessNmPnl([
+      setGetHelpLstAcess([
         {
-          nmpnl: helplstacessonmpnl,
+          nmpnl: helpnomepainel,
           nmlst: helplstacessonmlst,
           sinal: helplstacessovalid
         }
       ]);
-
-      setGetHelpLstUsersNmPnl([
+      setGetHelpItensConexao(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstacessonmlst ? {
+            ...item, valid: helplstacessovalid } : item
+            )
+          } : p
+        )
+      );
+      
+      setGetHelpLstUsers([
         {
-          nmpnl: helplstusersnmpnl,
+          nmpnl: helpnomepainel,
           nmlst: helplstusersnmlst,
           sinal: helplstusersvalid
         }
       ]);
 
-      setGetHelpLstFonesNmPnl([
+      setGetHelpItensConexao(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstusersnmlst ? { 
+            ...item, valid: helplstusersvalid } : item
+            )
+          } : p
+        )
+      );
+
+      setGetHelpLstFones([
         {
-          nmpnl: helplstfonesnmpnl,
+          nmpnl: helpnomepainel,
           nmlst: helplstfonesnmlst,
-          sinal: helplstacessovalid
+          sinal: helplstfonesvalid
         }
       ]);
 
-      setGetHelpLstEmpsNmPnl([
+      setGetHelpItensConexao(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstfonesnmlst ? { 
+            ...item, valid: helplstfonesvalid } : item
+            )
+          } : p
+        )
+      );
+
+      setGetHelpLstEmps([
         {
-          nmpnl: helplstempsnmpnl,
+          nmpnl: helpnomepainel,
           nmlst: helplstempsnmlst,
           sinal: helplstempsvalid
         }
       ]);
+      
+      setGetHelpItensConexao(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstempsnmlst ? {
+            ...item, valid: helplstempsvalid } : item
+            )
+          } : p
+        )
+      );
+      
       if (!isdownload) {
         setIsDownload(true);
       }
@@ -344,11 +473,11 @@ export const Resgate3 = () => {
     isconexao,
     isdownload
   ]);
-
+///////////////////
   const handlerDownload = React.useCallback(() => {
-    setIsConected(isdownload);
-    if (isconected) {
-      setHelpLstAcessoNmPnl('Download');
+    setIsDownloaded(isdownload);
+    if (isdownloaded) {
+      setHelpNomePainel('Download');
       setHelpLstAcessoNmLst('ListAcessos');
       setHelpLstAcessoValid(false);
       setIsValid(false);
@@ -360,6 +489,124 @@ export const Resgate3 = () => {
       }
       setHelpLstAcessoValid(isvadid);
       /////////////////////////
+      setHelpLstUsersNmLst('ListUsers');
+      setHelpLstUsersValid(false);
+      setIsValid(false);
+      // Criar lista USUARIOS com INDEX ID
+      const Lstusuarios = UsersIndexById();
+      // Verificar se a lista de usuários vasia ou corrompida ou existente
+      if (Object.keys(Lstusuarios).length > 0) {
+        setIsValid(true);
+      }
+      setHelpLstUsersValid(true);
+      /////////////////////////
+      setHelpLstFonesNmLst('ListFones');
+      setHelpLstFonesValid(false);
+      setIsValid(false);
+      // Criar lista FONES com INDEX ID
+      const Lstfones = FonesIndexById();
+      // Verificar se a lista de Fones vasia ou corrompida ou existente
+      if (Object.keys(Lstfones).length > 0) {
+        setIsValid(true);
+      }
+      setHelpLstFonesValid(isvadid);
+      //////////////////////////
+      setHelpLstEmpsNmLst('ListEmps');
+      setHelpLstEmpsValid(false);
+      setIsValid(false);
+      // Criar lista EMPRESAS com INDEX ID
+      const LstEmps = EmpsIndexById();
+      // Verificar se a lista de Fones vasia ou corrompida ou existente
+      if (Object.keys(LstEmps).length > 0) {
+        setIsValid(true);
+      }
+      setHelpLstEmpsValid(isvadid);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (isdownloaded) {
+      setGetHelpLstAcess([
+        {
+          nmpnl: helpnomepainel,
+          nmlst: helplstacessonmlst,
+          sinal: helplstacessovalid
+        }
+      ]);
+      setGetHelpItensDownload(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstacessonmlst ? {
+            ...item, valid: helplstacessovalid } : item
+            )
+          } : p
+        )
+      );
+
+      setGetHelpLstUsers([
+        {
+          nmpnl: helpnomepainel,
+          nmlst: helplstusersnmlst,
+          sinal: helplstusersvalid
+        }
+      ]);
+      setGetHelpItensDownload(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstusersnmlst ? { 
+            ...item, valid: helplstusersvalid } : item
+            )
+          } : p
+        )
+      );
+
+      setGetHelpLstFones([
+        {
+          nmpnl: helpnomepainel,
+          nmlst: helplstfonesnmlst,
+          sinal: helplstfonesvalid
+        }
+      ]);
+      setGetHelpItensDownload(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstfonesnmlst ? { 
+            ...item, valid: helplstfonesvalid } : item
+            )
+          } : p
+        )
+      );
+
+      setGetHelpLstEmps([
+        {
+          nmpnl: helpnomepainel,
+          nmlst: helplstempsnmlst,
+          sinal: helplstempsvalid
+        }
+      ]);
+      setGetHelpItensDownload(prevState =>
+        prevState.map(p => p.painel === helpnomepainel ? {
+          ...p, lista: p.lista.map(item => item.nmlst === helplstempsnmlst ? {
+            ...item, valid: helplstempsvalid } : item
+            )
+          } : p
+        )
+      );
+
+      if (!isupdate) {
+        setIsUpDate(true);
+      }
+      setEdicao('D O W N L O A D')
+    }
+    setIsDownloaded(false);
+    if (isdownload) {
+      setIsDownload(false);
+    }
+  }, [
+    isdownloaded,
+    isdownload,
+    isupdate
+  ]);
+  /////////////////////////
+
+
 
   //////////////////////////////////////////////////////////////////////////////
   const handlerHelpPg = React.useCallback(() => {
@@ -370,44 +617,13 @@ export const Resgate3 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  const handlerHelpConexao = (str: string) => {
-    setHelpConexao(false);
-    switch (str) {
-      case 'Acessos':
-        setHelpConexao(true);
-        break;
-      case 'Usuarios':
-        setHelpConexao(true);
-        break;
-      case 'Telefones':
-        setHelpConexao(true);
-        break;
-      case 'Empresas':
-        setHelpConexao(true);
-        break;
-      default:
-        break;
-    }
-  };
-  const handlerHelpDownload = (str: string) => {
-    setHelpConexao(false);
-    switch (str) {
-      case 'Acessos':
-        setHelpConexao(true);
-        break;
-      case 'Usuarios':
-        setHelpConexao(true);
-        break;
-      case 'Telefones':
-        setHelpConexao(true);
-        break;
-      case 'Empresas':
-        setHelpConexao(true);
-        break;
-      default:
-        break;
-    }
-  };
+  const handlerHelpConexao = React.useCallback(() => {
+    setHelpConexao((oldState) => !oldState);
+  }, []);
+
+  const handlerHelpDownload = React.useCallback(() => {
+    setHelpDownload((oldState) => !oldState);
+  }, []);
 
 
   return (
@@ -466,7 +682,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpConexao('Usuarios')}
+                        onClick={handlerHelpConexao}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -478,7 +694,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpConexao('Teçefones')}
+                        onClick={handlerHelpConexao}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -490,7 +706,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpConexao('Empresas')}
+                        onClick={handlerHelpConexao}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -513,7 +729,7 @@ export const Resgate3 = () => {
               {/* /////// mostra painel Download /////////////////////////// */}
               {isdownload ? (
                 <PanelConfResgateYellow
-                  isbgcolor={!isconected}
+                  isbgcolor={isdownload}
                   titulo={'Downloads dos Data Center.'}
                   subtitulo={'Informações de Resgate:'}
                 >
@@ -521,48 +737,48 @@ export const Resgate3 = () => {
                   <div>
                     <ContentLabelTesto testo={'Acesso....:'}>
                       <ContentLabelButtonOnOff
-                        sinal={islistacess}
+                        sinal={helplstacessovalid}
                         pxheight="18px"
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpDownload('Acessos')}
+                        onClick={handlerHelpDownload}
                       />
                     </ContentLabelTesto>
                   </div>
                   <div>
                     <ContentLabelTesto testo={'Usuário...:'}>
                       <ContentLabelButtonOnOff
-                        sinal={islistusers}
+                        sinal={helplstusersvalid}
                         pxheight="18px"
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpDownload('Usuarios')}
+                        onClick={handlerHelpDownload}
                       />
                     </ContentLabelTesto>
                   </div>
                   <div>
                     <ContentLabelTesto testo={'Telefones.:'}>
                       <ContentLabelButtonOnOff
-                        sinal={islistusers}
+                        sinal={helplstfonesvalid}
                         pxheight="18px"
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpDownload('Telefones')}
+                        onClick={handlerHelpDownload}
                       />
                     </ContentLabelTesto>
                   </div>
                   <div>
                     <ContentLabelTesto testo={'Empresas:'}>
                       <ContentLabelButtonOnOff
-                        sinal={islistemps}
+                        sinal={helplstempsvalid}
                         pxheight="18px"
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpDownload('Empresas')}
+                        onClick={handlerHelpDownload}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -574,7 +790,7 @@ export const Resgate3 = () => {
                       Esquerda...
                     </p>
                     <p>
-                      &emsp;&emsp;Caso deseja " Proceguir.:", clique na Seta à
+                      &emsp;&emsp;Caso deseja " Up-Date.:", clique na Seta à
                       Direita...
                     </p>
                     <br />
@@ -597,9 +813,9 @@ export const Resgate3 = () => {
               onclose={() => setHelpConexao(false)}
             >
               <CardSwuitHelpResgate
-                hndpnl={gethelpnmlstconexao}
-                nmlst={gethelpnmlstconexao}
-                open={gethelpvalidconexao}
+                // hndpnl={gethelpconnect[0]}
+                // nmlst={gethelpconnect[,0]}
+                // open={gethelpconnect[,,0]}
               />
             </PageModal>
           ) : null}
@@ -615,9 +831,27 @@ export const Resgate3 = () => {
               onclose={() => setHelpDownload(false)}
             >
               <CardSwuitHelpResgate
-                hndpnl={gethelpnmlstdownload}
-                nmlst={gethelpnmlstdownload}
-                open={gethelpvaliddownload}
+                // hndpnl={gethelpnmlstdownload}
+                // nmlst={gethelpnmlstdownload}
+                // open={gethelpvaliddownload}
+              />
+            </PageModal>
+          ) : null}
+          {/* ////// Botão Modal Para Help UpDate ////////////////////////// */}
+          {helpverify? (
+            <PageModal
+              ptop="1%"
+              pwidth="40%"
+              pheight="40%"
+              titulo={edicao}
+              imgbm={close}
+              titbm="Fechar..."
+              onclose={() => setHelpVerify(false)}
+            >
+              <CardSwuitHelpResgate
+                // hndpnl={gethelpnmlstdownload}
+                // nmlst={gethelpnmlstdownload}
+                // open={gethelpvaliddownload}
               />
             </PageModal>
           ) : null}
@@ -641,11 +875,26 @@ export const Resgate3 = () => {
               </ContentCardPageTitle>
             ) : null}
 
-            {isdownloaddc ? (
+            {isdownload ? (
               <ContentCardPageTitle>
                 <h3>DonwLoad : [ Data Center! ]</h3>
               </ContentCardPageTitle>
             ) : null}
+
+            {isupdate ? (
+              <ContentCardPageTitle>
+                <h3>UpDate : [ Informações! ]</h3>
+              </ContentCardPageTitle>
+            ) : null}
+
+            {isverify ? (
+              <ContentCardPageTitle>
+                <h3>Checar : [ Verificação! ]</h3>
+              </ContentCardPageTitle>
+            ) : null}
+
+
+
             {/* //////////////////////// mostra botão Conectar //////////////////////////// */}
             {isconexao ? (
               <ContentSidePageBottonLabel istitl={start} title={'Conectar.: '}>
@@ -658,19 +907,49 @@ export const Resgate3 = () => {
               </ContentSidePageBottonLabel>
             ) : null}
             {/* //////////////////////// mostra botão DownloadDC //////////////////////////// */}
-            {isdownloaddc ? (
+            {isdownload ? (
               <ContentSidePageBottonLabel
                 istitl={start}
-                title={'Prosseguir.: '}
+                title={'Up=Date.: '}
               >
                 <ContentSidePageBottonButton
                   pxheight="40px"
                   img={setaesq}
-                  titbtn="Prosseguir..."
-                  onclick={() => {}}
+                  titbtn="Up-Date..."
+                  onclick={handlerDownload}
                 />
               </ContentSidePageBottonLabel>
             ) : null}
+            {isupdate ? (
+              <ContentSidePageBottonLabel
+                istitl={start}
+                title={'Checar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight="40px"
+                  img={setaesq}
+                  titbtn="Checar..."
+                  onclick={() => {}}
+                  // onclick={handlerChecar}
+                />
+              </ContentSidePageBottonLabel>
+            ) : null}
+            {isverify ? (
+              <ContentSidePageBottonLabel
+                istitl={start}
+                title={'Verificar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight="40px"
+                  img={setaesq}
+                  titbtn="Verificar..."
+                  onclick={() => {}}
+                  // onclick={handlerVerificar}
+                />
+              </ContentSidePageBottonLabel>
+            ) : null}
+
+
           </ContentSidePagePanelBotton>
 
           {helppg ? (
