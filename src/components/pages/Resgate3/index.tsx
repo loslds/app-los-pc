@@ -25,7 +25,7 @@ import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
-import { CardHelpResgate1 } from '../../contentHelp/CardHelpResgate1.tsx';
+import { CardHelpResgate4 } from '../../contentHelp/CardHelpResgate4.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
@@ -625,7 +625,13 @@ export const Resgate3 = () => {
     setHelpDownload((oldState) => !oldState);
   }, []);
 
+  const handlerHelpUpdate = React.useCallback(() => {
+    setHelpDownload((oldState) => !oldState);
+  }, []);
 
+  const handlerHelpVerify = React.useCallback(() => {
+    setHelpDownload((oldState) => !oldState);
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <ThemeResgate
@@ -670,7 +676,7 @@ export const Resgate3 = () => {
                         pxwidth="140px"
                         pxhght="16px"
                         pxwdth="16px"
-                        onClick={() => handlerHelpConexao('Acessos')}
+                        onClick={() => handlerHelpConexao}
                       />
                     </ContentLabelTesto>
                   </div>
@@ -962,9 +968,9 @@ export const Resgate3 = () => {
               titbm="Fechar..."
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpResgate1
-                imghlp={resgatehlp3}
-                imgcard={resgatepg3}
+              <CardHelpResgate2
+                imghlp={resgatehlp4}
+                imgcard={resgatepg4}
                 imgbm={close}
                 titbm="Fechar..."
                 onclose={() => setHelpPg(false)}
