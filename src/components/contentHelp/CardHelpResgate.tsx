@@ -2,22 +2,22 @@ import React from 'react';
 import * as MD from '../Modal/styles';
 import { CardModalTexto } from '../Modal/CardModalTexto';
 import { PageModalHelp } from '../Modal/PageModalHelp';
-import { CardAcessoSistema } from './CardAcessoSistema';
+import { CardAcessoResgate } from './CardAcessoResgate';
 
-type TypeCardHelpResgate0 = {
+type TypeCardHelpResgate = {
   imghlp?: string;
   imgcard?: string;
   imgbm?: string;
   titbm?: string;
   onclose?: () => void;
 };
-export const CardHelpResgate0 = ({
+export const CardHelpResgate = ({
   imghlp,
   imgcard,
   imgbm,
   titbm,
   onclose
-}: TypeCardHelpResgate0) => {
+}: TypeCardHelpResgate) => {
   const [help, setHelp] = React.useState(false);
 
   return (
@@ -86,12 +86,12 @@ export const CardHelpResgate0 = ({
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'90%'}
-          titulo={'Acesso ao Sistema.'}
+          titulo={'Acesso ao Resgate.'}
           imgbm={imgbm}
           titbm={titbm}
           onclose={onclose}
         >
-          <CardAcessoSistema imgcard={imgcard} />
+          <CardAcessoResgate imgcard={imgcard} />
         </PageModalHelp>
       ) : null}
     </CardModalTexto>

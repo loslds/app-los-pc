@@ -5,7 +5,7 @@ import { AcessoUseForm } from '../contexts/login/ContextAcesso.tsx';
 
 import { CardModalTexto } from '../Modal/CardModalTexto';
 import { PageModalHelp } from '../Modal/PageModalHelp';
-import { CardAcessoSistema } from './CardAcessoSistema';
+import { CardAcessoResgate } from './CardAcessoResgate';
 
 type TypeCardHelpResgate1 = {
   imghlp?: string;
@@ -91,12 +91,12 @@ export const CardHelpResgate1 = ({
           ptop={'1%'}
           pwidth={'65%'}
           pheight={'90%'}
-          titulo={'Acessando ao Sistema.'}
+          titulo={'Acesso ao Resgate.'}
           imgbm={imgbm}
           titbm={titbm}
           onclose={onclose}
         >
-          <CardAcessoSistema imgcard={imgcard} />
+          <CardAcessoResgate imgcard={imgcard} />
         </PageModalHelp>
       ) : null}
     </CardModalTexto>
