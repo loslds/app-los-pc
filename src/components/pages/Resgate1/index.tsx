@@ -21,15 +21,15 @@ import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
+import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpResgate1 } from '../../contentHelp/CardHelpResgate1.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
-import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
-
 import close from '../../../assets/svgs/close.svg';
-import resgatepg2 from '../../../assets/svgs/resgatepg2.svg';
-import resgatehlp2 from '../../../assets/svgs/resgatehlp2.svg';
+import resgatepg1 from '../../../assets/svgs/resgatepg1.svg';
+import resgatehlp1 from '../../../assets/svgs/resgatehlp1.svg';
+
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
@@ -153,7 +153,7 @@ export const Resgate1 = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeResgate
-        imgsys= {resgatepg2}
+        imgsys= {resgatepg1}
         titbtnsys = 'Home...'
         onclicksys = {goto('/')}
         titlepg = 'Acesso Resgate.'
@@ -270,14 +270,15 @@ export const Resgate1 = () => {
               onclose={() => setHelpPg(false)}
             >
               <CardHelpResgate1
-                imghlp={resgatehlp2}
-                imgcard={resgatepg2}
+                imghlp={resgatehlp1}
+                imgcard={resgatepg1}
                 imgbm={close}
                 titbm={'Fechar...'}
                 onclose={() => setHelpPg(false)}
               />
             </PageModal>
           ) : null}
+
           {onpanel ? (
             <PageModal
               ptop={'1%'}

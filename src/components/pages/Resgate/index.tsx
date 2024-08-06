@@ -21,15 +21,15 @@ import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
-//import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
-import { PageModal } from '../../Modal/PageModal.tsx';
-import { CardHelpResgate0 } from '../../contentHelp/CardHelpResgate0.tsx';
-import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
+import { PageModal } from '../../Modal/PageModal.tsx';
+import { CardHelpResgate } from '../../contentHelp/CardHelpResgate.tsx';
+import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import close from '../../../assets/svgs/close.svg';
-import resgatepg1 from '../../../assets/svgs/resgatepg1.svg';
-import resgatehlp1 from '../../../assets/svgs/resgatehlp1.svg';
+import resgatepg from '../../../assets/svgs/resgatepg.svg';
+import resgatehlp from '../../../assets/svgs/resgatehlp.svg';
+
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
@@ -133,7 +133,7 @@ export const Resgate = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeResgate
-        imgsys={resgatepg1}
+        imgsys={resgatepg}
         titbtnsys={'Home...'}
         onclicksys={goto('/')}
         titlepg={'Acesso Resgate.'}
@@ -246,15 +246,16 @@ export const Resgate = () => {
               titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpResgate0
-                imghlp={resgatehlp1}
-                imgcard={resgatepg1}
+              <CardHelpResgate
+                imghlp={resgatehlp}
+                imgcard={resgatepg}
                 imgbm={close}
                 titbm={'Fechar...'}
                 onclose={() => setHelpPg(false)}
               />
             </PageModal>
           ) : null}
+
           {onpanel ? (
             <PageModal
               ptop={'1%'}

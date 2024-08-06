@@ -28,13 +28,15 @@ import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 
 import { PageModal } from '../../Modal/PageModal.tsx';
-import { CardHelpResgate1 } from '../../contentHelp/CardHelpResgate1.tsx';
+import { CardHelpResgate2 } from '../../contentHelp/CardHelpResgate2.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
-//import { CardImgMsg } from '../../contentHelp/CardImgMsg.tsx';
-
+import resgatepg2 from '../../../assets/svgs/resgatepg2.svg';
+import resgatehlp2 from '../../../assets/svgs/resgatehlp2.svg';
 import close from '../../../assets/svgs/close.svg';
+
 import resgatepg3 from '../../../assets/svgs/resgatepg3.svg';
 import resgatehlp3 from '../../../assets/svgs/resgatehlp3.svg';
+
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
@@ -526,9 +528,9 @@ export const Resgate2 = () => {
               titbm={'Fechar...'}
               onclose={() => setHelpPg(false)}
             >
-              <CardHelpResgate1
-                imghlp={resgatehlp3}
-                imgcard={resgatepg3}
+              <CardHelpResgate2
+                imghlp={resgatehlp2}
+                imgcard={resgatepg2}
                 imgbm={close}
                 titbm={'Fechar...'}
                 onclose={() => setHelpPg(false)}
