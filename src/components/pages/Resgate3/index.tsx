@@ -36,9 +36,6 @@ import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-//import notedicao from '../../../assets/svgs/notedicao.svg';
-//import botaoverde from '../../../assets/svgs/botaoverde.svg';
-//import botaoverme from '../../../assets/svgs/botaoverme.svg';
 
 import { IAcessos, AcessosIndexById } from '../../../books/ListAcessos.tsx';
 import { IUsers, UsersIndexById } from '../../../books/ListUsers.tsx';

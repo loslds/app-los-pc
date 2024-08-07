@@ -174,26 +174,17 @@ export const Resgate2 = () => {
     if (state.mdlogin === 1) {
       setErroEdt('Aguardando Edição.');
       if (inputstrid === '') {
-        setErroEdt('Edite nº Doc. CPF.');
-      } else if (!isNumber(inputstrid)) {
-        setErroEdt('Edite somente Nº...');
-      } else if (inputstrid.length < 11) {
-        setErroEdt('Continue a Edição...');
-      } else if (inputstrid.length > 11) {
-        setErroEdt('Excesso de Nº na Edição...');
-      } else if (!isCpfValid(inputstrid)) {
+        setErroEdt('Edite o seu Email.');
+      } else if (!isValidarEmail(inputstrid)) {
         setErroEdt('Edição Incompatível.');
-      } else if (!isExistsCPF(inputstrid)) {
-        setErroEdt('Nº de Edição Inválido.');
       } else {
-        masck = MasckedCpf(inputstrid);
-        setMaskedCpf(masck);
+        masck = MasckedEmail(inputstrid);
+        setMaskedEmail(masck);
         setErroEdt('Possível Edição.');
-        setStatusBtn('[ CONFIRMAÇÃO... ]');
+        setStatusBtn('[ CONTINUAR... ]');
         setIsConf(true);
       }
     }
-
     //////////////////////////
     if (state.mdlogin === 2 || state.mdlogin === 3) {
       setErroEdt('Aguardando Edição.');
@@ -224,14 +215,22 @@ export const Resgate2 = () => {
     if (state.mdlogin === 4) {
       setErroEdt('Aguardando Edição.');
       if (inputstrid === '') {
-        setErroEdt('Edite o seu Email.');
-      } else if (!isValidarEmail(inputstrid)) {
+        setErroEdt('Edite nº Doc. CPF.');
+      } else if (!isNumber(inputstrid)) {
+        setErroEdt('Edite somente Nº...');
+      } else if (inputstrid.length < 11) {
+        setErroEdt('Continue a Edição...');
+      } else if (inputstrid.length > 11) {
+        setErroEdt('Excesso de Nº na Edição...');
+      } else if (!isCpfValid(inputstrid)) {
         setErroEdt('Edição Incompatível.');
+      } else if (!isExistsCPF(inputstrid)) {
+        setErroEdt('Nº de Edição Inválido.');
       } else {
-        masck = MasckedEmail(inputstrid);
-        setMaskedEmail(masck);
+        masck = MasckedCpf(inputstrid);
+        setMaskedCpf(masck);
         setErroEdt('Possível Edição.');
-        setStatusBtn('[ CONTINUAR... ]');
+        setStatusBtn('[ CONFIRMAÇÃO... ]');
         setIsConf(true);
       }
     }
