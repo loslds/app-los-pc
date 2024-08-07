@@ -17,8 +17,6 @@ import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
-//import { ContentCardCollunsCenterPage } from '../ContentCardCollunsCenterPage.tsx';
-//mport { ContentInputMainPage } from '../ContentInputMainPage.tsx';
 import { ContentInputPage } from '../ContentInputPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
@@ -30,18 +28,14 @@ import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpResgate2 } from '../../contentHelp/CardHelpResgate2.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
+import close from '../../../assets/svgs/close.svg';
 import resgatepg2 from '../../../assets/svgs/resgatepg2.svg';
 import resgatehlp2 from '../../../assets/svgs/resgatehlp2.svg';
-import close from '../../../assets/svgs/close.svg';
-
-import resgatepg3 from '../../../assets/svgs/resgatepg3.svg';
-import resgatehlp3 from '../../../assets/svgs/resgatehlp3.svg';
 
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
-//import notedicao from '../../../assets/svgs/notedicao.svg';
 
 import {
   isValidarEmail,
@@ -273,7 +267,7 @@ export const Resgate2 = () => {
   return (
     <ThemeProvider theme={theme}>
       <ThemeResgate
-        imgsys={resgatepg3}
+        imgsys={resgatepg2}
         titbtnsys="Home..."
         onclicksys={goto('/')}
         titlepg="Acesso Resgate."
@@ -291,163 +285,163 @@ export const Resgate2 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-          { iseditar ? (
-            <ContentCardBoxCenterPage pwidth="200px">
-              <ContentCardPageTitle>
-                <h4>{edicao}</h4>
-              </ContentCardPageTitle>
+            {iseditar ? (
+              <ContentCardBoxCenterPage pwidth="200px">
+                <ContentCardPageTitle>
+                  <h4>{edicao}</h4>
+                </ContentCardPageTitle>
 
-              {state.mdlogin === 1  ? (
-                <ContentInputPage>
-                  <form name="mail">
-                    <br />
-                    <input
-                      type="email"
-                      //name="mail"
-                      value={inputstrid}
-                      size={25}
-                      autoFocus={true}
-                      onChange={(e) => setInputStrId(e.target.value)}
-                    />
-                    {erroedt !== '' ? <span>{erroedt}</span> : null}
-                    <br />
-                  </form>
-                </ContentInputPage>
-              ) : null}
+                {state.mdlogin === 1 ? (
+                  <ContentInputPage>
+                    <form name="mail">
+                      <br />
+                      <input
+                        type="email"
+                        //name="mail"
+                        value={inputstrid}
+                        size={25}
+                        autoFocus={true}
+                        onChange={(e) => setInputStrId(e.target.value)}
+                      />
+                      {erroedt !== '' ? <span>{erroedt}</span> : null}
+                      <br />
+                    </form>
+                  </ContentInputPage>
+                ) : null}
 
-              {state.mdlogin === 2 ? (
-                <ContentInputPage>
-                  <form name="sms">
-                    <br />
-                    <label>Fone.*DDD *Nº :</label>
-                    <input
-                      type="text"
-                      name="sms"
-                      value={inputstrid}
-                      size={11}
-                      autoFocus={true}
-                      onChange={(e) => setInputStrId(e.target.value)}
-                    />
-                    {erroedt !== '' ? <span>{erroedt}</span> : null}
-                    <br />
-                  </form>
-                </ContentInputPage>
-              ) : null}
+                {state.mdlogin === 2 ? (
+                  <ContentInputPage>
+                    <form name="sms">
+                      <br />
+                      <label>Fone.*DDD *Nº :</label>
+                      <input
+                        type="text"
+                        name="sms"
+                        value={inputstrid}
+                        size={11}
+                        autoFocus={true}
+                        onChange={(e) => setInputStrId(e.target.value)}
+                      />
+                      {erroedt !== '' ? <span>{erroedt}</span> : null}
+                      <br />
+                    </form>
+                  </ContentInputPage>
+                ) : null}
 
-              {state.mdlogin === 3 ? (
-                <ContentInputPage>
-                  <form name="zap">
-                    <br />
-                    <label>Fone.*DDD *Nº :</label>
-                    <input
-                      type="text"
-                      name="zap"
-                      value={inputstrid}
-                      size={11}
-                      autoFocus={true}
-                      onChange={(e) => setInputStrId(e.target.value)}
-                    />
-                    {erroedt !== '' ? <span>{erroedt}</span> : null}
-                    <br />
-                  </form>
-                </ContentInputPage>
-              ) : null}
+                {state.mdlogin === 3 ? (
+                  <ContentInputPage>
+                    <form name="zap">
+                      <br />
+                      <label>Fone.*DDD *Nº :</label>
+                      <input
+                        type="text"
+                        name="zap"
+                        value={inputstrid}
+                        size={11}
+                        autoFocus={true}
+                        onChange={(e) => setInputStrId(e.target.value)}
+                      />
+                      {erroedt !== '' ? <span>{erroedt}</span> : null}
+                      <br />
+                    </form>
+                  </ContentInputPage>
+                ) : null}
 
-              {state.mdlogin === 4 ? (
-                <ContentInputPage>
-                  <form name="cpf">
-                    <br />
-                    <label>C.P.F. *Nº Doc.:</label>
-                    <input
-                      type="text"
-                      name="cpf"
-                      value={inputstrid}
-                      size={11}
-                      autoFocus={true}
-                      onChange={(e) => setInputStrId(e.target.value)}
-                    />
-                    {erroedt !== '' ? <span>{erroedt}</span> : null}
-                    <br />
-                  </form>
-                </ContentInputPage>
-              ) : null}
-            </ContentCardBoxCenterPage>
+                {state.mdlogin === 4 ? (
+                  <ContentInputPage>
+                    <form name="cpf">
+                      <br />
+                      <label>C.P.F. *Nº Doc.:</label>
+                      <input
+                        type="text"
+                        name="cpf"
+                        value={inputstrid}
+                        size={11}
+                        autoFocus={true}
+                        onChange={(e) => setInputStrId(e.target.value)}
+                      />
+                      {erroedt !== '' ? <span>{erroedt}</span> : null}
+                      <br />
+                    </form>
+                  </ContentInputPage>
+                ) : null}
+              </ContentCardBoxCenterPage>
             ) : (
               <ContentCardBoxCenterPage pwidth="200px">
-              <ContentCardPageTitle>
-                <h4>{edicao}</h4>
-              </ContentCardPageTitle>
-              {btnconfirmation || btncontinuar ? (
-                <Pg.ContainerCardBoxMainPage>
-                  <PanelConfResgateYellow
-                    isbgcolor={ispnlfooter}
-                    titulo={'Resgate para seu Acesso.'}
-                    subtitulo={'Dados da Informação :'}
-                  >
-                    <p>&emsp;&emsp;Já temos em mãos :</p>
-                    <label>
-                      &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
-                      <span>{state.idemp}</span>
-                    </label>
-                    <label>
-                      &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-                      <span>{state.nmfant}</span>
-                    </label>
-                    {state.mdlogin === 1 ? (
+                <ContentCardPageTitle>
+                  <h4>{edicao}</h4>
+                </ContentCardPageTitle>
+                {btnconfirmation || btncontinuar ? (
+                  <Pg.ContainerCardBoxMainPage>
+                    <PanelConfResgateYellow
+                      isbgcolor={ispnlfooter}
+                      titulo={'Resgate para seu Acesso.'}
+                      subtitulo={'Dados da Informação :'}
+                    >
+                      <p>&emsp;&emsp;Já temos em mãos :</p>
                       <label>
-                        &emsp;&emsp;&emsp;# - E-MAIL :{' '}
-                        <span>{maskedemail}</span>
+                        &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                        <span>{state.idemp}</span>
                       </label>
-                    ) : null}
-                    {state.mdlogin === 2 ? (
                       <label>
-                        &emsp;&emsp;&emsp;# - Celular :{' '}
-                        <span>{maskedfonec}</span>
+                        &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                        <span>{state.nmfant}</span>
                       </label>
-                    ) : null}
-                    {state.mdlogin === 3 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - Whatsapp :{' '}
-                        <span>{maskedfonez}</span>
-                      </label>
-                    ) : null}
-                    {state.mdlogin === 4 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
-                      </label>
-                    ) : null}
-                    <br />
-                    <h5>Obs:.</h5>
-                    {btnconfirmation ? (
-                      <div>
-                        <p>
-                          &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-                          Esquerda...
-                        </p>
-                        <p>
-                          &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta
-                          à Direita...
-                        </p>
-                      </div>
-                    ) : (
-                      <div>
-                        <p>
-                          &emsp;&emsp;Caso queira " Abortar.: " clique na Seta à
-                          Esquerda...
-                        </p>
-                        <p>
-                          &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta
-                          à Direita...
-                        </p>
-                      </div>
-                    )}
-                    <br />
-                  </PanelConfResgateYellow>
-                </Pg.ContainerCardBoxMainPage>
-              ) : null}
-            </ContentCardBoxCenterPage>
-            )
-          }
+                      {state.mdlogin === 1 ? (
+                        <label>
+                          &emsp;&emsp;&emsp;# - E-MAIL :{' '}
+                          <span>{maskedemail}</span>
+                        </label>
+                      ) : null}
+                      {state.mdlogin === 2 ? (
+                        <label>
+                          &emsp;&emsp;&emsp;# - Celular :{' '}
+                          <span>{maskedfonec}</span>
+                        </label>
+                      ) : null}
+                      {state.mdlogin === 3 ? (
+                        <label>
+                          &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                          <span>{maskedfonez}</span>
+                        </label>
+                      ) : null}
+                      {state.mdlogin === 4 ? (
+                        <label>
+                          &emsp;&emsp;&emsp;# - C.P.F. :{' '}
+                          <span>{maskedcpf}</span>
+                        </label>
+                      ) : null}
+                      <br />
+                      <h5>Obs:.</h5>
+                      {btnconfirmation ? (
+                        <div>
+                          <p>
+                            &emsp;&emsp;Caso queira " Voltar.: " clique na Seta
+                            à Esquerda...
+                          </p>
+                          <p>
+                            &emsp;&emsp;Caso deseja " Confirmar.:", clique na
+                            Seta à Direita...
+                          </p>
+                        </div>
+                      ) : (
+                        <div>
+                          <p>
+                            &emsp;&emsp;Caso queira " Abortar.: " clique na Seta
+                            à Esquerda...
+                          </p>
+                          <p>
+                            &emsp;&emsp;Caso deseja " Continuar.:", clique na
+                            Seta à Direita...
+                          </p>
+                        </div>
+                      )}
+                      <br />
+                    </PanelConfResgateYellow>
+                  </Pg.ContainerCardBoxMainPage>
+                ) : null}
+              </ContentCardBoxCenterPage>
+            )}
           </ContentCardBoxMainPage>
 
           <Pg.DivisionPgHztalPage />
