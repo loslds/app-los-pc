@@ -50,36 +50,20 @@ import {
 
 export const Resgate2 = () => {
   const { state, dispatch } = AcessoUseForm();
-
   const [snhmaster, setSnhMaster] = React.useState('');
-  //  const [iscontatoemail, setIsContatoEmail] = React.useState(false);
-  //  const [iscontatosms, setIsContatoSms] = React.useState(false);
-  //  const [iscontatozap, setIsContatoZap] = React.useState(false);
-  //  const [iscontatocpf, setIsContatoCpf] = React.useState(false);
+  const [aplicacao, setAplicacao] = React.useState('');
   const [edicao, setEdicao] = React.useState('');
-
   const [inputstrid, setInputStrId] = React.useState('');
-  //  const [txtaga, setTxtAga] = React.useState('');
-  //  const [txtlabel, setTxtLabel] = React.useState('');
-  //  const [txtp, setTxtP] = React.useState('');
-
   const [erroedt, setErroEdt] = React.useState('');
-
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
-  //  const [errohelp, setErroHelp] = React.useState(false);
-
   const [iseditar, setIsEditar] = React.useState(false); // painel edição
-  //  const [isconfirmation, setIsConfirmation] = React.useState(false);
+  const [isview, setIsView] = React.useState(false);
   const [btnconfirmation, setBtnConfirmation] = React.useState(false);
-  //  const [isview, setIsView] = React.useState(false);
-  //  const [iscontinuar, setIsContinuar] = React.useState(false);
-  const [btncontinuar, setBtnContinuar] = React.useState(false);
   const [isconf, setIsConf] = React.useState(false);
-
+  const [btncontinuar, setBtnContinuar] = React.useState(false);
   const [statusbtn, setStatusBtn] = React.useState('');
   const [ispnlfooter, setIsPnlFooter] = React.useState(false); // painel footer
-
   const [maskedemail, setMaskedEmail] = React.useState('');
   const [maskedfonec, setMaskedFoneC] = React.useState('');
   const [maskedfonez, setMaskedFoneZ] = React.useState('');
@@ -88,21 +72,10 @@ export const Resgate2 = () => {
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate2' });
-    //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
-    //dispatch({ type: AcessoUseActions.setPin, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
-    // dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
     dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
-    //    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Resgatar: Contato Usuário'
@@ -128,9 +101,10 @@ export const Resgate2 = () => {
     }
     setSnhMaster(criasmstr);
     setIsEditar(true);
-    setBtnContinuar(false);
-    setBtnConfirmation(false);
     setIsConf(false);
+    setBtnConfirmation(false);
+    setIsView(false);
+    setBtnContinuar(false);
     setIsPnlFooter(true);
   }, [dispatch]);
 
@@ -204,7 +178,7 @@ export const Resgate2 = () => {
           setMaskedFoneC(masck);
         }
         if (state.mdlogin === 3) {
-          setMaskedFoneZ('(+55) ' + masck);
+          setMaskedFoneZ(masck);
         }
         setIsConf(true);
         setErroEdt('Possível Edição.');
@@ -233,20 +207,31 @@ export const Resgate2 = () => {
         setStatusBtn('[ CONFIRMAÇÃO... ]');
         setIsConf(true);
       }
+      if (isconf) {
+        setBtnConfirmation(isconf);
+      }
     }
-    setBtnConfirmation(isconf);
   }, [isconf, inputstrid, state.mdlogin]);
 
   const handlerConfirmation = () => {
-    if (iseditar) {
+    setBtnConfirmation(false);
+    if (isconf) {
       setIsEditar(false);
+      setIsView(isconf);
     }
-    if (btnconfirmation) {
-      setBtnConfirmation(false);
+    setIsConf(false);
+  };
+  React.useEffect(() => {
+    if (isview) {
+      setBtnContinuar(isview);
     }
-    if (!btncontinuar) {
-      setBtnContinuar(true);
+  }, [isview]);
+
+  const handlerContinuar = () => {
+    if (isview) {
+      setBtnConfirmation(true);
     }
+    setIsView(false);
   };
 
   React.useEffect(() => {
@@ -261,7 +246,7 @@ export const Resgate2 = () => {
         dispatch({ type: AcessoUseActions.setCpf, payload: inputstrid });
       }
     }
-  }, [btncontinuar, state.mdlogin, inputstrid]);
+  }, [btncontinuar, state.mdlogin, inputstrid, iseditar]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -283,239 +268,119 @@ export const Resgate2 = () => {
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
+
           <ContentCardBoxMainPage>
-            {iseditar ? (
-              <ContentCardBoxCenterPage pwidth="200px">
-                <ContentCardPageTitle>
-                  <h4>{edicao}</h4>
-                </ContentCardPageTitle>
-
-                {state.mdlogin === 1 ? (
-                  <ContentInputPage>
-                    <form name="mail">
-                      <br />
-                      <input
-                        type="email"
-                        //name="mail"
-                        value={inputstrid}
-                        size={25}
-                        autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
-                      />
-                      {erroedt !== '' ? <span>{erroedt}</span> : null}
-                      <br />
-                    </form>
-                  </ContentInputPage>
-                ) : null}
-
-                {state.mdlogin === 2 ? (
-                  <ContentInputPage>
-                    <form name="sms">
-                      <br />
-                      <label>Fone.*DDD *Nº :</label>
-                      <input
-                        type="text"
-                        name="sms"
-                        value={inputstrid}
-                        size={11}
-                        autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
-                      />
-                      {erroedt !== '' ? <span>{erroedt}</span> : null}
-                      <br />
-                    </form>
-                  </ContentInputPage>
-                ) : null}
-
-                {state.mdlogin === 3 ? (
-                  <ContentInputPage>
-                    <form name="zap">
-                      <br />
-                      <label>Fone.*DDD *Nº :</label>
-                      <input
-                        type="text"
-                        name="zap"
-                        value={inputstrid}
-                        size={11}
-                        autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
-                      />
-                      {erroedt !== '' ? <span>{erroedt}</span> : null}
-                      <br />
-                    </form>
-                  </ContentInputPage>
-                ) : null}
-
-                {state.mdlogin === 4 ? (
-                  <ContentInputPage>
-                    <form name="cpf">
-                      <br />
-                      <label>C.P.F. *Nº Doc.:</label>
-                      <input
-                        type="text"
-                        name="cpf"
-                        value={inputstrid}
-                        size={11}
-                        autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
-                      />
-                      {erroedt !== '' ? <span>{erroedt}</span> : null}
-                      <br />
-                    </form>
-                  </ContentInputPage>
-                ) : null}
-              </ContentCardBoxCenterPage>
-            ) : (
-              <ContentCardBoxCenterPage pwidth="200px">
-                <ContentCardPageTitle>
-                  <h4>{edicao}</h4>
-                </ContentCardPageTitle>
-                {btnconfirmation || btncontinuar ? (
-                  <Pg.ContainerCardBoxMainPage>
-                    <PanelConfResgateYellow
-                      isbgcolor={ispnlfooter}
-                      titulo={'Resgate para seu Acesso.'}
-                      subtitulo={'Dados da Informação :'}
-                    >
-                      <p>&emsp;&emsp;Já temos em mãos :</p>
-                      <label>
-                        &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
-                        <span>{state.idemp}</span>
-                      </label>
-                      <label>
-                        &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-                        <span>{state.nmfant}</span>
-                      </label>
-                      {state.mdlogin === 1 ? (
-                        <label>
-                          &emsp;&emsp;&emsp;# - E-MAIL :{' '}
-                          <span>{maskedemail}</span>
-                        </label>
-                      ) : null}
-                      {state.mdlogin === 2 ? (
-                        <label>
-                          &emsp;&emsp;&emsp;# - Celular :{' '}
-                          <span>{maskedfonec}</span>
-                        </label>
-                      ) : null}
-                      {state.mdlogin === 3 ? (
-                        <label>
-                          &emsp;&emsp;&emsp;# - Whatsapp :{' '}
-                          <span>{maskedfonez}</span>
-                        </label>
-                      ) : null}
-                      {state.mdlogin === 4 ? (
-                        <label>
-                          &emsp;&emsp;&emsp;# - C.P.F. :{' '}
-                          <span>{maskedcpf}</span>
-                        </label>
-                      ) : null}
-                      <br />
-                      <h5>Obs:.</h5>
-                      {btnconfirmation ? (
-                        <div>
-                          <p>
-                            &emsp;&emsp;Caso queira " Voltar.: " clique na Seta
-                            à Esquerda...
-                          </p>
-                          <p>
-                            &emsp;&emsp;Caso deseja " Confirmar.:", clique na
-                            Seta à Direita...
-                          </p>
-                        </div>
-                      ) : (
-                        <div>
-                          <p>
-                            &emsp;&emsp;Caso queira " Abortar.: " clique na Seta
-                            à Esquerda...
-                          </p>
-                          <p>
-                            &emsp;&emsp;Caso deseja " Continuar.:", clique na
-                            Seta à Direita...
-                          </p>
-                        </div>
-                      )}
-                      <br />
-                    </PanelConfResgateYellow>
-                  </Pg.ContainerCardBoxMainPage>
-                ) : null}
-              </ContentCardBoxCenterPage>
-            )}
+            <ContentCardBoxCenterPage pwidth="200px">
+              <ContentCardPageTitle>
+                <h4>{edicao}</h4>
+              </ContentCardPageTitle>
+              {iseditar && state.mdlogin === 1 ? (
+                <ContentInputPage>
+                  <form name="mail">
+                    <br />
+                    <input
+                      type="email"
+                      //name="mail"
+                      value={inputstrid}
+                      size={25}
+                      autoFocus={true}
+                      onChange={(e) => setInputStrId(e.target.value)}
+                    />
+                    {erroedt !== '' ? <span>{erroedt}</span> : null}
+                    <br />
+                  </form>
+                </ContentInputPage>
+              ) : null}
+              {iseditar && state.mdlogin === 2 ? (
+                <ContentInputPage>
+                  <form name="sms">
+                    <br />
+                    <label>Fone.*DDD *Nº :</label>
+                    <input
+                      type="text"
+                      name="sms"
+                      value={inputstrid}
+                      size={11}
+                      autoFocus={true}
+                      onChange={(e) => setInputStrId(e.target.value)}
+                    />
+                    {erroedt !== '' ? <span>{erroedt}</span> : null}
+                    <br />
+                  </form>
+                </ContentInputPage>
+              ) : null}
+              {iseditar && state.mdlogin === 3 ? (
+                <ContentInputPage>
+                  <form name="zap">
+                    <br />
+                    <label>Fone.*DDD *Nº :</label>
+                    <input
+                      type="text"
+                      name="zap"
+                      value={inputstrid}
+                      size={11}
+                      autoFocus={true}
+                      onChange={(e) => setInputStrId(e.target.value)}
+                    />
+                    {erroedt !== '' ? <span>{erroedt}</span> : null}
+                    <br />
+                  </form>
+                </ContentInputPage>
+              ) : null}
+              {iseditar && state.mdlogin === 4 ? (
+                <ContentInputPage>
+                  <form name="cpf">
+                    <br />
+                    <label>C.P.F. *Nº Doc.:</label>
+                    <input
+                      type="text"
+                      name="cpf"
+                      value={inputstrid}
+                      size={11}
+                      autoFocus={true}
+                      onChange={(e) => setInputStrId(e.target.value)}
+                    />
+                    {erroedt !== '' ? <span>{erroedt}</span> : null}
+                    <br />
+                  </form>
+                </ContentInputPage>
+              ) : null}
+            </ContentCardBoxCenterPage>
           </ContentCardBoxMainPage>
-
           <Pg.DivisionPgHztalPage />
 
-          {iseditar && btnconfirmation ? (
-            <ContentSidePagePanelBotton
-              bordas="3px"
-              open={ispnlfooter}
-              pwidth="100%"
-            >
-              <ContentSidePageBottonLabel
-                istitl={ispnlfooter}
-                title={'Voltar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setaesq}
-                  titbtn={'Voltar...'}
-                  onclick={goto('/resgate1')}
-                />
-              </ContentSidePageBottonLabel>
-
+          <ContentSidePagePanelBotton
+            bordas="3px"
+            open={ispnlfooter}
+            pwidth="100%"
+          >
+            <ContentSidePageBottonLabel istitl={true} title={'Voltar.: '}>
+              <ContentSidePageBottonButton
+                pxheight={'40px'}
+                img={setaesq}
+                titbtn={'Volta...'}
+                onclick={goto('/resgate1')}
+              />
               <ContentBoxLabelPage label={statusbtn} />
 
-              {inputstrid !== '' ? (
-                <ContentSidePageBottonLabel
-                  istitl={btnconfirmation}
-                  title={'Confirmar.: '}
-                >
+              {true ? (
+                <ContentSidePageBottonLabel istitl={true} title={'Confirma ? '}>
                   <ContentSidePageBottonButton
-                    pxheight="40px"
+                    pxheight={'40px'}
                     img={setadir}
-                    titbtn=" Confirmar..."
+                    titbtn={'Confirmar...'}
                     onclick={handlerConfirmation}
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
-            </ContentSidePagePanelBotton>
-          ) : (
-            <ContentSidePagePanelBotton
-              bordas="3px"
-              open={btncontinuar}
-              pwidth="100%"
-            >
-              <ContentSidePageBottonLabel
-                istitl={btncontinuar}
-                title={'Abortar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setaesq}
-                  titbtn={'Abortar...'}
-                  onclick={goto('/resgate')}
-                />
-              </ContentSidePageBottonLabel>
-              <ContentBoxLabelPage label={statusbtn} />
-              <ContentSidePageBottonLabel
-                istitl={btncontinuar}
-                title={'Continuar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setadir}
-                  titbtn={'Continuar...'}
-                  onclick={goto('/resgate3')}
-                />
-              </ContentSidePageBottonLabel>
-            </ContentSidePagePanelBotton>
-          )}
+            </ContentSidePageBottonLabel>
+          </ContentSidePagePanelBotton>
 
           {helppg ? (
             <PageModal
               ptop={'1%'}
               pwidth={'50%'}
-              pheight={'88%'}
+              pheight={'75%'}
               titulo={'Acesso Resgate.'}
               imgbm={close}
               titbm={'Fechar...'}
@@ -533,12 +398,12 @@ export const Resgate2 = () => {
 
           {onpanel ? (
             <PageModal
-              ptop="1%"
-              pwidth="65%"
-              pheight="95%"
-              titulo="DADOS Context Login."
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'95%'}
+              titulo={'DADOS Context Login.'}
               imgbm={close}
-              titbm="Fechar..."
+              titbm={'Fechar...'}
               onclose={() => setOnPanel(false)}
             >
               <CardInfoLogin />
@@ -549,3 +414,179 @@ export const Resgate2 = () => {
     </ThemeProvider>
   );
 };
+
+{
+  /* 
+              {btnconfirmation ? (
+                <PanelConfResgateYellow
+                  isbgcolor={btnconfirmation}
+                  titulo={'Resgate para seu Acesso.'}
+                  subtitulo={'Dados da Informação :'}
+                >
+                  <p>&emsp;&emsp;Já temos em mãos :</p>
+                  <label>
+                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                    <span>{state.idemp}</span>
+                  </label>
+                  <label>
+                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                    <span>{state.nmfant}</span>
+                  </label>
+                  {state.mdlogin === 1 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{maskedemail}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Celular : <span>{maskedfonec}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                      <span>{maskedfonez}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 4 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
+                    </label>
+                  ) : null}
+                  <br />
+                  <h5>Obs:.</h5>
+                  <div>
+                    <p>
+                      &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
+                      Esquerda...
+                    </p>
+                    <p>
+                      &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta à
+                      Direita...
+                    </p>
+                  </div>
+                </PanelConfResgateYellow>
+              ) : null}
+
+              {iseditar && isview ? (
+                <PanelConfResgateYellow
+                  isbgcolor={isview}
+                  titulo={'Resgate para seu Acesso.'}
+                  subtitulo={'Dados Confirmados :'}
+                >
+                  <p>&emsp;&emsp;Já temos em mãos :</p>
+                  <label>
+                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                    <span>{state.idemp}</span>
+                  </label>
+                  <label>
+                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                    <span>{state.nmfant}</span>
+                  </label>
+                  {state.mdlogin === 1 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{state.mail}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Celular : <span>{state.fonec}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                      <span>{state.fonez}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 4 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{state.cpf}</span>
+                    </label>
+                  ) : null}
+                  <br />
+                  <h5>Obs:.</h5>
+                  <div>
+                    <p>
+                      &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
+                      Esquerda...
+                    </p>
+                    <p>
+                      &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
+                      Direita...
+                    </p>
+                  </div>
+                </PanelConfResgateYellow>
+              ) : null}
+*/
+}
+
+{
+  /* ///////// mostra cx footer dos botões ////////////////////// */
+}
+{
+  /*            
+            <ContentSidePagePanelBotton
+              bordas="3px"
+              open={ispnlfooter}
+              pwidth="100%"
+            >
+              {isconf ? (
+                <ContentSidePageBottonLabel istitl={isconf} title={'Voltar.: '}>
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setaesq}
+                    titbtn={'Volta...'}
+                    onclick={goto('/resgate1')}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+
+              <ContentCardPageTitle>
+                <h3>{statusbtn}</h3>
+              </ContentCardPageTitle>
+
+              {isconf ? (
+                <ContentSidePageBottonLabel
+                  istitl={isconf}
+                  title={'Confirma ? '}
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Confirmar...'}
+                    onclick={handlerConfirmation}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+
+              {isview ? (
+                <ContentSidePageBottonLabel
+                  istitl={isview}
+                  title={'Proceguir.: '}
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Prosseguir...'}
+                    onclick={handlerContinuar}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+
+              {btncontinuar ? (
+                <ContentSidePageBottonLabel
+                  istitl={isview}
+                  title={'Proceguir.: '}
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Prosseguir...'}
+                    onclick={goto('/resgate3')}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+            </ContentSidePagePanelBotton>
+          </ContentCardBoxMainPage> */
+}

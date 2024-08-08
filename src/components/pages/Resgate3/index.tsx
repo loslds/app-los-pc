@@ -1226,6 +1226,7 @@ export const Resgate3 = () => {
             {ishome ? <h4>Resgate para Acesso ao Sistema.</h4> : null}
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
+
             <ContentCardBoxCenterPage pwidth="200px">
               <ContentCardPageTitle>
                 {isconexao ? <h4>Conectar com DataCenter.</h4> : null}

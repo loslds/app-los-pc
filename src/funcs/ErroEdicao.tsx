@@ -81,6 +81,21 @@ export function MasckedFoneC(fonec: string): string {
   return cleaned.replace(fonecRegex, '($1) $2-$3');
 }
 ////////////////////////////////////////////////////////////
+// validar telefone WhatsApp
+export function isFoneZValid(fonez: string): boolean {
+  // Remove todos os caracteres não numéricos
+  const cleaned = fonez.replace(/\D/g, '');
+  const fonezRegex = /^\+\d{2}\s\d{5}\s\d{4}$/;
+  return fonezRegex.test(cleaned);
+}
+
+// mascarar telefone Celular
+export function MasckedFoneZ(fonez: string): string {
+  const cleaned = fonez.replace(/\D/g, '');
+  const fonezRegex = /^(\d{2})(\d{2})(\d{5})(\d{4})$/;
+  return cleaned.replace(fonezRegex, '+$1 ($2) $3-$4');
+}
+////////////////////////////////////////////////////////////
 // testa se foi editado somente numeros
 export function isNumber(str: string): boolean {
   const strRegex = /^[0-9]+$/; // Apenas números

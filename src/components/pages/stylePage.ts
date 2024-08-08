@@ -176,7 +176,7 @@ export const ContainerTextoBgPanelYellow = styled.div<TypeContainerTextoBgPanelY
   margin: 0px 0px 0px 0px;
   min-height: 40px;
   width: 100%;
-  overflow-y: auto;
+  //overflow-y: auto;
   display: flex row;
   flex-wrap: wrap;
   flex-direction: center;
@@ -369,12 +369,9 @@ export const ContainerPanelPage = styled.div<TypeContainerPanelPage>`
   min-height: 40px;
   width: ${({ pwidth }) => pwidth || '32%'};
   display: ${({open}) => open ? 'flex' : 'none' };
-  //  display: ${props => (props.open ? 'flex' : 'none')};
   min-height: 60px;
   flex-wrap: wrap;
   justify-content: center;
-  //color:  ${props => props.theme.colors.textColor};
-  //background: transparent;
 `;
 
 type TypeContainerPanelPageFlex = {
@@ -421,7 +418,6 @@ export const ContainerBtnSRigthPage = styled.div`
   border: none;
   padding: 0px 0px 0px 0px;
   margin: 2px 5px 2px 5px;
-  //background: transparent;
   min-width: 35px;
   display: flex;
   flex-flow: row;
@@ -429,8 +425,7 @@ export const ContainerBtnSRigthPage = styled.div`
   justify-content: right;
   align-items: center;
   align-content: center;
-  //color:  ${props => props.theme.colors.textColor};
-`;
+ `;
 
 type  TypeContainerCustonBtn ={
   pxheight?: string;
