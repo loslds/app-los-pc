@@ -43,6 +43,8 @@ import {
   isNumber,
   isFoneCValid,
   MasckedFoneC,
+  isFoneZValid,
+  MasckedFoneZ,
   isCpfValid,
   isExistsCPF,
   MasckedCpf
@@ -51,17 +53,28 @@ import {
 export const Resgate2 = () => {
   const { state, dispatch } = AcessoUseForm();
   const [snhmaster, setSnhMaster] = React.useState('');
-  const [aplicacao, setAplicacao] = React.useState('');
   const [edicao, setEdicao] = React.useState('');
   const [inputstrid, setInputStrId] = React.useState('');
   const [erroedt, setErroEdt] = React.useState('');
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
+  
+  const [isconf, setIsConf] = React.useState(false);
   const [iseditar, setIsEditar] = React.useState(false); // painel edição
+
+  const [iscont, setIsCont] = React.useState(false);
+  const [btncontinuar, setBtnContinuar] = React.useState(false);
+
   const [isview, setIsView] = React.useState(false);
   const [btnconfirmation, setBtnConfirmation] = React.useState(false);
-  const [isconf, setIsConf] = React.useState(false);
-  const [btncontinuar, setBtnContinuar] = React.useState(false);
+
+  const [isprosseg, setIsProsseg] = React.useState(false);
+  const [btnprosseguir, setBtnProssegir] = React.useState(false);
+
+  const [ttView, setTtView] = React.useState('');
+  
+  
+  
   const [statusbtn, setStatusBtn] = React.useState('');
   const [ispnlfooter, setIsPnlFooter] = React.useState(false); // painel footer
   const [maskedemail, setMaskedEmail] = React.useState('');
@@ -100,12 +113,22 @@ export const Resgate2 = () => {
       setEdicao('Através de : Perguntas.');
     }
     setSnhMaster(criasmstr);
-    setIsEditar(true);
+    
     setIsConf(false);
-    setBtnConfirmation(false);
-    setIsView(false);
+    setIsEditar(true);
+  
+    setIsCont(false);
     setBtnContinuar(false);
+  
+    setIsView(false);
+    setBtnConfirmation(false);
+  
+    setIsProsseg(false);
+    setBtnProssegir(false);
     setIsPnlFooter(true);
+  
+    setTtView('');
+  
   }, [dispatch]);
 
   const [theme, setTheme] = React.useState(dark);
@@ -140,8 +163,8 @@ export const Resgate2 = () => {
     setMaskedFoneC('');
     setMaskedFoneZ('');
     setMaskedCpf('');
-    setBtnConfirmation(false);
     setBtnContinuar(false);
+    setBtnConfirmation(false);
     setIsConf(false);
     setStatusBtn('[ EDIÇÃO... ]');
     let masck = '';
@@ -156,11 +179,12 @@ export const Resgate2 = () => {
         setMaskedEmail(masck);
         setErroEdt('Possível Edição.');
         setStatusBtn('[ CONTINUAR... ]');
+        setTtView('EMAIl');
         setIsConf(true);
       }
     }
     //////////////////////////
-    if (state.mdlogin === 2 || state.mdlogin === 3) {
+    if (state.mdlogin === 2) {
       setErroEdt('Aguardando Edição.');
       if (inputstrid === '') {
         setErroEdt('Edite nº Celular.');
@@ -177,12 +201,34 @@ export const Resgate2 = () => {
         if (state.mdlogin === 2) {
           setMaskedFoneC(masck);
         }
+        setErroEdt('Possível Edição.');
+        setStatusBtn('[ CONFIRMAÇÃO... ]');
+        setTtView('SMS');
+        setIsConf(true);
+      }
+    }
+    //////////////////////////
+    if (state.mdlogin === 3) {
+      setErroEdt('Aguardando Edição.');
+      if (inputstrid === '') {
+        setErroEdt('Edite nº Celular.');
+      } else if (!isNumber(inputstrid)) {
+        setErroEdt('Edite somente Nº...');
+      } else if (inputstrid.length < 13) {
+        setErroEdt('Continue a Edição...');
+      } else if (inputstrid.length > 13) {
+        setErroEdt('Excesso de Nº na Edição...');
+      } else if (!isFoneZValid(inputstrid)) {
+        setErroEdt('Edição Incompatível.');
+      } else {
+        masck = MasckedFoneZ(inputstrid);
         if (state.mdlogin === 3) {
           setMaskedFoneZ(masck);
         }
-        setIsConf(true);
         setErroEdt('Possível Edição.');
         setStatusBtn('[ CONFIRMAÇÃO... ]');
+        setTtView('SMS');
+        setIsConf(true);
       }
     }
     ////////////////////////////
@@ -208,15 +254,14 @@ export const Resgate2 = () => {
         setIsConf(true);
       }
       if (isconf) {
-        setBtnConfirmation(isconf);
+        setBtnContinuar(isconf);
       }
     }
   }, [isconf, inputstrid, state.mdlogin]);
 
-  const handlerConfirmation = () => {
+  const handlerContinuar = () => {
     setBtnConfirmation(false);
     if (isconf) {
-      setIsEditar(false);
       setIsView(isconf);
     }
     setIsConf(false);
@@ -224,10 +269,13 @@ export const Resgate2 = () => {
   React.useEffect(() => {
     if (isview) {
       setBtnContinuar(isview);
+      if (iseditar){
+        setIsEditar(false);
+      }
     }
-  }, [isview]);
+  }, [isview,iseditar]);
 
-  const handlerContinuar = () => {
+  const handlerConf = () => {
     if (isview) {
       setBtnConfirmation(true);
     }
@@ -346,9 +394,56 @@ export const Resgate2 = () => {
                 </ContentInputPage>
               ) : null}
             </ContentCardBoxCenterPage>
+            {isview ? (
+                <PanelConfResgateYellow
+                isbgcolor={isview}
+                titulo={'Resgate para seu Acesso.'}
+                subtitulo={'Dados par Informação SMS :'}
+              >
+                <p>&emsp;&emsp;Já temos em mãos :</p>
+                {state.mdlogin === 1 ? (
+                  <label>
+                    &emsp;&emsp;&emsp;# - E-MAIL : <span>{maskedemail}</span>
+                  </label>
+                ) : null}
+                {state.mdlogin === 2 ? (
+                  <label>
+                    &emsp;&emsp;&emsp;# - Celular : <span>{maskedfonec}</span>
+                  </label>
+                ) : null}
+                {state.mdlogin === 3 ? (
+                  <label>
+                    &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                    <span>{maskedfonez}</span>
+                  </label>
+                ) : null}
+                {state.mdlogin === 4 ? (
+                  <label>
+                    &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
+                  </label>
+                ) : null}
+                <br />
+                <h5>Obs:.</h5>
+                <div>
+                  <p>
+                    &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
+                    Esquerda...
+                  </p>
+                  <p>
+                    &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
+                    Direita...
+                  </p>
+                </div>
+              </PanelConfResgateYellow>
+          
+            ):null}
+
+
+
           </ContentCardBoxMainPage>
           <Pg.DivisionPgHztalPage />
 
+          
           <ContentSidePagePanelBotton
             bordas="3px"
             open={ispnlfooter}
@@ -363,18 +458,20 @@ export const Resgate2 = () => {
               />
               <ContentBoxLabelPage label={statusbtn} />
 
-              {true ? (
+              {isconf ? (
                 <ContentSidePageBottonLabel istitl={true} title={'Confirma ? '}>
                   <ContentSidePageBottonButton
                     pxheight={'40px'}
                     img={setadir}
                     titbtn={'Confirmar...'}
-                    onclick={handlerConfirmation}
+                    onclick={handlerContinuar}
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
             </ContentSidePageBottonLabel>
           </ContentSidePagePanelBotton>
+
+          
 
           {helppg ? (
             <PageModal

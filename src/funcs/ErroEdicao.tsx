@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 export function ErroEdicao(nrerro: number) {
   const [isrtn, setIsRtn] = useState(true);
@@ -85,7 +86,7 @@ export function MasckedFoneC(fonec: string): string {
 export function isFoneZValid(fonez: string): boolean {
   // Remove todos os caracteres não numéricos
   const cleaned = fonez.replace(/\D/g, '');
-  const fonezRegex = /^\+\d{2}\s\d{5}\s\d{4}$/;
+  const fonezRegex = /^(\d{2})(\d{2})(\d{5})(\d{4})$/;
   return fonezRegex.test(cleaned);
 }
 
@@ -95,6 +96,44 @@ export function MasckedFoneZ(fonez: string): string {
   const fonezRegex = /^(\d{2})(\d{2})(\d{5})(\d{4})$/;
   return cleaned.replace(fonezRegex, '+$1 ($2) $3-$4');
 }
+////////////////////////////////////////////////////////////
+// reconhecimento do google existencia do telefones
+
+export function isTelelefoneZValid(fonez: string): boolean {
+  const phoneNumber = parsePhoneNumberFromString(fonez);
+  return phoneNumber?.isValid() ?? false;
+}
+
+// função para Validar DDI conforme suas Regiões
+// obs: a string do telefone devera vir com as mascaras DDI:
+// (+**?***?)
+// export function extrairDDI(fonez: string): string | null {
+//   // Expressão regular para capturar o DDI do formato (+DDI)
+//   const ddiRegex = /^\(\+(\d{1,3})\)/;
+
+//   // Executa a expressão regular na string formatada
+//   const matches = fonez.match(ddiRegex);
+
+//   // Se houver correspondência, retorna o DDI; caso contrário, retorna null
+//   return matches ? matches[1] : null;
+// }
+
+// export function isDDIValid(fone:string):boolean => {
+
+//   let ddi = extrairDDI(fone);
+//   if (ddi === null){
+//     return false;
+//   }
+
+// // Remove todos os caracteres não numéricos
+// const cleaned = fone.replace(/\D/g, '');
+
+// if(cleaned !) {
+//   case
+// }
+
+//};
+
 ////////////////////////////////////////////////////////////
 // testa se foi editado somente numeros
 export function isNumber(str: string): boolean {
