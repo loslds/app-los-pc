@@ -66,9 +66,8 @@ export const Resgate2 = () => {
   const [isview, setIsView] = React.useState(false);
   const [btnconfirmation, setBtnConfirmation] = React.useState(false);
 
-  // const [isprosseg, setIsProsseg] = React.useState(false);
-  // const [btnprosseguir, setBtnProsseguir] = React.useState(false);
-
+  const [isprosseg, setIsProsseg] = React.useState(false);
+  const [btnprosseguir, setBtnProsseguir] = React.useState(false);
 
   const [ttView, setTtView] = React.useState('');
 
@@ -123,8 +122,8 @@ export const Resgate2 = () => {
     setIsView(false);
     setBtnConfirmation(false);
 
-    // setIsProsseg(false);
-    // setBtnProsseguir(false);
+    setIsProsseg(false);
+    setBtnProsseguir(false);
 
     setIsPnlFooter(true);
 
@@ -246,56 +245,39 @@ export const Resgate2 = () => {
       }
       if (isconf) {
         setBtnContinuar(isconf);
+        //setIsView(false);
+        //setBtnConfirmation(false);
       }
     }
   }, [isconf, inputstrid, state.mdlogin]);
 
-  const handlerContinuar = () => {
-    if (isconf) {
-      if (btncontinuar) {
-        setBtnConfirmation(isconf);
-      }
-    }
-  };
-  React.useEffect(() => {
-    if (isconf) {
-      if (!btncontinuar) {
-        setBtnContinuar(true);
-      }
-      //   if (!isview) {
-      //     setIsView(true);
-      //   }
-      //   if (iseditar) {
-      //     setIsEditar(false);
-      //   }
-      //   if (isconf) {
-      //     setIsConf(false);
-      //   }
-    }
-  }, [isconf, btncontinuar]);
-  ///////////////////////////////////////////////
+  const handlerContinuar = React.useEffect(() => {
+    //setIsEditar(false);
+    //    setBtnContinuar(false);
+    //    setIsView(true);
+    //    setBtnConfirmation(true);
+  }, []);
 
   ///////////////////////////////////////////////
-  const handlerConfirmation = () => {
-    setIsConf(false);
-    setIsView(true);
-    if (btncontinuar) {
-      setBtnConfirmation(true);
-      setBtnContinuar(false);
-    }
-  };
-  React.useEffect(() => {
-    if (!btnconfirmation) {
-      setBtnConfirmation(true);
-      if (!isview) {
-        setIsView(true);
-      }
-      if (isconf) {
-        setIsConf(false);
-      }
-    }
-    // }
-  }, [isview, btnconfirmation]);
+  const handlerConfirmation = React.useEffect(() => {
+    // setBtnConfirmation(false);
+    // setIsConf(false);
+    // setIsView(true);
+    // setIsProsseg(true);
+    // setBtnProsseguir(true);
+  }, []);
+  // React.useEffect(() => {
+  //   if (!btnconfirmation) {
+  //     setBtnConfirmation(true);
+  //     if (!isview) {
+  //       setIsView(true);
+  //     }
+  //     if (isconf) {
+  //       setIsConf(false);
+  //     }
+  //   }
+  //   // }
+  // }, [isview, btnconfirmation]);
 
   // React.useEffect(() => {
   //   // if (btncontinuar) {
@@ -410,125 +392,145 @@ export const Resgate2 = () => {
                   </ContentInputPage>
                 ) : null}
               </ContentCardBoxCenterPage>
-            ) : (
+            ) : null}
+
+            {isconf ? (
               <ContentCardBoxCenterPage pwidth="200px">
                 <ContentCardPageTitle>
                   <h4>{edicao}</h4>
                 </ContentCardPageTitle>
+                <PanelConfResgateYellow
+                  isbgcolor={isconf}
+                  titulo={'Resgate para seu Acesso.'}
+                  subtitulo={'Dados par Informação SMS :'}
+                >
+                  <p>&emsp;&emsp;Já temos em mãos :</p>
 
-                {isconf ? (
-                  <PanelConfResgateYellow
-                    isbgcolor={isconf}
-                    titulo={'Resgate para seu Acesso.'}
-                    subtitulo={'Dados par Informação SMS :'}
-                  >
-                    <p>&emsp;&emsp;Já temos em mãos :</p>
-
-                    {state.mdlogin === 1 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - E-MAIL :{' '}
-                        <span>{maskedemail}</span>
-                      </label>
-                    ) : null}
-                    {state.mdlogin === 2 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - Celular :{' '}
-                        <span>{maskedfonec}</span>
-                      </label>
-                    ) : null}
-                    {state.mdlogin === 3 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - Whatsapp :{' '}
-                        <span>{maskedfonez}</span>
-                      </label>
-                    ) : null}
-                    {state.mdlogin === 4 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
-                      </label>
-                    ) : null}
-                    <br />
-                    <h5>Obs:.</h5>
-                    <div>
-                      <p>
-                        &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-                        Esquerda...
-                      </p>
-                      <p>
-                        &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
-                        Direita...
-                      </p>
-                    </div>
-                  </PanelConfResgateYellow>
-                ) : null}
-
-                {isview ? (
-                  <PanelConfResgateYellow
-                    isbgcolor={isview}
-                    titulo={'Resgate para seu Acesso.'}
-                    subtitulo={'Dados á Confirmar...:'}
-                  >
-                    <h4>Dados em mãos :</h4>
-
+                  {state.mdlogin === 1 ? (
                     <label>
-                      &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
-                      <span>{state.idemp}</span>
+                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{maskedemail}</span>
                     </label>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
                     <label>
-                      &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-                      <span>{state.nmfant}</span>
+                      &emsp;&emsp;&emsp;# - Celular : <span>{maskedfonec}</span>
                     </label>
-
-                    <h4>Dados Transcritos para "C O N F I R M A Ç Ã O".</h4>
-
-                    {state.mdlogin === 1 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - E-MAIL :{' '}
-                        <span>{maskedemail}</span>
-                      </label>
-                    ) : null}
-                    {state.mdlogin === 2 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - Celular :{' '}
-                        <span>{maskedfonec}</span>
-                      </label>
-                    ) : null}
-                    {state.mdlogin === 3 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - Whatsapp :{' '}
-                        <span>{maskedfonez}</span>
-                      </label>
-                    ) : null}
-                    {state.mdlogin === 4 ? (
-                      <label>
-                        &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
-                      </label>
-                    ) : null}
-                    <br />
-                    <h5>Obs:.</h5>
-                    <div>
-                      <p>
-                        &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-                        Esquerda...
-                      </p>
-                      <p>
-                        &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta à
-                        Direita...
-                      </p>
-                    </div>
-                  </PanelConfResgateYellow>
-                ) : null}
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                      <span>{maskedfonez}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 4 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
+                    </label>
+                  ) : null}
+                  <br />
+                  <h5>Obs:.</h5>
+                  <div>
+                    <p>
+                      &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
+                      Esquerda...
+                    </p>
+                    <p>
+                      &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
+                      Direita...
+                    </p>
+                  </div>
+                </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
-            )}
+            ) : null}
+
+            {isview ? (
+              <ContentCardBoxCenterPage pwidth="200px">
+                <ContentCardPageTitle>
+                  <h4>{edicao}</h4>
+                </ContentCardPageTitle>
+                <PanelConfResgateYellow
+                  isbgcolor={isview}
+                  titulo={'Resgate para seu Acesso.'}
+                  subtitulo={'Dados á Confirmar...:'}
+                >
+                  <h4>Dados em mãos :</h4>
+
+                  <label>
+                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
+                    <span>{state.idemp}</span>
+                  </label>
+                  <label>
+                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
+                    <span>{state.nmfant}</span>
+                  </label>
+
+                  <h4>Dados Transcritos para "C O N F I R M A Ç Ã O".</h4>
+
+                  {state.mdlogin === 1 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{maskedemail}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 2 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Celular : <span>{maskedfonec}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 3 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
+                      <span>{maskedfonez}</span>
+                    </label>
+                  ) : null}
+                  {state.mdlogin === 4 ? (
+                    <label>
+                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
+                    </label>
+                  ) : null}
+                  <br />
+                  <h5>Obs:.</h5>
+                  <div>
+                    <p>
+                      &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
+                      Esquerda...
+                    </p>
+                    <p>
+                      &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta à
+                      Direita...
+                    </p>
+                  </div>
+                </PanelConfResgateYellow>
+              </ContentCardBoxCenterPage>
+            ) : null}
           </ContentCardBoxMainPage>
 
           <Pg.DivisionPgHztalPage />
 
-          <ContentSidePagePanelBotton
-            bordas="3px"
-            open={ispnlfooter}
-            pwidth="100%"
-          >
+          {btnprosseguir ? (
+            <ContentSidePagePanelBotton
+              bordas="3px"
+              open={ispnlfooter}
+              pwidth="100%"
+            >
+              <ContentSidePageBottonLabel istitl={true} title={'Abortar.: '}>
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setaesq}
+                  titbtn={'Volta...'}
+                  onclick={goto('/')}
+                />
+              </ContentSidePageBottonLabel>
+              <ContentBoxLabelPage label={statusbtn} />
+              <ContentSidePageBottonLabel istitl={true} title={'Prosseguir ? '}>
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Prosseguir...'}
+                  onclick={goto('/')}
+                />
+              </ContentSidePageBottonLabel>
+            </ContentSidePagePanelBotton>
+          ) : (
             <ContentSidePageBottonLabel istitl={true} title={'Voltar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
@@ -547,7 +549,9 @@ export const Resgate2 = () => {
                     pxheight={'40px'}
                     img={setadir}
                     titbtn={'Continuar...'}
-                    onclick={handlerContinuar}
+                    onclick={() => {
+                      handlerContinuar;
+                    }}
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
@@ -555,18 +559,20 @@ export const Resgate2 = () => {
               {btnconfirmation ? (
                 <ContentSidePageBottonLabel
                   istitl={true}
-                  title={'Prossegir ? '}
+                  title={'Confirmar ? '}
                 >
                   <ContentSidePageBottonButton
                     pxheight={'40px'}
                     img={setadir}
-                    titbtn={'Prosseguir...'}
-                    onclick={handlerConfirmation}
+                    titbtn={'Confirmar...'}
+                    onclick={() => {
+                      handlerConfirmation;
+                    }}
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
             </ContentSidePageBottonLabel>
-          </ContentSidePagePanelBotton>
+          )}
 
           {helppg ? (
             <PageModal
