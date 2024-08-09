@@ -39,100 +39,109 @@ export function MasckedEmail(email: string): string {
 
   return normalizedEmail;
 }
-/////////////////////////////////////////////////////
-/// validar telefone fixo
+///////////////////////////////////////////////////////////////////////////////
+// Validar telefone 0800
+export function isFone0800Valid(fone0800: string): boolean {
+  // Remove todos os caracteres não numéricos
+  const cleaned = fone0800.replace(/\D/g, '');
+  // Expressão regular para telefone 0800 no formato 0800-XXXXXXX
+  const fone0800Regex = /^0800\d{7}$/;
+
+  // Verifica se o número segue o formato 0800XXXXXXXX
+  return fone0800Regex.test(cleaned);
+}
+
+// Mascarar telefone 0800
+export function MasckedFone0800(fone0800: string): string {
+  const cleaned = fone0800.replace(/\D/g, '');
+  const fone0800Regex = /^(0800)(\d{3})(\d{4})$/;
+
+  if (!fone0800Regex.test(cleaned)) {
+    return 'Número 0800 incompatível.';
+  }
+
+  // Aplica a máscara 0800-XXX-XXXX
+  return cleaned.replace(fone0800Regex, '$1-$2-$3');
+}
+
+// Validar telefone fixo
 export function isFoneFxValid(fonefx: string): boolean {
   // Remove todos os caracteres não numéricos
   const cleaned = fonefx.replace(/\D/g, '');
-  const fonefxRegex = /^(\d{2})(\d{4})(\d{4})$/;
+  // Expressão regular para telefone fixo no formato (XX) XXXX-XXXX
+  const fonefxRegex = /^\d{10}$/;
 
-  if (!fonefxRegex.test(cleaned)) {
-    return false;
-  }
-  return true;
+  // Verifica se o número tem exatamente 10 dígitos
+  return fonefxRegex.test(cleaned);
 }
 
-/// mascarar telefone fixo
+// Mascarar telefone fixo
 export function MasckedFoneFx(fonefx: string): string {
-  // Remove todos os caracteres não numéricos
   const cleaned = fonefx.replace(/\D/g, '');
   const fonefxRegex = /^(\d{2})(\d{4})(\d{4})$/;
 
   if (!fonefxRegex.test(cleaned)) {
-    return 'Número Telefone incompatível.';
+    return 'Número de Telefone incompatível.';
   }
-  // Aplica a máscara
-  const masked = cleaned.replace(fonefxRegex, '($1) $2-$3');
-  return masked;
-}
-//////////////////////////////////////////////////////////
 
-// validar telefone Celular
+  // Aplica a máscara (XX) XXXX-XXXX
+  return cleaned.replace(fonefxRegex, '($1) $2-$3');
+}
+
+// Validar telefone celular
 export function isFoneCValid(fonec: string): boolean {
-  // Remove todos os caracteres não numéricos
   const cleaned = fonec.replace(/\D/g, '');
-  const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
+  // Expressão regular para telefone celular no formato (XX) XXXXX-XXXX
+  const fonecRegex = /^\d{11}$/;
+
+  // Verifica se o número tem exatamente 11 dígitos
   return fonecRegex.test(cleaned);
 }
 
-// mascarar telefone Celular
+// Mascarar telefone celular
 export function MasckedFoneC(fonec: string): string {
   const cleaned = fonec.replace(/\D/g, '');
   const fonecRegex = /^(\d{2})(\d{5})(\d{4})$/;
+
+  if (!fonecRegex.test(cleaned)) {
+    return 'Número de Celular incompatível.';
+  }
+
+  // Aplica a máscara (XX) XXXXX-XXXX
   return cleaned.replace(fonecRegex, '($1) $2-$3');
 }
-////////////////////////////////////////////////////////////
-// validar telefone WhatsApp
+
+// Validar telefone WhatsApp
 export function isFoneZValid(fonez: string): boolean {
-  // Remove todos os caracteres não numéricos
   const cleaned = fonez.replace(/\D/g, '');
-  const fonezRegex = /^(\d{2})(\d{2})(\d{5})(\d{4})$/;
+  // Expressão regular para WhatsApp no formato DDI + DDD + Número (XX) XXXXX-XXXX
+  const fonezRegex = /^\d{13}$/;
+
+  // Verifica se o número tem exatamente 13 dígitos
   return fonezRegex.test(cleaned);
 }
 
-// mascarar telefone Celular
+// Mascarar telefone WhatsApp
 export function MasckedFoneZ(fonez: string): string {
   const cleaned = fonez.replace(/\D/g, '');
   const fonezRegex = /^(\d{2})(\d{2})(\d{5})(\d{4})$/;
+
+  if (!fonezRegex.test(cleaned)) {
+    return 'Número de WhatsApp incompatível.';
+  }
+
+  // Aplica a máscara +XX (XX) XXXXX-XXXX
   return cleaned.replace(fonezRegex, '+$1 ($2) $3-$4');
 }
-////////////////////////////////////////////////////////////
-// reconhecimento do google existencia do telefones
 
-export function isTelelefoneZValid(fonez: string): boolean {
-  const phoneNumber = parsePhoneNumberFromString(fonez);
+// Reconhece através do Google a validação de telefones
+// (usando a biblioteca "libphonenumber-js")
+// A função isTelefoneValid usa a biblioteca libphonenumber-js para validar
+// qualquer número de telefone no formato internacional.
+export function isTelefoneValid(fone: string): boolean {
+  const phoneNumber = parsePhoneNumberFromString(fone);
   return phoneNumber?.isValid() ?? false;
 }
-
-// função para Validar DDI conforme suas Regiões
-// obs: a string do telefone devera vir com as mascaras DDI:
-// (+**?***?)
-// export function extrairDDI(fonez: string): string | null {
-//   // Expressão regular para capturar o DDI do formato (+DDI)
-//   const ddiRegex = /^\(\+(\d{1,3})\)/;
-
-//   // Executa a expressão regular na string formatada
-//   const matches = fonez.match(ddiRegex);
-
-//   // Se houver correspondência, retorna o DDI; caso contrário, retorna null
-//   return matches ? matches[1] : null;
-// }
-
-// export function isDDIValid(fone:string):boolean => {
-
-//   let ddi = extrairDDI(fone);
-//   if (ddi === null){
-//     return false;
-//   }
-
-// // Remove todos os caracteres não numéricos
-// const cleaned = fone.replace(/\D/g, '');
-
-// if(cleaned !) {
-//   case
-// }
-
-//};
 
 ////////////////////////////////////////////////////////////
 // testa se foi editado somente numeros
