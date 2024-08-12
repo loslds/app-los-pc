@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { criasmstr } from '../../util/datamomento.tsx';
+//import { criasmstr } from '../../util/datamomento.tsx';
 
 import * as Pg from '../stylePage.ts';
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +52,7 @@ import {
 
 export const Resgate2 = () => {
   const { state, dispatch } = AcessoUseForm();
-  const [snhmaster, setSnhMaster] = React.useState('');
+  // const [snhmaster, setSnhMaster] = React.useState('');
   const [edicao, setEdicao] = React.useState('');
   const [inputstrid, setInputStrId] = React.useState('');
   const [erroedt, setErroEdt] = React.useState('');
@@ -60,12 +60,13 @@ export const Resgate2 = () => {
   const [helppg, setHelpPg] = React.useState(false);
 
   const [iseditar, setIsEditar] = React.useState(false); // painel edição
+  const [iscontinuar, setIsContinuar] = React.useState(false);
+  const [btncontinuar, setBtnContinuar] = React.useState(false);
 
   const [isconf, setIsConf] = React.useState(false);
-  const [btncontinuar, setBtnContinuar] = React.useState(false);
-  const [isview, setIsView] = React.useState(false);
   const [btnconfirmation, setBtnConfirmation] = React.useState(false);
 
+  const [isview, setIsView] = React.useState(false);
   const [isprosseg, setIsProsseg] = React.useState(false);
   const [btnprosseguir, setBtnProsseguir] = React.useState(false);
 
@@ -112,14 +113,13 @@ export const Resgate2 = () => {
       setEdicao('Através de : Perguntas.');
       setTtView('C.P.F');
     }
-    setSnhMaster(criasmstr);
+    //    setSnhMaster(criasmstr);
 
     setIsEditar(true);
-
-    setIsConf(false);
+    setIsContinuar(false);
     setBtnContinuar(false);
 
-    setIsView(false);
+    setIsConf(false);
     setBtnConfirmation(false);
 
     setIsProsseg(false);
@@ -157,115 +157,232 @@ export const Resgate2 = () => {
     setOnPanel((oldState) => !oldState);
   }, []);
 
-  React.useEffect(() => {
-    setIsConf(false);
-    setMaskedEmail('');
-    setMaskedFoneC('');
-    setMaskedFoneZ('');
-    setMaskedCpf('');
-    setStatusBtn('[ EDIÇÃO... ]');
-    let masck = '';
-    if (state.mdlogin === 1) {
-      setErroEdt('Aguardando Edição.');
-      if (inputstrid === '') {
-        setErroEdt('Edite o seu Email.');
-      } else if (!isValidarEmail(inputstrid)) {
-        setErroEdt('Edição Incompatível.');
+  const handlerEditar = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const valorInput = e.target.value;
+      setInputStrId(valorInput);
+      setIsContinuar(false);
+      setBtnContinuar(false);
+      setIsConf(false);
+      setBtnConfirmation(false);
+      let erro = '';
+      let masck = '';
+      if (valorInput === '') {
+        setErroEdt('Aguardando Edição.');
+      } else if (state.mdlogin === 1) {
+        if (!isValidarEmail(valorInput)) {
+          erro = 'Edição Incompatível.';
+        } else {
+          masck = MasckedEmail(valorInput);
+          setMaskedEmail(masck);
+          setBtnContinuar(true);
+        }
+      } else if (state.mdlogin === 2) {
+        if (!isNumber(valorInput)) {
+          erro = 'Edite somente Nº...';
+        } else if (valorInput.length < 11) {
+          erro = 'Continue a Edição...';
+        } else if (valorInput.length > 11) {
+          erro = 'Excesso de Nº na Edição...';
+        } else if (!isFoneCValid(valorInput)) {
+          erro = 'Edição Incompatível.';
+        } else {
+          masck = MasckedFoneC(valorInput);
+          setMaskedFoneC(masck);
+          setBtnContinuar(true);
+        }
+      } else if (state.mdlogin === 3) {
+        if (!isNumber(valorInput)) {
+          erro = 'Edite somente Nº...';
+        } else if (valorInput.length < 13) {
+          erro = 'Continue a Edição...';
+        } else if (valorInput.length > 13) {
+          erro = 'Excesso de Nº na Edição...';
+        } else if (!isFoneZValid(valorInput)) {
+          erro = 'Edição Incompatível.';
+        } else {
+          masck = MasckedFoneZ(valorInput);
+          setMaskedFoneZ(masck);
+          setBtnContinuar(true);
+        }
+      } else if (state.mdlogin === 4) {
+        if (!isNumber(valorInput)) {
+          erro = 'Edite somente Nº...';
+        } else if (valorInput.length < 11) {
+          erro = 'Continue a Edição...';
+        } else if (valorInput.length > 11) {
+          erro = 'Excesso de Nº na Edição...';
+        } else if (!isCpfValid(valorInput)) {
+          erro = 'Edição Incompatível.';
+        } else if (!isExistsCPF(valorInput)) {
+          erro = 'Nº de Edição Inválido.';
+        } else {
+          masck = MasckedCpf(valorInput);
+          setMaskedCpf(masck);
+          setBtnContinuar(true);
+        }
+      }
+      setErroEdt(erro);
+      if (erro === '' && !btncontinuar) {
+        if (btncontinuar) {
+          setStatusBtn('[ CONTINUAR ?... ]');
+        }
       } else {
-        masck = MasckedEmail(inputstrid);
-        setMaskedEmail(masck);
-        setErroEdt('Possível Edição.');
-        setStatusBtn('[ CONTINUAR... ]');
-        setIsConf(true);
+        setErroEdt(erro);
       }
-    }
-    //////////////////////////
-    if (state.mdlogin === 2) {
-      setErroEdt('Aguardando Edição.');
-      if (inputstrid === '') {
-        setErroEdt('Edite nº Celular.');
-      } else if (!isNumber(inputstrid)) {
-        setErroEdt('Edite somente Nº...');
-      } else if (inputstrid.length < 11) {
-        setErroEdt('Continue a Edição...');
-      } else if (inputstrid.length > 11) {
-        setErroEdt('Excesso de Nº na Edição...');
-      } else if (!isFoneCValid(inputstrid)) {
-        setErroEdt('Edição Incompatível.');
-      } else {
-        masck = MasckedFoneC(inputstrid);
-        setMaskedFoneC(masck);
-        setErroEdt('Possível Edição.');
-        setStatusBtn('[ CONFIRMAÇÃO... ]');
-        setIsConf(true);
-      }
-    }
-    //////////////////////////
-    if (state.mdlogin === 3) {
-      setErroEdt('Aguardando Edição.');
-      if (inputstrid === '') {
-        setErroEdt('Edite nº Celular.');
-      } else if (!isNumber(inputstrid)) {
-        setErroEdt('Edite somente Nº...');
-      } else if (inputstrid.length < 13) {
-        setErroEdt('Continue a Edição...');
-      } else if (inputstrid.length > 13) {
-        setErroEdt('Excesso de Nº na Edição...');
-      } else if (!isFoneZValid(inputstrid)) {
-        setErroEdt('Edição Incompatível.');
-      } else {
-        masck = MasckedFoneZ(inputstrid);
-        setMaskedFoneZ(masck);
-        setErroEdt('Possível Edição.');
-        setStatusBtn('[ CONFIRMAÇÃO... ]');
-        setIsConf(true);
-      }
-    }
-    ////////////////////////////
-    if (state.mdlogin === 4) {
-      setErroEdt('Aguardando Edição.');
-      if (inputstrid === '') {
-        setErroEdt('Edite nº Doc. CPF.');
-      } else if (!isNumber(inputstrid)) {
-        setErroEdt('Edite somente Nº...');
-      } else if (inputstrid.length < 11) {
-        setErroEdt('Continue a Edição...');
-      } else if (inputstrid.length > 11) {
-        setErroEdt('Excesso de Nº na Edição...');
-      } else if (!isCpfValid(inputstrid)) {
-        setErroEdt('Edição Incompatível.');
-      } else if (!isExistsCPF(inputstrid)) {
-        setErroEdt('Nº de Edição Inválido.');
-      } else {
-        masck = MasckedCpf(inputstrid);
-        setMaskedCpf(masck);
-        setErroEdt('Possível Edição.');
-        setStatusBtn('[ CONFIRMAÇÃO... ]');
-        setIsConf(true);
-      }
-      if (isconf) {
-        setBtnContinuar(isconf);
-        //setIsView(false);
-        //setBtnConfirmation(false);
-      }
-    }
-  }, [isconf, inputstrid, state.mdlogin]);
+    },
+    [state.mdlogin]
+  );
 
-  const handlerContinuar = React.useEffect(() => {
-    //setIsEditar(false);
-    //    setBtnContinuar(false);
-    //    setIsView(true);
-    //    setBtnConfirmation(true);
-  }, []);
+  const handlerBtnContinuar = React.useCallback(() => {
+    setStatusBtn('CONFIRMA ?...');
+    setBtnConfirmation(true);
+    setIsContinuar(true);
+    setIsEditar(false);
+  }, [btnconfirmation]);
+  
+  const handlerBtnProsseguir = React.useCallback(() => {
+    setStatusBtn('PROSSEGUI ?...');
+    setBtnProsseguir(true);
+    setIsConf(false);
+    setBtnConfirmation(false);
+    setIsEditar(false);
+  }, [btnprosseguir]);
+
+  
+
+  React.useEffect(() => {
+    if ( btnconfirmation && !iscontinuar) {
+      if (!iscontinuar)
+        setIsContinuar(true);
+        setBtnProsseguir
+      }
+      setIsEditar(false);
+      setBtnContinuar(false);
+      setIsConf(true);
+    }
+  }, [btncontinuar]);
+
+React.useEffect(() => {
+    if ( btncontinuar && !btnconfirmation) {
+      setBtnConfirmation(true);
+      setBtnContinuar(false);
+    }
+  }, [btnconfirmation]);
+
+
+  
+
+
+  // setIsConf(false);
+  // setMaskedEmail('');
+  // setMaskedFoneC('');
+  // setMaskedFoneZ('');
+  // setMaskedCpf('');
+  // setStatusBtn('[ EDIÇÃO... ]');
+  // let masck = '';
+  // if (state.mdlogin === 1) {
+  //   setErroEdt('Aguardando Edição.');
+  //   if (inputstrid === '') {
+  //     setErroEdt('Edite o seu Email.');
+  //   } else if (!isValidarEmail(inputstrid)) {
+  //     setErroEdt('Edição Incompatível.');
+  //   } else {
+  //     masck = MasckedEmail(inputstrid);
+  //     setMaskedEmail(masck);
+  //     setErroEdt('Possível Edição.');
+  //     setStatusBtn('[ CONTINUAR... ]');
+  //     setIsConf(true);
+  //   }
+  // }
+  // //////////////////////////
+  // if (state.mdlogin === 2) {
+  //   setErroEdt('Aguardando Edição.');
+  //   if (inputstrid === '') {
+  //     setErroEdt('Edite nº Celular.');
+  //   } else if (!isNumber(inputstrid)) {
+  //     setErroEdt('Edite somente Nº...');
+  //   } else if (inputstrid.length < 11) {
+  //     setErroEdt('Continue a Edição...');
+  //   } else if (inputstrid.length > 11) {
+  //     setErroEdt('Excesso de Nº na Edição...');
+  //   } else if (!isFoneCValid(inputstrid)) {
+  //     setErroEdt('Edição Incompatível.');
+  //   } else {
+  //     masck = MasckedFoneC(inputstrid);
+  //     setMaskedFoneC(masck);
+  //     setErroEdt('Possível Edição.');
+  //     setStatusBtn('[ CONFIRMAÇÃO... ]');
+  //     setIsConf(true);
+  //   }
+  // }
+  // //////////////////////////
+  // if (state.mdlogin === 3) {
+  //   setErroEdt('Aguardando Edição.');
+  //   if (inputstrid === '') {
+  //     setErroEdt('Edite nº Celular.');
+  //   } else if (!isNumber(inputstrid)) {
+  //     setErroEdt('Edite somente Nº...');
+  //   } else if (inputstrid.length < 13) {
+  //     setErroEdt('Continue a Edição...');
+  //   } else if (inputstrid.length > 13) {
+  //     setErroEdt('Excesso de Nº na Edição...');
+  //   } else if (!isFoneZValid(inputstrid)) {
+  //     setErroEdt('Edição Incompatível.');
+  //   } else {
+  //     masck = MasckedFoneZ(inputstrid);
+  //     setMaskedFoneZ(masck);
+  //     setErroEdt('Possível Edição.');
+  //     setStatusBtn('[ CONFIRMAÇÃO... ]');
+  //     setIsConf(true);
+  //   }
+  // }
+  // ////////////////////////////
+  // if (state.mdlogin === 4) {
+  //   setErroEdt('Aguardando Edição.');
+  //   if (inputstrid === '') {
+  //     setErroEdt('Edite nº Doc. CPF.');
+  //   } else if (!isNumber(inputstrid)) {
+  //     setErroEdt('Edite somente Nº...');
+  //   } else if (inputstrid.length < 11) {
+  //     setErroEdt('Continue a Edição...');
+  //   } else if (inputstrid.length > 11) {
+  //     setErroEdt('Excesso de Nº na Edição...');
+  //   } else if (!isCpfValid(inputstrid)) {
+  //     setErroEdt('Edição Incompatível.');
+  //   } else if (!isExistsCPF(inputstrid)) {
+  //     setErroEdt('Nº de Edição Inválido.');
+  //   } else {
+  //     masck = MasckedCpf(inputstrid);
+  //     setMaskedCpf(masck);
+  //     setErroEdt('Possível Edição.');
+  //     setStatusBtn('[ CONFIRMAÇÃO... ]');
+  //     setIsConf(true);
+  //   }
+  //   if (isconf) {
+  //     setIsEditar(false);
+  //     setBtnContinuar(isconf);
+  //     //setIsView(false);
+  //     //setBtnConfirmation(false);
+  //   }
+  // }
+  //}, [isconf]);
+
+  //  const handlerContinuar = React.useEffect(() => {
+  //setIsEditar(false);
+  //    setBtnContinuar(false);
+  //    setIsView(true);
+  //    setBtnConfirmation(true);
+  //  }, []);
 
   ///////////////////////////////////////////////
-  const handlerConfirmation = React.useEffect(() => {
+  //const handlerConfirmation = React.useEffect(() => {
     // setBtnConfirmation(false);
     // setIsConf(false);
     // setIsView(true);
     // setIsProsseg(true);
     // setBtnProsseguir(true);
-  }, []);
+  //}, []);
   // React.useEffect(() => {
   //   if (!btnconfirmation) {
   //     setBtnConfirmation(true);
@@ -314,12 +431,13 @@ export const Resgate2 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
+  
             {iseditar ? (
               <ContentCardBoxCenterPage pwidth="200px">
                 <ContentCardPageTitle>
                   <h4>{edicao}</h4>
                 </ContentCardPageTitle>
-                {iseditar && state.mdlogin === 1 ? (
+                {state.mdlogin === 1 ? (
                   <ContentInputPage>
                     <form name="mail">
                       <br />
@@ -328,16 +446,15 @@ export const Resgate2 = () => {
                         name="mail"
                         maxLength={125}
                         value={inputstrid}
-                        size={25}
                         autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
+                        onChange={handlerEditar}
                       />
                       {erroedt !== '' ? <span>{erroedt}</span> : null}
                       <br />
                     </form>
                   </ContentInputPage>
                 ) : null}
-                {iseditar && state.mdlogin === 2 ? (
+                {state.mdlogin === 2 ? (
                   <ContentInputPage>
                     <form name="sms">
                       <br />
@@ -348,14 +465,14 @@ export const Resgate2 = () => {
                         maxLength={11}
                         value={inputstrid}
                         autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
+                        onChange={handlerEditar}
                       />
                       {erroedt !== '' ? <span>{erroedt}</span> : null}
                       <br />
                     </form>
                   </ContentInputPage>
                 ) : null}
-                {iseditar && state.mdlogin === 3 ? (
+                {state.mdlogin === 3 ? (
                   <ContentInputPage>
                     <form name="zap">
                       <br />
@@ -366,14 +483,14 @@ export const Resgate2 = () => {
                         maxLength={13}
                         value={inputstrid}
                         autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
+                        onChange={handlerEditar}
                       />
                       {erroedt !== '' ? <span>{erroedt}</span> : null}
                       <br />
                     </form>
                   </ContentInputPage>
                 ) : null}
-                {iseditar && state.mdlogin === 4 ? (
+                {state.mdlogin === 4 ? (
                   <ContentInputPage>
                     <form name="cpf">
                       <br />
@@ -384,7 +501,7 @@ export const Resgate2 = () => {
                         maxLength={11}
                         value={inputstrid}
                         autoFocus={true}
-                        onChange={(e) => setInputStrId(e.target.value)}
+                        onChange={handlerEditar}
                       />
                       {erroedt !== '' ? <span>{erroedt}</span> : null}
                       <br />
@@ -394,13 +511,13 @@ export const Resgate2 = () => {
               </ContentCardBoxCenterPage>
             ) : null}
 
-            {isconf ? (
-              <ContentCardBoxCenterPage pwidth="200px">
+            {iscontinuar && (
+              <ContentCardBoxCenterPage pwidth="100%">
                 <ContentCardPageTitle>
-                  <h4>{edicao}</h4>
+                  <h4>{iscontinuar}</h4>
                 </ContentCardPageTitle>
                 <PanelConfResgateYellow
-                  isbgcolor={isconf}
+                  isbgcolor={iscontinuar}
                   titulo={'Resgate para seu Acesso.'}
                   subtitulo={'Dados par Informação SMS :'}
                 >
@@ -435,15 +552,15 @@ export const Resgate2 = () => {
                       Esquerda...
                     </p>
                     <p>
-                      &emsp;&emsp;Caso deseja " Continuar.:", clique na Seta à
+                      &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta à
                       Direita...
                     </p>
                   </div>
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
-            ) : null}
+            )}
 
-            {isview ? (
+            {isview && (
               <ContentCardBoxCenterPage pwidth="200px">
                 <ContentCardPageTitle>
                   <h4>{edicao}</h4>
@@ -501,7 +618,7 @@ export const Resgate2 = () => {
                   </div>
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
-            ) : null}
+            )}
           </ContentCardBoxMainPage>
 
           <Pg.DivisionPgHztalPage />
@@ -531,6 +648,7 @@ export const Resgate2 = () => {
               </ContentSidePageBottonLabel>
             </ContentSidePagePanelBotton>
           ) : (
+
             <ContentSidePageBottonLabel istitl={true} title={'Voltar.: '}>
               <ContentSidePageBottonButton
                 pxheight={'40px'}
@@ -549,9 +667,7 @@ export const Resgate2 = () => {
                     pxheight={'40px'}
                     img={setadir}
                     titbtn={'Continuar...'}
-                    onclick={() => {
-                      handlerContinuar;
-                    }}
+                    onclick={handlerBtnContinuar}
                   />
                 </ContentSidePageBottonLabel>
               ) : null}
@@ -566,7 +682,7 @@ export const Resgate2 = () => {
                     img={setadir}
                     titbtn={'Confirmar...'}
                     onclick={() => {
-                      handlerConfirmation;
+                      alert('btn confirmation');
                     }}
                   />
                 </ContentSidePageBottonLabel>
