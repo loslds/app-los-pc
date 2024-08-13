@@ -227,19 +227,112 @@ export function maskCPF(cpf: string): string {
   const masked = cleaned.replace(cpfRegex, '$1.$2.$3-$4');
   return masked;
 }
+///////////////////////////////////////////////////////////////////////////////
+/**
+ * Função para USAR MASCARA PARA NÃO APARECER CONTEUDO TOTAL
+ * @param email - O número de CPF como string.
+ * @returns A string mascarada se válida, caso contrário uma mensagem de erro.
+ * Exemplo de uso
+ * const email = "joaodasilva@hotmail.com";
+ * const emailMascarado = mascararEmail(email);
+ * console.log(emailMascarado);  // Saída: "****da**lva@****mail.com"
+ */
+export function MaskSEmail(email: string): string {
+  const [localPart, domain] = email.split('@');
+  const domainParts = domain.split('.');
 
-// export function maskAndValidateCPF(cpf: string): string {
-//   if (!isCpfValid(cpf)) {
-//     return 'Número de CPF inválido.';
-//   } else {
-//     const cleaned = cpf.replace(/\D/g, '');
-//     // Expressão regular para verificar se o CPF tem 11 dígitos
-//     const cpfRegex = /^(\d{3})(\d{3})(\d{3})(\d{2})$/;
-//     if (cpfRegex.test(cleaned)) {
-//       const masked = cleaned.replace(cpfRegex, '$1.$2.$3-$4');
-//       return masked;
-//     } else {
-//       return 'Edição CPF inconpatível.';
-//     }
-//   }
-// }
+  // Mascarar tudo menos os dois últimos caracteres da parte local antes do "@"
+  const localMasked =
+    localPart.slice(0, -2).replace(/./g, '*') + localPart.slice(-2);
+
+  // Mascarar o domínio, mantendo o provedor oculto
+  const domainMasked =
+    domainParts[0].slice(0, -4).replace(/./g, '*') +
+    domainParts[0].slice(-4) +
+    '.' +
+    domainParts.slice(1).join('.');
+  const emailmascarado = `${localMasked}@${domainMasked}`;
+
+  return emailmascarado;
+}
+// Exemplo de uso
+// console.log(maskEmail("los.sbrissa@hotmail.com")); // "*********sa@***mail.com"
+// console.log(maskEmail("loslds7@gmail.com"));       // "******s7@**mail.com"
+///////////////////////////////////////////////////////////////////////////////
+/*
+ * Função para USAR MASCARA PARA NÃO APARECER CONTEUDO TOTAL
+ * @param fonec - O número de CPF como string.
+ * @returns A string mascarada com asterísticos .
+
+//  EXEMPLO
+// const telefoneOriginal = '(11) 98765-4321';
+// const telefoneMascarado = MaskSFonec(telefoneOriginal);
+// console.log(telefoneMascarado); // Output: (11) *****-4321
+// Se preferir uma máscara diferente, como manter visíveis apenas os últimos 
+// 4 dígitos e ocultar o resto, você pode ajustar a função:
+*/
+
+export function MaskSFoneC(fonec: string): string {
+  const apenasnumeros = fonec.replace(/\D/g, '');
+
+  const ddd = apenasnumeros.slice(0, 2); // (DDD)
+  const primeirosdigitos = apenasnumeros.slice(2, 7); // 5 primeiros numeros
+  const ultimosDigitos = apenasnumeros.slice(-4); // 4 ultimos digitos
+
+  // Formata o número com a máscara
+  //const numeroMascarado = `(${ddd}) ${'*'.repeat(5)}-${ultimosDigitos}`;
+
+  const numeroMascarado = `(${ddd}) ${primeirosdigitos}****-${ultimosDigitos}`;
+
+  return numeroMascarado;
+}
+
+export function MaskSFoneZ(fonez: string): string {
+  // Remove todos os caracteres não numéricos
+  const apenasNumeros = fonez.replace(/\D/g, '');
+
+  // Extrai o código do país, DDD, e os números
+  const codigoPais = apenasNumeros.slice(0, 2); // Código do país (ex.: 55)
+  const ddd = apenasNumeros.slice(2, 4); // DDD (ex.: 11)
+  const primeirosDigitos = apenasNumeros.slice(4, 7); // Os primeiros três dígitos visíveis
+  const ultimosDigitos = apenasNumeros.slice(-4); // Os últimos quatro dígitos
+
+  // Formata o número com a máscara
+  const numeroMascarado = `(+${codigoPais}) (${ddd}) ${primeirosDigitos}****-${ultimosDigitos}`;
+
+  return numeroMascarado;
+}
+///////////////////////////////////////////////////////////////////////////////
+/* Função para USAR MASCARA PARA NÃO APARECER CONTEUDO TOTAL
+ * @param cpf - O número de CPF como string mascarada normal.
+ * @returns a string mascarada com 1 numero para cada cadeia e asterísticos nos .
+/* restantes
+//  EXEMPLO
+// const telefoneOriginal = '(11) 98765-4321';
+// const telefoneMascarado = MaskSFonec(telefoneOriginal);
+// console.log(telefoneMascarado); // Output: (11) *****-4321
+// Se preferir uma máscara diferente, como manter visíveis apenas os últimos 
+// 4 dígitos e ocultar o resto, você pode ajustar a função:
+*/
+
+export function MaskSCPF(cpf: string): string {
+  // Remove todos os caracteres não numéricos
+  const apenasNumeros = cpf.replace(/\D/g, '');
+
+  // Extrai os partes do CPF
+  const primeiroDigito = apenasNumeros.charAt(0); // Primeiro dígito
+  //const segundoDigito = apenasNumeros.charAt(1); // Segundo dígito
+  //const terceiroDigito = apenasNumeros.charAt(2); // Terceiro dígito
+  //const quartoDigito = apenasNumeros.charAt(3); // Quarto dígito
+  const quintoDigito = apenasNumeros.charAt(4); // Quinto dígito
+  //const sextoDigito = apenasNumeros.charAt(5); // Sexto dígito
+  const setimoDigito = apenasNumeros.charAt(6); // Sétimo dígito
+  //const oitavoDigito = apenasNumeros.charAt(7); // Oitavo dígito
+  const penultimoDigito = apenasNumeros.charAt(8); // Penúltimo dígito
+  const ultimoDigito = apenasNumeros.charAt(9); // Último dígito
+
+  // Formata o número com a máscara
+  const cpfMascarado = `${primeiroDigito}**.**${quintoDigito}.${setimoDigito}**-${penultimoDigito}${ultimoDigito}`;
+
+  return cpfMascarado;
+}
