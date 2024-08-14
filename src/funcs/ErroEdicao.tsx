@@ -336,3 +336,74 @@ export function MaskSCPF(cpf: string): string {
 
   return cpfMascarado;
 }
+///////////////////////////////////////////////////////////////////////////////
+
+/* Função para USAR MASCARA Numero contido na mascar com zero na frente
+ * @param numero - O valor adquirido como parametro da função type number.
+ * @returns a string mascarada com a quantidade necessário para exibir o numero com zero na frente.
+//  EXEMPLO
+// const zeronumber = "0011" => numero 11;
+*/
+export function MaskNumberZero(qddz: number, num: number): string {
+  const numStr = num.toString();
+
+  const mascarazero = numStr.length >= qddz ? numStr.padStart(qddz , '0'): numStr;
+
+  return mascarazero;
+}
+
+///////////////////////////////////////////////////////////////////////////
+/* Função para USAR MASCARAR com Asteriscos no conteudo Numero indicado
+ * @param numero - O valor adquirido como parametro da função type number.
+ * @returns a string mascarada com a quantidade necessário para exibir o numero com asteristico na conteudo.
+ * Números com menos de 2 dígitos: A função retorna o número como está.
+ * Números com 3 dígitos: O primeiro e o último dígito são mantidos, e um asterisco é inserido no meio.
+ * Números com 4 dígitos: O primeiro e o último dígito são mantidos, e dois asteriscos são inseridos no meio.
+ * Números com 5 dígitos: O primeiro e o último dígito são mantidos, e três asteriscos são inseridos no meio.
+ * Números com mais de 5 dígitos: Os primeiros 4 dígitos são mantidos, e a quantidade apropriada de asteriscos é 
+ * inserida antes do último dígito.
+ * Exemplos:
+ * maskNumber(99999) retorna "9***9"
+ * maskNumber(9999) retorna "9**9"
+ * maskNumber(999) retorna "9*9"
+ * maskNumber(9) retorna "9"
+ * maskNumber(999999) retorna "9999**9"
+ * maskNumber(99999999) retorna "9999****9"
+*/
+
+export function MaskSNumber(num: number): string {
+  const numStr = num.toString();
+  const length = numStr.length;
+
+  if (length === 1) {
+    return numStr; // Retorna o próprio número para '9' ele mesmo
+  } else if (length === 2) {
+    return `*${numStr[length - 1]}`; // Retorna '9*' para 2 dígitos
+  } else if (length === 3) {
+    return `${numStr[0]}*${numStr[length - 1]}`; // Retorna '9*9' para 3 dígitos
+  } else if (length === 4) {
+    return `${numStr[0]}**${numStr[length - 1]}`; // Retorna '9**9' para 4 dígitos
+  } else if (length === 5) {
+    return `${numStr[0]}***${numStr[length - 1]}`; // Retorna '9***9' para 5 dígitos
+  } else if (length > 5) {
+    const middle = '*'.repeat(length - 5);
+    return `${numStr.slice(0, 4)}${middle}${numStr[length - 1]}`; // Retorna '9999****9' para números maiores que 5 dígitos
+  }
+
+  return numStr; // Caso algum cenário não previsto ocorra
+}
+///////////////////////////////////////////////////////////////////////////////
+export function MaskSString(str: string): string {
+  const length = str.length;
+  
+  if (length < 3) {
+    return str; // Se a string tiver menos de 3 caracteres, retorna ela mesma
+  } else if (length === 4) {
+    return `${str[0]}${str[1]}*${str[3]}`; // Se a string tiver 4 caracteres, substitui o 3º caractere por '*'
+  } else if (length > 4) {
+    const middle = '*'.repeat(length - 3);
+    return `${str[0]}${str[1]}${middle}${str[length - 1]}`; // Para strings maiores que 4, mascara os caracteres do eio
+  }
+  return str; // Caso algum cenário não previsto ocorra
+  }
+}

@@ -41,6 +41,7 @@ import {
   isValidarEmail,
   MasckedEmail,
   isNumber,
+  MaskNumberZero,
   isFoneCValid,
   MasckedFoneC,
   isFoneZValid,
@@ -48,10 +49,13 @@ import {
   isCpfValid,
   isExistsCPF,
   MasckedCpf,
+  MaskSNumber,
+  MaskSString,
   MaskSEmail,
   MaskSFoneC,
   MaskSFoneZ,
   MaskSCPF
+  
 } from '../../../funcs/ErroEdicao.tsx';
 
 export const Resgate2 = () => {
@@ -59,13 +63,7 @@ export const Resgate2 = () => {
   // const [snhmaster, setSnhMaster] = React.useState('');
   const [edicao, setEdicao] = React.useState('');
   const [inputstrid, setInputStrId] = React.useState('');
-  const [bperg1, setBPerg1] = React.useState(false);
-  const [bperg2, setBPerg2] = React.useState(false);
-  const [bperg3, setBPerg3] = React.useState(false);
-  const [sresp1, setSRerp1] = React.useState('');
-  const [sresp2, setSRerp2] = React.useState('');
-  const [sresp3, setSRerp3] = React.useState('');
-
+  
   const [erroedt, setErroEdt] = React.useState('');
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
@@ -76,21 +74,48 @@ export const Resgate2 = () => {
   const [btnconfirmation, setBtnConfirmation] = React.useState(false);
 
   const [btncomparar, setBtnComparar] = React.useState(false);
-  const [btnresgatar , setBtnResgatar] = React.useState(false);
-  const [btnreceives , setBtnReceives] = React.useState(false);
-
+  const [btnreceives, setBtnReceives] = React.useState(false);
+  const [btnresgatar, setBtnResgatar] = React.useState(false);
+  const [btnenviar , setBtnEnviar] = React.useState(false);
+  
   const [labelbtn, setLabelBtn] = React.useState('');
 
   const [statusbtn, setStatusBtn] = React.useState('');
   const [ispnlfooter, setIsPnlFooter] = React.useState(false);
+
+  const [maskedidemp, setMaskedIdEmp] = React.useState('');
+  const [maskednmfant, setMaskedNmFant] = React.useState('');
+  const [maskedidnmuser, setMaskedIdNmUser] = React.useState('');
+  const [maskedpswuser, setMaskedPswUser] = React.useState('');
   const [maskedemail, setMaskedEmail] = React.useState('');
   const [maskedfonec, setMaskedFoneC] = React.useState('');
   const [maskedfonez, setMaskedFoneZ] = React.useState('');
   const [maskedcpf, setMaskedCpf] = React.useState('');
+
+  const [masksidemp, setMaskSIdEmp] = React.useState('');
+  const [masksnmemp, setMaskSNmEmp] = React.useState('');
+  const [masksnmiduser, setMaskSIdUser] = React.useState('');
+  const [maskspswuser, setMaskSPswUser] = React.useState('');
   const [masksemail, setMaskSEmail] = React.useState('');
   const [masksfonec, setMaskSFoneC] = React.useState('');
   const [masksfonez, setMaskSFoneZ] = React.useState('');
   const [maskscpf, setMaskSCpf] = React.useState('');
+
+  const [bperg1, setBPerg1] = React.useState(false);
+  const [bperg2, setBPerg2] = React.useState(false);
+  const [bperg3, setBPerg3] = React.useState(false);
+  const [resp1, setRerp1] = React.useState('');
+  const [resp2, setRerp2] = React.useState('');
+  const [resp3, setRerp3] = React.useState('');
+  const [dbperg1, setDBPerg1] = React.useState('');
+  const [dbperg2, setDBPerg2] = React.useState('');
+  const [dbperg3, setDBPerg3] = React.useState('');
+  const [dbsresp1, setDbRerp1] = React.useState('');
+  const [dbsresp2, setDbRerp2] = React.useState('');
+  const [dbsresp3, setDbRerp3] = React.useState('');
+
+
+  
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
@@ -141,6 +166,7 @@ export const Resgate2 = () => {
     setBtnConfirmation(false);
     setBtnComparar(false);
     setBtnResgatar(false);
+    setBtnEnviar(false);
 
     setIsPnlFooter(false);
 
@@ -238,6 +264,7 @@ export const Resgate2 = () => {
       }
       if (erro !== '') {
         if (btncontinuar) {
+          
           setStatusBtn('[ CONTINUAR ?... ]');
         };
       }
@@ -254,23 +281,34 @@ export const Resgate2 = () => {
   const handlerBtnConfirmation = React.useCallback(() => {
     setStatusBtn('COMPARAR ?...');
     setBtnConfirmation(false);
-    // 
-    let mascke = '';
+    //
+    if (state.idemp !== 0) {
+      let msknr = MaskNumberZero(5,state.idemp);
+      setMaskedNIdEmp(msknr);
+    }
+    if (state.nmfant !== '') {
+      let mskstr = MaskSString(state.nmfant);
+      setMaskedSNmFant(mskstr);
+      mskstr = MaskSString(inputstrid);
+      setMaskedSSnh(mskstr);
+    }
+
+    let masckes = '';
     if (state.mdlogin === 1) {
-      mascke = MaskSEmail(maskedemail);
-      setMaskSEmail(mascke);
+      masckes = MaskSEmail(maskedemail);
+      setMaskSEmail(masckes);
       setBtnComparar(true);
     } else if (state.mdlogin === 2) {
-      mascke = MaskSFoneC(maskedfonec);
-      setMaskSFoneC(mascke);
+      masckes = MaskSFoneC(maskedfonec);
+      setMaskSFoneC(masckes);
       setBtnComparar(true);
     } else if (state.mdlogin === 3) {
-      mascke = MaskSFoneZ(maskedfonez);
-      setMaskSFoneZ(mascke);
+      masckes = MaskSFoneZ(maskedfonez);
+      setMaskSFoneZ(masckes);
       setBtnComparar(true);
     } else if (state.mdlogin === 4) {
-      mascke = MaskSCPF(maskedcpf);
-      setMaskSCpf(mascke);
+      masckes = MaskSCPF(maskedcpf);
+      setMaskSCpf(masckes);
       setBtnComparar(true);
     }
   }, [btncomparar]);
@@ -278,15 +316,16 @@ export const Resgate2 = () => {
   const handlerBtnComparar = React.useCallback(() => {
     setStatusBtn('RESGATAR ?...');
     setBtnComparar(false);
-    setBtnResgatar(false);
-  }, [btnresgatar]);
-
-  const handlerBtnResgatar = React.useCallback(() => {
-    setStatusBtn('CCOMPARAR ?...');
-    setIsPnlFooter(false);
-    setBtnResgatar(false);
     setBtnReceives(true);
   }, [btnreceives]);
+
+  const handlerBtnResgatar = React.useCallback(() => {
+    setStatusBtn('ENVIAR ?...');
+    setIsPnlFooter(false);
+    setBtnReceives(false);
+    setBtnResgatar(true);
+    
+  }, [btnresgatar]);
   
 
 
@@ -412,39 +451,30 @@ export const Resgate2 = () => {
                   titulo={'Resgate para seu Acesso.'}
                   subtitulo={'Dados á confirmação :'}
                 >
+                  <h4>{edicao}</h4>
                   <p>&emsp;&emsp;Já temos em mãos :</p>
-
+                  <label>&emsp;&emsp# - ID Empresa....:{' '}<span>{state.idemp}</span></label>
+                  <label>&emsp;&emsp# - Nome Fantasia:{' '}<span>{state.nmfant}</span></label>
                   {state.mdlogin === 1 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{maskedemail}</span>
-                    </label>
+                    <label>&emsp;# - E-MAIL : <span>{maskedemail}</span></label>
                   ) : null}
                   {state.mdlogin === 2 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Celular : <span>{maskedfonec}</span>
-                    </label>
+                    <label>&emsp;&emsp;# - Celular : <span>{maskedfonec}</span></label>
                   ) : null}
                   {state.mdlogin === 3 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
-                      <span>{maskedfonez}</span>
-                    </label>
+                    <label>&emsp;&emsp;# - Whatsapp :{' '}<span>{maskedfonez}</span></label>
                   ) : null}
                   {state.mdlogin === 4 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
-                    </label>
+                    <label>&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span></label>
                   ) : null}
                   <br />
                   <h5>Obs:.</h5>
                   <div>
                     <p>
-                      &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-                      Esquerda...
+                      &emsp;Caso queira " Voltar.: " clique na Seta à Esquerda...
                     </p>
                     <p>
-                      &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta à
-                      Direita...
+                      &emsp;Caso deseja " Confirmar.:", clique na Seta à Direita...
                     </p>
                   </div>
                 </PanelConfResgateYellow>
@@ -461,55 +491,84 @@ export const Resgate2 = () => {
                   titulo={'Resgate para seu Acesso.'}
                   subtitulo={'Dados Confirmados...:'}
                 >
-                  <h4>Dados em mãos :</h4>
-
-                  <label>
-                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
-                    <span>{state.idemp}</span>
-                  </label>
-                  <label>
-                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-                    <span>{state.nmfant}</span>
-                  </label>
-
-                  <h4>Dados Transcritos "C O N F I R M A Ç Ã O".</h4>
-
+                  <h4>{edicao}</h4>
+                  <p>&emsp;&emsp;Já temos em mãos :</p>
+                  <label>&emsp;# - ID Empresa....:{' '}<span>{maskedidemp}</span></label>
+                  <label>&emsp;# - Nome Fantasia:{' '}<span>{maskednmfant}</span></label>
                   {state.mdlogin === 1 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{maskedemail}</span>
-                    </label>
+                    <label>&emsp;# - E-MAIL : <span>{maskedemail}</span></label>
                   ) : null}
                   {state.mdlogin === 2 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Celular : <span>{maskedfonec}</span>
-                    </label>
+                    <label>&emsp;# - Celular : <span>{maskedfonec}</span></label>
                   ) : null}
                   {state.mdlogin === 3 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Whatsapp :{' '}
-                      <span>{maskedfonez}</span>
-                    </label>
+                    <label>&emsp;# - Whatsapp :{' '}<span>{maskedfonez}</span></label>
                   ) : null}
                   {state.mdlogin === 4 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
-                    </label>
+                    <label>&emsp;# - C.P.F. : <span>{maskedcpf}</span></label>
                   ) : null}
                   <br />
                   <h5>Obs:.</h5>
                   <div>
                     <p>
-                      &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-                      Esquerda...
+                      &emsp;Caso queira " Voltar.: " clique na Seta à Esquerda...
                     </p>
                     <p>
-                      &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta à
-                      Direita...
+                      &emsp;Caso deseja " Confirmar.:", clique na Seta à Direita...
                     </p>
                   </div>
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
             )}
+
+            {btnreceives && (
+              <ContentCardBoxCenterPage pwidth="200px">
+                <ContentCardPageTitle>
+                  <h4>{edicao}</h4>
+                </ContentCardPageTitle>
+                <PanelConfResgateYellow
+                  isbgcolor={btnreceives}
+                  titulo={'Resgate para seu Acesso.'}
+                  subtitulo={'Resgatando Dados para Comparação...:'}
+                >
+                  <h3>Resgate de Dados "DATA BASE" :</h3>
+                  <label>&emsp;BD- ID Empresa....: : <span>{masksemail}</span></label>
+                  <label>&emsp;DB- Nome Fantasia:{' '}<span>{maskednmfant}</span></label>
+                  <label>&emsp;# - Nome Fantasia:{' '}<span>{maskednmfant}</span></label>
+                  {state.mdlogin === 1 && (
+                    <div>
+                    <label>&emsp;BD- E-MAIL : <span>{masksemail}</span></label>
+                    <label>&emsp;# - E-MAIL : <span>{maskedemail}</span></label>
+                    </div>
+                  )}
+                  {state.mdlogin === 2 && (
+                    <div>
+                    <label>&emsp;BD- Celular : <span>{masksfonec}</span></label>
+                    <label>&emsp;# - Celular : <span>{maskedfonec}</span></label>
+                    </div>
+                  )}
+                  {state.mdlogin === 3 && (
+                    <div>
+                    <label>&emsp;BD- Whatsapp : <span>{masksfonez}</span></label>
+                    <label>&emsp;# - Whatsapp :{' '}<span>{maskedfonez}</span></label>
+                    </div>
+                  )}
+                  {state.mdlogin === 4 && (
+                    <div>
+                    <label>&emsp;BD- C.P.F. : <span>{maskscpf}</span></label>
+                    <label>&emsp;# - C.P.F. : <span>{maskedcpf}</span></label>
+                    </div>
+                  )}
+                  <br />
+                  <h5>Obs:.</h5>
+                  <div>
+                    <p>&emsp;Caso queira " Voltar.: " clique na Seta à Esquerda...</p>
+                    <p>&emsp;Caso deseja " Confirmar.:", clique na Seta à Direita...</p>
+                  </div>
+                </PanelConfResgateYellow>
+              </ContentCardBoxCenterPage>
+            )}
+
             
             {btncomparar && (
               <ContentCardBoxCenterPage pwidth="200px">
@@ -521,54 +580,40 @@ export const Resgate2 = () => {
                   titulo={'Resgate para seu Acesso.'}
                   subtitulo={'Dados para Comparação...:'}
                 >
-                  <h4>Dados em mãos :</h4>
-
-                  <label>
-                    &emsp;&emsp;&emsp;# - ID Empresa....:{' '}
-                    <span>{state.idemp}</span>
-                  </label>
-                  <label>
-                    &emsp;&emsp;&emsp;# - Nome Fantasia:{' '}
-                    <span>{state.nmfant}</span>
-                  </label>
-
-                  <h4>Comparando Informações com Dados "DATA BASE".</h4>
-
-                  {state.mdlogin === 1 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;$ - E-MAIL : <span>{maskemail}</span>
-                      &emsp;&emsp;&emsp;# - E-MAIL : <span>{maskedemail}</span>
-                    </label>
-                  ) : null}
-                  {state.mdlogin === 2 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;$ - Celular : <span>{maskfonec}</span>
-                      &emsp;&emsp;&emsp;# - Celular : <span>{maskedfonec}</span>
-                    </label>
-                  ) : null}
-                  {state.mdlogin === 3 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - Whatsapp :{' '} <span>{maskfonez}</span>
-                      &emsp;&emsp;&emsp;# - Whatsapp :{' '} <span>{maskedfonez}</span>
-                    </label>
-                  ) : null}
-                  {state.mdlogin === 4 ? (
-                    <label>
-                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskcpf}</span>
-                      &emsp;&emsp;&emsp;# - C.P.F. : <span>{maskedcpf}</span>
-                    </label>
-                  ) : null}
+                  <h3>Comparando Informações com Dados "DATA BASE" :</h3>
+                  <label>&emsp;BD- ID Empresa....: : <span>{masksemail}</span></label>
+                  <label>&emsp;# - ID Empresa....:{' '}<span>{maskedidemp}</span></label>
+                  <label>&emsp;DB- Nome Fantasia:{' '}<span>{maskednmfant}</span></label>
+                  <label>&emsp;# - Nome Fantasia:{' '}<span>{maskednmfant}</span></label>
+                  {state.mdlogin === 1 && (
+                    <div>
+                    <label>&emsp;BD- E-MAIL : <span>{masksemail}</span></label>
+                    <label>&emsp;# - E-MAIL : <span>{maskedemail}</span></label>
+                    </div>
+                  )}
+                  {state.mdlogin === 2 && (
+                    <div>
+                    <label>&emsp;BD- Celular : <span>{masksfonec}</span></label>
+                    <label>&emsp;# - Celular : <span>{maskedfonec}</span></label>
+                    </div>
+                  )}
+                  {state.mdlogin === 3 && (
+                    <div>
+                    <label>&emsp;BD- Whatsapp : <span>{masksfonez}</span></label>
+                    <label>&emsp;# - Whatsapp :{' '}<span>{maskedfonez}</span></label>
+                    </div>
+                  )}
+                  {state.mdlogin === 4 && (
+                    <div>
+                    <label>&emsp;BD- C.P.F. : <span>{maskscpf}</span></label>
+                    <label>&emsp;# - C.P.F. : <span>{maskedcpf}</span></label>
+                    </div>
+                  )}
                   <br />
                   <h5>Obs:.</h5>
                   <div>
-                    <p>
-                      &emsp;&emsp;Caso queira " Voltar.: " clique na Seta à
-                      Esquerda...
-                    </p>
-                    <p>
-                      &emsp;&emsp;Caso deseja " Confirmar.:", clique na Seta à
-                      Direita...
-                    </p>
+                    <p>&emsp;Caso queira " Voltar.: " clique na Seta à Esquerda...</p>
+                    <p>&emsp;Caso deseja " Confirmar.:", clique na Seta à Direita...</p>
                   </div>
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
