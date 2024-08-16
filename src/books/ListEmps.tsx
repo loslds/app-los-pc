@@ -68,3 +68,12 @@ export const EmpsIndexById = (): { [key: number]:IEmps } => {
     return acc;
   }, {} as { [key: number]:IEmps });
 };
+
+export const FindEmpsID = (id: number): Omit<IEmps, 'id'> | undefined => {
+  const emp = ListEmps.find(emp => emp.id === id);
+  if (emp) {
+    const { id, ...rest } = emp;
+    return rest;
+  }
+  return undefined;
+};

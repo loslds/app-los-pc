@@ -393,6 +393,12 @@ export function MaskSNumber(num: number): string {
   return numStr; // Caso algum cenário não previsto ocorra
 }
 ///////////////////////////////////////////////////////////////////////////////
+/* Função para USAR MASCARAR com Asteriscos no conteudo String indicado
+ * @param str - O valor adquirido como parametro da função type string.
+ * @returns a string mascarada com a quantidade necessário para exibir a string com asteristico no conteudo.
+ * inserida antes do último caractere.
+ * inserida apos os dois primeiros caracteres.
+*/
 export function MaskSString(str: string): string {
   const length = str.length;
   
@@ -405,5 +411,5 @@ export function MaskSString(str: string): string {
     return `${str[0]}${str[1]}${middle}${str[length - 1]}`; // Para strings maiores que 4, mascara os caracteres do eio
   }
   return str; // Caso algum cenário não previsto ocorra
-  }
 }
+///////////////////////////////////////////////////////////////////////////////

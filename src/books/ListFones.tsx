@@ -7,6 +7,7 @@ export interface IFones {
   idusers?: number;
   fonefx?: string;
   fonecel?: string;
+  fonezap?: string;
 }
 // filtro para telenones de empresas tem que ter
 export const ListFones: IFones[] = [
@@ -18,7 +19,8 @@ export const ListFones: IFones[] = [
     idcon: 0,
     idusers: 0,
     fonefx: '8532431872',
-    fonecel: '85999417475'
+    fonecel: '85999417475',
+    fonezap: '5585999417475'
   },
   {
     id: 2,
@@ -28,7 +30,8 @@ export const ListFones: IFones[] = [
     idcon: 0,
     idusers: 0,
     fonefx: '8532431872',
-    fonecel: '85999001110'
+    fonecel: '85999001110',
+    fonezap: '5585999001110'
   },
   {
     id: 3,
@@ -38,7 +41,8 @@ export const ListFones: IFones[] = [
     idcon: 0,
     idusers: 1,
     fonefx: '',
-    fonecel: '85998585701'
+    fonecel: '85998585701',
+    fonezap: '5585998585701'
   },
   {
     id: 4,
@@ -48,7 +52,8 @@ export const ListFones: IFones[] = [
     idcon: 0,
     idusers: 1,
     fonefx: '',
-    fonecel: '85998585701'
+    fonecel: '85998585701',
+    fonezap: '5585998585701'
   },
   {
     id: 5,
@@ -58,7 +63,8 @@ export const ListFones: IFones[] = [
     idcon: 1,
     idusers: 1,
     fonefx: '',
-    fonecel: '99999999999'
+    fonecel: '99999999999',
+    fonezap: '5599999999999'
   }
 ];
 
