@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { criasmstr } from '../../util/datamomento.tsx';
-
 import * as Lg from '../stylePage.ts';
 
 import { ThemeProvider } from 'styled-components';
@@ -40,8 +38,6 @@ export const Resgate = () => {
 
   const [idempresa, setIdEmpresa] = React.useState(0);
   const [fantempresa, setFantEmpresa] = React.useState('');
-
-  const [snhmaster, setSnhMaster] = React.useState('');
 
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
@@ -86,7 +82,6 @@ export const Resgate = () => {
     dispatch({ type: AcessoUseActions.setAplicacao, payload: 'Opções.' });
 
     //////////////////////////////////////////////////////////////////////////
-    setSnhMaster(criasmstr);
     setStart(true);
   }, [dispatch]);
 

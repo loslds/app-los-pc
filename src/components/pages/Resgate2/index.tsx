@@ -1,9 +1,5 @@
 import React from 'react';
-
-//import { criasmstr } from '../../util/datamomento.tsx';
-
 import * as Pg from '../stylePage.ts';
-
 import { useNavigate } from 'react-router-dom';
 import {
   AcessoUseForm,
@@ -13,39 +9,31 @@ import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 import { ThemeProvider } from 'styled-components';
 import { ThemeResgate } from '../../modulos/themes/ThemeResgate/index.tsx';
-
 import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
 import { ContentInputPage } from '../ContentInputPage.tsx';
-import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
-
 import { ContentBoxLabelPage } from '../ContentBoxLabelPage.tsx';
 import { PanelConfResgateYellow } from '../../panel/PanelConfResgateYellow.tsx';
-
 import { PageModal } from '../../Modal/PageModal.tsx';
 import { CardHelpResgate2 } from '../../contentHelp/CardHelpResgate2.tsx';
 import { CardInfoLogin } from '../../contentHelp/CardInfoLogin.tsx';
 import close from '../../../assets/svgs/close.svg';
 import resgatepg2 from '../../../assets/svgs/resgatepg2.svg';
 import resgatehlp2 from '../../../assets/svgs/resgatehlp2.svg';
-
 import esclamacaocirc from '../../../assets/svgs/esclamacaocirc.svg';
 import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-import {IEmps,ListEmps, FindEmpsID } from '../../../books/ListEmps.tsx';
-
 import {
   isValidarEmail,
   MasckedEmail,
   isNumber,
-  MaskNumberZero,
-
+//  MaskNumberZero,
   isFoneCValid,
   MasckedFoneC,
   isFoneZValid,
@@ -53,13 +41,12 @@ import {
   isCpfValid,
   isExistsCPF,
   MasckedCpf,
-  MaskSNumber,
-  
-  MaskSString,
-  MaskSEmail,
-  MaskSFoneC,
-  MaskSFoneZ,
-  MaskSCPF
+//  MaskSNumber,
+//  MaskSString,
+//  MaskSEmail,
+//  MaskSFoneC,
+//  MaskSFoneZ,
+//  MaskSCPF
 } from '../../../funcs/ErroEdicao.tsx';
 
 export const Resgate2 = () => {
@@ -69,83 +56,79 @@ export const Resgate2 = () => {
   const [inputstrid, setInputStrId] = React.useState('');
 
   const [erroedt, setErroEdt] = React.useState('');
-  const [errodb, setErroDb] = React.useState(false);
-  const [titleagadb, setTitelAgaDb] = React.useState('');
-  const [stitlelabeldb, setSTitleLabelDb] = React.useState('');
-  const [testoerrodb, setTestoErroDb] = React.useState('');
-  const [msgerrodbemps, setMsgErroDbEmps] = React.useState('');
-  const [msgerrodbusers, setMsgErroDbUsers] = React.useState('');
-  const [msgerrodbfones, setMsgErroDbFones] = React.useState('');
-  const [msgerrodbacessos,setMsgErroDbAcessos] = React.useState('');
+  //const [errodb, setErroDb] = React.useState(false);
+  //const [titleagadb, setTitelAgaDb] = React.useState('');
+  //const [stitlelabeldb, setSTitleLabelDb] = React.useState('');
+  //const [testoerrodb, setTestoErroDb] = React.useState('');
+  //const [msgerrodbemps, setMsgErroDbEmps] = React.useState('');
+  //const [msgerrodbusers, setMsgErroDbUsers] = React.useState('');
+  //const [msgerrodbfones, setMsgErroDbFones] = React.useState('');
+  //const [msgerrodbacessos, setMsgErroDbAcessos] = React.useState('');
 
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
-
   const [iseditar, setIsEditar] = React.useState(false); // painel edição
   const [isvalidelst, setIsValideLst] = React.useState(false);
-
   const [btncontinuar, setBtnContinuar] = React.useState(false);
-  const [btnconfirmation, setBtnConfirmation] = React.useState(false);
-
-  const [btncomparar, setBtnComparar] = React.useState(false);
-  const [btnreceives, setBtnReceives] = React.useState(false);
-  const [btnresgatar, setBtnResgatar] = React.useState(false);
-  const [btnenviar, setBtnEnviar] = React.useState(false);
-
-  const [labelbtn, setLabelBtn] = React.useState('');
-
   const [statusbtn, setStatusBtn] = React.useState('');
   const [ispnlfooter, setIsPnlFooter] = React.useState(false);
-
-  const [maskedidemp, setMaskedIdEmp] = React.useState('');
-  const [maskednmfant, setMaskedNmFant] = React.useState('');
-
-  const [idpseudonimo, setIdPseudonimo] = React.useState('');
-  const [pswusuario, setPswUsuario] = React.useState('');
-  const [maskedidnmuser, setMaskedIdNmUser] = React.useState('');
-  const [maskedpswuser, setMaskedPswUser] = React.useState('');
   const [maskedemail, setMaskedEmail] = React.useState('');
   const [maskedfonec, setMaskedFoneC] = React.useState('');
   const [maskedfonez, setMaskedFoneZ] = React.useState('');
   const [maskedcpf, setMaskedCpf] = React.useState('');
 
-  const [masksidemp, setMaskSIdEmp] = React.useState('');
-  const [masksnmemp, setMaskSNmEmp] = React.useState('');
-  const [masksnmiduser, setMaskSIdUser] = React.useState('');
-  const [maskspswuser, setMaskSPswUser] = React.useState('');
-  const [masksemail, setMaskSEmail] = React.useState('');
-  const [masksfonec, setMaskSFoneC] = React.useState('');
-  const [masksfonez, setMaskSFoneZ] = React.useState('');
-  const [maskscpf, setMaskSCpf] = React.useState('');
 
-  const [empsDetails, setEmpsDetails] = React.useState<Omit<IEmps, 'id'>[]>([]);
+  //  const [btnconfirmation, setBtnConfirmation] = React.useState(false);
 
-  const [bperg1, setBPerg1] = React.useState(false);
-  const [bperg2, setBPerg2] = React.useState(false);
-  const [bperg3, setBPerg3] = React.useState(false);
-  const [resp1, setRerp1] = React.useState('');
-  const [resp2, setRerp2] = React.useState('');
-  const [resp3, setRerp3] = React.useState('');
-  const [dbperg1, setDBPerg1] = React.useState('');
-  const [dbperg2, setDBPerg2] = React.useState('');
-  const [dbperg3, setDBPerg3] = React.useState('');
-  const [dbsresp1, setDbRerp1] = React.useState('');
-  const [dbsresp2, setDbRerp2] = React.useState('');
-  const [dbsresp3, setDbRerp3] = React.useState('');
+  //  const [btncomparar, setBtnComparar] = React.useState(false);
+  //  const [btnreceives, setBtnReceives] = React.useState(false);
+  //  const [btnresgatar, setBtnResgatar] = React.useState(false);
+  //  const [btnenviar, setBtnEnviar] = React.useState(false);
+
+  //const [labelbtn, setLabelBtn] = React.useState('');
+
+
+  //const [maskedidemp, setMaskedIdEmp] = React.useState('');
+  //const [maskednmfant, setMaskedNmFant] = React.useState('');
+
+  //const [idpseudonimo, setIdPseudonimo] = React.useState('');
+  //const [pswusuario, setPswUsuario] = React.useState('');
+  //const [maskedidnmuser, setMaskedIdNmUser] = React.useState('');
+  //const [maskedpswuser, setMaskedPswUser] = React.useState('');
+
+  //const [masksidemp, setMaskSIdEmp] = React.useState('');
+  //const [masksnmemp, setMaskSNmEmp] = React.useState('');
+  //const [masksnmiduser, setMaskSIdUser] = React.useState('');
+  //const [maskspswuser, setMaskSPswUser] = React.useState('');
+  //const [masksemail, setMaskSEmail] = React.useState('');
+  //const [masksfonec, setMaskSFoneC] = React.useState('');
+  //const [masksfonez, setMaskSFoneZ] = React.useState('');
+  //const [maskscpf, setMaskSCpf] = React.useState('');
+
+  //const [empsDetails, setEmpsDetails] = React.useState<Omit<IEmps, 'id'>[]>([]);
+
+  //const [perg1, setPerg1] = React.useState(false);
+  //const [perg2, setPerg2] = React.useState(false);
+  //const [perg3, setPerg3] = React.useState(false);
+  //const [resp1, setRerp1] = React.useState('');
+  //const [resp2, setRerp2] = React.useState('');
+  //const [resp3, setRerp3] = React.useState('');
+  //const [dbperg1, setDBPerg1] = React.useState('');
+  //const [dbperg2, setDBPerg2] = React.useState('');
+  //const [dbperg3, setDBPerg3] = React.useState('');
+  //const [dbsresp1, setDbRerp1] = React.useState('');
+  //const [dbsresp2, setDbRerp2] = React.useState('');
+  //const [dbsresp3, setDbRerp3] = React.useState('');
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 3 });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate2' });
+    dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
     dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
-    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
-    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
-    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
-    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
-    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Resgatar: Contato Usuário'
@@ -159,31 +142,24 @@ export const Resgate2 = () => {
     if (state.mdlogin === 1) {
       setErroEdt('Edite seu Email.');
       setEdicao('Através de : Email.');
-      setLabelBtn('EMAIl');
+//      setLabelBtn('EMAIl');
     } else if (state.mdlogin === 2) {
       setErroEdt('Edite nº p/ SMS...');
       setEdicao('Através de : SMS.');
-      setLabelBtn('SMS');
+//      setLabelBtn('SMS');
     } else if (state.mdlogin === 3) {
       setErroEdt('Edite nº p/ Whatsapp...');
       setEdicao('Através de : Whatsapp.');
-      setLabelBtn('WhatsApp');
+//      setLabelBtn('WhatsApp');
     } else if (state.mdlogin === 4) {
       setErroEdt('Edite nº p/ CPF...');
       setEdicao('Através de : Perguntas.');
-      setLabelBtn('C.P.F');
+//      setLabelBtn('C.P.F');
     }
-    //    setSnhMaster(criasmstr);
-
+    //setSnhMaster(criasmstr);
     setIsEditar(true);
-    //setIsContinuar(false);
     setBtnContinuar(false);
-
-    setBtnConfirmation(false);
-    setBtnReceives(false);
-    setBtnComparar(false);
-    setBtnResgatar(false);
-    setBtnEnviar(false);
+    //setBtnConfirmation(false);
 
     setIsPnlFooter(false);
   }, [dispatch]);
@@ -218,8 +194,6 @@ export const Resgate2 = () => {
   const handlerEditar = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const valorInput = e.target.value;
-      setInputStrId(valorInput);
-      setIdPseudonimo('');
       setIsValideLst(false);
       let erro = '';
       let masck = '';
@@ -279,138 +253,34 @@ export const Resgate2 = () => {
         }
       }
       if (erro !== '') {
-        if ( isvalidelst ) {
-          setIdPseudonimo(valorInput);
+        if (isvalidelst) {
+          setInputStrId(valorInput);
         }
       }
     },
     [state.mdlogin]
   );
 
-  const handlerBtnIsvalideLst = React.useCallback(() => {
+  const handlerBtnIsvalideLst = () => {
     setStatusBtn('CONTINUAR ?...');
     setIsEditar(false);
     setIsValideLst(false);
     setBtnContinuar(true);
-  }, [btncontinuar]);
+  };
 
-  const handlerBtnContinuar = React.useCallback(() => {
-    setErroDb(false);
-    setTitelAgaDb('ERRO ao verificar DataCenter ');
-    setSTitleLabelDb('Dados não encontrados ou Corrompidos');
-    setTestoErroDb('');
-    setMsgErroDbEmps('');
-    setMsgErroDbUsers('');
-    setMsgErroDbFones('');
-    setMsgErroDbAcessos('');
-    
-    
-    
-
-
-
-    /* Busca por dados Empresa */
-    const resultemp = FindEmpsID(state.idemp);
-    if (!resultemp) {
-      setMsgErroDbEmps('"EMPRESA" não encontrada !');
-    } else {
-      setEmpsDetails([...empsDetails, resultemp]);
-      const foundEmpsDetails = ListEmps.filter(emp => emp.id === state.idemp && emp.fant === state.nmfant)
-      .map(emp => ({
-          id: emp.id,
-          fant: emp.fant
-      }));
-      if (foundEmpsDetails.length === 0) {
-        setMsgErroDbEmps('"EMPRESA" não consta Nome Fantasia ou Dados Corrompidos!');        
-      }
-    };
-    if (!errodb){
-      if (msgerrodbemps !== '') {
-        setTestoErroDb((prevState) => prevState + '<p>' + msgerrodbemps + '</p>');
+  React.useEffect(() => {
+    if (btncontinuar && inputstrid !== '') {
+      if (state.mdlogin === 1) {
+        dispatch({ type: AcessoUseActions.setMail, payload: inputstrid });
+      } else if (state.mdlogin === 2) {
+        dispatch({ type: AcessoUseActions.setFoneC, payload: inputstrid });
+      } else if (state.mdlogin === 3) {
+        dispatch({ type: AcessoUseActions.setFoneZ, payload: inputstrid });
+      } else if (state.mdlogin === 4) {
+        dispatch({ type: AcessoUseActions.setCpf, payload: inputstrid });
       }
     }
-
-
-
-
-
-    if (!errodb){
-      if (msgerrodbusers !== '') {
-        setTestoErroDb((prevState) => prevState + '<p>' + msgerrodbusers + '</p>');
-      }
-    }
-
-    /* Busca por dados Empresa */
-    if (state.mdlogin === 1) {}
-    if (state.mdlogin === 2) {}
-    if (state.mdlogin === 3) {}
-    if (state.mdlogin === 4) {}
-
-
-
-
-    if ()    
-
-
-
-    setStatusBtn('CONFIRMAR ?...');    
-    setBtnConfirmation(true);
-  }, [btnconfirmation]);
-
-  // const handlerBtnConfirmation = React.useCallback(() => {
-  //   setStatusBtn('COMPARAR ?...');
-  //   setBtnConfirmation(false);
-  //   //
-  //   if (state.idemp !== 0) {
-  //     let masknr = MaskNumberZero(5, state.idemp);
-  //     setMaskedIdEmp(masknr);
-  //   }
-  //   if (state.nmfant !== '') {
-  //     let mskstr = MaskSString(state.nmfant);
-  //     setMaskedNmFant(mskstr);
-  //     mskstr = MsskdString(inputstrid);
-  //     setMaskedIdNmUser(mskstr);
-
-  //   let masckes = '';
-  //   if (state.mdlogin === 1) {
-  //     masckes = MaskSEmail(maskedemail);
-  //     setMaskSEmail(masckes);
-  //     setBtnComparar(true);
-  //   } else if (state.mdlogin === 2) {
-  //     masckes = MaskSFoneC(maskedfonec);
-  //     setMaskSFoneC(masckes);
-  //     setBtnComparar(true);
-  //   } else if (state.mdlogin === 3) {
-  //     masckes = MaskSFoneZ(maskedfonez);
-  //     setMaskSFoneZ(masckes);
-  //     setBtnComparar(true);
-  //   } else if (state.mdlogin === 4) {
-  //     masckes = MaskSCPF(maskedcpf);
-  //     setMaskSCpf(masckes);
-  //     setBtnComparar(true);
-  //   }
-  // }, [btncomparar]);
-
-  // const handlerBtnComparar = React.useCallback(() => {
-  //   setStatusBtn('RESGATAR ?...');
-  //   setBtnComparar(false);
-  //   setBtnReceives(true);
-  // }, [btnreceives]);
-
-  // const handlerBtnResgatar = React.useCallback(() => {
-  //   setStatusBtn('ENVIAR ?...');
-  //   setIsPnlFooter(false);
-  //   setBtnReceives(false);
-  //   setBtnResgatar(true);
-  // }, [btnresgatar]);
-
-  // React.useEffect(() => {
-  //   if (btncomparar) {
-  //     if (state.mdlogin === 1) { dispatch({ type: AcessoUseActions.setMail, payload: inputstrid });}
-  //     else if (state.mdlogin === 2) { dispatch({ type: AcessoUseActions.setFoneC, payload: inputstrid });}
-  //     else if (state.mdlogin === 3) { dispatch({ type: AcessoUseActions.setFoneZ, payload: inputstrid });}
-  //     else if (state.mdlogin === 4) { dispatch({ type: AcessoUseActions.setCpf, payload: inputstrid });}
-  //   }, [btncomparar, state.mdlogin, inputstrid])}
+  }, [btncontinuar, inputstrid, dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -433,7 +303,7 @@ export const Resgate2 = () => {
             <h2>{state.modulo}</h2>
           </ContentCardPageTitle>
           <ContentCardBoxMainPage>
-            {iseditar && (
+            {iseditar ? (
               <ContentCardBoxCenterPage pwidth="200px">
                 <ContentCardPageTitle>
                   <h4>{edicao}</h4>
@@ -513,7 +383,7 @@ export const Resgate2 = () => {
                   </ContentInputPage>
                 ) : null}
               </ContentCardBoxCenterPage>
-            )}
+            ) : null}
 
             {btncontinuar ? (
               <ContentCardBoxCenterPage pwidth="100%">
@@ -525,8 +395,9 @@ export const Resgate2 = () => {
                   titulo={'Resgate para seu Acesso.'}
                   subtitulo={'Dados editados :'}
                 >
-                  
-                  <p>&emsp;&emsp;Já temos em mãos : <span>{edicao}</span></p>
+                  <p>
+                    &emsp;&emsp;Já temos em mãos : <span>{edicao}</span>
+                  </p>
                   <label>
                     &emsp;&emsp# - ID Empresa....: <span>{state.idemp}</span>
                   </label>
@@ -567,8 +438,155 @@ export const Resgate2 = () => {
                   </div>
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
-            ): null}
+            ) : null}
+          </ContentCardBoxMainPage>
 
+          <Pg.DivisionPgHztalPage />
+
+          <ContentSidePageBottonLabel istitl={ispnlfooter} title={'Voltar.: '}>
+            <ContentSidePageBottonButton
+              pxheight={'40px'}
+              img={setaesq}
+              titbtn={'Volta...'}
+              onclick={goto('/resgate1')}
+            />
+            <ContentBoxLabelPage label={statusbtn} />
+
+            {isvalidelst && (
+              <ContentSidePageBottonLabel
+                istitl={isvalidelst}
+                title={'Concluida ? '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Concluida...'}
+                  onclick={handlerBtnIsvalideLst}
+                />
+              </ContentSidePageBottonLabel>
+            )}
+
+            {btncontinuar && (
+              <ContentSidePageBottonLabel
+                istitl={btncontinuar}
+                title={'Continua ? '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Continuar...'}
+                  onclick={goto('/resgate3')}
+                />
+              </ContentSidePageBottonLabel>
+            )}
+          </ContentSidePageBottonLabel>
+
+          {helppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'50%'}
+              pheight={'75%'}
+              titulo={'Acesso Resgate.'}
+              imgbm={close}
+              titbm={'Fechar...'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardHelpResgate2
+                imghlp={resgatehlp2}
+                imgcard={resgatepg2}
+                imgbm={close}
+                titbm={'Fechar...'}
+                onclose={() => setHelpPg(false)}
+              />
+            </PageModal>
+          ) : null}
+
+          {onpanel ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'95%'}
+              titulo={'DADOS Context Login.'}
+              imgbm={close}
+              titbm={'Fechar...'}
+              onclose={() => setOnPanel(false)}
+            >
+              <CardInfoLogin />
+            </PageModal>
+          ) : null}
+        </ContentCardPage>
+      </ThemeResgate>
+    </ThemeProvider>
+  );
+};
+
+/*
+
+
+  // const handlerBtnConfirmation = React.useCallback(() => {
+  //   setStatusBtn('COMPARAR ?...');
+  //   setBtnConfirmation(false);
+  //   //
+  //   if (state.idemp !== 0) {
+  //     let masknr = MaskNumberZero(5, state.idemp);
+  //     setMaskedIdEmp(masknr);
+  //   }
+  //   if (state.nmfant !== '') {
+  //     let mskstr = MaskSString(state.nmfant);
+  //     setMaskedNmFant(mskstr);
+  //     mskstr = MsskdString(inputstrid);
+  //     setMaskedIdNmUser(mskstr);
+
+  //   let masckes = '';
+  //   if (state.mdlogin === 1) {
+  //     masckes = MaskSEmail(maskedemail);
+  //     setMaskSEmail(masckes);
+  //     setBtnComparar(true);
+  //   } else if (state.mdlogin === 2) {
+  //     masckes = MaskSFoneC(maskedfonec);
+  //     setMaskSFoneC(masckes);
+  //     setBtnComparar(true);
+  //   } else if (state.mdlogin === 3) {
+  //     masckes = MaskSFoneZ(maskedfonez);
+  //     setMaskSFoneZ(masckes);
+  //     setBtnComparar(true);
+  //   } else if (state.mdlogin === 4) {
+  //     masckes = MaskSCPF(maskedcpf);
+  //     setMaskSCpf(masckes);
+  //     setBtnComparar(true);
+  //   }
+  // }, [btncomparar]);
+
+  // const handlerBtnComparar = React.useCallback(() => {
+  //   setStatusBtn('RESGATAR ?...');
+  //   setBtnComparar(false);
+  //   setBtnReceives(true);
+  // }, [btnreceives]);
+
+  // const handlerBtnResgatar = React.useCallback(() => {
+  //   setStatusBtn('ENVIAR ?...');
+  //   setIsPnlFooter(false);
+  //   setBtnReceives(false);
+  //   setBtnResgatar(true);
+  // }, [btnresgatar]);
+
+  // React.useEffect(() => {
+  //   if (btncomparar) {
+  //     if (state.mdlogin === 1) { dispatch({ type: AcessoUseActions.setMail, payload: inputstrid });}
+  //     else if (state.mdlogin === 2) { dispatch({ type: AcessoUseActions.setFoneC, payload: inputstrid });}
+  //     else if (state.mdlogin === 3) { dispatch({ type: AcessoUseActions.setFoneZ, payload: inputstrid });}
+  //     else if (state.mdlogin === 4) { dispatch({ type: AcessoUseActions.setCpf, payload: inputstrid });}
+  //   }, [btncomparar, state.mdlogin, inputstrid])}
+
+
+  // botao
+
+    const handlerBtnContinuar = () => {
+    setStatusBtn('CONFIRMAR ?...');
+    setBtnContinuar(false);    
+    setBtnConfirmation(true);
+
+  };
             {btnconfirmation && (
               <ContentCardBoxCenterPage pwidth="200px">
                 <ContentCardPageTitle>
@@ -580,31 +598,33 @@ export const Resgate2 = () => {
                   subtitulo={'Dados Confirmados...:'}
                 >
                   <h4>{edicao}</h4>
-                  <p>&emsp;&emsp;Já temos em mãos :</p>
+                  <p>
+                    &emsp;&emsp;Já temos em mãos : <span>{edicao}</span>
+                  </p>
                   <label>
-                    &emsp;# - ID Empresa....: <span>{maskedidemp}</span>
+                    &emsp;&emsp# - ID Empresa....: <span>{state.idemp}</span>
                   </label>
                   <label>
-                    &emsp;# - Nome Fantasia: <span>{maskednmfant}</span>
+                    &emsp;&emsp# - Nome Fantasia: <span>{state.nmfant}</span>
                   </label>
                   {state.mdlogin === 1 ? (
                     <label>
-                      &emsp;# - E-MAIL : <span>{maskedemail}</span>
+                      &emsp;# - E-MAIL : <span>{state.mail}</span>
                     </label>
                   ) : null}
                   {state.mdlogin === 2 ? (
                     <label>
-                      &emsp;# - Celular : <span>{maskedfonec}</span>
+                      &emsp;# - Celular : <span>{state.fonec}</span>
                     </label>
                   ) : null}
                   {state.mdlogin === 3 ? (
                     <label>
-                      &emsp;# - Whatsapp : <span>{maskedfonez}</span>
+                      &emsp;# - Whatsapp : <span>{state.fonez}</span>
                     </label>
                   ) : null}
                   {state.mdlogin === 4 ? (
                     <label>
-                      &emsp;# - C.P.F. : <span>{maskedcpf}</span>
+                      &emsp;# - C.P.F. : <span>{state.cpf}</span>
                     </label>
                   ) : null}
                   <br />
@@ -622,6 +642,102 @@ export const Resgate2 = () => {
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
             )}
+
+  const handlerBtnConfirmation = () => {
+    if (btnconfirmation) {
+      if (state.mdlogin === 1) { 
+        dispatch({ type: AcessoUseActions.setMail, payload: inputstrid });
+      } else if (state.mdlogin === 2) { 
+        dispatch({ type: AcessoUseActions.setFoneC, payload: inputstrid });
+      } else if (state.mdlogin === 3) { 
+        dispatch({ type: AcessoUseActions.setFoneZ, payload: inputstrid });
+      } else if (state.mdlogin === 4) { 
+        dispatch({ type: AcessoUseActions.setCpf, payload: inputstrid });
+      }
+    }
+  };
+
+
+
+
+
+          {btncontinuar ? (
+            <ContentSidePagePanelBotton
+              bordas="3px"
+              open={btncontinuar}
+              pwidth="100%"
+            >
+              <ContentSidePageBottonLabel
+                istitl={btncontinuar}
+                title={'Abortar.: '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setaesq}
+                  titbtn={'Volta...'}
+                  onclick={goto('/')}
+                />
+              </ContentSidePageBottonLabel>
+              <ContentBoxLabelPage label={statusbtn} />
+              <ContentSidePageBottonLabel
+                istitl={btnresgatar}
+                title={'Prosseguir ? '}
+              >
+                <ContentSidePageBottonButton
+                  pxheight={'40px'}
+                  img={setadir}
+                  titbtn={'Prosseguir...'}
+                  onclick={goto('/')}
+                />
+              </ContentSidePageBottonLabel>
+            </ContentSidePagePanelBotton>
+          ) : (
+
+              {btnconfirmation ? (
+                <ContentSidePageBottonLabel
+                  istitl={btnconfirmation}
+                  title={'Confirma ? '}
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Confirmar...'}
+                    onclick={handlerBtnConfirmation}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+
+
+  {btncomparar ? (
+                <ContentSidePageBottonLabel
+                  istitl={btncomparar}
+                  title={'Comparar ? '}
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Comparar...'}
+                    onclick={() => {}}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+
+              {btnresgatar ? (
+                <ContentSidePageBottonLabel
+                  istitl={btnresgatar}
+                  title={'Resgatar ? '}
+                >
+                  <ContentSidePageBottonButton
+                    pxheight={'40px'}
+                    img={setadir}
+                    titbtn={'Resgatar...'}
+                    onclick={() => {}}
+                  />
+                </ContentSidePageBottonLabel>
+              ) : null}
+
+
+
 
             {btnreceives && (
               <ContentCardBoxCenterPage pwidth="200px">
@@ -698,7 +814,6 @@ export const Resgate2 = () => {
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
             )}
-
             {btncomparar && (
               <ContentCardBoxCenterPage pwidth="200px">
                 <ContentCardPageTitle>
@@ -777,166 +892,10 @@ export const Resgate2 = () => {
                 </PanelConfResgateYellow>
               </ContentCardBoxCenterPage>
             )}
-          </ContentCardBoxMainPage>
-
-          <Pg.DivisionPgHztalPage />
-
-          {btnenviar ? (
-            <ContentSidePagePanelBotton
-              bordas="3px"
-              open={btnenviar}
-              pwidth="100%"
-            >
-              <ContentSidePageBottonLabel
-                istitl={btnresgatar}
-                title={'Abortar.: '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setaesq}
-                  titbtn={'Volta...'}
-                  onclick={goto('/')}
-                />
-              </ContentSidePageBottonLabel>
-              <ContentBoxLabelPage label={statusbtn} />
-              <ContentSidePageBottonLabel
-                istitl={btnresgatar}
-                title={'Prosseguir ? '}
-              >
-                <ContentSidePageBottonButton
-                  pxheight={'40px'}
-                  img={setadir}
-                  titbtn={'Prosseguir...'}
-                  onclick={goto('/')}
-                />
-              </ContentSidePageBottonLabel>
-            </ContentSidePagePanelBotton>
-          ) : (
-            <ContentSidePageBottonLabel
-              istitl={ispnlfooter}
-              title={'Voltar.: '}
-            >
-              <ContentSidePageBottonButton
-                pxheight={'40px'}
-                img={setaesq}
-                titbtn={'Volta...'}
-                onclick={goto('/resgate1')}
-              />
-              <ContentBoxLabelPage label={statusbtn} />
 
 
-              {isvalidelst &&  (
-                <ContentSidePageBottonLabel
-                  istitl={isvalidelst}
-                  title={'Concluida ? '}
-                >
-                  <ContentSidePageBottonButton
-                    pxheight={'40px'}
-                    img={setadir}
-                    titbtn={'Concluida...'}
-                    onclick={handlerBtnIsvalideLst}
-                  />
-                </ContentSidePageBottonLabel>
-              )}
 
-              {btncontinuar && (
-                <ContentSidePageBottonLabel
-                  istitl={btncontinuar}
-                  title={'Continua ? '}
-                >
-                  <ContentSidePageBottonButton
-                    pxheight={'40px'}
-                    img={setadir}
-                    titbtn={'Continuar...'}
-                    onclick={handlerBtnContinuar}
-                  />
-                </ContentSidePageBottonLabel>
-              ) }
-{/*   perguntas */}
-              {btnconfirmation ? (
-                <ContentSidePageBottonLabel
-                  istitl={btnconfirmation}
-                  title={'Confirmar ? '}
-                >
-                  <ContentSidePageBottonButton
-                    pxheight={'40px'}
-                    img={setadir}
-                    titbtn={'Confirmar...'}
-                    onclick={() => {}}
-                  />
-                </ContentSidePageBottonLabel>
-              ) : null}
 
-              {btncomparar ? (
-                <ContentSidePageBottonLabel
-                  istitl={btncomparar}
-                  title={'Comparar ? '}
-                >
-                  <ContentSidePageBottonButton
-                    pxheight={'40px'}
-                    img={setadir}
-                    titbtn={'Comparar...'}
-                    onclick={() => {}}
-                  />
-                </ContentSidePageBottonLabel>
-              ) : null}
-
-              {btnresgatar ? (
-                <ContentSidePageBottonLabel
-                  istitl={btnresgatar}
-                  title={'Resgatar ? '}
-                >
-                  <ContentSidePageBottonButton
-                    pxheight={'40px'}
-                    img={setadir}
-                    titbtn={'Resgatar...'}
-                    onclick={() => {}}
-                  />
-                </ContentSidePageBottonLabel>
-              ) : null}
-            </ContentSidePageBottonLabel>
-          )}
-
-          {helppg ? (
-            <PageModal
-              ptop={'1%'}
-              pwidth={'50%'}
-              pheight={'75%'}
-              titulo={'Acesso Resgate.'}
-              imgbm={close}
-              titbm={'Fechar...'}
-              onclose={() => setHelpPg(false)}
-            >
-              <CardHelpResgate2
-                imghlp={resgatehlp2}
-                imgcard={resgatepg2}
-                imgbm={close}
-                titbm={'Fechar...'}
-                onclose={() => setHelpPg(false)}
-              />
-            </PageModal>
-          ) : null}
-
-          {onpanel ? (
-            <PageModal
-              ptop={'1%'}
-              pwidth={'65%'}
-              pheight={'95%'}
-              titulo={'DADOS Context Login.'}
-              imgbm={close}
-              titbm={'Fechar...'}
-              onclose={() => setOnPanel(false)}
-            >
-              <CardInfoLogin />
-            </PageModal>
-          ) : null}
-        </ContentCardPage>
-      </ThemeResgate>
-    </ThemeProvider>
-  );
-};
-
-/*
 
   
 

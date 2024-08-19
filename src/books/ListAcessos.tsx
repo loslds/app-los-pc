@@ -90,5 +90,15 @@ export const AcessosIndexById = (): { [key: number]: IAcessos } => {
 };
 
 export const GetFilterAcessoId = (id: number): IAcessos | undefined => {
+
   return ListAcessos.find((acess) => acess.id === id);
+};
+
+export const FindAcessoID = (id: number): IAcessos | undefined => {
+  const acess = ListAcessos.find(acess => acess.id === id);
+  if (acess) {
+    const { id, ...rest } = acess;
+    return rest;
+  }
+  return undefined;
 };

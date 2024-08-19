@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { criasmstr } from '../../util/datamomento.tsx';
+//import { criasmstr } from '../../util/datamomento.tsx';
 
 import * as Lg from '../stylePage.ts';
 
@@ -37,12 +37,6 @@ import setadir from '../../../assets/svgs/setadir.svg';
 
 export const Resgate1 = () => {
   const { state, dispatch } = AcessoUseForm();
-
-  //const [idempresa, setIdEmpresa] = React.useState(0);
-  //const [fantempresa, setFantEmpresa] = React.useState('');
-
-//  const [snhmaster, setSnhMaster] = React.useState('');
-
   const [start, setStart] = React.useState(false);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
@@ -56,40 +50,18 @@ export const Resgate1 = () => {
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 2 });
-    //dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate1' });
-
-    //dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
-
-    //dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-    //dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
     dispatch({ type: AcessoUseActions.setMail, payload: '' });
-    //dispatch({ type: AcessoUseActions.setPin, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
     dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
-    //dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
-
     dispatch({ type: AcessoUseActions.setCpf, payload: '' });
-    //dispatch({ type: AcessoUseActions.setperg1, payload: '' });
-    //dispatch({ type: AcessoUseActions.setresp1, payload: '' });
-    //dispatch({ type: AcessoUseActions.setperg2, payload: '' });
-    //dispatch({ type: AcessoUseActions.setresp2, payload: '' });
-    //dispatch({ type: AcessoUseActions.setperg3, payload: '' });
-    //dispatch({ type: AcessoUseActions.setresp3, payload: '' });
-
-    //dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
     dispatch({ type: AcessoUseActions.setNmLogin, payload: 'Opções :' });
-
     dispatch({
       type: AcessoUseActions.setModulo,
       payload: 'Resgate: Opção Forma.'
     });
     setAplicacao('Opções');
     dispatch({ type: AcessoUseActions.setAplicacao, payload: aplicacao });
-
     //////////////////////////////////////////////////////////////////////////
   //  setSnhMaster(criasmstr);
     setStart(true);

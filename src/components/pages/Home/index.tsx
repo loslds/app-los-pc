@@ -39,12 +39,15 @@ import close from '../../../assets/svgs/close.svg';
 export const Home = () => {
   const { state, dispatch } = AcessoUseForm();
   console.log('state.logado Home : ', state.logado);
+  const [snhmaster, setSnhMaster] = React.useState('');
+  let pswmst = criasmstr();
+  setSnhMaster(pswmst);
 
   React.useEffect(() => {
     if (!state.logado) {
       dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
       dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-      dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
+      dispatch({ type: AcessoUseActions.setPinAdm, payload: snhmaster });
       dispatch({ type: AcessoUseActions.setPage, payload: '' });
 
       dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
@@ -65,7 +68,7 @@ export const Home = () => {
       dispatch({ type: AcessoUseActions.setresp2, payload: '' });
       dispatch({ type: AcessoUseActions.setperg3, payload: '' });
       dispatch({ type: AcessoUseActions.setresp3, payload: '' });
-      
+
       dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
       dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
       dispatch({ type: AcessoUseActions.setMdProdu, payload: false });

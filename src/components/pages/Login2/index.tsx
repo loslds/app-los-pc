@@ -18,7 +18,6 @@ import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
 import { ContentCardBoxCenterPage } from '../ContentCardBoxCenterPage.tsx';
 import { ContentInputMainPage } from '../ContentInputMainPage.tsx';
-//import { ContentBoxMainPage } from '../ContentBoxMainPage.tsx';
 import { ContentSidePagePanelBotton } from '../ContentSidePagePanelBotton.tsx';
 import { ContentSidePageBottonLabel } from '../ContentSidePageBottonLabel.tsx';
 import { ContentSidePageBottonButton } from '../ContentSidePageBottonButton.tsx';
@@ -182,16 +181,6 @@ export const Login2 = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
-        <div>
-          <label>State idemp...: {state.idemp}</label>
-          <label>State nmfant..: {state.nmfant}</label>
-          <label>State mdlogin.: {state.mdlogin}</label>
-          <label>State nmlogin.: {state.nmlogin}</label>
-          <label>Const strid...: {strid}</label>
-          <label>State idnmuser: {state.idnmuser}</label>
-          <label>Const strpsw..: {strpsw}</label>
-          <label>State pswuser.: {state.pswuser}</label>
-        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
@@ -207,7 +196,6 @@ export const Login2 = () => {
                   pwidth={'180px'}
                 >
                   <ContentInputMainPage>
-                    
                     {state.mdlogin === 1 ? (
                       <form name="login1">
                         <br />
@@ -300,13 +288,11 @@ export const Login2 = () => {
                           value={strpsw}
                           maxLength={10}
                           onChange={(e) => setStrPsw(e.currentTarget.value)}
-                          // onKeyUp={spanChangeKeyUpPasPsw}
                         />
                         <br />
                       </form>
                     ) : null}
                   </ContentInputMainPage>
-                  
                 </ContentCardCollunsCenterPage>
               </ContentCardBoxCenterPage>
             ) : null}
@@ -327,7 +313,9 @@ export const Login2 = () => {
               />
             </ContentSidePageBottonLabel>
 
-            <ContentBoxLabelPage label={'Tentativa [ ' + state.nrcont + 'ª ]'} />
+            <ContentBoxLabelPage
+              label={'Tentativa [ ' + state.nrcont + 'ª ]'}
+            />
 
             {btnresgatar ? (
               <ContentSidePageBottonLabel

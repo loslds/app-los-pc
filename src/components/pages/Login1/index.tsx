@@ -137,14 +137,6 @@ export const Login1 = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
-        <div>
-          <label>State idemp...: {state.idemp}</label>
-          <label>State nmfant..: {state.nmfant}</label>
-          <label>Const mdlogin.: {mdlogin}</label>
-          <label>State mdlogin.: {state.mdlogin}</label>
-          <label>Const nmlogin.: {nmlogin}</label>
-          <label>State nmlogin.: {state.nmlogin}</label>
-        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>
