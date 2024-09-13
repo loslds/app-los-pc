@@ -87,6 +87,20 @@ export const Resgate3 = () => {
     dispatch({ type: AcessoUseActions.setPage, payload: '/resgate3' });
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: '' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+
+    setDbEmpresaUser(0);
+    setDbNmFantUser('');
+    setDbStrIdUser('');
+    setDbStrPswUser('');
+    setDbEmailUser('');
+    setDbFonecUser('');
+    setDbFonezUser('');
+    setDbCpfUser('');
+  
+
+
+
+
     setIsPerg1(false);
     dispatch({ type: AcessoUseActions.setresp1, payload: '' });
     setIsPerg2(false);
@@ -94,10 +108,9 @@ export const Resgate3 = () => {
     setIsPerg3(false);
     dispatch({ type: AcessoUseActions.setresp3, payload: '' });
 
-    
-    const [resp1, setRerp1] = React.useState('');
-    const [resp2, setRerp2] = React.useState('');
-    const [resp3, setRerp3] = React.useState('');
+    setRerp1('');
+    setRerp2('');
+    setRerp3('');
   
     
 //     //   dispatch({ type: AcessoUseActions.setFoneC, payload: '' });

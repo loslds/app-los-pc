@@ -1,7 +1,8 @@
 export interface IAcessos {
-  id?: number;
-  idemp?: number;
+  id?: number;              //id acessoa
+  idemp?: number;           
   iduser?: number;
+  
   mdrecep?: boolean;
   nmrecep?: string;
   mddesig?: boolean;
@@ -18,10 +19,10 @@ export interface IAcessos {
   nmmaster?: string;
   mdconfig?: boolean;
   nmconfig?: string;
-  inclusao?: boolean;
-  alteracao?: boolean;
-  exclusao?: boolean;
-  listagem?: boolean;
+  incluir?: boolean;
+  alterar?: boolean;
+  excluir?: boolean;
+  listar?: boolean;
   visualizar?: boolean;
 }
 
@@ -30,6 +31,7 @@ export const ListAcessos: IAcessos[] = [
     id: 1,
     idemp: 1,
     iduser: 1,
+
     mdrecep: true,
     nmrecep: 'Recepção',
     mddesig: true,
