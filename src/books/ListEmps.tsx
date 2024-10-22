@@ -24,8 +24,13 @@ export const ListEmps:IEmps[] = [
     id: 1,
     fant: 'JR-Bordados.',
     name: 'Junior Bordados Ltda.',
+<<<<<<< HEAD
     cnpj: '10.157.662/0001-23',
     inse: '063.656.702',
+=======
+    cnpj: '10157662000123',
+    inse: '063656702',
+>>>>>>> 3243ffdd76de0ccd704f76d9d01214d6cd41b112
     insm: '',
     cpf: '',
     mail: 'jrbordados@hotmail.com.br',
@@ -43,7 +48,11 @@ export const ListEmps:IEmps[] = [
     id: 2,
     fant: 'RB-Serviços.',
     name: 'Roberta Bastos Ltda.',
+<<<<<<< HEAD
     cnpj: '02.494.780/0001-07',
+=======
+    cnpj: '02494780000107',
+>>>>>>> 3243ffdd76de0ccd704f76d9d01214d6cd41b112
     inse: '',
     insm: '',
     cpf: '',

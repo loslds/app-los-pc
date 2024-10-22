@@ -19,10 +19,10 @@ export interface IAcessos {
   nmmaster?: string;
   mdconfig?: boolean;
   nmconfig?: string;
-  inclusao?: boolean;
-  alteracao?: boolean;
-  exclusao?: boolean;
-  listagem?: boolean;
+  incluir?: boolean;
+  alterar?: boolean;
+  excluir?: boolean;
+  listar?: boolean;
   visualizar?: boolean;
 }
 
