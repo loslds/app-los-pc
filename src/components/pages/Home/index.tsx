@@ -193,7 +193,7 @@ export const Home = () => {
         onclickhpg={handlerHelpPg}
         imgopen={!state.logado ? avatar : avatar001}
         titbtnopen={!state.logado ? 'Logar...' : 'Logado...'}
-        onclickopen={!state.logado ? goto('/login') : handlerViewItensLogin}
+        onclickopen={!state.logado ? goto('/logando') : handlerViewItensLogin}
         imgreg={resgatebtn}
         titbtnreg={'Resgatar Acesso...'}
         onclickreg={goto('/resgate')}

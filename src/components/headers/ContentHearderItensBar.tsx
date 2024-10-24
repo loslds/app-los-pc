@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
-import * as Ly from '../layouts/styled';
+import * as Hed from './styledHeader';
 
 type TypeContentHearderItensBar = {
   children?: ReactNode | JSX.Element;
 };
 export const ContentHearderItensBar = ({ children }: TypeContentHearderItensBar) => {
-  return <Ly.ContainerHeaderItensBar>{children}</Ly.ContainerHeaderItensBar>;
+  return <Hed.ContainerHeaderItensBar>{children}</Hed.ContainerHeaderItensBar>;
 };

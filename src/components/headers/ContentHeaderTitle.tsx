@@ -1,12 +1,12 @@
-import * as Ly from '../layouts/styled';
+import * as Hed from './styledHeader';
 
 type TypeContentHeaderTitle = {
   title?: string;
 };
 export const ContentHeaderTitle = ({ title }: TypeContentHeaderTitle) => {
   return (
-    <Ly.ContainerTitleHeader>
+    <Hed.ContainerTitleHeader>
       <h1>{title}</h1>
-    </Ly.ContainerTitleHeader>
+    </Hed.ContainerTitleHeader>
   );
 };
