@@ -14,7 +14,6 @@ export const ContainerPg = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  //align-content: center;
   color:  ${props => props.theme.colors.textColor};
   background: ${props => props.theme.colors.backgroundColor};
   
@@ -25,61 +24,97 @@ export const ContainerFlexPg = styled.div`
   margin: 0px 5px 0px 5px;
   padding: 0px 0px 0px 0px;
   width: 980px;
-  //display: flex row;
-  //flex-flow: wrap;
-  //flex-wrap: wrap;
   justify-content: space-between;
-  //align-content: center;
   background-color: transparent;
 `;
 ///////////// HEADER /////////////////////////
 export const ContainerHearder = styled.div`
   top: 0px;
   border: none; 
-  padding: 5px 5px 5px 5px;
-  margin: 5px 5px 5px 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
   width: 100%;
-  min-height: 60px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: center;
-`;
-///////////// FOOTER /////////////////////////
-export const ContainerFooter = styled.div`
-  /* top: calc(100vh - 80px); */
-  border: none; /*1px dashed green;*/
-  padding: 5px 5px 5px 5px;
-  margin: 5px 5px 5px 5px;
-  width: 100%;
-  min-height: 60px;
+  min-height: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
 `;
 
-// content imagem Sys
+// INICIO content lado direito HEADER (imagem Sys)
 export const ContainerHeaderItens = styled.div`
-  padding: 0px;
-  margin: 0px;
-  border: 2px double;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
+  border: 2px solid;
   border-radius: 8px;
   border-color: ${props => props.theme.colors.textColor};
-  background: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
 `;
-///////////container do swith/////////////////////
+/////
+export const ContainerImgSys = styled.div`
+  border: none;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 3px 7px 3px 7px;
+  background: #fff;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  align-content: center;
+`;
+type TypeButtonPagesImgSys = {
+  img?: string;
+}
+export const ButtonPagesImgSys = styled.button<TypeButtonPagesImgSys>`
+  border: none;
+  margin: 0px 0px 0px 0px;
+  color: ${props => props.theme.colors.textColor};
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  width: 70px;
+  height: 40px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+`;
+// FIM content imagem Sys
+
+// INICIO content CENTRO Titulo da Pagina Sys
+export const ContainerTitleHeader = styled.div`
+  border: none; /*1px dashed red;*/
+  padding: 0px 0px 0px 0px;
+  margin: 5px 10px 5px 10px;
+  min-height: 40px;
+  background: transparent;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+`;
+// FIM content CENTRO Titulo da Pagina Sys
+
+// INICIO content lado esquerdo HEADER (imagem swith e outras)
+// content lado direito
 export const ContainerHeaderRight = styled.div`
-  border: 2px double;
+  border: 2px solid;
   border-radius: 8px;
   border-color: ${props => props.theme.colors.textColor};
   padding: 0px 0px 0px 0px;
-  margin: 0px 10px 0px 0px;
-  background: transparent;
+  margin: 0px 2px 0px 2px;
+  //background: transparent;
   display: flex;
   flex-flow: row wrap;
   justify-content: right;
@@ -91,19 +126,82 @@ export const ContainerHearderRightFlex = styled.div`
   padding: 0px 0px 0px 0px;
   margin: 0px 0px 0px 0px;
   width: 100%;
-  min-height: 60px;
+  min-height: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-content: center;
 `;
+
+// botoes das paginas
+export const ContainerPagesButton = styled.div`
+  border: 2px red;
+  border-color: #ffffff;
+  border-radius: 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 2px 2px 2px 2px;
+  background: transparent;
+  min-height: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color:  ${props => props.theme.colors.textColor};
+  &:hover {
+    background-color: #e4e4e4;
+   }
+`;
+
+export const ButtonPagesImg = styled.button<{ img?: string }>`
+  border: none;
+  margin: 2px 5px 2px 5px;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: transparent;
+  background-image: url(${({ img }) => img || semimg});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  outline: none;
+  min-height: 45px;
+  width: 45px;
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: center;
+  align-items: center;
+`;
+
+
+
+// FIM content lado esquerdo HEADER (imagem swith e outras)
+
+///////////// FOOTER /////////////////////////
+export const ContainerFooter = styled.div`
+  border: none;
+  padding: 0px 0px 0px 0px;
+  margin: 5px 5px 5px 5px;
+  width: 100%;
+  min-height: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+`;
+
+
+///////////container do swith/////////////////////
+
 ///////////////////////////////////
 export const ContainerHeaderItensBar = styled.div`
   border: none;
-  padding: 5px 5px 5px 5px;
-  margin: 5px 5px 5px 5px;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
   max-width: 100%;
-  min-height: 60px;
+  min-height: 40px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -116,54 +214,7 @@ export const ContainerHeaderItensBar = styled.div`
 //   onClick?: () => void;
 // };
 
-export const ContainerImgSys = styled.div`
-  border: none;
-  border-radius: 5px;
-  padding: 0px 0px 0px 0px;
-  margin: 3px 8px 3px 8px;
-  background: #fff;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  align-content: center;
-`;
-type TypeButtonPagesImgSys = {
-  img?: string;
-}
-export const ButtonPagesImgSys = styled.button<TypeButtonPagesImgSys>`
-  border: none;
-  margin: 2px 2px 2px 2px;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  width: 140px; /*150px;*/
-  height: 55px;/*55px;*/
-  display: flex;
-  flex-flow: nowrap;
-  justify-content: center;
-  align-items: center;
-  background-image: url(${({ img }) => img || semimg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-`;
 
-export const ContainerTitleHeader = styled.div`
-  border: none; /*1px dashed red;*/
-  padding: 0px 0px 0px 0px;
-  margin: 5px;
-  min-height: 60px;
-  background: transparent;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-`;
 /////////////////////////////////////////////
 
 
@@ -209,49 +260,6 @@ export const DivisionPgHztal = styled.div`
   background-color: #9c9c9c;
 `;
 
-// botoes das paginas
-export const ContainerPagesButton = styled.div`
-  border: 2px red;
-  border-color: #ffffff;
-  border-radius: 5px;
-  padding: 0px 0px 0px 0px;
-  margin: 2px 2px 2px 2px;
-  background: transparent;
-  min-height: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  color:  ${props => props.theme.colors.textColor};
-  //background: ${props => props.theme.colors.backgroundColor};
-  // color: #000;
-  &:hover {
-    background-color: #e4e4e4;
-   }
-`;
-
-export const ButtonPagesImg = styled.button<{ img?: string }>`
-  border: none;
-  margin: 2px 5px 2px 5px;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace;
-  background-color: transparent;
-  background-image: url(${({ img }) => img || semimg});
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  outline: none;
-  min-height: 45px;
-  width: 45px;
-  display: flex;
-  flex-flow: nowrap;
-  justify-content: center;
-  align-items: center;
-`;
 ////////////////////////////////////////////////
 
 
