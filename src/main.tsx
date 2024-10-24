@@ -4,9 +4,12 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Global from './styles/global';
 
-import { Logando } from './components/pages/logando';
 
-//import { Home } from './components/pages/Home';
+
+import { Home } from './components/pages/Home';
+//import { Logando } from './components/pages/logando';
+
+
 //import { Login } from './components/pages/Login';
 //import { Login1 } from './components/pages/Login1';
 //import { Login2 } from './components/pages/Login2';
@@ -36,20 +39,21 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
       <Global />
       <AcessoProvider>
         <Routes>
-        <Route path="/logando" element={<Logando />} />
-          
-          {/*
+          <Route path="/" element={<Home />} />
+        {/* 
+          <Route path="/logando" element={<Logando />} />
+           
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login1" element={<Login1 />} />
           <Route path="/login2" element={<Login2 />} />
-           *<Route path="/login3" element={<Login3 />} />* 
+          <Route path="/login3" element={<Login3 />} /> 
           <Route path="/resgate" element={<Resgate />} />
           <Route path="/resgate1" element={<Resgate1 />} />
           <Route path="/resgate2" element={<Resgate2 />} />
           <Route path="/resgate3" element={<Resgate3 />} />
           <Route path="/resgate4" element={<Resgate4 />} />
-          * <Route path="/mayaccount" element={<MyAccount />} /> 
+          <Route path="/mayaccount" element={<MyAccount />} /> 
           <Route path="/tabprc" element={<TabPrc />} />
           <Route path="/recepcao" element={<Recepcao />} />
           <Route path="/design" element={<Design />} />
