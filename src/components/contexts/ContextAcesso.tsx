@@ -50,6 +50,10 @@ type StateAcesso = {
 
   modulo: string;
   aplicacao: string;
+  
+  descnivel: string;
+  nivel: number;
+
   logado: boolean;
   datetimei: string;
   datetimef: string;
@@ -105,6 +109,10 @@ export const initialData: StateAcesso = {
 
   modulo: '',
   aplicacao: '',
+
+  descnivel: '',
+  nivel: 0,
+
   logado: false,
   datetimei: '',
   datetimef: '',
@@ -160,6 +168,10 @@ export enum AcessoUseActions {
 
   setModulo,
   setAplicacao,
+
+  setDescnivel,
+  setNivel,
+
   setLogado,
   setDtIni,
   setDtFim,
@@ -269,6 +281,11 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, modulo: action.payload };
     case AcessoUseActions.setAplicacao:
       return { ...state, aplicacao: action.payload };
+    case AcessoUseActions.setDescnivel:
+      return { ...state, descnivel: action.payload };
+    case AcessoUseActions.setNivel:
+      return { ...state, nivel: action.payload };
+
     case AcessoUseActions.setLogado:
       return { ...state, logado: action.payload };
     case AcessoUseActions.setDtIni:

@@ -9,9 +9,15 @@ import dark from '../../../styles/themes/dark.ts';
 import {
   AcessoUseForm,
   AcessoUseActions
-} from '../../contexts/login/ContextAcesso.tsx';
+} from '../../contexts/ContextAcesso.tsx';
 
 import { useNavigate } from 'react-router-dom';
+// logo da empresa selecionada
+import logosys from '../../../assets/pngs/logosys.png';
+import help from '../../../assets/svgs/help.svg';
+
+
+import { HearderLogged } from 'components/headers/HearderLogged.tsx';
 
 export const Logged = () => {
 
@@ -42,6 +48,9 @@ const { state, dispatch } = AcessoUseForm();
     dispatch({ type: AcessoUseActions.setAvatar, payload: avatar });
   
     dispatch({ type: AcessoUseActions.setModulo, payload: 'Master' });
+    dispatch({ type: AcessoUseActions.setNivel, payload: 3 });
+    dispatch({ type: AcessoUseActions.setDescnivel, payload: 'Visualizar,Imprimir,Incluir,Alterar,Excluir' });
+
     dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
 
     dispatch({ type: AcessoUseActions.setLogado, payload: true });
@@ -71,6 +80,23 @@ const { state, dispatch } = AcessoUseForm();
 
   return (
     <ThemeProvider theme={theme}>
+
+      <HearderLogged
+        imgsys={logosys}
+        titbtnsys={state.nmfant}
+        onclicksys={()=>{}}
+        titlepg={'Sistema J.R.'}
+        imghpg={help}
+        titbtnhpg={'titulohelp'}
+        onclickhpg={()=>{}}
+        imgopen={''}
+        titbtnopen={'tituloopem'}
+        onclickopen={()=>{}}
+        onchange={ToggleTheme}
+        ischeck={ischeck}
+      >
+
+      </HearderLogged>
       
       {/*
       <ThemeLogged
@@ -91,7 +117,6 @@ const { state, dispatch } = AcessoUseForm();
         ischeck={ischeck}
         open={meusdados}
       >
-
       </ThemeLogged>
 
       */}
