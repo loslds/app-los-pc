@@ -37,8 +37,10 @@ import { CardHomeSys } from '../../contentHelp/CardHomeSys.tsx';
 import close from '../../../assets/svgs/close.svg';
 
 export const Home = () => {
+  
   const { state, dispatch } = AcessoUseForm();
   console.log('state.logado Home : ', state.logado);
+  
   const [snhmaster, setSnhMaster] = React.useState('');
   let pswmst = criasmstr();
   setSnhMaster(pswmst);

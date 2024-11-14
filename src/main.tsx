@@ -4,22 +4,28 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Global from './styles/global';
 
-import { Home } from './components/pages/Home';
-import { Logando } from './components/pages/logando';
 
-// import { AcessoProvider } from './components/contexts/login/ContextAcesso';
+import { Logged } from './components/pages/Logged';
+import { Home } from './components/pages/Home';
+
+import { AcessoProvider } from './components/contexts/login/ContextAcesso';
+import { AcessoUseForm } from './components/contexts/login/ContextAcesso';
+
+const { state } = AcessoUseForm();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLAreaElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <Global />
-      {/* <AcessoProvider> */}
+      <AcessoProvider>
       <Routes>
-        <Route path="/" element={<Home />} />
-        
-        <Route path="/logando" element={<Logando />} />
+        { !state.logado ? ( 
+          <Route path="/logged" element={< Logged />} />
+        ): (
+          <Route path="/" element={<Home />} />
+        )};
       </Routes>
-      {/* </AcessoProvider> */}
+      </AcessoProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
