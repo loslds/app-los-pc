@@ -14,32 +14,49 @@ type PropsHearderLogged = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
+
   titlepg?: string;
+
   imghpg?: string;
   titbtnhpg?: string;
   onclickhpg?: () => void;
+
   imgopen?: string;
   titbtnopen?: string;
   onclickopen?: () => void;
-  ischeck: boolean;
+
+  imgreg?: string;
+  titbtnreg?: string;
+  onclickreg?: () => void;
+
   onchange: () => void;
+  ischeck?: boolean;
 };
 export const HearderLogged = ({
   imgsys,
   titbtnsys,
   onclicksys,
+
   titlepg,
+
   imghpg,
   titbtnhpg,
   onclickhpg,
+
   imgopen,
   titbtnopen,
   onclickopen,
-  ischeck,
-  onchange
+
+  imgreg,
+  titbtnreg,
+  onclickreg,
+
+  onchange,
+  ischeck
 }: PropsHearderLogged) => {
   return (
     <ContentHearderMain>
+      {/** imagem botão do logo da pagina */}
       <ContentHearderItens>
         <ContentHeaderButtonSys
           img={imgsys}
@@ -47,9 +64,11 @@ export const HearderLogged = ({
           onClick={onclicksys}
         />
       </ContentHearderItens>
+      {/** Titulo da pagina */}
       <ContentHearderItens>
         <ContentHeaderTitle title={titlepg} />
       </ContentHearderItens>
+
       <ContentHearderRight>
         <ContentHearderItensBar>
           {/** imagem botão do help da pagina */}
@@ -58,13 +77,22 @@ export const HearderLogged = ({
             titbtn={titbtnhpg}
             onClick={onclickhpg}
           />
+          
           {/** imagem botão do Acão da pagina */}
           <ContentPagesButton
             imgbtn={imgopen}
             titbtn={titbtnopen}
             onClick={onclickopen}
           />
-          {/** imagem botão switch do Padrão fundo Preto ou Branco */}
+
+          {/** imagem botão do Restate da pagina */}
+          <ContentPagesButton
+            imgbtn={imgreg}
+            titbtn={titbtnreg}
+            onClick={onclickreg}
+          />
+
+          {/** botão switch do Padrão fundo Preto ou Branco */}
           <Pg.ContainerPagesButton>
             <Switch
               onChange={onchange}

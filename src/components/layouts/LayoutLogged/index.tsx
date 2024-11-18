@@ -1,13 +1,13 @@
-import * as Hm from '../styled';
+import * as Lgd from '../styled';
 import { ReactNode } from 'react';
 import { ContentPages } from '../ContentPages';
-import { HearderHome } from '../../headers/HearderHome';
+import { HearderLogged } from '../../headers/HearderLogged';
 
-//import { FooterHome } from '../../footers/FooterHome';
-//import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
+import { FooterHome } from '../../footers/FooterHome';
+import { BarSideMenuHome } from '../../sidebar/BarSideMenuHome';
 import { BarSideMenuDados } from '../../sidebar/BarSideMenuDados';
 
-type TypeLayoutHome = {
+type TypeLayoutLogged = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -31,7 +31,8 @@ type TypeLayoutHome = {
   children?: ReactNode | JSX.Element;
   open?: boolean;
 };
-export const LayoutHome = ({
+
+export const LayoutLogged = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -52,12 +53,13 @@ export const LayoutHome = ({
 
   onchange,
   ischeck,
+  
   children,
   open
-}: TypeLayoutHome) => {
+}: TypeLayoutLogged) => {
   return (
     <ContentPages>
-      <HearderHome
+      <HearderLogged
         imgsys={imgsys}
         titbtnsys={titbtnsys}
         onclicksys={onclicksys}
@@ -74,17 +76,17 @@ export const LayoutHome = ({
         onchange={onchange}
         ischeck={ischeck}
       />
-      <Hm.DivisionPgHztal />
-      <Hm.ContainerBody>
-        <Hm.ContainerPage>
-          {/* <BarSideMenuHome /> */}
+      <Lgd.DivisionPgHztal />
+      <Lgd.ContainerBody>
+        <Lgd.ContainerPage>
+          <BarSideMenuHome />
           <BarSideMenuDados open={open} />
-          <Hm.DivisionPgHztal />
+          <Lgd.DivisionPgHztal />
           {children}
-        </Hm.ContainerPage>
-      </Hm.ContainerBody>
-      {/* <Hm.DivisionPgHztal />
-      <FooterHome /> */}
+        </Lgd.ContainerPage>
+      </Lgd.ContainerBody>
+      <Lgd.DivisionPgHztal />
+      <FooterHome />
     </ContentPages>
   );
 };

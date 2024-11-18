@@ -30,3 +30,35 @@ export function DataHora() {
 
   return formattedString;
 }
+
+
+export function TempoGastoDatIni(DatIni?: string, DatFim?: string): string {
+  if (!DatIni) {
+    return "Data inicial não fornecida.";
+  }
+
+  const dataHoraInicio = new Date(DatIni);
+  const dataHoraFim = DatFim ? new Date(DatFim) : new Date(); // Usa a data atual se DatFim não for fornecida
+
+  // Verifica se ambas as datas são válidas
+  if (isNaN(dataHoraInicio.getTime())) {
+    return "Data inicial inválida.";
+  }
+  if (isNaN(dataHoraFim.getTime())) {
+    return "Data final inválida.";
+  }
+
+  // Calcula a diferença em milissegundos
+  const diferenca = dataHoraFim.getTime() - dataHoraInicio.getTime();
+
+  if (diferenca < 0) {
+    return "A data final não pode ser anterior à data inicial.";
+  }
+
+  // Converte para horas, minutos e segundos
+  const horas = Math.floor(diferenca / (1000 * 60 * 60));
+  const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+  const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+  return `${horas}h ${minutos}m ${segundos}s`;
+}

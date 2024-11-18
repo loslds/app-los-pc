@@ -26,6 +26,8 @@ type StateAcesso = {
   perg3: string;
   resp3: string;
 
+  nmVisita: string;
+  mdVisita: boolean;
   nmRecep: string;
   mdRecep: boolean;
   nmDesig: string;
@@ -50,7 +52,7 @@ type StateAcesso = {
 
   modulo: string;
   aplicacao: string;
-  
+
   descnivel: string;
   nivel: number;
 
@@ -77,6 +79,7 @@ export const initialData: StateAcesso = {
   fonec: '',
   fonez: '',
   avatar: '',
+
   cpf: '',
   perg1: '',
   resp1: '',
@@ -85,27 +88,38 @@ export const initialData: StateAcesso = {
   perg3: '',
   resp3: '',
 
+  nmVisita: 'Visitante',
+  mdVisita: false,
+
   nmRecep: 'Recepção',
   mdRecep: false,
+
   nmDesig: 'Design',
   mdDesig: false,
+
   nmProdu: 'Produção',
   mdProdu: false,
+
   nmAcaba: 'Acabamento',
   mdAcaba: false,
+
   nmExped: 'Expedição',
   mdExped: false,
+
   nmAdmin: 'Administração',
   mdAdmin: false,
-  nmMaster: 'Master',
-  mdMaster: false,
+
   nmConfig: 'Config',
   mdConfig: false,
 
-  mdlogin: 0,
-  nmlogin: '',
+  nmMaster: 'Master',
+  mdMaster: false,
+
   nrcont: 0,
   nmcont: '',
+
+  mdlogin: 0,
+  nmlogin: '',
 
   modulo: '',
   aplicacao: '',
@@ -114,6 +128,7 @@ export const initialData: StateAcesso = {
   nivel: 0,
 
   logado: false,
+
   datetimei: '',
   datetimef: '',
   tempo: ''
@@ -137,29 +152,42 @@ export enum AcessoUseActions {
   setFoneZ,
   setAvatar,
   setCpf,
+
   setperg1,
   setresp1,
+
   setperg2,
   setresp2,
+
   setperg3,
   setresp3,
 
+  setMdVisita,
+  setNmVisita,
+
   setMdRecep,
   setNmRecep,
+
   setMdDesig,
   setNmDesig,
+
   setMdProdu,
   setNmProdu,
+
   setMdAcaba,
   setNmAcaba,
+
   setMdExped,
   setNmExped,
+
   setMdAdmin,
   setNmAdmin,
-  setMdMaster,
-  setNmMaster,
+
   setMdConfig,
   setNmConfig,
+
+  setMdMaster,
+  setNmMaster,
 
   setMdLogin,
   setNmLogin,
@@ -220,6 +248,7 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
       return { ...state, fonez: action.payload };
     case AcessoUseActions.setAvatar:
       return { ...state, avatar: action.payload };
+
     case AcessoUseActions.setCpf:
       return { ...state, cpf: action.payload };
     case AcessoUseActions.setperg1:
@@ -235,7 +264,9 @@ const AcessoReducer = (state: StateAcesso, action: AcessoAction) => {
     case AcessoUseActions.setresp3:
       return { ...state, resp3: action.payload };
 
-    case AcessoUseActions.setMdRecep:
+    case AcessoUseActions.setMdVisita:
+      return { ...state, mdV: action.payload };
+    case AcessoUseActions.setNmVisita:
       return { ...state, ndrecep: action.payload };
     case AcessoUseActions.setNmRecep:
       return { ...state, nmrecep: action.payload };

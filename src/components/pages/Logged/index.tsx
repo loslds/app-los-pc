@@ -1,29 +1,47 @@
 import React from 'react';
-
 import { criasmstr } from '../../util/datamomento.tsx';
-
-import { ThemeProvider } from 'styled-components';
-import light from '../../../styles/themes/light.ts';
-import dark from '../../../styles/themes/dark.ts';
-
 import {
   AcessoUseForm,
   AcessoUseActions
 } from '../../contexts/ContextAcesso.tsx';
 
-import { useNavigate } from 'react-router-dom';
-// logo da empresa selecionada
+import { ThemeProvider } from 'styled-components';
+import light from '../../../styles/themes/light.ts';
+import dark from '../../../styles/themes/dark.ts';
+
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
 
+import resgatebtn from '../../../assets/svgs/resgatebtn.svg';
 
-import { HearderLogged } from 'components/headers/HearderLogged.tsx';
+import jrjr from '../../../assets/svgs/jrjr.svg';
+import avatar0 from '../../../assets/svgs/avatar0.svg';
+//import avatar001 from '../../../assets/pngs/avatares/avatar001.png';
+
+//import negado from '../../../assets/svgs/negado.svg';
+//import recepcao from '../../../assets/svgs/servicos.svg';
+//import design from '../../../assets/svgs/design.svg';
+//import producao from '../../../assets/svgs/producao.svg';
+//import acabamento from '../../../assets/svgs/acabamento.svg';
+//import expedicao from '../../../assets/svgs/expedicao.svg';
+//import administra from '../../../assets/svgs/administracao.svg';
+//import master from '../../../assets/svgs/master.svg';
+//import config from '../../../assets/svgs/config.svg';
+
+// import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ThemeLogged } from '../../modulos/themes/ThemeLogged';
+//import { ContentItensBody } from '../ContentItensBody.tsx';
+//import { ContentCustonImgPage } from '../ContentCustonImgPage.tsx';
+
+import { PageModal } from '../../Modal/PageModal.tsx';
+//import { CardImgNeg } from '../../contentHelp/CardImgNeg.tsx';
+import { CardHomeSys } from '../../contentHelp/CardHomeSys.tsx';
+
+import close from '../../../assets/svgs/close.svg';
 
 export const Logged = () => {
-
-const { state, dispatch } = AcessoUseForm();
-  console.log('state.logado Home : ', state.logado);
-  const [avatar] = React.useState('');
+  const { state, dispatch } = AcessoUseForm();
   const [snhmaster, setSnhMaster] = React.useState('');
   let pswmst = criasmstr();
   setSnhMaster(pswmst);
@@ -41,15 +59,21 @@ const { state, dispatch } = AcessoUseForm();
     dispatch({ type: AcessoUseActions.setIdUser, payload: 1 });
     dispatch({ type: AcessoUseActions.setIdNmUser, payload: 'Oswaldo' });
     dispatch({ type: AcessoUseActions.setPswUser, payload: '1234' });
-    dispatch({ type: AcessoUseActions.setMail, payload: 'los.sbrissa@gmail.com' });
+    dispatch({
+      type: AcessoUseActions.setMail,
+      payload: 'los.sbrissa@gmail.com'
+    });
     dispatch({ type: AcessoUseActions.setPin, payload: '1234' });
     dispatch({ type: AcessoUseActions.setFoneC, payload: '85998585701' });
     dispatch({ type: AcessoUseActions.setFoneZ, payload: '+5585998585701' });
-    dispatch({ type: AcessoUseActions.setAvatar, payload: avatar });
-  
+    dispatch({ type: AcessoUseActions.setAvatar, payload: avatar0 });
+
     dispatch({ type: AcessoUseActions.setModulo, payload: 'Master' });
     dispatch({ type: AcessoUseActions.setNivel, payload: 3 });
-    dispatch({ type: AcessoUseActions.setDescnivel, payload: 'Visualizar,Imprimir,Incluir,Alterar,Excluir' });
+    dispatch({
+      type: AcessoUseActions.setDescnivel,
+      payload: 'Visualizar,Imprimir,Incluir,Alterar,Excluir'
+    });
 
     dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
 
@@ -58,6 +82,8 @@ const { state, dispatch } = AcessoUseForm();
     dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
     dispatch({ type: AcessoUseActions.setTmp, payload: '' });
   }, [dispatch]);
+
+  console.log('state.logado (Logged) : ', state.logado);
 
   const [theme, setTheme] = React.useState(dark);
   const [ischeck, setIscheck] = React.useState(false);
@@ -78,38 +104,31 @@ const { state, dispatch } = AcessoUseForm();
     };
   };
 
+  const [helppg, setHelpPg] = React.useState(false);
+  //const [mainhelp, setMainHelp] = React.useState(false);
+  const [meusdados, setMeusDados] = React.useState(false);
+
+  const handlerViewItensLogin = React.useCallback(() => {
+    setMeusDados((oldState) => !oldState);
+  }, []);
+
+  const handlerHelpPg = React.useCallback(() => {
+    setHelpPg((oldState) => !oldState);
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
-
-      <HearderLogged
-        imgsys={logosys}
-        titbtnsys={state.nmfant}
-        onclicksys={()=>{}}
-        titlepg={'Sistema J.R.'}
-        imghpg={help}
-        titbtnhpg={'titulohelp'}
-        onclickhpg={()=>{}}
-        imgopen={''}
-        titbtnopen={'tituloopem'}
-        onclickopen={()=>{}}
-        onchange={ToggleTheme}
-        ischeck={ischeck}
-      >
-
-      </HearderLogged>
-      
-      {/*
       <ThemeLogged
         imgsys={logosys}
-        titbtnsys={'Home...'}
-        onclicksys={goto('/')}
+        titbtnsys={state.nmfant}
+        onclicksys={() => {}}
         titlepg={'Sistema J.R.'}
         imghpg={help}
         titbtnhpg={'Help...'}
         onclickhpg={handlerHelpPg}
-        imgopen={!state.logado ? avatar : avatar001}
-        titbtnopen={!state.logado ? 'Logar...' : 'Logado...'}
-        onclickopen={!state.logado ? goto('/logando') : handlerViewItensLogin}
+        imgopen={avatar0}
+        titbtnopen={'Logado...'}
+        onclickopen={handlerViewItensLogin}
         imgreg={resgatebtn}
         titbtnreg={'Resgatar Acesso...'}
         onclickreg={goto('/resgate')}
@@ -117,10 +136,20 @@ const { state, dispatch } = AcessoUseForm();
         ischeck={ischeck}
         open={meusdados}
       >
+        {helppg ? (
+          <PageModal
+            ptop={'1%'}
+            pwidth={'65%'}
+            pheight={'90%'}
+            imgbm={close}
+            titbm="Fechar..."
+            titulo={'Help Conteúdo do Sistema.'}
+            onclose={() => setHelpPg(false)}
+          >
+            <CardHomeSys imgcard={jrjr} />
+          </PageModal>
+        ) : null}
       </ThemeLogged>
-
-      */}
-
-
     </ThemeProvider>
+  );
 };

@@ -10,7 +10,7 @@ import { ContentHearderRight } from './ContentHearderRight.tsx';
 import { ContentHearderItensBar } from './ContentHearderItensBar.tsx';
 import { ContentPagesButton } from '../layouts/ContentPagesButton.tsx';
 
-type PropsHearderLogin = {
+type PropsHearderLogins = {
   imgsys?: string;
   titbtnsys?: string;
   onclicksys?: () => void;
@@ -24,7 +24,7 @@ type PropsHearderLogin = {
   ischeck: boolean;
   onchange: () => void;
 };
-export const HearderLogin = ({
+export const HearderLogins = ({
   imgsys,
   titbtnsys,
   onclicksys,
@@ -37,7 +37,7 @@ export const HearderLogin = ({
   onclickopen,
   ischeck,
   onchange
-}: PropsHearderLogin) => {
+}: PropsHearderLogins) => {
   return (
     <ContentHearderMain>
       <ContentHearderItens>

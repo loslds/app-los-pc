@@ -1,7 +1,8 @@
 import * as Pg from './stylePage';
 
-type TypeContainerCustonButton = {
+type TypeContentCustonImgPage = {
   pxheight?: string;
+  open?: boolean;
   pheight?: string;
   pwidth?: string;
   img?: string;
@@ -10,14 +11,15 @@ type TypeContainerCustonButton = {
 };
 export const ContentCustonImgPage = ({
   pxheight,
+  open,
   pheight,
   pwidth,
   img,
   onclick,
   titlebtn
-}: TypeContainerCustonButton) => {
+}: TypeContentCustonImgPage) => {
   return (
-    <Pg.ContainerCustonButton pxheight={pxheight}>
+    <Pg.ContainerCustonButton pxheight={pxheight} open={open}>
       <Pg.ButtonCustonImg
         pheight={pheight}
         pwidth={pwidth}

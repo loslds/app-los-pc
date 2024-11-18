@@ -6,9 +6,10 @@ import * as C from '../Modal/styles';
 import {
   AcessoUseForm,
   AcessoUseActions
-} from '../contexts/login/ContextAcesso';
+} from '../contexts/ContextAcesso';
 
 import { useNavigate } from 'react-router-dom';
+import { TempoGastoDatIni } from '../util/datamomento';
 
 import { CardModalTexto } from '../Modal/CardModalTexto';
 import { ContentCustonImgPage } from '../pages/ContentCustonImgPage';
@@ -43,18 +44,24 @@ export const CardAbortarSys = ({ img }: TypeCardAbortarSys) => {
   //   setInterval(refreshTime, 1000);
   // };
 
-  const tarb_ini = 'Iniciei meu Trabalho : ' + state.datetimei + '...';
-  // const meuacesso =
-  //   'O "MEU nível de Acesso " disponibiliza : ' + state.page + '.';
-
+      
   const hanlerAbortar = React.useCallback(() => {
     setAbortar((oldState) => !oldState);
   }, []);
 
+  const dataHoraAtual = new Date();
+  const tarb_ini = 'Iniciei meu Trabalho : ' + state.datetimei + '...';
+  const tarb_fim = 'Término de meu Trabalho : ' + dataHoraAtual + '...';
+  const tarb_tmptt = TempoGastoDatIni(state.datetimei);
+
+
   React.useEffect(() => {
-    if (state.logado && abortar) {
+    if (abortar) {
+      // gravar log 
       dispatch({ type: AcessoUseActions.setLogado, payload: false });
-      goto('/');
+      dispatch({ type: AcessoUseActions.setDtFim, payload: dataHoraAtual });
+      dispatch({ type: AcessoUseActions.setTmp, payload: tarb_tmptt });
+      goto('/finalizado');
     }
   }, [state.logado, abortar, dispatch]);
 
@@ -63,16 +70,19 @@ export const CardAbortarSys = ({ img }: TypeCardAbortarSys) => {
       <C.ContainerHeardImgMain>
         <C.ContainerModalImg pminheight={'130px'} pwidth={'150px'} img={img} />
       </C.ContainerHeardImgMain>
-      <label>{tarb_ini}</label>
       <br />
       <h1> Ola, {state.idnmuser}.</h1>
+      <label>{tarb_ini}</label>
+      <label>{tarb_fim}</label>
+      <label>Tempo de Processado: {tarb_tmptt}</label>
       <br />
+      <li>Acessos Registrados no Sistema:</li>
+      <p> &emsp;Atividade executadas até o momento...</p>
       <br />
-      <li>Meus Acessos ao Sistema:</li>
-      <p> &emsp;&emsp;acessos do Liberardos para voce...</p>
+      <p>Obs:. Lista de Atividades:</p>
+      <p> &emsp;&emsp;" mostrar todos procedimentos até o momento.</p>
+      
       <br />
-      <li>Obs:. Meus Acessos até o Momento :</li>
-      <p> &emsp;&emsp;acessos do bd no dia de hoje...</p>
       <label>Fazer "LOGOUT" no Sistema.</label>
       <p>
         &emsp;&emsp;&rarr;Ao CLick na Imagem abaixo, automaticamente

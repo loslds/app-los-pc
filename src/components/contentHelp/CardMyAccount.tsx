@@ -11,7 +11,7 @@ export const CardMyAccount: React.FC<Props> = ({ img }) => {
   const { state } = AcessoUseForm();
   const tarb_ini = 'Iniciei meu Trabalho ' + state.datetimei + '...';
   const meuacesso =
-    'O "MEU nível de Acesso " disponibiliza : ' + state.page + '.';
+    'O "MEU nível de Acesso " disponibiliza : ' + state.modulo + '.';
 
   return (
     <CardModalTexto>
@@ -65,6 +65,7 @@ export const CardMyAccount: React.FC<Props> = ({ img }) => {
         &emsp;&emsp;&rarr;Esta opção automaticamente desconectará voce do
         serviço do Sistema.
       </p>
+      
     </CardModalTexto>
   );
 };

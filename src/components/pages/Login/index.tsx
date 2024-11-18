@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   AcessoUseForm,
   AcessoUseActions
-} from '../../contexts/login/ContextAcesso.tsx';
+} from '../../contexts/ContextAcesso.tsx';
 import { ContentCardPage } from '../ContentCardPage.tsx';
 import { ContentCardPageTitle } from '../ContentCardPageTitle.tsx';
 import { ContentCardBoxMainPage } from '../ContentCardBoxMainPage.tsx';
@@ -33,7 +33,7 @@ import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-export const Login = () => {
+export const Logins = () => {
   const { state, dispatch } = AcessoUseForm();
 
   const [theme, setTheme] = React.useState(dark);
@@ -140,12 +140,6 @@ export const Login = () => {
         ischeck={ischeck}
         onchange={ToggleTheme}
       >
-        <div>
-          <label>Const idempresa..: {idempresa}</label>
-          <label>State idemp......: {state.idemp}</label>
-          <label>Const fantempresa: {fantempresa}</label>
-          <label>State nmfant.....: {state.nmfant}</label>
-        </div>
         <ContentCardPage>
           <ContentCardPageTitle>
             <h2>{state.modulo}</h2>

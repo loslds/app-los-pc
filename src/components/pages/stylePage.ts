@@ -427,10 +427,10 @@ export const ContainerBtnSRigthPage = styled.div`
   align-content: center;
  `;
 
-type  TypeContainerCustonBtn ={
+type  TypeContainerCustonBtnPage ={
   pxheight?: string;
 }
-export const ContainerCustonBtnPage = styled.div<TypeContainerCustonBtn>`
+export const ContainerCustonBtnPage = styled.div<TypeContainerCustonBtnPage>`
   border: 1px solid;
   border-radius: 10px;
   padding: 0px 0px 0px 0px;
@@ -446,10 +446,10 @@ export const ContainerCustonBtnPage = styled.div<TypeContainerCustonBtn>`
     background: #e4e4e4;
    }
 `;
-type  TypeContainerCustonButton ={
+type  TypeContainerDefaulButton ={
   pxheight?: string;
 }
-export const ContainerDefaulButton = styled.div<TypeContainerCustonButton>`
+export const ContainerDefaulButton = styled.div<TypeContainerDefaulButton>`
   border: 1px solid red;
   border-radius: 45%;
   padding: 0px 0px 0px 0px;
@@ -516,10 +516,11 @@ export const ButtonCustonBtnImgPage = styled.button<TypeCustonBntImgPage>`
   align-items: center;
 `;
 
-type TypeCustonBntPage ={
+type TypeContainerCustonButton = {
   pxheight?: string;
+  open?: boolean;
 }
-export const ContainerCustonButton = styled.div<TypeCustonBntPage>`
+export const ContainerCustonButton = styled.div<TypeContainerCustonButton>`
   border: 1px red;
   border-color: #ffffff;
   border-radius: 5px;
@@ -527,25 +528,22 @@ export const ContainerCustonButton = styled.div<TypeCustonBntPage>`
   margin: 2px 2px 2px 2px;
   background: transparent;
   min-height: ${({ pxheight }) => pxheight || '165px'};
-  display: flex;
-  //flex-wrap: wrap;
-  //flex-flow: row;
+  display: ${props => (props.open ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
-  //align-content: center;
   color:  ${props => props.theme.colors.textColor};
   &:hover {
     background: #e4e4e4;
    }
 `;
 
-type TypeBtnCcuston ={
+type TypeButtonCustonImg ={
   pheight?: string;
   pwidth?: string;
   img?: string;
   title?: string;
 }
-export const ButtonCustonImg = styled.button<TypeBtnCcuston>`
+export const ButtonCustonImg = styled.button<TypeButtonCustonImg>`
   border: none;
   margin: 2px 5px 2px 5px;
   color: white;

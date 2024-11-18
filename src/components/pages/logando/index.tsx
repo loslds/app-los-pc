@@ -52,9 +52,9 @@ export const Logando = () => {
     };
   };
 
-  const [tentativa, setTentativa] = React.useState(0);
+  const [tentativa] = React.useState(0);
 
-  const [start, setStart] = React.useState(true);
+  const [start] = React.useState(true);
   const [onpanel, setOnPanel] = React.useState(false);
   const [helppg, setHelpPg] = React.useState(false);
 
