@@ -109,34 +109,16 @@ export const Home = () => {
   const navigate = useNavigate();
   const goto = (path: string) => {
     let rtn = false;
-    if (state.logado) {
-      if (state.mdMaster) {
+    if (!state.logado) {
+      if ( ( state.mdVisita ) || ( state.mdRecep ) || ( state.mdDesig ) ||
+        ( state.mdProdu ) || ( state.mdAcaba ) || ( state.mdExped ) ||
+        ( state.mdAdmin ) || ( state.mdConfig ) || ( state.mdMaster) ) {
         rtn = true;
-      } else {
-        if (state.mdVisita) rtn = true;
-        if (state.mdRecep) {
-          rtn = true;
-        }
-        if (state.mdDesig) {
-          rtn = true;
-        }
-        if (state.mdProdu) {
-          rtn = true;
-        }
-        if (state.mdAcaba) {
-          rtn = true;
-        }
-        if (state.mdExped) {
-          rtn = true;
-        }
-        if (state.mdAdmin) {
-          rtn = true;
-        }
-        if (state.mdConfig) {
-          rtn = true;
-        }
       }
+    } if (path === '/login' || path === '/resgate') {
+      rtn = true;
     }
+
     return () => {
       if (rtn) {
         navigate(path);
@@ -154,19 +136,24 @@ export const Home = () => {
     setMeusDados((oldState) => !oldState);
   }, []);
 
+  const handlerLogin = React.useCallback(() => {
+    goto('/login');
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
+      {state.logado ? (
       <ThemeHome
         imgsys={logosys}
         titbtnsys={'Home...'}
         onclicksys={goto('/')}
-        titlepg={'Sistema J.R.'}
+        titlepg={state.nmfant}
         imghpg={help}
         titbtnhpg={'Help...'}
         onclickhpg={handlerHelpPg}
         imgopen={!state.logado ? avatar : avatar001}
-        titbtnopen={!state.logado ? 'Logar...' : 'Logado...'}
-        onclickopen={!state.logado ? goto('/login') : handlerViewItensLogin}
+        titbtnopen={ state.logado ? 'Logado...' : 'Logar...' }
+        onclickopen={ state.logado ? handlerViewItensLogin : handlerLogin } 
         imgreg={resgatebtn}
         titbtnreg={'Resgatar Acesso...'}
         onclickreg={goto('/resgate')}
@@ -177,7 +164,8 @@ export const Home = () => {
         <div>
           <p>
             {' '}
-            PIN ADM (snhmaster): "{state.pinAdm}"...Logado : "{state.logado}"
+            PIN ADM (snhmaster): "{state.pinAdm}"...Logado :
+            { state.logado ? 'verdadeiro' : 'falso'} 
           </p>
         </div>
         <ContentItensBody>
@@ -295,6 +283,149 @@ export const Home = () => {
           ) : null}
         </ContentItensBody>
       </ThemeHome>
+    ) : (
+
+      <ThemeHome
+        imgsys={logosys}
+        titbtnsys={'Home...'}
+        onclicksys={goto('/')}
+        titlepg={'Sistema Bordados.'}
+        imghpg={help}
+        titbtnhpg={'Help...'}
+        onclickhpg={handlerHelpPg}
+        imgopen={avatar}
+        titbtnopen={ state.logado ? 'Logado...' : 'Logar...' }
+        onclickopen={ state.logado ? handlerViewItensLogin : handlerLogin } 
+        imgreg={resgatebtn}
+        titbtnreg={'Resgatar Acesso...'}
+        onclickreg={goto('/resgate')}
+        onchange={ToggleTheme}
+        ischeck={ischeck}
+        open={meusdados}
+      >
+        <div>
+          <p>
+            {' '}
+            PIN ADM (snhmaster): "{state.pinAdm}"...Logado :
+            { state.logado ? 'verdadeiro' : 'falso'} 
+          </p>
+        </div>
+        <ContentItensBody>
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={''}
+            titlebtn={'Visitante.'}
+            onclick={goto('/recepcao')}
+          />
+
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={recepcao}
+            titlebtn={'Recepção.'}
+            onclick={goto('/recepcao')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={design}
+            titlebtn={'Designs.'}
+            onclick={goto('/design')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={producao}
+            titlebtn={'Produção.'}
+            onclick={goto('/producao')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={acabamento}
+            titlebtn={'Acabamento.'}
+            onclick={goto('/acabamento')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={expedicao}
+            titlebtn={'Expedição.'}
+            onclick={goto('/expedicao')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={administra}
+            titlebtn={'Administração.'}
+            onclick={goto('/administracao')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={config}
+            titlebtn={'Config.'}
+            onclick={goto('/config')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={master}
+            titlebtn={'Master.'}
+            onclick={goto('/master')}
+          />
+
+          {helppg ? (
+            <PageModal
+              ptop={'1%'}
+              pwidth={'65%'}
+              pheight={'90%'}
+              imgbm={close}
+              titbm="Fechar..."
+              titulo={'Help Conteúdo do Sistema.'}
+              onclose={() => setHelpPg(false)}
+            >
+              <CardHomeSys imgcard={jrjr} />
+            </PageModal>
+          ) : null}
+
+          {mainhelp ? (
+            <PageModal
+              ptop="111px"
+              pwidth="30%"
+              pheight="25%"
+              titulo='" A T E N Ç Ã O "'
+              imgbm={close}
+              titbm="Fechar..."
+              onclose={() => {
+                setMainHelp(false);
+              }}
+            >
+              <CardImgNeg imgcard={negado} />
+            </PageModal>
+          ) : null}
+        </ContentItensBody>
+      </ThemeHome>
+    )}
     </ThemeProvider>
   );
 };

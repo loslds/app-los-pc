@@ -78,7 +78,7 @@ export const ButtonPagesImgSys = styled.button<TypeButtonPagesImgSys>`
   background-color: transparent;
   cursor: pointer;
   outline: none;
-  width: 70px;
+  width: 110px;
   height: 40px;
   display: flex;
   flex-flow: nowrap;
