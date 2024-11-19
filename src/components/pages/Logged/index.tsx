@@ -1,5 +1,4 @@
 import React from 'react';
-import { criasmstr } from '../../util/datamomento.tsx';
 import {
   AcessoUseForm,
   AcessoUseActions
@@ -42,15 +41,13 @@ import close from '../../../assets/svgs/close.svg';
 
 export const Logged = () => {
   const { state, dispatch } = AcessoUseForm();
-  const [snhmaster, setSnhMaster] = React.useState('');
-  let pswmst = criasmstr();
-  setSnhMaster(pswmst);
+
   const dataHoraAtual = new Date();
 
   React.useEffect(() => {
     dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
     dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-    dispatch({ type: AcessoUseActions.setPinAdm, payload: snhmaster });
+
     dispatch({ type: AcessoUseActions.setPage, payload: 'Logged' });
 
     dispatch({ type: AcessoUseActions.setIdEmp, payload: 1 });
@@ -81,7 +78,7 @@ export const Logged = () => {
     dispatch({ type: AcessoUseActions.setDtIni, payload: dataHoraAtual });
     dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
     dispatch({ type: AcessoUseActions.setTmp, payload: '' });
-  }, [dispatch]);
+  }, [state.logado, dispatch]);
 
   console.log('state.logado (Logged) : ', state.logado);
 

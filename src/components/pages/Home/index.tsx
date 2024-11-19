@@ -8,6 +8,8 @@ import { ThemeProvider } from 'styled-components';
 import light from '../../../styles/themes/light.ts';
 import dark from '../../../styles/themes/dark.ts';
 
+import { useNavigate } from 'react-router-dom';
+
 import logosys from '../../../assets/pngs/logosys.png';
 import help from '../../../assets/svgs/help.svg';
 import resgatebtn from '../../../assets/svgs/resgatebtn.svg';
@@ -25,7 +27,7 @@ import master from '../../../assets/svgs/master.svg';
 import config from '../../../assets/svgs/config.svg';
 
 import { useState } from 'react';
-import { navigate, useNavigate } from 'react-router-dom';
+
 import { ThemeHome } from '../../modulos/themes/ThemeHome';
 import { ContentItensBody } from '../ContentItensBody.tsx';
 import { ContentCustonImgPage } from '../ContentCustonImgPage.tsx';
@@ -38,60 +40,53 @@ import close from '../../../assets/svgs/close.svg';
 
 export const Home = () => {
   const { state, dispatch } = AcessoUseForm();
-  console.log('state.logado Home : ', state.logado);
-  const [snhmaster, setSnhMaster] = React.useState('');
+
+  // USAR snhmaster PARA ACESSO COM CTRL + F12
 
   React.useEffect(() => {
-    const pswmst = criasmstr(); // Gerar senha uma única vez
-    setSnhMaster(pswmst); // Atualizar o estado
-    dispatch({ type: AcessoUseActions.setPinAdm, payload: pswmst }); // Configurar no contexto
-  }, [dispatch]);
-
-  React.useEffect(() => {
-    if (!state.logado) {
-      const defaultPayloads = {
-        setCurrentStep: 0,
-        setIdAces: 0,
-        setPage: '',
-        setIdEmp: 0,
-        setNmFant: '',
-        setIdUser: 0,
-        setIdNmUser: 0,
-        setPswUser: '',
-        setMail: '',
-        setPin: '',
-        setFoneC: '',
-        setFoneZ: '',
-        setAvatar: '',
-        setperg1: '',
-        setresp1: '',
-        setperg2: '',
-        setresp2: '',
-        setperg3: '',
-        setresp3: '',
-        setMdRecep: false,
-        setMdDesig: false,
-        setMdProdu: false,
-        setMdAcaba: false,
-        setMdExped: false,
-        setMdAdmin: false,
-        setMdMaster: false,
-        setMdConfig: false,
-        setMdLogin: 0,
-        setNmLogin: '',
-        setNrCont: 0,
-        setNmCont: '',
-        setModulo: '',
-        setAplicacao: '',
-        setLogado: false,
-        setDtIni: '',
-        setDtFim: '',
-        setTmp: ''
-      };
-
-      for (const [action, value] of Object.entries(defaultPayloads)) {
-        dispatch({ type: AcessoUseActions[action], payload: value });
-      }
+    if (state.logado) {
+      const pswmst = criasmstr(); // Gerar senha uma única vez
+      dispatch({ type: AcessoUseActions.setPinAdm, payload: pswmst });
+    } else {
+      dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
+      dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
+      dispatch({ type: AcessoUseActions.setPinAdm, payload: '' });
+      dispatch({ type: AcessoUseActions.setPage, payload: '' });
+      dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
+      dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
+      dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
+      dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
+      dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
+      dispatch({ type: AcessoUseActions.setMail, payload: '' });
+      dispatch({ type: AcessoUseActions.setPin, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
+      dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
+      dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
+      dispatch({ type: AcessoUseActions.setperg1, payload: '' });
+      dispatch({ type: AcessoUseActions.setresp1, payload: '' });
+      dispatch({ type: AcessoUseActions.setperg2, payload: '' });
+      dispatch({ type: AcessoUseActions.setresp2, payload: '' });
+      dispatch({ type: AcessoUseActions.setperg3, payload: '' });
+      dispatch({ type: AcessoUseActions.setresp3, payload: '' });
+      dispatch({ type: AcessoUseActions.setMdVisita, payload: false });
+      dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
+      dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
+      dispatch({ type: AcessoUseActions.setMdProdu, payload: false });
+      dispatch({ type: AcessoUseActions.setMdAcaba, payload: false });
+      dispatch({ type: AcessoUseActions.setMdExped, payload: false });
+      dispatch({ type: AcessoUseActions.setMdAdmin, payload: false });
+      dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
+      dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
+      dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
+      dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
+      dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
+      dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
+      dispatch({ type: AcessoUseActions.setModulo, payload: '' });
+      dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
+      dispatch({ type: AcessoUseActions.setLogado, payload: false });
+      dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
+      dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
+      dispatch({ type: AcessoUseActions.setTmp, payload: '' });
     }
   }, [state.logado, dispatch]);
 
@@ -111,39 +106,45 @@ export const Home = () => {
   const [mainhelp, setMainHelp] = React.useState(false);
   const [meusdados, setMeusDados] = React.useState(false);
 
+  const navigate = useNavigate();
   const goto = (path: string) => {
-
     let rtn = false;
-    
-    if (state.logado ) {
-      if (state.mdMaster) { 
+    if (state.logado) {
+      if (state.mdMaster) {
         rtn = true;
       } else {
         if (state.mdVisita) rtn = true;
-        if (state.mdRecep) { rtn = true;}
-        if (state.mdDesig) { rtn = true;}
-        if (state.mdProdu) { rtn = true;}
-        if (state.mdAcaba) { rtn = true;}
-        if (state.mdExped) { rtn = true;}
-        if (state.mdAdmin) { rtn = true;}
-        if (state.mdConfig) { rtn = true;}
+        if (state.mdRecep) {
+          rtn = true;
+        }
+        if (state.mdDesig) {
+          rtn = true;
+        }
+        if (state.mdProdu) {
+          rtn = true;
+        }
+        if (state.mdAcaba) {
+          rtn = true;
+        }
+        if (state.mdExped) {
+          rtn = true;
+        }
+        if (state.mdAdmin) {
+          rtn = true;
+        }
+        if (state.mdConfig) {
+          rtn = true;
+        }
       }
     }
     return () => {
       if (rtn) {
-          navigate(path);
+        navigate(path);
       } else {
         setMainHelp(true); // Mostra modal caso o usuário não esteja logado
       }
     };
   };
-
-  React.useCallback(() => {
-    const [pmst, setPMST] = React.useState('');
-    const snhm = criasmstr();
-    setPMST(snhm);
-    dispatch({ type: AcessoUseActions.setPinAdm, payload: pmst });
-  }, [dispatch]);
 
   const handlerHelpPg = React.useCallback(() => {
     setHelpPg((oldState) => !oldState);
@@ -173,44 +174,52 @@ export const Home = () => {
         ischeck={ischeck}
         open={meusdados}
       >
-        <div>{state.pinAdm}</div>
-
+        <div>
+          <p>
+            {' '}
+            PIN ADM (snhmaster): "{state.pinAdm}"...Logado : "{state.logado}"
+          </p>
+        </div>
         <ContentItensBody>
-
-        <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
             img={''}
             titlebtn={'Visitante.'}
-            onclick={ goto('/recepcao') }
+            onclick={goto('/recepcao')}
           />
 
-          <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
             img={recepcao}
             titlebtn={'Recepção.'}
-            onclick={ goto('/recepcao') }
+            onclick={goto('/recepcao')}
           />
-          <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
             img={design}
             titlebtn={'Designs.'}
-            onclick={ goto('/design')}
+            onclick={goto('/design')}
           />
-          <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
             img={producao}
             titlebtn={'Produção.'}
-            onclick={ goto('/producao') }
+            onclick={goto('/producao')}
           />
-          <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
@@ -218,49 +227,41 @@ export const Home = () => {
             titlebtn={'Acabamento.'}
             onclick={goto('/acabamento')}
           />
-          <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
             img={expedicao}
             titlebtn={'Expedição.'}
-            onclick={ goto('/expedicao')}
+            onclick={goto('/expedicao')}
           />
-          <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
             img={administra}
             titlebtn={'Administração.'}
-            onclick={ goto('/administracao')}
+            onclick={goto('/administracao')}
           />
-          <ContentCustonImgPage open={true}
-            pxheight={'165px'}
-            pheight={'165px'}
-            pwidth={'165px'}
-            img={master}
-            titlebtn={'Master.'}
-            onclick={
-              state.logado
-                ? goto('/master')
-                : () => {
-                    setMainHelp(true);
-                  }
-            }
-          />
-          <ContentCustonImgPage open={true}
+          <ContentCustonImgPage
+            open={true}
             pxheight={'165px'}
             pheight={'165px'}
             pwidth={'165px'}
             img={config}
             titlebtn={'Config.'}
-            onclick={
-              (state.logado && 
-                ? goto('/config')
-                : () => {
-                    setMainHelp(true);
-                  }
-            }
+            onclick={goto('/config')}
+          />
+          <ContentCustonImgPage
+            open={true}
+            pxheight={'165px'}
+            pheight={'165px'}
+            pwidth={'165px'}
+            img={master}
+            titlebtn={'Master.'}
+            onclick={goto('/master')}
           />
 
           {helppg ? (
@@ -300,43 +301,48 @@ export const Home = () => {
 
 //React.useEffect(() => {
 //  if (!state.logado) {
-//    dispatch({ type: AcessoUseActions.setCurrentStep, payload: 0 });
-//    dispatch({ type: AcessoUseActions.setIdAces, payload: 0 });
-//    dispatch({ type: AcessoUseActions.setPinAdm, payload: snhmaster });
-//    dispatch({ type: AcessoUseActions.setPage, payload: '' });
-//    dispatch({ type: AcessoUseActions.setIdEmp, payload: 0 });
-//    dispatch({ type: AcessoUseActions.setNmFant, payload: '' });
-//    dispatch({ type: AcessoUseActions.setIdUser, payload: 0 });
-//    dispatch({ type: AcessoUseActions.setIdNmUser, payload: 0 });
-//    dispatch({ type: AcessoUseActions.setPswUser, payload: '' });
-//    dispatch({ type: AcessoUseActions.setMail, payload: '' });
-//    dispatch({ type: AcessoUseActions.setPin, payload: '' });
-//    dispatch({ type: AcessoUseActions.setFoneC, payload: '' });
-//    dispatch({ type: AcessoUseActions.setFoneZ, payload: '' });
-//    dispatch({ type: AcessoUseActions.setAvatar, payload: '' });
-//    dispatch({ type: AcessoUseActions.setperg1, payload: '' });
-//    dispatch({ type: AcessoUseActions.setresp1, payload: '' });
-//    dispatch({ type: AcessoUseActions.setperg2, payload: '' });
-//    dispatch({ type: AcessoUseActions.setresp2, payload: '' });
-//    dispatch({ type: AcessoUseActions.setperg3, payload: '' });
-//    dispatch({ type: AcessoUseActions.setresp3, payload: '' });
-//    dispatch({ type: AcessoUseActions.setMdRecep, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdDesig, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdProdu, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdAcaba, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdExped, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdAdmin, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdMaster, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdConfig, payload: false });
-//    dispatch({ type: AcessoUseActions.setMdLogin, payload: 0 });
-//    dispatch({ type: AcessoUseActions.setNmLogin, payload: '' });
-//    dispatch({ type: AcessoUseActions.setNrCont, payload: 0 });
-//    dispatch({ type: AcessoUseActions.setNmCont, payload: '' });
-//    dispatch({ type: AcessoUseActions.setModulo, payload: '' });/
-//    dispatch({ type: AcessoUseActions.setAplicacao, payload: '' });
-//    dispatch({ type: AcessoUseActions.setLogado, payload: false });
-//    dispatch({ type: AcessoUseActions.setDtIni, payload: '' });
-//    dispatch({ type: AcessoUseActions.setDtFim, payload: '' });
-//    dispatch({ type: AcessoUseActions.setTmp, payload: '' });
+//    const defaultPayloads = {
+//      setCurrentStep: 0,
+//      setIdAces: 0,
+//      setPage: '',
+//      setIdEmp: 0,
+//      setNmFant: '',
+//      setIdUser: 0,
+//      setIdNmUser: 0,
+//      setPswUser: '',
+//      setMail: '',
+//      setPin: '',
+//      setFoneC: '',
+//      setFoneZ: '',
+//      setAvatar: '',
+//      setperg1: '',
+//      setresp1: '',
+//      setperg2: '',
+//      setresp2: '',
+//      setperg3: '',
+//      setresp3: '',
+//      setMdRecep: false,
+//      setMdDesig: false,
+//      setMdProdu: false,
+//      setMdAcaba: false,
+//      setMdExped: false,
+//      setMdAdmin: false,
+//      setMdMaster: false,
+//      setMdConfig: false,
+//      setMdLogin: 0,
+//      setNmLogin: '',
+//      setNrCont: 0,
+//      setNmCont: '',
+//      setModulo: '',
+//      setAplicacao: '',
+//      setLogado: false,
+//      setDtIni: '',
+//      setDtFim: '',
+//      setTmp: ''
+//    };
+//    for (const [action, value] of Object.entries(defaultPayloads)) {
+//      dispatch({ type: AcessoUseActions[action], payload: value });
+//    }
 //  }
-//}, [dispatch]);
+//}, [state.logado, dispatch]);
+//

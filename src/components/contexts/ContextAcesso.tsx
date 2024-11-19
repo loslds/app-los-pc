@@ -65,7 +65,7 @@ type StateAcesso = {
 export const initialData: StateAcesso = {
   currentstep: 0 | 1 | 2 | 3 | 4 | 5,
   idacesso: 0,
-  pinAdm: 9999,
+  pinAdm: 0,
   page: '',
 
   idemp: 0,

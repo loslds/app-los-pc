@@ -72,7 +72,7 @@ export const ContainerModal = styled.div<ContainerModalType>`
   padding: 0px 0px 0px 0px;
   margin: 0px 10px 0px 10px;
   color: black;
-  top: ${({ ptop }) => ptop || '62px'};
+  top: ${({ ptop }) => ptop ||'62px'};
   position: fixed;
   width: ${({ pwidth }) => pwidth || '66.3%'};
   height: ${({ pheight }) => pheight || '95%'};
@@ -292,7 +292,7 @@ type TypeContainerModalButtonImgCard = {
 };
 export const ContainerModalButtonImgCard = styled.div<TypeContainerModalButtonImgCard>`
   
-  top: ${({ ptop }) => ptop ||  ''};
+  top: ${({ ptop }) => ptop ||  '0px'};
   border: 6px silver groove ;
   padding: 0px 0px 0px 0px;
   margin: 5px 10px 5px 10px;

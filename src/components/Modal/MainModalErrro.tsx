@@ -18,7 +18,11 @@ export const MainModalErro = ({
 }: TypeMainModalErro) => {
   return (
     <MD.ContentInfoErro>
-      <MD.ContainerInfoErroModal ptop={ptop} pheight={pheight} pwidth={pwidth}>
+      <MD.ContainerInfoErroModal 
+        ptop={ptop} 
+        pheight={pheight} 
+        pwidth={pwidth}
+      >
         {children}
       </MD.ContainerInfoErroModal>
     </MD.ContentInfoErro>

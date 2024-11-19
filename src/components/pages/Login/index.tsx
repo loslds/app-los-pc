@@ -33,7 +33,7 @@ import help from '../../../assets/svgs/help.svg';
 import setaesq from '../../../assets/svgs/setaesq.svg';
 import setadir from '../../../assets/svgs/setadir.svg';
 
-export const Logins = () => {
+export const Login = () => {
   const { state, dispatch } = AcessoUseForm();
 
   const [theme, setTheme] = React.useState(dark);
